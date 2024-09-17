@@ -26,7 +26,6 @@
     "date-fns": "^4.0.0-beta.1",
     "pinia": "^2.2.2",
     "vue": "^3.4.37",
-    "vue-chat-emoji": "^1.1.27",
     "vue3-emoji-picker": "^1.1.8"
   },
   "devDependencies": {
