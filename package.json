@@ -1,0 +1,50 @@
+{
+  "name": "chat-messages2",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/vuessages.umd.js",
+  "module": "./dist/vuessages.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/vuessages.es.js",
+      "require": "./dist/vuessages.umd.js"
+    },
+    "./style.css": "./dist/vuessages.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "types": "./dist/types/index.d.ts",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && vue-tsc --emitDeclarationOnly",
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "date-fns": "^4.0.0-beta.1",
+    "pinia": "^2.2.2",
+    "vue": "^3.4.37",
+    "vue-chat-emoji": "^1.1.27",
+    "vue3-emoji-picker": "^1.1.8"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "^1.9.0",
+    "@storybook/addon-essentials": "^8.3.0",
+    "@storybook/addon-interactions": "^8.3.0",
+    "@storybook/addon-links": "^8.3.0",
+    "@storybook/addon-onboarding": "^8.3.0",
+    "@storybook/blocks": "^8.3.0",
+    "@storybook/test": "^8.3.0",
+    "@storybook/vue3": "^8.3.0",
+    "@storybook/vue3-vite": "^8.3.0",
+    "@types/node": "^22.5.4",
+    "@vitejs/plugin-vue": "^5.1.2",
+    "storybook": "^8.3.0",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.1",
+    "vite-plugin-static-copy": "^1.0.6",
+    "vue-tsc": "^2.0.29"
+  }
+}
