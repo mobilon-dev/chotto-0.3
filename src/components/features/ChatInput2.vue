@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import { ref, unref, defineModel } from 'vue';
+import { ref, unref } from 'vue';
 // import picker compopnent
 import EmojiPicker from 'vue3-emoji-picker'
 
