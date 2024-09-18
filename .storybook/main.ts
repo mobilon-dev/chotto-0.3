@@ -13,5 +13,9 @@ const config: StorybookConfig = {
     name: "@storybook/vue3-vite",
     options: {},
   },
+  viteFinal: async (config) => {
+    config.base = 'https://mobilon-dev.github.io/chotto';
+    return config;
+  },
 };
 export default config;
