@@ -5,7 +5,7 @@ Vue3 Chat UI - собери свой интерфейс чата
 
 ## документация
 
-- ссылка
+- [storybook](https://mobilon-dev.github.io/chotto/)
 
 ## схема
 
@@ -13,12 +13,11 @@ Vue3 Chat UI - собери свой интерфейс чата
 
 ## пример
 
-- ссылка
+[пример](https://github.com/antirek/chotto-sample)
 
 ## скриншот
 
 ![](images/screenshot1.png)
-
 
 
 # разработка
