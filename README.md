@@ -1,28 +1,37 @@
 # chotto
 Vue3 Chat UI - собери свой интерфейс чата
 
-# документация
+# использование
+
+## документация
 
 - ссылка
 
+## схема
 
-# пример
+![](images/scheme.png)
+
+## пример
 
 - ссылка
 
-# скриншот
+## скриншот
 
 ![](images/screenshot1.png)
 
 
-# install
+
+# разработка
+
+
+## install
 
 > npm i
 
-# run storybook
+## run storybook
 
 > npm run storybook
 
-# build
+## build
 
 > npm run build
