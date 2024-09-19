@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-import Chat from "../base/AdvancedChat.vue";
+import Chat from "../base/Chat2.vue";
 
 // Define props
 const props = defineProps({

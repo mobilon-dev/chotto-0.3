@@ -9,14 +9,13 @@
     </div>
     <div class="chat-details">
       <div class="unread" v-if="chat.countUnread > 0">{{ chat.countUnread }}</div>
-      <div class="timestamp">{{ formatTimestampToReadable(chat['lastActivity.timestamp']) }}</div>
+      <div class="timestamp" v-if="chat['lastActivity.time']">{{ chat['lastActivity.time'] }}</div>
     </div>
   </div>
 </template>
 
 <script setup>
 
-import { formatDistanceToNow } from 'date-fns';
 // Define props
 const props = defineProps({
   chat: {
@@ -40,15 +39,6 @@ const getAvatarImage = () => {
     return defaultAvatar;
   }
 }
-
-const formatTimestampToReadable = (unixTimestamp) => {
-  let formattedTime = '';
-  if(unixTimestamp) {
-    formattedTime = formatDistanceToNow(unixTimestamp * 1000, { addSuffix: true });
-  }
-  return formattedTime;
-}
-
 </script>
 
 <style scoped>
