@@ -17,7 +17,7 @@ export const Primary: Story = {
       lastMessage: "Привет!",
       countUnread: "21",
       'lastActivity.time': "12:34",
-    },{      
+    },{
       name: "John Doe 2",
       lastMessage: "Привет 2!",
       countUnread: "677",
@@ -26,4 +26,21 @@ export const Primary: Story = {
   },
 };
 
+export const WithEnabledFilter: Story = {
+  args: {
+    chats: [{
+      avatar: "https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png",
+      name: "John Doe",
+      lastMessage: "Привет!",
+      countUnread: "21",
+      'lastActivity.time': "12:34",
+    },{
+      name: "John Doe 2",
+      lastMessage: "Привет 2!",
+      countUnread: "677",
+      'lastActivity.time': "12:11",
+    }],
+    filterEnabled: true,
+  },
+};
 

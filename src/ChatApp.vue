@@ -1,6 +1,10 @@
 <template>
   <div class="chat-app">
-    <ChatList :chats="chatsStore.chats" @select="selectChat" />
+    <ChatList
+      :chats="chatsStore.chats"
+      @select="selectChat"
+      filterEnabled
+    />
 
     <div v-if="selectedChat">
       <ChatInfo :chat="selectedChat"/>
@@ -57,10 +61,6 @@ const messages = ref([]);
 const userProfile = ref({});
 
 // Methods
-const getUserProfile = () => {
-  return props.authProvider.getUserProfile();
-};
-
 const getFeed = () => {
   // console.log('get feed')
   if (selectedChat.value) {

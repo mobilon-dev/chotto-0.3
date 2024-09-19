@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ChatFilter @update="getFilter"/>
+    <ChatFilter @update="getFilter" v-if="filterEnabled"/>
     <div class="chat-list">
       <chat
         v-for="chat in getSortedAndFilteredChats()"
@@ -22,6 +22,10 @@ const filter = ref('');
 const props = defineProps({
   chats: {
     type: Array,
+    required: true,
+  },
+  filterEnabled: {
+    type: Boolean,
     required: true,
   },
 });
