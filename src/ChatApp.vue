@@ -18,7 +18,7 @@ import { onMounted, ref } from 'vue';
 import { defineStore } from 'pinia'
 
 import ChatInput from "./components/features/ChatInput2.vue";
-import ChatList from "./components/features/ChatList.vue";
+import ChatList from "./components/features/ChatList2.vue";
 import ChatInfo from "./components/features/ChatInfo.vue";
 import MessageFeed from "./components/features/MessageFeed.vue";
 import Profile from "./components/features/Profile.vue";

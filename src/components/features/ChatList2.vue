@@ -1,17 +1,23 @@
 <template>
-  <div class="chat-list">
-    <chat
-      v-for="chat in getSortedChats()"
-      :key="chat.chatId"
-      :chat="chat"
-      @select="selectChat"
-    />
+  <div>
+    <ChatFilter @update="getFilter"/>
+    <div class="chat-list">
+      <chat
+        v-for="chat in getSortedAndFilteredChats()"
+        :key="chat.chatId"
+        :chat="chat"
+        @select="selectChat"
+      />
+    </div>
   </div>
 </template>
 
 <script setup>
+import {ref} from 'vue';
 import Chat from "../base/Chat2.vue";
+import ChatFilter from '../base/ChatFilter.vue';
 
+const filter = ref('');
 // Define props
 const props = defineProps({
   chats: {
@@ -26,12 +32,20 @@ const emit = defineEmits(['select']);
 // Define method
 const selectChat = (chat) => {emit('select', chat)};
 
-const getSortedChats = () => {  
-  return props.chats.sort((a, b) => {
-    if (a.countUnread > b.countUnread) return -1;
-    if (a.countUnread < b.countUnread) return 1;
-    if (a.countUnread == b.countUnread) return 0;
-  });
+const getSortedAndFilteredChats = () => {
+  return props.chats
+    .sort((a, b) => {
+      if (a.countUnread > b.countUnread) return -1;
+      if (a.countUnread < b.countUnread) return 1;
+      if (a.countUnread == b.countUnread) return 0;
+    })
+    .filter(c => c.name.includes(filter.value));
+  ;
+}
+
+const getFilter = (value) => {
+  // console.log('filter', value);
+  filter.value = value;
 }
 
 // watch(() => props.chats, getSortedChats);
