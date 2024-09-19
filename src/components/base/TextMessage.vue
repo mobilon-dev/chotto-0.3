@@ -20,14 +20,6 @@ function getClass(message) {
 </script>
 
 <style scoped>
-/*
-.text-message {
-  padding: 8px;
-  background-color: #f1f1f1;
-  border-radius: 5px;
-  margin: 5px 0;
-}
-*/
 
 .text-message-left {
   /* display: flex; */
