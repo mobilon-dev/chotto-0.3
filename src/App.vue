@@ -84,7 +84,7 @@ onMounted(() => {
   setTimeout(() => {
     // Симулируем получение нового сообщения с сервера
     const newMessage = {
-      chatId: 1,
+      chatId: 2,
       type: "message.text",
       text: "Новое сообщение от сервера!",
       direction: 'incoming',

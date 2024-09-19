@@ -9,13 +9,12 @@
     </div>
     <div class="chat-details">
       <div class="unread" v-if="chat.countUnread > 0">{{ chat.countUnread }}</div>
-      <div class="timestamp" v-if="chat['lastActivity.time']">{{ chat['lastActivity.time'] }}</div>
+      <div class="time" v-if="chat['lastActivity.time']">{{ chat['lastActivity.time'] }}</div>
     </div>
   </div>
 </template>
 
 <script setup>
-
 // Define props
 const props = defineProps({
   chat: {
@@ -94,7 +93,7 @@ const getAvatarImage = () => {
   margin-right: 10px;
 }
 
-.timestamp {
+.time {
   font-size: 12px;
   color: #888;
 }

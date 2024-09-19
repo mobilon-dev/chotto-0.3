@@ -1,7 +1,7 @@
 <template>
   <div class="chat-list">
     <chat
-      v-for="chat in chats"
+      v-for="chat in getSortedChats()"
       :key="chat.chatId"
       :chat="chat"
       @select="selectChat"
@@ -10,6 +10,7 @@
 </template>
 
 <script setup>
+// import {IChat} from '../../types';
 import Chat from "../base/Chat.vue";
 
 // Define props
@@ -25,6 +26,16 @@ const emit = defineEmits(['select']);
 
 // Define method
 const selectChat = (chat) => {emit('select', chat)};
+
+const getSortedChats = () => {  
+  return props.chats.sort((a, b) => {
+    if (a.countUnread > b.countUnread) return -1;
+    if (a.countUnread < b.countUnread) return 1;
+    if (a.countUnread == b.countUnread) return 0;
+  });
+}
+
+// watch(() => props.chats, getSortedChats);
 </script>
 
 <style scoped>

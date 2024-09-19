@@ -16,7 +16,7 @@ export const Primary: Story = {
       name: "John Doe",
       lastMessage: "Привет!",
       countUnread: "2",
-      timestamp: "12:34",
+      'lastActivity.time': "12:34",
     },
   },
 };
@@ -27,7 +27,7 @@ export const LongLastMessage: Story = {
       name: "John Doe",
       lastMessage: "Очень длинное текстовое сообщение. Его надо как-то немного спрятать",
       countUnread: "0",
-      timestamp: "12:34",
+      'lastActivity.time': "12:34",
     },
   },
 };
