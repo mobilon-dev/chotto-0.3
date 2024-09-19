@@ -31,6 +31,10 @@ Vue3 Chat UI - собери свой интерфейс чата
 
 > npm run storybook
 
+## run dev
+
+> npm run dev
+
 ## build
 
 > npm run build
