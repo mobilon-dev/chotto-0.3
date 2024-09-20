@@ -1,10 +1,13 @@
 <template>
   <div class="chat-app">
-    <ChatList
-      :chats="chatsStore.chats"
-      @select="selectChat"
-      filterEnabled
-    />
+    <div>
+      <Profile :user="userProfile" />
+      <ChatList
+        :chats="chatsStore.chats"
+        @select="selectChat"
+        filterEnabled
+      />
+    </div>
 
     <div v-if="selectedChat">
       <ChatInfo :chat="selectedChat"/>
@@ -12,8 +15,6 @@
       <ChatInput @send="addMessage" />
     </div>
     <p v-else>Выберите контакт для начала общения</p>
-
-    <Profile :user="userProfile" />
   </div>
 </template>
 
@@ -110,7 +111,7 @@ onMounted(() => {
 <style scoped>
 .chat-app {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr ;
+  grid-template-columns: 1fr 3fr;
   gap: 16px;
 }
 </style>
