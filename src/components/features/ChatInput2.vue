@@ -2,11 +2,16 @@
   <div class="chat-input">
     <input 
       v-model="message"
-      ref="refInput" @keydown.enter="sendMessage" placeholder="Type a message..." />
-    <button @click="toogleDialogEmoji">😃</button> 
-    <EmojiPicker :native="true" @select="onSelectEmoji" v-if="enabledEmojiPicker" 
-      pickerType=""
+      ref="refInput" 
+      @keydown.enter="sendMessage" 
+      placeholder="Type a message..." 
     />
+    <span v-if="enableEmoji">
+    <button @click="toogleDialogEmoji">😃</button> 
+      <EmojiPicker :native="true" @select="onSelectEmoji" v-if="enabledEmojiPicker" 
+        pickerType=""
+      />
+    </span>
     <button @click="sendMessage">Send</button>
   </div>
 </template>
@@ -25,7 +30,15 @@ const emit = defineEmits(['send']);
 // Define reactive message state
 const message = defineModel();
 const refInput = ref(null);
-const enabledEmojiPicker = ref(false)
+const enabledEmojiPicker = ref(false) // это типа показывать или нет панель выбора емоджи
+
+const props = defineProps({
+  enableEmoji: {
+    type: Boolean,
+    required: false,
+    default: false,
+  }
+})
 
 
 // Define the method to send the message
@@ -45,7 +58,7 @@ const toogleDialogEmoji = () => {
 
 const onSelectEmoji = (emoji) => {
   message.value = (message.value ? message.value : '' ) + emoji.i;
-  console.log('emoji', emoji)
+  // console.log('emoji', emoji)
 }
 </script>
 

@@ -12,7 +12,7 @@
     <div v-if="selectedChat">
       <ChatInfo :chat="selectedChat"/>
       <MessageFeed :messages="messages" />
-      <ChatInput @send="addMessage" />
+      <ChatInput @send="addMessage" :enableEmoji="true"/>
     </div>
     <p v-else>Выберите контакт для начала общения</p>
   </div>

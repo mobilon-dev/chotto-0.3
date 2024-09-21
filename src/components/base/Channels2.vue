@@ -1,8 +1,14 @@
 <template>
   <div ref="customDiv">
     <div @click="toggle">
-      <div class="popover">channel
-        <span v-if="selectedChannel">{{ selectedChannel.channelId }}</span>
+      <div class="popover">
+        <span v-if="!selectedChannel">select channel</span>
+        <span v-if="selectedChannel">
+          <span v-if="selectedChannel.icon">
+            <img :src="selectedChannel.icon" height="16" width="16">&nbsp;
+          </span>
+          <span>{{ selectedChannel.title }}</span>
+        </span>
       </div>
     </div>
     <div v-if="showPopup" @click.stop>

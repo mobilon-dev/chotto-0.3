@@ -26,6 +26,10 @@ const data3 = {
     { chatId: 1, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад',},
     { chatId: 2, name: "Мария", countUnread: 0},
   ],
+  channels: [
+    { channelId: 'channel1', title: 'test channel 1', icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/240px-Telegram_logo.svg.png'},
+    { channelId: 'channel2', title: 'test channel 2'},
+  ],
 };
 
 // Define the auth provider
@@ -48,8 +52,8 @@ const dataProvider = {
   getFeed(chatId) {
     return data3.messages.filter(m => m.chatId === chatId);
   },
-  getAllMessages() {
-    return data3.messages;
+  getChannels() {
+    return data3.channels;
   },
   getChats() {
     return data3.chats;
