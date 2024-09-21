@@ -6,11 +6,16 @@
       @keydown.enter="sendMessage" 
       placeholder="Type a message..." 
     />
+
     <span v-if="enableEmoji">
-    <button @click="toogleDialogEmoji">😃</button> 
+      <button @click="toogleDialogEmoji">😃</button> 
       <EmojiPicker :native="true" @select="onSelectEmoji" v-if="enabledEmojiPicker" 
         pickerType=""
       />
+    </span>
+
+    <span v-if="channels">
+      <Channels :channels="channels"></Channels>
     </span>
     <button @click="sendMessage">Send</button>
   </div>
@@ -20,6 +25,7 @@
 import { ref, unref } from 'vue';
 // import picker compopnent
 import EmojiPicker from 'vue3-emoji-picker'
+import Channels from '../base/Channels2.vue'
 
 // import css
 import 'vue3-emoji-picker/css'
@@ -37,9 +43,13 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: false,
+  },
+  channels: {
+    type: Array,
+    required: false,
+    default: [],
   }
 })
-
 
 // Define the method to send the message
 const sendMessage = () => {
@@ -48,7 +58,6 @@ const sendMessage = () => {
     emit('send', message.value);
     message.value = '';
     unref(refInput).focus()
-    
   }
 };
 

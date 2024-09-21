@@ -31,13 +31,41 @@ const testChannelsList = [
   },
 ];
 
-export const Primary: Story = {
+const testChannelsList2 = [
+  {
+    channelId: 'Ch-001',
+    title: 'Test channel',
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/240px-Telegram_logo.svg.png'
+    // type: 'standard',
+  },
+  {
+    channelId: 'Ch-002',
+    title: 'Test channel 2',    
+    icon: 'whatsapp',
+
+  },
+  {
+    channelId: 'channel1',    
+    title: 'waba',
+    icon: 'waba',
+  },
+];
+
+
+
+export const HaveSelectedChannel: Story = {
   args: {
     channels: testChannelsList,
   },
 };
 
-export const NoChannels: Story = {
+export const HaveNotSelectedChannel: Story = {
+  args: {
+    channels: testChannelsList2,
+  },
+};
+
+export const ChannelsEmptyArray: Story = {
   args: {
     channels: [],
   },

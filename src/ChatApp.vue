@@ -12,7 +12,7 @@
     <div v-if="selectedChat">
       <ChatInfo :chat="selectedChat"/>
       <MessageFeed :messages="messages" />
-      <ChatInput @send="addMessage" :enableEmoji="true"/>
+      <ChatInput @send="addMessage" :enableEmoji="true" :channels="channels"/>
     </div>
     <p v-else>Выберите контакт для начала общения</p>
   </div>
@@ -60,6 +60,7 @@ const chatsStore = useChatsStore();
 const selectedChat = ref(null);
 const messages = ref([]);
 const userProfile = ref({});
+const channels = ref([]);
 
 // Methods
 const getFeed = () => {
@@ -105,6 +106,7 @@ onMounted(() => {
   props.eventor.subscribe(handleEvent);
   userProfile.value = props.authProvider.getUserProfile();
   chatsStore.chats = props.dataProvider.getChats();
+  channels.value = props.dataProvider.getChannels();
 });
 </script>
 
