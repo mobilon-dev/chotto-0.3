@@ -1,5 +1,5 @@
 <template>
-  <div :class="getClass(message)">
+  <div :class="getClass(message)" :messageId="message.messageId">
     <p>{{ message.text }}</p>
   </div>
 </template>
@@ -15,7 +15,7 @@ const props = defineProps({
 });
 
 function getClass(message) {
-  return message.direction === 'incoming' ? 'text-message-left' : 'text-message-right';
+  return message.position === 'left' ? 'text-message-left' : 'text-message-right';
 }
 </script>
 

@@ -2,7 +2,7 @@
   <div class="message-feed" ref="refFeed">
     <component
       v-for="message in messages"
-      :key="message.id"
+      :key="message.messageId"
       :is="componentsMap(message.type)"
       :message="message"
     />
@@ -15,6 +15,7 @@ import {ref, unref, watch, nextTick} from 'vue';
 import FileMessage from "../base/FileMessage.vue";
 import ImageMessage from "../base/ImageMessage.vue";
 import TextMessage from "../base/TextMessage.vue";
+import DateMessage from '../base/DateMessage.vue';
 
 const refFeed = ref(null);
 
@@ -32,6 +33,7 @@ const componentsMap = (type) => {
     'message.text': TextMessage,
     'message.image': ImageMessage,
     'message.file': FileMessage,
+    'system.date': DateMessage,
   };
   return r[type];
 }
@@ -49,8 +51,9 @@ watch(() => props.messages, scrollToFeedBottom);
 <style scoped>
 .message-feed {
   flex: 1;
-  max-height: 400px;
-  height: 300px;
+  max-height: 600px;
+  height: 500px;
+  max-width: 800px;
   overflow: auto;
   display: flex;
   flex-direction: column; /* Сообщения располагаются сверху вниз */
