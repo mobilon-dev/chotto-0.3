@@ -32,5 +32,16 @@ export const LongLastMessage: Story = {
   },
 };
 
+export const SelectedChat: Story = {
+  args: {
+    chat: {
+      name: "John Doe",
+      lastMessage: "Сообщение",
+      countUnread: "0",
+      'lastActivity.time': "12:34",
+      isSelected: true,
+    },
+  },
+};
 
 

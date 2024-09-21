@@ -1,5 +1,5 @@
 <template>
-  <div class="chat-item" @click="selectChat">
+  <div :class="getClass()"  @click="selectChat">
     <div class="avatar">
       <img :src="getAvatarImage()" width="50" height="50">
     </div>
@@ -20,7 +20,7 @@ const props = defineProps({
   chat: {
     type: Object,
     required: true,
-  },
+  },  
 });
 
 // Define emits
@@ -28,6 +28,10 @@ const emit = defineEmits(['select']);
 
 // Define method
 const selectChat = () => {emit('select', props.chat);}
+
+const getClass = () => {
+  return props.chat.isSelected ? 'chat-item-selected' : 'chat-item';
+}
 
 const getAvatarImage = () => {
   if (props.chat.avatar) {
@@ -41,17 +45,20 @@ const getAvatarImage = () => {
 </script>
 
 <style scoped>
-.chat {
-  cursor: pointer;
-  padding: 8px;
-  border-bottom: 1px solid #ccc;
-}
-
 .chat-item {
   display: flex;
   align-items: center;
   padding: 15px;
   border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.chat-item-selected {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background: #bbbbbb;
+  border-bottom: 1px solid #a09d9d;
   cursor: pointer;
 }
 

@@ -34,7 +34,12 @@ const props = defineProps({
 const emit = defineEmits(['select']);
 
 // Define method
-const selectChat = (chat) => {emit('select', chat)};
+const selectChat = (chat) => {
+  emit('select', chat);
+  props.chats.forEach(c => c.isSelected = false);
+  const c = props.chats.find(c => c.chatId === chat.chatId);
+  c.isSelected = true;
+};
 
 const getSortedAndFilteredChats = () => {
   return props.chats
