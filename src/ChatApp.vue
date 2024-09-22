@@ -64,6 +64,7 @@ const channels = ref([]);
 
 
 const readableFormat = (timestamp) => {
+  // @todo: преобразование timestamp в читаемый вид
   return timestamp;
 }
 
@@ -73,6 +74,8 @@ const getFeed = () => {
   if (selectedChat.value) {
     // здесь обработка для передачи сообщений в feed
     const messages = props.dataProvider.getFeed(selectedChat.value.chatId);
+
+    // а. переформатирование
     const newMessages = messages.map((m) => {
       return {
         ...m,
@@ -80,6 +83,12 @@ const getFeed = () => {
         time: readableFormat(m.timestamp),
       };
     });
+
+    // б. вставка временных отсечек
+    // const newMessages2 = prepareTimeline(newMessages);
+
+
+
     return newMessages
   } else {
     return [];
