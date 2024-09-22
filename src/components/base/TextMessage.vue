@@ -1,6 +1,9 @@
 <template>
   <div :class="getClass(message)" :messageId="message.messageId">
     <p>{{ message.text }}</p>
+    <div class="message-time">
+        {{ message.time }}
+    </div>
   </div>
 </template>
 
@@ -52,6 +55,12 @@ function getClass(message) {
   flex-basis: 500px; /* Начальная ширина */
   flex-grow: 2;
   align-self: flex-end; /* Сообщения выравниваются справа */
+}
+
+.message-time {
+  font-size: 12px;
+  color: #777;
+  margin-left: 10px;
 }
 
 </style>
