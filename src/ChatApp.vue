@@ -62,11 +62,25 @@ const messages = ref([]);
 const userProfile = ref({});
 const channels = ref([]);
 
+
+const readableFormat = (timestamp) => {
+  return timestamp;
+}
+
 // Methods
 const getFeed = () => {
   // console.log('get feed')
   if (selectedChat.value) {
-    return props.dataProvider.getFeed(selectedChat.value.chatId);
+    // здесь обработка для передачи сообщений в feed
+    const messages = props.dataProvider.getFeed(selectedChat.value.chatId);
+    const newMessages = messages.map((m) => {
+      return {
+        ...m,
+        position: m.direction === 'outgoing' ? 'right' : 'left',
+        time: readableFormat(m.timestamp),
+      };
+    });
+    return newMessages
   } else {
     return [];
   }
@@ -93,7 +107,7 @@ const handleEvent = (event) => {
   if (event.type === 'message') {        
     chatsStore.setUnreadCounter(event.data.chatId, 1);
     if (selectedChat?.value?.chatId) {
-      messages.value = props.dataProvider.getFeed(selectedChat.value.chatId);
+      messages.value = getFeed();
     }
   } else if (event.type === 'notification') {
     console.log('Системное уведомление:', event.data.text);

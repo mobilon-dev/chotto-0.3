@@ -92,7 +92,7 @@ onMounted(() => {
       type: "message.text",
       text: "Новое сообщение от сервера!",
       direction: 'incoming',
-      isRead: false
+      status: 'sent',
     };
     // Эмитим событие в дочерний компонент
     // handleServerEvent({ type: 'message', data: newMessage });
