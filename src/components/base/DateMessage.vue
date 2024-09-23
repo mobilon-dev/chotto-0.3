@@ -1,36 +1,14 @@
 <script setup>
-import { computed } from 'vue';
-
 const props = defineProps({
-  datetimeUTC: {
-    type: String,
-    default: new Date().toUTCString(),
-    required: true,
-    description: 'Дата сообщения',
-  },
-});
-
-const messageTime = computed(() => {
-  const date = new Date(props.datetimeUTC);
-  const today = new Date();
-  date.setHours(0, 0, 0, 0);
-  today.setHours(0, 0, 0, 0);
-  if (date.toDateString() === today.toDateString()) {
-    return 'сегодня';
-  } else if (date.toDateString() === new Date(today - 86400000).toDateString()) {
-    return 'вчера';
-  } else {
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
-    return `${day < 10 ? '0' + day : day}.${month < 10 ? '0' + month : month}.${year}`;
+  message: {
+    type: Object,
   }
 });
 </script>
 
 <template>
   <div class="dateMessage">
-    <p class="dateMessage__text">{{ messageTime }}</p>
+    <p class="dateMessage__text">{{ message.message }}</p>
   </div>
 </template>
 

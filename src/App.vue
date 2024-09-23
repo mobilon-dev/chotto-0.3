@@ -15,12 +15,12 @@ import ChatApp from './ChatApp.vue';
 // Mock data
 const data3 = {
   messages: [
-    { chatId: 1, type: "message.text", text: "Привет!", direction: 'incoming', status: 'read', time: '12:30'},
-    { chatId: 1, type: "message.text", text: "Привет!", direction: 'outgoing', isRead: true},
-    { chatId: 1, type: "message.image", url: "https://example.com/image.jpg", alt: "Example Image", direction: 'outgoing'},
-    { chatId: 2, type: "message.file", url: "https://example.com/file.pdf", filename: "Документ.pdf" },
-    { chatId: 2, type: "message.text", text: "Привет!", direction: 'incoming', isRead: true},
-    { chatId: 2, type: "message.image", url: "https://example.com/image.jpg", alt: "Example Image", direction: 'outgoing'},
+    { chatId: 1, type: "message.text", text: "Привет!", direction: 'incoming', status: 'read', timestamp: '1727027959'},
+    { chatId: 1, type: "message.text", text: "Привет!", direction: 'outgoing', status: 'read', timestamp: '1727027959'},
+    { chatId: 1, type: "message.image", url: "https://example.com/image.jpg", timestamp: '1727027959', alt: "Example Image", direction: 'outgoing'},
+    { chatId: 2, type: "message.file", url: "https://example.com/file.pdf", filename: "Документ.pdf", timestamp: '1727027959',  },
+    { chatId: 2, type: "message.text", text: "Привет!", direction: 'incoming', status: 'read', timestamp: '1727027959'},
+    { chatId: 2, type: "message.image", url: "https://example.com/image.jpg", alt: "Example Image", direction: 'outgoing', timestamp: '1726743559', },
   ],
   chats: [
     { chatId: 1, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад',},
@@ -93,6 +93,7 @@ onMounted(() => {
       text: "Новое сообщение от сервера!",
       direction: 'incoming',
       status: 'sent',
+      timestamp: '1727112546'
     };
     // Эмитим событие в дочерний компонент
     // handleServerEvent({ type: 'message', data: newMessage });

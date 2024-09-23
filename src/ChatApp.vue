@@ -28,6 +28,8 @@ import ChatInfo from "./components/features/ChatInfo.vue";
 import MessageFeed from "./components/features/MessageFeed.vue";
 import Profile from "./components/features/Profile.vue";
 
+import {insertDaySeparators} from './helpers/prepareTimeline';
+
 // Define props
 const props = defineProps({
   authProvider: {
@@ -75,8 +77,15 @@ const getFeed = () => {
     // здесь обработка для передачи сообщений в feed
     const messages = props.dataProvider.getFeed(selectedChat.value.chatId);
 
+    // сортировка по timestamp
+    const messages1 = messages.sort((a, b) => {
+      if (Number(a.timestamp) < Number(b.timestamp)) return -1;
+      if (Number(a.timestamp) > Number(b.timestamp)) return 1;
+      return 0;
+    })
+
     // а. переформатирование
-    const newMessages = messages.map((m) => {
+    const messages2 = messages1.map((m) => {
       return {
         ...m,
         position: m.direction === 'outgoing' ? 'right' : 'left',
@@ -85,11 +94,9 @@ const getFeed = () => {
     });
 
     // б. вставка временных отсечек
-    // const newMessages2 = prepareTimeline(newMessages);
+    const messages3 = insertDaySeparators(messages2);
 
-
-
-    return newMessages
+    return messages3;
   } else {
     return [];
   }
@@ -101,7 +108,7 @@ const addMessage = (message) => {
     type: 'message.text',
     chatId: selectedChat.value.chatId,
     direction: 'outgoing',
-    timestamp: new Date().toLocaleTimeString(),
+    timestamp: '1727112546',
   });
   messages.value = getFeed();  // Обновление сообщений
 };
