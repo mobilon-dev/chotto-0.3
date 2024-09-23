@@ -9,10 +9,12 @@ const meta: Meta<typeof DateMessage> = {
 export default meta;
 type Story = StoryObj<typeof DateMessage>;
 
-const currentDateTimeUTC = new Date().toUTCString();
+// const currentDateTimeUTC = new Date().toUTCString();
 
 export const Today: Story = {
   args: {
-    datetimeUTC: currentDateTimeUTC,
+    message: {
+      message: 'test',
+    }
   },
 };
