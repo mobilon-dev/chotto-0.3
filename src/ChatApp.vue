@@ -28,7 +28,7 @@ import ChatInfo from "./components/features/ChatInfo.vue";
 import MessageFeed from "./components/features/MessageFeed.vue";
 import Profile from "./components/features/Profile.vue";
 
-import {insertDaySeparators} from './helpers/prepareTimeline';
+import {insertDaySeparators, formatTimestamp} from './helpers';
 
 // Define props
 const props = defineProps({
@@ -67,7 +67,7 @@ const channels = ref([]);
 
 const readableFormat = (timestamp) => {
   // @todo: преобразование timestamp в читаемый вид
-  return timestamp;
+  return formatTimestamp(timestamp);
 }
 
 // Methods
