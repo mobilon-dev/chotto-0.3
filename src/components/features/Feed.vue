@@ -13,7 +13,7 @@
 import {ref, unref, watch, nextTick} from 'vue';
 
 import FileMessage from "../messages/FileMessage.vue";
-import ImageMessage from "../messages/ImageMessage.vue";
+import ImageMessage from "../messages/ImageMessage2.vue";
 import TextMessage from "../messages/TextMessage.vue";
 import DateMessage from '../messages/DateMessage.vue';
 
