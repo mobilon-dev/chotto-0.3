@@ -28,7 +28,12 @@ import ChatInfo from "./components/features/ChatInfo.vue";
 import MessageFeed from "./components/features/Feed.vue";
 import Profile from "./components/features/Profile.vue";
 
-import {insertDaySeparators, formatTimestamp, playNotificationAudio} from './helpers';
+import {
+  insertDaySeparators, 
+  formatTimestamp, 
+  playNotificationAudio,
+  sortByTimestamp,
+} from './helpers';
 
 // Define props
 const props = defineProps({
@@ -77,14 +82,10 @@ const getFeed = () => {
     // здесь обработка для передачи сообщений в feed
     const messages = props.dataProvider.getFeed(selectedChat.value.chatId);
 
-    // сортировка по timestamp
-    const messages1 = messages.sort((a, b) => {
-      if (Number(a.timestamp) < Number(b.timestamp)) return -1;
-      if (Number(a.timestamp) > Number(b.timestamp)) return 1;
-      return 0;
-    })
+    // а. сортировка по timestamp
+    const messages1 = sortByTimestamp(messages);
 
-    // а. переформатирование
+    // б. переформатирование
     const messages2 = messages1.map((m) => {
       return {
         ...m,
@@ -93,7 +94,7 @@ const getFeed = () => {
       };
     });
 
-    // б. вставка временных отсечек
+    // в. вставка временных отсечек
     const messages3 = insertDaySeparators(messages2);
 
     return messages3;
