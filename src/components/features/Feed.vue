@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-import {ref, unref, watch, nextTick, onMounted} from 'vue';
+import {ref, unref, watch, nextTick, onUpdated} from 'vue';
 
 import FileMessage from "../messages/FileMessage.vue";
 import ImageMessage from "../messages/ImageMessage2.vue";
@@ -47,7 +47,9 @@ function scrollToFeedBottom () {
   })
 }
 
+onUpdated(() => scrollToFeedBottom);
 watch(() => props.objects, scrollToFeedBottom);
+
 </script>
 
 <style scoped>
