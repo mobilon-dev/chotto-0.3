@@ -11,7 +11,7 @@
 
     <div v-if="selectedChat">
       <ChatInfo :chat="selectedChat"/>
-      <MessageFeed :messages="messages" />
+      <Feed :objects="messages" />
       <ChatInput @send="addMessage" :enableEmoji="true" :channels="channels"/>
     </div>
     <p v-else>Выберите контакт для начала общения</p>
@@ -25,7 +25,7 @@ import { defineStore } from 'pinia'
 import ChatInput from "./components/features/ChatInput2.vue";
 import ChatList from "./components/features/ChatList2.vue";
 import ChatInfo from "./components/features/ChatInfo.vue";
-import MessageFeed from "./components/features/Feed.vue";
+import Feed from "./components/features/Feed.vue";
 import Profile from "./components/features/Profile.vue";
 
 import {
@@ -76,7 +76,7 @@ const readableFormat = (timestamp) => {
 }
 
 // Methods
-const getFeed = () => {
+const getFeedObjects = () => {
   // console.log('get feed')
   if (selectedChat.value) {
     // здесь обработка для передачи сообщений в feed
@@ -112,20 +112,20 @@ const addMessage = (message) => {
     direction: 'outgoing',
     timestamp: '1727112546',
   });
-  messages.value = getFeed();  // Обновление сообщений
+  messages.value = getFeedObjects();  // Обновление сообщений
 };
 
 const selectChat = (chat) => {
   selectedChat.value = chat;
   chatsStore.setUnreadCounter(chat.chatId, 0);
-  messages.value = getFeed(); // Обновляем сообщения при выборе контакта
+  messages.value = getFeedObjects(); // Обновляем сообщения при выборе контакта
 };
 
 const handleEvent = async (event) => {
   if (event.type === 'message') {
     chatsStore.setUnreadCounter(event.data.chatId, 1);
     if (selectedChat?.value?.chatId) {
-      messages.value = getFeed();
+      messages.value = getFeedObjects();
     }
     await playNotificationAudio();
   } else if (event.type === 'notification') {

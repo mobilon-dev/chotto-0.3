@@ -1,16 +1,16 @@
 <template>
   <div class="message-feed" ref="refFeed">
     <component
-      v-for="message in messages"
-      :key="message.messageId"
-      :is="componentsMap(message.type)"
-      :message="message"
+      v-for="object in objects"
+      :key="object.messageId"
+      :is="componentsMap(object.type)"
+      :message="object"
     />
   </div>
 </template>
 
 <script setup>
-import {ref, unref, watch, nextTick} from 'vue';
+import {ref, unref, watch, nextTick, onMounted} from 'vue';
 
 import FileMessage from "../messages/FileMessage.vue";
 import ImageMessage from "../messages/ImageMessage2.vue";
@@ -22,7 +22,7 @@ const refFeed = ref(null);
 
 // Define props
 const props = defineProps({
-  messages: {
+  objects: {
     type: Array,
     required: true,
   },
@@ -47,7 +47,7 @@ function scrollToFeedBottom () {
   })
 }
 
-watch(() => props.messages, scrollToFeedBottom);
+watch(() => props.objects, scrollToFeedBottom);
 </script>
 
 <style scoped>
