@@ -14,7 +14,7 @@ type Story = StoryObj<typeof DateMessage>;
 export const Today: Story = {
   args: {
     message: {
-      message: 'test',
+      text: 'test',
     }
   },
 };

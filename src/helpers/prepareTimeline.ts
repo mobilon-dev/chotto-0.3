@@ -12,7 +12,7 @@ export const insertDaySeparators = (messages: any) => {
       result.push({
         isSeparator: true,
         day: currentDay, // Можно использовать локальную дату, если необходимо
-        message: currentDay,
+        text: currentDay,
         type: 'system.date',
       });
       previousDay = currentDay;

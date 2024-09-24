@@ -8,7 +8,7 @@ const props = defineProps({
 
 <template>
   <div class="dateMessage">
-    <p class="dateMessage__text">{{ message.message }}</p>
+    <p class="dateMessage__text">{{ message.text }}</p>
   </div>
 </template>
 

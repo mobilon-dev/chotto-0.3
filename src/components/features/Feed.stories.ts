@@ -14,7 +14,7 @@ const currentDateTimeUTC = new Date().toUTCString();
 export const Primary: Story = {
   args: {
     messages: [
-      { type: "system.date",   messageId: '1', datetimeUTC: currentDateTimeUTC, },
+      { type: "system.date",   messageId: '1', text: 'text', },
       { type: "message.text",  messageId: '2', text: "Привет!", position: 'left', status: 'read', time: '12:30'},
       { type: "message.text",  messageId: '3', text: "Привет!", position: 'right', time: '13:30'},
       { type: "message.image", messageId: '4', url: "https://example.com/image.jpg", time: '14:30', alt: "Example Image", position: 'left'},
