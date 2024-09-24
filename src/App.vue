@@ -17,7 +17,7 @@ const data3 = {
   messages: [
     { chatId: 1, type: "message.text", text: "Привет!", direction: 'incoming', status: 'read', timestamp: '1727027959'},
     { chatId: 1, type: "message.text", text: "Привет!", direction: 'outgoing', status: 'read', timestamp: '1727027959'},
-    { chatId: 1, type: "message.image", url: "https://example.com/image.jpg", timestamp: '1727027959', alt: "Example Image", direction: 'outgoing'},
+    { chatId: 1, type: "message.image", url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg", timestamp: '1727027959', alt: "Example Image", direction: 'outgoing'},
     { chatId: 2, type: "message.file", url: "https://example.com/file.pdf", filename: "Документ.pdf", timestamp: '1727027959',  },
     { chatId: 2, type: "message.text", text: "Привет!", direction: 'incoming', status: 'read', timestamp: '1727027959'},
     { chatId: 2, type: "message.image", url: "https://example.com/image.jpg", alt: "Example Image", direction: 'outgoing', timestamp: '1726743559', },
