@@ -28,7 +28,7 @@ import ChatInfo from "./components/features/ChatInfo.vue";
 import MessageFeed from "./components/features/Feed.vue";
 import Profile from "./components/features/Profile.vue";
 
-import {insertDaySeparators, formatTimestamp} from './helpers';
+import {insertDaySeparators, formatTimestamp, playNotificationAudio} from './helpers';
 
 // Define props
 const props = defineProps({
@@ -102,6 +102,7 @@ const getFeed = () => {
   }
 };
 
+
 const addMessage = (message) => {
   props.dataProvider.addMessage({
     text: message,
@@ -119,12 +120,13 @@ const selectChat = (chat) => {
   messages.value = getFeed(); // Обновляем сообщения при выборе контакта
 };
 
-const handleEvent = (event) => {
-  if (event.type === 'message') {        
+const handleEvent = async (event) => {
+  if (event.type === 'message') {
     chatsStore.setUnreadCounter(event.data.chatId, 1);
     if (selectedChat?.value?.chatId) {
       messages.value = getFeed();
     }
+    await playNotificationAudio();
   } else if (event.type === 'notification') {
     console.log('Системное уведомление:', event.data.text);
   }
