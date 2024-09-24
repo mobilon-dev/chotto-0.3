@@ -25,7 +25,7 @@
 import { ref, unref } from 'vue';
 // import picker compopnent
 import EmojiPicker from 'vue3-emoji-picker'
-import Channels from '../base/Channels2.vue'
+import Channels from './Channels2.vue'
 
 // import css
 import 'vue3-emoji-picker/css'

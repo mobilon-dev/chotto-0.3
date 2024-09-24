@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
  
-import MessageFeed from './MessageFeed.vue';
+import Feed from './Feed.vue';
  
-const meta: Meta<typeof MessageFeed> = {
-  component: MessageFeed,
+const meta: Meta<typeof Feed> = {
+  component: Feed,
 };
  
 export default meta;
-type Story = StoryObj<typeof MessageFeed>;
+type Story = StoryObj<typeof Feed>;
 
 const currentDateTimeUTC = new Date().toUTCString();
 

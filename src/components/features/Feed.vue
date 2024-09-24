@@ -12,10 +12,10 @@
 <script setup>
 import {ref, unref, watch, nextTick} from 'vue';
 
-import FileMessage from "../base/FileMessage.vue";
-import ImageMessage from "../base/ImageMessage.vue";
-import TextMessage from "../base/TextMessage.vue";
-import DateMessage from '../base/DateMessage.vue';
+import FileMessage from "../messages/FileMessage.vue";
+import ImageMessage from "../messages/ImageMessage.vue";
+import TextMessage from "../messages/TextMessage.vue";
+import DateMessage from '../messages/DateMessage.vue';
 
 const refFeed = ref(null);
 
