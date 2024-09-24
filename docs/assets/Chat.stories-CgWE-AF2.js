@@ -1,4 +1,4 @@
-import{C as m}from"./Chat-CnqG9wLc.js";import"./vue.esm-bundler-BzM51Bjv.js";import"./_plugin-vue_export-helper-DlAUqK2U.js";const i={component:m},t={args:{chat:{name:"test chat",countUnread:1}}},a={args:{chat:{name:"test chat test chat test chat test chat",countUnread:1}}};var e,r,s;t.parameters={...t.parameters,docs:{...(e=t.parameters)==null?void 0:e.docs,source:{originalSource:`{
+import{C as m}from"./Chat-EDDf9uEC.js";import"./vue.esm-bundler-Bwy3zgsv.js";import"./_plugin-vue_export-helper-DlAUqK2U.js";const i={component:m},t={args:{chat:{name:"test chat",countUnread:1}}},a={args:{chat:{name:"test chat test chat test chat test chat",countUnread:1}}};var e,r,s;t.parameters={...t.parameters,docs:{...(e=t.parameters)==null?void 0:e.docs,source:{originalSource:`{
   args: {
     chat: {
       name: 'test chat',
