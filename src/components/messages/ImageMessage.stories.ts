@@ -20,3 +20,15 @@ export const LeftImageMessage: Story = {
     },
   },
 };
+
+export const RightImageMessage: Story = {
+  args: {
+    message: {
+      url: 'https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg',
+      alt: 'right',
+      messageId: 'testMessageId',
+      time: '12:00',
+      status: 'read',
+    },
+  },
+};

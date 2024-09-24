@@ -5,6 +5,7 @@
     </div>
     <div v-else class="preview-container">
       <img :src="message.url" alt="Изображение" class="preview-image">
+      <br/>
       <button @click="showPreview = false">Закрыть</button>
     </div>
     <div class="message-info">

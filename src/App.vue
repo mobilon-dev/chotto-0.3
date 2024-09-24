@@ -20,7 +20,8 @@ const data3 = {
     { chatId: 1, type: "message.image", url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg", timestamp: '1727027959', alt: "Example Image", direction: 'outgoing'},
     { chatId: 2, type: "message.file", url: "https://example.com/file.pdf", filename: "Документ.pdf", timestamp: '1727027959',  },
     { chatId: 2, type: "message.text", text: "Привет!", direction: 'incoming', status: 'read', timestamp: '1727027959'},
-    { chatId: 2, type: "message.image", url: "https://example.com/image.jpg", alt: "Example Image", direction: 'outgoing', timestamp: '1726743559', },
+    { chatId: 2, type: "message.audio", url: "https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3", text: "Привет!", direction: 'incoming', status: 'read', timestamp: '1727027959'},
+    { chatId: 2, type: "message.image", url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg", alt: "Example Image", direction: 'outgoing', timestamp: '1726743559', },
   ],
   chats: [
     { chatId: 1, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад',},
