@@ -17,6 +17,10 @@
     <span v-if="channels">
       <Channels :channels="channels"></Channels>
     </span>
+    <!-- подключение компонента fileuploader если он передан как пропс-->
+    <component :is="fileUploaderComponent" v-if="fileUploaderComponent">
+    </component>
+
     <button @click="sendMessage">Send</button>
   </div>
 </template>
@@ -24,11 +28,11 @@
 <script setup>
 import { ref, unref } from 'vue';
 // import picker compopnent
-import EmojiPicker from 'vue3-emoji-picker'
-import Channels from './Channels2.vue'
+import EmojiPicker from 'vue3-emoji-picker';
+import Channels from './Channels2.vue';
 
 // import css
-import 'vue3-emoji-picker/css'
+import 'vue3-emoji-picker/css';
 
 // Define emits
 const emit = defineEmits(['send']);
@@ -48,7 +52,11 @@ const props = defineProps({
     type: Array,
     required: false,
     default: [],
-  }
+  },
+  fileUploaderComponent: {
+    type: Object,
+    default: null,
+  },
 })
 
 // Define the method to send the message

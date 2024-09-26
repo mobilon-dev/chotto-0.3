@@ -12,25 +12,26 @@
     <div v-if="selectedChat">
       <ChatInfo :chat="selectedChat"/>
       <Feed :objects="messages" />
-      <ChatInput @send="addMessage" :enableEmoji="true" :channels="channels"/>
+      <ChatInput @send="addMessage" :enableEmoji="true" :channels="channels" :fileUploaderComponent='FileUploader'/>
     </div>
     <p v-else>Выберите контакт для начала общения</p>
   </div>
 </template>
 
 <script setup>
+import { defineStore } from 'pinia';
 import { onMounted, ref } from 'vue';
-import { defineStore } from 'pinia'
 
+import ChatInfo from "./components/features/ChatInfo.vue";
 import ChatInput from "./components/features/ChatInput2.vue";
 import ChatList from "./components/features/ChatList2.vue";
-import ChatInfo from "./components/features/ChatInfo.vue";
 import Feed from "./components/features/Feed.vue";
+import FileUploader from "./components/features/FileUploader.vue";
 import Profile from "./components/features/Profile.vue";
 
 import {
-  insertDaySeparators, 
-  formatTimestamp, 
+  formatTimestamp,
+  insertDaySeparators,
   playNotificationAudio,
   sortByTimestamp,
 } from './helpers';
