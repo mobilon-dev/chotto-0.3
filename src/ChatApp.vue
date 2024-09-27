@@ -12,7 +12,16 @@
     <div v-if="selectedChat">
       <ChatInfo :chat="selectedChat"/>
       <Feed :objects="messages" />
-      <ChatInput @send="addMessage" :enableEmoji="true" :channels="channels" :fileUploaderComponent='FileUploader'/>
+      <ChatInput @send="addMessage"
+       :enableEmoji="true" 
+       :channels="channels" 
+       />
+      <!-- <ChatInput @send="addMessage"
+       :enableEmoji="true" 
+       :channels="channels" 
+       :fileUploaderComponent='FileUploader'
+       /> -->
+      <FileUploader :handleSendEventFunction='addMessage'/>
     </div>
     <p v-else>Выберите контакт для начала общения</p>
   </div>
@@ -70,7 +79,6 @@ const messages = ref([]);
 const userProfile = ref({});
 const channels = ref([]);
 
-
 const readableFormat = (timestamp) => {
   // @todo: преобразование timestamp в читаемый вид
   return formatTimestamp(timestamp);
@@ -104,11 +112,13 @@ const getFeedObjects = () => {
   }
 };
 
-
 const addMessage = (message) => {
+  console.log(message);
+  // Добавление сообщения в хранилище
+
   props.dataProvider.addMessage({
     text: message,
-    type: 'message.text',
+    type: message.type,
     chatId: selectedChat.value.chatId,
     direction: 'outgoing',
     timestamp: '1727112546',
