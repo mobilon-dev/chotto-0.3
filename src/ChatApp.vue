@@ -25,6 +25,7 @@
     </div>
     <p v-else>Выберите контакт для начала общения</p>
   </div>
+  <CreateNewChat :dataProvider="dataProvider" :selectChat="selectChat" />
 </template>
 
 <script setup>
@@ -34,6 +35,7 @@ import { onMounted, ref } from 'vue';
 import ChatInfo from "./components/features/ChatInfo.vue";
 import ChatInput from "./components/features/ChatInput2.vue";
 import ChatList from "./components/features/ChatList2.vue";
+import CreateNewChat from './components/features/CreateNewChat.vue';
 import Feed from "./components/features/Feed.vue";
 import FileUploader from "./components/features/FileUploader.vue";
 import Profile from "./components/features/Profile.vue";
