@@ -1,16 +1,13 @@
 <template>
   <div class="message-feed" ref="refFeed">
-    <component
-      v-for="object in objects"
-      :key="object.messageId"
-      :is="componentsMap(object.type)"
-      :message="object"
-    />
+    <div class="message-feed__container">
+      <component v-for="object in objects" :key="object.messageId" :is="componentsMap(object.type)" :message="object" />
+    </div>
   </div>
 </template>
 
 <script setup>
-import {ref, unref, watch, nextTick, onUpdated} from 'vue';
+import { ref, unref, watch, nextTick, onUpdated } from 'vue';
 
 import FileMessage from "../messages/FileMessage.vue";
 import ImageMessage from "../messages/ImageMessage2.vue";
@@ -40,8 +37,8 @@ const componentsMap = (type) => {
   return r[type];
 }
 
-function scrollToFeedBottom () {
-  nextTick(function(){
+function scrollToFeedBottom() {
+  nextTick(function () {
     const element = unref(refFeed);
     element.scrollTop = element.scrollHeight;
   })
@@ -52,15 +49,38 @@ watch(() => props.objects, scrollToFeedBottom);
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .message-feed {
-  flex: 1;
-  max-height: 600px;
-  height: 500px;
-  max-width: 800px;
-  overflow: auto;
-  display: flex;
-  flex-direction: column; /* Сообщения располагаются сверху вниз */
-  gap: 5px; /* Отступ между сообщениями */
+  height: fit-content;
+  margin-top: auto;
+  padding: 0 80px 50px 80px;
+  overflow-y: auto;
+
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    background-color: var(--neutral-50);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: var(--neutral-300);
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+}
+
+.dark {
+  .message-feed {
+    &::-webkit-scrollbar {
+      background-color: var(--neutral-500);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--neutral-200);
+    }
+  }
 }
 </style>
