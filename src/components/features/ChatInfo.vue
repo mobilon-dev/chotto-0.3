@@ -1,7 +1,15 @@
 <template>
   <div class="chat-info">
-    <div v-if="chat">
-      <h2>{{ chat.name }}</h2>
+    <div class="chat-info__container" v-if="chat">
+      <div class="chat-info__avatar-container">
+        <img v-if="props.chat.avatar" :src="props.chat.avatar">
+        <span v-else>
+          <i class="pi pi-user"></i>
+        </span>
+      </div>
+
+      <h2 class="chat-info__title">{{ chat.name }}</h2>
+      <p class="chat-info__time">Был(а) недавно</p>
     </div>
   </div>
 </template>
@@ -17,8 +25,60 @@ const props = defineProps({
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .chat-info {
-  padding: 16px;
+  &__container {
+    padding: 20px 15px 20px 40px;
+    display: grid;
+    grid-template-columns: min-content auto;
+    column-gap: 20px;
+    border-bottom: 1px solid var(--neutral-300);
+  }
+
+  &__avatar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--neutral-300);
+    width: var(--avatar-width);
+    height: var(--avatar-height);
+    border-radius: var(--avatar-border-radius);
+    background-size: cover;
+    grid-row: 1 / 3;
+
+    span {
+      font-size: var(--avatar-icon-size);
+      color: var(--avatar-icon-color);
+    }
+  }
+
+  &__title {
+    font-size: 18px;
+    font-weight: 700;
+    grid-column: 2;
+  }
+
+  &__time {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--neutral-400);
+    grid-column: 2;
+  }
+}
+
+.dark {
+  .chat-info {
+    &__container {
+      border-bottom: 1px solid var(--neutral-500);
+    }
+
+    &__avatar-container {
+      background-color: var(--d-avatar-background-color);
+
+      span {
+        color: var(--d-avatar-icon-color);
+      }
+    }
+  }
 }
 </style>

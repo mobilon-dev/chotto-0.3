@@ -1,13 +1,24 @@
 <template>
-  <div :class="getClass(message)" :messageId="message.messageId">
-    <audio :src="message.url" controls></audio>
-    <div class="message-time">
-        {{ message.time }}
+  <div class="audio-message" :class="getClass(message)" :messageId="message.messageId">
+    <audio ref="player" src="/sample-6s.mp3"></audio>
+    <div class="audio-message__container">
+      <button class="audio-message__play" v-show="!isPlaying" @click="togglePlayPause">
+        <span class="pi pi-play"></span>
+      </button>
+      <button class="audio-message__pause" v-show="isPlaying" @click="togglePlayPause">
+        <span class="pi pi-pause"></span>
+      </button>
+      <div class="audio-message__progress-bar-container">
+        <div class="audio-message__progress-bar" :style="{ width: progressPercent + '%' }"></div>
+      </div>
+      <p class="audio-message__remaining-time">{{ `${formatCurrentTime} / ${formatDuration}` }}</p>
+      <span class="audio-message__time">22:02</span>
     </div>
   </div>
 </template>
 
 <script setup>
+import { ref, onMounted, computed } from 'vue'
 
 // Define props
 const props = defineProps({
@@ -18,49 +29,203 @@ const props = defineProps({
 });
 
 function getClass(message) {
-  return message.position === 'left' ? 'audio-message-left' : 'audio-message-right';
+  return message.position === 'left' ? 'audio-message__left' : 'audio-message__right';
 }
+
+const player = ref(null);
+const isPlaying = ref(false);
+const audioDuration = ref(0);
+const currentTime = ref(0)
+
+function togglePlayPause() {
+  if (player.value) {
+    if (isPlaying.value) {
+      player.value.pause();
+    } else {
+      player.value.play();
+    }
+    isPlaying.value = !isPlaying.value;
+  }
+}
+
+const formatTime = (time) => {
+  const minutes = Math.floor(time / 60);
+  const seconds = Math.floor(time % 60);
+  return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}
+
+const formatCurrentTime = computed(() => {
+  if (player.value) {
+    return formatTime(currentTime.value)
+  }
+  return '0:00';
+});
+
+const formatDuration = computed(() => {
+  if (player.value) {
+    return formatTime(audioDuration.value)
+  }
+  return '0:00';
+});
+
+const progressPercent = computed(() => {
+  if (audioDuration.value > 0) {
+    return (currentTime.value / audioDuration.value) * 100;
+  }
+  return 0;
+});
+
+onMounted(() => {
+  player.value.addEventListener('loadedmetadata', () => {
+    audioDuration.value = player.value.duration;
+  });
+  player.value.addEventListener('timeupdate', () => {
+    currentTime.value = player.value.currentTime;
+  });
+});
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.audio-message {
 
-.audio-message-left {
-  /* display: flex; */
-  background-color: #c3e8ba;
-  max-height: 50px;
-  min-width: 300px;
-  border-radius: 10px;
-  padding: 10px;
-  margin-bottom: 10px;
-  max-width: 70%; /* Максимальная ширина сообщения */
-  text-align: left; /* Выравнивание текста влево */
-  position: relative; /* Для позиционирования треугольника */
-  justify-content: flex-start;
-  flex-basis: 200px; /* Начальная ширина */
-  flex-grow: 2;
-  align-self: flex-start; /* Сообщения выравниваются слева */
+  &__container {
+    position: relative;
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    column-gap: var(--audio-message-gap);
+    padding: var(--audio-message-padding);
+    max-width: var(--audio-message-max-width);
+    margin: var(--audio-message-margin);
+    border-radius: var(--audio-message-border-radius);
+  }
+
+  &__play,
+  &__pause {
+    border: none;
+    cursor: pointer;
+    position: relative;
+    grid-row: 1 / 3;
+    width: var(--audio-message-button-width);
+    height: var(--audio-message-button-height);
+    border-radius: var(--audio-message-button-border-radius);
+
+    span {
+      display: flex;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: var(--icon-font-size-medium);
+    }
+  }
+
+  &__progress-bar-container {
+    position: relative;
+    width: 100%;
+    height: var(--audio-message-pbc-height);
+    border-radius: var(--audio-message-pbc-border-radius);
+    margin: var(--audio-message-pbc-margin);
+    background-color: var(--audio-message-pbc-background-color);
+  }
+
+  &__progress-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    transition: width 0.2s ease-in-out;
+    border-radius: var(--audio-message-pb-border-radius);
+    background-color: var(--audio-message-pb-background-color);
+  }
+
+  &__remaining-time {
+    font-size: 12px;
+    grid-column: 2;
+    margin-bottom: -10px;
+  }
+
+  &__time {
+    font-size: 12px;
+    position: absolute;
+    bottom: 4px;
+    right: 8px;
+  }
+
+  &__left {
+
+    .audio-message__container {
+      background-color: var(--audio-message-background-left);
+    }
+
+    .audio-message__play,
+    .audio-message__pause {
+      background-color: var(--audio-message-button-background-color-left);
+
+      span {
+        color: var(--audio-message-button-icon-color-left);
+      }
+    }
+  }
+
+  &__right {
+
+    .audio-message__container {
+      background-color: var(--audio-message-background-right);
+    }
+
+    .audio-message__play,
+    .audio-message__pause {
+      background-color: var(--audio-message-button-background-color-right);
+
+      span {
+        color: var(--audio-message-button-icon-color-right);
+      }
+    }
+  }
 }
 
-.audio-message-right {
-  /* display: flex; */
-  background-color: #f5f5f5;
-  max-height: 50px;
-  min-width: 300px;
-  border-radius: 10px;
-  padding: 10px;
-  margin-bottom: 10px;
-  max-width: 70%; /* Максимальная ширина сообщения */  
-  position: relative; /* Для позиционирования треугольника */
-  justify-content: flex-end;
-  flex-basis: 500px; /* Начальная ширина */
-  flex-grow: 2;
-  align-self: flex-end; /* Сообщения выравниваются справа */
-}
+.dark {
+  .audio-message {
+    &__left {
 
-.message-time {
-  font-size: 12px;
-  color: #777;
-  margin-left: 10px;
-}
+      .audio-message__container {
+        background-color: var(--d-audio-message-background-left);
+      }
 
+      .audio-message__play,
+      .audio-message__pause {
+        background-color: var(--d-audio-message-button-background-color-left);
+
+        span {
+          color: var(--d-audio-message-button-icon-color-left);
+        }
+      }
+    }
+
+    &__right {
+
+      .audio-message__container {
+        background-color: var(--d-audio-message-background-right);
+      }
+
+      .audio-message__play,
+      .audio-message__pause {
+        background-color: var(--d-audio-message-button-background-color-right);
+
+        span {
+          color: var(--d-audio-message-button-icon-color-right);
+        }
+      }
+    }
+
+    &__progress-bar-container {
+      background-color: var(--d-audio-message-pbc-background-color);
+    }
+
+    &__progress-bar {
+      background-color: var(--d-audio-message-pb-background-color);
+    }
+
+  }
+}
 </style>

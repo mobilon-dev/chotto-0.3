@@ -2,7 +2,7 @@
   <div :class="getClass()" :messageId="message.messageId">
     <img :src="message.url" :alt="message.alt" class="image-message" />
     <div class="message-time">
-        {{ message.time }}
+      {{ message.time }}
     </div>
   </div>
 </template>
@@ -24,8 +24,6 @@ function getClass() {
 </script>
 
 <style scoped>
-
-
 .image-message {
   max-width: 300px;
   max-height: 240px;
@@ -42,13 +40,18 @@ function getClass() {
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 10px;
-  max-width: 70%; /* Максимальная ширина сообщения */
-  text-align: left; /* Выравнивание текста влево */
-  position: relative; /* Для позиционирования треугольника */
+  max-width: 70%;
+  /* Максимальная ширина сообщения */
+  text-align: left;
+  /* Выравнивание текста влево */
+  position: relative;
+  /* Для позиционирования треугольника */
   justify-content: flex-start;
-  flex-basis: 200px; /* Начальная ширина */
+  flex-basis: 200px;
+  /* Начальная ширина */
   flex-grow: 2;
-  align-self: flex-start; /* Сообщения выравниваются слева */
+  align-self: flex-start;
+  /* Сообщения выравниваются слева */
 }
 
 .image-message-right {
@@ -59,12 +62,16 @@ function getClass() {
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 10px;
-  max-width: 70%; /* Максимальная ширина сообщения */  
-  position: relative; /* Для позиционирования треугольника */
+  max-width: 70%;
+  /* Максимальная ширина сообщения */
+  position: relative;
+  /* Для позиционирования треугольника */
   justify-content: flex-end;
-  flex-basis: 500px; /* Начальная ширина */
+  flex-basis: 500px;
+  /* Начальная ширина */
   flex-grow: 2;
-  align-self: flex-end; /* Сообщения выравниваются справа */
+  align-self: flex-end;
+  /* Сообщения выравниваются справа */
 }
 
 .message-time {
@@ -72,5 +79,4 @@ function getClass() {
   color: #777;
   margin-left: 10px;
 }
-
 </style>
