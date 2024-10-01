@@ -56,7 +56,6 @@ watch(() => props.objects, scrollToFeedBottom);
   padding: 0 80px 50px 80px;
   overflow-y: auto;
 
-
   &::-webkit-scrollbar {
     width: 6px;
     background-color: var(--neutral-50);
