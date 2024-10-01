@@ -38,21 +38,8 @@ export default defineConfig({
     targets: [
       {
         src: 'src/assets/style.css',
-        rename: 'global.css',
         dest: ''
       },
-      {
-        src: 'src/assets/variables.css',
-        dest: ''
-      },
-      {
-        src: 'src/assets/dark.css',
-        dest: ''
-      },
-      {
-        src: 'src/assets/light.css',
-        dest: ''
-      }
     ]
   }),
   ],
