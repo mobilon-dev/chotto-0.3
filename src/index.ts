@@ -11,6 +11,8 @@ import ChatList2 from './components/features/ChatList2.vue';
 import Feed from './components/features/Feed.vue';
 import Profile from './components/features/Profile.vue';
 
+export * from './helpers';
+
 export {
   ChatInput, 
   Chat,

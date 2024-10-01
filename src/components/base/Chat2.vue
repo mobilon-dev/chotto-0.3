@@ -2,7 +2,7 @@
   <div :class="getClass()" @click="selectChat">
     <div class="chat-item__container">
       <div class="chat-item__avatar-container">
-        <img v-if="props.chat.avatar" :src="props.chat.avatar">
+        <img v-if="props.chat.avatar" :src="props.chat.avatar" height="32" width="32">
         <span v-else class="pi pi-user">
         </span>
       </div>
