@@ -1,15 +1,19 @@
 <template>
-  <div :class="getClass()"  @click="selectChat">
-    <div class="avatar">
-      <img :src="getAvatarImage()" width="50" height="50">
-    </div>
-    <div class="chat-info">
-      <div class="name">{{ chat.name }}</div>
-      <div class="last-message" v-if="chat.lastMessage">{{ chat.lastMessage }}</div>
-    </div>
-    <div class="chat-details">
-      <div class="unread" v-if="chat.countUnread > 0">{{ chat.countUnread }}</div>
-      <div class="time" v-if="chat['lastActivity.time']">{{ chat['lastActivity.time'] }}</div>
+  <div :class="getClass()" @click="selectChat">
+    <div class="chat-item__container">
+      <div class="chat-item__avatar-container">
+        <img v-if="props.chat.avatar" :src="props.chat.avatar" height="32" width="32">
+        <span v-else class="pi pi-user">
+        </span>
+      </div>
+      <div class="chat-item__info-container">
+        <div class="chat-item__name">{{ chat.name }}</div>
+        <div class="chat-item__last-message" v-if="chat.lastMessage">{{ chat.lastMessage }}</div>
+      </div>
+      <div class="chat-item__details-container">
+        <div class="chat-item__unread" v-if="chat.countUnread > 0">{{ chat.countUnread }}</div>
+        <div class="chat-item__time" v-if="chat['lastActivity.time']">{{ chat['lastActivity.time'] }}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -20,17 +24,17 @@ const props = defineProps({
   chat: {
     type: Object,
     required: true,
-  },  
+  },
 });
 
 // Define emits
 const emit = defineEmits(['select']);
 
 // Define method
-const selectChat = () => {emit('select', props.chat);}
+const selectChat = () => { emit('select', props.chat); }
 
 const getClass = () => {
-  return props.chat.isSelected ? 'chat-item-selected' : 'chat-item';
+  return props.chat.isSelected ? 'chat-item__selected' : 'chat-item';
 }
 
 const getAvatarImage = () => {
@@ -44,64 +48,106 @@ const getAvatarImage = () => {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .chat-item {
-  display: flex;
-  align-items: center;
-  padding: 15px;
-  border-bottom: 1px solid #eee;
-  cursor: pointer;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    cursor: pointer;
+  }
+
+  &__selected {
+    border-radius: 6px;
+    cursor: pointer;
+    background: var(--chat-item-selected);
+  }
+
+  &__avatar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+    margin-right: 15px;
+    background-color: var(--avatar-background-color);
+    width: var(--avatar-width);
+    height: var(--avatar-height);
+    border-radius: var(--avatar-border-radius);
+
+    span {
+      font-size: var(--avatar-icon-size);
+      color: var(--avatar-icon-color);
+    }
+
+  }
+
+  &__info-container {
+    flex-grow: 1;
+    margin-right: 15px;
+  }
+
+  &__name {
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: var(--chat-item-font-size-name);
+  }
+
+  &__last-message {
+    font-weight: 500;
+    font-size: var(--chat-item-font-size-last-message);
+    color: var(--chat-item-color-last-name);
+  }
+
+  &__details-container {
+    margin-bottom: auto;
+  }
+
+  &__unread {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-weight: 400;
+    margin-left: auto;
+    min-width: var(--chat-item-min-width-unread);
+    min-height: var(--chat-item-min-height-unread);
+    color: var(--chat-item-color-unread);
+    background-color: var(--chat-item-background-color-unread);
+    font-size: var(--chat-item-font-size-unread);
+  }
+
+  &__time {
+    font-size: 12px;
+    color: var(--neutral-400);
+    font-weight: 500;
+    margin-bottom: 8px
+  }
 }
 
-.chat-item-selected {
-  display: flex;
-  align-items: center;
-  padding: 15px;
-  background: #bbbbbb;
-  border-bottom: 1px solid #a09d9d;
-  cursor: pointer;
-}
+.dark {
+  .chat-item {
 
-.avatar {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-size: cover;
-  margin-right: 15px;
-}
+    &__selected {
+      background: var(--d-chat-item-selected);
+    }
 
-.chat-info {
-  flex-grow: 1;
-  margin-right: 15px;
-}
+    &__avatar-container {
+      background-color: var(--d-avatar-background-color);
 
-.name {
-  font-weight: bold;
-  font-size: 16px;
-  margin-bottom: 5px;
-}
+      span {
+        color: var(--d-avatar-icon-color);
+      }
+    }
 
-.last-message {
-  font-size: 14px;
-  color: #888;
-}
+    &__last-message {
+      color: var(--d-chat-item-color-last-name);
+    }
 
-.chat-details {
-  display: flex;
-  align-items: center;
-}
-
-.unread {
-  background-color: #f00;
-  color: #fff;
-  padding: 5px 8px;
-  border-radius: 50%;
-  font-size: 12px;
-  margin-right: 10px;
-}
-
-.time {
-  font-size: 12px;
-  color: #888;
+    &__unread {
+      background-color: var(--d-chat-item-background-color-unread);
+      color: var(--d-chat-item-color-unread);
+    }
+  }
 }
 </style>

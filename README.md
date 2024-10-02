@@ -17,7 +17,7 @@ Vue3 Chat UI - собери свой интерфейс чата
 
 ## скриншот
 
-![](images/screenshot1.png)
+![](images/screenshot2.png)
 
 
 # разработка
@@ -38,3 +38,15 @@ Vue3 Chat UI - собери свой интерфейс чата
 ## build
 
 > npm run build
+
+
+# Дополнительно
+
+### подобные проекты
+
+- https://github.com/sendbird/sendbird-uikit-react
+
+- https://github.com/detaysoft/react-chat-elements
+
+- https://github.com/pubnub/react-chat-components
+

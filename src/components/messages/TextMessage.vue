@@ -1,8 +1,9 @@
 <template>
-  <div :class="getClass(message)" :messageId="message.messageId">
-    <p>{{ message.text }}</p>
-    <div class="message-time">
-        {{ message.time }}
+  <div class="text-message">
+    <div :class="getClass(message)" :messageId="message.messageId">
+      <p>{{ message.text }}</p>
+      <!-- <span class="text-message__time">{{ message.time }}</span> -->
+      <span class="text-message__time">22:02</span>
     </div>
   </div>
 </template>
@@ -18,49 +19,54 @@ const props = defineProps({
 });
 
 function getClass(message) {
-  return message.position === 'left' ? 'text-message-left' : 'text-message-right';
+  return message.direction === 'incoming' ? 'text-message__left' : 'text-message__right';
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.text-message {
 
-.text-message-left {
-  /* display: flex; */
-  background-color: #c3e8ba;
-  max-height: 50px;
-  min-width: 300px;
-  border-radius: 10px;
-  padding: 10px;
-  margin-bottom: 10px;
-  max-width: 70%; /* Максимальная ширина сообщения */
-  text-align: left; /* Выравнивание текста влево */
-  position: relative; /* Для позиционирования треугольника */
-  justify-content: flex-start;
-  flex-basis: 200px; /* Начальная ширина */
-  flex-grow: 2;
-  align-self: flex-start; /* Сообщения выравниваются слева */
+  &__time {
+    font-size: 12px;
+    position: absolute;
+    bottom: 4px;
+    right: 8px;
+  }
+
+  &__left,
+  &__right {
+    position: relative;
+    width: fit-content;
+    word-wrap: break-word;
+    padding: var(--text-message-padding);
+    margin: var(--text-message-margin);
+    max-width: var(--text-message-max-width);
+    border-radius: var(--text-message-border-radius);
+  }
+
+  &__left {
+    background-color: var(--text-message-left-background-color);
+    color: var(--text-message-text-color);
+  }
+
+  &__right {
+    margin-left: auto;
+    background-color: var(--text-message-right-background-color);
+    color: var(--text-message-text-color);
+  }
 }
 
-.text-message-right {
-  /* display: flex; */
-  background-color: #f5f5f5;
-  max-height: 50px;
-  min-width: 300px;
-  border-radius: 10px;
-  padding: 10px;
-  margin-bottom: 10px;
-  max-width: 70%; /* Максимальная ширина сообщения */  
-  position: relative; /* Для позиционирования треугольника */
-  justify-content: flex-end;
-  flex-basis: 500px; /* Начальная ширина */
-  flex-grow: 2;
-  align-self: flex-end; /* Сообщения выравниваются справа */
-}
+.dark {
+  .text-message {
+    &__left {
+      background-color: var(--d-text-message-left-background-color);
+      color: var(--d-text-message-text-color);
+    }
 
-.message-time {
-  font-size: 12px;
-  color: #777;
-  margin-left: 10px;
+    &__right {
+      background-color: var(--d-text-message-right-background-color);
+      color: var(--d-text-message-text-color);
+    }
+  }
 }
-
 </style>

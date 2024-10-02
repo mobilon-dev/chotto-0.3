@@ -1,48 +1,50 @@
 {
-  "name": "@mobilon-dev/chotto",
-  "version": "0.0.2",
-  "type": "module",
-  "main": "./dist/vuessages.umd.js",
-  "module": "./dist/vuessages.es.js",
-  "exports": {
-    ".": {
-      "import": "./dist/vuessages.es.js",
-      "require": "./dist/vuessages.umd.js"
+    "name": "@mobilon-dev/chotto",
+    "version": "0.0.6",
+    "type": "module",
+    "main": "./dist/vuessages.umd.js",
+    "module": "./dist/vuessages.es.js",
+    "style": "./dist/global.css",
+    "exports": {
+        ".": {
+            "import": "./dist/vuessages.es.js",
+            "require": "./dist/vuessages.umd.js"
+        },
+        "./style.css": "./dist/vuessages.css"
     },
-    "./style.css": "./dist/vuessages.css"
-  },
-  "files": [
-    "dist"
-  ],
-  "types": "./dist/types/index.d.ts",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build && vue-tsc --emitDeclarationOnly",
-    "preview": "vite preview",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build -o docs"
-  },
-  "dependencies": {
-    "date-fns": "^4.1.0",
-    "pinia": "^2.2.2",
-    "vue": "^3.5.8",
-    "vue3-emoji-picker": "^1.1.8"
-  },
-  "devDependencies": {
-    "@chromatic-com/storybook": "^2.0.2",
-    "@storybook/addon-essentials": "^8.3.2",
-    "@storybook/addon-interactions": "^8.3.2",
-    "@storybook/addon-links": "^8.3.2",
-    "@storybook/blocks": "^8.3.2",
-    "@storybook/test": "^8.3.2",
-    "@storybook/vue3": "^8.3.2",
-    "@storybook/vue3-vite": "^8.3.2",
-    "@types/node": "^22.6.1",
-    "@vitejs/plugin-vue": "^5.1.4",
-    "storybook": "^8.3.2",
-    "typescript": "^5.6.2",
-    "vite": "^5.4.7",
-    "vite-plugin-static-copy": "^1.0.6",
-    "vue-tsc": "^2.1.6"
-  }
+    "files": [
+        "dist"
+    ],
+    "types": "./dist/types/index.d.ts",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build && vue-tsc --emitDeclarationOnly",
+        "preview": "vite preview",
+        "storybook": "storybook dev -p 6006",
+        "build-storybook": "storybook build -o docs"
+    },
+    "dependencies": {
+        "date-fns": "^4.1.0",
+        "pinia": "^2.2.2",
+        "primeicons": "^7.0.0",
+        "vue": "^3.5.8",
+        "vue3-emoji-picker": "^1.1.8"
+    },
+    "devDependencies": {
+        "@chromatic-com/storybook": "^2.0.2",
+        "@storybook/addon-essentials": "^8.3.2",
+        "@storybook/addon-interactions": "^8.3.2",
+        "@storybook/addon-links": "^8.3.2",
+        "@storybook/blocks": "^8.3.2",
+        "@storybook/test": "^8.3.2",
+        "@storybook/vue3": "^8.3.2",
+        "@storybook/vue3-vite": "^8.3.2",
+        "@types/node": "^22.6.1",
+        "@vitejs/plugin-vue": "^5.1.4",
+        "storybook": "^8.3.2",
+        "typescript": "^5.6.2",
+        "vite": "^5.4.7",
+        "vite-plugin-static-copy": "^1.0.6",
+        "vue-tsc": "^2.1.6"
+    }
 }

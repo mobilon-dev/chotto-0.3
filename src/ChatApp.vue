@@ -1,29 +1,19 @@
 <template>
   <div class="chat-app">
-    <div>
-      <Profile :user="userProfile" />
-      <ChatList
-        :chats="chatsStore.chats"
-        @select="selectChat"
-        filterEnabled
-      />
+    <div class="chat-app__container">
+      <ChatList :chats="chatsStore.chats" @select="selectChat" filterEnabled />
+
+      <div class="chat-app__right-bar">
+        <div v-if="selectedChat" class="chat-app__right-bar-container">
+          <ChatInfo :chat="selectedChat" />
+          <Feed class="chat-app__feed" :objects="messages" />
+          <ChatInput @send="addMessage" :enableEmoji="true" :channels="channels" />
+        </div>
+        <p v-else class="chat-app__welcome-text">Выберите контакт для начала общения</p>
+      </div>
+
     </div>
 
-    <div v-if="selectedChat">
-      <ChatInfo :chat="selectedChat"/>
-      <Feed :objects="messages" />
-      <ChatInput @send="addMessage"
-       :enableEmoji="true" 
-       :channels="channels" 
-       />
-      <!-- <ChatInput @send="addMessage"
-       :enableEmoji="true" 
-       :channels="channels" 
-       :fileUploaderComponent='FileUploader'
-       /> -->
-      <FileUploader :handleSendEventFunction='addMessage'/>
-    </div>
-    <p v-else>Выберите контакт для начала общения</p>
   </div>
   <CreateNewChat :dataProvider="dataProvider" :selectChat="selectChat" />
 </template>
@@ -37,8 +27,6 @@ import ChatInput from "./components/features/ChatInput2.vue";
 import ChatList from "./components/features/ChatList2.vue";
 import CreateNewChat from './components/features/CreateNewChat.vue';
 import Feed from "./components/features/Feed.vue";
-import FileUploader from "./components/features/FileUploader.vue";
-import Profile from "./components/features/Profile.vue";
 
 import {
   formatTimestamp,
@@ -62,6 +50,7 @@ const props = defineProps({
     required: true,
   },
 });
+
 
 const useChatsStore = defineStore('chats', () => {
   const chats = ref([])
@@ -156,10 +145,41 @@ onMounted(() => {
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .chat-app {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  gap: 16px;
+  &__container {
+    display: grid;
+    grid-template-columns: 1.25fr 3fr;
+  }
+
+  &__right-bar {
+    position: relative;
+    margin: 30px 0;
+    height: calc(100vh - 60px);
+    background-color: var(--neutral-100);
+    border-radius: 12px;
+  }
+
+  &__right-bar-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  &__welcome-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.dark {
+  .chat-app {
+    &__right-bar {
+      background-color: var(--neutral-800);
+    }
+  }
+
 }
 </style>

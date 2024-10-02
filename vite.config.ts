@@ -26,14 +26,21 @@ export default defineConfig({
       },
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler' // or "modern"
+      }
+    }
+  },
   plugins: [vue(),
-    viteStaticCopy({
-      targets: [
-        {
-          src: 'src/assets/pictures', // Copy all assets
-          dest: 'assets' // Destination in the dist folder
-        }
-      ]
-    }),
+  viteStaticCopy({
+    targets: [
+      {
+        src: 'src/assets/style.css',
+        dest: ''
+      },
+    ]
+  }),
   ],
 })
