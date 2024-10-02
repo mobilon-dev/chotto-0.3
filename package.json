@@ -4,7 +4,6 @@
     "type": "module",
     "main": "./dist/vuessages.umd.js",
     "module": "./dist/vuessages.es.js",
-    "style": "./dist/global.css",
     "exports": {
         ".": {
             "import": "./dist/vuessages.es.js",
