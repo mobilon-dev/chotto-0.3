@@ -27,13 +27,12 @@
 </template>
 
 <script setup>
-import { ref, unref, computed } from 'vue';
+import { computed, ref, unref } from 'vue';
 // import picker compopnent
-import EmojiPicker from 'vue3-emoji-picker'
-import Channels from './Channels2.vue'
+import EmojiPicker from 'vue3-emoji-picker';
 
 // import css
-import 'vue3-emoji-picker/css'
+import 'vue3-emoji-picker/css';
 
 // Define emits
 const emit = defineEmits(['send']);
@@ -53,7 +52,11 @@ const props = defineProps({
     type: Array,
     required: false,
     default: [],
-  }
+  },
+  fileUploaderComponent: {
+    type: Object,
+    default: null,
+  },
 })
 
 // Define the method to send the message

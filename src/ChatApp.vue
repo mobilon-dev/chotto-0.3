@@ -15,21 +15,22 @@
     </div>
 
   </div>
+  <CreateNewChat :dataProvider="dataProvider" :selectChat="selectChat" />
 </template>
 
 <script setup>
+import { defineStore } from 'pinia';
 import { onMounted, ref } from 'vue';
-import { defineStore } from 'pinia'
 
+import ChatInfo from "./components/features/ChatInfo.vue";
 import ChatInput from "./components/features/ChatInput2.vue";
 import ChatList from "./components/features/ChatList2.vue";
-import ChatInfo from "./components/features/ChatInfo.vue";
+import CreateNewChat from './components/features/CreateNewChat.vue';
 import Feed from "./components/features/Feed.vue";
-import Profile from "./components/features/Profile.vue";
 
 import {
-  insertDaySeparators,
   formatTimestamp,
+  insertDaySeparators,
   playNotificationAudio,
   sortByTimestamp,
 } from './helpers';
@@ -69,7 +70,6 @@ const messages = ref([]);
 const userProfile = ref({});
 const channels = ref([]);
 
-
 const readableFormat = (timestamp) => {
   // @todo: преобразование timestamp в читаемый вид
   return formatTimestamp(timestamp);
@@ -103,11 +103,13 @@ const getFeedObjects = () => {
   }
 };
 
-
 const addMessage = (message) => {
+  console.log(message);
+  // Добавление сообщения в хранилище
+
   props.dataProvider.addMessage({
     text: message,
-    type: 'message.text',
+    type: message.type,
     chatId: selectedChat.value.chatId,
     direction: 'outgoing',
     timestamp: '1727112546',
