@@ -1,32 +1,34 @@
 <template>
-	<div class="new-chat-modal" v-if="showNewChatModal">
-		<div class="modal-content">
-			<h2>Create New Chat</h2>
-			<input v-model="newChatName" placeholder="Enter chat name" />
-			<div class="participant-list">
-				<div
-					v-for="user in availableUsers"
-					:key="user._id"
-					class="participant-item"
-				>
-					<input
-						type="checkbox"
-						:id="user._id"
-						v-model="selectedParticipants"
-						:value="user._id"
-					/>
-					<label :for="user._id">{{ user.name || 'unknown username' }}</label>
-				</div> 
-			</div>
-			<div class="modal-actions">
-				<button @click="confirmNewChat">Create</button>
-				<button @click="cancelNewChat">Cancel</button>
-			</div>
-		</div>
-	</div>
-	<button @click="openNewChatModal" class="create-chat-btn">
-		+ CREATE NEW CHAT
-	</button>
+  <div>
+    <div class="new-chat-modal" v-if="showNewChatModal">
+      <div class="modal-content">
+        <h2>Create New Chat</h2>
+        <input v-model="newChatName" placeholder="Enter chat name" />
+        <div class="participant-list">
+          <div
+            v-for="user in availableUsers"
+            :key="user._id"
+            class="participant-item"
+          >
+            <input
+              type="checkbox"
+              :id="user._id"
+              v-model="selectedParticipants"
+              :value="user._id"
+            />
+            <label :for="user._id">{{ user.name || 'unknown username' }}</label>
+          </div> 
+        </div>
+        <div class="modal-actions">
+          <button @click="confirmNewChat">Create</button>
+          <button @click="cancelNewChat">Cancel</button>
+        </div>
+      </div>
+    </div>
+    <button @click="openNewChatModal" class="create-chat-btn">
+      + CREATE NEW CHAT
+    </button>
+  </div>
 </template>
 
 <script setup>
@@ -51,7 +53,8 @@ const showNewChatModal = ref(false)
 const newChatName = ref('')
 const selectedParticipants = ref([])
 const availableUsers = ref([])
-	const openNewChatModal = () => {
+
+const openNewChatModal = () => {
 	showNewChatModal.value = true
 	fetchAvailableUsers()
 }
@@ -81,7 +84,6 @@ const cancelNewChat = () => {
 	newChatName.value = ''
 	selectedParticipants.value = []
 }
-
 </script>
 
 <style scoped>

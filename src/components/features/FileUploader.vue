@@ -24,6 +24,7 @@
 <script setup>
 import { ref } from 'vue';
 import PreviewModal from './PreviewModal.vue';
+
 const props = defineProps({
   handleSendEventFunction: {
     type: Function,

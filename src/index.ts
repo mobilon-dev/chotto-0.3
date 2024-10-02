@@ -1,8 +1,7 @@
 import Chat from './components/base/Chat.vue';
 import Chat2 from './components/base/Chat2.vue';
-import FileMessage from './components/messages/FileMessage.vue';
-import ImageMessage from './components/messages/ImageMessage.vue';
-import TextMessage from './components/messages/TextMessage.vue';
+
+export * from './components/messages';
 
 import ChatInfo from './components/features/ChatInfo.vue';
 import ChatInput from './components/features/ChatInput.vue';
@@ -24,10 +23,7 @@ export {
   Chat2,
   ChatList,
   ChatList2,
-  FileMessage,
   ChatInfo,
-  ImageMessage,
   Feed,
   Profile,
-  TextMessage,
 };
