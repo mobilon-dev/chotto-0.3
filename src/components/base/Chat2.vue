@@ -37,6 +37,7 @@ const getClass = () => {
   return props.chat.isSelected ? 'chat-item__selected' : 'chat-item';
 }
 
+/*
 const getAvatarImage = () => {
   if (props.chat.avatar) {
     return props.chat.avatar;
@@ -46,6 +47,8 @@ const getAvatarImage = () => {
     return defaultAvatar;
   }
 }
+*/
+
 </script>
 
 <style scoped lang="scss">
