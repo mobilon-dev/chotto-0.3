@@ -1,8 +1,14 @@
 <template>
   <div class="chat-input">
     <div class="chat-input__container">
-      <EmojiPicker class="chat-input__emoji" :native="true" :theme="changeThemeDialogEmoji" @select="onSelectEmoji"
-        v-if="enabledEmojiPicker" pickerType="" />
+      <EmojiPicker 
+        class="chat-input__emoji" 
+        :native="true" 
+        :theme="changeThemeDialogEmoji"
+        @select="onSelectEmoji"
+        v-if="enabledEmojiPicker" 
+        pickerType="" 
+      />
       <label class="chat-input__button-file">
         <input type="file" />
         <span>
@@ -17,9 +23,10 @@
       <button class="chat-input__button-send" @click="sendMessage">
         <span class="pi pi-send"></span>
       </button>
+
       <!-- <span v-if="channels">
-  <Channels :channels="channels"></Channels>
-</span> -->
+        <Channels :channels="channels"></Channels>
+      </span> -->
 
     </div>
 
@@ -28,10 +35,9 @@
 
 <script setup>
 import { computed, ref, unref } from 'vue';
+
 // import picker compopnent
 import EmojiPicker from 'vue3-emoji-picker';
-
-// import css
 import 'vue3-emoji-picker/css';
 
 // Define emits
@@ -51,7 +57,7 @@ const props = defineProps({
   channels: {
     type: Array,
     required: false,
-    default: [],
+    default: () => {return []}
   },
   fileUploaderComponent: {
     type: Object,

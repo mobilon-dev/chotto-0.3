@@ -17,7 +17,7 @@ const chat = {
 };
 
 
-export const HaveSelectedChannel: Story = {
+export const Standard: Story = {
   args: {
     chat: chat,
   },
