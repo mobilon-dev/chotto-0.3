@@ -13,8 +13,12 @@ const config: StorybookConfig = {
     name: "@storybook/vue3-vite",
     options: {},
   },
+  docs: {
+    autodocs: true,
+  },
   viteFinal: async (config) => {
-    config.base = 'https://mobilon-dev.github.io/chotto';
+    config.base = 'https://mobilon-dev.github.io/chotto/';
+    // config.base = 'http://localhost:3000/';
     return config;
   },
 };
