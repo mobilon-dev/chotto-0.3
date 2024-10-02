@@ -33,7 +33,7 @@
 
 <script setup>
 
-import { defineProps, ref } from 'vue';
+import { ref } from 'vue';
 import { useChatsStore } from '../../stores/useChatStore';
 
 // Define props
