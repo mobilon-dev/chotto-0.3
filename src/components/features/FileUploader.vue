@@ -1,16 +1,20 @@
 <template>
   <div>
-    <input type="file" @change="onFileSelected" />
-    <div v-if="uploadStatus === 'success'">
+    <div v-if="canUploadFile && uploadStatus !== 'success'">
+      <input type="file" @change="onFileSelected" />
+    </div>
+    <div v-if="!canUploadFile && uploadStatus === 'success'">
       <p>Файл загружен и готов к отправке.</p>
-      <PreviewModal 
-      v-if="isModalOpen" 
-      :previewUrl="previewUrl"
-      :isImage="isImage" 
-      :isVideo="isVideo" 
-      :fileName="selectedFile.name"
-      :handleSendEventFunction='sendFunctionWrapper'
-    />
+      
+      <!-- PreviewModal 
+        v-if="isModalOpen" 
+        :previewUrl="previewUrl"
+        :isImage="isImage" 
+        :isVideo="isVideo" 
+        :fileName="selectedFile.name"
+        :handleSendEventFunction='sendFunctionWrapper'
+      /-->
+      
     </div>
     <div v-else-if="uploadStatus === 'uploading'">
       <p>Загрузка файла...</p>
@@ -22,13 +26,14 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import PreviewModal from './PreviewModal.vue';
+import { ref, watch, nextTick } from 'vue';
+// import PreviewModal from './PreviewModal.vue';
 
 const props = defineProps({
-  handleSendEventFunction: {
-    type: Function,
-    default: null,
+  canUploadFile: {
+    type: Boolean,
+    required: true,
+    default: true,
   },
 })
 
@@ -40,7 +45,14 @@ const isImage = ref(false);
 const isVideo = ref(false);
 const isModalOpen = ref(false);
 
-const emit = defineEmits(['file-uploaded']);
+const emit = defineEmits(['fileUploaded']);
+watch(() => props.canUploadFile, ()=>{
+  nextTick(()=>{
+    if(props.canUploadFile === true) {
+      uploadStatus.value = null;
+    }
+  })
+})
 
 const onFileSelected = (event) => {
   console.log('onFileSelected', event.target.files[0]);
@@ -92,20 +104,15 @@ const uploadFile = async () => {
     const result = await response.json();
     fileLink.value = result.url;
     uploadStatus.value = 'success';
+    props.canUploadFile = false;
 
     // emit event with link
-    emit('file-uploaded', fileLink.value)
-  } catch (error) {
+    emit('fileUploaded', {url: fileLink.value, type: 'message.file'});
+  } catch (error) {    
     console.error('Ошибка при загрузке файла:', error);
     uploadStatus.value = 'error';
   }
 };
-
-const sendFunctionWrapper = () => {
-  props.handleSendEventFunction({ ...fileLink.value, type: 'message.file'});
-  uploadStatus.value = '';
-  isModalOpen.value = false;
-}
 
 </script>
 

@@ -9,12 +9,9 @@
         v-if="enabledEmojiPicker" 
         pickerType="" 
       />
-      <label class="chat-input__button-file">
-        <input type="file" />
-        <span>
-          <i class="pi pi-file-arrow-up"></i>
-        </span>
-      </label>
+
+      <FileUploader @fileUploaded="fileUploaded" :canUploadFile="canUploadFile"></FileUploader>
+      
       <input class="chat-input__input" v-model="message" ref="refInput" @keydown.enter="sendMessage"
         placeholder="Type a message..." />
       <button class="chat-input__button-emoji" @click="toogleDialogEmoji">
@@ -35,6 +32,7 @@
 
 <script setup>
 import { computed, ref, unref } from 'vue';
+import { FileUploader } from '.';
 
 // import picker compopnent
 import EmojiPicker from 'vue3-emoji-picker';
@@ -46,6 +44,12 @@ const emit = defineEmits(['send']);
 // Define reactive message state
 const message = defineModel();
 const refInput = ref(null);
+const fileLink = ref(null);
+
+const canUploadFile = computed(() => {
+  return !fileLink.value || fileLink.value === '';
+})
+
 const enabledEmojiPicker = ref(false) // это типа показывать или нет панель выбора емоджи
 
 const props = defineProps({
@@ -59,20 +63,40 @@ const props = defineProps({
     required: false,
     default: () => {return []}
   },
-  fileUploaderComponent: {
-    type: Object,
-    default: null,
-  },
+
+  // fileUploaderComponent: {
+  //   type: Object,
+  //   default: null,
+  // },
 })
+
+const fileUploaded = (obj) => {
+  console.log('fileUploaded', obj);
+  fileLink.value = obj;
+}
 
 // Define the method to send the message
 const sendMessage = () => {
   enabledEmojiPicker.value = false;
-  if (message.value.trim()) {
-    emit('send', message.value);
-    message.value = '';
-    unref(refInput).focus()
+  const messageObject = {
+    type: null,
+    text: null,
+  };
+
+  if (fileLink) {
+    messageObject.type = 'file';
+    messageObject.text = fileLink.value;
+  } else {
+    messageObject.type = 'text';
+    messageObject.text = message.value.trim();
   }
+
+  emit('send', messageObject.text);
+  fileLink.value = false;
+  message.value = '';
+  unref(refInput).focus()
+
+  
 };
 
 const toogleDialogEmoji = () => {
@@ -97,7 +121,8 @@ const onSelectEmoji = (emoji) => {
     display: flex;
     align-items: center;
     border-radius: 0 0 12px 12px;
-    background-color: var(--chat-input-background);
+    border-top: 1px solid var(--neutral-300);
+    // background-color: var(--chat-input-background);
   }
 
   &__button-file {

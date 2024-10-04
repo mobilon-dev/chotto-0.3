@@ -19,6 +19,7 @@
     </div>
 
     <CreateNewChat :users="getUsers()" @createNewChat="createNewChat" title="+ чат" :isChatName="true"/>
+    
   </div>
 </template>
 
@@ -32,6 +33,7 @@ import {
   CreateNewChat,
   Feed,
   Profile,
+  FileUploader
 } from "./components/features";
 
 import {
