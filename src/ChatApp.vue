@@ -12,11 +12,10 @@
           </div>
           <p v-else class="chat-app__welcome-text">Выберите контакт для начала общения</p>
         </div>
-
       </div>
-
     </div>
-    <CreateNewChat :dataProvider="dataProvider" :selectChat="selectChat" />
+
+    <CreateNewChat :users="getUsers()" @createNewChat="createNewChat" title="+ чат" :isChatName="true"/>
   </div>
 </template>
 
@@ -72,9 +71,19 @@ const messages = ref([]);
 const userProfile = ref({});
 const channels = ref([]);
 
+
 const readableFormat = (timestamp) => {
   // @todo: преобразование timestamp в читаемый вид
   return formatTimestamp(timestamp);
+}
+
+const getUsers = () => {
+  return (props.dataProvider.getChats()).map(c => {return {...c, userId: c.chatId.toString()}});
+}
+
+const createNewChat = (obj) => {
+  obj.users.map(c=>console.log(c));
+  console.log('chat', obj)
 }
 
 // Methods
