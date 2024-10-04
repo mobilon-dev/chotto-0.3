@@ -2,13 +2,16 @@
   <div>
     <div class="chat-app">
       <div class="chat-app__container">
-        <ChatList :chats="chatsStore.chats" @select="selectChat" filterEnabled />
+        <div>
+          <Profile :user="userProfile"></Profile>
+          <ChatList2 :chats="chatsStore.chats" @select="selectChat" filterEnabled />
+        </div>
 
         <div class="chat-app__right-bar">
           <div v-if="selectedChat" class="chat-app__right-bar-container">
             <ChatInfo :chat="selectedChat" />
             <Feed class="chat-app__feed" :objects="messages" />
-            <ChatInput @send="addMessage" :enableEmoji="true" :channels="channels" />
+            <ChatInput2 @send="addMessage" :enableEmoji="true" :channels="channels" />
           </div>
           <p v-else class="chat-app__welcome-text">Выберите контакт для начала общения</p>
         </div>
@@ -24,10 +27,11 @@ import { onMounted, ref } from 'vue';
 
 import { 
   ChatInfo,
-  ChatInput,
-  ChatList,
+  ChatInput2,
+  ChatList2,
   CreateNewChat,
   Feed,
+  Profile,
 } from "./components/features";
 
 import {
@@ -74,8 +78,10 @@ const getUsers = () => {
 }
 
 const createNewChat = (obj) => {
-  obj.users.map(c=>console.log(c));
-  console.log('chat', obj)
+  // obj.users.map(c=>console.log(c));
+  // console.log('chat', obj)
+  const chat = {chatId: 3, name: obj.chatName};
+  chatsStore.addChat(chat);
 }
 
 // Methods
