@@ -20,14 +20,15 @@
 </template>
 
 <script setup>
-import { defineStore } from 'pinia';
 import { onMounted, ref } from 'vue';
 
-import ChatInfo from "./components/features/ChatInfo.vue";
-import ChatInput from "./components/features/ChatInput2.vue";
-import ChatList from "./components/features/ChatList2.vue";
-import CreateNewChat from './components/features/CreateNewChat.vue';
-import Feed from "./components/features/Feed.vue";
+import { 
+  ChatInfo,
+  ChatInput,
+  ChatList,
+  CreateNewChat,
+  Feed,
+} from "./components/features";
 
 import {
   formatTimestamp,
@@ -35,6 +36,8 @@ import {
   playNotificationAudio,
   sortByTimestamp,
 } from './helpers';
+
+import { useChatsStore } from './stores/useChatStore';
 
 // Define props
 const props = defineProps({
@@ -51,17 +54,6 @@ const props = defineProps({
     required: true,
   },
 });
-
-
-const useChatsStore = defineStore('chats', () => {
-  const chats = ref([])
-
-  function setUnreadCounter(chatId, countUnread) {
-    const chat = chats.value.find(c => c.chatId === chatId);
-    chat.countUnread = countUnread;
-  }
-  return { chats, setUnreadCounter }
-})
 
 const chatsStore = useChatsStore();
 
