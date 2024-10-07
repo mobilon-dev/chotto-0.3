@@ -23,6 +23,7 @@ const data3 = {
   chats: [
     { chatId: 1, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false },
     { chatId: 2, name: "Мария", countUnread: 0, isFixed: true },
+    { chatId: 3, name: "Сергей", countUnread: 0, isFixed: true },
   ],
   channels: [
     { channelId: 'channel1', title: 'test channel 1', icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/240px-Telegram_logo.svg.png' },
