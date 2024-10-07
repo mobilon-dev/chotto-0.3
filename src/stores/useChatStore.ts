@@ -8,7 +8,7 @@ export const useChatsStore = defineStore('chats', () => {
 		// console.log('setUnreadCounter', chatId, countUnread)
 		// console.log(chats.value, 'chats')
 		// @TODO fix any
-		const chat: any = chats.value.find((c:any) => c._id === chatId)
+		const chat: any = chats.value.find((c:any) => c.chatId === chatId)
 		if (chat) {
 			console.log('if chat found')
 			chat.countUnread = countUnread
