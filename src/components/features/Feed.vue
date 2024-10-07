@@ -14,6 +14,7 @@ import ImageMessage from "../messages/ImageMessage2.vue";
 import TextMessage from "../messages/TextMessage.vue";
 import DateMessage from '../messages/DateMessage.vue';
 import AudioMessage from '../messages/AudioMessage.vue';
+import VideoMessage from '../messages/VideoMessage.vue'
 
 const refFeed = ref(null);
 
@@ -32,6 +33,7 @@ const componentsMap = (type) => {
     'message.image': ImageMessage,
     'message.file': FileMessage,
     'message.audio': AudioMessage,
+    'message.video': VideoMessage,
     'system.date': DateMessage,
   };
   return r[type];

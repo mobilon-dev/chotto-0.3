@@ -42,12 +42,12 @@
 
     --text-message-right-background-color: var(--emerald-200);
     --text-message-left-background-color: var(--neutral-200);
-    --text-message-text-color: var(--neutral-700);
+    --text-message-text-color: var(--neutral-900);
 
     /* File Message */
 
     --file-message-background-color: var(--neutral-200);
-    --file-message-link-color: var(--neutral-700);
+    --file-message-link-color: var(--neutral-900);
 
     /* _____________________________________________ */
 
@@ -72,6 +72,17 @@
 
     /* _____________________________________________ */
 
+    /* Video Message */
+
+    --video-message-button-background: rgba(0, 0, 0, 0.67);
+
+    /* Channels */
+
+    --channels-popover-background-color: var(--default-white);
+
+    /* Сontext Menu */
+
+    --context-menu-background: var(--default-white);
 
     /* Chat Input */
     --chat-input-background: var(--neutral-200);

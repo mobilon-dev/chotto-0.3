@@ -139,16 +139,16 @@ onMounted(() => {
   }
 
   &__remaining-time {
-    font-size: 12px;
     grid-column: 2;
     margin-bottom: -10px;
+    font-size: var(--remaining-time);
   }
 
   &__time {
-    font-size: 12px;
     position: absolute;
     bottom: 4px;
     right: 8px;
+    font-size: var(--time-message-font-size);
   }
 
   &__left {
