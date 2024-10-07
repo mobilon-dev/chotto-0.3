@@ -2,31 +2,35 @@
   <div>
     <div class="new-chat-modal" v-if="showNewChatModal">
       <div class="modal-content">
-        <h2>Create New Chat</h2>
-        <input v-model="newChatName" placeholder="Enter chat name" />
+        <h2>Создать чат</h2>
+        <input
+          v-model="newChatName"
+          placeholder="название чата"
+          v-if="isChatName"
+        />
         <div class="participant-list">
           <div
             v-for="user in availableUsers"
-            :key="user._id"
+            :key="user.userId"
             class="participant-item"
           >
             <input
               type="checkbox"
-              :id="user._id"
+              :id="user.userId"
               v-model="selectedParticipants"
-              :value="user._id"
+              :value="user.userId"
             />
-            <label :for="user._id">{{ user.name || 'unknown username' }}</label>
+            <label :for="user.userId">{{ user.name || 'unknown username' }}</label>
           </div> 
         </div>
         <div class="modal-actions">
-          <button @click="confirmNewChat">Create</button>
-          <button @click="cancelNewChat">Cancel</button>
+          <button @click="confirmNewChat">Создать</button>
+          <button @click="cancelNewChat">Отмена</button>
         </div>
       </div>
     </div>
     <button @click="openNewChatModal" class="create-chat-btn">
-      + CREATE NEW CHAT
+      {{ title }}
     </button>
   </div>
 </template>
@@ -34,55 +38,61 @@
 <script setup>
 
 import { ref } from 'vue';
-import { useChatsStore } from '../../stores/useChatStore';
 
 // Define props
 const props = defineProps({
-  dataProvider: {
-    type: Object,
+  users: {
+    type: Array,
     required: true,
   },
-	selectChat: {
-		type: Function,
-		required: true,
-	}
+  title: {
+    type: String,
+    required: true,
+  },
+  isChatName: {
+    type: Boolean,
+    required: false,
+    default: false
+  }
 });
-const chatsStore = useChatsStore()
+
 
 const showNewChatModal = ref(false)
 const newChatName = ref('')
 const selectedParticipants = ref([])
-const availableUsers = ref([])
+const availableUsers = ref(props.users)
+
+const emit = defineEmits(['createNewChat'])
 
 const openNewChatModal = () => {
 	showNewChatModal.value = true
-	fetchAvailableUsers()
-}
-
-const fetchAvailableUsers = async () => {
-	availableUsers.value = await props.dataProvider.getAvailableUsers()
-	console.log(availableUsers.value, 'availableUsers.value')
 }
 
 const confirmNewChat = async () => {
-	if (newChatName.value && selectedParticipants.value.length > 0) {
-		console.log(selectedParticipants.value, 'selectedParticipants.value')
-		const newChat = await props.dataProvider.createChat({
-			name: newChatName.value,
-			participants: selectedParticipants.value,
-		})
-		chatsStore.chats.push(newChat)
-		showNewChatModal.value = false
-		newChatName.value = ''
-		selectedParticipants.value = []
-		props.selectChat(newChat._id)
+	if (selectedParticipants.value.length > 0) {
+    if ((newChatName.value && props.isChatName) || !props.isChatName) {
+      emit('createNewChat', {
+        chatName: newChatName.value,
+        users: selectedParticipants.value,
+      });
+      closeModal();
+      resetValues();
+    }
 	}
 }
 
-const cancelNewChat = () => {
-	showNewChatModal.value = false
+const closeModal = () => {
+  showNewChatModal.value = false;
+}
+
+const resetValues = () => {
 	newChatName.value = ''
 	selectedParticipants.value = []
+}
+
+const cancelNewChat = () => {
+  closeModal();
+	resetValues();
 }
 </script>
 

@@ -2,33 +2,37 @@
   <div>
     <div class="chat-app">
       <div class="chat-app__container">
-        <ChatList :chats="chatsStore.chats" @select="selectChat" filterEnabled />
+        <div>
+          <Profile :user="userProfile"></Profile>
+          <ChatList2 :chats="chatsStore.chats" @select="selectChat" filterEnabled />
+        </div>
 
         <div class="chat-app__right-bar">
           <div v-if="selectedChat" class="chat-app__right-bar-container">
             <ChatInfo :chat="selectedChat" />
             <Feed class="chat-app__feed" :objects="messages" />
-            <ChatInput @send="addMessage" :enableEmoji="true" :channels="channels" />
+            <ChatInput2 @send="addMessage" :enableEmoji="true" :channels="channels" />
           </div>
           <p v-else class="chat-app__welcome-text">Выберите контакт для начала общения</p>
         </div>
-
       </div>
-
     </div>
-    <!-- <CreateNewChat :dataProvider="dataProvider" :selectChat="selectChat" /> -->
+    <CreateNewChat :users="getUsers()" @createNewChat="createNewChat" title="+ чат" :isChatName="true"/>    
   </div>
 </template>
 
 <script setup>
-import { defineStore } from 'pinia';
 import { onMounted, ref } from 'vue';
 
-import ChatInfo from "./components/features/ChatInfo.vue";
-import ChatInput from "./components/features/ChatInput2.vue";
-import ChatList from "./components/features/ChatList2.vue";
-import CreateNewChat from './components/features/CreateNewChat.vue';
-import Feed from "./components/features/Feed.vue";
+import { 
+  ChatInfo,
+  ChatInput2,
+  ChatList2,
+  CreateNewChat,
+  Feed,
+  Profile,
+  FileUploader
+} from "./components/features";
 
 import {
   formatTimestamp,
@@ -36,6 +40,8 @@ import {
   playNotificationAudio,
   sortByTimestamp,
 } from './helpers';
+
+import { useChatsStore } from './stores/useChatStore';
 
 // Define props
 const props = defineProps({
@@ -53,17 +59,6 @@ const props = defineProps({
   },
 });
 
-
-const useChatsStore = defineStore('chats', () => {
-  const chats = ref([])
-
-  function setUnreadCounter(chatId, countUnread) {
-    const chat = chats.value.find(c => c.chatId === chatId);
-    chat.countUnread = countUnread;
-  }
-  return { chats, setUnreadCounter }
-})
-
 const chatsStore = useChatsStore();
 
 // Reactive data
@@ -72,9 +67,21 @@ const messages = ref([]);
 const userProfile = ref({});
 const channels = ref([]);
 
+
 const readableFormat = (timestamp) => {
   // @todo: преобразование timestamp в читаемый вид
   return formatTimestamp(timestamp);
+}
+
+const getUsers = () => {
+  return (props.dataProvider.getChats()).map(c => {return {...c, userId: c.chatId.toString()}});
+}
+
+const createNewChat = (obj) => {
+  // obj.users.map(c=>console.log(c));
+  // console.log('chat', obj)
+  const chat = {chatId: 3, name: obj.chatName};
+  chatsStore.addChat(chat);
 }
 
 // Methods
