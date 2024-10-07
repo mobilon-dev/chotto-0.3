@@ -1,19 +1,15 @@
 <template>
   <div class="chat-input">
     <div class="chat-input__container">
-      <EmojiPicker 
-        class="chat-input__emoji" 
-        :native="true" 
-        :theme="changeThemeDialogEmoji"
-        @select="onSelectEmoji"
-        v-if="enabledEmojiPicker" 
-        pickerType="" 
-      />
-
+      <Transition>
+        <EmojiPicker class="chat-input__emoji" :native="true" :theme="changeThemeDialogEmoji" @select="onSelectEmoji"
+          v-if="enabledEmojiPicker" pickerType="" />
+      </Transition>
       <FileUploader @fileUploaded="fileUploaded" :canUploadFile="canUploadFile"></FileUploader>
       
       <input class="chat-input__input" v-model="message" ref="refInput" @keydown.enter="sendMessage"
         placeholder="Type a message..." />
+      <Channels2 :channels="channels" />
       <button class="chat-input__button-emoji" @click="toogleDialogEmoji">
         <span class="pi pi-face-smile"></span>
       </button>
@@ -37,6 +33,7 @@ import { FileUploader } from '.';
 // import picker compopnent
 import EmojiPicker from 'vue3-emoji-picker';
 import 'vue3-emoji-picker/css';
+import Channels2 from './Channels2.vue'
 
 // Define emits
 const emit = defineEmits(['send']);
@@ -61,7 +58,7 @@ const props = defineProps({
   channels: {
     type: Array,
     required: false,
-    default: () => {return []}
+    default: () => { return [] }
   },
 
   // fileUploaderComponent: {
@@ -118,11 +115,13 @@ const onSelectEmoji = (emoji) => {
 <style scoped lang="scss">
 .chat-input {
   &__container {
+    position: relative;
     display: flex;
     align-items: center;
     border-radius: 0 0 12px 12px;
     border-top: 1px solid var(--neutral-300);
-    // background-color: var(--chat-input-background);
+    background-color: var(--chat-input-background);
+    padding-top: 22px;
   }
 
   &__button-file {
@@ -179,7 +178,7 @@ const onSelectEmoji = (emoji) => {
 
   &__emoji {
     position: absolute;
-    bottom: 7%;
+    bottom: 80px;
     right: 1%;
   }
 }
@@ -213,5 +212,19 @@ const onSelectEmoji = (emoji) => {
       }
     }
   }
+}
+
+.v-enter-active {
+  transition: all 0.2s ease-out;
+}
+
+.v-leave-active {
+  transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.v-enter-from,
+.v-leave-to {
+  transform: translateY(20px);
+  opacity: 0;
 }
 </style>

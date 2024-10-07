@@ -27,10 +27,10 @@ function getClass(message) {
 .text-message {
 
   &__time {
-    font-size: 12px;
     position: absolute;
     bottom: 4px;
     right: 8px;
+    font-size: var(--time-message-font-size);
   }
 
   &__left,

@@ -17,9 +17,7 @@
         </div>
       </div>
     </div>
-
-    <CreateNewChat :users="getUsers()" @createNewChat="createNewChat" title="+ чат" :isChatName="true"/>
-    
+    <CreateNewChat :users="getUsers()" @createNewChat="createNewChat" title="+ чат" :isChatName="true"/>    
   </div>
 </template>
 
@@ -120,7 +118,7 @@ const addMessage = (message) => {
 
   props.dataProvider.addMessage({
     text: message,
-    type: message.type,
+    type: 'message.text',
     chatId: selectedChat.value.chatId,
     direction: 'outgoing',
     timestamp: '1727112546',

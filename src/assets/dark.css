@@ -72,6 +72,13 @@
 
     /* _____________________________________________ */
 
+    /* Channels */
+
+    --d-channels-popover-background-color: var(--neutral-600);
+
+    /* Сontext Menu */
+
+    --d-context-menu-background: var(--neutral-700);
 
     /* Chat Input */
     --d-chat-input-background: var(--neutral-700);
