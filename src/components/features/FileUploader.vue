@@ -1,7 +1,13 @@
 <template>
   <div>
-    <div v-if="canUploadFile && uploadStatus !== 'success'">
-      <input type="file" @change="onFileSelected" />
+    <div class="chat-input__button-file" v-if="canUploadFile && uploadStatus !== 'success'">
+      <label >
+        <input type="file" @change="onFileSelected" />
+        <span>
+          <i class="pi pi-file-arrow-up"></i>
+        </span>
+      </label>
+      
     </div>
     <div v-if="!canUploadFile && uploadStatus === 'success'">
       <p>Файл загружен и готов к отправке.</p>
@@ -116,7 +122,39 @@ const uploadFile = async () => {
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+
+.chat-input {
+  &__container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-radius: 0 0 12px 12px;
+    border-top: 1px solid var(--neutral-300);
+    background-color: var(--chat-input-background);
+    padding-top: 22px;
+  }
+
+  &__button-file {
+    input {
+      position: absolute;
+      z-index: -1;
+      opacity: 0;
+      display: block;
+      width: 0;
+      height: 0;
+    }
+
+    span {
+      display: block;
+      font-size: var(--icon-font-size-medium);
+      color: var(--icon-color);
+      cursor: pointer;
+      padding: var(--chat-input-button-padding);
+    }
+  }
+}
+
 .new-chat-modal {
   position: fixed;
 	top: 0;
