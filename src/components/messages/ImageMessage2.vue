@@ -4,7 +4,7 @@
     <div class="image-message__container">
       <button class="image-message__button" @click="isOpen = true">
         <img class="image-message__preview-image" :src="message.url" :alt="message.alt" />
-        <span class="image-message__time">22:02</span>
+        <span class="image-message__time"> {{ message.time }}</span>
       </button>
 
       <Teleport to="body">
@@ -35,28 +35,6 @@ export default {
       type: Object,
       required: true,
     },
-    /*
-    imageSrc: {
-      type: String,
-      required: true,
-    },
-    isSent: {
-      type: Boolean,
-      default: false,
-    },
-    isDelivered: {
-      type: Boolean,
-      default: false,
-    },
-    isRead: {
-      type: Boolean,
-      default: false,
-    },
-    timestamp: {
-      type: Number, 
-      required: true,
-    },
-    */
   },
   setup(props) {
     const isOpen = ref(false);
@@ -65,6 +43,11 @@ export default {
     };
   },
 };
+
+function getClass(message) {
+  return message.position === 'left' ? '' : '';
+}
+
 </script>
 
 <style scoped lang="scss">

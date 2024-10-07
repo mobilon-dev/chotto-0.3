@@ -20,3 +20,15 @@ export const LeftMessage: Story = {
     },
   },
 };
+
+export const RightMessage: Story = {
+  args: {
+    message: {
+      text: 'test test test',
+      position: 'right',
+      messageId: 'testMessageId',
+      time: '12:00',
+      status: 'read',
+    },
+  },
+};

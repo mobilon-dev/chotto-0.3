@@ -5,7 +5,7 @@
         <span class="pi pi-file"></span>
         {{ message.filename }}
       </a>
-      <span class="file-message__time">22:02</span>
+      <span class="file-message__time"> {{ message.time }}</span>
     </div>
   </div>
 </template>
@@ -19,7 +19,10 @@ const props = defineProps({
     required: true,
   },
 });
-// console.log(props.message)
+
+function getClass(message) {
+  return message.position === 'left' ? '' : '';
+}
 
 </script>
 

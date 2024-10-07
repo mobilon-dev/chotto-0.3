@@ -28,6 +28,10 @@ const props = defineProps({
   },
 });
 
+function getClass(message) {
+  return message.position === 'left' ? '' : '';
+}
+
 const player = ref(null);
 const isPlaying = ref(false);
 const audioDuration = ref(0);

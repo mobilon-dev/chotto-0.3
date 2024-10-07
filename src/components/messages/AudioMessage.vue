@@ -1,6 +1,6 @@
 <template>
   <div class="audio-message" :class="getClass(message)" :messageId="message.messageId">
-    <audio ref="player" src="/sample-6s.mp3"></audio>
+    <audio ref="player" :src="message.url"></audio>
     <div class="audio-message__container">
       <button class="audio-message__play" v-show="!isPlaying" @click="togglePlayPause">
         <span class="pi pi-play"></span>
@@ -12,7 +12,7 @@
         <div class="audio-message__progress-bar" :style="{ width: progressPercent + '%' }"></div>
       </div>
       <p class="audio-message__remaining-time">{{ `${formatCurrentTime} / ${formatDuration}` }}</p>
-      <span class="audio-message__time">22:02</span>
+      <span class="audio-message__time">{{ message.time }}</span>
     </div>
   </div>
 </template>

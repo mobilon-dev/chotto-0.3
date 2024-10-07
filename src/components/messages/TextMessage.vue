@@ -19,8 +19,9 @@ const props = defineProps({
 });
 
 function getClass(message) {
-  return message.direction === 'incoming' ? 'text-message__left' : 'text-message__right';
+  return message.position === 'left' ? 'text-message__left' : 'text-message__right';
 }
+
 </script>
 
 <style scoped lang="scss">
