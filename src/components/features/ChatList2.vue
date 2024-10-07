@@ -8,8 +8,6 @@
           @select="selectChat" :data-chat-info="JSON.stringify(chat)" />
       </div>
 
-      <ThemeMode />
-
       <Transition>
         <div class="chat-list__context-menu" v-if="isContextMenu"
           :style="{ top: selectedChatY + 'px', left: selectedChatX + 'px' }">

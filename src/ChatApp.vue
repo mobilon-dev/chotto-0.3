@@ -5,6 +5,8 @@
         <div>
           <Profile :user="userProfile"></Profile>
           <ChatList2 :chats="chatsStore.chats" @select="selectChat" filterEnabled />
+
+          <ThemeMode />
         </div>
 
         <div class="chat-app__right-bar">
@@ -31,7 +33,8 @@ import {
   CreateNewChat,
   Feed,
   Profile,
-  FileUploader
+  FileUploader,
+  ThemeMode,
 } from "./components/features";
 
 import {

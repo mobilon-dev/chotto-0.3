@@ -7,6 +7,7 @@ import Feed from './Feed.vue';
 import Profile from './Profile.vue';
 import CreateNewChat from './CreateNewChat.vue';
 import FileUploader from './FileUploader.vue';
+import ThemeMode from './ThemeMode.vue';
 
 export {
   CreateNewChat,
@@ -18,4 +19,5 @@ export {
   Feed,
   FileUploader,
   Profile,
+  ThemeMode,
 }
