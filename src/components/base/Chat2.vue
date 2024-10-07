@@ -13,6 +13,7 @@
       <div class="chat-item__details-container">
         <div class="chat-item__unread" v-if="chat.countUnread > 0">{{ chat.countUnread }}</div>
         <div class="chat-item__time" v-if="chat['lastActivity.time']">{{ chat['lastActivity.time'] }}</div>
+        <span v-if="chat.isFixed" class="pi pi-thumbtack"></span>
       </div>
     </div>
   </div>
@@ -28,7 +29,7 @@ const props = defineProps({
 });
 
 // Define emits
-const emit = defineEmits(['select']);
+const emit = defineEmits(['select', 'uuu']);
 
 // Define method
 const selectChat = () => { emit('select', props.chat); }
@@ -56,7 +57,7 @@ const getAvatarImage = () => {
 
   &__container {
     display: flex;
-    align-items: center;
+
     padding: 15px;
     cursor: pointer;
   }
@@ -87,6 +88,7 @@ const getAvatarImage = () => {
 
   &__info-container {
     flex-grow: 1;
+    align-self: center;
     margin-right: 15px;
   }
 
@@ -103,7 +105,15 @@ const getAvatarImage = () => {
   }
 
   &__details-container {
-    margin-bottom: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: end;
+
+    span {
+      margin-top: auto;
+      color: var(--neutral-500);
+    }
   }
 
   &__unread {
@@ -124,7 +134,7 @@ const getAvatarImage = () => {
     font-size: 12px;
     color: var(--neutral-400);
     font-weight: 500;
-    margin-bottom: 8px
+
   }
 }
 

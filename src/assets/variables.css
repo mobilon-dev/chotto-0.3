@@ -72,8 +72,8 @@
     --chat-item-font-size-last-message: 14px;
 
     /* Details Container */
-    --chat-item-min-width-unread: 24px;
-    --chat-item-min-height-unread: 24px;
+    --chat-item-min-width-unread: 22px;
+    --chat-item-min-height-unread: 22px;
     --chat-item-font-size-unread: 14px;
 
 
@@ -94,7 +94,7 @@
     /* Image Message */
 
     --image-message-max-width: 40%;
-    --image-message-margin: 0 0 10px 0;
+    --image-message-margin: 0 0 7px 0;
 
     /* _____________________________________________ */
 
@@ -126,6 +126,42 @@
 
     --audio-message-rt-font-size: 12px;
     /* _____________________________________________ */
+
+    /* Video Message */
+
+    --video-message-width: 200px;
+    --video-message-height: 200px;
+    --video-message-border-radius: 50%;
+
+    --video-message-button-width: 40px;
+    --video-message-button-height: 40px;
+    --video-message-button-border-radius: 50%;
+
+    /* Message Info */
+
+    --time-message-font-size: 12px;
+    --remaining-time: 12px;
+
+    /* Channels */
+
+    --channels-title-font-size: 14px;
+
+    --channels-selected-gap: 6px;
+    --channels-selected-align-items: center;
+    --channels-selected-icon-width: 16px;
+    --channels-selected-icon-height: 16px;
+
+    --channels-popover-position-top: -54px;
+    --channels-popover-position-right: 78px;
+    --channels-popover-padding: 18px;
+    --channels-popover-border-radius: 10px;
+
+    /* Сontext Menu */
+
+    --context-menu-border-radius: 8px;
+    --context-menu-padding: 20px;
+    --context-menu-list-row-gap: 10px;
+    --context-menu-item-column-gap: 18px;
 
     /* Chat Input */
     --chat-input-button-padding: 14px;
