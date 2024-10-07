@@ -49,3 +49,20 @@ export const WithEnabledFilter: Story = {
   },
 };
 
+const chats = [0,1,2,3,4,5,6,7,8,9].map(() => {
+  return {
+    chatId: '1',
+    avatar: "https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png",
+    name: "John Doe",
+    lastMessage: "Привет!",
+    countUnread: "21",
+    'lastActivity.time': "12:34",
+  }
+})
+
+export const Entities10: Story = {
+  args: {
+    chats,
+    filterEnabled: true,
+  },
+};
