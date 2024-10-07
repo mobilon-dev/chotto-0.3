@@ -16,13 +16,8 @@
       <button class="chat-input__button-send" @click="sendMessage">
         <span class="pi pi-send"></span>
       </button>
-
-      <!-- <span v-if="channels">
-        <Channels :channels="channels"></Channels>
-      </span> -->
-
+      
     </div>
-
   </div>
 </template>
 

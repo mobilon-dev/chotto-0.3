@@ -1,7 +1,7 @@
 <template>
   <div class="video-message">
     <div class="video-message__container">
-      <video ref="player" class="video-message__video" src="/sample-10s.mp4"></video>
+      <video ref="player" class="video-message__video" :src="message.url"></video>
 
       <div class="video-message__controls">
         <transition>
@@ -13,13 +13,20 @@
       </div>
 
       <p class="video-message__remaining-time">{{ `${remaningTime}` }}</p>
-      <span class="video-message__time">22:02</span>
+      <span class="video-message__time">{{ message.time }}</span>
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+
+const props = defineProps({
+  message: {
+    type: Object,
+    required: true,
+  },
+});
 
 const player = ref(null);
 const isPlaying = ref(false);
