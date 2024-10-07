@@ -117,8 +117,8 @@ const addMessage = (message) => {
   // Добавление сообщения в хранилище
 
   props.dataProvider.addMessage({
-    text: message,
-    type: 'message.text',
+    text: message.text,
+    type: message.type,
     chatId: selectedChat.value.chatId,
     direction: 'outgoing',
     timestamp: '1727112546',

@@ -80,15 +80,15 @@ const sendMessage = () => {
     text: null,
   };
 
-  if (fileLink) {
-    messageObject.type = 'file';
+  if (fileLink.value) {
+    messageObject.type = 'message.file';
     messageObject.text = fileLink.value;
   } else {
-    messageObject.type = 'text';
+    messageObject.type = 'message.text';
     messageObject.text = message.value.trim();
   }
 
-  emit('send', messageObject.text);
+  emit('send', messageObject);
   fileLink.value = false;
   message.value = '';
   unref(refInput).focus()
