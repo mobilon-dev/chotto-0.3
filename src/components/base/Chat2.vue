@@ -53,6 +53,7 @@ const getClass = () => {
 
 const clickAction = (action) => {
   // console.log('action', props.chat.chatId, action);
+  hideMenu();
   emit('action', {chatId: props.chat.chatId, ...action});
 }
 

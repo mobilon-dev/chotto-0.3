@@ -24,7 +24,7 @@ const emit = defineEmits(['click']);
 const click = (index) => {
   const action = props.actions[index];
   // console.log('action', action);
-  emit('click', props.actions[index]);
+  emit('click', action);
 }
 
 </script>
