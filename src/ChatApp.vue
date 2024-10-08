@@ -3,10 +3,10 @@
     <div class="chat-app">
       <div class="chat-app__container">
         <div>
-          <Profile :user="userProfile"></Profile>
+          <!-- <Profile :user="userProfile"></Profile> -->
           <ChatList2 :chats="chatsStore.chats" @select="selectChat" filterEnabled />
 
-          <ThemeMode />
+          <!-- <ThemeMode /> -->
         </div>
 
         <div class="chat-app__right-bar">
@@ -19,14 +19,14 @@
         </div>
       </div>
     </div>
-    <CreateNewChat :users="getUsers()" @createNewChat="createNewChat" title="+ чат" :isChatName="true"/>    
+    <!-- <CreateNewChat :users="getUsers()" @createNewChat="createNewChat" title="+ чат" :isChatName="true"/>     -->
   </div>
 </template>
 
 <script setup>
 import { onMounted, ref } from 'vue';
 
-import { 
+import {
   ChatInfo,
   ChatInput2,
   ChatList2,
@@ -77,13 +77,13 @@ const readableFormat = (timestamp) => {
 }
 
 const getUsers = () => {
-  return (props.dataProvider.getChats()).map(c => {return {...c, userId: c.chatId.toString()}});
+  return (props.dataProvider.getChats()).map(c => { return { ...c, userId: c.chatId.toString() } });
 }
 
 const createNewChat = (obj) => {
   // obj.users.map(c=>console.log(c));
   // console.log('chat', obj)
-  const chat = {chatId: 3, name: obj.chatName};
+  const chat = { chatId: 3, name: obj.chatName };
   chatsStore.addChat(chat);
 }
 

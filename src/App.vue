@@ -19,29 +19,72 @@ const data3 = {
     { chatId: 2, type: "message.text", text: "Привет!", direction: 'incoming', status: 'read', timestamp: '1727027959' },
     { chatId: 2, type: "message.audio", url: "https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3", text: "Привет!", direction: 'incoming', status: 'read', timestamp: '1727027959' },
     { chatId: 2, type: "message.image", url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg", alt: "Example Image", direction: 'outgoing', timestamp: '1726743559', },
+    { chatId: 3, type: "message.audio", url: "https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3", text: "Привет!", direction: 'incoming', status: 'read', timestamp: '1727027959' },
+    { chatId: 3, type: "message.image", url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg", alt: "Example Image", direction: 'outgoing', timestamp: '1726743559', },
+    { chatId: 4, type: "message.audio", url: "https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3", text: "Привет!", direction: 'incoming', status: 'read', timestamp: '1727027959' },
+    { chatId: 4, type: "message.image", url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg", alt: "Example Image", direction: 'outgoing', timestamp: '1726743559', },
   ],
   chats: [
-    { chatId: 1, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false , actions: [
-      {action: 'edit', title: 'изменить', icon: 'fa-edit'}, {action: 'delete', title: 'удалить'},
-    ]},
-    { chatId: 2, name: "Мария", countUnread: 0, isFixed: true, actions: [
-      {
-        action: 'edit', title: 'изменить', icon: 'fa-edit'
-      }, {action: 'unpin', title: 'открепить'},
-    ]},
-    { chatId: 3, name: "Сергей", countUnread: 0, isFixed: true },
-    { chatId: 4, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false },
-    { chatId: 5, name: "Мария", countUnread: 0, isFixed: true },
-    { chatId: 6, name: "Сергей", countUnread: 0, isFixed: true },
-    { chatId: 7, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false },
-    { chatId: 8, name: "Мария", countUnread: 0, isFixed: true },
-    { chatId: 9, name: "Сергей", countUnread: 0, isFixed: true },
-    { chatId: 10, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false },
-    { chatId: 11, name: "Мария", countUnread: 0, isFixed: true },
-    { chatId: 12, name: "Сергей", countUnread: 0, isFixed: true },
-    { chatId: 13, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false },
-    { chatId: 14, name: "Мария", countUnread: 0, isFixed: true },
-    { chatId: 15, name: "Сергей", countUnread: 0, isFixed: true },
+    {
+      chatId: 1, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
+        { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
+      ]
+    },
+    {
+      chatId: 2, name: "Мария", countUnread: 0, isFixed: true, actions: [
+        { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'unpin', title: 'открепить' },
+      ]
+    },
+    {
+      chatId: 3, name: "Анна", countUnread: 0, isFixed: true, actions: [
+        { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'unpin', title: 'открепить' },
+      ]
+    },
+    {
+      chatId: 1, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
+        { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
+      ]
+    },
+    {
+      chatId: 1, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
+        { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
+      ]
+    },
+    {
+      chatId: 1, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
+        { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
+      ]
+    },
+    {
+      chatId: 1, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
+        { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
+      ]
+    },
+    {
+      chatId: 1, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
+        { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
+      ]
+    },
+    {
+      chatId: 1, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
+        { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
+      ]
+    },
+    {
+      chatId: 1, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
+        { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
+      ]
+    },
+    {
+      chatId: 1, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
+        { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
+      ]
+    },
+    {
+      chatId: 1, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
+        { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
+      ]
+    },
   ],
   channels: [
     { channelId: 'channel1', title: 'test channel 1', icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/240px-Telegram_logo.svg.png' },
