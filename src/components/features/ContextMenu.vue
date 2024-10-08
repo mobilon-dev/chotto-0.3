@@ -2,7 +2,7 @@
   <div class="context-menu">
     <div class="context-menu__container">
       <ul class="context-menu__list">
-        <li class="context-menu__item" v-for="(action, index) in props.chat.actions" :key="index">
+        <li class="context-menu__item" v-for="(action, index) in props.actions" :key="index" @click="click(index)">
           {{ action.title }}
         </li>
       </ul>
@@ -13,11 +13,20 @@
 <script setup>
 
 const props = defineProps({
-  chat: {
-    type: Object,
+  actions: {
+    type: Array,
     required: true,
   },
 });
+
+const emit = defineEmits(['click']);
+
+const click = (index) => {
+  const action = props.actions[index];
+  // console.log('action', action);
+  emit('click', props.actions[index]);
+}
+
 </script>
 
 <style scoped lang="scss">

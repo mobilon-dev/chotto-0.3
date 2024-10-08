@@ -2,21 +2,32 @@
   <div class="chat-list">
     <div class="chat-list__container">
       <h2 class="chat-list__title">Чаты</h2>
+
       <ChatFilter class="chat-list__filter" @update="getFilter" v-if="filterEnabled" />
+
       <div class="chat-list__items">
         <div class="chat-list__fixed-items-top">
-          <chat class="chat-list__item" v-for="chat in getSortedAndFilteredChats().filter(c => c.isFixedTop)"
-            :key="chat.chatId" :chat="chat" @select="selectChat" />
+          <chat class="chat-list__item" 
+            v-for="chat in getSortedAndFilteredChats().filter(c => c.isFixedTop)"
+            :key="chat.chatId" :chat="chat" @select="selectChat" 
+            @action="action"
+          />
         </div>
 
         <div class="chat-list__scrollable-items">
-          <chat class="chat-list__item" v-for="chat in getSortedAndFilteredChats().filter(c => !c.isFixedBottom && !c.isFixedTop)"
-            :key="chat.chatId" :chat="chat" @select="selectChat" />
+          <chat class="chat-list__item" 
+            v-for="chat in getSortedAndFilteredChats().filter(c => !c.isFixedBottom && !c.isFixedTop)"
+            :key="chat.chatId" :chat="chat" @select="selectChat" 
+            @action="action"
+          />
         </div>
 
         <div class="chat-list__fixed-items-bottom">
-          <chat class="chat-list__item" v-for="chat in getSortedAndFilteredChats().filter(c => c.isFixedBottom)"
-            :key="chat.chatId" :chat="chat" @select="selectChat" />
+          <chat class="chat-list__item" 
+            v-for="chat in getSortedAndFilteredChats().filter(c => c.isFixedBottom)"
+            :key="chat.chatId" :chat="chat" @select="selectChat" 
+            @action="action"
+          />
         </div>
       </div>
     </div>
@@ -44,7 +55,7 @@ const props = defineProps({
 });
 
 // Define emits
-const emit = defineEmits(['select']);
+const emit = defineEmits(['select', 'action']);
 
 // Define method
 const selectChat = (chat) => {
@@ -70,6 +81,8 @@ const getFilter = (value) => {
   filter.value = value;
 }
 
+const action = (data) => emit('action', data);
+
 // watch(() => props.chats, getSortedChats);
 </script>
 
@@ -79,7 +92,7 @@ const getFilter = (value) => {
 
   &__container {
     padding: 30px 0;
-    height: 100vh;
+    height: 90vh;
     display: flex;
     flex-direction: column;
   }

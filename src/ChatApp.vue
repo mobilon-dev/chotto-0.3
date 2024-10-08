@@ -3,8 +3,8 @@
     <div class="chat-app">
       <div class="chat-app__container">
         <div>
-          <!-- <Profile :user="userProfile"></Profile> -->
-          <ChatList2 :chats="chatsStore.chats" @select="selectChat" filterEnabled />
+          <Profile :user="userProfile"></Profile>
+          <ChatList2 :chats="chatsStore.chats" @select="selectChat" filterEnabled @action="action"/>
 
           <!-- <ThemeMode /> -->
         </div>
@@ -70,6 +70,9 @@ const messages = ref([]);
 const userProfile = ref({});
 const channels = ref([]);
 
+const action = (data) => {
+  console.log('action 1111', data);
+}
 
 const readableFormat = (timestamp) => {
   // @todo: преобразование timestamp в читаемый вид

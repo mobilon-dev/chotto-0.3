@@ -6,10 +6,12 @@
         <span v-else class="pi pi-user">
         </span>
       </div>
+
       <div class="chat-item__info-container">
         <div class="chat-item__name">{{ chat.name }}</div>
         <div class="chat-item__last-message" v-if="chat.lastMessage">{{ chat.lastMessage }}</div>
       </div>
+      
       <div class="chat-item__details-container">
         <div class="chat-item__unread" v-if="chat.countUnread > 0">{{ chat.countUnread }}</div>
         <div class="chat-item__time" v-if="chat['lastActivity.time']">{{ chat['lastActivity.time'] }}</div>
@@ -23,7 +25,7 @@
         <span v-if="chat.isFixed" class="chat-item__fixed pi pi-thumbtack"></span>
       </div>
 
-      <ContextMenu class="chat-item__context-menu" v-if="isOpenMenu" :chat="chat" />
+      <ContextMenu class="chat-item__context-menu" v-if="isOpenMenu" :actions="chat.actions" @click="clickAction"/>
     </div>
   </div>
 </template>
@@ -40,13 +42,18 @@ const props = defineProps({
 });
 
 // Define emits
-const emit = defineEmits(['select', 'uuu']);
+const emit = defineEmits(['select', 'uuu', 'action']);
 
 // Define method
 const selectChat = () => { emit('select', props.chat); }
 
 const getClass = () => {
   return props.chat.isSelected ? 'chat-item__selected' : 'chat-item';
+}
+
+const clickAction = (action) => {
+  // console.log('action', props.chat.chatId, action);
+  emit('action', {chatId: props.chat.chatId, ...action});
 }
 
 
