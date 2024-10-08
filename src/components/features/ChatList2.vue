@@ -5,16 +5,17 @@
       <ChatFilter class="chat-list__filter" @update="getFilter" v-if="filterEnabled" />
       <div class="chat-list__items">
         <div class="chat-list__fixed-items-top">
-          <chat class="chat-list__item" v-for="chat in getSortedAndFilteredChats().filter(c => c.isFixed)"
+          <chat class="chat-list__item" v-for="chat in getSortedAndFilteredChats().filter(c => c.isFixedTop)"
             :key="chat.chatId" :chat="chat" @select="selectChat" />
         </div>
+
         <div class="chat-list__scrollable-items">
-          <chat class="chat-list__item" v-for="chat in getSortedAndFilteredChats().filter(c => !c.isFixed)"
+          <chat class="chat-list__item" v-for="chat in getSortedAndFilteredChats().filter(c => !c.isFixedBottom && !c.isFixedTop)"
             :key="chat.chatId" :chat="chat" @select="selectChat" />
         </div>
 
         <div class="chat-list__fixed-items-bottom">
-          <chat class="chat-list__item" v-for="chat in getSortedAndFilteredChats().filter(c => c.isFixed)"
+          <chat class="chat-list__item" v-for="chat in getSortedAndFilteredChats().filter(c => c.isFixedBottom)"
             :key="chat.chatId" :chat="chat" @select="selectChat" />
         </div>
       </div>
@@ -111,9 +112,13 @@ const getFilter = (value) => {
     z-index: 100;
     display: block;
     position: sticky;
-    top: 0;
     background-color: var(--default-white);
   }
+
+  &__fixed-items-top {
+    top: 0;
+  }
+
 
   &__fixed-items-bottom {
     bottom: 0;

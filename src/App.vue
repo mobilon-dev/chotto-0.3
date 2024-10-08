@@ -31,57 +31,57 @@ const data3 = {
       ]
     },
     {
-      chatId: 2, name: "Мария", countUnread: 0, isFixed: true, actions: [
+      chatId: 2, name: "Мария", countUnread: 0, isFixedTop: true, actions: [
         { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'unpin', title: 'открепить' },
       ]
     },
     {
-      chatId: 3, name: "Анна", countUnread: 0, isFixed: true, actions: [
+      chatId: 3, name: "Анна", countUnread: 0, isFixedBottom: true, actions: [
         { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'unpin', title: 'открепить' },
       ]
     },
     {
-      chatId: 1, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
+      chatId: 4, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
         { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
       ]
     },
     {
-      chatId: 1, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
+      chatId: 5, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
         { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
       ]
     },
     {
-      chatId: 1, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
+      chatId: 6, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
         { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
       ]
     },
     {
-      chatId: 1, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
+      chatId: 7, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
         { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
       ]
     },
     {
-      chatId: 1, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
+      chatId: 8, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
         { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
       ]
     },
     {
-      chatId: 1, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
+      chatId: 9, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
         { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
       ]
     },
     {
-      chatId: 1, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
+      chatId: 10, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
         { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
       ]
     },
     {
-      chatId: 1, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
+      chatId: 11, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
         { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
       ]
     },
     {
-      chatId: 1, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
+      chatId: 12, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
         { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
       ]
     },
