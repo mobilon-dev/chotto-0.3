@@ -44,4 +44,18 @@ export const SelectedChat: Story = {
   },
 };
 
+export const ChatWithActions: Story = {
+  args: {
+    chat: {
+      name: "John Doe",
+      lastMessage: "Очень длинное текстовое сообщение. Его надо как-то немного спрятать",
+      countUnread: "0",
+      'lastActivity.time': "12:34",
+      actions: [
+        {action: 'edit', title: 'изменить'},
+        {action: 'delete', title: 'удалить'},
+      ]
+    },
+  },
+};
 
