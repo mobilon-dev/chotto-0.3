@@ -42,6 +42,10 @@ Vue3 Chat UI components - собери свой интерфейс чата
 
 # Дополнительно
 
+### скрины чатов для вдохновения
+
+(samples)[/samples]
+
 ### подобные проекты
 
 - https://github.com/sendbird/sendbird-uikit-react
@@ -50,3 +54,4 @@ Vue3 Chat UI components - собери свой интерфейс чата
 
 - https://github.com/pubnub/react-chat-components
 
+- https://github.com/advanced-chat/vue-advanced-chat
