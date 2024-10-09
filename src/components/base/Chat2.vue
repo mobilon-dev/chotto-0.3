@@ -16,19 +16,21 @@
         <div class="chat-item__time" v-if="!buttonMenuVisible && chat['lastActivity.time']">{{ chat['lastActivity.time']
           }}
         </div>
-        <div class="chat-item__unread" v-if="chat.countUnread > 0">{{ chat.countUnread }}</div>
+        <div class="chat-item__unread" v-if="!buttonMenuVisible && chat.countUnread > 0">{{ chat.countUnread }}</div>
 
 
         <transition>
-          <button v-if="buttonMenuVisible" class="chat-item__menu-button" @click="isOpenMenu = !isOpenMenu">
+          <button v-if="buttonMenuVisible && chat.actions" class="chat-item__menu-button"
+            @click="isOpenMenu = !isOpenMenu">
             <span class="pi pi-ellipsis-h"></span>
           </button>
         </transition>
 
-        <span v-if="chat.isFixed" class="chat-item__fixed pi pi-thumbtack"></span>
+        <span v-if="chat.isFixedTop || chat.isFixedBottom" class="chat-item__fixed pi pi-thumbtack"></span>
       </div>
 
-      <ContextMenu class="chat-item__context-menu" v-if="isOpenMenu" :actions="chat.actions" @click="clickAction" />
+      <ContextMenu class="chat-item__context-menu" v-if="isOpenMenu && chat.actions" :actions="chat.actions"
+        @click="clickAction" />
     </div>
   </div>
 </template>
