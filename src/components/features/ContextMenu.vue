@@ -31,15 +31,14 @@ const click = (index) => {
 
 <style scoped lang="scss">
 .context-menu {
-  z-index: 100;
+  z-index: 200;
 
   &__container {
     width: fit-content;
     box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.11);
     border-radius: var(--context-menu-border-radius);
-    padding: var(--context-menu-padding);
     background-color: var(--context-menu-background);
-
+    padding: var(--context-menu-padding);
   }
 
   &__list {
@@ -54,7 +53,14 @@ const click = (index) => {
     justify-content: flex-start;
     align-items: center;
     cursor: pointer;
+    padding: 0 20px;
+    width: 100%;
     column-gap: var(--context-menu-item-column-gap);
+  }
+
+  &__item:not(:last-child) {
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--neutral-300);
   }
 }
 

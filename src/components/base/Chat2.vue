@@ -11,13 +11,16 @@
         <div class="chat-item__name">{{ chat.name }}</div>
         <div class="chat-item__last-message" v-if="chat.lastMessage">{{ chat.lastMessage }}</div>
       </div>
-      
+
       <div class="chat-item__details-container">
+        <div class="chat-item__time" v-if="!buttonMenuVisible && chat['lastActivity.time']">{{ chat['lastActivity.time']
+          }}
+        </div>
         <div class="chat-item__unread" v-if="chat.countUnread > 0">{{ chat.countUnread }}</div>
-        <div class="chat-item__time" v-if="chat['lastActivity.time']">{{ chat['lastActivity.time'] }}</div>
+
 
         <transition>
-          <button v-if="menuVisible" class="chat-item__menu-button" @click="isOpenMenu = !isOpenMenu">
+          <button v-if="buttonMenuVisible" class="chat-item__menu-button" @click="isOpenMenu = !isOpenMenu">
             <span class="pi pi-ellipsis-h"></span>
           </button>
         </transition>
@@ -25,7 +28,7 @@
         <span v-if="chat.isFixed" class="chat-item__fixed pi pi-thumbtack"></span>
       </div>
 
-      <ContextMenu class="chat-item__context-menu" v-if="isOpenMenu" :actions="chat.actions" @click="clickAction"/>
+      <ContextMenu class="chat-item__context-menu" v-if="isOpenMenu" :actions="chat.actions" @click="clickAction" />
     </div>
   </div>
 </template>
@@ -54,20 +57,20 @@ const getClass = () => {
 const clickAction = (action) => {
   // console.log('action', props.chat.chatId, action);
   hideMenu();
-  emit('action', {chatId: props.chat.chatId, ...action});
+  emit('action', { chatId: props.chat.chatId, ...action });
 }
 
 
 // Управление видимостью меню
 const isOpenMenu = ref(false)
-const menuVisible = ref(false);
+const buttonMenuVisible = ref(false);
 
 const showMenu = () => {
-  menuVisible.value = true;
+  buttonMenuVisible.value = true;
 };
 
 const hideMenu = () => {
-  menuVisible.value = false;
+  buttonMenuVisible.value = false;
   isOpenMenu.value = false
 };
 
@@ -130,7 +133,6 @@ const hideMenu = () => {
   }
 
   &__details-container {
-    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -147,8 +149,8 @@ const hideMenu = () => {
 
   &__menu-button {
     position: absolute;
-    width: 100%;
-    top: 0;
+    top: 15px;
+    right: 15px;
     border: none;
     background-color: var(--default-white);
     cursor: pointer;
@@ -175,6 +177,7 @@ const hideMenu = () => {
     border-radius: 50%;
     font-weight: 400;
     margin-left: auto;
+    margin-top: auto;
     min-width: var(--chat-item-min-width-unread);
     min-height: var(--chat-item-min-height-unread);
     color: var(--chat-item-color-unread);
