@@ -20,6 +20,7 @@
 
 
         <transition>
+
           <button v-if="buttonMenuVisible && chat.actions" class="chat-item__menu-button"
             @click="isOpenMenu = !isOpenMenu">
             <span class="pi pi-ellipsis-h"></span>
