@@ -2,10 +2,10 @@
   <div>
     <div class="chat-app">
       <div class="chat-app__container">
-        <div>
+        <div class="chat-app__left-bar">
           <Profile :user="userProfile"></Profile>
-          <ChatList2 :chats="chatsStore.chats" @select="selectChat" filterEnabled @action="action"/>
-
+          <ChatList2 class="chat-app__chat-list" :chats="chatsStore.chats" @select="selectChat" filterEnabled
+            @action="action" />
           <!-- <ThemeMode /> -->
         </div>
 
@@ -173,6 +173,16 @@ onMounted(() => {
     height: calc(100vh - 60px);
     background-color: var(--neutral-100);
     border-radius: 12px;
+  }
+
+  &__left-bar {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  &__chat-list {
+    overflow-y: auto;
   }
 
   &__right-bar-container {

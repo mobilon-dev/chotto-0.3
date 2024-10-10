@@ -7,27 +7,19 @@
 
       <div class="chat-list__items">
         <div class="chat-list__fixed-items-top">
-          <chat class="chat-list__item" 
-            v-for="chat in getSortedAndFilteredChats().filter(c => c.isFixedTop)"
-            :key="chat.chatId" :chat="chat" @select="selectChat" 
-            @action="action"
-          />
+          <chat class="chat-list__item" v-for="chat in getSortedAndFilteredChats().filter(c => c.isFixedTop)"
+            :key="chat.chatId" :chat="chat" @select="selectChat" @action="action" />
         </div>
 
         <div class="chat-list__scrollable-items">
-          <chat class="chat-list__item" 
+          <chat class="chat-list__item"
             v-for="chat in getSortedAndFilteredChats().filter(c => !c.isFixedBottom && !c.isFixedTop)"
-            :key="chat.chatId" :chat="chat" @select="selectChat" 
-            @action="action"
-          />
+            :key="chat.chatId" :chat="chat" @select="selectChat" @action="action" />
         </div>
 
         <div class="chat-list__fixed-items-bottom">
-          <chat class="chat-list__item" 
-            v-for="chat in getSortedAndFilteredChats().filter(c => c.isFixedBottom)"
-            :key="chat.chatId" :chat="chat" @select="selectChat" 
-            @action="action"
-          />
+          <chat class="chat-list__item" v-for="chat in getSortedAndFilteredChats().filter(c => c.isFixedBottom)"
+            :key="chat.chatId" :chat="chat" @select="selectChat" @action="action" />
         </div>
       </div>
     </div>
@@ -92,9 +84,9 @@ const action = (data) => emit('action', data);
 
   &__container {
     padding: 30px 0;
-    height: 90vh;
     display: flex;
     flex-direction: column;
+    height: 100%;
   }
 
   &__filter {

@@ -159,8 +159,8 @@
     /* Сontext Menu */
 
     --context-menu-border-radius: 8px;
-    --context-menu-padding: 20px;
-    --context-menu-list-row-gap: 10px;
+    --context-menu-padding: 12px 0;
+    --context-menu-list-row-gap: 6px;
     --context-menu-item-column-gap: 18px;
 
     /* Chat Input */
