@@ -2,6 +2,7 @@
   <div :class="getClass()" @click="selectChat">
     <div class="chat-item__container" @mouseenter="showMenu" @mouseleave="hideMenu">
       <div class="chat-item__avatar-container">
+        <span class="chat-item__status" :class="getStatus"></span>
         <img v-if="props.chat.avatar" :src="props.chat.avatar" height="32" width="32">
         <span v-else class="pi pi-user">
         </span>
@@ -19,25 +20,26 @@
         <div class="chat-item__unread" v-if="!buttonMenuVisible && chat.countUnread > 0">{{ chat.countUnread }}</div>
 
 
-        <transition>
 
-          <button v-if="buttonMenuVisible && chat.actions" class="chat-item__menu-button"
-            @click="isOpenMenu = !isOpenMenu">
-            <span class="pi pi-ellipsis-h"></span>
-          </button>
-        </transition>
+        <button v-if="buttonMenuVisible && chat.actions" class="chat-item__menu-button"
+          @click="isOpenMenu = !isOpenMenu">
+          <span class="pi pi-ellipsis-h"></span>
+        </button>
+
 
         <span v-if="chat.isFixedTop || chat.isFixedBottom" class="chat-item__fixed pi pi-thumbtack"></span>
       </div>
 
-      <ContextMenu class="chat-item__context-menu" v-if="isOpenMenu && chat.actions" :actions="chat.actions"
-        @click="clickAction" />
+      <transition>
+        <ContextMenu class="chat-item__context-menu" v-if="isOpenMenu && chat.actions" :actions="chat.actions"
+          @click="clickAction" />
+      </transition>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import ContextMenu from '../features/ContextMenu.vue'
 // Define props
 const props = defineProps({
@@ -77,6 +79,17 @@ const hideMenu = () => {
   isOpenMenu.value = false
 };
 
+const getStatus = computed(() => {
+  switch (props.chat.status) {
+    case 'online':
+      return 'chat-item__status--online'
+    case 'offline':
+      return 'chat-item__status--offline'
+    case 'sleep':
+      return 'chat-item__status--sleep'
+  }
+})
+
 </script>
 
 <style scoped lang="scss">
@@ -100,21 +113,45 @@ const hideMenu = () => {
   }
 
   &__avatar-container {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     object-fit: cover;
     margin-right: 15px;
     background-color: var(--avatar-background-color);
-    width: var(--avatar-width);
-    height: var(--avatar-height);
+    width: var(--avatar-width-medium);
+    height: var(--avatar-height-medium);
     border-radius: var(--avatar-border-radius);
 
     span {
-      font-size: var(--avatar-icon-size);
+      font-size: var(--avatar-icon-size-medium);
       color: var(--avatar-icon-color);
     }
+  }
 
+  &__status {
+    position: absolute;
+    bottom: 0;
+    right: 5px;
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: transparent;
+    z-index: 1;
+  }
+
+  &__status--online {
+    background-color: var(--chat-item-color-status-online);
+  }
+
+  &__status--offline {
+    background-color: var(--chat-item-color-status-offline);
+  }
+
+  &__status--sleep {
+    background-color: var(--chat-item-color-status-sleep);
   }
 
   &__info-container {
@@ -207,6 +244,18 @@ const hideMenu = () => {
 
     &__selected {
       background: var(--d-chat-item-selected);
+
+      .chat-item__menu-button {
+        background: var(--d-chat-item-selected);
+      }
+    }
+
+    &__menu-button {
+      background-color: var(--neutral-900);
+
+      &:hover span {
+        color: var(--neutral-200);
+      }
     }
 
     &__avatar-container {
@@ -226,5 +275,19 @@ const hideMenu = () => {
       color: var(--d-chat-item-color-unread);
     }
   }
+}
+
+.v-enter-active {
+  transition: all 0.2s ease-out;
+}
+
+.v-leave-active {
+  transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.v-enter-from,
+.v-leave-to {
+  transform: translateY(20px);
+  opacity: 0;
 }
 </style>

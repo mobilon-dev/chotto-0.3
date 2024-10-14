@@ -6,7 +6,7 @@
           <Profile :user="userProfile"></Profile>
           <ChatList2 class="chat-app__chat-list" :chats="chatsStore.chats" @select="selectChat" filterEnabled
             @action="action" />
-          <!-- <ThemeMode /> -->
+          <ThemeMode />
         </div>
 
         <div class="chat-app__right-bar">

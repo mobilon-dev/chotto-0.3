@@ -1,7 +1,14 @@
 <template>
-  <div class="audio-message" :class="getClass(message)" :messageId="message.messageId">
-    <audio ref="player" :src="message.url"></audio>
-    <div class="audio-message__container">
+  <div class="audio-message" :class="getClass(message)" :messageId="message.messageId" @mouseleave="hideMenu">
+    <div class="audio-message__avatar-container" :style="{ gridRow: message.subText ? '2' : '1' }">
+      <!-- <img v-if="props.chat.avatar" :src="props.chat.avatar" height="32" width="32"> -->
+      <span class="pi pi-user"></span>
+    </div>
+
+    <p class="audio-message__subtext" v-if="message.subText">{{ message.subText }}</p>
+
+    <div class="audio-message__content" @mouseenter="showMenu">
+      <audio ref="player" :src="message.url"></audio>
       <button class="audio-message__play" v-show="!isPlaying" @click="togglePlayPause">
         <span class="pi pi-play"></span>
       </button>
@@ -12,13 +19,35 @@
         <div class="audio-message__progress-bar" :style="{ width: progressPercent + '%' }"></div>
       </div>
       <p class="audio-message__remaining-time">{{ `${formatCurrentTime} / ${formatDuration}` }}</p>
-      <span class="audio-message__time">{{ message.time }}</span>
+
+      <div class="audio-message__info-container">
+        <span class="audio-message__time">22:02</span>
+        <div class="audio-message__status" :class="getStatus"
+          v-if="getClass(message) === 'audio-message__right' && message.status">
+          <span v-if="message.status !== 'sent'" class="pi pi-check"></span>
+          <span class="pi pi-check"></span>
+        </div>
+      </div>
+
+      <button v-if="buttonMenuVisible" class="audio-message__menu-button" @click="isOpenMenu = !isOpenMenu">
+        <span class="pi pi-ellipsis-h"></span>
+      </button>
+
+      <transition>
+        <ContextMenu class="audio-message__context-menu" v-if="isOpenMenu && message.actions" :actions="message.actions"
+          @click="clickAction" />
+      </transition>
+
     </div>
+
   </div>
+
 </template>
 
 <script setup>
 import { ref, onMounted, computed } from 'vue'
+
+import ContextMenu from '../features/ContextMenu.vue'
 
 // Define props
 const props = defineProps({
@@ -28,14 +57,22 @@ const props = defineProps({
   },
 });
 
-function getClass(message) {
-  return message.position === 'left' ? 'audio-message__left' : 'audio-message__right';
-}
-
 const player = ref(null);
 const isPlaying = ref(false);
 const audioDuration = ref(0);
 const currentTime = ref(0)
+
+const isOpenMenu = ref(false)
+const buttonMenuVisible = ref(false);
+
+const showMenu = () => {
+  buttonMenuVisible.value = true;
+};
+
+const hideMenu = () => {
+  buttonMenuVisible.value = false;
+  isOpenMenu.value = false
+};
 
 function togglePlayPause() {
   if (player.value) {
@@ -75,6 +112,19 @@ const progressPercent = computed(() => {
   return 0;
 });
 
+const getStatus = computed(() => {
+  switch (props.message.status) {
+    case 'read':
+      return 'audio-message__status--read'
+    case 'received':
+      return 'audio-message__status--received'
+  }
+})
+
+function getClass(message) {
+  return message.position === 'left' ? 'audio-message__left' : 'audio-message__right';
+}
+
 onMounted(() => {
   player.value.addEventListener('loadedmetadata', () => {
     audioDuration.value = player.value.duration;
@@ -88,14 +138,13 @@ onMounted(() => {
 <style scoped lang="scss">
 .audio-message {
 
-  &__container {
+  &__content {
     position: relative;
     display: grid;
     grid-template-columns: min-content 1fr;
     column-gap: var(--audio-message-gap);
     padding: var(--audio-message-padding);
-    max-width: var(--audio-message-max-width);
-    margin: var(--audio-message-margin);
+    max-width: var(--audio-message-width);
     border-radius: var(--audio-message-border-radius);
   }
 
@@ -144,16 +193,134 @@ onMounted(() => {
     font-size: var(--remaining-time);
   }
 
-  &__time {
+  &__avatar-container {
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+    background-color: var(--avatar-background-color);
+    width: var(--avatar-width-small);
+    height: var(--avatar-height-small);
+    border-radius: var(--avatar-border-radius);
+
+    span {
+      font-size: var(--avatar-icon-size-small);
+      color: var(--avatar-icon-color);
+    }
+  }
+
+  &__subtext {
+    font-size: 12px;
+    color: var(--neutral-500);
+    font-weight: 500;
+  }
+
+  &__info-container {
     position: absolute;
     bottom: 4px;
     right: 8px;
+    display: flex;
+    align-items: center;
+    column-gap: 6px;
+  }
+
+  &__status {
+    display: flex;
+
+    span {
+      color: var(--status-message-color-received);
+      font-size: var(--status-message-font-size);
+      font-weight: 400;
+    }
+  }
+
+  &__status--received {
+    span {
+      color: var(--status-message-color-received);
+
+      &:first-child {
+        margin-right: -8px;
+      }
+    }
+  }
+
+  &__status--read {
+    span {
+      color: var(--status-message-color-read);
+
+      &:first-child {
+        margin-right: -8px;
+      }
+    }
+  }
+
+  &__time {
     font-size: var(--time-message-font-size);
   }
 
-  &__left {
+  &__avatar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+    background-color: var(--avatar-background-color);
+    width: var(--avatar-width-small);
+    height: var(--avatar-height-small);
+    border-radius: var(--avatar-border-radius);
 
-    .audio-message__container {
+    span {
+      font-size: var(--avatar-icon-size-small);
+      color: var(--avatar-icon-color);
+    }
+  }
+
+  &__menu-button {
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    transform: translateY(-50%);
+    cursor: pointer;
+    transition: 0.2s;
+
+    span {
+      color: var(--neutral-500);
+      font-size: 20px;
+    }
+
+    &:hover span {
+      color: var(--neutral-700);
+      transition: 0.2s;
+    }
+  }
+
+  &__context-menu {
+    position: absolute;
+  }
+
+  &__left,
+  &__right {
+    display: grid;
+    column-gap: 12px;
+    margin: var(--audio-message-margin);
+  }
+
+  &__left {
+    grid-template-columns: min-content 1fr;
+
+    .audio-message__avatar-container {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .audio-message__subtext {
+      grid-column: 2;
+      grid-row: 1;
+      margin: 0 0 2px 10px;
+    }
+
+    .audio-message__content {
+      grid-column: 2;
       background-color: var(--audio-message-background-left);
     }
 
@@ -165,11 +332,35 @@ onMounted(() => {
         color: var(--audio-message-button-icon-color-left);
       }
     }
+
+    .audio-message__menu-button {
+      top: 50%;
+      right: -40px;
+    }
+
+    .audio-message__context-menu {
+      top: 80%;
+      left: 100%;
+    }
   }
 
   &__right {
+    grid-template-columns: 1fr min-content;
 
-    .audio-message__container {
+    .audio-message__avatar-container {
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    .audio-message__subtext {
+      grid-column: 1;
+      grid-row: 1;
+      margin: 0 10px 2px auto;
+    }
+
+    .audio-message__content {
+      grid-column: 1;
+      margin-left: auto;
       background-color: var(--audio-message-background-right);
     }
 
@@ -181,14 +372,29 @@ onMounted(() => {
         color: var(--audio-message-button-icon-color-right);
       }
     }
+
+    .audio-message__avatar-container {
+      order: 1;
+    }
+
+    .audio-message__menu-button {
+      top: 50%;
+      left: -40px;
+    }
+
+    .audio-message__context-menu {
+      top: 80%;
+      right: 100%;
+    }
   }
+
 }
 
 .dark {
   .audio-message {
     &__left {
 
-      .audio-message__container {
+      .audio-message__content {
         background-color: var(--d-audio-message-background-left);
       }
 
@@ -204,7 +410,7 @@ onMounted(() => {
 
     &__right {
 
-      .audio-message__container {
+      .audio-message__content {
         background-color: var(--d-audio-message-background-right);
       }
 
@@ -226,6 +432,40 @@ onMounted(() => {
       background-color: var(--d-audio-message-pb-background-color);
     }
 
+    &__avatar-container {
+      background-color: var(--d-avatar-message-background-color);
+
+      span {
+        color: var(--d-avatar-message-icon-color);
+      }
+    }
+
+    &__status--received {
+      span {
+        color: var(--neutral-200);
+      }
+    }
+
+    &__menu-button {
+      &:hover span {
+        color: var(--neutral-200);
+      }
+    }
+
   }
+}
+
+.v-enter-active {
+  transition: all 0.1s ease-out;
+}
+
+.v-leave-active {
+  transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.v-enter-from,
+.v-leave-to {
+  transform: scale(0.9);
+  opacity: 0;
 }
 </style>

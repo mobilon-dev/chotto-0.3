@@ -147,6 +147,11 @@ const action = (data) => emit('action', data);
         background-color: var(--neutral-200);
       }
     }
+
+    &__fixed-items-top,
+    &__fixed-items-bottom {
+      background-color: var(--neutral-900);
+    }
   }
 }
 

@@ -1,43 +1,36 @@
 <template>
-  <div class="text-message">
+  <div class="call-message">
 
-    <div :class="getClass(message)" :messageId="message.messageId" @mouseleave="hideMenu">
+    <div :class="getClass(message)" :messageId="message.messageId">
 
-      <div class="text-message__avatar-container" :style="{ gridRow: message.subText ? '2' : '1' }">
+      <div class="call-message__avatar-container" :style="{ gridRow: message.subText ? '2' : '1' }">
         <!-- <img v-if="props.chat.avatar" :src="props.chat.avatar" height="32" width="32"> -->
         <span class="pi pi-user"></span>
       </div>
 
-      <p class="text-message__subtext" v-if="message.subText">{{ message.subText }}</p>
+      <p class="call-message__subtext" v-if="message.subText">{{ message.subText }}</p>
 
-      <div class="text-message__content" @mouseenter="showMenu">
-        <p>{{ message.text }}</p>
-        <div class="text-message__info-container">
-          <span class="text-message__time">22:02</span>
-          <div class="text-message__status" :class="getStatus"
-            v-if="getClass(message) === 'text-message__right' && message.status">
-            <span v-if="message.status !== 'sent'" class="pi pi-check"></span>
-            <span class="pi pi-check"></span>
-          </div>
+      <div class="call-message__content" :style="{ paddingRight: message.isMissedCall ? '16px' : '78px' }">
+        <span class="call-message__icon pi pi-phone"
+          :style="{ color: message.isMissedCall ? 'var(--call-message-color-icon-error)' : 'var(--neutral-100)' }"></span>
+
+        <span class="call-message__title" v-if="!message.isMissedCall">Аудиозвонок</span>
+        <span class="call-message__title" v-else>Пропущенный аудиозвонок</span>
+
+        <span class="call-message__duration" v-if="message.callDuration">{{ message.callDuration }}</span>
+        <span class="call-message__duration" v-else-if="!message.callDuration && message.isMissedCall">Нажмите, чтобы
+          перезвонить</span>
+        <span class="call-message__duration" v-else>Нет ответа</span>
+
+        <div class="call-message__info-container">
+          <span class="call-message__time">22:02</span>
         </div>
-
-        <button v-if="buttonMenuVisible" class="text-message__menu-button" @click="isOpenMenu = !isOpenMenu">
-          <span class="pi pi-ellipsis-h"></span>
-        </button>
-
-        <transition>
-          <ContextMenu class="text-message__context-menu" v-if="isOpenMenu && message.actions"
-            :actions="message.actions" @click="clickAction" />
-        </transition>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
-
-import ContextMenu from '../features/ContextMenu.vue'
 // Define props
 const props = defineProps({
   message: {
@@ -47,42 +40,24 @@ const props = defineProps({
 });
 
 
-const isOpenMenu = ref(false)
-const buttonMenuVisible = ref(false);
-
-const showMenu = () => {
-  buttonMenuVisible.value = true;
-};
-
-const hideMenu = () => {
-  buttonMenuVisible.value = false;
-  isOpenMenu.value = false
-};
-
-
 function getClass(message) {
-  return message.position === 'left' ? 'text-message__left' : 'text-message__right';
+  return message.position === 'left' ? 'call-message__left' : 'call-message__right';
 }
 
-const getStatus = computed(() => {
-  switch (props.message.status) {
-    case 'read':
-      return 'text-message__status--read'
-    case 'received':
-      return 'text-message__status--received'
-  }
-})
 </script>
 
 <style scoped lang="scss">
-.text-message {
+.call-message {
 
   &__content {
     position: relative;
     word-wrap: break-word;
     width: fit-content;
-    padding: var(--text-message-padding);
-    max-width: var(--text-message-max-width);
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    column-gap: var(--call-message-gap);
+    max-width: var(--call-message-width);
+    padding: var(--call-message-padding);
     border-radius: var(--text-message-border-radius);
   }
 
@@ -93,6 +68,31 @@ const getStatus = computed(() => {
     display: flex;
     align-items: center;
     column-gap: 6px;
+  }
+
+  &__title {
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+
+  &__icon {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    height: var(--call-message-icon-height);
+    width: var(--call-message-icon-width);
+    background-color: var(--call-message-backgroung-icon);
+    color: var(--call-message-color-icon-error);
+    font-size: var(--avatar-icon-size-small);
+  }
+
+  &__duration {
+    color: var(--neutral-500);
+    font-size: 15px;
   }
 
   &__time {
@@ -185,71 +185,51 @@ const getStatus = computed(() => {
   &__left {
     grid-template-columns: min-content 1fr;
 
-    .text-message__avatar-container {
+    .call-message__avatar-container {
       grid-column: 1;
       grid-row: 2;
     }
 
-    .text-message__subtext {
+    .call-message__subtext {
       grid-column: 2;
       grid-row: 1;
       margin: 0 0 2px 10px;
     }
 
-    .text-message__content {
+    .call-message__content {
       grid-column: 2;
       background-color: var(--text-message-left-background-color);
       color: var(--text-message-text-color);
-    }
-
-    .text-message__menu-button {
-      top: 50%;
-      right: -40px;
-    }
-
-    .text-message__context-menu {
-      top: 100%;
-      left: 100%;
     }
   }
 
   &__right {
     grid-template-columns: 1fr min-content;
 
-    .text-message__avatar-container {
+    .call-message__avatar-container {
       grid-column: 2;
       grid-row: 2;
     }
 
-    .text-message__subtext {
+    .call-message__subtext {
       grid-column: 1;
       grid-row: 1;
       margin: 0 10px 2px auto;
     }
 
-    .text-message__content {
+    .call-message__content {
       grid-column: 1;
       margin-left: auto;
       background-color: var(--text-message-right-background-color);
       color: var(--text-message-text-color);
     }
-
-    .text-message__menu-button {
-      top: 50%;
-      left: -40px;
-    }
-
-    .text-message__context-menu {
-      top: 100%;
-      right: 100%;
-    }
   }
 }
 
 .dark {
-  .text-message {
+  .call-message {
     &__left {
-      .text-message__content {
+      .call-message__content {
         background-color: var(--d-text-message-left-background-color);
         color: var(--d-text-message-text-color);
       }
@@ -257,7 +237,7 @@ const getStatus = computed(() => {
     }
 
     &__right {
-      .text-message__content {
+      .call-message__content {
         background-color: var(--d-text-message-right-background-color);
         color: var(--d-text-message-text-color);
       }
@@ -283,19 +263,5 @@ const getStatus = computed(() => {
       }
     }
   }
-}
-
-.v-enter-active {
-  transition: all 0.1s ease-out;
-}
-
-.v-leave-active {
-  transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
-}
-
-.v-enter-from,
-.v-leave-to {
-  transform: scale(0.9);
-  opacity: 0;
 }
 </style>

@@ -66,8 +66,10 @@ const click = (index) => {
 
 .dark {
   .context-menu {
-    background-color: var(--d-context-menu-background);
-  }
 
+    &__container {
+      background-color: var(--d-context-menu-background);
+    }
+  }
 }
 </style>
