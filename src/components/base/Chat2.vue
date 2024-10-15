@@ -50,7 +50,7 @@ const props = defineProps({
 });
 
 // Define emits
-const emit = defineEmits(['select', 'uuu', 'action']);
+const emit = defineEmits(['select', 'action']);
 
 // Define method
 const selectChat = () => { emit('select', props.chat); }

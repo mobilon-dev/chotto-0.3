@@ -54,6 +54,7 @@ const props = defineProps({
   },
 });
 
+const emit = defineEmits(['action']);
 
 const isOpenMenu = ref(false)
 const buttonMenuVisible = ref(false);
@@ -67,6 +68,10 @@ const hideMenu = () => {
   isOpenMenu.value = false
 };
 
+const clickAction = (action) => {
+  hideMenu();
+  emit('action', { messageId: props.message.messageId, ...action });
+}
 
 function getClass(message) {
   return message.position === 'left' ? 'text-message__left' : 'text-message__right';

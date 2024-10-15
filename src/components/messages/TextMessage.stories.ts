@@ -170,6 +170,19 @@ export const RightMessageWithActions: Story = {
   },
 };
 
+export const LeftMessageMax: Story = {
+  args: {
+    message: {
+      ...messageLongText,
+      position: 'left',
+      subText: 'тест тест тест тест',
+      actions,
+      avatar: 'https://dummyimage.com/64x64/000/fff.png&text=SD',
+    },
+  },
+};
+
+
 export const RightMessageMax: Story = {
   args: {
     message: {
@@ -177,6 +190,7 @@ export const RightMessageMax: Story = {
       position: 'right',
       subText: 'тест тест тест тест',
       actions,
+      avatar: 'https://dummyimage.com/64x64/000/fff.png&text=SD',
     },
   },
 };
