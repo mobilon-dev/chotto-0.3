@@ -40,14 +40,14 @@ const props = defineProps({
     justify-content: center;
     align-items: center;
     background-color: var(--neutral-300);
-    width: var(--avatar-width);
-    height: var(--avatar-height);
+    width: var(--avatar-width-medium);
+    height: var(--avatar-height-medium);
     border-radius: var(--avatar-border-radius);
     background-size: cover;
     grid-row: 1 / 3;
 
     span {
-      font-size: var(--avatar-icon-size);
+      font-size: var(--avatar-icon-size-medium);
       color: var(--avatar-icon-color);
     }
   }

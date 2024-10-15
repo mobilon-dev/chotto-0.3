@@ -36,6 +36,9 @@
     --chat-item-color-unread: var(--neutral-100);
     --chat-item-background-color-unread: var(--emerald-500);
 
+    --chat-item-color-status-online: var(--emerald-500);
+    --chat-item-color-status-offline: var(--neutral-500);
+    --chat-item-color-status-sleep: #0098ff;
     /* _____________________________________________ */
 
     /* Text Message */
@@ -61,7 +64,6 @@
     --audio-message-button-icon-color-left: var(--neutral-100);
     --audio-message-button-icon-color-right: var(--neutral-500);
 
-
     /* progress-bar-container -> pbc */
 
     --audio-message-pbc-background-color: var(--neutral-400);
@@ -76,6 +78,11 @@
 
     --video-message-button-background: rgba(0, 0, 0, 0.67);
 
+    /* Call Message */
+
+    --call-message-backgroung-icon: var(--neutral-400);
+    --call-message-color-icon-error: #ff5454;
+
     /* Channels */
 
     --channels-popover-background-color: var(--default-white);
@@ -86,4 +93,12 @@
 
     /* Chat Input */
     --chat-input-background: var(--neutral-200);
+
+    /* Status Message */
+
+    --status-message-color-received: var(--neutral-500);
+    --status-message-color-read: #00c2ff;
+
+    /* Subtext */
+    --subtext-color: var(--neutral-500);
 }

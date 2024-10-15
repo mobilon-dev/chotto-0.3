@@ -1,8 +1,13 @@
 <template>
-  <div class="video-message">
-    <div class="video-message__container">
-      <video ref="player" class="video-message__video" :src="message.url"></video>
+  <div class="video-message" :class="getClass(message)" :messageId="message.messageId" @mouseleave="hideMenu">
 
+    <div class="video-message__avatar-container">
+      <!-- <img v-if="props.chat.avatar" :src="props.chat.avatar" height="32" width="32"> -->
+      <span class="pi pi-user"></span>
+    </div>
+
+    <div class="video-message__content" @mouseenter="showMenu">
+      <video ref="player" class="video-message__video" src="/sample-10s.mp4" :src="message.url"></video>
       <div class="video-message__controls">
         <transition>
           <button class="video-message__play" v-show="!isPlaying" @click="togglePlayPause">
@@ -12,14 +17,32 @@
         <button class="video-message__pause" v-show="isPlaying" @click="togglePlayPause"></button>
       </div>
 
+      <button v-if="buttonMenuVisible" class="video-message__menu-button" @click="isOpenMenu = !isOpenMenu">
+        <span class="pi pi-ellipsis-h"></span>
+      </button>
+
+      <transition>
+        <ContextMenu class="video-message__context-menu" v-if="isOpenMenu && message.actions" :actions="message.actions"
+          @click="clickAction" />
+      </transition>
+
       <p class="video-message__remaining-time">{{ `${remaningTime}` }}</p>
-      <span class="video-message__time">{{ message.time }}</span>
+
+      <span class="video-message__time">22:02</span>
+
+      <div class="video-message__status" :class="getStatus"
+        v-if="getClass(message) === 'video-message__right' && message.status">
+        <span v-if="message.status !== 'sent'" class="pi pi-check"></span>
+        <span class="pi pi-check"></span>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+
+import ContextMenu from '../features/ContextMenu.vue'
 
 const props = defineProps({
   message: {
@@ -29,13 +52,26 @@ const props = defineProps({
 });
 
 function getClass(message) {
-  return message.position === 'left' ? '' : '';
+  return message.position === 'left' ? 'video-message__left' : 'video-message__right';
 }
 
 const player = ref(null);
 const isPlaying = ref(false);
 const audioDuration = ref(0);
 const currentTime = ref(0)
+
+const isOpenMenu = ref(false)
+const buttonMenuVisible = ref(false);
+
+const showMenu = () => {
+  buttonMenuVisible.value = true;
+};
+
+const hideMenu = () => {
+  buttonMenuVisible.value = false;
+  isOpenMenu.value = false
+};
+
 
 function togglePlayPause() {
   if (player.value) {
@@ -66,6 +102,15 @@ const remaningTime = computed(() => {
   }
 })
 
+const getStatus = computed(() => {
+  switch (props.message.status) {
+    case 'read':
+      return 'video-message__status--read'
+    case 'received':
+      return 'video-message__status--received'
+  }
+})
+
 onMounted(() => {
   player.value.addEventListener('loadedmetadata', () => {
     audioDuration.value = player.value.duration;
@@ -78,10 +123,27 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .video-message {
-  &__container {
+  &__content {
     position: relative;
     height: var(--video-message-height);
     width: var(--video-message-width);
+  }
+
+  &__avatar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-end;
+    object-fit: cover;
+    background-color: var(--avatar-background-color);
+    width: var(--avatar-width-small);
+    height: var(--avatar-height-small);
+    border-radius: var(--avatar-border-radius);
+
+    span {
+      font-size: var(--avatar-icon-size-small);
+      color: var(--avatar-icon-color);
+    }
   }
 
   &__controls {
@@ -139,16 +201,139 @@ onMounted(() => {
 
   &__remaining-time {
     position: absolute;
-    bottom: 4px;
-    left: 8px;
+    bottom: 0;
+    left: 16px;
     font-size: var(--remaining-time);
   }
 
   &__time {
     position: absolute;
-    bottom: 4px;
-    right: 8px;
+    bottom: 0;
+    right: 16px;
     font-size: var(--time-message-font-size);
+  }
+
+  &__status {
+    display: flex;
+    position: absolute;
+    bottom: 1px;
+    right: -4px;
+
+    span {
+      font-weight: 400;
+      color: var(--status-message-color-received);
+      font-size: var(--status-message-font-size);
+    }
+  }
+
+  &__status--received {
+    right: -8px;
+
+    span {
+      color: var(--status-message-color-received);
+
+      &:first-child {
+        margin-right: -8px;
+      }
+    }
+  }
+
+  &__status--read {
+    right: -8px;
+
+    span {
+      color: var(--status-message-color-read);
+
+      &:first-child {
+        margin-right: -8px;
+      }
+    }
+  }
+
+  &__menu-button {
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    transform: translateY(-50%);
+    cursor: pointer;
+    transition: 0.2s;
+
+    span {
+      color: var(--neutral-500);
+      font-size: 20px;
+    }
+
+    &:hover span {
+      color: var(--neutral-700);
+      transition: 0.2s;
+    }
+  }
+
+  &__context-menu {
+    position: absolute;
+  }
+
+  &__left,
+  &__right {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+  }
+
+  &__left {
+    justify-content: flex-start;
+
+    .video-message__menu-button {
+      top: 50%;
+      right: -40px;
+    }
+
+    .video-message__context-menu {
+      top: 56%;
+      left: 100%;
+    }
+  }
+
+  &__right {
+    justify-content: flex-end;
+
+    .video-message__avatar-container {
+      order: 1;
+    }
+
+    .video-message__menu-button {
+      top: 50%;
+      left: -40px;
+    }
+
+    .video-message__context-menu {
+      top: 56%;
+      right: 100%;
+    }
+  }
+}
+
+.dark {
+  .video-message {
+    &__avatar-container {
+      background-color: var(--d-avatar-message-background-color);
+
+      span {
+        color: var(--d-avatar-message-icon-color);
+      }
+    }
+
+    &__status--received {
+      span {
+        color: var(--neutral-200);
+      }
+    }
+
+    &__menu-button {
+      &:hover span {
+        color: var(--neutral-200);
+      }
+    }
   }
 }
 

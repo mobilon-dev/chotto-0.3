@@ -1,7 +1,8 @@
 <template>
   <div class="message-feed" ref="refFeed">
     <div class="message-feed__container">
-      <component v-for="object in objects" :key="object.messageId" :is="componentsMap(object.type)" :message="object" />
+      <component class="message-feed__message" v-for="object in objects" :key="object.messageId"
+        :is="componentsMap(object.type)" :message="object" />
     </div>
   </div>
 </template>
@@ -15,6 +16,7 @@ import TextMessage from "../messages/TextMessage.vue";
 import DateMessage from '../messages/DateMessage.vue';
 import AudioMessage from '../messages/AudioMessage.vue';
 import VideoMessage from '../messages/VideoMessage.vue'
+import CallMessage from '../messages/CallMessage.vue'
 
 const refFeed = ref(null);
 
@@ -34,6 +36,7 @@ const componentsMap = (type) => {
     'message.file': FileMessage,
     'message.audio': AudioMessage,
     'message.video': VideoMessage,
+    'message.call': CallMessage,
     'system.date': DateMessage,
   };
   return r[type];
@@ -57,6 +60,17 @@ watch(() => props.objects, scrollToFeedBottom);
   margin-top: auto;
   padding: 0 80px 50px 80px;
   overflow-y: auto;
+
+  &__message {
+    position: relative;
+  }
+
+  &__menu-button {
+    position: absolute;
+    left: 0;
+    top: 50%;
+  }
+
 
   &::-webkit-scrollbar {
     width: 6px;

@@ -1,16 +1,42 @@
 <template>
-  <div class="file-message">
-    <div class="file-message__container">
+  <div class="file-message" :class="getClass(message)" :messageId="message.messageId" @mouseleave="hideMenu">
+    <div class="file-message__avatar-container" :style="{ gridRow: message.subText ? '2' : '1' }">
+      <!-- <img v-if="props.chat.avatar" :src="props.chat.avatar" height="32" width="32"> -->
+      <span class="pi pi-user"></span>
+    </div>
+
+    <p class="file-message__subtext" v-if="message.subText">{{ message.subText }}</p>
+
+    <div class="file-message__content" @mouseenter="showMenu">
       <a class="file-message__link" :href="message.url" download>
         <span class="pi pi-file"></span>
         {{ message.filename }}
       </a>
-      <span class="file-message__time"> {{ message.time }}</span>
+      <div class="file-message__info-container">
+        <span class="file-message__time">22:02</span>
+        <div class="file-message__status" :class="getStatus"
+          v-if="getClass(message) === 'file-message__right' && message.status">
+          <span v-if="message.status !== 'sent'" class="pi pi-check"></span>
+          <span class="pi pi-check"></span>
+        </div>
+      </div>
+
+      <button v-if="buttonMenuVisible" class="file-message__menu-button" @click="isOpenMenu = !isOpenMenu">
+        <span class="pi pi-ellipsis-h"></span>
+      </button>
+
+      <transition>
+        <ContextMenu class="file-message__context-menu" v-if="isOpenMenu && message.actions" :actions="message.actions"
+          @click="clickAction" />
+      </transition>
     </div>
   </div>
 </template>
 
 <script setup>
+import { computed, ref } from 'vue'
+
+import ContextMenu from '../features/ContextMenu.vue'
 
 // Define props
 const props = defineProps({
@@ -20,18 +46,63 @@ const props = defineProps({
   },
 });
 
+const isOpenMenu = ref(false)
+const buttonMenuVisible = ref(false);
+
+const showMenu = () => {
+  buttonMenuVisible.value = true;
+};
+
+const hideMenu = () => {
+  buttonMenuVisible.value = false;
+  isOpenMenu.value = false
+};
+
+
 function getClass(message) {
-  return message.position === 'left' ? '' : '';
+  return message.position === 'left' ? 'file-message__left' : 'file-message__right';
 }
+
+const getStatus = computed(() => {
+  switch (props.message.status) {
+    case 'read':
+      return 'file-message__status--read'
+    case 'received':
+      return 'file-message__status--received'
+  }
+})
 
 </script>
 
 <style scoped lang="scss">
 .file-message {
-  &__container {
+
+  &__avatar-container {
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+    background-color: var(--avatar-background-color);
+    width: var(--avatar-width-small);
+    height: var(--avatar-height-small);
+    border-radius: var(--avatar-border-radius);
+
+    span {
+      font-size: var(--avatar-icon-size-small);
+      color: var(--avatar-icon-color);
+    }
+  }
+
+  &__subtext {
+    font-size: 12px;
+    color: var(--neutral-500);
+    font-weight: 500;
+  }
+
+  &__content {
     position: relative;
     width: fit-content;
-    margin: var(--file-message-margin);
     border-radius: var(--file-message-border-radius);
     background-color: var(--file-message-background-color);
   }
@@ -50,17 +121,147 @@ function getClass(message) {
     }
   }
 
-  &__time {
+  &__info-container {
     position: absolute;
     bottom: 4px;
     right: 8px;
+    display: flex;
+    align-items: center;
+    column-gap: 6px;
+  }
+
+  &__status {
+    display: flex;
+
+    span {
+      color: var(--neutral-500);
+      font-size: var(--status-message-font-size);
+      font-weight: 400;
+    }
+  }
+
+  &__status--received {
+    span {
+      color: var(--neutral-500);
+
+      &:first-child {
+        margin-right: -8px;
+      }
+    }
+  }
+
+  &__status--read {
+    span {
+      color: var(--status-color-read);
+
+      &:first-child {
+        margin-right: -8px;
+      }
+    }
+  }
+
+  &__time {
     font-size: var(--time-message-font-size);
+  }
+
+  &__menu-button {
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    transform: translateY(-50%);
+    cursor: pointer;
+    transition: 0.2s;
+
+    span {
+      color: var(--neutral-500);
+      font-size: 20px;
+    }
+
+    &:hover span {
+      color: var(--neutral-700);
+      transition: 0.2s;
+    }
+  }
+
+  &__context-menu {
+    position: absolute;
+  }
+
+  &__left,
+  &__right {
+    display: grid;
+    column-gap: 12px;
+    margin: var(--file-message-margin);
+  }
+
+  &__left {
+    grid-template-columns: min-content 1fr;
+
+    .file-message__avatar-container {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .file-message__subtext {
+      grid-column: 2;
+      grid-row: 1;
+      margin: 0 0 2px 10px;
+    }
+
+    .file-message__content {
+      grid-column: 2;
+      background-color: var(--text-message-left-background-color);
+      color: var(--text-message-text-color);
+    }
+
+    .file-message__menu-button {
+      top: 50%;
+      right: -40px;
+    }
+
+    .file-message__context-menu {
+      top: 100%;
+      left: 100%;
+    }
+
+  }
+
+  &__right {
+    grid-template-columns: 1fr min-content;
+
+    .file-message__avatar-container {
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    .file-message__subtext {
+      grid-column: 1;
+      grid-row: 1;
+      margin: 0 10px 2px auto;
+    }
+
+    .file-message__content {
+      grid-column: 1;
+      margin-left: auto;
+      background-color: var(--text-message-right-background-color);
+      color: var(--text-message-text-color);
+    }
+
+    .file-message__menu-button {
+      top: 50%;
+      left: -40px;
+    }
+
+    .file-message__context-menu {
+      top: 100%;
+      right: 100%;
+    }
   }
 }
 
 .dark {
   .file-message {
-    &__container {
+    &__content {
       background-color: var(--d-file-message-background-color);
     }
 
@@ -71,6 +272,34 @@ function getClass(message) {
         color: var(--d-icon-color);
       }
     }
+
+    &__avatar-container {
+      background-color: var(--d-avatar-message-background-color);
+
+      span {
+        color: var(--d-avatar-message-icon-color);
+      }
+    }
+
+    &__status--received {
+      span {
+        color: var(--neutral-200);
+      }
+    }
   }
+}
+
+.v-enter-active {
+  transition: all 0.1s ease-out;
+}
+
+.v-leave-active {
+  transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.v-enter-from,
+.v-leave-to {
+  transform: scale(0.9);
+  opacity: 0;
 }
 </style>

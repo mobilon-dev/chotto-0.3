@@ -29,8 +29,6 @@
     --neutral-950: #0a0a0a;
 
     --default-white: #ffffff;
-
-
     /* Inputs */
 
     --inputtext-font-size: 1rem;
@@ -47,10 +45,13 @@
 
     /* Avatars */
 
-    --avatar-width: 48px;
-    --avatar-height: 48px;
+    --avatar-width-medium: 48px;
+    --avatar-height-medium: 48px;
+    --avatar-width-small: 42px;
+    --avatar-height-small: 42px;
     --avatar-border-radius: 50%;
-    --avatar-icon-size: 1.5rem;
+    --avatar-icon-size-medium: 1.5rem;
+    --avatar-icon-size-small: 1.3rem;
 
     /* Icons */
 
@@ -82,14 +83,14 @@
     --text-message-border-radius: 14px;
     --text-message-max-width: 40%;
     --text-message-margin: 0 0 10px 0;
-    --text-message-padding: 12px 60px 12px 16px;
+    --text-message-padding: 12px 78px 12px 16px;
 
     /* File Message */
 
     --file-message-border-radius: 14px;
     --file-message-gap: 12px;
     --file-message-margin: 0 0 10px 0;
-    --file-message-padding: 12px 60px 12px 16px;
+    --file-message-padding: 12px 78px 12px 16px;
 
     /* Image Message */
 
@@ -101,7 +102,7 @@
     /* Audio Message */
 
     --audio-message-gap: 12px;
-    --audio-message-max-width: 40%;
+    --audio-message-width: 40%;
     --audio-message-border-radius: 14px;
     --audio-message-padding: 12px 16px;
     --audio-message-margin: 0 0 10px 0;
@@ -115,7 +116,6 @@
 
     --audio-message-pbc-border-radius: 10px;
     --audio-message-pbc-height: 8px;
-    --audio-message-pbc-background-color: var(--neutral-400);
     --audio-message-pbc-margin: 8px 0 0 0;
 
     /* progress-bar -> pb */
@@ -136,6 +136,14 @@
     --video-message-button-width: 40px;
     --video-message-button-height: 40px;
     --video-message-button-border-radius: 50%;
+
+    /* Call Message */
+
+    --call-message-padding: 12px 16px 12px 16px;
+    --call-message-width: 51%;
+    --call-message-gap: 12px;
+    --call-message-icon-height: 38px;
+    --call-message-icon-width: 38px;
 
     /* Message Info */
 
@@ -165,4 +173,11 @@
 
     /* Chat Input */
     --chat-input-button-padding: 14px;
+
+    /* Status Message */
+
+    --status-message-font-size: 12px;
+
+    /* Subtext */
+    --subtext-font-size: 12px
 }
