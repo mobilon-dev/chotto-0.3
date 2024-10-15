@@ -36,9 +36,6 @@
     --chat-item-color-unread: var(--neutral-100);
     --chat-item-background-color-unread: var(--emerald-500);
 
-    --chat-item-color-status-online: var(--emerald-500);
-    --chat-item-color-status-offline: var(--neutral-500);
-    --chat-item-color-status-sleep: #0098ff;
     /* _____________________________________________ */
 
     /* Text Message */

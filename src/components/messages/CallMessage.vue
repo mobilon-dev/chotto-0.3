@@ -3,10 +3,10 @@
 
     <div :class="getClass(message)" :messageId="message.messageId">
 
-      <div class="call-message__avatar-container" :style="{ gridRow: message.subText ? '2' : '1' }">
-        <!-- <img v-if="props.chat.avatar" :src="props.chat.avatar" height="32" width="32"> -->
-        <span class="pi pi-user"></span>
-      </div>
+
+      <img class="call-message__avatar" v-if="message.avatar" :src="message.avatar" height="32" width="32"
+        :style="{ gridRow: message.subText ? '2' : '1' }">
+
 
       <p class="call-message__subtext" v-if="message.subText">{{ message.subText }}</p>
 
@@ -135,21 +135,13 @@ function getClass(message) {
     color: var(--subtext-color);
   }
 
-  &__avatar-container {
+  &__avatar {
     align-self: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     object-fit: cover;
     background-color: var(--avatar-background-color);
     min-width: var(--avatar-width-small);
     min-height: var(--avatar-height-small);
     border-radius: var(--avatar-border-radius);
-
-    span {
-      font-size: var(--avatar-icon-size-small);
-      color: var(--avatar-icon-color);
-    }
   }
 
   &__menu-button {
@@ -185,7 +177,7 @@ function getClass(message) {
   &__left {
     grid-template-columns: min-content 1fr;
 
-    .call-message__avatar-container {
+    .call-message__avatar {
       grid-column: 1;
       grid-row: 2;
     }
@@ -206,7 +198,7 @@ function getClass(message) {
   &__right {
     grid-template-columns: 1fr min-content;
 
-    .call-message__avatar-container {
+    .call-message__avatar {
       grid-column: 2;
       grid-row: 2;
     }
@@ -240,14 +232,6 @@ function getClass(message) {
       .call-message__content {
         background-color: var(--d-text-message-right-background-color);
         color: var(--d-text-message-text-color);
-      }
-    }
-
-    &__avatar-container {
-      background-color: var(--d-avatar-message-background-color);
-
-      span {
-        color: var(--d-avatar-message-icon-color);
       }
     }
 

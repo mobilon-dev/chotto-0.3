@@ -11,7 +11,7 @@ import ChatApp from './ChatApp.vue';
 // Mock data
 const data3 = {
   messages: [
-    { chatId: 1, type: "message.call", direction: 'incoming', callDuration: "18 мин", isMissedCall: false, timestamp: '1727027959' },
+    { chatId: 1, type: "message.call", direction: 'incoming', callDuration: "18 мин", isMissedCall: false, timestamp: '1727027959', avatar: 'https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg', subText: '89829445678' },
     { chatId: 1, type: "message.text", text: "Привет!", direction: 'incoming', status: 'read', timestamp: '1727027959', actions: [{ action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' }] },
     { chatId: 1, type: "message.text", text: "Привет!", direction: 'outgoing', status: 'received', timestamp: '1727027959', actions: [{ action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' }] },
     { chatId: 1, type: "message.image", url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg", timestamp: '1727027959', alt: "Example Image", direction: 'outgoing', status: 'received', actions: [{ action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' }] },
@@ -27,22 +27,22 @@ const data3 = {
   ],
   chats: [
     {
-      chatId: 1, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, status: 'online', actions: [
+      chatId: 1, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, status: "#767676", actions: [
         { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
       ]
     },
     {
-      chatId: 2, name: "Мария", countUnread: 0, isFixedTop: true, status: 'offline', actions: [
+      chatId: 2, name: "Мария", countUnread: 0, isFixedTop: true, actions: [
         { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'unpin', title: 'открепить' },
       ]
     },
     {
-      chatId: 3, name: "Анна", countUnread: 0, isFixedBottom: true, status: 'sleep', actions: [
+      chatId: 3, name: "Анна", countUnread: 0, isFixedBottom: true, actions: [
         { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'unpin', title: 'открепить' },
       ]
     },
     {
-      chatId: 4, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
+      chatId: 4, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, status: "#00b972", actions: [
         { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
       ]
     },

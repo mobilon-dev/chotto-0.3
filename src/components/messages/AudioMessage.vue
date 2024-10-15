@@ -1,9 +1,8 @@
 <template>
   <div class="audio-message" :class="getClass(message)" :messageId="message.messageId" @mouseleave="hideMenu">
-    <div class="audio-message__avatar-container" :style="{ gridRow: message.subText ? '2' : '1' }">
-      <!-- <img v-if="props.chat.avatar" :src="props.chat.avatar" height="32" width="32"> -->
-      <span class="pi pi-user"></span>
-    </div>
+
+    <img class="file-message__avatar" v-if="message.avatar" :src="message.avatar" height="32" width="32"
+      :style="{ gridRow: message.subText ? '2' : '1' }">
 
     <p class="audio-message__subtext" v-if="message.subText">{{ message.subText }}</p>
 
@@ -29,7 +28,8 @@
         </div>
       </div>
 
-      <button v-if="buttonMenuVisible" class="audio-message__menu-button" @click="isOpenMenu = !isOpenMenu">
+      <button v-if="buttonMenuVisible && message.actions" class="audio-message__menu-button"
+        @click="isOpenMenu = !isOpenMenu">
         <span class="pi pi-ellipsis-h"></span>
       </button>
 
@@ -193,21 +193,13 @@ onMounted(() => {
     font-size: var(--remaining-time);
   }
 
-  &__avatar-container {
+  &__avatar {
     align-self: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     object-fit: cover;
     background-color: var(--avatar-background-color);
-    width: var(--avatar-width-small);
-    height: var(--avatar-height-small);
+    min-width: var(--avatar-width-small);
+    min-height: var(--avatar-height-small);
     border-radius: var(--avatar-border-radius);
-
-    span {
-      font-size: var(--avatar-icon-size-small);
-      color: var(--avatar-icon-color);
-    }
   }
 
   &__subtext {
@@ -259,22 +251,6 @@ onMounted(() => {
     font-size: var(--time-message-font-size);
   }
 
-  &__avatar-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    object-fit: cover;
-    background-color: var(--avatar-background-color);
-    width: var(--avatar-width-small);
-    height: var(--avatar-height-small);
-    border-radius: var(--avatar-border-radius);
-
-    span {
-      font-size: var(--avatar-icon-size-small);
-      color: var(--avatar-icon-color);
-    }
-  }
-
   &__menu-button {
     position: absolute;
     background-color: transparent;
@@ -308,7 +284,7 @@ onMounted(() => {
   &__left {
     grid-template-columns: min-content 1fr;
 
-    .audio-message__avatar-container {
+    .audio-message__avatar {
       grid-column: 1;
       grid-row: 2;
     }
@@ -347,7 +323,7 @@ onMounted(() => {
   &__right {
     grid-template-columns: 1fr min-content;
 
-    .audio-message__avatar-container {
+    .audio-message__avatar {
       grid-column: 2;
       grid-row: 2;
     }
@@ -371,10 +347,6 @@ onMounted(() => {
       span {
         color: var(--audio-message-button-icon-color-right);
       }
-    }
-
-    .audio-message__avatar-container {
-      order: 1;
     }
 
     .audio-message__menu-button {
@@ -430,14 +402,6 @@ onMounted(() => {
 
     &__progress-bar {
       background-color: var(--d-audio-message-pb-background-color);
-    }
-
-    &__avatar-container {
-      background-color: var(--d-avatar-message-background-color);
-
-      span {
-        color: var(--d-avatar-message-icon-color);
-      }
     }
 
     &__status--received {
