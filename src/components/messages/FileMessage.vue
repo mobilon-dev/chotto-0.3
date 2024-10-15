@@ -13,7 +13,7 @@
         {{ message.filename }}
       </a>
       <div class="file-message__info-container">
-        <span class="file-message__time">22:02</span>
+        <span class="file-message__time">{{ message.time }}</span>
         <div class="file-message__status" :class="getStatus"
           v-if="getClass(message) === 'file-message__right' && message.status">
           <span v-if="message.status !== 'sent'" class="pi pi-check"></span>

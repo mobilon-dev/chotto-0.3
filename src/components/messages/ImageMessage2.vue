@@ -13,7 +13,7 @@
       <button class="image-message__button" @click="isOpen = true">
         <img class="image-message__preview-image" :src="message.url" :alt="message.alt" />
         <div class="image-message__info-container">
-          <span class="image-message__time">22:02</span>
+          <span class="image-message__time">{{ message.time }}</span>
           <div class="image-message__status" :class="getStatus"
             v-if="getClass(message) === 'image-message__right' && message.status">
             <span v-if="message.status !== 'sent'" class="pi pi-check"></span>

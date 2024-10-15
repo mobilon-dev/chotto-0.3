@@ -21,7 +21,7 @@
         v-if="buttonMenuVisible && message.actions" 
         class="video-message__menu-button" 
         @click="isOpenMenu = !isOpenMenu"
-      >
+      > 
         <span class="pi pi-ellipsis-h"></span>
       </button>
 
@@ -36,7 +36,7 @@
 
       <p class="video-message__remaining-time">{{ `${remaningTime}` }}</p>
 
-      <span class="video-message__time">22:02</span>
+      <span class="video-message__time">{{ message.time }}</span>
 
       <div class="video-message__status" :class="getStatus"
         v-if="getClass(message) === 'video-message__right' && message.status">

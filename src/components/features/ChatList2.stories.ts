@@ -26,7 +26,7 @@ const chats = [{
   'lastActivity.time': "12:11",
 }];
 
-export const ChatListBasic: Story = {
+export const ChatlistBasic: Story = {
   args: {
     chats,
   },

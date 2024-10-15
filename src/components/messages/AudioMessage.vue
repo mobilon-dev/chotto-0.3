@@ -21,7 +21,7 @@
       <p class="audio-message__remaining-time">{{ `${formatCurrentTime} / ${formatDuration}` }}</p>
 
       <div class="audio-message__info-container">
-        <span class="audio-message__time">22:02</span>
+        <span class="audio-message__time">{{ message.time }}</span>
         <div class="audio-message__status" :class="getStatus"
           v-if="getClass(message) === 'audio-message__right' && message.status">
           <span v-if="message.status !== 'sent'" class="pi pi-check"></span>
