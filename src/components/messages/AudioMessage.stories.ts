@@ -20,7 +20,7 @@ const message = {
 const actions = [
   { action: 'edit', title: 'изменить', },
   { action: 'delete', title: 'удалить', },
-]
+];
 
 export const LeftMessage: Story = {
   args: {

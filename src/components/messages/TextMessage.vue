@@ -13,7 +13,7 @@
       <div class="text-message__content" @mouseenter="showMenu">
         <p>{{ message.text }}</p>
         <div class="text-message__info-container">
-          <span class="text-message__time">22:02</span>
+          <span v-if="message.time" class="text-message__time">{{ message.time }}</span>
           <div class="text-message__status" :class="getStatus"
             v-if="getClass(message) === 'text-message__right' && message.status">
             <span v-if="message.status !== 'sent'" class="pi pi-check"></span>
@@ -21,13 +21,21 @@
           </div>
         </div>
 
-        <button v-if="buttonMenuVisible" class="text-message__menu-button" @click="isOpenMenu = !isOpenMenu">
+        <button
+          v-if="buttonMenuVisible && message.actions" 
+          class="text-message__menu-button" 
+          @click="isOpenMenu = !isOpenMenu"
+        >
           <span class="pi pi-ellipsis-h"></span>
         </button>
 
         <transition>
-          <ContextMenu class="text-message__context-menu" v-if="isOpenMenu && message.actions"
-            :actions="message.actions" @click="clickAction" />
+          <ContextMenu 
+            class="text-message__context-menu"
+            v-if="isOpenMenu && message.actions"
+            :actions="message.actions"
+            @click="clickAction" 
+          />
         </transition>
       </div>
     </div>
