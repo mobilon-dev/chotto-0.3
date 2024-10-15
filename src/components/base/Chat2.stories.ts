@@ -84,6 +84,25 @@ export const ChatWithActions: Story = {
   },
 };
 
+export const ChatWithStatusOnline: Story = {
+  args: {
+    chat: {
+      ...chat,
+      status: 'online',
+    },
+  },
+};
+
+export const ChatWithStatusOffline: Story = {
+  args: {
+    chat: {
+      ...chat,
+      status: 'offline',
+    },
+  },
+};
+
+
 export const ChatMax: Story = {
   args: {
     chat: {
