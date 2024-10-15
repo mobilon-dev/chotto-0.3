@@ -29,19 +29,24 @@
         </div>
       </div>
 
-      <button v-if="buttonMenuVisible" class="audio-message__menu-button" @click="isOpenMenu = !isOpenMenu">
+      <button 
+        v-if="buttonMenuVisible && message.actions" 
+        class="audio-message__menu-button" 
+        @click="isOpenMenu = !isOpenMenu">
         <span class="pi pi-ellipsis-h"></span>
       </button>
 
       <transition>
-        <ContextMenu class="audio-message__context-menu" v-if="isOpenMenu && message.actions" :actions="message.actions"
-          @click="clickAction" />
+        <ContextMenu 
+          class="audio-message__context-menu" 
+          v-if="isOpenMenu && message.actions" 
+          :actions="message.actions"
+          @click="clickAction" 
+        />
       </transition>
 
     </div>
-
   </div>
-
 </template>
 
 <script setup>
