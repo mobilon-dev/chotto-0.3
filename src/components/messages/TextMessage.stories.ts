@@ -78,7 +78,6 @@ export const LeftMessageWithoutTime: Story = {
   },
 };
 
-
 export const LeftMessageWithActions: Story = {
   args: {
     message: {
@@ -89,6 +88,15 @@ export const LeftMessageWithActions: Story = {
   },
 };
 
+export const LeftMessageWithAvatar: Story = {
+  args: {
+    message: {
+      ...message,
+      position: 'left',
+      avatar: 'https://dummyimage.com/64x64/000/fff.png&text=PN',
+    },
+  },
+};
 
 export const RightMessage: Story = {
   args: {
@@ -108,7 +116,6 @@ export const RightMessageLongText: Story = {
   },
 };
 
-
 export const RightMessageWithSubtext: Story = {
   args: {
     message: {
@@ -127,7 +134,6 @@ export const RightMessageWithoutTime: Story = {
     },
   },
 };
-
 
 export const RightMessageStatusSent: Story = {
   args: {
@@ -159,13 +165,22 @@ export const RightMessageStatusRead: Story = {
   },
 };
 
-
 export const RightMessageWithActions: Story = {
   args: {
     message: {
       ...message,
       position: 'right',
       actions,
+    },
+  },
+};
+
+export const RightMessageWithAvatar: Story = {
+  args: {
+    message: {
+      ...message,
+      position: 'right',
+      avatar: 'https://dummyimage.com/64x64/000/fff.png&text=PN',
     },
   },
 };
@@ -181,7 +196,6 @@ export const LeftMessageMax: Story = {
     },
   },
 };
-
 
 export const RightMessageMax: Story = {
   args: {

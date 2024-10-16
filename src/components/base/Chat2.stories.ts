@@ -88,7 +88,7 @@ export const ChatWithStatusOnline: Story = {
   args: {
     chat: {
       ...chat,
-      status: 'online',
+      status: '#00FF00',
     },
   },
 };
@@ -97,7 +97,7 @@ export const ChatWithStatusOffline: Story = {
   args: {
     chat: {
       ...chat,
-      status: 'offline',
+      status: '#FF0000',
     },
   },
 };
