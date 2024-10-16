@@ -1,10 +1,8 @@
 <template>
   <div class="video-message" :class="getClass(message)" :messageId="message.messageId" @mouseleave="hideMenu">
 
-    <div class="video-message__avatar-container">
-      <!-- <img v-if="props.chat.avatar" :src="props.chat.avatar" height="32" width="32"> -->
-      <span class="pi pi-user"></span>
-    </div>
+    <img class="video-message__avatar" v-if="message.avatar" :src="message.avatar" height="32" width="32"
+      :style="{ gridRow: message.subText ? '2' : '1' }">
 
     <div class="video-message__content" @mouseenter="showMenu">
       <video ref="player" class="video-message__video" :src="message.url"></video>
@@ -137,21 +135,13 @@ onMounted(() => {
     width: var(--video-message-width);
   }
 
-  &__avatar-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-self: flex-end;
+  &__avatar {
+    align-self: center;
     object-fit: cover;
     background-color: var(--avatar-background-color);
-    width: var(--avatar-width-small);
-    height: var(--avatar-height-small);
+    min-width: var(--avatar-width-small);
+    min-height: var(--avatar-height-small);
     border-radius: var(--avatar-border-radius);
-
-    span {
-      font-size: var(--avatar-icon-size-small);
-      color: var(--avatar-icon-color);
-    }
   }
 
   &__controls {
@@ -305,7 +295,7 @@ onMounted(() => {
   &__right {
     justify-content: flex-end;
 
-    .video-message__avatar-container {
+    .video-message__avatar {
       order: 1;
     }
 
@@ -323,14 +313,6 @@ onMounted(() => {
 
 .dark {
   .video-message {
-    &__avatar-container {
-      background-color: var(--d-avatar-message-background-color);
-
-      span {
-        color: var(--d-avatar-message-icon-color);
-      }
-    }
-
     &__status--received {
       span {
         color: var(--neutral-200);

@@ -2,7 +2,7 @@
   <div :class="getClass()" @click="selectChat">
     <div class="chat-item__container" @mouseenter="showMenu" @mouseleave="hideMenu">
       <div class="chat-item__avatar-container">
-        <span class="chat-item__status" :class="getStatus"></span>
+        <span class="chat-item__status" :style="{ backgroundColor: props.chat.status }"></span>
         <img v-if="props.chat.avatar" :src="props.chat.avatar" height="32" width="32">
         <span v-else class="pi pi-user">
         </span>
@@ -140,18 +140,6 @@ const getStatus = computed(() => {
     border-radius: 50%;
     background-color: transparent;
     z-index: 1;
-  }
-
-  &__status--online {
-    background-color: var(--chat-item-color-status-online);
-  }
-
-  &__status--offline {
-    background-color: var(--chat-item-color-status-offline);
-  }
-
-  &__status--sleep {
-    background-color: var(--chat-item-color-status-sleep);
   }
 
   &__info-container {

@@ -3,10 +3,8 @@
 
     <div :class="getClass(message)" :messageId="message.messageId" @mouseleave="hideMenu">
 
-      <div class="text-message__avatar-container" :style="{ gridRow: message.subText ? '2' : '1' }">
-        <!-- <img v-if="props.chat.avatar" :src="props.chat.avatar" height="32" width="32"> -->
-        <span class="pi pi-user"></span>
-      </div>
+      <img class="text-message__avatar" v-if="message.avatar" :src="message.avatar" height="32" width="32"
+        :style="{ gridRow: message.subText ? '2' : '1' }">
 
       <p class="text-message__subtext" v-if="message.subText">{{ message.subText }}</p>
 
@@ -148,21 +146,13 @@ const getStatus = computed(() => {
     color: var(--subtext-color);
   }
 
-  &__avatar-container {
+  &__avatar {
     align-self: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     object-fit: cover;
     background-color: var(--avatar-background-color);
     min-width: var(--avatar-width-small);
     min-height: var(--avatar-height-small);
     border-radius: var(--avatar-border-radius);
-
-    span {
-      font-size: var(--avatar-icon-size-small);
-      color: var(--avatar-icon-color);
-    }
   }
 
   &__menu-button {
@@ -198,7 +188,7 @@ const getStatus = computed(() => {
   &__left {
     grid-template-columns: min-content 1fr;
 
-    .text-message__avatar-container {
+    .text-message__avatar {
       grid-column: 1;
       grid-row: 2;
     }
@@ -221,7 +211,7 @@ const getStatus = computed(() => {
     }
 
     .text-message__context-menu {
-      top: 100%;
+      top: 56%;
       left: 100%;
     }
   }
@@ -229,7 +219,7 @@ const getStatus = computed(() => {
   &__right {
     grid-template-columns: 1fr min-content;
 
-    .text-message__avatar-container {
+    .text-message__avatar {
       grid-column: 2;
       grid-row: 2;
     }
@@ -253,7 +243,7 @@ const getStatus = computed(() => {
     }
 
     .text-message__context-menu {
-      top: 100%;
+      top: 56%;
       right: 100%;
     }
   }
@@ -273,14 +263,6 @@ const getStatus = computed(() => {
       .text-message__content {
         background-color: var(--d-text-message-right-background-color);
         color: var(--d-text-message-text-color);
-      }
-    }
-
-    &__avatar-container {
-      background-color: var(--d-avatar-message-background-color);
-
-      span {
-        color: var(--d-avatar-message-icon-color);
       }
     }
 
