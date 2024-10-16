@@ -23,7 +23,7 @@
         <span class="call-message__duration" v-else>Нет ответа</span>
 
         <div class="call-message__info-container">
-          <span class="call-message__time">22:02</span>
+          <span class="call-message__time">{{ message.time }}</span>
         </div>
       </div>
     </div>

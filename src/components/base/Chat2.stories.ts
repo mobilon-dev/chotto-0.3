@@ -9,36 +9,67 @@ const meta: Meta<typeof Chat2> = {
 export default meta;
 type Story = StoryObj<typeof Chat2>;
  
-export const Primary: Story = {
+const chat = {  
+  name: "John Doe",
+  lastMessage: "Привет!",
+  countUnread: "2",
+  'lastActivity.time': "12:34",
+};
+
+const actions = [
+  {action: 'edit', title: 'изменить',},
+  {action: 'delete', title: 'удалить',},
+]
+
+export const Chat: Story = {
   args: {
     chat: {
-      avatar: "https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png",
-      name: "John Doe",
-      lastMessage: "Привет!",
-      countUnread: "2",
-      'lastActivity.time': "12:34",
+      ...chat,
     },
   },
 };
 
-export const LongLastMessage: Story = {
+export const ChatWithoutLastMessage: Story = {
   args: {
     chat: {
-      name: "John Doe",
+      ...chat,
+      lastMessage: null,
+    },
+  },
+};
+
+export const ChatWithAvatar: Story = {
+  args: {
+    chat: {
+      ...chat,
+      avatar: "https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png",
+    },
+  },
+};
+
+
+export const ChatWithUnread: Story = {
+  args: {
+    chat: {
+      ...chat,
+      countUnread: "123",
+    }
+  },
+};
+
+export const ChatWithLongLastMessage: Story = {
+  args: {
+    chat: { ...chat,
       lastMessage: "Очень длинное текстовое сообщение. Его надо как-то немного спрятать",
       countUnread: "0",
-      'lastActivity.time': "12:34",
     },
   },
 };
 
-export const SelectedChat: Story = {
+export const ChatSelected: Story = {
   args: {
     chat: {
-      name: "John Doe",
-      lastMessage: "Сообщение",
-      countUnread: "0",
-      'lastActivity.time': "12:34",
+      ...chat,
       isSelected: true,
     },
   },
@@ -47,14 +78,37 @@ export const SelectedChat: Story = {
 export const ChatWithActions: Story = {
   args: {
     chat: {
-      name: "John Doe",
-      lastMessage: "Очень длинное текстовое сообщение. Его надо как-то немного спрятать",
-      countUnread: "0",
-      'lastActivity.time': "12:34",
-      actions: [
-        {action: 'edit', title: 'изменить'},
-        {action: 'delete', title: 'удалить'},
-      ]
+      ...chat,
+      actions,
+    },
+  },
+};
+
+export const ChatWithStatusOnline: Story = {
+  args: {
+    chat: {
+      ...chat,
+      status: 'online',
+    },
+  },
+};
+
+export const ChatWithStatusOffline: Story = {
+  args: {
+    chat: {
+      ...chat,
+      status: 'offline',
+    },
+  },
+};
+
+
+export const ChatMax: Story = {
+  args: {
+    chat: {
+      ...chat,
+      avatar: "https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png",
+      actions,
     },
   },
 };

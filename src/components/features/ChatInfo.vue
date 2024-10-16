@@ -2,14 +2,14 @@
   <div class="chat-info">
     <div class="chat-info__container" v-if="chat">
       <div class="chat-info__avatar-container">
-        <img v-if="props.chat.avatar" :src="props.chat.avatar">
+        <img v-if="props.chat.avatar" :src="props.chat.avatar" width="32" height="32">
         <span v-else>
           <i class="pi pi-user"></i>
         </span>
       </div>
 
       <h2 class="chat-info__title">{{ chat.name }}</h2>
-      <p class="chat-info__time">Был(а) недавно</p>
+      <p class="chat-info__time">{{ chat['lastActivity.time'] }}</p>
     </div>
   </div>
 </template>

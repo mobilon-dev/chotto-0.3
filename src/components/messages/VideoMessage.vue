@@ -5,7 +5,7 @@
       :style="{ gridRow: message.subText ? '2' : '1' }">
 
     <div class="video-message__content" @mouseenter="showMenu">
-      <video ref="player" class="video-message__video" src="/sample-10s.mp4" :src="message.url"></video>
+      <video ref="player" class="video-message__video" :src="message.url"></video>
       <div class="video-message__controls">
         <transition>
           <button class="video-message__play" v-show="!isPlaying" @click="togglePlayPause">
@@ -15,19 +15,26 @@
         <button class="video-message__pause" v-show="isPlaying" @click="togglePlayPause"></button>
       </div>
 
-      <button v-if="buttonMenuVisible && message.actions" class="video-message__menu-button"
-        @click="isOpenMenu = !isOpenMenu">
+      <button 
+        v-if="buttonMenuVisible && message.actions" 
+        class="video-message__menu-button" 
+        @click="isOpenMenu = !isOpenMenu"
+      > 
         <span class="pi pi-ellipsis-h"></span>
       </button>
 
       <transition>
-        <ContextMenu class="video-message__context-menu" v-if="isOpenMenu && message.actions" :actions="message.actions"
-          @click="clickAction" />
+        <ContextMenu 
+          class="video-message__context-menu" 
+          v-if="isOpenMenu && message.actions" 
+          :actions="message.actions"
+          @click="clickAction" 
+        />
       </transition>
 
       <p class="video-message__remaining-time">{{ `${remaningTime}` }}</p>
 
-      <span class="video-message__time">22:02</span>
+      <span class="video-message__time">{{ message.time }}</span>
 
       <div class="video-message__status" :class="getStatus"
         v-if="getClass(message) === 'video-message__right' && message.status">

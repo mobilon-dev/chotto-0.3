@@ -14,10 +14,10 @@
       </div>
 
       <div class="chat-item__details-container">
-        <div class="chat-item__time" v-if="!buttonMenuVisible && chat['lastActivity.time']">{{ chat['lastActivity.time']
+        <div class="chat-item__time" v-if="!(buttonMenuVisible && chat.actions) && chat['lastActivity.time']">{{ chat['lastActivity.time']
           }}
         </div>
-        <div class="chat-item__unread" v-if="!buttonMenuVisible && chat.countUnread > 0">{{ chat.countUnread }}</div>
+        <div class="chat-item__unread" v-if="!(buttonMenuVisible && chat.actions) && chat.countUnread > 0">{{ chat.countUnread }}</div>
 
 
 
@@ -50,7 +50,7 @@ const props = defineProps({
 });
 
 // Define emits
-const emit = defineEmits(['select', 'uuu', 'action']);
+const emit = defineEmits(['select', 'action']);
 
 // Define method
 const selectChat = () => { emit('select', props.chat); }
