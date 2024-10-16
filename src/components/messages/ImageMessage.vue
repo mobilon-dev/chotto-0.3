@@ -1,6 +1,13 @@
 <template>
-  <div :class="getClass()" :messageId="message.messageId">
-    <img :src="message.url" :alt="message.alt" class="image-message" />
+  <div
+    :class="getClass()"
+    :messageId="message.messageId"
+  >
+    <img
+      :src="message.url"
+      :alt="message.alt"
+      class="image-message"
+    >
     <div class="message-time">
       {{ message.time }}
     </div>

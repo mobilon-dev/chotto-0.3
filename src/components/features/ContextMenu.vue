@@ -2,7 +2,12 @@
   <div class="context-menu">
     <div class="context-menu__container">
       <ul class="context-menu__list">
-        <li class="context-menu__item" v-for="(action, index) in props.actions" :key="index" @click="click(index)">
+        <li
+          v-for="(action, index) in props.actions"
+          :key="index"
+          class="context-menu__item"
+          @click="click(index)"
+        >
           {{ action.title }}
         </li>
       </ul>

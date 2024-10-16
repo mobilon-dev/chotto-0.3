@@ -1,26 +1,57 @@
 <template>
   <div class="call-message">
+    <div
+      :class="getClass(message)"
+      :messageId="message.messageId"
+    >
+      <img
+        v-if="message.avatar"
+        class="call-message__avatar"
+        :src="message.avatar"
+        height="32"
+        width="32"
+        :style="{ gridRow: message.subText ? '2' : '1' }"
+      >
 
-    <div :class="getClass(message)" :messageId="message.messageId">
 
+      <p
+        v-if="message.subText"
+        class="call-message__subtext"
+      >
+        {{ message.subText }}
+      </p>
 
-      <img class="call-message__avatar" v-if="message.avatar" :src="message.avatar" height="32" width="32"
-        :style="{ gridRow: message.subText ? '2' : '1' }">
+      <div
+        class="call-message__content"
+        :style="{ paddingRight: message.isMissedCall ? '16px' : '78px' }"
+      >
+        <span
+          class="call-message__icon pi pi-phone"
+          :style="{ color: message.isMissedCall ? 'var(--call-message-color-icon-error)' : 'var(--neutral-100)' }"
+        />
 
+        <span
+          v-if="!message.isMissedCall"
+          class="call-message__title"
+        >Аудиозвонок</span>
+        <span
+          v-else
+          class="call-message__title"
+        >Пропущенный аудиозвонок</span>
 
-      <p class="call-message__subtext" v-if="message.subText">{{ message.subText }}</p>
-
-      <div class="call-message__content" :style="{ paddingRight: message.isMissedCall ? '16px' : '78px' }">
-        <span class="call-message__icon pi pi-phone"
-          :style="{ color: message.isMissedCall ? 'var(--call-message-color-icon-error)' : 'var(--neutral-100)' }"></span>
-
-        <span class="call-message__title" v-if="!message.isMissedCall">Аудиозвонок</span>
-        <span class="call-message__title" v-else>Пропущенный аудиозвонок</span>
-
-        <span class="call-message__duration" v-if="message.callDuration">{{ message.callDuration }}</span>
-        <span class="call-message__duration" v-else-if="!message.callDuration && message.isMissedCall">Нажмите, чтобы
+        <span
+          v-if="message.callDuration"
+          class="call-message__duration"
+        >{{ message.callDuration }}</span>
+        <span
+          v-else-if="!message.callDuration && message.isMissedCall"
+          class="call-message__duration"
+        >Нажмите, чтобы
           перезвонить</span>
-        <span class="call-message__duration" v-else>Нет ответа</span>
+        <span
+          v-else
+          class="call-message__duration"
+        >Нет ответа</span>
 
         <div class="call-message__info-container">
           <span class="call-message__time">{{ message.time }}</span>

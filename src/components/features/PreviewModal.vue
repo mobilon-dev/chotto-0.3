@@ -3,10 +3,18 @@
     <div class="modal-content">
       <h3>File Preview</h3>
       <div v-if="props.isImage">
-        <img :src="previewUrl" alt="Image Preview" class="preview-image" />
+        <img
+          :src="previewUrl"
+          alt="Image Preview"
+          class="preview-image"
+        >
       </div>
       <div v-else-if="props.isVideo">
-        <video :src="previewUrl" controls class="preview-video"></video>
+        <video
+          :src="previewUrl"
+          controls
+          class="preview-video"
+        />
       </div>
       <div v-else>
         <p>Selected file: {{ fileName }}</p>
@@ -14,7 +22,7 @@
 
       <!-- Action Buttons -->
       <div class="modal-actions">
-				<ChatInput2
+        <ChatInput2
           @send="handleSend"
         />
       </div>

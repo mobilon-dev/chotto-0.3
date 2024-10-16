@@ -1,5 +1,8 @@
 <template>
-  <div class="chat" @click="selectChat">
+  <div
+    class="chat"
+    @click="selectChat"
+  >
     <p>{{ chat.name }} {{ chat.countUnread }}</p>
   </div>
 </template>

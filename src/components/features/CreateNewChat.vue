@@ -1,13 +1,16 @@
 <template>
   <div>
-    <div class="new-chat-modal" v-if="showNewChatModal">
+    <div
+      v-if="showNewChatModal"
+      class="new-chat-modal"
+    >
       <div class="modal-content">
         <h2>Создать чат</h2>
         <input
+          v-if="isChatName"
           v-model="newChatName"
           placeholder="название чата"
-          v-if="isChatName"
-        />
+        >
         <div class="participant-list">
           <div
             v-for="user in availableUsers"
@@ -15,21 +18,28 @@
             class="participant-item"
           >
             <input
-              type="checkbox"
               :id="user.userId"
               v-model="selectedParticipants"
+              type="checkbox"
               :value="user.userId"
-            />
+            >
             <label :for="user.userId">{{ user.name || 'unknown username' }}</label>
           </div> 
         </div>
         <div class="modal-actions">
-          <button @click="confirmNewChat">Создать</button>
-          <button @click="cancelNewChat">Отмена</button>
+          <button @click="confirmNewChat">
+            Создать
+          </button>
+          <button @click="cancelNewChat">
+            Отмена
+          </button>
         </div>
       </div>
     </div>
-    <button @click="openNewChatModal" class="create-chat-btn">
+    <button
+      class="create-chat-btn"
+      @click="openNewChatModal"
+    >
       {{ title }}
     </button>
   </div>

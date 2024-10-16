@@ -24,28 +24,51 @@
     </div>
   </div> -->
 
-  <div class="channels" ref="customDiv">
+  <div
+    ref="customDiv"
+    class="channels"
+  >
     <div class="channels__container">
-      <button class="channels__button" @click="toggle">
-        <span class="pi pi-list"></span>
+      <button
+        class="channels__button"
+        @click="toggle"
+      >
+        <span class="pi pi-list" />
       </button>
 
       <div class="channels__title-container">
-        <div class="channels__selected" v-if="selectedChannel">
-          <span class="channels__icon" v-if="selectedChannel.icon">
+        <div
+          v-if="selectedChannel"
+          class="channels__selected"
+        >
+          <span
+            v-if="selectedChannel.icon"
+            class="channels__icon"
+          >
             <img :src="selectedChannel.icon">
           </span>
           <span class="channels__title">{{ selectedChannel.title }}</span>
         </div>
-        <span class="channels__title" v-else>Чат не выбран</span>
+        <span
+          v-else
+          class="channels__title"
+        >Чат не выбран</span>
       </div>
 
       <Transition>
-        <div class="channels__popover" v-if="showPopup" @click.stop>
+        <div
+          v-if="showPopup"
+          class="channels__popover"
+          @click.stop
+        >
           <div class="channels__popover-container">
             <ul class="channels__popover-list">
-              <li class="channels__popover-item" v-for="channel in channels" :key="channel.channelId"
-                @click="selectChannel(channel)">
+              <li
+                v-for="channel in channels"
+                :key="channel.channelId"
+                class="channels__popover-item"
+                @click="selectChannel(channel)"
+              >
                 {{ channel.title }}
               </li>
             </ul>

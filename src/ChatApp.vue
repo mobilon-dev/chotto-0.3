@@ -3,19 +3,39 @@
     <div class="chat-app">
       <div class="chat-app__container">
         <div class="chat-app__left-bar">
-          <Profile :user="userProfile"></Profile>
-          <ChatList2 class="chat-app__chat-list" :chats="chatsStore.chats" @select="selectChat" filterEnabled
-            @action="action" />
+          <Profile :user="userProfile" />
+          <ChatList2
+            class="chat-app__chat-list"
+            :chats="chatsStore.chats"
+            filter-enabled
+            @select="selectChat"
+            @action="action"
+          />
           <ThemeMode />
         </div>
 
         <div class="chat-app__right-bar">
-          <div v-if="selectedChat" class="chat-app__right-bar-container">
+          <div
+            v-if="selectedChat"
+            class="chat-app__right-bar-container"
+          >
             <ChatInfo :chat="selectedChat" />
-            <Feed class="chat-app__feed" :objects="messages" />
-            <ChatInput2 @send="addMessage" :enableEmoji="true" :channels="channels" />
+            <Feed
+              class="chat-app__feed"
+              :objects="messages"
+            />
+            <ChatInput2
+              :enable-emoji="true"
+              :channels="channels"
+              @send="addMessage"
+            />
           </div>
-          <p v-else class="chat-app__welcome-text">Выберите контакт для начала общения</p>
+          <p
+            v-else
+            class="chat-app__welcome-text"
+          >
+            Выберите контакт для начала общения
+          </p>
         </div>
       </div>
     </div>

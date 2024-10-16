@@ -1,21 +1,51 @@
 <template>
+  <div
+    class="image-message"
+    :class="getClass(message)"
+    :messageId="message.messageId"
+    @mouseleave="hideMenu"
+  >
+    <img
+      v-if="message.avatar"
+      class="image-message__avatar"
+      :src="message.avatar"
+      height="32"
+      width="32"
+      :style="{ gridRow: message.subText ? '2' : '1' }"
+    >
 
-  <div class="image-message" :class="getClass(message)" :messageId="message.messageId" @mouseleave="hideMenu">
+    <p
+      v-if="message.subText"
+      class="image-message__subtext"
+    >
+      {{ message.subText }}
+    </p>
 
-    <img class="image-message__avatar" v-if="message.avatar" :src="message.avatar" height="32" width="32"
-      :style="{ gridRow: message.subText ? '2' : '1' }">
-
-    <p class="image-message__subtext" v-if="message.subText">{{ message.subText }}</p>
-
-    <div class="image-message__content" @mouseenter="showMenu">
-      <button class="image-message__button" @click="isOpen = true">
-        <img class="image-message__preview-image" :src="message.url" :alt="message.alt" />
+    <div
+      class="image-message__content"
+      @mouseenter="showMenu"
+    >
+      <button
+        class="image-message__button"
+        @click="isOpen = true"
+      >
+        <img
+          class="image-message__preview-image"
+          :src="message.url"
+          :alt="message.alt"
+        >
         <div class="image-message__info-container">
           <span class="image-message__time">{{ message.time }}</span>
-          <div class="image-message__status" :class="getStatus"
-            v-if="getClass(message) === 'image-message__right' && message.status">
-            <span v-if="message.status !== 'sent'" class="pi pi-check"></span>
-            <span class="pi pi-check"></span>
+          <div
+            v-if="getClass(message) === 'image-message__right' && message.status"
+            class="image-message__status"
+            :class="getStatus"
+          >
+            <span
+              v-if="message.status !== 'sent'"
+              class="pi pi-check"
+            />
+            <span class="pi pi-check" />
           </div>
         </div>
       </button>
@@ -23,29 +53,45 @@
 
       <Teleport to="body">
         <transition name="modal-fade">
-          <div v-if="isOpen" class="image-message__modal-overlay">
+          <div
+            v-if="isOpen"
+            class="image-message__modal-overlay"
+          >
             <div class="image-message__modal">
-              <button class="image-message__modal-close-button" @click="isOpen = false">
+              <button
+                class="image-message__modal-close-button"
+                @click="isOpen = false"
+              >
                 <span>
-                  <i class="pi pi-times"></i>
+                  <i class="pi pi-times" />
                 </span>
               </button>
-              <img class="image-message__modal-image" :src="message.url" :alt="message.alt" />
+              <img
+                class="image-message__modal-image"
+                :src="message.url"
+                :alt="message.alt"
+              >
             </div>
           </div>
         </transition>
       </Teleport>
 
-      <button v-if="buttonMenuVisible && message.actions" class="image-message__menu-button"
-        @click="isOpenMenu = !isOpenMenu">
-        <span class="pi pi-ellipsis-h"></span>
+      <button
+        v-if="buttonMenuVisible && message.actions"
+        class="image-message__menu-button"
+        @click="isOpenMenu = !isOpenMenu"
+      >
+        <span class="pi pi-ellipsis-h" />
       </button>
 
       <transition name="context-menu">
-        <ContextMenu class="image-message__context-menu" v-if="isOpenMenu && message.actions" :actions="message.actions"
-          @click="clickAction" />
+        <ContextMenu
+          v-if="isOpenMenu && message.actions"
+          class="image-message__context-menu"
+          :actions="message.actions"
+          @click="clickAction"
+        />
       </transition>
-
     </div>
   </div>
 </template>

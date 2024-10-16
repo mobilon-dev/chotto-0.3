@@ -1,8 +1,16 @@
 <template>
-  <div class="message-feed" ref="refFeed">
+  <div
+    ref="refFeed"
+    class="message-feed"
+  >
     <div class="message-feed__container">
-      <component class="message-feed__message" v-for="object in objects" :key="object.messageId"
-        :is="componentsMap(object.type)" :message="object" />
+      <component
+        :is="componentsMap(object.type)"
+        v-for="object in objects"
+        :key="object.messageId"
+        class="message-feed__message"
+        :message="object"
+      />
     </div>
   </div>
 </template>

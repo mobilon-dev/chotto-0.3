@@ -1,6 +1,10 @@
 <template>
   <div class="container">
-    <chat-app :authProvider="authProvider" :dataProvider="dataProvider" :eventor="eventor" />
+    <chat-app
+      :auth-provider="authProvider"
+      :data-provider="dataProvider"
+      :eventor="eventor"
+    />
   </div>
 </template>
 

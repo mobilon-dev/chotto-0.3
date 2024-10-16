@@ -1,18 +1,43 @@
 <template>
-  <div class="video-message" :class="getClass(message)" :messageId="message.messageId" @mouseleave="hideMenu">
+  <div
+    class="video-message"
+    :class="getClass(message)"
+    :messageId="message.messageId"
+    @mouseleave="hideMenu"
+  >
+    <img
+      v-if="message.avatar"
+      class="video-message__avatar"
+      :src="message.avatar"
+      height="32"
+      width="32"
+      :style="{ gridRow: message.subText ? '2' : '1' }"
+    >
 
-    <img class="video-message__avatar" v-if="message.avatar" :src="message.avatar" height="32" width="32"
-      :style="{ gridRow: message.subText ? '2' : '1' }">
-
-    <div class="video-message__content" @mouseenter="showMenu">
-      <video ref="player" class="video-message__video" :src="message.url"></video>
+    <div
+      class="video-message__content"
+      @mouseenter="showMenu"
+    >
+      <video
+        ref="player"
+        class="video-message__video"
+        :src="message.url"
+      />
       <div class="video-message__controls">
         <transition>
-          <button class="video-message__play" v-show="!isPlaying" @click="togglePlayPause">
-            <span class="pi pi-play"></span>
+          <button
+            v-show="!isPlaying"
+            class="video-message__play"
+            @click="togglePlayPause"
+          >
+            <span class="pi pi-play" />
           </button>
         </transition>
-        <button class="video-message__pause" v-show="isPlaying" @click="togglePlayPause"></button>
+        <button
+          v-show="isPlaying"
+          class="video-message__pause"
+          @click="togglePlayPause"
+        />
       </div>
 
       <button 
@@ -20,26 +45,34 @@
         class="video-message__menu-button" 
         @click="isOpenMenu = !isOpenMenu"
       > 
-        <span class="pi pi-ellipsis-h"></span>
+        <span class="pi pi-ellipsis-h" />
       </button>
 
       <transition>
         <ContextMenu 
-          class="video-message__context-menu" 
           v-if="isOpenMenu && message.actions" 
+          class="video-message__context-menu" 
           :actions="message.actions"
           @click="clickAction" 
         />
       </transition>
 
-      <p class="video-message__remaining-time">{{ `${remaningTime}` }}</p>
+      <p class="video-message__remaining-time">
+        {{ `${remaningTime}` }}
+      </p>
 
       <span class="video-message__time">{{ message.time }}</span>
 
-      <div class="video-message__status" :class="getStatus"
-        v-if="getClass(message) === 'video-message__right' && message.status">
-        <span v-if="message.status !== 'sent'" class="pi pi-check"></span>
-        <span class="pi pi-check"></span>
+      <div
+        v-if="getClass(message) === 'video-message__right' && message.status"
+        class="video-message__status"
+        :class="getStatus"
+      >
+        <span
+          v-if="message.status !== 'sent'"
+          class="pi pi-check"
+        />
+        <span class="pi pi-check" />
       </div>
     </div>
   </div>

@@ -1,21 +1,46 @@
 <template>
   <div class="text-message">
+    <div
+      :class="getClass(message)"
+      :messageId="message.messageId"
+      @mouseleave="hideMenu"
+    >
+      <img
+        v-if="message.avatar"
+        class="text-message__avatar"
+        :src="message.avatar"
+        height="32"
+        width="32"
+        :style="{ gridRow: message.subText ? '2' : '1' }"
+      >
 
-    <div :class="getClass(message)" :messageId="message.messageId" @mouseleave="hideMenu">
+      <p
+        v-if="message.subText"
+        class="text-message__subtext"
+      >
+        {{ message.subText }}
+      </p>
 
-      <img class="text-message__avatar" v-if="message.avatar" :src="message.avatar" height="32" width="32"
-        :style="{ gridRow: message.subText ? '2' : '1' }">
-
-      <p class="text-message__subtext" v-if="message.subText">{{ message.subText }}</p>
-
-      <div class="text-message__content" @mouseenter="showMenu">
+      <div
+        class="text-message__content"
+        @mouseenter="showMenu"
+      >
         <p>{{ message.text }}</p>
         <div class="text-message__info-container">
-          <span v-if="message.time" class="text-message__time">{{ message.time }}</span>
-          <div class="text-message__status" :class="getStatus"
-            v-if="getClass(message) === 'text-message__right' && message.status">
-            <span v-if="message.status !== 'sent'" class="pi pi-check"></span>
-            <span class="pi pi-check"></span>
+          <span
+            v-if="message.time"
+            class="text-message__time"
+          >{{ message.time }}</span>
+          <div
+            v-if="getClass(message) === 'text-message__right' && message.status"
+            class="text-message__status"
+            :class="getStatus"
+          >
+            <span
+              v-if="message.status !== 'sent'"
+              class="pi pi-check"
+            />
+            <span class="pi pi-check" />
           </div>
         </div>
 
@@ -24,13 +49,13 @@
           class="text-message__menu-button" 
           @click="isOpenMenu = !isOpenMenu"
         >
-          <span class="pi pi-ellipsis-h"></span>
+          <span class="pi pi-ellipsis-h" />
         </button>
 
         <transition>
           <ContextMenu 
-            class="text-message__context-menu"
             v-if="isOpenMenu && message.actions"
+            class="text-message__context-menu"
             :actions="message.actions"
             @click="clickAction" 
           />

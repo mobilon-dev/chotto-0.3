@@ -1,13 +1,18 @@
 <template>
   <div>
-    <div class="chat-input__button-file" v-if="canUploadFile && uploadStatus !== 'success'">
-      <label >
-        <input type="file" @change="onFileSelected" />
+    <div
+      v-if="canUploadFile && uploadStatus !== 'success'"
+      class="chat-input__button-file"
+    >
+      <label>
+        <input
+          type="file"
+          @change="onFileSelected"
+        >
         <span>
-          <i class="pi pi-file-arrow-up"></i>
+          <i class="pi pi-file-arrow-up" />
         </span>
       </label>
-      
     </div>
     <div v-if="!canUploadFile && uploadStatus === 'success'">
       <p>Файл загружен и готов к отправке.</p>
@@ -20,7 +25,6 @@
         :fileName="selectedFile.name"
         :handleSendEventFunction='sendFunctionWrapper'
       /-->
-      
     </div>
     <div v-else-if="uploadStatus === 'uploading'">
       <p>Загрузка файла...</p>

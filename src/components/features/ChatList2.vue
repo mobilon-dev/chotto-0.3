@@ -1,25 +1,48 @@
 <template>
   <div class="chat-list">
     <div class="chat-list__container">
-      <h2 class="chat-list__title">Чаты</h2>
+      <h2 class="chat-list__title">
+        Чаты
+      </h2>
 
-      <ChatFilter class="chat-list__filter" @update="getFilter" v-if="filterEnabled" />
+      <ChatFilter
+        v-if="filterEnabled"
+        class="chat-list__filter"
+        @update="getFilter"
+      />
 
       <div class="chat-list__items">
         <div class="chat-list__fixed-items-top">
-          <chat class="chat-list__item" v-for="chat in getSortedAndFilteredChats().filter(c => c.isFixedTop)"
-            :key="chat.chatId" :chat="chat" @select="selectChat" @action="action" />
+          <chat
+            v-for="chat in getSortedAndFilteredChats().filter(c => c.isFixedTop)"
+            :key="chat.chatId"
+            class="chat-list__item"
+            :chat="chat"
+            @select="selectChat"
+            @action="action"
+          />
         </div>
 
         <div class="chat-list__scrollable-items">
-          <chat class="chat-list__item"
+          <chat
             v-for="chat in getSortedAndFilteredChats().filter(c => !c.isFixedBottom && !c.isFixedTop)"
-            :key="chat.chatId" :chat="chat" @select="selectChat" @action="action" />
+            :key="chat.chatId"
+            class="chat-list__item"
+            :chat="chat"
+            @select="selectChat"
+            @action="action"
+          />
         </div>
 
         <div class="chat-list__fixed-items-bottom">
-          <chat class="chat-list__item" v-for="chat in getSortedAndFilteredChats().filter(c => c.isFixedBottom)"
-            :key="chat.chatId" :chat="chat" @select="selectChat" @action="action" />
+          <chat
+            v-for="chat in getSortedAndFilteredChats().filter(c => c.isFixedBottom)"
+            :key="chat.chatId"
+            class="chat-list__item"
+            :chat="chat"
+            @select="selectChat"
+            @action="action"
+          />
         </div>
       </div>
     </div>

@@ -1,11 +1,14 @@
 <template>
-    <label class="theme-button">
-        <input type="checkbox" @click="toggleDarkMode">
-        <span class="theme-button__switch">
-            <span class="pi pi-sun"></span>
-            <span class="pi pi-moon"></span>
-        </span>
-    </label>
+  <label class="theme-button">
+    <input
+      type="checkbox"
+      @click="toggleDarkMode"
+    >
+    <span class="theme-button__switch">
+      <span class="pi pi-sun" />
+      <span class="pi pi-moon" />
+    </span>
+  </label>
 </template>
 
 <script setup>

@@ -2,21 +2,40 @@
   <div class="chat-input">
     <div class="chat-input__container">
       <Transition>
-        <EmojiPicker class="chat-input__emoji" :native="true" :theme="changeThemeDialogEmoji" @select="onSelectEmoji"
-          v-if="enabledEmojiPicker" pickerType="" />
+        <EmojiPicker
+          v-if="enabledEmojiPicker"
+          class="chat-input__emoji"
+          :native="true"
+          :theme="changeThemeDialogEmoji"
+          picker-type=""
+          @select="onSelectEmoji"
+        />
       </Transition>
-      <FileUploader @fileUploaded="fileUploaded" :canUploadFile="canUploadFile"></FileUploader>
+      <FileUploader
+        :can-upload-file="canUploadFile"
+        @file-uploaded="fileUploaded"
+      />
       
-      <input class="chat-input__input" v-model="message" ref="refInput" @keydown.enter="sendMessage"
-        placeholder="Type a message..." />
+      <input
+        ref="refInput"
+        v-model="message"
+        class="chat-input__input"
+        placeholder="Type a message..."
+        @keydown.enter="sendMessage"
+      >
       <Channels2 :channels="channels" />
-      <button class="chat-input__button-emoji" @click="toogleDialogEmoji">
-        <span class="pi pi-face-smile"></span>
+      <button
+        class="chat-input__button-emoji"
+        @click="toogleDialogEmoji"
+      >
+        <span class="pi pi-face-smile" />
       </button>
-      <button class="chat-input__button-send" @click="sendMessage">
-        <span class="pi pi-send"></span>
+      <button
+        class="chat-input__button-send"
+        @click="sendMessage"
+      >
+        <span class="pi pi-send" />
       </button>
-      
     </div>
   </div>
 </template>

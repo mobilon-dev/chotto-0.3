@@ -1,38 +1,81 @@
 <template>
-  <div :class="getClass()" @click="selectChat">
-    <div class="chat-item__container" @mouseenter="showMenu" @mouseleave="hideMenu">
+  <div
+    :class="getClass()"
+    @click="selectChat"
+  >
+    <div
+      class="chat-item__container"
+      @mouseenter="showMenu"
+      @mouseleave="hideMenu"
+    >
       <div class="chat-item__avatar-container">
-        <span class="chat-item__status" :style="{ backgroundColor: props.chat.status }"></span>
-        <img v-if="props.chat.avatar" :src="props.chat.avatar" height="32" width="32">
-        <span v-else class="pi pi-user">
-        </span>
+        <span
+          class="chat-item__status"
+          :style="{ backgroundColor: props.chat.status }"
+        />
+        <img
+          v-if="props.chat.avatar"
+          :src="props.chat.avatar"
+          height="32"
+          width="32"
+        >
+        <span
+          v-else
+          class="pi pi-user"
+        />
       </div>
 
       <div class="chat-item__info-container">
-        <div class="chat-item__name">{{ chat.name }}</div>
-        <div class="chat-item__last-message" v-if="chat.lastMessage">{{ chat.lastMessage }}</div>
+        <div class="chat-item__name">
+          {{ chat.name }}
+        </div>
+        <div
+          v-if="chat.lastMessage"
+          class="chat-item__last-message"
+        >
+          {{ chat.lastMessage }}
+        </div>
       </div>
 
       <div class="chat-item__details-container">
-        <div class="chat-item__time" v-if="!(buttonMenuVisible && chat.actions) && chat['lastActivity.time']">{{ chat['lastActivity.time']
+        <div
+          v-if="!(buttonMenuVisible && chat.actions) && chat['lastActivity.time']"
+          class="chat-item__time"
+        >
+          {{ chat['lastActivity.time']
           }}
         </div>
-        <div class="chat-item__unread" v-if="!(buttonMenuVisible && chat.actions) && chat.countUnread > 0">{{ chat.countUnread }}</div>
+        <div
+          v-if="!(buttonMenuVisible && chat.actions) && chat.countUnread > 0"
+          class="chat-item__unread"
+        >
+          {{ chat.countUnread }}
+        </div>
 
 
 
-        <button v-if="buttonMenuVisible && chat.actions" class="chat-item__menu-button"
-          @click="isOpenMenu = !isOpenMenu">
-          <span class="pi pi-ellipsis-h"></span>
+        <button
+          v-if="buttonMenuVisible && chat.actions"
+          class="chat-item__menu-button"
+          @click="isOpenMenu = !isOpenMenu"
+        >
+          <span class="pi pi-ellipsis-h" />
         </button>
 
 
-        <span v-if="chat.isFixedTop || chat.isFixedBottom" class="chat-item__fixed pi pi-thumbtack"></span>
+        <span
+          v-if="chat.isFixedTop || chat.isFixedBottom"
+          class="chat-item__fixed pi pi-thumbtack"
+        />
       </div>
 
       <transition>
-        <ContextMenu class="chat-item__context-menu" v-if="isOpenMenu && chat.actions" :actions="chat.actions"
-          @click="clickAction" />
+        <ContextMenu
+          v-if="isOpenMenu && chat.actions"
+          class="chat-item__context-menu"
+          :actions="chat.actions"
+          @click="clickAction"
+        />
       </transition>
     </div>
   </div>

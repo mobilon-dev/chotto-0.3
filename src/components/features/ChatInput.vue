@@ -1,7 +1,14 @@
 <template>
   <div class="chat-input">
-    <input v-model="message" ref="refInput" @keydown.enter="sendMessage" placeholder="Type a message..." />
-    <button @click="sendMessage">Send</button>
+    <input
+      ref="refInput"
+      v-model="message"
+      placeholder="Type a message..."
+      @keydown.enter="sendMessage"
+    >
+    <button @click="sendMessage">
+      Send
+    </button>
   </div>
 </template>
 

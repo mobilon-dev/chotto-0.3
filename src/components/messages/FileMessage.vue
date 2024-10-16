@@ -1,33 +1,68 @@
 <template>
-  <div class="file-message" :class="getClass(message)" :messageId="message.messageId" @mouseleave="hideMenu">
+  <div
+    class="file-message"
+    :class="getClass(message)"
+    :messageId="message.messageId"
+    @mouseleave="hideMenu"
+  >
+    <img
+      v-if="message.avatar"
+      class="file-message__avatar"
+      :src="message.avatar"
+      height="32"
+      width="32"
+      :style="{ gridRow: message.subText ? '2' : '1' }"
+    >
 
-    <img class="file-message__avatar" v-if="message.avatar" :src="message.avatar" height="32" width="32"
-      :style="{ gridRow: message.subText ? '2' : '1' }">
+    <p
+      v-if="message.subText"
+      class="file-message__subtext"
+    >
+      {{ message.subText }}
+    </p>
 
-    <p class="file-message__subtext" v-if="message.subText">{{ message.subText }}</p>
-
-    <div class="file-message__content" @mouseenter="showMenu">
-      <a class="file-message__link" :href="message.url" download>
-        <span class="pi pi-file"></span>
+    <div
+      class="file-message__content"
+      @mouseenter="showMenu"
+    >
+      <a
+        class="file-message__link"
+        :href="message.url"
+        download
+      >
+        <span class="pi pi-file" />
         {{ message.filename }}
       </a>
       <div class="file-message__info-container">
         <span class="file-message__time">{{ message.time }}</span>
-        <div class="file-message__status" :class="getStatus"
-          v-if="getClass(message) === 'file-message__right' && message.status">
-          <span v-if="message.status !== 'sent'" class="pi pi-check"></span>
-          <span class="pi pi-check"></span>
+        <div
+          v-if="getClass(message) === 'file-message__right' && message.status"
+          class="file-message__status"
+          :class="getStatus"
+        >
+          <span
+            v-if="message.status !== 'sent'"
+            class="pi pi-check"
+          />
+          <span class="pi pi-check" />
         </div>
       </div>
 
-      <button v-if="buttonMenuVisible && message.actions" class="file-message__menu-button"
-        @click="isOpenMenu = !isOpenMenu">
-        <span class="pi pi-ellipsis-h"></span>
+      <button
+        v-if="buttonMenuVisible && message.actions"
+        class="file-message__menu-button"
+        @click="isOpenMenu = !isOpenMenu"
+      >
+        <span class="pi pi-ellipsis-h" />
       </button>
 
       <transition>
-        <ContextMenu class="file-message__context-menu" v-if="isOpenMenu && message.actions" :actions="message.actions"
-          @click="clickAction" />
+        <ContextMenu
+          v-if="isOpenMenu && message.actions"
+          class="file-message__context-menu"
+          :actions="message.actions"
+          @click="clickAction"
+        />
       </transition>
     </div>
   </div>

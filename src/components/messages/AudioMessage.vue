@@ -1,49 +1,89 @@
 <template>
-  <div class="audio-message" :class="getClass(message)" :messageId="message.messageId" @mouseleave="hideMenu">
+  <div
+    class="audio-message"
+    :class="getClass(message)"
+    :messageId="message.messageId"
+    @mouseleave="hideMenu"
+  >
+    <img
+      v-if="message.avatar"
+      class="file-message__avatar"
+      :src="message.avatar"
+      height="32"
+      width="32"
+      :style="{ gridRow: message.subText ? '2' : '1' }"
+    >
 
-    <img class="file-message__avatar" v-if="message.avatar" :src="message.avatar" height="32" width="32"
-      :style="{ gridRow: message.subText ? '2' : '1' }">
+    <p
+      v-if="message.subText"
+      class="audio-message__subtext"
+    >
+      {{ message.subText }}
+    </p>
 
-    <p class="audio-message__subtext" v-if="message.subText">{{ message.subText }}</p>
-
-    <div class="audio-message__content" @mouseenter="showMenu">
-      <audio ref="player" :src="message.url"></audio>
-      <button class="audio-message__play" v-show="!isPlaying" @click="togglePlayPause">
-        <span class="pi pi-play"></span>
+    <div
+      class="audio-message__content"
+      @mouseenter="showMenu"
+    >
+      <audio
+        ref="player"
+        :src="message.url"
+      />
+      <button
+        v-show="!isPlaying"
+        class="audio-message__play"
+        @click="togglePlayPause"
+      >
+        <span class="pi pi-play" />
       </button>
-      <button class="audio-message__pause" v-show="isPlaying" @click="togglePlayPause">
-        <span class="pi pi-pause"></span>
+      <button
+        v-show="isPlaying"
+        class="audio-message__pause"
+        @click="togglePlayPause"
+      >
+        <span class="pi pi-pause" />
       </button>
       <div class="audio-message__progress-bar-container">
-        <div class="audio-message__progress-bar" :style="{ width: progressPercent + '%' }"></div>
+        <div
+          class="audio-message__progress-bar"
+          :style="{ width: progressPercent + '%' }"
+        />
       </div>
-      <p class="audio-message__remaining-time">{{ `${formatCurrentTime} / ${formatDuration}` }}</p>
+      <p class="audio-message__remaining-time">
+        {{ `${formatCurrentTime} / ${formatDuration}` }}
+      </p>
 
       <div class="audio-message__info-container">
         <span class="audio-message__time">{{ message.time }}</span>
-        <div class="audio-message__status" :class="getStatus"
-          v-if="getClass(message) === 'audio-message__right' && message.status">
-          <span v-if="message.status !== 'sent'" class="pi pi-check"></span>
-          <span class="pi pi-check"></span>
+        <div
+          v-if="getClass(message) === 'audio-message__right' && message.status"
+          class="audio-message__status"
+          :class="getStatus"
+        >
+          <span
+            v-if="message.status !== 'sent'"
+            class="pi pi-check"
+          />
+          <span class="pi pi-check" />
         </div>
       </div>
 
       <button 
         v-if="buttonMenuVisible && message.actions" 
         class="audio-message__menu-button" 
-        @click="isOpenMenu = !isOpenMenu">
-        <span class="pi pi-ellipsis-h"></span>
+        @click="isOpenMenu = !isOpenMenu"
+      >
+        <span class="pi pi-ellipsis-h" />
       </button>
 
       <transition>
         <ContextMenu 
-          class="audio-message__context-menu" 
           v-if="isOpenMenu && message.actions" 
+          class="audio-message__context-menu" 
           :actions="message.actions"
           @click="clickAction" 
         />
       </transition>
-
     </div>
   </div>
 </template>

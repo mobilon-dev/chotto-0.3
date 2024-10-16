@@ -1,7 +1,13 @@
 <template>
   <div class="chat-filter">
     <div class="chat-filter__container">
-      <input class="chat-filter__input" type="text" ref="refInput" @input="update" placeholder="Поиск...">
+      <input
+        ref="refInput"
+        class="chat-filter__input"
+        type="text"
+        placeholder="Поиск..."
+        @input="update"
+      >
     </div>
   </div>
 </template>
