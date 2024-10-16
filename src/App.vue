@@ -12,88 +12,35 @@
 import { onMounted, reactive } from 'vue';
 import ChatApp from './ChatApp.vue';
 
+import {messages} from './data/messages';
+import {chats} from './data/chats';
+
 // Mock data
 const data3 = {
-  messages: [
-    { chatId: 1, type: "message.call", direction: 'incoming', callDuration: "18 мин", isMissedCall: false, timestamp: '1727027959', avatar: 'https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg', subText: '89829445678' },
-    { chatId: 1, type: "message.text", text: "Привет!", direction: 'incoming', status: 'read', timestamp: '1727027959', actions: [{ action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' }] },
-    { chatId: 1, type: "message.text", text: "Привет!", direction: 'outgoing', status: 'received', timestamp: '1727027959', actions: [{ action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' }] },
-    { chatId: 1, type: "message.image", url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg", timestamp: '1727027959', alt: "Example Image", direction: 'outgoing', status: 'received', actions: [{ action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' }] },
-    { chatId: 1, type: "message.video", url: "https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3", text: "Привет!", direction: 'outgoing', status: 'read', timestamp: '1727027959', actions: [{ action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' }] },
-    { chatId: 2, type: "message.file", url: "https://axiomabio.com/pdf/test.pdf", filename: "Документ.pdf", direction: 'incoming', status: 'received', timestamp: '1727027959', actions: [{ action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' }] },
-    { chatId: 2, type: "message.text", text: "Привет!", direction: 'incoming', status: 'read', timestamp: '1727027959' },
-    { chatId: 2, type: "message.audio", url: "https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3", text: "Привет!", direction: 'incoming', status: 'received', subText: '89829445678', timestamp: '1727027959', actions: [{ action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' }] },
-    { chatId: 2, type: "message.image", url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg", alt: "Example Image", direction: 'incoming', subText: '89829445678', timestamp: '1726743559', },
-    { chatId: 3, type: "message.audio", url: "https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3", text: "Привет!", direction: 'incoming', status: 'read', timestamp: '1727027959' },
-    { chatId: 3, type: "message.image", url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg", alt: "Example Image", direction: 'outgoing', timestamp: '1726743559', },
-    { chatId: 4, type: "message.audio", url: "https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3", text: "Привет!", direction: 'incoming', status: 'read', timestamp: '1727027959' },
-    { chatId: 4, type: "message.image", url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg", alt: "Example Image", direction: 'outgoing', timestamp: '1726743559', },
-  ],
-  chats: [
-    {
-      chatId: 1, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, status: "#767676", actions: [
-        { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
-      ]
-    },
-    {
-      chatId: 2, name: "Мария", countUnread: 0, isFixedTop: true, actions: [
-        { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'unpin', title: 'открепить' },
-      ]
-    },
-    {
-      chatId: 3, name: "Анна", countUnread: 0, isFixedBottom: true, actions: [
-        { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'unpin', title: 'открепить' },
-      ]
-    },
-    {
-      chatId: 4, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, status: "#00b972", actions: [
-        { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
-      ]
-    },
-    {
-      chatId: 5, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
-        { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
-      ]
-    },
-    {
-      chatId: 6, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
-        { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
-      ]
-    },
-    {
-      chatId: 7, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
-        { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
-      ]
-    },
-    {
-      chatId: 8, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
-        { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
-      ]
-    },
-    {
-      chatId: 9, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
-        { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
-      ]
-    },
-    {
-      chatId: 10, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
-        { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
-      ]
-    },
-    {
-      chatId: 11, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
-        { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
-      ]
-    },
-    {
-      chatId: 12, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
-        { action: 'edit', title: 'изменить', icon: 'fa-edit' }, { action: 'delete', title: 'удалить' },
-      ]
-    },
-  ],
+  messages,
+  chats,
   channels: [
     { channelId: 'channel1', title: 'test channel 1', icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/240px-Telegram_logo.svg.png' },
     { channelId: 'channel2', title: 'test channel 2' },
+  ],
+  sidebarItems: [
+    {
+      icon: 'https://dummyimage.com/64x64/000/fff.png&text=SD',
+      name: 'manager1',
+    },
+    {
+      icon: 'https://dummyimage.com/64x64/000/fff.png&text=PN',
+      name: 'manager2',
+    },
+    {
+      icon: 'https://dummyimage.com/64x64/000/fff.png&text=MV',
+      name: 'manager3',
+    },
+    {
+      icon: 'https://dummyimage.com/64x64/000/fff.png&text=PS',
+      name: 'manager4',
+      isFixedBottom: true,
+    },
   ],
 };
 
@@ -126,6 +73,9 @@ const dataProvider = {
   addMessage(message) {
     data3.messages.push(message);
     console.log("Добавлено новое сообщение:", message);
+  },
+  getSidebarItems() {
+    return data3.sidebarItems;
   }
 };
 
