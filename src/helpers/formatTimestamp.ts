@@ -1,4 +1,5 @@
 export function formatTimestamp(timestamp: string) {
+  if(!timestamp || timestamp === '') return;
 
   const date: number = + new Date(Number(timestamp) * 1000);
   const now: number = + new Date();
