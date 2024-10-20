@@ -17,7 +17,7 @@ Vue3 Chat UI components - собери свой интерфейс чата
 
 ## скриншот
 
-![](images/screenshot3.png)
+![](images/screenshot4.png)
 
 
 # разработка
