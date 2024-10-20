@@ -15,7 +15,7 @@
             :chats="chatsStore.chats"
             filter-enabled
             @select="selectChat"
-            @action="action"
+            @action="chatAction"
           />
           <ThemeMode />
         </div>
@@ -36,6 +36,7 @@
               class="chat-app__feed"
               :objects="messages"
               :style="{ padding: isOpenChatPanel ? '0 20px 50px 20px' : '0 80px 50px 80px' }"
+              @messageAction="messageAction"
             />
             <ChatInput2
               :enable-emoji="true"
@@ -86,6 +87,7 @@ import {
 } from './helpers';
 
 import { useChatsStore } from './stores/useChatStore';
+import {transformToFeed} from './transform/transformToFeed';
 
 // Define props
 const props = defineProps({
@@ -115,18 +117,15 @@ const sidebarItems = ref([])
 const isOpenChatPanel = ref(false)
 
 const selectItem = (item) => {
-  sidebarItems.value.forEach(c => c.isSelected = false);
-  const c = sidebarItems.value.find(c => c.name === item.name);
-  c.isSelected = true;
+  console.log('selected sidebar item', item);
 };
 
-const action = (data) => {
-  console.log('action 1111', data);
+const chatAction = (data) => {
+  console.log('chat action', data);
 }
 
-const readableFormat = (timestamp) => {
-  // @todo: преобразование timestamp в читаемый вид
-  return formatTimestamp(timestamp);
+const messageAction = (data) => {
+  console.log('message action', data);
 }
 
 const getUsers = () => {
@@ -146,22 +145,7 @@ const getFeedObjects = () => {
   if (selectedChat.value) {
     // здесь обработка для передачи сообщений в feed
     const messages = props.dataProvider.getFeed(selectedChat.value.chatId);
-
-    // а. сортировка по timestamp
-    const messages1 = sortByTimestamp(messages);
-
-    // б. переформатирование
-    const messages2 = messages1.map((m) => {
-      return {
-        ...m,
-        position: m.direction === 'outgoing' ? 'right' : 'left',
-        time: readableFormat(m.timestamp),
-      };
-    });
-
-    // в. вставка временных отсечек
-    const messages3 = insertDaySeparators(messages2);
-
+    const messages3 = transformToFeed(messages);
     return messages3;
   } else {
     return [];

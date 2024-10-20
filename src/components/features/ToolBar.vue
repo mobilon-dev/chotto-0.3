@@ -35,7 +35,6 @@
 </template>
 
 <script setup>
-import { background } from 'storybook/internal/theming';
 import { ref } from 'vue'
 
 const props = defineProps({
