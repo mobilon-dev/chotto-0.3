@@ -3,7 +3,7 @@
     <div class="tool-bar__container">
       <ul class="tool-bar__list">
         <li
-          v-for="(item, index) in props.sidebarItems"
+          v-for="(item, index) in props.sidebarItems.filter(i => !i.isFixedBottom)"
           :key="index"
           class="tool-bar__item"
           :style="{ backgroundColor: item === selectedItem ? 'var(--neutral-300)' : 'transparent' }"
