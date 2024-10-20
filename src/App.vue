@@ -14,6 +14,7 @@ import ChatApp from './ChatApp.vue';
 
 import { messages } from './data/messages';
 import { chats } from './data/chats';
+import { sidebarItems } from './data/sidebarItems';
 
 // Mock data
 const data3 = {
@@ -23,25 +24,7 @@ const data3 = {
     { channelId: 'channel1', title: 'test channel 1', icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/240px-Telegram_logo.svg.png' },
     { channelId: 'channel2', title: 'test channel 2' },
   ],
-  sidebarItems: [
-    {
-      icon: 'https://dummyimage.com/64x64/000/fff.png&text=SD',
-      name: 'manager1',
-    },
-    {
-      icon: 'https://dummyimage.com/64x64/000/fff.png&text=PN',
-      name: 'manager2',
-    },
-    {
-      icon: 'https://dummyimage.com/64x64/000/fff.png&text=MV',
-      name: 'manager3',
-    },
-    {
-      icon: 'https://dummyimage.com/64x64/000/fff.png&text=PS',
-      name: 'manager4',
-      isFixedBottom: true,
-    },
-  ],
+  sidebarItems,
 };
 
 // Define the auth provider
