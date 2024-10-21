@@ -55,6 +55,7 @@
         <ChatPanel
           v-if="isOpenChatPanel"
           class="chat-app__chat-panel chat-app__chat-panel--active"
+          @close-panel="isOpenChatPanel = !isOpenChatPanel"
         />
       </div>
     </div>
@@ -113,6 +114,7 @@ const channels = ref([]);
 const sidebarItems = ref([])
 
 const isOpenChatPanel = ref(false)
+
 
 const selectItem = (item) => {
   sidebarItems.value.forEach(c => c.isSelected = false);

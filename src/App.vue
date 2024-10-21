@@ -26,20 +26,33 @@ const data3 = {
   sidebarItems: [
     {
       icon: 'https://dummyimage.com/64x64/000/fff.png&text=SD',
-      name: 'manager1',
+      name: 'Василий Петрович Бондарев',
+      notificationCount: 100,
+      notificationColor: '#FF0000',
     },
     {
       icon: 'https://dummyimage.com/64x64/000/fff.png&text=PN',
-      name: 'manager2',
+      name: 'Радий Юсупович',
+      notificationCount: 10,
+      notificationColor: '#FF0000',
     },
     {
       icon: 'https://dummyimage.com/64x64/000/fff.png&text=MV',
-      name: 'manager3',
+      name: 'Виталий',
+      notificationCount: 7,
+      notificationColor: '#FF0000',
+    },
+    {
+      icon: 'https://dummyimage.com/64x64/000/fff.png&text=DP',
+      notificationCount: 0,
+      notificationColor: '#FF0000',
     },
     {
       icon: 'https://dummyimage.com/64x64/000/fff.png&text=PS',
-      name: 'manager4',
+      name: 'Борис',
       isFixedBottom: true,
+      notificationCount: 99,
+      notificationColor: '#00FF00',
     },
   ],
 };
