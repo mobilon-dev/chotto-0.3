@@ -36,7 +36,7 @@
               class="chat-app__feed"
               :objects="messages"
               :style="{ padding: isOpenChatPanel ? '0 20px 50px 20px' : '0 80px 50px 80px' }"
-              @messageAction="messageAction"
+              @message-action="messageAction"
             />
             <ChatInput
               :enable-emoji="true"

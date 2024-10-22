@@ -11,9 +11,15 @@
   </label> -->
 
   <div>
-    <button @click="changeTheme('light')">Light</button>
-    <button @click="changeTheme('dark')">Dark</button>
-    <button @click="changeTheme('green')">Green</button>
+    <button @click="changeTheme('light')">
+      Light
+    </button>
+    <button @click="changeTheme('dark')">
+      Dark
+    </button>
+    <button @click="changeTheme('green')">
+      Green
+    </button>
   </div>
 </template>
 
