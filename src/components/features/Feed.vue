@@ -10,6 +10,7 @@
         :key="object.messageId"
         class="message-feed__message"
         :message="object"
+        @action="messageAction"
       />
     </div>
   </div>
@@ -36,6 +37,8 @@ const props = defineProps({
   },
 });
 
+const emit = defineEmits(['messageAction']);
+
 // Register components
 const componentsMap = (type) => {
   const r = {
@@ -59,6 +62,10 @@ function scrollToFeedBottom() {
 
 onUpdated(() => scrollToFeedBottom);
 watch(() => props.objects, scrollToFeedBottom);
+const messageAction = (message) => {
+  emit('messageAction', message);
+}
+
 
 </script>
 

@@ -5,7 +5,7 @@
         <!-- :style="{ backgroundColor: item === selectedItem ? 'var(--neutral-300)' : 'transparent' }"
         @click="selectItem(item)" -->
         <li
-          v-for="(item, index) in props.sidebarItems"
+          v-for="(item, index) in props.sidebarItems.filter(i => !i.isFixedBottom)"
           :key="index"
           class="tool-bar__item"
         >
@@ -53,7 +53,6 @@
 </template>
 
 <script setup>
-import { background } from 'storybook/internal/theming';
 import { ref } from 'vue'
 
 const props = defineProps({
