@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
  
-import Chat2 from './Chat2.vue';
+import Chat from './Chat.vue';
  
-const meta: Meta<typeof Chat2> = {
-  component: Chat2,
+const meta: Meta<typeof Chat> = {
+  component: Chat,
 };
  
 export default meta;
-type Story = StoryObj<typeof Chat2>;
+type Story = StoryObj<typeof Chat>;
  
 const chat = {  
   name: "John Doe",
@@ -21,7 +21,7 @@ const actions = [
   {action: 'delete', title: 'удалить',},
 ]
 
-export const Chat: Story = {
+export const ChatBasic: Story = {
   args: {
     chat: {
       ...chat,
