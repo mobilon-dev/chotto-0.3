@@ -10,7 +10,7 @@
         </div>
         <div class="chat-app__center-bar">
           <Profile :user="userProfile" />
-          <ChatList2
+          <ChatList
             class="chat-app__chat-list"
             :chats="chatsStore.chats"
             filter-enabled
@@ -38,7 +38,7 @@
               :style="{ padding: isOpenChatPanel ? '0 20px 50px 20px' : '0 80px 50px 80px' }"
               @messageAction="messageAction"
             />
-            <ChatInput2
+            <ChatInput
               :enable-emoji="true"
               :channels="channels"
               @send="addMessage"
@@ -69,8 +69,8 @@ import { onMounted, ref } from 'vue';
 
 import {
   ChatInfo,
-  ChatInput2,
-  ChatList2,
+  ChatInput,
+  ChatList,
   CreateNewChat,
   Feed,
   Profile,

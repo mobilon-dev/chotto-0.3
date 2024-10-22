@@ -20,7 +20,7 @@
 import { ref, unref, watch, nextTick, onUpdated } from 'vue';
 
 import FileMessage from "../messages/FileMessage.vue";
-import ImageMessage from "../messages/ImageMessage2.vue";
+import ImageMessage from "../messages/ImageMessage.vue";
 import TextMessage from "../messages/TextMessage.vue";
 import DateMessage from '../messages/DateMessage.vue';
 import AudioMessage from '../messages/AudioMessage.vue';

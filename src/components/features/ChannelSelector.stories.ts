@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
  
 // import Channels from './Channels.vue';
-import Channels from './Channels2.vue';
+import Channels from './ChannelSelector.vue';
 
 const meta: Meta<typeof Channels> = {
   component: Channels,

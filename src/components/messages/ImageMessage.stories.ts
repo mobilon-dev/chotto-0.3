@@ -10,25 +10,25 @@ export default meta;
 type Story = StoryObj<typeof ImageMessage>;
 
 export const LeftImageMessage: Story = {
-  args: {
-    message: {
-      url: 'https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg',
-      alt: 'left',
-      messageId: 'testMessageId',
-      time: '12:00',
-      status: 'read',
+  args: {   
+    message: { 
+      position: 'left',
+      text: "Вот картинка55656",
+      url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg",
+      status: 'sent',
+      time: '20:55',
     },
   },
 };
 
 export const RightImageMessage: Story = {
-  args: {
+  args: {   
     message: {
-      url: 'https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg',
-      alt: 'right',
-      messageId: 'testMessageId',
-      time: '12:00',
+      position: 'right',
+      text: "Вот картинка55656",
+      url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg",
       status: 'read',
+      time: '20:55',
     },
   },
 };

@@ -32,7 +32,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import ChatInput2 from './ChatInput2.vue';
+import ChatInput2 from './ChatInput.vue';
 
 const props = defineProps({
   previewUrl: {
