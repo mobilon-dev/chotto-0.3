@@ -9,6 +9,8 @@ import ThemeMode from './ThemeMode.vue';
 import ToolBar from './ToolBar.vue';
 import ChatPanel from './ChatPanel.vue'
 import ChannelSelector from './ChannelSelector.vue';
+import Chat from './Chat.vue';
+import ChatFilter from './ChatFilter.vue';
 
 export {
   CreateNewChat,
@@ -22,4 +24,6 @@ export {
   ToolBar,
   ChatPanel,
   ChannelSelector,
+  Chat,
+  ChatFilter,
 }

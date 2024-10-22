@@ -51,8 +51,8 @@
 
 <script setup>
 import { ref } from 'vue';
-import Chat from "../base/Chat.vue";
-import ChatFilter from '../base/ChatFilter.vue';
+import Chat from "./Chat.vue";
+import ChatFilter from './ChatFilter.vue';
 
 
 const filter = ref('');
