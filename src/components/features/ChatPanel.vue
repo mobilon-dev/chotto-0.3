@@ -1,7 +1,19 @@
 <template>
   <div class="chat-panel">
     <div class="chat-panel__container">
-      <p class="chat-panel__title">О чате</p>
+      <div class="chat-panel__title-container">
+        <p class="chat-panel__title">
+          О чате
+        </p>
+
+        <button
+          class="chat-panel__button-close"
+          @click="$emit('close-panel')"
+        >
+          <span class="pi pi-times" />
+        </button>
+      </div>
+
 
       <div class="chat-panel__a">
         Lorem ipsum, dolor sit amet consectetur adipisicing elit.
@@ -22,6 +34,7 @@
 </template>
 
 <script setup>
+const emit = defineEmits(['close-panel']);
 </script>
 
 <style
@@ -39,10 +52,26 @@
     row-gap: 20px;
   }
 
+  &__title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   &__title {
     font-size: 22px;
     font-weight: 500;
+  }
 
+  &__button-close {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    span {
+      font-size: var(--icon-font-size-medium);
+      color: var(--neutral-600);
+    }
   }
 
   &__a,
