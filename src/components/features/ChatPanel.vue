@@ -2,8 +2,11 @@
   <div class="chat-panel">
     <div class="chat-panel__container">
       <div class="chat-panel__title-container">
-        <p class="chat-panel__title">
-          О чате
+        <p
+          v-if="title"
+          class="chat-panel__title"
+        >
+          {{ title }}
         </p>
 
         <button
@@ -14,26 +17,20 @@
         </button>
       </div>
 
-
-      <div class="chat-panel__a">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-      </div>
-
-      <div class="chat-panel__b">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum, possimus nam expedita nostrum doloremque quod
-        temporibus quas reprehenderit ea deleniti nemo, non molestias explicabo quos, debitis dolorem neque laborum
-        commodi.
-      </div>
-
-      <div class="chat-panel__c">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit, magni, ducimus ullam, laborum deserunt
-        nihil velit similique
-      </div>
+      
+      <slot name="content" />
+      
     </div>
   </div>
 </template>
 
 <script setup>
+const props = defineProps({
+  title: {
+    type: String,
+  }
+})
+
 const emit = defineEmits(['close-panel']);
 </script>
 
