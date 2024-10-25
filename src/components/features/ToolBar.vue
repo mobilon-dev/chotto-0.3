@@ -8,6 +8,7 @@
           v-for="(item, index) in props.sidebarItems.filter(i => !i.isFixedBottom)"
           :key="index"
           class="tool-bar__item"
+          @click="selectItem(item)"
         >
           <img
             :src="item.icon"
@@ -32,6 +33,7 @@
           v-for="(item, index) in props.sidebarItems.filter(i => i.isFixedBottom)"
           :key="index"
           class="tool-bar__item"
+          @click="selectItem(item)"
         >
           <img
             :src="item.icon"
