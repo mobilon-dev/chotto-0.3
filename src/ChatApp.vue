@@ -37,6 +37,7 @@
               :objects="messages"
               :style="{ padding: isOpenChatPanel ? '0 20px 50px 20px' : '0 80px 50px 80px' }"
               @message-action="messageAction"
+              @load-more="loadMore"
             />
             <ChatInput
               :enable-emoji="true"
@@ -56,8 +57,13 @@
         <ChatPanel
           v-if="isOpenChatPanel"
           class="chat-app__chat-panel chat-app__chat-panel--active"
+          :title="selectedChat.name"
           @close-panel="isOpenChatPanel = !isOpenChatPanel"
-        />
+        >
+          <template #content>
+            test
+          </template>
+        </ChatPanel>
       </div>
     </div>
     <!-- <CreateNewChat :users="getUsers()" @createNewChat="createNewChat" title="+ чат" :isChatName="true"/>     -->
@@ -141,7 +147,11 @@ const createNewChat = (obj) => {
   chatsStore.addChat(chat);
 }
 
-// Methods
+const loadMore = () => {
+  // do load more messages to feed
+  console.log('load more')
+}
+
 const getFeedObjects = () => {
   // console.log('get feed')
   if (selectedChat.value) {
@@ -186,7 +196,6 @@ const handleEvent = async (event) => {
   }
 };
 
-// Lifecycle hook
 onMounted(() => {
   // console.log('mounted')
   props.eventor.subscribe(handleEvent);

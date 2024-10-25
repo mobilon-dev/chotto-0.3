@@ -2,6 +2,7 @@
   <div
     ref="refFeed"
     class="message-feed"
+    @scroll="scrollTopCheck"
   >
     <div class="message-feed__container">
       <component
@@ -27,7 +28,7 @@ import AudioMessage from '../messages/AudioMessage.vue';
 import VideoMessage from '../messages/VideoMessage.vue'
 import CallMessage from '../messages/CallMessage.vue'
 
-const refFeed = ref(null);
+const refFeed = ref();
 
 // Define props
 const props = defineProps({
@@ -37,7 +38,15 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['messageAction']);
+const emit = defineEmits(['messageAction', 'loadMore']);
+
+const scrollTopCheck = (e) => {
+  const element = unref(refFeed);
+  // console.log('eeee', element.scrollTop)
+  if(element.scrollTop === 0){
+    emit('loadMore');
+  }
+}
 
 // Register components
 const componentsMap = (type) => {
@@ -62,6 +71,7 @@ function scrollToFeedBottom() {
 
 onUpdated(() => scrollToFeedBottom);
 watch(() => props.objects, scrollToFeedBottom);
+
 const messageAction = (message) => {
   emit('messageAction', message);
 }
