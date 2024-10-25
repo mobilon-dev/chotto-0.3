@@ -22,6 +22,7 @@
         class="chat-input__input"
         placeholder="Type a message..."
         @keydown.enter="sendMessage"
+        @input="sendTyping"
       >
       <ChannelSelector :channels="channels" />
       <button
@@ -50,7 +51,7 @@ import 'vue3-emoji-picker/css';
 import ChannelSelector from './ChannelSelector.vue'
 
 // Define emits
-const emit = defineEmits(['send']);
+const emit = defineEmits(['send', 'typing']);
 
 // Define reactive message state
 const message = defineModel();
@@ -86,6 +87,11 @@ const fileUploaded = (obj) => {
   fileLink.value = obj;
 }
 
+const sendTyping = (event) => {
+  // console.log('typing', event.target.value);
+  emit('typing', event.target.value);
+}
+
 // Define the method to send the message
 const sendMessage = () => {
   enabledEmojiPicker.value = false;
@@ -106,8 +112,6 @@ const sendMessage = () => {
   fileLink.value = false;
   message.value = '';
   unref(refInput).focus()
-
-
 };
 
 const toogleDialogEmoji = () => {
