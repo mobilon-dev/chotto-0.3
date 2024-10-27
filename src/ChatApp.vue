@@ -30,21 +30,29 @@
           v-if="selectedChat"
           class="chat-app__right-bar-container"
         >
-          <ChatInfo
-            :chat="selectedChat"
-            @open-panel="isOpenChatPanel = !isOpenChatPanel"
-          />
-          <Feed
-            class="chat-app__feed"
-            :objects="messages"
-            :style="{ padding: isOpenChatPanel ? '0 20px 50px 20px' : '0 80px 50px 80px' }"
-            @message-action="messageAction"
-          />
-          <ChatInput
-            :enable-emoji="true"
-            :channels="channels"
-            @send="addMessage"
-          />
+            <ChatInfo
+              :chat="selectedChat"
+              @open-panel="isOpenChatPanel = !isOpenChatPanel"
+            />
+            <Feed
+              class="chat-app__feed"
+              :objects="messages"
+              :style="{ padding: isOpenChatPanel ? '0 20px 50px 20px' : '0 80px 50px 80px' }"
+              @message-action="messageAction"
+              @load-more="loadMore"
+            />
+            <ChatInput
+              :enable-emoji="true"
+              :channels="channels"
+              @send="addMessage"
+            />
+          </div>
+          <p
+            v-else
+            class="chat-app__welcome-text"
+          >
+            Выберите контакт для начала общения
+          </p>
         </div>
         <p
           v-else
@@ -55,11 +63,17 @@
       </div>
 
 
-      <ChatPanel
-        v-if="isOpenChatPanel"
-        class="chat-app__chat-panel chat-app__chat-panel--active"
-        @close-panel="isOpenChatPanel = !isOpenChatPanel"
-      />
+        <ChatPanel
+          v-if="isOpenChatPanel"
+          class="chat-app__chat-panel chat-app__chat-panel--active"
+          :title="selectedChat.name"
+          @close-panel="isOpenChatPanel = !isOpenChatPanel"
+        >
+          <template #content>
+            test
+          </template>
+        </ChatPanel>
+      </div>
       <FloatWindow
         v-if="isOpenFloatWindow"
         class="chat-app__float-window"
@@ -166,7 +180,11 @@ const createNewChat = (obj) => {
   chatsStore.addChat(chat);
 }
 
-// Methods
+const loadMore = () => {
+  // do load more messages to feed
+  console.log('load more')
+}
+
 const getFeedObjects = () => {
   // console.log('get feed')
   if (selectedChat.value) {
@@ -211,7 +229,6 @@ const handleEvent = async (event) => {
   }
 };
 
-// Lifecycle hook
 onMounted(() => {
   // console.log('mounted')
   props.eventor.subscribe(handleEvent);
