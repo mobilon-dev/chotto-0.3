@@ -84,10 +84,16 @@ const messageAction = (message) => {
   lang="scss"
 >
 .message-feed {
-  height: fit-content;
-  margin-top: auto;
-
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   overflow-y: auto;
+  position: relative;
+  background-image: url('../../../public/chat-background.svg');
+
+  &__container {
+    margin-top: auto;
+  }
 
   &__message {
     position: relative;
@@ -98,7 +104,6 @@ const messageAction = (message) => {
     left: 0;
     top: 50%;
   }
-
 
   &::-webkit-scrollbar {
     width: 6px;

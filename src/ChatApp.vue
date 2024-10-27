@@ -1,33 +1,35 @@
 <template>
-  <div>
-    <div class="chat-app">
-      <div class="chat-app__container">
-        <div class="chat-app__left-bar">
-          <ToolBar
-            :sidebar-items="sidebarItems"
-            @select-item="selectItem"
-          />
-        </div>
-        <div class="chat-app__center-bar">
-          <Profile :user="userProfile" />
-          <ChatList
-            class="chat-app__chat-list"
-            :chats="chatsStore.chats"
-            filter-enabled
-            @select="selectChat"
-            @action="chatAction"
-          />
-          <ThemeMode />
-        </div>
+  <div
+    ref="chatApp"
+    class="chat-app"
+  >
+    <div class="chat-app__container">
+      <div class="chat-app__left-bar">
+        <ToolBar
+          :sidebar-items="sidebarItems"
+          @select-item="selectItem"
+        />
+      </div>
+      <div class="chat-app__center-bar">
+        <Profile :user="userProfile" />
+        <ChatList
+          class="chat-app__chat-list"
+          :chats="chatsStore.chats"
+          filter-enabled
+          @select="selectChat"
+          @action="chatAction"
+        />
+        <ThemeMode />
+      </div>
 
+      <div
+        class="chat-app__right-bar"
+        :style="{ gridColumn: isOpenChatPanel ? '3' : '3 / 5', }"
+      >
         <div
-          class="chat-app__right-bar"
-          :style="{ gridColumn: isOpenChatPanel ? '3' : '3 / 5', }"
+          v-if="selectedChat"
+          class="chat-app__right-bar-container"
         >
-          <div
-            v-if="selectedChat"
-            class="chat-app__right-bar-container"
-          >
             <ChatInfo
               :chat="selectedChat"
               @open-panel="isOpenChatPanel = !isOpenChatPanel"
@@ -52,6 +54,13 @@
             Выберите контакт для начала общения
           </p>
         </div>
+        <p
+          v-else
+          class="chat-app__welcome-text"
+        >
+          Выберите контакт для начала общения
+        </p>
+      </div>
 
 
         <ChatPanel
@@ -65,13 +74,19 @@
           </template>
         </ChatPanel>
       </div>
+      <FloatWindow
+        v-if="isOpenFloatWindow"
+        class="chat-app__float-window"
+        :update-chat-app-size="updateChatAppSize"
+        @close-window="isOpenFloatWindow = !isOpenFloatWindow"
+      />
     </div>
-    <!-- <CreateNewChat :users="getUsers()" @createNewChat="createNewChat" title="+ чат" :isChatName="true"/>     -->
   </div>
+  <!-- <CreateNewChat :users="getUsers()" @createNewChat="createNewChat" title="+ чат" :isChatName="true"/>     -->
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch, reactive } from 'vue';
 
 import {
   ChatInfo,
@@ -84,6 +99,7 @@ import {
   ThemeMode,
   ToolBar,
   ChatPanel,
+  FloatWindow,
 } from "./components/features";
 
 import {
@@ -94,7 +110,7 @@ import {
 } from './helpers';
 
 import { useChatsStore } from './stores/useChatStore';
-import {transformToFeed} from './transform/transformToFeed';
+import { transformToFeed } from './transform/transformToFeed';
 
 // Define props
 const props = defineProps({
@@ -122,7 +138,23 @@ const channels = ref([]);
 const sidebarItems = ref([])
 
 const isOpenChatPanel = ref(false)
+const isOpenFloatWindow = ref(true)
 
+
+const chatApp = ref(null);
+
+const chatAppSize = ref({
+  width: 0,
+  height: 0
+})
+
+const updateChatAppSize = () => {
+
+  return chatAppSize.value = {
+    width: chatApp.value.offsetWidth,
+    height: chatApp.value.offsetHeight
+  }
+}
 
 const selectItem = (item) => {
   console.log('selected sidebar item', item);
@@ -135,6 +167,7 @@ const chatAction = (data) => {
 const messageAction = (data) => {
   console.log('message action', data);
 }
+
 
 const getUsers = () => {
   return (props.dataProvider.getChats()).map(c => { return { ...c, userId: c.chatId.toString() } });
@@ -211,6 +244,8 @@ onMounted(() => {
   lang="scss"
 >
 .chat-app {
+  position: relative;
+
   &__container {
     display: grid;
     grid-template-columns: min-content 1.25fr 3fr 1.25fr;
@@ -263,6 +298,13 @@ onMounted(() => {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  &__float-window {
+    position: absolute;
+    right: 0;
+    top: 0;
+
   }
 }
 

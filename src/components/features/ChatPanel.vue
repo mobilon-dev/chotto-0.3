@@ -19,7 +19,6 @@
 
       
       <slot name="content" />
-      
     </div>
   </div>
 </template>
