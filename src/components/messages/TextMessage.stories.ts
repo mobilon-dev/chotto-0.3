@@ -19,8 +19,15 @@ const message = {
 };
 
 const actions = [
-  { action: 'edit', title: 'изменить', },
-  { action: 'delete', title: 'удалить', },
+  { 
+    action: 'edit', 
+    title: 'изменить', 
+    icon: 'https://dummyimage.com/16x16/000/fff.png&text=edit',
+  },
+  { action: 'delete', 
+    title: 'удалить', 
+    icon: 'https://dummyimage.com/16x16/000/fff.png&text=del',
+  },
 ]
 
 const messageWithoutTime = {
@@ -94,6 +101,16 @@ export const LeftMessageWithAvatar: Story = {
       ...message,
       position: 'left',
       avatar: 'https://dummyimage.com/64x64/000/fff.png&text=PN',
+    },
+  },
+};
+
+export const LeftMessageWithLongTime: Story = {
+  args: {
+    message: {
+      ...message,
+      position: 'left',
+      time: 'двенадцать дней назад',
     },
   },
 };
@@ -185,6 +202,16 @@ export const RightMessageWithAvatar: Story = {
   },
 };
 
+export const RightMessageWithLongTime: Story = {
+  args: {
+    message: {
+      ...message,
+      position: 'right',
+      time: 'двенадцать дней назад',
+    },
+  },
+};
+
 export const LeftMessageMax: Story = {
   args: {
     message: {
@@ -193,6 +220,7 @@ export const LeftMessageMax: Story = {
       subText: 'тест тест тест тест',
       actions,
       avatar: 'https://dummyimage.com/64x64/000/fff.png&text=SD',
+      time: 'два дня назад',
     },
   },
 };
@@ -205,6 +233,7 @@ export const RightMessageMax: Story = {
       subText: 'тест тест тест тест',
       actions,
       avatar: 'https://dummyimage.com/64x64/000/fff.png&text=SD',
+      time: 'два дня назад',
     },
   },
 };
