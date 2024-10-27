@@ -30,29 +30,22 @@
           v-if="selectedChat"
           class="chat-app__right-bar-container"
         >
-            <ChatInfo
-              :chat="selectedChat"
-              @open-panel="isOpenChatPanel = !isOpenChatPanel"
-            />
-            <Feed
-              class="chat-app__feed"
-              :objects="messages"
-              :style="{ padding: isOpenChatPanel ? '0 20px 50px 20px' : '0 80px 50px 80px' }"
-              @message-action="messageAction"
-              @load-more="loadMore"
-            />
-            <ChatInput
-              :enable-emoji="true"
-              :channels="channels"
-              @send="addMessage"
-            />
-          </div>
-          <p
-            v-else
-            class="chat-app__welcome-text"
-          >
-            Выберите контакт для начала общения
-          </p>
+          <ChatInfo
+            :chat="selectedChat"
+            @open-panel="isOpenChatPanel = !isOpenChatPanel"
+          />
+          <Feed
+            class="chat-app__feed"
+            :objects="messages"
+            :style="{ padding: isOpenChatPanel ? '0 20px 50px 20px' : '0 80px 50px 80px' }"
+            @message-action="messageAction"
+            @load-more="loadMore"
+          />
+          <ChatInput
+            :enable-emoji="true"
+            :channels="channels"
+            @send="addMessage"
+          />
         </div>
         <p
           v-else
@@ -62,25 +55,23 @@
         </p>
       </div>
 
-
-        <ChatPanel
-          v-if="isOpenChatPanel"
-          class="chat-app__chat-panel chat-app__chat-panel--active"
-          :title="selectedChat.name"
-          @close-panel="isOpenChatPanel = !isOpenChatPanel"
-        >
-          <template #content>
-            test
-          </template>
-        </ChatPanel>
-      </div>
-      <FloatWindow
-        v-if="isOpenFloatWindow"
-        class="chat-app__float-window"
-        :update-chat-app-size="updateChatAppSize"
-        @close-window="isOpenFloatWindow = !isOpenFloatWindow"
-      />
+      <ChatPanel
+        v-if="isOpenChatPanel"
+        class="chat-app__chat-panel chat-app__chat-panel--active"
+        :title="selectedChat.name"
+        @close-panel="isOpenChatPanel = !isOpenChatPanel"
+      >
+        <template #content>
+          test
+        </template>
+      </ChatPanel>
     </div>
+    <FloatWindow
+      v-if="isOpenFloatWindow"
+      class="chat-app__float-window"
+      :update-chat-app-size="updateChatAppSize"
+      @close-window="isOpenFloatWindow = !isOpenFloatWindow"
+    />
   </div>
   <!-- <CreateNewChat :users="getUsers()" @createNewChat="createNewChat" title="+ чат" :isChatName="true"/>     -->
 </template>
