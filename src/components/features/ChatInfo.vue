@@ -8,8 +8,8 @@
         <img
           v-if="props.chat.avatar"
           :src="props.chat.avatar"
-          width="32"
-          height="32"
+          width="48"
+          height="48"
         >
         <span
           v-else
@@ -74,6 +74,11 @@ const emit = defineEmits(['open-panel']);
     span {
       font-size: var(--avatar-icon-size-medium);
       color: var(--avatar-icon-color);
+    }
+
+    img {
+      border-radius: var(--avatar-border-radius);
+      object-fit: cover;
     }
   }
 

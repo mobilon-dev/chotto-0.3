@@ -16,8 +16,8 @@
         <img
           v-if="props.chat.avatar"
           :src="props.chat.avatar"
-          height="32"
-          width="32"
+          height="48"
+          width="48"
         >
         <span
           v-else
@@ -161,6 +161,11 @@ const hideMenu = () => {
     span {
       font-size: var(--avatar-icon-size-medium);
       color: var(--avatar-icon-color);
+    }
+
+    img {
+      border-radius: var(--avatar-border-radius);
+      object-fit: cover;
     }
   }
 
