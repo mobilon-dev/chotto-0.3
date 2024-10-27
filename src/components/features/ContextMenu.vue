@@ -8,7 +8,13 @@
           class="context-menu__item"
           @click="click(index)"
         >
-          {{ action.title }}
+          <img
+            v-if="action.icon"
+            :src="action.icon"
+            width="18"
+            height="18"
+          >
+          <span>{{ action.title }}</span>
         </li>
       </ul>
     </div>
@@ -61,7 +67,7 @@ const click = (index) => {
     justify-content: flex-start;
     align-items: center;
     cursor: pointer;
-    padding: 0 20px;
+    padding: 0 16px;
     width: 100%;
     column-gap: var(--context-menu-item-column-gap);
   }
