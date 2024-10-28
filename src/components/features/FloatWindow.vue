@@ -21,6 +21,9 @@
           <span class="pi pi-times" />
         </button>
       </div>
+      <div class="float-window__content">
+        <slot name="default" />
+      </div>
     </div>
   </div>
 </template>
@@ -35,7 +38,7 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits(['close-window']);
+const emit = defineEmits(['close-window', 'get-size']);
 
 const floatWindowPosition = ref({ x: 0, y: 0 });
 const element = ref(null)
@@ -79,6 +82,9 @@ onMounted(() => {
     floatWindowPosition.value.x = Math.max(0, Math.min(floatWindowPosition.value.x, width - element.value.offsetWidth));
     floatWindowPosition.value.y = Math.max(0, Math.min(floatWindowPosition.value.y, height - element.value.offsetHeight));
   });
+
+  // Отправлем в ChatApp высоту element и container для того чтобы вычислить высоту для center-bar и right-bar
+  emit('get-size', element.value.offsetHeight, container.value.offsetHeight);
 })
 </script>
 
@@ -91,12 +97,14 @@ onMounted(() => {
   width: fit-content;
 
   &__container {
-    width: 600px;
-    height: 400px;
+    width: 1200px;
+    height: 900px;
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
     border-radius: var(--float-window-border-radius);
     background-color: var(--float-window-bg);
     box-shadow: var(--float-window-box-shadow);
-
   }
 
   &__controls {
@@ -116,6 +124,13 @@ onMounted(() => {
     width: fit-content;
     margin-left: auto;
     cursor: pointer;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: min-content 1.25fr 3fr 1.25fr;
+    margin: var(--float-window-content-margin, 0);
+    background-color: var(--float-window-content-bg, transparent);
   }
 }
 </style>

@@ -258,9 +258,8 @@ onMounted(() => {
   }
 
   &__info-container {
-    position: absolute;
-    bottom: 4px;
-    right: 8px;
+    grid-column: 1 / 3;
+    margin-left: auto;
     display: flex;
     align-items: center;
     column-gap: 6px;

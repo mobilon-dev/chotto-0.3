@@ -83,14 +83,14 @@
   --text-message-border-radius: 14px;
   --text-message-max-width: 40%;
   --text-message-margin: 0 0 10px 0;
-  --text-message-padding: 12px 60px 18px 16px;
+  --text-message-padding: 10px 10px 4px 16px;
 
   /* File Message */
 
   --file-message-border-radius: 14px;
   --file-message-gap: 12px;
   --file-message-margin: 0 0 10px 0;
-  --file-message-padding: 12px 60px 18px 16px;
+  --file-message-padding: 10px 10px 4px 16px;
 
   /* Image Message */
 
@@ -104,7 +104,7 @@
   --audio-message-gap: 12px;
   --audio-message-width: 40%;
   --audio-message-border-radius: 14px;
-  --audio-message-padding: 12px 16px 18px 16px;
+  --audio-message-padding: 10px 16px 4px 16px;
   --audio-message-margin: 0 0 10px 0;
 
   --audio-message-button-width: 38px;
@@ -139,8 +139,9 @@
 
   /* Call Message */
 
-  --call-message-padding: 12px 16px 12px 16px;
+  --call-message-padding: 10px 16px 4px 16px;
   --call-message-width: 51%;
+  --call-message-min-width: 30%;
   --call-message-gap: 12px;
   --call-message-icon-height: 38px;
   --call-message-icon-width: 38px;

@@ -1,6 +1,6 @@
 <template>
   <div
-    ref="chatApp"
+    ref="chatAppRef"
     class="chat-app"
   >
     <div class="chat-app__container">
@@ -57,22 +57,86 @@
 
       <ChatPanel
         v-if="isOpenChatPanel"
-        class="chat-app__chat-panel chat-app__chat-panel--active"
+        class="chat-app__chat-panel"
         @close-panel="isOpenChatPanel = !isOpenChatPanel"
       />
+
+
       <FloatWindow
         v-if="isOpenFloatWindow"
         class="chat-app__float-window"
         :update-chat-app-size="updateChatAppSize"
         @close-window="isOpenFloatWindow = !isOpenFloatWindow"
-      />
+        @get-size="getFloatWindowSize"
+      >
+        <div class="chat-app__left-bar">
+          <ToolBar
+            :sidebar-items="sidebarItems"
+            @select-item="selectItem"
+          />
+        </div>
+        <div
+          class="chat-app__center-bar"
+          :style="{ height: floatWindowHeight - 60 + 'px' }"
+        >
+
+          <ChatList
+            class="chat-app__chat-list"
+            :chats="chatsStore.chats"
+            filter-enabled
+            @select="selectChat"
+            @action="chatAction"
+          />
+          <ThemeMode />
+        </div>
+
+        <div
+          class="chat-app__right-bar"
+          :style="{ gridColumn: isOpenChatPanel ? '3' : '3 / 5', height: floatWindowHeight - 60 + 'px' }"
+        >
+          <div
+            v-if="selectedChat"
+            class="chat-app__right-bar-container"
+          >
+            <ChatInfo
+              :chat="selectedChat"
+              @open-panel="isOpenChatPanel = !isOpenChatPanel"
+            />
+            <Feed
+              class="chat-app__feed"
+              :objects="messages"
+              :style="{ padding: isOpenChatPanel ? '0 20px 50px 20px' : '0 80px 50px 80px' }"
+              @message-action="messageAction"
+            />
+            <ChatInput
+              :enable-emoji="true"
+              :channels="channels"
+              @send="addMessage"
+            />
+          </div>
+          <p
+            v-else
+            class="chat-app__welcome-text"
+          >
+            Выберите контакт для начала общения
+          </p>
+        </div>
+
+
+        <ChatPanel
+          v-if="isOpenChatPanel"
+          class="chat-app__chat-panel"
+          :style="{ height: floatWindowHeight - 60 + 'px' }"
+          @close-panel="isOpenChatPanel = !isOpenChatPanel"
+        />
+      </FloatWindow>
     </div>
   </div>
   <!-- <CreateNewChat :users="getUsers()" @createNewChat="createNewChat" title="+ чат" :isChatName="true"/>     -->
 </template>
 
 <script setup>
-import { onMounted, ref, watch, reactive } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 
 import {
   ChatInfo,
@@ -126,20 +190,23 @@ const sidebarItems = ref([])
 const isOpenChatPanel = ref(false)
 const isOpenFloatWindow = ref(true)
 
+const chatAppRef = ref(null)
 
-const chatApp = ref(null);
-
+const floatWindowHeight = ref(0)
 const chatAppSize = ref({
   width: 0,
   height: 0
 })
 
 const updateChatAppSize = () => {
-
   return chatAppSize.value = {
-    width: chatApp.value.offsetWidth,
-    height: chatApp.value.offsetHeight
+    width: chatAppRef.value.offsetWidth,
+    height: chatAppRef.value.offsetHeight
   }
+}
+
+const getFloatWindowSize = (windowHeight, controlsHeight) => {
+  floatWindowHeight.value = windowHeight - controlsHeight
 }
 
 const selectItem = (item) => {
@@ -211,6 +278,7 @@ const handleEvent = async (event) => {
   }
 };
 
+
 // Lifecycle hook
 onMounted(() => {
   // console.log('mounted')
@@ -246,6 +314,7 @@ onMounted(() => {
   &__right-bar {
     grid-column: 3;
     position: relative;
+    /* вычитаем маргины сверху и снизу */
     height: calc(100vh - 60px);
     border-radius: 12px;
     margin: var(--right-bar-margin);
@@ -261,19 +330,21 @@ onMounted(() => {
   &__center-bar {
     display: flex;
     flex-direction: column;
+    /* вычитаем маргины сверху и снизу */
     height: calc(100vh - 60px);
     grid-column: 2;
+    margin: var(--center-bar-margin);
     border-right: var(--center-bar-border, none);
   }
 
   &__chat-panel {
     margin: var(--chat-pannel-margin);
     border-left: var(--chat-pannel-border, none);
+    height: calc(100vh - 60px);
   }
 
   &__chat-list {
     overflow-y: auto;
-    margin: 30px 0 16px 0;
   }
 
   &__welcome-text {
@@ -287,7 +358,6 @@ onMounted(() => {
     position: absolute;
     right: 0;
     top: 0;
-
   }
 }
 

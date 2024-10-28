@@ -8,6 +8,10 @@
   /* Blocks */
   --rigth-bar-bg: var(--neutral-100);
   --right-bar-margin: 30px 0;
+  --right-bar-height: calc(100vh - 60px);
+
+  --center-bar-height: calc(100vh - 30px);
+  --center-bar-margin: 30px 0;
 
   /* FloatWindow */
   --float-window-bg: var(--default-white);
@@ -253,11 +257,15 @@
   --right-bar-margin: 0;
 
   --center-bar-border: 1px solid var(--neutral-200);
+  --center-bar-height: calc(100vh - 60px);
+  --center-bar-margin: 0;
 
-  /* FloatWindow */
   /* FloatWindow */
   --float-window-border-radius: 0;
   --float-window-border-radius-header: 0;
+  --float-window-content-margin: 30px 0;
+  --float-window-content-bg: var(--default-white);
+  --float-window-bg: var(--neutral-300);
 
   /* Chat Input */
   --chat-input-background: transparent;

@@ -50,6 +50,21 @@ const emit = defineEmits(['close-panel']);
     display: flex;
     flex-direction: column;
     row-gap: 20px;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+      background-color: var(--scrollbar-bg);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background-color: var(--scrollbar-thumb-bg);
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: 10px;
+    }
   }
 
   &__title-container {

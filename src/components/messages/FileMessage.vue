@@ -137,6 +137,7 @@ const getStatus = computed(() => {
     width: fit-content;
     border-radius: var(--file-message-border-radius);
     background-color: var(--file-message-background-color);
+    padding: var(--file-message-padding);
   }
 
   &__link {
@@ -145,7 +146,6 @@ const getStatus = computed(() => {
     align-items: center;
     column-gap: var(--file-message-gap);
     color: var(--file-message-link-color);
-    padding: var(--file-message-padding);
 
     span {
       font-size: var(--icon-font-size-medium);
@@ -154,11 +154,9 @@ const getStatus = computed(() => {
   }
 
   &__info-container {
-    position: absolute;
-    bottom: 4px;
-    right: 8px;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     column-gap: 6px;
   }
 
