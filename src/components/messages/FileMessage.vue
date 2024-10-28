@@ -29,6 +29,7 @@
         class="file-message__link"
         :href="message.url"
         download
+        target="_blank"
       >
         <span class="pi pi-file" />
         {{ message.filename }}
@@ -182,7 +183,7 @@ const getStatus = computed(() => {
 
   &__status--read {
     span {
-      color: var(--status-color-read);
+      color: var(--status-message-color-read);
 
       &:first-child {
         margin-right: -8px;

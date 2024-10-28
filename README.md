@@ -44,7 +44,7 @@ Vue3 Chat UI components - собери свой интерфейс чата
 
 ### скрины чатов для вдохновения
 
-(samples)[/samples]
+[samples](/samples)
 
 ### подобные проекты
 
@@ -54,4 +54,10 @@ Vue3 Chat UI components - собери свой интерфейс чата
 
 - https://github.com/pubnub/react-chat-components
 
+- https://github.com/jakobhoeg/shadcn-chat
+
 - https://github.com/advanced-chat/vue-advanced-chat
+
+- https://github.com/mattmezza/vue-beautiful-chat
+
+- https://github.com/MatheusrdSantos/vue-quick-chat
