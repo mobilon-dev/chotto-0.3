@@ -58,8 +58,14 @@
       <ChatPanel
         v-if="isOpenChatPanel"
         class="chat-app__chat-panel chat-app__chat-panel--active"
+        :title="selectedChat.name"
         @close-panel="isOpenChatPanel = !isOpenChatPanel"
-      />
+      >
+        <template #content>
+          test
+        </template>
+      </ChatPanel>
+
       <FloatWindow
         v-if="isOpenFloatWindow"
         class="chat-app__float-window"
