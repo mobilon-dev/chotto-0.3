@@ -5,6 +5,7 @@
     :style="{
       left: floatWindowPosition.x + 'px',
       top: floatWindowPosition.y + 'px',
+      userSelect: dragMode ? 'none' : 'auto',
     }"
   >
     <div class="float-window__container">
@@ -12,7 +13,8 @@
         ref="container"
         class="float-window__controls"
         @mousedown="mouseDown"
-        @mouseup="mouseUp"
+        @mouseup="turnOffDragMode"
+        @mouseleave="turnOffDragMode"
       >
         <button
           class="float-window__close-button"
@@ -35,22 +37,34 @@ const emit = defineEmits(['close-window', 'get-size']);
 const floatWindowPosition = ref({ x: 0, y: 0 });
 const element = ref(null)
 const container = ref(null);
-let initialX = ref(0);
-let initialY = ref(0);
-let dragMode = false;
+const dragMode = ref(false);
+const initialX = ref(0);
+const initialY = ref(0);
+
+const centerWindow = () => {
+  if (element.value) {
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    const elementWidth = element.value.offsetWidth;
+    const elementHeight = element.value.offsetHeight;
+
+    floatWindowPosition.value.x = (windowWidth - elementWidth) / 2;
+    floatWindowPosition.value.y = (windowHeight - elementHeight) / 2;
+  }
+};
 
 
 const mouseDown = (e) => {
-  dragMode = true;
+  dragMode.value = true;
   // Получение координат левого верхнего угла перемещаемого окна
   initialX.value = e.clientX - element.value.offsetLeft;
   initialY.value = e.clientY - element.value.offsetTop;
 }
 
-const mouseUp = () => dragMode = false;
+const turnOffDragMode = () => dragMode.value = false;
 
 const mouseMove = (e) => {
-  if (dragMode) {
+  if (dragMode.value) {
     // Вычисление позиции плавающего окна 
     const positionX = e.clientX - initialX.value
     const positionY = e.clientY - initialY.value
@@ -62,10 +76,12 @@ const mouseMove = (e) => {
 }
 
 onMounted(() => {
+  //Центрируем окно при монтировании
+  centerWindow();
+
   document.addEventListener('mousemove', mouseMove);
 
-  // Срабатывает, когда изменяется размер окна брузера, не дает выйти за границы плавающему окну.
-  // Перерасчет границ.
+  // Срабатывает, когда изменяется размер окна брузера, не дает выйти за границы плавающему окну. Перерасчет границ.
   window.addEventListener('resize', () => {
     floatWindowPosition.value.x = Math.max(0, Math.min(floatWindowPosition.value.x, window.innerWidth - element.value.offsetWidth));
     floatWindowPosition.value.y = Math.max(0, Math.min(floatWindowPosition.value.y, window.innerHeight - element.value.offsetHeight));

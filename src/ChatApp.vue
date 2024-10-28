@@ -343,8 +343,6 @@ onMounted(() => {
 
   &__float-window {
     position: absolute;
-    right: 0;
-    top: 0;
   }
 }
 
