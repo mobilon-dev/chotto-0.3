@@ -17,7 +17,7 @@
         </button>
       </div>
 
-      
+
       <slot name="content" />
     </div>
   </div>

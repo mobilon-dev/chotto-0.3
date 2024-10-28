@@ -65,7 +65,69 @@
         class="chat-app__float-window"
         :update-chat-app-size="updateChatAppSize"
         @close-window="isOpenFloatWindow = !isOpenFloatWindow"
-      />
+        @get-size="getFloatWindowSize"
+      >
+        <div class="chat-app__left-bar">
+          <ToolBar
+            :sidebar-items="sidebarItems"
+            @select-item="selectItem"
+          />
+        </div>
+        <div
+          class="chat-app__center-bar"
+          :style="{ height: floatWindowHeight - 60 + 'px' }"
+        >
+
+          <ChatList
+            class="chat-app__chat-list"
+            :chats="chatsStore.chats"
+            filter-enabled
+            @select="selectChat"
+            @action="chatAction"
+          />
+          <ThemeMode />
+        </div>
+
+        <div
+          class="chat-app__right-bar"
+          :style="{ gridColumn: isOpenChatPanel ? '3' : '3 / 5', height: floatWindowHeight - 60 + 'px' }"
+        >
+          <div
+            v-if="selectedChat"
+            class="chat-app__right-bar-container"
+          >
+            <ChatInfo
+              :chat="selectedChat"
+              @open-panel="isOpenChatPanel = !isOpenChatPanel"
+            />
+            <Feed
+              class="chat-app__feed"
+              :objects="messages"
+              :style="{ padding: isOpenChatPanel ? '0 20px 50px 20px' : '0 80px 50px 80px' }"
+              @message-action="messageAction"
+            />
+            <ChatInput
+              :enable-emoji="true"
+              :channels="channels"
+              @send="addMessage"
+            />
+          </div>
+          <p
+            v-else
+            class="chat-app__welcome-text"
+          >
+            Выберите контакт для начала общения
+          </p>
+        </div>
+
+
+        <ChatPanel
+          v-if="isOpenChatPanel"
+          class="chat-app__chat-panel"
+          :style="{ height: floatWindowHeight - 60 + 'px' }"
+          @close-panel="isOpenChatPanel = !isOpenChatPanel"
+        />
+      </FloatWindow>
     </div>
   </div>
   <!-- <CreateNewChat :users="getUsers()" @createNewChat="createNewChat" title="+ чат" :isChatName="true"/>     -->
