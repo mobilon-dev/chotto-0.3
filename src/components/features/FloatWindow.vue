@@ -30,14 +30,6 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-
-const props = defineProps({
-  updateChatAppSize: {
-    type: Function,
-    required: true
-  }
-});
-
 const emit = defineEmits(['close-window', 'get-size']);
 
 const floatWindowPosition = ref({ x: 0, y: 0 });
@@ -59,16 +51,13 @@ const mouseUp = () => dragMode = false;
 
 const mouseMove = (e) => {
   if (dragMode) {
-    // Получаем размер компонента chat-app, чтобы можно было определить границы 
-    const { width, height } = props.updateChatAppSize();
-
     // Вычисление позиции плавающего окна 
     const positionX = e.clientX - initialX.value
     const positionY = e.clientY - initialY.value
 
-    // Определение границ перемещения окна
-    floatWindowPosition.value.x = Math.max(0, Math.min(positionX, width - element.value.offsetWidth));
-    floatWindowPosition.value.y = Math.max(0, Math.min(positionY, height - element.value.offsetHeight));
+    // Ограничение перемещения, границы
+    floatWindowPosition.value.x = Math.max(0, Math.min(positionX, window.innerWidth - element.value.offsetWidth));
+    floatWindowPosition.value.y = Math.max(0, Math.min(positionY, window.innerHeight - element.value.offsetHeight));
   }
 }
 
@@ -78,9 +67,8 @@ onMounted(() => {
   // Срабатывает, когда изменяется размер окна брузера, не дает выйти за границы плавающему окну.
   // Перерасчет границ.
   window.addEventListener('resize', () => {
-    const { width, height } = props.updateChatAppSize();
-    floatWindowPosition.value.x = Math.max(0, Math.min(floatWindowPosition.value.x, width - element.value.offsetWidth));
-    floatWindowPosition.value.y = Math.max(0, Math.min(floatWindowPosition.value.y, height - element.value.offsetHeight));
+    floatWindowPosition.value.x = Math.max(0, Math.min(floatWindowPosition.value.x, window.innerWidth - element.value.offsetWidth));
+    floatWindowPosition.value.y = Math.max(0, Math.min(floatWindowPosition.value.y, window.innerHeight - element.value.offsetHeight));
   });
 
   // Отправлем в ChatApp высоту element и container для того чтобы вычислить высоту для center-bar и right-bar

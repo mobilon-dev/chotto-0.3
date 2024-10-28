@@ -1,8 +1,5 @@
 <template>
-  <div
-    ref="chatAppRef"
-    class="chat-app"
-  >
+  <div class="chat-app">
     <div class="chat-app__container">
       <div class="chat-app__left-bar">
         <ToolBar
@@ -69,7 +66,6 @@
       <FloatWindow
         v-if="isOpenFloatWindow"
         class="chat-app__float-window"
-        :update-chat-app-size="updateChatAppSize"
         @close-window="isOpenFloatWindow = !isOpenFloatWindow"
         @get-size="getFloatWindowSize"
       >
@@ -83,7 +79,6 @@
           class="chat-app__center-bar"
           :style="{ height: floatWindowHeight - 60 + 'px' }"
         >
-
           <ChatList
             class="chat-app__chat-list"
             :chats="chatsStore.chats"
@@ -125,7 +120,6 @@
             Выберите контакт для начала общения
           </p>
         </div>
-
 
         <ChatPanel
           v-if="isOpenChatPanel"
@@ -194,20 +188,7 @@ const sidebarItems = ref([])
 const isOpenChatPanel = ref(false)
 const isOpenFloatWindow = ref(true)
 
-const chatAppRef = ref(null)
-
 const floatWindowHeight = ref(0)
-const chatAppSize = ref({
-  width: 0,
-  height: 0
-})
-
-const updateChatAppSize = () => {
-  return chatAppSize.value = {
-    width: chatAppRef.value.offsetWidth,
-    height: chatAppRef.value.offsetHeight
-  }
-}
 
 const getFloatWindowSize = (windowHeight, controlsHeight) => {
   floatWindowHeight.value = windowHeight - controlsHeight
@@ -302,7 +283,6 @@ onMounted(() => {
   lang="scss"
 >
 .chat-app {
-  position: relative;
 
   &__container {
     display: grid;
