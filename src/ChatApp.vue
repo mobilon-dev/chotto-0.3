@@ -5,13 +5,13 @@
   >
     <div class="chat-app__container">
       <div class="chat-app__left-bar">
-        <ToolBar
+        <SideBar
           :sidebar-items="sidebarItems"
           @select-item="selectItem"
         />
       </div>
       <div class="chat-app__center-bar">
-        <Profile :user="userProfile" />
+        <UserProfile :user="userProfile" />
         <ChatList
           class="chat-app__chat-list"
           :chats="chatsStore.chats"
@@ -85,7 +85,7 @@ import {
   ChatList,
   CreateNewChat,
   Feed,
-  Profile,
+  UserProfile,
   FileUploader,
   ThemeMode,
   SideBar,
