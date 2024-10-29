@@ -248,7 +248,7 @@ onMounted(() => {
   &__left-bar {
     margin-right: 20px;
     grid-column: 1;
-    border-right: 1px solid var(--tool-bar-border-color);
+    border-right: 1px solid var(--sidebar-border-color);
   }
 
   &__right-bar {

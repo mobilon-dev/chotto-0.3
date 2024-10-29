@@ -1,13 +1,13 @@
 <template>
-  <div class="tool-bar">
-    <div class="tool-bar__container">
-      <ul class="tool-bar__list">
+  <div class="sidebar">
+    <div class="sidebar__container">
+      <ul class="sidebar__list">
         <!-- :style="{ backgroundColor: item === selectedItem ? 'var(--neutral-300)' : 'transparent' }"
         @click="selectItem(item)" -->
         <li
           v-for="(item, index) in props.sidebarItems.filter(i => !i.isFixedBottom)"
           :key="index"
-          class="tool-bar__item"
+          class="sidebar__item"
           @click="selectItem(item)"
         >
           <img
@@ -28,11 +28,11 @@
 
       <!-- :style="{ backgroundColor: item === selectedItem ? 'var(--neutral-300)' : 'transparent' }"
       @click="selectItem(item)" -->
-      <ul class="tool-bar__list-fixed">
+      <ul class="sidebar__list-fixed">
         <li
           v-for="(item, index) in props.sidebarItems.filter(i => i.isFixedBottom)"
           :key="index"
-          class="tool-bar__item"
+          class="sidebar__item"
           @click="selectItem(item)"
         >
           <img
@@ -83,7 +83,7 @@ const getName = (name) => {
   scoped
   lang="scss"
 >
-.tool-bar {
+.sidebar {
   height: 100%;
 
   &__container {
@@ -92,7 +92,7 @@ const getName = (name) => {
     justify-content: space-between;
     height: 100%;
     padding: 18px 8px 30px 8px;
-    box-shadow: var(--tool-bar-box-shadow);
+    box-shadow: var(--sidebar-box-shadow);
   }
 
   &__list,
