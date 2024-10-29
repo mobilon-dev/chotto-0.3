@@ -88,7 +88,7 @@ import {
   Profile,
   FileUploader,
   ThemeMode,
-  ToolBar,
+  SideBar,
   ChatPanel,
   FloatWindow,
 } from "./components/features";
