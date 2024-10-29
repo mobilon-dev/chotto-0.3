@@ -1,0 +1,25 @@
+[data-theme="green"] {
+
+  --app-bg: var(--neutral-300);
+  --app-container-bg: var(--default-white);
+  --app-margin: 30px 0;
+
+  /* Blocks */
+  --rigth-bar-bg: transparent;
+  --right-bar-margin: 0;
+
+  --center-bar-border: 1px solid var(--neutral-200);
+
+  /* FloatWindow */
+  /* FloatWindow */
+  --float-window-border-radius: 0;
+  --float-window-border-radius-header: 0;
+
+  /* Chat Input */
+  --chat-input-background: transparent;
+
+  /* Chat Panel */
+  --chat-panel-bg: transparent;
+  --chat-pannel-margin: 0;
+  --chat-pannel-border: 1px solid var(--neutral-200)
+}
