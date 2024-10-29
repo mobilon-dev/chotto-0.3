@@ -9,34 +9,24 @@
 </template>
 
 <script setup>
-import { onMounted, reactive } from 'vue';
-import ChatApp from './ChatApp.vue';
+import { onMounted } from 'vue';
+import moment from 'moment';
 
-import { messages } from './data/messages';
-import { chats } from './data/chats';
-import { sidebarItems } from './data/sidebarItems';
+import ChatApp from './ChatApp.vue';
+import { messages, chats, channels, sidebarItems, userProfile } from './data';
 
 // Mock data
 const data3 = {
   messages,
   chats,
-  channels: [
-    { channelId: 'channel1', title: 'test channel 1', icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/240px-Telegram_logo.svg.png' },
-    { channelId: 'channel2', title: 'test channel 2' },
-  ],
+  channels,
   sidebarItems,
+  userProfile,
 };
 
 // Define the auth provider
 const authProvider = {
-  getUserProfile() {
-    return {
-      name: "Александр Петров",
-      email: "user@m.com",
-      phone: "+79XXXXXXXX",
-      auth: 'secretkey',
-    };
-  }
+  getUserProfile() {return data3.userProfile}
 };
 
 // Define the data provider
@@ -80,7 +70,6 @@ const createEventor = () => {
 
 const eventor = createEventor();
 
-
 // Эмуляция событий с сервера
 onMounted(() => {
   setTimeout(() => {
@@ -91,10 +80,10 @@ onMounted(() => {
       text: "Новое сообщение от сервера!",
       direction: 'incoming',
       status: 'sent',
-      timestamp: '1727112546'
+      userId: 'testUserId',
+      timestamp: moment().unix(),
     };
-    // Эмитим событие в дочерний компонент
-    // handleServerEvent({ type: 'message', data: newMessage });
+        
     data3.messages.push(newMessage);
     eventor.push({ type: 'message', data: newMessage });
   }, 3000);

@@ -159,7 +159,6 @@ const messageAction = (data) => {
   console.log('message action', data);
 }
 
-
 const getUsers = () => {
   return (props.dataProvider.getChats()).map(c => { return { ...c, userId: c.chatId.toString() } });
 }
