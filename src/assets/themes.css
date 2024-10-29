@@ -21,9 +21,9 @@
   --chat-pannel-widget-bg: var(--neutral-200);
   --chat-pannel-margin: 30px 0 30px 10px;
 
-  /* Tool Bar */
-  --tool-bar-border-color: var(--neutral-200);
-  --tool-bar-box-shadow: -13px 0px 20px -21px rgba(0, 0, 0, 0.2);
+  /* Side Bar */
+  --sidebar-border-color: var(--neutral-200);
+  --sidebar-box-shadow: -13px 0px 20px -21px rgba(0, 0, 0, 0.2);
 
   /* Chat List */
   --chat-list-fixed-background-color: var(--default-white);
@@ -142,8 +142,8 @@
   --chat-pannel-widget-bg: var(--neutral-700);
 
   /* Tool Bar */
-  --tool-bar-border-color: var(--neutral-500);
-  --tool-bar-box-shadow: -13px 0px 20px -21px rgba(255, 255, 255, 0.2);
+  --sidebar-border-color: var(--neutral-500);
+  --sidebar-box-shadow: -13px 0px 20px -21px rgba(255, 255, 255, 0.2);
 
   /* Chat List */
   --chat-list-fixed-background-color: var(--neutral-900);

@@ -6,7 +6,7 @@ import Profile from './Profile.vue';
 import CreateNewChat from './CreateNewChat.vue';
 import FileUploader from './FileUploader.vue';
 import ThemeMode from './ThemeMode.vue';
-import ToolBar from './ToolBar.vue';
+import SideBar from './SideBar.vue';
 import ChatPanel from './ChatPanel.vue'
 import ChannelSelector from './ChannelSelector.vue';
 import Chat from './Chat.vue';
@@ -22,7 +22,7 @@ export {
   FileUploader,
   Profile,
   ThemeMode,
-  ToolBar,
+  SideBar,
   ChatPanel,
   ChannelSelector,
   Chat,
