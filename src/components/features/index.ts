@@ -2,7 +2,7 @@ import ChatInfo from './ChatInfo.vue';
 import ChatInput from './ChatInput.vue';
 import ChatList from './ChatList.vue';
 import Feed from './Feed.vue';
-import Profile from './Profile.vue';
+import UserProfile from './UserProfile.vue';
 import CreateNewChat from './CreateNewChat.vue';
 import FileUploader from './FileUploader.vue';
 import ThemeMode from './ThemeMode.vue';
@@ -11,7 +11,7 @@ import ChatPanel from './ChatPanel.vue'
 import ChannelSelector from './ChannelSelector.vue';
 import Chat from './Chat.vue';
 import ChatFilter from './ChatFilter.vue';
-import FloatWindow from './FloatWindow.vue'
+import FloatWindow from './FloatWindow.vue';
 
 export {
   CreateNewChat,
@@ -20,7 +20,7 @@ export {
   ChatList,
   Feed,
   FileUploader,
-  Profile,
+  UserProfile,
   ThemeMode,
   SideBar,
   ChatPanel,
