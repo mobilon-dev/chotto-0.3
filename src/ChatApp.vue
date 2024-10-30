@@ -19,7 +19,7 @@
           @select="selectChat"
           @action="chatAction"
         />
-        <ThemeMode />
+        <ThemeMode :themes="themes" />
       </div>
 
       <div
@@ -118,6 +118,21 @@ const props = defineProps({
     required: true,
   },
 });
+
+const themes = [
+  {
+    code: 'light',
+    name: 'Light',
+  },
+  {
+    code: 'dark',
+    name: 'Dark',
+  },
+  {
+    code: 'green',
+    name: 'Green',
+  },
+];
 
 const chatsStore = useChatsStore();
 
