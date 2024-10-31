@@ -13,7 +13,7 @@ import { onMounted } from 'vue';
 import moment from 'moment';
 
 import ChatApp from './ChatApp.vue';
-import { messages, chats, channels, sidebarItems, userProfile } from './data';
+import { messages, chats, channels, sidebarItems, userProfile, users } from './data';
 
 // Mock data
 const data3 = {
@@ -22,6 +22,7 @@ const data3 = {
   channels,
   sidebarItems,
   userProfile,
+  users,
 };
 
 // Define the auth provider
@@ -42,6 +43,9 @@ const dataProvider = {
   },
   getChats() {
     return data3.chats;
+  },
+  getUsers() {
+    return data3.users;
   },
   addMessage(message) {
     data3.messages.push(message);
