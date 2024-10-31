@@ -1,7 +1,17 @@
 export const chats = [
   {
-    chatId: 1, name: "Василий", avatar: 'https://img.freepik.com/free-photo/smiley-man-relaxing-outdoors_23-2148739334.jpg', countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, status: "#767676", actions: [
-      { action: 'edit', title: 'изменить', icon: 'https://dummyimage.com/64x64/000/fff.png&text=pin' }, { action: 'delete', title: 'удалить', icon: 'https://dummyimage.com/64x64/000/fff.png&text=pin' },
+    chatId: 1,
+    name: "Василий",
+    avatar: 'https://img.freepik.com/free-photo/smiley-man-relaxing-outdoors_23-2148739334.jpg',
+    countUnread: 0,
+    lastMessage: 'test',
+    'lastActivity.time': 'час назад',
+    isFixed: false,
+    status: "#767676",
+    actions: [
+      { action: 'add', title: 'добавить', icon: 'https://dummyimage.com/64x64/000/fff.png&text=add' },
+      { action: 'edit', title: 'изменить', icon: 'https://dummyimage.com/64x64/000/fff.png&text=pin' },
+      { action: 'delete', title: 'удалить', icon: 'https://dummyimage.com/64x64/000/fff.png&text=pin' },
     ]
   },
   {

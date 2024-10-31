@@ -13,6 +13,7 @@ import Chat from './Chat.vue';
 import ChatFilter from './ChatFilter.vue';
 import FloatWindow from './FloatWindow.vue';
 
+
 export {
   CreateNewChat,
   ChatInfo,

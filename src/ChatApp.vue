@@ -66,18 +66,22 @@
         </template>
       </ChatPanel>
     </div>
+    <!-- 
     <FloatWindow
       v-if="isOpenFloatWindow"
       class="chat-app__float-window"
       :update-chat-app-size="updateChatAppSize"
       @close-window="isOpenFloatWindow = !isOpenFloatWindow"
     />
+    -->
+    <ModalsContainer />
   </div>
   <!-- <CreateNewChat :users="getUsers()" @createNewChat="createNewChat" title="+ чат" :isChatName="true"/>     -->
 </template>
 
 <script setup>
 import { onMounted, ref, watch, reactive } from 'vue';
+import { ModalsContainer } from 'vue-final-modal'
 
 import {
   ChatInfo,
@@ -100,8 +104,13 @@ import {
   sortByTimestamp,
 } from './helpers';
 
+
+
 import { useChatsStore } from './stores/useChatStore';
 import { transformToFeed } from './transform/transformToFeed';
+
+import {useAddUserToGroupDialog} from './composables/modalDialogAddUserToGroup';
+
 
 // Define props
 const props = defineProps({
@@ -138,6 +147,8 @@ const themes = [
   },
 ];
 
+
+
 const chatsStore = useChatsStore();
 
 // Reactive data
@@ -158,8 +169,9 @@ const chatAppSize = ref({
   height: 0
 })
 
-const updateChatAppSize = () => {
+const {openDialog} = useAddUserToGroupDialog();
 
+const updateChatAppSize = () => {
   return chatAppSize.value = {
     width: chatApp.value.offsetWidth,
     height: chatApp.value.offsetHeight
@@ -172,6 +184,16 @@ const selectItem = (item) => {
 
 const chatAction = (data) => {
   console.log('chat action', data);
+  if(data.action === 'add') {
+    const chatId = data.chatId;
+    openDialog(
+      `Добавление пользователя в чат ${chatId}`,
+      getUsers(),
+      (users) => {
+        console.log('user for add to user group', chatId, users);
+      }
+    )
+  }
 }
 
 const messageAction = (data) => {
@@ -179,7 +201,8 @@ const messageAction = (data) => {
 }
 
 const getUsers = () => {
-  return (props.dataProvider.getChats()).map(c => { return { ...c, userId: c.chatId.toString() } });
+  return props.dataProvider.getUsers();
+  // return (props.dataProvider.getChats()).map(c => { return { ...c, userId: c.chatId.toString() } });
 }
 
 const createNewChat = (obj) => {
