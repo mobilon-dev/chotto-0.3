@@ -3,7 +3,6 @@ import ChatInput from './ChatInput.vue';
 import ChatList from './ChatList.vue';
 import Feed from './Feed.vue';
 import UserProfile from './UserProfile.vue';
-import CreateNewChat from './CreateNewChat.vue';
 import FileUploader from './FileUploader.vue';
 import ThemeMode from './ThemeMode.vue';
 import SideBar from './SideBar.vue';
@@ -15,7 +14,6 @@ import FloatWindow from './FloatWindow.vue';
 
 
 export {
-  CreateNewChat,
   ChatInfo,
   ChatInput,
   ChatList,

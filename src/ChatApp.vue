@@ -74,20 +74,23 @@
       @close-window="isOpenFloatWindow = !isOpenFloatWindow"
     />
     -->
-    <ModalsContainer />
+    <SelectUser
+      v-if="modalShow"
+      :title="modalTitle"
+      :users="users"
+      @confirm="selectUsers"
+      @close="onCloseModal"
+    />
   </div>
-  <!-- <CreateNewChat :users="getUsers()" @createNewChat="createNewChat" title="+ чат" :isChatName="true"/>     -->
 </template>
 
 <script setup>
 import { onMounted, ref, watch, reactive } from 'vue';
-import { ModalsContainer } from 'vue-final-modal'
 
 import {
   ChatInfo,
   ChatInput,
   ChatList,
-  CreateNewChat,
   Feed,
   UserProfile,
   FileUploader,
@@ -104,12 +107,9 @@ import {
   sortByTimestamp,
 } from './helpers';
 
-
-
 import { useChatsStore } from './stores/useChatStore';
 import { transformToFeed } from './transform/transformToFeed';
-
-import {useAddUserToGroupDialog} from './composables/modalDialogAddUserToGroup';
+import { SelectUser } from './components/modals';
 
 
 // Define props
@@ -162,14 +162,16 @@ const isOpenChatPanel = ref(false)
 const isOpenFloatWindow = ref(true)
 
 
+const modalShow = ref(false);
+const modalTitle = ref('');
+const users = ref([]);
+
 const chatApp = ref(null);
 
 const chatAppSize = ref({
   width: 0,
   height: 0
 })
-
-const {openDialog} = useAddUserToGroupDialog();
 
 const updateChatAppSize = () => {
   return chatAppSize.value = {
@@ -185,15 +187,18 @@ const selectItem = (item) => {
 const chatAction = (data) => {
   console.log('chat action', data);
   if(data.action === 'add') {
-    const chatId = data.chatId;
-    openDialog(
-      `Добавление пользователя в чат ${chatId}`,
-      getUsers(),
-      (users) => {
-        console.log('user for add to user group', chatId, users);
-      }
-    )
+    modalTitle.value = `Добавить в чат ${data.chatId}`;
+    users.value = getUsers();
+    modalShow.value = true;
   }
+}
+
+const selectUsers = (users) => {
+  console.log('users selected', users);
+}
+
+const onCloseModal = () => {
+  modalShow.value = false;
 }
 
 const messageAction = (data) => {
@@ -203,13 +208,6 @@ const messageAction = (data) => {
 const getUsers = () => {
   return props.dataProvider.getUsers();
   // return (props.dataProvider.getChats()).map(c => { return { ...c, userId: c.chatId.toString() } });
-}
-
-const createNewChat = (obj) => {
-  // obj.users.map(c=>console.log(c));
-  // console.log('chat', obj)
-  const chat = { chatId: 3, name: obj.chatName };
-  chatsStore.addChat(chat);
 }
 
 const loadMore = () => {

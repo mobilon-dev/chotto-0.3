@@ -1,31 +1,12 @@
-<script setup lang="ts">
-  import {ref} from 'vue';
-  import { VueFinalModal } from 'vue-final-modal'
-
-  defineProps<{
-    title?: string,
-    users: object[],
-  }>()
-
-  const emit = defineEmits(['confirm']);
-
-  const selectedUsers = ref([]);
-
-  const onConfirm = () => {
-    console.log('confirm', 'eeeee eeeee');
-    emit('confirm', selectedUsers.value);
-  }
-  </script>
-
-  <template>
-    <VueFinalModal
-      class="confirm-modal"
-      content-class="confirm-modal-content"
-      overlay-transition="vfm-fade"
-      content-transition="vfm-fade"
+<template>
+  <div>
+    <div
+      v-if="showModal"
+      class="new-chat-modal"
     >
-      <h1>{{ title }}</h1>
-      <div class="participant-list">
+      <div class="modal-content">
+        <h2> {{ title }}</h2>
+        <div class="participant-list">
           <div
             v-for="user in users"
             :key="user.userId"
@@ -40,40 +21,104 @@
             <label :for="user.userId">{{ user.name || 'unknown username' }}</label>
           </div> 
         </div>
-      <button @click="onConfirm">
-        Confirm
-      </button>
-    </VueFinalModal>
-  </template>
+        <div class="modal-actions">
+          <button @click="onConfirm">
+            ОК
+          </button>
+          <button @click="onCancel">
+            Отмена
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
 
-  <style>
-  .confirm-modal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .confirm-modal-content {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    background: #fff;
-    border-radius: 0.5rem;
-  }
-  .confirm-modal-content > * + *{
-    margin: 0.5rem 0;
-  }
-  .confirm-modal-content h1 {
-    font-size: 1.375rem;
-  }
-  /*
-  .confirm-modal-content button {
-    margin: 0.25rem 0 0 auto;
-    padding: 0 8px;
-    border: 1px solid;
-    border-radius: 0.5rem;
-  }
-  */
-  .dark .confirm-modal-content {
-    background: #000;
-  }
-  </style>
+<script setup>
+
+import { ref } from 'vue';
+
+// Define props
+const props = defineProps({
+  users: {
+    type: Array,
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+});
+
+const showModal = ref(true)
+const selectedUsers = ref([])
+
+const emit = defineEmits(['confirm', 'close']);
+
+const onConfirm = async () => {	
+  emit('confirm', selectedUsers.value);
+  closeModal();
+  resetValues();
+}
+
+const closeModal = () => {
+  emit('close');
+  showModal.value = false;
+}
+
+const resetValues = () => {
+	selectedUsers.value = []
+}
+
+const onCancel = () => {
+  closeModal();
+	resetValues();
+}
+</script>
+
+<style scoped>
+.new-chat-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+	background-color: white;
+	padding: 20px;
+	border-radius: 8px;
+	width: 300px;
+}
+
+.participant-list {
+  margin-top: 10px;
+	max-height: 200px;
+}
+.participant-item {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.participant-item input[type='checkbox'] {
+	margin-right: 10px;
+}
+
+.modal-actions {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 20px;
+}
+
+.modal-actions button {
+	margin-left: 10px;
+}
+
+</style>
