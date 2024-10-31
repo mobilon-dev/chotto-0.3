@@ -16,7 +16,7 @@
           @select="selectChat"
           @action="chatAction"
         />
-        <ThemeMode />
+        <!-- <ThemeMode /> -->
       </div>
 
       <div
@@ -32,7 +32,6 @@
             @open-panel="isOpenChatPanel = !isOpenChatPanel"
           />
           <Feed
-            class="chat-app__feed"
             :objects="messages"
             :style="{ padding: isOpenChatPanel ? '0 20px 50px 20px' : '0 80px 50px 80px' }"
             @message-action="messageAction"
@@ -54,7 +53,7 @@
 
       <ChatPanel
         v-if="isOpenChatPanel"
-        class="chat-app__chat-panel chat-app__chat-panel--active"
+        class="chat-app__chat-panel"
         :title="selectedChat.name"
         @close-panel="isOpenChatPanel = !isOpenChatPanel"
       >
@@ -63,11 +62,11 @@
         </template>
       </ChatPanel>
 
+
       <FloatWindow
         v-if="isOpenFloatWindow"
         class="chat-app__float-window"
         @close-window="isOpenFloatWindow = !isOpenFloatWindow"
-        @get-size="getFloatWindowSize"
       >
         <div class="chat-app__left-bar">
           <ToolBar
@@ -75,12 +74,11 @@
             @select-item="selectItem"
           />
         </div>
-        <div
-          class="chat-app__center-bar"
-          :style="{ height: floatWindowHeight - 60 + 'px' }"
-        >
+
+
+        <div class="chat-app__float-center-bar">
+          <Profile :user="userProfile" />
           <ChatList
-            class="chat-app__chat-list"
             :chats="chatsStore.chats"
             filter-enabled
             @select="selectChat"
@@ -90,8 +88,8 @@
         </div>
 
         <div
-          class="chat-app__right-bar"
-          :style="{ gridColumn: isOpenChatPanel ? '3' : '3 / 5', height: floatWindowHeight - 60 + 'px' }"
+          class="chat-app__float-right-bar"
+          :style="{ gridColumn: isOpenChatPanel ? '3' : '3 / 5' }"
         >
           <div
             v-if="selectedChat"
@@ -102,7 +100,6 @@
               @open-panel="isOpenChatPanel = !isOpenChatPanel"
             />
             <Feed
-              class="chat-app__feed"
               :objects="messages"
               :style="{ padding: isOpenChatPanel ? '0 20px 50px 20px' : '0 80px 50px 80px' }"
               @message-action="messageAction"
@@ -120,11 +117,9 @@
             Выберите контакт для начала общения
           </p>
         </div>
-
         <ChatPanel
           v-if="isOpenChatPanel"
-          class="chat-app__chat-panel"
-          :style="{ height: floatWindowHeight - 60 + 'px' }"
+          class="chat-app__float-chat-panel"
           @close-panel="isOpenChatPanel = !isOpenChatPanel"
         />
       </FloatWindow>
@@ -187,12 +182,6 @@ const sidebarItems = ref([])
 
 const isOpenChatPanel = ref(false)
 const isOpenFloatWindow = ref(true)
-
-const floatWindowHeight = ref(0)
-
-const getFloatWindowSize = (windowHeight, controlsHeight) => {
-  floatWindowHeight.value = windowHeight - controlsHeight
-}
 
 const selectItem = (item) => {
   console.log('selected sidebar item', item);
@@ -343,6 +332,24 @@ onMounted(() => {
 
   &__float-window {
     position: absolute;
+  }
+
+  &__float-center-bar {
+    display: grid;
+    grid-auto-rows: inherit;
+  }
+
+  &__float-right-bar {
+    grid-column: 3;
+    position: relative;
+    border-radius: 12px;
+    margin: var(--right-bar-margin);
+    background-color: var(--rigth-bar-bg);
+  }
+
+  &__float-chat-panel {
+    margin: var(--chat-pannel-margin);
+    border-left: var(--chat-pannel-border, none);
   }
 }
 

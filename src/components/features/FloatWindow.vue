@@ -23,7 +23,10 @@
           <span class="pi pi-times" />
         </button>
       </div>
-      <div class="float-window__content">
+      <div
+        class="float-window__content"
+        :style="{ height: contentHeight + 'px' }"
+      >
         <slot name="default" />
       </div>
     </div>
@@ -40,6 +43,7 @@ const container = ref(null);
 const dragMode = ref(false);
 const initialX = ref(0);
 const initialY = ref(0);
+const contentHeight = ref(0);
 
 const centerWindow = () => {
   if (element.value) {
@@ -87,8 +91,7 @@ onMounted(() => {
     floatWindowPosition.value.y = Math.max(0, Math.min(floatWindowPosition.value.y, window.innerHeight - element.value.offsetHeight));
   });
 
-  // Отправлем в ChatApp высоту element и container для того чтобы вычислить высоту для center-bar и right-bar
-  emit('get-size', element.value.offsetHeight, container.value.offsetHeight);
+  contentHeight.value = element.value.offsetHeight - container.value.offsetHeight;
 })
 </script>
 
@@ -133,6 +136,7 @@ onMounted(() => {
   &__content {
     display: grid;
     grid-template-columns: min-content 1.25fr 3fr 1.25fr;
+    grid-auto-rows: minmax(0, auto);
     margin: var(--float-window-content-margin, 0);
     background-color: var(--float-window-content-bg, transparent);
   }
