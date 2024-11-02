@@ -66,6 +66,7 @@
       <FloatWindow
         v-if="isOpenFloatWindow"
         class="chat-app__float-window"
+        :title="'Заголовок'"
         @close-window="isOpenFloatWindow = !isOpenFloatWindow"
       >
         <div class="chat-app__left-bar">
@@ -337,13 +338,13 @@ onMounted(() => {
   &__float-center-bar {
     display: grid;
     grid-auto-rows: inherit;
+    border-right: var(--center-bar-border, none);
   }
 
   &__float-right-bar {
     grid-column: 3;
     position: relative;
     border-radius: 12px;
-    margin: var(--right-bar-margin);
     background-color: var(--rigth-bar-bg);
   }
 

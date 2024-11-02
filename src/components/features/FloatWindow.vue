@@ -16,6 +16,7 @@
         @mouseup="turnOffDragMode"
         @mouseleave="turnOffDragMode"
       >
+        <p class="float-window__title">{{ props.title }}</p>
         <button
           class="float-window__close-button"
           @click="$emit('close-window')"
@@ -35,6 +36,13 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+
+const props = defineProps({
+  title: {
+    type: String,
+    required: true,
+  },
+})
 const emit = defineEmits(['close-window', 'get-size']);
 
 const floatWindowPosition = ref({ x: 0, y: 0 });
@@ -106,20 +114,25 @@ onMounted(() => {
   &__container {
     width: 1200px;
     height: 900px;
-    display: flex;
-    flex-direction: column;
-    align-self: stretch;
     border-radius: var(--float-window-border-radius);
     background-color: var(--float-window-bg);
     box-shadow: var(--float-window-box-shadow);
   }
 
   &__controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     cursor: grab;
     padding: var(--float-window-padding);
     background-color: var(--float-window-bg-header);
     border-radius: var(--float-window-border-radius-header);
+  }
 
+  &__title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-left: 10px;
   }
 
   &__close-button {
