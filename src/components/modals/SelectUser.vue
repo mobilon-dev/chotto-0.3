@@ -1,25 +1,20 @@
 <template>
   <div>
     <div
-      v-if="showNewChatModal"
+      v-if="showModal"
       class="new-chat-modal"
     >
       <div class="modal-content">
-        <h2>Создать чат</h2>
-        <input
-          v-if="isChatName"
-          v-model="newChatName"
-          placeholder="название чата"
-        >
+        <h2> {{ title }}</h2>
         <div class="participant-list">
           <div
-            v-for="user in availableUsers"
+            v-for="user in users"
             :key="user.userId"
             class="participant-item"
           >
             <input
               :id="user.userId"
-              v-model="selectedParticipants"
+              v-model="selectedUsers"
               type="checkbox"
               :value="user.userId"
             >
@@ -27,21 +22,15 @@
           </div> 
         </div>
         <div class="modal-actions">
-          <button @click="confirmNewChat">
-            Создать
+          <button @click="onConfirm">
+            ОК
           </button>
-          <button @click="cancelNewChat">
+          <button @click="onCancel">
             Отмена
           </button>
         </div>
       </div>
     </div>
-    <button
-      class="create-chat-btn"
-      @click="openNewChatModal"
-    >
-      {{ title }}
-    </button>
   </div>
 </template>
 
@@ -59,48 +48,29 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  isChatName: {
-    type: Boolean,
-    required: false,
-    default: false
-  }
 });
 
+const showModal = ref(true)
+const selectedUsers = ref([])
 
-const showNewChatModal = ref(false)
-const newChatName = ref('')
-const selectedParticipants = ref([])
-const availableUsers = ref(props.users)
+const emit = defineEmits(['confirm', 'close']);
 
-const emit = defineEmits(['createNewChat'])
-
-const openNewChatModal = () => {
-	showNewChatModal.value = true
-}
-
-const confirmNewChat = async () => {
-	if (selectedParticipants.value.length > 0) {
-    if ((newChatName.value && props.isChatName) || !props.isChatName) {
-      emit('createNewChat', {
-        chatName: newChatName.value,
-        users: selectedParticipants.value,
-      });
-      closeModal();
-      resetValues();
-    }
-	}
+const onConfirm = async () => {	
+  emit('confirm', selectedUsers.value);
+  closeModal();
+  resetValues();
 }
 
 const closeModal = () => {
-  showNewChatModal.value = false;
+  emit('close');
+  showModal.value = false;
 }
 
 const resetValues = () => {
-	newChatName.value = ''
-	selectedParticipants.value = []
+	selectedUsers.value = []
 }
 
-const cancelNewChat = () => {
+const onCancel = () => {
   closeModal();
 	resetValues();
 }
@@ -117,6 +87,7 @@ const cancelNewChat = () => {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+  z-index: 1000;
 }
 
 .modal-content {
@@ -127,6 +98,7 @@ const cancelNewChat = () => {
 }
 
 .participant-list {
+  margin-top: 10px;
 	max-height: 200px;
 }
 .participant-item {
@@ -149,19 +121,4 @@ const cancelNewChat = () => {
 	margin-left: 10px;
 }
 
-.create-chat-btn {
-	position: fixed;
-	bottom: 20px;
-	right: 20px;
-	padding: 10px 20px;
-	background-color: #007bff;
-	color: white;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-}
-
-.create-chat-btn:hover {
-	background-color: #0056b3;
-}
 </style>

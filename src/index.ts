@@ -3,5 +3,7 @@ import './assets/style.css'
 
 export * from './components/messages';
 export * from './components/features';
+export * from './components/modals';
 
 export * from './helpers';
+

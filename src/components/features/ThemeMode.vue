@@ -1,47 +1,35 @@
 <template>
-  <!-- <label class="theme-button">
-    <input
-      type="checkbox"
-      @click="toggleDarkMode"
-    >
-    <span class="theme-button__switch">
-      <span class="pi pi-sun" />
-      <span class="pi pi-moon" />
-    </span>
-  </label> -->
-
   <div>
-    <button @click="changeTheme('light')">
-      Light
-    </button>
-    <button @click="changeTheme('dark')">
-      Dark
-    </button>
-    <button @click="changeTheme('green')">
-      Green
-    </button>
+    <select @change="changeTheme($event)">
+      <option 
+        v-for="(theme, index) in props.themes"
+        :key="index"
+        :value="theme.code"
+      >
+        {{ theme.name }}
+      </option>
+    </select>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 
-// const isDark = ref(false)
-// const toggleDarkMode = () => {
-//   isDark.value = !isDark.value;
-//   document.documentElement.dataset.theme = isDark.value ? 'dark' : 'light';
-// };
-
+const props = defineProps({
+  themes: {
+    type: Array,
+  },
+});
 
 const currentTheme = ref('light'); // Начальная тема
 
-const changeTheme = (newTheme) => {
-  currentTheme.value = newTheme;
-  document.documentElement.dataset.theme = newTheme;
+const changeTheme = (event) => {
+  const themeCode = event.target.value;
+  currentTheme.value = themeCode;
+  document.documentElement.dataset.theme = themeCode;
 };
 
 </script>
-
 
 <style
   scoped

@@ -2,13 +2,13 @@
   <div class="chat-app">
     <div class="chat-app__container">
       <div class="chat-app__left-bar">
-        <ToolBar
+        <SideBar
           :sidebar-items="sidebarItems"
           @select-item="selectItem"
         />
       </div>
       <div class="chat-app__center-bar">
-        <Profile :user="userProfile" />
+        <UserProfile :user="userProfile" />
         <ChatList
           class="chat-app__chat-list"
           :chats="chatsStore.chats"
@@ -16,7 +16,7 @@
           @select="selectChat"
           @action="chatAction"
         />
-        <!-- <ThemeMode /> -->
+        <ThemeMode :themes="themes" />
       </div>
 
       <div
@@ -61,72 +61,76 @@
           test
         </template>
       </ChatPanel>
-
-
-      <FloatWindow
-        v-if="isOpenFloatWindow"
-        class="chat-app__float-window"
-        :title="'Заголовок'"
-        @close-window="isOpenFloatWindow = !isOpenFloatWindow"
-      >
-        <div class="chat-app__left-bar">
-          <ToolBar
-            :sidebar-items="sidebarItems"
-            @select-item="selectItem"
-          />
-        </div>
-
-
-        <div class="chat-app__float-center-bar">
-          <Profile :user="userProfile" />
-          <ChatList
-            :chats="chatsStore.chats"
-            filter-enabled
-            @select="selectChat"
-            @action="chatAction"
-          />
-          <ThemeMode />
-        </div>
-
-        <div
-          class="chat-app__float-right-bar"
-          :style="{ gridColumn: isOpenChatPanel ? '3' : '3 / 5' }"
-        >
-          <div
-            v-if="selectedChat"
-            class="chat-app__right-bar-container"
-          >
-            <ChatInfo
-              :chat="selectedChat"
-              @open-panel="isOpenChatPanel = !isOpenChatPanel"
-            />
-            <Feed
-              :objects="messages"
-              :style="{ padding: isOpenChatPanel ? '0 20px 50px 20px' : '0 80px 50px 80px' }"
-              @message-action="messageAction"
-            />
-            <ChatInput
-              :enable-emoji="true"
-              :channels="channels"
-              @send="addMessage"
-            />
-          </div>
-          <p
-            v-else
-            class="chat-app__welcome-text"
-          >
-            Выберите контакт для начала общения
-          </p>
-        </div>
-        <ChatPanel
-          v-if="isOpenChatPanel"
-          class="chat-app__float-chat-panel"
-          @close-panel="isOpenChatPanel = !isOpenChatPanel"
-        />
-      </FloatWindow>
     </div>
+    <FloatWindow
+      v-if="isOpenFloatWindow"
+      class="chat-app__float-window"
+      :title="'Заголовок'"
+      @close-window="isOpenFloatWindow = !isOpenFloatWindow"
+    >
+      <div class="chat-app__left-bar">
+        <SideBar
+          :sidebar-items="sidebarItems"
+          @select-item="selectItem"
+        />
+      </div>
+
+
+      <div class="chat-app__float-center-bar">
+        <UserProfile :user="userProfile" />
+        <ChatList
+          :chats="chatsStore.chats"
+          filter-enabled
+          @select="selectChat"
+          @action="chatAction"
+        />
+        <ThemeMode :themes="themes" />
+      </div>
+
+      <div
+        class="chat-app__float-right-bar"
+        :style="{ gridColumn: isOpenChatPanel ? '3' : '3 / 5' }"
+      >
+        <div
+          v-if="selectedChat"
+          class="chat-app__right-bar-container"
+        >
+          <ChatInfo
+            :chat="selectedChat"
+            @open-panel="isOpenChatPanel = !isOpenChatPanel"
+          />
+          <Feed
+            :objects="messages"
+            :style="{ padding: isOpenChatPanel ? '0 20px 50px 20px' : '0 80px 50px 80px' }"
+            @message-action="messageAction"
+          />
+          <ChatInput
+            :enable-emoji="true"
+            :channels="channels"
+            @send="addMessage"
+          />
+        </div>
+        <p
+          v-else
+          class="chat-app__welcome-text"
+        >
+          Выберите контакт для начала общения
+        </p>
+      </div>
+      <ChatPanel
+        v-if="isOpenChatPanel"
+        class="chat-app__float-chat-panel"
+        @close-panel="isOpenChatPanel = !isOpenChatPanel"
+      />
+    </FloatWindow>
+    <SelectUser
+      v-if="modalShow"
+      :title="modalTitle"
+      :users="users"
+      @confirm="selectUsers"
+      @close="onCloseModal"
+    />
   </div>
-  <!-- <CreateNewChat :users="getUsers()" @createNewChat="createNewChat" title="+ чат" :isChatName="true"/>     -->
 </template>
 
 <script setup>
@@ -136,12 +140,11 @@ import {
   ChatInfo,
   ChatInput,
   ChatList,
-  CreateNewChat,
   Feed,
-  Profile,
+  UserProfile,
   FileUploader,
   ThemeMode,
-  ToolBar,
+  SideBar,
   ChatPanel,
   FloatWindow,
 } from "./components/features";
@@ -155,6 +158,8 @@ import {
 
 import { useChatsStore } from './stores/useChatStore';
 import { transformToFeed } from './transform/transformToFeed';
+import { SelectUser } from './components/modals';
+
 
 // Define props
 const props = defineProps({
@@ -172,6 +177,27 @@ const props = defineProps({
   },
 });
 
+const themes = [
+  {
+    code: 'light',
+    name: 'Light',
+  },
+  {
+    code: 'dark',
+    name: 'Dark',
+  },
+  {
+    code: 'green',
+    name: 'Green',
+  },
+  {
+    code: 'diamond',
+    name: 'Diamond',
+  },
+];
+
+
+
 const chatsStore = useChatsStore();
 
 // Reactive data
@@ -184,28 +210,53 @@ const sidebarItems = ref([])
 const isOpenChatPanel = ref(false)
 const isOpenFloatWindow = ref(true)
 
+
+const modalShow = ref(false);
+const modalTitle = ref('');
+const users = ref([]);
+
+const chatApp = ref(null);
+
+const chatAppSize = ref({
+  width: 0,
+  height: 0
+})
+
+const updateChatAppSize = () => {
+  return chatAppSize.value = {
+    width: chatApp.value.offsetWidth,
+    height: chatApp.value.offsetHeight
+  }
+}
+
 const selectItem = (item) => {
   console.log('selected sidebar item', item);
 };
 
 const chatAction = (data) => {
   console.log('chat action', data);
+  if (data.action === 'add') {
+    modalTitle.value = `Добавить в чат ${data.chatId}`;
+    users.value = getUsers();
+    modalShow.value = true;
+  }
+}
+
+const selectUsers = (users) => {
+  console.log('users selected', users);
+}
+
+const onCloseModal = () => {
+  modalShow.value = false;
 }
 
 const messageAction = (data) => {
   console.log('message action', data);
 }
 
-
 const getUsers = () => {
-  return (props.dataProvider.getChats()).map(c => { return { ...c, userId: c.chatId.toString() } });
-}
-
-const createNewChat = (obj) => {
-  // obj.users.map(c=>console.log(c));
-  // console.log('chat', obj)
-  const chat = { chatId: 3, name: obj.chatName };
-  chatsStore.addChat(chat);
+  return props.dataProvider.getUsers();
+  // return (props.dataProvider.getChats()).map(c => { return { ...c, userId: c.chatId.toString() } });
 }
 
 const loadMore = () => {
@@ -285,7 +336,7 @@ onMounted(() => {
   &__left-bar {
     margin-right: 20px;
     grid-column: 1;
-    border-right: 1px solid var(--tool-bar-border-color);
+    border-right: 1px solid var(--sidebar-border-color);
   }
 
   &__right-bar {

@@ -64,6 +64,7 @@ const props = defineProps({
   channels: {
     type: Array,
     required: false,
+    default: () => [],
   }
 })
 
