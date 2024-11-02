@@ -18,6 +18,7 @@ import { ref } from 'vue';
 const props = defineProps({
   themes: {
     type: Array,
+    default: () => [],
   },
 });
 

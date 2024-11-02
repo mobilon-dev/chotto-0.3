@@ -62,6 +62,8 @@
         </template>
       </ChatPanel>
     </div>
+
+
     <FloatWindow
       v-if="isOpenFloatWindow"
       class="chat-app__float-window"
@@ -98,7 +100,13 @@
           <ChatInfo
             :chat="selectedChat"
             @open-panel="isOpenChatPanel = !isOpenChatPanel"
-          />
+          >
+          <!--
+            <template #actions>
+              <h5>actions</h5>
+            </template>
+          -->
+          </ChatInfo>
           <Feed
             :objects="messages"
             :style="{ padding: isOpenChatPanel ? '0 20px 50px 20px' : '0 80px 50px 80px' }"
@@ -209,7 +217,6 @@ const sidebarItems = ref([])
 
 const isOpenChatPanel = ref(false)
 const isOpenFloatWindow = ref(true)
-
 
 const modalShow = ref(false);
 const modalTitle = ref('');

@@ -16,9 +16,9 @@ const chat = {
   avatar: null,
 };
 
-
 export const Standard: Story = {
   args: {
     chat: chat,
+    actions: 'test'
   },
 };
