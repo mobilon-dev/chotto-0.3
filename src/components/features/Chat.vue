@@ -154,8 +154,8 @@ const hideMenu = () => {
     object-fit: cover;
     margin-right: 15px;
     background-color: var(--avatar-background-color);
-    width: var(--avatar-width-medium);
-    height: var(--avatar-height-medium);
+    min-width: var(--avatar-width-medium);
+    min-height: var(--avatar-height-medium);
     border-radius: var(--avatar-border-radius);
 
     span {

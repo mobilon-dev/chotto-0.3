@@ -1,8 +1,5 @@
 <template>
-  <div
-    ref="chatApp"
-    class="chat-app"
-  >
+  <div class="chat-app">
     <div class="chat-app__container">
       <div class="chat-app__left-bar">
         <SideBar
@@ -35,7 +32,6 @@
             @open-panel="isOpenChatPanel = !isOpenChatPanel"
           />
           <Feed
-            class="chat-app__feed"
             :objects="messages"
             :style="{ padding: isOpenChatPanel ? '0 20px 50px 20px' : '0 80px 50px 80px' }"
             @message-action="messageAction"
@@ -57,7 +53,7 @@
 
       <ChatPanel
         v-if="isOpenChatPanel"
-        class="chat-app__chat-panel chat-app__chat-panel--active"
+        class="chat-app__chat-panel"
         :title="selectedChat.name"
         @close-panel="isOpenChatPanel = !isOpenChatPanel"
       >
@@ -66,14 +62,67 @@
         </template>
       </ChatPanel>
     </div>
-    <!-- 
     <FloatWindow
       v-if="isOpenFloatWindow"
       class="chat-app__float-window"
-      :update-chat-app-size="updateChatAppSize"
+      :title="'Заголовок'"
       @close-window="isOpenFloatWindow = !isOpenFloatWindow"
-    />
-    -->
+    >
+      <div class="chat-app__left-bar">
+        <SideBar
+          :sidebar-items="sidebarItems"
+          @select-item="selectItem"
+        />
+      </div>
+
+
+      <div class="chat-app__float-center-bar">
+        <UserProfile :user="userProfile" />
+        <ChatList
+          :chats="chatsStore.chats"
+          filter-enabled
+          @select="selectChat"
+          @action="chatAction"
+        />
+        <ThemeMode :themes="themes" />
+      </div>
+
+      <div
+        class="chat-app__float-right-bar"
+        :style="{ gridColumn: isOpenChatPanel ? '3' : '3 / 5' }"
+      >
+        <div
+          v-if="selectedChat"
+          class="chat-app__right-bar-container"
+        >
+          <ChatInfo
+            :chat="selectedChat"
+            @open-panel="isOpenChatPanel = !isOpenChatPanel"
+          />
+          <Feed
+            :objects="messages"
+            :style="{ padding: isOpenChatPanel ? '0 20px 50px 20px' : '0 80px 50px 80px' }"
+            @message-action="messageAction"
+          />
+          <ChatInput
+            :enable-emoji="true"
+            :channels="channels"
+            @send="addMessage"
+          />
+        </div>
+        <p
+          v-else
+          class="chat-app__welcome-text"
+        >
+          Выберите контакт для начала общения
+        </p>
+      </div>
+      <ChatPanel
+        v-if="isOpenChatPanel"
+        class="chat-app__float-chat-panel"
+        @close-panel="isOpenChatPanel = !isOpenChatPanel"
+      />
+    </FloatWindow>
     <SelectUser
       v-if="modalShow"
       :title="modalTitle"
@@ -85,7 +134,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch, reactive } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 
 import {
   ChatInfo,
@@ -186,7 +235,7 @@ const selectItem = (item) => {
 
 const chatAction = (data) => {
   console.log('chat action', data);
-  if(data.action === 'add') {
+  if (data.action === 'add') {
     modalTitle.value = `Добавить в чат ${data.chatId}`;
     users.value = getUsers();
     modalShow.value = true;
@@ -259,6 +308,7 @@ const handleEvent = async (event) => {
   }
 };
 
+
 onMounted(() => {
   // console.log('mounted')
   props.eventor.subscribe(handleEvent);
@@ -274,7 +324,6 @@ onMounted(() => {
   lang="scss"
 >
 .chat-app {
-  position: relative;
 
   &__container {
     display: grid;
@@ -293,6 +342,7 @@ onMounted(() => {
   &__right-bar {
     grid-column: 3;
     position: relative;
+    /* вычитаем маргины сверху и снизу */
     height: calc(100vh - 60px);
     border-radius: 12px;
     margin: var(--right-bar-margin);
@@ -308,19 +358,21 @@ onMounted(() => {
   &__center-bar {
     display: flex;
     flex-direction: column;
+    /* вычитаем маргины сверху и снизу */
     height: calc(100vh - 60px);
     grid-column: 2;
+    margin: var(--center-bar-margin);
     border-right: var(--center-bar-border, none);
   }
 
   &__chat-panel {
     margin: var(--chat-pannel-margin);
     border-left: var(--chat-pannel-border, none);
+    height: calc(100vh - 60px);
   }
 
   &__chat-list {
     overflow-y: auto;
-    margin: 30px 0 16px 0;
   }
 
   &__welcome-text {
@@ -332,9 +384,24 @@ onMounted(() => {
 
   &__float-window {
     position: absolute;
-    right: 0;
-    top: 0;
+  }
 
+  &__float-center-bar {
+    display: grid;
+    grid-auto-rows: inherit;
+    border-right: var(--center-bar-border, none);
+  }
+
+  &__float-right-bar {
+    grid-column: 3;
+    position: relative;
+    border-radius: 12px;
+    background-color: var(--rigth-bar-bg);
+  }
+
+  &__float-chat-panel {
+    margin: var(--chat-pannel-margin);
+    border-left: var(--chat-pannel-border, none);
   }
 }
 

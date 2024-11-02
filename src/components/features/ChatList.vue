@@ -1,9 +1,12 @@
 <template>
   <div class="chat-list">
     <div class="chat-list__container">
-      <h2 class="chat-list__title">
-        Чаты
-      </h2>
+      <div>
+        <h2 class="chat-list__title">
+          Чаты
+        </h2>
+      </div>
+
 
       <ChatFilter
         v-if="filterEnabled"
@@ -45,6 +48,7 @@
           />
         </div>
       </div>
+
     </div>
   </div>
 </template>

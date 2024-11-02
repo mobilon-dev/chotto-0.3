@@ -21,10 +21,7 @@
         {{ message.subText }}
       </p>
 
-      <div
-        class="call-message__content"
-        :style="{ paddingRight: message.isMissedCall ? '16px' : '78px' }"
-      >
+      <div class="call-message__content">
         <span
           class="call-message__icon pi pi-phone"
           :style="{ color: message.isMissedCall ? 'var(--call-message-color-icon-error)' : 'var(--neutral-100)' }"
@@ -91,14 +88,14 @@ function getClass(message) {
     grid-template-columns: min-content 1fr;
     column-gap: var(--call-message-gap);
     max-width: var(--call-message-width);
+    min-width: var(--call-message-min-width);
     padding: var(--call-message-padding);
     border-radius: var(--text-message-border-radius);
   }
 
   &__info-container {
-    position: absolute;
-    bottom: 4px;
-    right: 8px;
+    grid-column: 1 / 3;
+    margin-left: auto;
     display: flex;
     align-items: center;
     column-gap: 6px;

@@ -128,11 +128,9 @@ const getStatus = computed(() => {
   }
 
   &__info-container {
-    position: absolute;
-    bottom: 4px;
-    right: 8px;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     column-gap: 6px;
   }
 
