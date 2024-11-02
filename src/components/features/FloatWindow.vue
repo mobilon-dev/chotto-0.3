@@ -16,7 +16,9 @@
         @mouseup="turnOffDragMode"
         @mouseleave="turnOffDragMode"
       >
-        <p class="float-window__title">{{ props.title }}</p>
+        <p class="float-window__title">
+          {{ props.title }}
+        </p>
         <button
           class="float-window__close-button"
           @click="$emit('close-window')"
