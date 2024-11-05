@@ -240,6 +240,7 @@ onMounted(() => {
     grid-column: 2;
     margin-bottom: -10px;
     font-size: var(--remaining-time);
+    height: fit-content;
   }
 
   &__avatar {

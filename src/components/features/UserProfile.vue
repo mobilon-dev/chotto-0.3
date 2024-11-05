@@ -19,9 +19,4 @@ const props = defineProps({
 });
 </script>
 
-<style scoped>
-.profile {
-  padding: 0 15px;
-  margin-bottom: 30px;
-}
-</style>
+<style scoped></style>

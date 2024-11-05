@@ -8,7 +8,10 @@
         />
       </div>
       <div class="chat-app__center-bar">
-        <UserProfile :user="userProfile" />
+        <UserProfile
+          class="chat-app__profile"
+          :user="userProfile"
+        />
         <ChatList
           class="chat-app__chat-list"
           :chats="chatsStore.chats"
@@ -62,7 +65,7 @@
         </template>
       </ChatPanel>
     </div>
-    <FloatWindow
+    <!-- <FloatWindow
       v-if="isOpenFloatWindow"
       class="chat-app__float-window"
       :title="'Заголовок'"
@@ -122,7 +125,7 @@
         class="chat-app__float-chat-panel"
         @close-panel="isOpenChatPanel = !isOpenChatPanel"
       />
-    </FloatWindow>
+    </FloatWindow> -->
     <SelectUser
       v-if="modalShow"
       :title="modalTitle"
@@ -334,9 +337,10 @@ onMounted(() => {
   }
 
   &__left-bar {
-    margin-right: 20px;
+
     grid-column: 1;
-    border-right: 1px solid var(--sidebar-border-color);
+    margin: var(--left-bar-margin);
+    border-right: var(--sidebar-border);
   }
 
   &__right-bar {
@@ -361,18 +365,21 @@ onMounted(() => {
     /* вычитаем маргины сверху и снизу */
     height: calc(100vh - 60px);
     grid-column: 2;
-    margin: var(--center-bar-margin);
     border-right: var(--center-bar-border, none);
+  }
+
+  &__profile {
+    padding: 30px 15px;
+  }
+
+  &__chat-list {
+    overflow-y: auto;
   }
 
   &__chat-panel {
     margin: var(--chat-pannel-margin);
     border-left: var(--chat-pannel-border, none);
     height: calc(100vh - 60px);
-  }
-
-  &__chat-list {
-    overflow-y: auto;
   }
 
   &__welcome-text {

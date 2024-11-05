@@ -1,10 +1,27 @@
 <template>
   <div class="chat-list">
     <div class="chat-list__container">
-      <div>
+      <div class="chat-list__title-container">
         <h2 class="chat-list__title">
           Чаты
         </h2>
+
+        <button
+          v-if="actions"
+          class="chat-list__button-actions"
+          @click="isOpenMenu = !isOpenMenu"
+        >
+          <span class="pi pi-plus" />
+        </button>
+
+        <!-- chats[0].actions условные данные -->
+        <transition>
+          <ContextMenu
+            v-if="isOpenMenu && chats[0].actions"
+            :actions="chats[0].actions"
+            class="chat-list__context-menu"
+          />
+        </transition>
       </div>
 
 
@@ -48,7 +65,6 @@
           />
         </div>
       </div>
-
     </div>
   </div>
 </template>
@@ -57,9 +73,13 @@
 import { ref } from 'vue';
 import Chat from "./Chat.vue";
 import ChatFilter from './ChatFilter.vue';
-
+import ContextMenu from '../features/ContextMenu.vue'
 
 const filter = ref('');
+const isOpenMenu = ref(false)
+
+// условная переменная, типо когда actions передаем
+const actions = ref(true)
 
 // Define props
 const props = defineProps({
@@ -113,19 +133,18 @@ const action = (data) => emit('action', data);
   background-color: transparent;
 
   &__container {
-
     display: flex;
     flex-direction: column;
     height: 100%;
   }
 
   &__filter {
-    margin: 0 30px 30px 0;
+    margin: var(--chat-list-filter-margin);
   }
 
   &__items {
     overflow-y: auto;
-    padding-right: 20px;
+    padding: var(--chat-list-items-padding);
 
     &::-webkit-scrollbar {
       width: 6px;
@@ -160,10 +179,43 @@ const action = (data) => emit('action', data);
   }
 
   &__title {
-    margin-bottom: 20px;
     font-size: var(--h2-font-size);
     font-weight: var(--h2-font-weight);
   }
+
+  &__title-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 50px;
+    margin: 0 12px 20px 0;
+  }
+
+  &__button-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background-color: var(--chat-list-button-actions-bg);
+    border-radius: 50%;
+    opacity: 0.8;
+    cursor: pointer;
+
+    span {
+      font-size: var(--icon-font-size-small);
+      color: var(--chat-list-button-actions-color);
+    }
+  }
+
+  &__context-menu {
+    position: absolute;
+    top: 46px;
+    right: 20px;
+  }
+
 }
 
 .v-enter-active {

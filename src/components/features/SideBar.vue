@@ -2,21 +2,22 @@
   <div class="sidebar">
     <div class="sidebar__container">
       <ul class="sidebar__list">
-        <!-- :style="{ backgroundColor: item === selectedItem ? 'var(--neutral-300)' : 'transparent' }"
-        @click="selectItem(item)" -->
         <li
           v-for="(item, index) in props.sidebarItems.filter(i => !i.isFixedBottom)"
           :key="index"
           class="sidebar__item"
           @click="selectItem(item)"
         >
+          <!-- :style="{ backgroundColor: item === selectedItem ? 'var(--neutral-300)' : 'transparent' }" -->
           <img
             :src="item.icon"
             :alt="item.name"
+            class="sidebar__image"
+            :class="{ 'sidebar__image--active': item === selectedItem }"
           >
           <span
             v-if="item.notificationCount"
-            :style="{ backgroundColor: item.notificationColor }"
+            :style="{ backgroundColor: item.notificationColor ? item.notificationColor : 'red' }"
           >{{ item.notificationCount > 99 ? '99+' :
             item.notificationCount }}</span>
 
@@ -38,10 +39,12 @@
           <img
             :src="item.icon"
             :alt="item.name"
+            class="sidebar__image"
+            :class="{ 'sidebar__image--active': item === selectedItem }"
           >
           <span
             v-if="item.notificationCount"
-            :style="{ backgroundColor: item.notificationColor }"
+            :style="{ backgroundColor: item.notificationColor ? item.notificationColor : 'red' }"
           >{{ item.notificationCount > 99 ? '99+' :
             item.notificationCount }}</span>
 
@@ -91,7 +94,7 @@ const getName = (name) => {
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-    padding: 18px 8px 30px 8px;
+
     box-shadow: var(--sidebar-box-shadow);
   }
 
@@ -102,23 +105,25 @@ const getName = (name) => {
     row-gap: 10px
   }
 
+  &__list {
+    padding: 18px 8px 8px 8px;
+  }
+
+  &__list-fixed {
+    padding: 8px 8px 30px 8px;
+    border-top: var(--sidebar-border);
+  }
+
   &__item {
     position: relative;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    row-gap: 4px;
+    row-gap: 2px;
     align-items: center;
     background-color: transparent;
     border-radius: 50%;
-
-    img {
-      border-radius: 50%;
-      object-fit: cover;
-      width: 46px;
-      height: 46px;
-    }
 
     span {
       position: absolute;
@@ -141,6 +146,21 @@ const getName = (name) => {
       text-align: center;
       line-height: 1;
     }
+  }
+
+  &__image {
+    border-radius: 50%;
+    object-fit: cover;
+    width: 49px;
+    height: 49px;
+    border: 3px solid transparent;
+    opacity: 0.8;
+    transition: all 0.2s;
+  }
+
+  &__image--active {
+    border: 3px solid var(--emerald-500);
+    opacity: 1;
   }
 }
 </style>

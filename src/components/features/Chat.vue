@@ -129,16 +129,18 @@ const hideMenu = () => {
 >
 .chat-item {
 
+
   &__container {
     display: flex;
     position: relative;
     padding: 15px;
     cursor: pointer;
+    border-bottom: var(--chat-item-border, none);
   }
 
   &__selected {
-    border-radius: 6px;
     cursor: pointer;
+    border-radius: var(--chat-item-border-radius);
     background: var(--chat-item-selected);
 
     .chat-item__menu-button {
@@ -189,14 +191,14 @@ const hideMenu = () => {
 
   &__name {
     margin-bottom: 5px;
-    font-weight: 600;
+    font-weight: var(--chat-item-font-weight-name);
     font-size: var(--chat-item-font-size-name);
   }
 
   &__last-message {
-    font-weight: 500;
+    font-weight: var(--chat-item-font-weight-last-message);
     font-size: var(--chat-item-font-size-last-message);
-    color: var(--chat-item-color-last-name);
+    color: var(--chat-item-color-last-message);
   }
 
   &__details-container {
@@ -254,8 +256,8 @@ const hideMenu = () => {
 
   &__time {
     font-size: 12px;
-    color: var(--neutral-400);
-    font-weight: 500;
+    color: var(--chat-item-color-time);
+    font-weight: var(--chat-item-font-weight-time);
 
   }
 

@@ -26,7 +26,20 @@
   --neutral-900: #171717;
   --neutral-950: #0a0a0a;
 
+  --p-red-50: #fef2f2;
+  --p-red-100: #fee2e2;
+  --p-red-200: #fecaca;
+  --p-red-300: #fca5a5;
+  --p-red-400: #f87171;
+  --p-red-500: #ef4444;
+  --p-red-600: #dc2626;
+  --p-red-700: #b91c1c;
+  --p-red-800: #991b1b;
+  --p-red-900: #7f1d1d;
+  --p-red-950: #450a0a;
+
   --default-white: #ffffff;
+
   /* Inputs */
 
   --inputtext-font-size: 1rem;
@@ -53,6 +66,7 @@
 
   /* Icons */
 
+  --icon-font-size-small: 1rem;
   --icon-font-size-medium: 1.3rem;
   --icon-font-size-large: 1.6rem;
 
