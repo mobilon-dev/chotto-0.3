@@ -62,4 +62,7 @@
   --audio-message-background-left: #dfe5e7;
   --audio-message-background-right: #d9fdd3;
 
+  /* Feed */
+  --feed-button-down-bg: var(--neutral-200);
+
 }

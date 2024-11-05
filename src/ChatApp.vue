@@ -65,7 +65,7 @@
         </template>
       </ChatPanel>
     </div>
-    <!-- <FloatWindow
+    <FloatWindow
       v-if="isOpenFloatWindow"
       class="chat-app__float-window"
       :title="'Заголовок'"
@@ -125,7 +125,7 @@
         class="chat-app__float-chat-panel"
         @close-panel="isOpenChatPanel = !isOpenChatPanel"
       />
-    </FloatWindow> -->
+    </FloatWindow>
     <SelectUser
       v-if="modalShow"
       :title="modalTitle"
@@ -364,12 +364,13 @@ onMounted(() => {
     flex-direction: column;
     /* вычитаем маргины сверху и снизу */
     height: calc(100vh - 60px);
+    margin: auto 0;
     grid-column: 2;
     border-right: var(--center-bar-border, none);
   }
 
   &__profile {
-    padding: 30px 15px;
+    padding: 10px 15px 30px 15px;
   }
 
   &__chat-list {
