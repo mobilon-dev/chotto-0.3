@@ -68,3 +68,10 @@ export const SidebarWithNotifications: Story = {
     sidebarItems: sidebarItemsWithNotifications,
   },
 };
+
+export const SidebarWithSelectedByDefault: Story = {
+  args: {
+    sidebarItems: sidebarItemsWithNotifications,
+    defaultSelectedItemIndex: 1,
+  },
+};

@@ -58,12 +58,16 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 const props = defineProps({
   sidebarItems: {
     type: Array,
     required: true,
+  },
+  defaultSelectedItemIndex: {
+    type: Number,
+    required: false,
   },
 });
 
@@ -80,6 +84,12 @@ const getName = (name) => {
   const parts = name.split(' ');
   return parts.length > 2 ? parts.slice(0, 2).join(' ') : name;
 }
+
+onMounted(() => {
+  if (props.defaultSelectedItemIndex) {
+    selectedItem.value = props.sidebarItems[props.defaultSelectedItemIndex];
+  }
+})
 </script>
 
 <style
