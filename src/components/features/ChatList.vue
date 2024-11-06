@@ -2,8 +2,8 @@
   <div class="chat-list">
     <div class="chat-list__container">
       <div class="chat-list__title-container">
-        <h2 class="chat-list__title">
-          Чаты
+        <h2 class="chat-list__title" v-if="title">
+          {{ title }}
         </h2>
 
         <button
@@ -79,6 +79,10 @@ const isOpenMenu = ref(false)
 
 // Define props
 const props = defineProps({
+  title: {
+    type: String,
+    default: 'Чаты',
+  },
   chats: {
     type: Array,
     required: true,
