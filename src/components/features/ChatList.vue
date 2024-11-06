@@ -19,6 +19,7 @@
             v-if="isOpenMenu && actions"
             :actions="actions"
             class="chat-list__context-menu"
+            @click="action"
           />
         </transition>
       </div>
