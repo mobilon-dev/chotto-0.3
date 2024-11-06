@@ -7,18 +7,17 @@
         </h2>
 
         <button
-          v-if="actions"
+          v-if="actions.length"
           class="chat-list__button-actions"
           @click="isOpenMenu = !isOpenMenu"
         >
           <span class="pi pi-plus" />
         </button>
 
-        <!-- chats[0].actions условные данные -->
         <transition>
           <ContextMenu
-            v-if="isOpenMenu && chats[0].actions"
-            :actions="chats[0].actions"
+            v-if="isOpenMenu && actions"
+            :actions="actions"
             class="chat-list__context-menu"
           />
         </transition>
@@ -78,14 +77,16 @@ import ContextMenu from '../features/ContextMenu.vue'
 const filter = ref('');
 const isOpenMenu = ref(false)
 
-// условная переменная, типо когда actions передаем
-const actions = ref(true)
-
 // Define props
 const props = defineProps({
   chats: {
     type: Array,
     required: true,
+  },
+  actions: {
+    type: Array,
+    required: false,
+    default: () => [],
   },
   filterEnabled: {
     type: Boolean,
@@ -106,13 +107,12 @@ const selectChat = (chat) => {
 
 const getSortedAndFilteredChats = () => {
   return props.chats
-    .sort((a, b) => {
+    .toSorted((a, b) => {   // immutable sort
       if (a.countUnread > b.countUnread) return -1;
       if (a.countUnread < b.countUnread) return 1;
       if (a.countUnread == b.countUnread) return 0;
     })
     .filter(c => c.name.includes(filter.value));
-  ;
 }
 
 const getFilter = (value) => {

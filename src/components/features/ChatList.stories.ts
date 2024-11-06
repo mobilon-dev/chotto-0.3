@@ -26,6 +26,12 @@ const chats = [{
   'lastActivity.time': "12:11",
 }];
 
+const actionsChatList = [
+  {action: 'chat.new', title: 'создать новый чат',},
+  {action: 'invite.send', title: 'пригласить пользователей',},
+]
+
+
 export const ChatlistBasic: Story = {
   args: {
     chats,
@@ -35,6 +41,14 @@ export const ChatlistBasic: Story = {
 export const ChatlistWithEnabledFilter: Story = {
   args: {
     chats,
+    filterEnabled: true,
+  },
+};
+
+export const ChatlistWithActions: Story = {
+  args: {
+    chats,
+    actions: actionsChatList,
     filterEnabled: true,
   },
 };
@@ -117,14 +131,14 @@ const chatsWithStatuses = [{
   lastMessage: "Привет!",
   countUnread: "21",
   'lastActivity.time': "12:11",
-  status: 'online',
+  status: '#FF0000',
 },{
   chatId: '102',
   name: "John Doe 2",
   lastMessage: "Привет 2!",
   countUnread: "677",
   'lastActivity.time': "12:12",
-  status: 'sleep'
+  status: '#00FF00'
 }];
 
 export const ChatsWithStatuses: Story = {
