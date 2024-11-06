@@ -53,11 +53,11 @@ const emit = defineEmits(['open-panel']);
 >
 .chat-info {
   &__container {
-    padding: 20px 15px 20px 40px;
+    padding: var(--chat-info-padding);
     display: grid;
     grid-template-columns: min-content auto min-content;
     column-gap: 20px;
-    border-bottom: 1px solid var(--neutral-300);
+    border-bottom: 1px solid var(--neutral-200);
   }
 
   &__avatar-container {
@@ -83,10 +83,11 @@ const emit = defineEmits(['open-panel']);
   }
 
   &__title {
-    font-size: 18px;
-    font-weight: 500;
+
     grid-column: 2;
     align-self: center;
+    font-weight: 500;
+    font-size: var(--chat-info-font-size-title);
   }
 
   &__time {

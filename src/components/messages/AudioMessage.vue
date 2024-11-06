@@ -220,9 +220,9 @@ onMounted(() => {
   &__progress-bar-container {
     position: relative;
     width: 100%;
+    align-self: center;
     height: var(--audio-message-pbc-height);
     border-radius: var(--audio-message-pbc-border-radius);
-    margin: var(--audio-message-pbc-margin);
     background-color: var(--audio-message-pbc-background-color);
   }
 
@@ -239,7 +239,7 @@ onMounted(() => {
   &__remaining-time {
     grid-column: 2;
     margin-bottom: -10px;
-    font-size: var(--remaining-time);
+    font-size: var(--g-message-font-size-remaining-time);
     height: fit-content;
   }
 
@@ -297,7 +297,8 @@ onMounted(() => {
   }
 
   &__time {
-    font-size: var(--time-message-font-size);
+    font-size: var(--g-message-font-size-time);
+    color: var(--g-message-color-time);
   }
 
   &__menu-button {

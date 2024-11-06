@@ -13,7 +13,7 @@ const props = defineProps({
   message: {
     type: Object,
     required: true,
-    default: () => {}
+    default: () => { }
   }
 });
 </script>
@@ -29,9 +29,11 @@ const props = defineProps({
     align-items: center;
     justify-content: center;
     margin: 0 auto;
-    padding: 8px 14px;
+    padding: 6px 18px;
     margin-bottom: 18px;
     width: fit-content;
+    background-color: var(--date-bg, transparent);
+    border: var(--date-border);
   }
 
   &__text {

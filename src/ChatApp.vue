@@ -8,10 +8,11 @@
         />
       </div>
       <div class="chat-app__center-bar">
+        `
         <UserProfile
           class="chat-app__profile"
           :user="userProfile"
-        />
+        />`
         <ChatList
           class="chat-app__chat-list"
           :chats="chatsStore.chats"
@@ -36,7 +37,7 @@
           />
           <Feed
             :objects="messages"
-            :style="{ padding: isOpenChatPanel ? '0 20px 50px 20px' : '0 80px 50px 80px' }"
+            :style="{ padding: isOpenChatPanel ? '0 20px 10px 20px' : '0 80px 10px 80px' }"
             @message-action="messageAction"
             @load-more="loadMore"
           />
@@ -104,7 +105,7 @@
           />
           <Feed
             :objects="messages"
-            :style="{ padding: isOpenChatPanel ? '0 20px 50px 20px' : '0 80px 50px 80px' }"
+            :style="{ padding: isOpenChatPanel ? '0 20px 10px 20px' : '0 80px 10px 80px' }"
             @message-action="messageAction"
           />
           <ChatInput
@@ -330,24 +331,23 @@ onMounted(() => {
 
   &__container {
     display: grid;
-    grid-template-columns: min-content 1.25fr 3fr 1.25fr;
+    grid-template-columns: var(--app-template-col);
     transition: all 0.3s ease;
     background-color: var(--app-container-bg, transparent);
     margin: var(--app-margin, 0);
+    border: 1px solid var(--app-border-color, none);
   }
 
   &__left-bar {
-
     grid-column: 1;
     margin: var(--left-bar-margin);
-    border-right: var(--sidebar-border);
   }
 
   &__right-bar {
     grid-column: 3;
     position: relative;
     /* вычитаем маргины сверху и снизу */
-    height: calc(100vh - 60px);
+    height: calc(100vh - 62px);
     border-radius: 12px;
     margin: var(--right-bar-margin);
     background-color: var(--rigth-bar-bg);
@@ -363,7 +363,7 @@ onMounted(() => {
     display: flex;
     flex-direction: column;
     /* вычитаем маргины сверху и снизу */
-    height: calc(100vh - 60px);
+    height: calc(100vh - 62px);
     margin: auto 0;
     grid-column: 2;
     border-right: var(--center-bar-border, none);
@@ -380,7 +380,7 @@ onMounted(() => {
   &__chat-panel {
     margin: var(--chat-pannel-margin);
     border-left: var(--chat-pannel-border, none);
-    height: calc(100vh - 60px);
+    height: calc(100vh - 62px);
   }
 
   &__welcome-text {

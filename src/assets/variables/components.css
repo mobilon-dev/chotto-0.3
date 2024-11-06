@@ -50,7 +50,6 @@
 
   --audio-message-pbc-border-radius: 10px;
   --audio-message-pbc-height: 8px;
-  --audio-message-pbc-margin: 8px 0 0 0;
 
   /* progress-bar -> pb */
 
@@ -79,11 +78,6 @@
   --call-message-gap: 12px;
   --call-message-icon-height: 38px;
   --call-message-icon-width: 38px;
-
-  /* Message Info */
-
-  --time-message-font-size: 11px;
-  --remaining-time: 12px;
 
   /* Channels */
 

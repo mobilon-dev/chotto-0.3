@@ -145,8 +145,10 @@ const getStatus = computed(() => {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    font-size: var(--g-message-font-size-text);
     column-gap: var(--file-message-gap);
     color: var(--file-message-link-color);
+    margin: var(--g-message-margin-text);
 
     span {
       font-size: var(--icon-font-size-medium);
@@ -192,7 +194,8 @@ const getStatus = computed(() => {
   }
 
   &__time {
-    font-size: var(--time-message-font-size);
+    font-size: var(--g-message-font-size-time);
+    color: var(--g-message-color-time);
   }
 
   &__menu-button {

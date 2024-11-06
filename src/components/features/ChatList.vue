@@ -1,7 +1,10 @@
 <template>
   <div class="chat-list">
     <div class="chat-list__container">
-      <div class="chat-list__title-container">
+      <div
+        class="chat-list__title-container"
+        @mouseleave="hideMenu"
+      >
         <h2 class="chat-list__title">
           Чаты
         </h2>
@@ -11,11 +14,18 @@
           class="chat-list__button-actions"
           @click="isOpenMenu = !isOpenMenu"
         >
-          <span class="pi pi-plus" />
+          <span
+            v-if="isOpenMenu"
+            class="pi pi-minus"
+          />
+          <span
+            v-else
+            class="pi pi-plus"
+          />
         </button>
 
         <!-- chats[0].actions условные данные -->
-        <transition>
+        <transition name="menu">
           <ContextMenu
             v-if="isOpenMenu && chats[0].actions"
             :actions="chats[0].actions"
@@ -77,6 +87,10 @@ import ContextMenu from '../features/ContextMenu.vue'
 
 const filter = ref('');
 const isOpenMenu = ref(false)
+
+const hideMenu = () => {
+  isOpenMenu.value = false
+}
 
 // условная переменная, типо когда actions передаем
 const actions = ref(true)
@@ -189,15 +203,15 @@ const action = (data) => emit('action', data);
     justify-content: space-between;
     align-items: center;
     column-gap: 50px;
-    margin: 0 12px 20px 0;
+    padding: 0 12px 20px 9px;
   }
 
   &__button-actions {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 32px;
-    height: 32px;
+    width: var(--chat-list-button-actions-width);
+    height: var(--chat-list-button-actions-height);
     border: none;
     background-color: var(--chat-list-button-actions-bg);
     border-radius: 50%;
@@ -207,6 +221,7 @@ const action = (data) => emit('action', data);
     span {
       font-size: var(--icon-font-size-small);
       color: var(--chat-list-button-actions-color);
+      transition: all 0.2s;
     }
   }
 
@@ -215,19 +230,18 @@ const action = (data) => emit('action', data);
     top: 46px;
     right: 20px;
   }
-
 }
 
-.v-enter-active {
+.menu-enter-active {
   transition: all 0.1s ease-out;
 }
 
-.v-leave-active {
+.menu-leave-active {
   transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
-.v-enter-from,
-.v-leave-to {
+.menu-enter-from,
+.menu-leave-to {
   transform: scale(0.9);
   opacity: 0;
 }

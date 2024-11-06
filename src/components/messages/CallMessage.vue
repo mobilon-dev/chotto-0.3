@@ -102,6 +102,7 @@ function getClass(message) {
   }
 
   &__title {
+    font-size: var(--call-message-font-size-title);
     font-weight: 500;
     margin-bottom: 2px;
   }
@@ -122,12 +123,13 @@ function getClass(message) {
   }
 
   &__duration {
-    color: var(--neutral-500);
-    font-size: 15px;
+    color: var(--call-message-color-duration);
+    font-size: 14px;
   }
 
   &__time {
-    font-size: var(--time-message-font-size);
+    font-size: var(--g-message-font-size-time);
+    color: var(--g-message-color-time);
   }
 
   &__status {
