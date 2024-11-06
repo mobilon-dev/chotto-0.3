@@ -16,7 +16,7 @@
   --chat-pannel-widget-bg: var(--neutral-600);
 
   /* Tool Bar */
-  --sidebar-border-color: var(--neutral-400);
+  --sidebar-border: 1px solid var(--neutral-400);
   --sidebar-box-shadow: -13px 0px 20px -21px rgba(255, 255, 255, 0.2);
 
   /* Chat List */

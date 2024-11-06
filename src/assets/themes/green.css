@@ -1,6 +1,7 @@
 [data-theme="green"] {
 
-  --app-bg: var(--neutral-300);
+  --app-bg: var(--neutral-200);
+  --app-color: var(--neutral-700);
   --app-container-bg: var(--default-white);
   --app-margin: 30px 0;
 
@@ -21,5 +22,47 @@
   /* Chat Panel */
   --chat-panel-bg: transparent;
   --chat-pannel-margin: 0;
-  --chat-pannel-border: 1px solid var(--neutral-200)
+  --chat-pannel-border: 1px solid var(--neutral-200);
+
+  /* Chat List */
+  --chat-list-filter-margin: 0 12px 10px 0;
+
+  /* _____________________________________________ */
+
+  /* Chat Item */
+
+  /* Info Container */
+  --chat-item-border-radius: 0;
+  --chat-item-color-last-message: var(--neutral-700);
+  --chat-item-font-weight-last-message: 400;
+  --chat-item-font-weight-name: 500;
+  --chat-item-border: 1px solid var(--neutral-200);
+
+  /* Details Container */
+  --chat-item-color-unread: var(--neutral-700);
+  --chat-item-background-color-unread: var(--p-red-300);
+  --chat-item-color-time: var(--neutral-700);
+  --chat-item-font-weight-time: 400;
+
+  /* _____________________________________________ */
+
+  /* Inputs */
+  --inputtext-border-radius: 0;
+
+  /* Text Message */
+  --text-message-right-background-color: #d9fdd3;
+  --text-message-left-background-color: #dfe5e7;
+
+  /* File Message */
+  --file-message-background-color: #dfe5e7;
+
+  /* _____________________________________________ */
+
+  /* Audio Message */
+  --audio-message-background-left: #dfe5e7;
+  --audio-message-background-right: #d9fdd3;
+
+  /* Feed */
+  --feed-button-down-bg: var(--neutral-200);
+
 }

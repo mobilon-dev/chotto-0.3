@@ -3,7 +3,6 @@ export const sidebarItems = [
     icon: 'https://dummyimage.com/64x64/000/fff.png&text=SD',
     name: 'Василий Петрович',
     notificationCount: 100,
-    notificationColor: '#FF0000',
   },
   {
     icon: 'https://dummyimage.com/64x64/000/fff.png&text=PN',

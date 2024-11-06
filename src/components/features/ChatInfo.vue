@@ -85,8 +85,9 @@ const emit = defineEmits(['open-panel']);
 
   &__title {
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 500;
     grid-column: 2;
+    align-self: center;
   }
 
   &__time {
