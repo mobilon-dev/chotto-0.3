@@ -1,5 +1,8 @@
 <template>
-  <div class="base__container" :style="{ height: contentHeight + 'px' }">
+  <div
+    class="base__container"
+    :style="{ height: contentHeight + 'px' }"
+  >
     <slot name="default" />
   </div>
 </template>

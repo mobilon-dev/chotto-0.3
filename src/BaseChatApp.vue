@@ -1,11 +1,13 @@
 <template>
-  <div class="chat-app">
+  <div>
     <BaseContainer>
+      <!-- @todo: параметрически задавать ширину и высоту -->
       <BaseLayout>
         <template #first-col>
           <UserProfile :user="userProfile" />
+          <!-- @todo: убрать классы, должны уйти внутрь компонента -->
           <ChatList
-            class="chat-app__chat-list"
+            class="chat-app__chat-list"  
             :chats="chatsStore.chats"
             filter-enabled
             @select="selectChat"
@@ -14,11 +16,15 @@
           <ThemeMode :themes="themes" />
         </template>
         <template #second-col>
-          <div v-if="selectedChat" class="chat-app__right-bar-container">
+          <div
+            v-if="selectedChat"
+            class="chat-app__right-bar-container"
+          >
             <ChatInfo
               :chat="selectedChat"
               @open-panel="isOpenChatPanel = !isOpenChatPanel"
             />
+            <!-- @todo: padding в BaseContainer'е не работать -->
             <Feed
               :objects="messages"
               :style="{
@@ -35,20 +41,23 @@
               @send="addMessage"
             />
           </div>
-          <p v-else class="chat-app__welcome-text">
+          <p
+            v-else
+            class="chat-app__welcome-text"
+          >
             Выберите контакт для начала общения
           </p>
         </template>
       </BaseLayout>
+      <!-- @todo: заменить на composable modals -->
+      <SelectUser
+        v-if="modalShow"
+        :title="modalTitle"
+        :users="users"
+        @confirm="selectUsers"
+        @close="onCloseModal"
+      />
     </BaseContainer>
-
-    <SelectUser
-      v-if="modalShow"
-      :title="modalTitle"
-      :users="users"
-      @confirm="selectUsers"
-      @close="onCloseModal"
-    />
   </div>
 </template>
 
@@ -233,5 +242,6 @@ onMounted(() => {
   channels.value = props.dataProvider.getChannels();
   sidebarItems.value = props.dataProvider.getSidebarItems();
 });
+
 </script>
 

@@ -2,7 +2,10 @@
   <div class="chat-list">
     <div class="chat-list__container">
       <div class="chat-list__title-container">
-        <h2 class="chat-list__title" v-if="title">
+        <h2
+          v-if="title"
+          class="chat-list__title"
+        >
           {{ title }}
         </h2>
 
