@@ -158,7 +158,7 @@ import {
   SideBar,
   ChatPanel,
   FloatWindow,
-} from "./components/features";
+} from "./components";
 
 import {
   formatTimestamp,

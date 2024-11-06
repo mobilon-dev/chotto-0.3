@@ -26,5 +26,5 @@ export {
   ChannelSelector,
   Chat,
   ChatFilter,
-  FloatWindow,
+  // FloatWindow,
 }
