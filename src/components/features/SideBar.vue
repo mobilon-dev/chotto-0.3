@@ -3,17 +3,16 @@
     <div class="sidebar__container">
       <ul class="sidebar__list">
         <li
-          v-for="(item, index) in props.sidebarItems.filter(i => !i.isFixedBottom)"
+          v-for="(item, index) in items.filter(i => !i.isFixedBottom)"
           :key="index"
           class="sidebar__item"
-          @click="selectItem(item)"
+          @click="selectItem(item.itemId)"
         >
-          <!-- :style="{ backgroundColor: item === selectedItem ? 'var(--neutral-300)' : 'transparent' }" -->
           <img
             :src="item.icon"
             :alt="item.name"
             class="sidebar__image"
-            :class="{ 'sidebar__image--active': item === selectedItem }"
+            :class="{ 'sidebar__image--active': item.selected === true }"
           >
           <span
             v-if="item.notificationCount"
@@ -27,20 +26,18 @@
         </li>
       </ul>
 
-      <!-- :style="{ backgroundColor: item === selectedItem ? 'var(--neutral-300)' : 'transparent' }"
-      @click="selectItem(item)" -->
       <ul class="sidebar__list-fixed">
         <li
-          v-for="(item, index) in props.sidebarItems.filter(i => i.isFixedBottom)"
+          v-for="(item, index) in items.filter(i => i.isFixedBottom)"
           :key="index"
           class="sidebar__item"
-          @click="selectItem(item)"
+          @click="selectItem(item.itemId)"
         >
           <img
             :src="item.icon"
             :alt="item.name"
             class="sidebar__image"
-            :class="{ 'sidebar__image--active': item === selectedItem }"
+            :class="{ 'sidebar__image--active': item.selected === true }"
           >
           <span
             v-if="item.notificationCount"
@@ -58,38 +55,34 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 
 const props = defineProps({
   sidebarItems: {
     type: Array,
     required: true,
-  },
-  defaultSelectedItemIndex: {
-    type: Number,
-    required: false,
+    default: () => [],
   },
 });
 
+const items = ref(props.sidebarItems);
+
 const emit = defineEmits(["selectItem"]);
 
-const selectedItem = ref(null);
-
-const selectItem = (item) => {
-  selectedItem.value = item;
-  emit('selectItem', item);
+const selectItem = (itemId) => {
+  items.value = items.value.map(u => {
+    u.selected = false;
+    if(u.itemId === itemId) {u.selected = true}
+    return u;
+  });
+  // item.selected = true;
+  emit('selectItem', items.value.find(i => i.itemId === itemId));
 };
 
 const getName = (name) => {
   const parts = name.split(' ');
   return parts.length > 2 ? parts.slice(0, 2).join(' ') : name;
 }
-
-onMounted(() => {
-  if (props.defaultSelectedItemIndex) {
-    selectedItem.value = props.sidebarItems[props.defaultSelectedItemIndex];
-  }
-})
 </script>
 
 <style
