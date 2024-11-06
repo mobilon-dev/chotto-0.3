@@ -8,11 +8,10 @@
         />
       </div>
       <div class="chat-app__center-bar">
-        `
         <UserProfile
           class="chat-app__profile"
           :user="userProfile"
-        />`
+        />
         <ChatList
           class="chat-app__chat-list"
           :chats="chatsStore.chats"
