@@ -1,7 +1,7 @@
 <template>
   <div class="chat-app">
     <div class="chat-app__container">
-      <div class="chat-app__left-bar">
+      <div class="chat-app__left-bar">11
         <SideBar
           :sidebar-items="sidebarItems"
           @select-item="selectItem"
@@ -325,7 +325,7 @@ onMounted(() => {
   userProfile.value = props.authProvider.getUserProfile();
   chatsStore.chats = props.dataProvider.getChats();
   channels.value = props.dataProvider.getChannels();
-  sidebarItems.value = props.dataProvider.getSidebarItems()
+  sidebarItems.value = props.dataProvider.getSidebarItems();
 });
 </script>
 

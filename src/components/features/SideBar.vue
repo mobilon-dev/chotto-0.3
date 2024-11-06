@@ -61,7 +61,7 @@ const props = defineProps({
   sidebarItems: {
     type: Array,
     required: true,
-    default: () => [],
+    // default: () => [],
   },
 });
 

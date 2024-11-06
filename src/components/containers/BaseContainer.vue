@@ -7,7 +7,16 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+
+const props = defineProps({
+  contentHeight: {
+    type: String,
+    default: '1002',
+  }
+})
+
+</script>
 
 <style scoped lang="scss">
 .base {

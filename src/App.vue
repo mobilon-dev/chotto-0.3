@@ -12,9 +12,12 @@
 import { onMounted } from 'vue';
 import moment from 'moment';
 
-import ChatApp from './ChatApp.vue';
-// import BaseChatApp from './BaseChatApp.vue';
-import { messages, chats, channels, sidebarItems, userProfile, users } from './data';
+// import ChatApp from './ChatApp.vue';
+// import ChatApp from './BaseChatApp.vue';
+import ChatApp from './ExtendedChatApp.vue';
+import { messages, chats, channels, 
+  sidebarItems, userProfile, users 
+} from './data';
 
 // Mock data
 const data3 = {

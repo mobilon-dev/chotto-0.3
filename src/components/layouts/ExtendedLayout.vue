@@ -37,6 +37,7 @@
     flex-direction: column;
     /* вычитаем маргины сверху и снизу */
     height: inherit;
+    // width: 200px;
   }
   &__second-col {
     position: relative;
