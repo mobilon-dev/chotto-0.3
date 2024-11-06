@@ -55,17 +55,17 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref, toRef } from 'vue'
 
 const props = defineProps({
   sidebarItems: {
     type: Array,
     required: true,
-    // default: () => [],
+    default: () => [],
   },
 });
 
-const items = ref(props.sidebarItems);
+const items = toRef(props, 'sidebarItems');
 
 const emit = defineEmits(["selectItem"]);
 
@@ -83,6 +83,7 @@ const getName = (name) => {
   const parts = name.split(' ');
   return parts.length > 2 ? parts.slice(0, 2).join(' ') : name;
 }
+
 </script>
 
 <style
