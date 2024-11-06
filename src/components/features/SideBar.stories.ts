@@ -121,7 +121,7 @@ const sidebarItemsWithSelected = [
   },
 ];
 
-export const SidebarWithSelecte: Story = {
+export const SidebarWithSelected: Story = {
   args: {
     sidebarItems: sidebarItemsWithSelected,
   },
