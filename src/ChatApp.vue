@@ -172,7 +172,10 @@ const updateChatAppSize = () => {
 }
 
 const selectItem = (item) => {
-  console.log('selected sidebar item', item);
+  console.log('selected sidebar item', item.itemId);
+  const selectedItem = sidebarItems.value.find(i => i.itemId === item.itemId);
+  sidebarItems.value.map(si => si.selected = false);
+  selectedItem.selected = true;
 };
 
 const chatAction = (data) => {

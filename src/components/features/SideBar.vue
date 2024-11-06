@@ -55,7 +55,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref, toRef } from 'vue'
+import { onMounted, reactive, ref, toRef } from 'vue'
 
 const props = defineProps({
   sidebarItems: {
@@ -70,13 +70,16 @@ const items = toRef(props, 'sidebarItems');
 const emit = defineEmits(["selectItem"]);
 
 const selectItem = (itemId) => {
+  /*
   items.value = items.value.map(u => {
     u.selected = false;
     if(u.itemId === itemId) {u.selected = true}
     return u;
   });
+  */
   // item.selected = true;
-  emit('selectItem', items.value.find(i => i.itemId === itemId));
+  const item = items.value.find(i => i.itemId === itemId);
+  emit('selectItem', item);
 };
 
 const getName = (name) => {
