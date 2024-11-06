@@ -65,7 +65,7 @@
         </template>
       </ChatPanel>
     </div>
-    <FloatWindow
+    <!-- <FloatWindow
       v-if="isOpenFloatWindow"
       class="chat-app__float-window"
       :title="'Заголовок'"
@@ -125,7 +125,7 @@
         class="chat-app__float-chat-panel"
         @close-panel="isOpenChatPanel = !isOpenChatPanel"
       />
-    </FloatWindow>
+    </FloatWindow> -->
     <SelectUser
       v-if="modalShow"
       :title="modalTitle"
