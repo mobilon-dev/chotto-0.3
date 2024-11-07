@@ -9,9 +9,9 @@ export const chats = [
     isFixed: false,
     status: "#767676",
     actions: [
-      { action: 'add', title: 'добавить', icon: 'https://dummyimage.com/64x64/000/fff.png&text=add' },
-      { action: 'edit', title: 'изменить', icon: 'https://dummyimage.com/64x64/000/fff.png&text=pin' },
-      { action: 'delete', title: 'удалить', icon: 'https://dummyimage.com/64x64/000/fff.png&text=pin' },
+      { action: 'add', title: 'добавить', icon: 'https://placehold.jp/30/dd6699/ffffff/64x64.png?text=add' },
+      { action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/dd6699/ffffff/64x64.png?text=pin' },
+      { action: 'delete', title: 'удалить', icon: 'https://placehold.jp/30/dd6699/ffffff/64x64.png?text=del' },
     ]
   },
   {
