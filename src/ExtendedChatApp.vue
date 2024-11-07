@@ -1,9 +1,15 @@
 <template>
   <div>
-    <BaseContainer height="90vh" width="70vw">
+    <BaseContainer
+      height="90vh"
+      width="70vw"
+    >
       <ExtendedLayout>
         <template #first-col>
-          <SideBar :sidebar-items="sidebarItems" @select-item="selectItem" />
+          <SideBar 
+            :sidebar-items="sidebarItems" 
+            @select-item="selectItem" 
+          />
           <ThemeMode :themes="themes" />
         </template>
 
@@ -15,29 +21,28 @@
             @select="selectChat"
             @action="chatAction"
           />
-
         </template>
 
         <template #third-col>
           <chat-wrapper 
-            :isOpenChatPanel="isOpenChatPanel" 
-            :isSelectedChat="!!selectedChat"
+            :is-open-chat-panel="isOpenChatPanel" 
+            :is-selected-chat="!!selectedChat"
           >
-              <template #default >
-                <ChatInfo
-                  :chat="selectedChat"
-                  @open-panel="isOpenChatPanel = !isOpenChatPanel"
-                />
-                <Feed
-                  :objects="messages"
-                  @message-action="messageAction"
-                  @load-more="loadMore"
-                />
-                <ChatInput
-                  :enable-emoji="true"
-                  :channels="channels"
-                  @send="addMessage"
-                />
+            <template #default>
+              <ChatInfo
+                :chat="selectedChat"
+                @open-panel="isOpenChatPanel = !isOpenChatPanel"
+              />
+              <Feed
+                :objects="messages"
+                @message-action="messageAction"
+                @load-more="loadMore"
+              />
+              <ChatInput
+                :enable-emoji="true"
+                :channels="channels"
+                @send="addMessage"
+              />
             </template>
             
             <template #chatpanel>
@@ -52,8 +57,7 @@
               </ChatPanel>
             </template>
           </chat-wrapper>
-        </template>  
-        
+        </template>
       </ExtendedLayout>
       <SelectUser
         v-if="modalShow"
@@ -75,7 +79,6 @@ import {
   ChatList,
   Feed,
   UserProfile,
-  FileUploader,
   ThemeMode,
   SideBar,
   ChatPanel,
@@ -141,25 +144,11 @@ const channels = ref([]);
 const sidebarItems = ref([]);
 
 const isOpenChatPanel = ref(false);
-const isOpenFloatWindow = ref(true);
 
 const modalShow = ref(false);
 const modalTitle = ref("");
 const users = ref([]);
 
-const chatApp = ref(null);
-
-const chatAppSize = ref({
-  width: 0,
-  height: 0,
-});
-
-const updateChatAppSize = () => {
-  return (chatAppSize.value = {
-    width: chatApp.value.offsetWidth,
-    height: chatApp.value.offsetHeight,
-  });
-};
 
 const selectItem = (item) => {
   console.log("selected sidebar item", item);

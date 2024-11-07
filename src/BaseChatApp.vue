@@ -1,6 +1,9 @@
 <template>
   <div>
-    <BaseContainer height="70vh" width="70vw">
+    <BaseContainer
+      height="70vh"
+      width="70vw"
+    >
       <!-- @todo: параметрически задавать ширину и высоту -->
       <BaseLayout>
         <template #first-col>
@@ -17,8 +20,8 @@
         <template #second-col>
           <!-- @todo: как-то надо style обернуть-->
           <div 
-            style="height: 100%; width: 100%; display: flex; flex-direction: column;"
             v-if="selectedChat"
+            style="height: 100%; width: 100%; display: flex; flex-direction: column;"
           >
             <ChatInfo
               :chat="selectedChat"
@@ -40,7 +43,7 @@
               :channels="channels"
               @send="addMessage"
             />
-            </div>
+          </div>
           <p
             v-else
           >

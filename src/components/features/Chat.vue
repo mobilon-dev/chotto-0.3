@@ -8,7 +8,6 @@
       @mouseenter="showMenu"
       @mouseleave="hideMenu"
     >
-
       <div class="chat-item__avatar-container">
         <span
           class="chat-item__status"
