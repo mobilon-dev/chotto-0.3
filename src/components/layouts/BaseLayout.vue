@@ -15,6 +15,7 @@
 .base-layout {
   &__container {
     height: inherit;
+    // width: '100%';
     display: grid;
     grid-template-columns: 1.25fr 3fr;
     transition: all 0.3s ease;

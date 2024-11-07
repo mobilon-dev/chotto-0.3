@@ -1,6 +1,6 @@
 <template>
   <div class="chat-list">
-    <div class="chat-list__container">
+    <!-- div class="chat-list__container" -->
       <div 
         class="chat-list__title-container"
         @mouseleave="hideMenu"
@@ -78,7 +78,7 @@
           />
         </div>
       </div>
-    </div>
+    <!-- /div -->
   </div>
 </template>
 
@@ -153,18 +153,29 @@ const action = (data) => emit('action', data);
 >
 .chat-list {
   background-color: transparent;
+  flex-grow: 1;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  height: 80%;
 
+  /*
   &__container {
     display: flex;
     flex-direction: column;
     height: 100%;
   }
+    */
 
   &__filter {
     margin: var(--chat-list-filter-margin);
   }
 
   &__items {
+    display: block;
+    height: '30vh';
+    scroll-behavior: smooth;
+
     overflow-y: auto;
     padding: var(--chat-list-items-padding);
 

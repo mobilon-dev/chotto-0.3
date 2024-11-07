@@ -1,7 +1,7 @@
 <template>
   <div
     class="base__container"
-    :style="{ height: contentHeight + 'px' }"
+    :style="{ height, width }"
   >
     <slot name="default" />
   </div>
@@ -10,10 +10,8 @@
 <script setup>
 
 const props = defineProps({
-  contentHeight: {
-    type: String,
-    default: '1002',
-  }
+  height: String,
+  width: String,  
 })
 
 </script>

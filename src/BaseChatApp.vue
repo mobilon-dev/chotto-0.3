@@ -1,13 +1,12 @@
 <template>
   <div>
-    <BaseContainer>
+    <BaseContainer height="70vh" width="70vw">
       <!-- @todo: параметрически задавать ширину и высоту -->
       <BaseLayout>
         <template #first-col>
           <UserProfile :user="userProfile" />
           <!-- @todo: убрать классы, должны уйти внутрь компонента -->
-          <ChatList
-            class="chat-app__chat-list"  
+          <ChatList 
             :chats="chatsStore.chats"
             filter-enabled
             @select="selectChat"
@@ -16,9 +15,10 @@
           <ThemeMode :themes="themes" />
         </template>
         <template #second-col>
-          <div
+          <!-- @todo: как-то надо style обернуть-->
+          <div 
+            style="height: 100%; width: 100%; display: flex; flex-direction: column;"
             v-if="selectedChat"
-            class="chat-app__right-bar-container"
           >
             <ChatInfo
               :chat="selectedChat"
@@ -40,10 +40,9 @@
               :channels="channels"
               @send="addMessage"
             />
-          </div>
+            </div>
           <p
             v-else
-            class="chat-app__welcome-text"
           >
             Выберите контакт для начала общения
           </p>
