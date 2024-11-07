@@ -8,6 +8,7 @@
       @mouseenter="showMenu"
       @mouseleave="hideMenu"
     >
+
       <div class="chat-item__avatar-container">
         <span
           class="chat-item__status"
@@ -133,9 +134,18 @@ const hideMenu = () => {
   &__container {
     display: flex;
     position: relative;
-    padding: 15px;
+    padding: var(--chat-item-padding-container);
     cursor: pointer;
-    border-bottom: var(--chat-item-border, none);
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      background-color: var(--neutral-200);
+    }
   }
 
   &__selected {

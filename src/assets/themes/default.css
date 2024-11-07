@@ -2,6 +2,7 @@
 
   --app-bg: var(--default-white);
   --app-color: var(--neutral-900);
+  --app-template-col: min-content 1.25fr 3fr 1.25fr;
 
   /* Blocks */
   --rigth-bar-bg: var(--neutral-100);
@@ -22,8 +23,13 @@
   --chat-pannel-margin: 30px 0 30px 10px;
 
   /* Side Bar */
+  --sidebar-padding-container: 18px 8px 30px 8px;
   --sidebar-border: 1px solid var(--neutral-200);
   --sidebar-box-shadow: -13px 0px 20px -21px rgba(0, 0, 0, 0.2);
+  --sidebar-image-width: 49px;
+  --sidebar-image-height: 49px;
+  --sidebar-font-weight-name: 500;
+  --sidebar-row-gap-list: 10px;
 
   /* Chat List */
   --chat-list-fixed-background-color: var(--default-white);
@@ -33,8 +39,10 @@
   --chat-list-scrollbar-thumb-bg: var(--neutral-300);
   --chat-list-button-actions-bg: var(--neutral-300);
   --chat-list-button-actions-color: var(--neutral-600);
+  --chat-list-button-actions-width: 32px;
+  --chat-list-button-actions-height: 32px;
   --chat-list-items-padding: 0 6px 0 0;
-  --chat-list-filter-margin: 0 12px 30px 0;
+  --chat-list-filter-margin: 0 12px 30px 9px;
 
   /* Inputs */
   --inputtext-background: var(transparent);
@@ -59,6 +67,8 @@
 
   /* Chat Item */
 
+  --chat-item-padding-container: 15px;
+
   /* Info Container */
   --chat-item-border-radius: 6px;
   --chat-item-selected: var(--neutral-200);
@@ -73,6 +83,11 @@
   --chat-item-font-weight-time: 500;
 
   /* _____________________________________________ */
+
+  /* Chat Info */
+  --chat-info-padding: 20px 15px 20px 40px;
+  --chat-info-font-size-title: 18px;
+
 
   /* Feed */
   --feed-button-down-bg: var(--default-white);
@@ -111,9 +126,17 @@
   /* Call Message */
   --call-message-backgroung-icon: var(--neutral-400);
   --call-message-color-icon-error: var(--p-red-500);
+  --call-message-font-size-title: 16px;
+  --call-message-color-duration: var(--neutral-700);
 
   /* Date Message */
   --date-message-color: var(--neutral-700);
+
+  /* General Message */
+  --g-message-font-size-text: 16px;
+  --g-message-font-size-time: 12px;
+  --g-message-font-size-remaining-time: 12px;
+  --g-message-color-time: var(--neutral-700);
 
   /* Channels */
   --channels-popover-background-color: var(--default-white);

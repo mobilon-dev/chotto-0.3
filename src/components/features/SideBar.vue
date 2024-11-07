@@ -101,24 +101,22 @@ const getName = (name) => {
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-
+    padding: var(--sidebar-padding-container);
     box-shadow: var(--sidebar-box-shadow);
+    background-color: var(--sidebar-bg-container, transparent);
+    border-right: var(--sidebar-border);
   }
 
   &__list,
   &__list-fixed {
     display: flex;
     flex-direction: column;
-    row-gap: 10px
-  }
-
-  &__list {
-    padding: 18px 8px 8px 8px;
+    row-gap: var(--sidebar-row-gap-list);
   }
 
   &__list-fixed {
-    padding: 8px 8px 30px 8px;
-    border-top: var(--sidebar-border);
+    padding-top: 10px;
+    border-top: 2px solid var(--neutral-300);
   }
 
   &__item {
@@ -149,7 +147,7 @@ const getName = (name) => {
 
     p {
       font-size: 10px;
-      font-weight: 500;
+      font-weight: var(--sidebar-font-weight-name);
       text-align: center;
       line-height: 1;
     }
@@ -158,11 +156,11 @@ const getName = (name) => {
   &__image {
     border-radius: 50%;
     object-fit: cover;
-    width: 49px;
-    height: 49px;
     border: 3px solid transparent;
     opacity: 0.8;
     transition: all 0.2s;
+    width: var(--sidebar-image-width);
+    height: var(--sidebar-image-height);
   }
 
   &__image--active {

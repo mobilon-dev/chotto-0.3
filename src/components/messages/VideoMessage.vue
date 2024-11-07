@@ -239,14 +239,14 @@ onMounted(() => {
     position: absolute;
     bottom: 0;
     left: 16px;
-    font-size: var(--remaining-time);
+    font-size: var(--g-message-font-size-remaining-time);
   }
 
   &__time {
     position: absolute;
     bottom: 0;
     right: 16px;
-    font-size: var(--time-message-font-size);
+    font-size: var(--g-message-font-size-time);
   }
 
   &__status {

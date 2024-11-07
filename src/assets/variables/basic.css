@@ -42,7 +42,7 @@
 
   /* Inputs */
 
-  --inputtext-font-size: 1rem;
+  --inputtext-font-size: 14px;
   --inputtext-padding: 0.5rem 0.75rem;
   --inputtext-width: 100%;
   --inputtext-border-radius: 6px;

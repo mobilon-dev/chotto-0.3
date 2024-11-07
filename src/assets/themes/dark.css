@@ -96,7 +96,7 @@
   /* Call Message */
   --call-message-backgroung-icon: var(--neutral-400);
   --call-message-color-icon-error: #ff5454;
-
+  --call-message-color-duration: var(--neutral-200);
   /* Date Message */
   --date-message-color: var(--neutral-200);
 
@@ -112,6 +112,9 @@
   /* Status Message */
   --status-message-color-received: var(--neutral-200);
   --status-message-color-read: #00c2ff;
+
+  /* General Message */
+  --g-message-color-time: var(--neutral-200);
 
   /* Subtext */
   --subtext-color: var(--neutral-400);

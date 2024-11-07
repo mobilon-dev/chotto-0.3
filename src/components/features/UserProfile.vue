@@ -1,9 +1,12 @@
 <template>
   <div class="profile">
-    <div v-if="user">
-      <h2>{{ user.name }}</h2>
-      <p>{{ user.email }}</p>
-      <p>{{ user.phone }}</p>
+    <div
+      v-if="user"
+      class="profile__container"
+    >
+      <h2 class="profile__name">{{ user.name }}</h2>
+      <p class="profile__email">{{ user.email }}</p>
+      <p class="profile__phone">{{ user.phone }}</p>
     </div>
   </div>
 </template>
@@ -19,4 +22,21 @@ const props = defineProps({
 });
 </script>
 
-<style scoped></style>
+<style
+  scoped
+  lang="scss"
+>
+.profile {
+  &__name {
+    font-size: 20px
+  }
+
+  &__email {
+    font-size: 16px;
+  }
+
+  &__phone {
+    font-size: 16px;
+  }
+}
+</style>

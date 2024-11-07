@@ -5,7 +5,7 @@
         ref="refInput"
         class="chat-filter__input"
         type="text"
-        placeholder="Поиск..."
+        placeholder="Поиск диалога"
         @input="update"
       >
     </div>

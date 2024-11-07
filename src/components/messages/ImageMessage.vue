@@ -166,7 +166,7 @@ const getStatus = computed(() => {
 
   &__time {
     color: var(--neutral-200);
-    font-size: var(--time-message-font-size);
+    font-size: var(--g-message-font-size-time);
   }
 
   &__status {

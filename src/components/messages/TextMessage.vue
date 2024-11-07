@@ -25,7 +25,7 @@
         class="text-message__content"
         @mouseenter="showMenu"
       >
-        <p>{{ message.text }}</p>
+        <p class="text-message__text">{{ message.text }}</p>
         <div class="text-message__info-container">
           <span
             v-if="message.time"
@@ -135,7 +135,8 @@ const getStatus = computed(() => {
   }
 
   &__time {
-    font-size: var(--time-message-font-size);
+    font-size: var(--g-message-font-size-time);
+    color: var(--g-message-color-time);
   }
 
   &__status {
@@ -166,6 +167,11 @@ const getStatus = computed(() => {
         margin-right: -8px;
       }
     }
+  }
+
+  &__text {
+    font-size: var(--g-message-font-size-text);
+    margin: var(--g-message-margin-text, 0);
   }
 
   &__subtext {

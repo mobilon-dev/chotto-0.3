@@ -1,12 +1,26 @@
 [data-theme="green"] {
 
-  --app-bg: var(--neutral-200);
-  --app-color: var(--neutral-700);
+  --app-bg: var(--deefault-white);
+  --app-color: var(--neutral-950);
+  --app-border-color: var(--neutral-200);
   --app-container-bg: var(--default-white);
+  --app-template-col: min-content 1.5fr 3fr 1.25fr;
   --app-margin: 30px 0;
 
+  /* Titles */
+
+  --h2-font-size: 20px;
+  --h2-font-weight: 700;
+
+  /* Avatars */
+
+  --avatar-width-small: 40px;
+  --avatar-height-small: 40px;
+  --avatar-width-medium: 50px;
+  --avatar-height-medium: 50px;
+
   /* Blocks */
-  --rigth-bar-bg: transparent;
+  --rigth-bar-bg: #fcfafa;
   --right-bar-margin: 0;
 
   --center-bar-border: 1px solid var(--neutral-200);
@@ -24,45 +38,78 @@
   --chat-pannel-margin: 0;
   --chat-pannel-border: 1px solid var(--neutral-200);
 
+  /* Side Bar */
+  --sidebar-padding-container: 10px 8px 22px 8px;
+  --sidebar-bg-container: #f3f3f3;
+  --sidebar-box-shadow: none;
+  --sidebar-image-width: 43px;
+  --sidebar-image-height: 43px;
+  --sidebar-font-weight-name: 400;
+  --sidebar-row-gap-list: 14px;
+
   /* Chat List */
-  --chat-list-filter-margin: 0 12px 10px 0;
+  --chat-list-filter-margin: 0 12px 20px 9px;
+  --chat-list-button-actions-width: 26px;
+  --chat-list-button-actions-height: 26px;
 
   /* _____________________________________________ */
 
   /* Chat Item */
 
+  --chat-item-padding-container: 11px 15px;
+
   /* Info Container */
   --chat-item-border-radius: 0;
-  --chat-item-color-last-message: var(--neutral-700);
+  --chat-item-margin-name: 8px;
   --chat-item-font-weight-last-message: 400;
   --chat-item-font-weight-name: 500;
+  --chat-item-color-last-message: var(--neutral-700);
   --chat-item-border: 1px solid var(--neutral-200);
+  --chat-item-selected: var(--neutral-100);
 
   /* Details Container */
-  --chat-item-color-unread: var(--neutral-700);
-  --chat-item-background-color-unread: var(--p-red-300);
+  --chat-item-color-unread: var(--neutral-50);
+  --chat-item-background-color-unread: var(--p-red-500);
   --chat-item-color-time: var(--neutral-700);
   --chat-item-font-weight-time: 400;
 
   /* _____________________________________________ */
 
   /* Inputs */
-  --inputtext-border-radius: 0;
+  --inputtext-border-radius: 5px;
 
   /* Text Message */
   --text-message-right-background-color: #d9fdd3;
-  --text-message-left-background-color: #dfe5e7;
+  --text-message-left-background-color: var(--default-white);
 
   /* File Message */
-  --file-message-background-color: #dfe5e7;
+  --file-message-background-color: var(--default-white);
 
   /* _____________________________________________ */
 
   /* Audio Message */
-  --audio-message-background-left: #dfe5e7;
+  --audio-message-background-left: var(--default-white);
   --audio-message-background-right: #d9fdd3;
+
+  /* Call Message */
+  --call-message-font-size-title: 15px;
+
+  /* Date Message */
+  --date-message-color: var(--neutral-700);
+  --date-bg: #fcfafa;
+  --date-border: 1px solid #d3d6db;
+
+  /* General Message */
+  --g-message-font-size-text: 14px;
+  --g-message-font-size-time: 14px;
+  --g-message-font-size-remaining-time: 14px;
+  --g-message-margin-text: 0 0 8px 0;
 
   /* Feed */
   --feed-button-down-bg: var(--neutral-200);
+
+  /* Chat Info */
+  --chat-info-padding: 10px 15px 10px 40px;
+  --chat-info-font-size-title: 16px;
 
 }
