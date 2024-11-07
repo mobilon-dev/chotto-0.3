@@ -1,50 +1,59 @@
 <template>
-  <div class="chat-app">
-    <BaseContainer>
+  <div>
+    <BaseContainer height="90vh" width="70vw">
       <ExtendedLayout>
         <template #first-col>
           <SideBar :sidebar-items="sidebarItems" @select-item="selectItem" />
+          <ThemeMode :themes="themes" />
         </template>
+
         <template #second-col>
           <UserProfile :user="userProfile" />
           <ChatList
-            class="chat-app__chat-list"
             :chats="chatsStore.chats"
             filter-enabled
             @select="selectChat"
             @action="chatAction"
           />
-          <ThemeMode :themes="themes" />
+
         </template>
+
         <template #third-col>
-          <div v-if="selectedChat" class="chat-app__right-bar-container">
-            <ChatInfo
-              :chat="selectedChat"
-              @open-panel="isOpenChatPanel = !isOpenChatPanel"
-            />
-            <Feed
-              :objects="messages"
-              :style="{
-                padding: isOpenChatPanel
-                  ? '0 20px 50px 20px'
-                  : '0 80px 50px 80px',
-              }"
-              @message-action="messageAction"
-              @load-more="loadMore"
-            />
-            <ChatInput
-              :enable-emoji="true"
-              :channels="channels"
-              @send="addMessage"
-            />
-          </div>
-          <p v-else class="chat-app__welcome-text">
-            Выберите контакт для начала общения
-          </p>
-        </template>
-        <template #fourth-col>
-          <SideBar :sidebar-items="sidebarItems" @select-item="selectItem"
-        /></template>
+          <chat-wrapper 
+            :isOpenChatPanel="isOpenChatPanel" 
+            :isSelectedChat="!!selectedChat"
+          >
+              <template #default >
+                <ChatInfo
+                  :chat="selectedChat"
+                  @open-panel="isOpenChatPanel = !isOpenChatPanel"
+                />
+                <Feed
+                  :objects="messages"
+                  @message-action="messageAction"
+                  @load-more="loadMore"
+                />
+                <ChatInput
+                  :enable-emoji="true"
+                  :channels="channels"
+                  @send="addMessage"
+                />
+            </template>
+            
+            <template #chatpanel>
+              <ChatPanel
+                v-if="isOpenChatPanel"
+                :title="selectedChat.name"
+                @close-panel="isOpenChatPanel = !isOpenChatPanel"
+              >
+                <template #content>
+                  test
+                </template>
+              </ChatPanel>
+            </template>
+          </chat-wrapper>
+        </template>  
+        
       </ExtendedLayout>
       <SelectUser
         v-if="modalShow"
@@ -73,6 +82,7 @@ import {
   BaseContainer,
   ExtendedLayout,
   SelectUser,
+  ChatWrapper,
 } from "./components";
 
 import {

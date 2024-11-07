@@ -9,9 +9,6 @@
     <div class="extend-layout__third-col">
       <slot name="third-col" />
     </div>
-    <div class="extend-layout__fourth-col">
-      <slot name="fourth-col" />
-    </div>
   </div>
 </template>
 
@@ -30,7 +27,7 @@
   }
   &__first-col {
     position: relative;
-    margin-right: 20px;
+    /* margin-right: 20px; */
     grid-column: 1;
     border-right: 1px solid var(--sidebar-border-color);
     display: flex;
@@ -41,7 +38,7 @@
   }
   &__second-col {
     position: relative;
-    margin-right: 20px;
+    margin: 0px 10px 0px 10px;
     grid-column: 2;
     border-right: 1px solid var(--sidebar-border-color);
     display: flex;
@@ -55,16 +52,7 @@
     flex-direction: column;
     grid-column: 3;
     height: inherit;
-    border-radius: 12px;
-    background-color: var(--rigth-bar-bg);
-  }
-  &__fourth-col {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    grid-column: 4;
-    height: inherit;
-    border-radius: 12px;
+    // border-radius: 12px;
     background-color: var(--rigth-bar-bg);
   }
 }
