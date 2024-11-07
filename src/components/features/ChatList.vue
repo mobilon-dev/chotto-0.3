@@ -1,16 +1,19 @@
 <template>
   <div class="chat-list">
     <div class="chat-list__container">
-      <div
+      <div 
         class="chat-list__title-container"
         @mouseleave="hideMenu"
-      >
-        <h2 class="chat-list__title">
-          Чаты
+        >
+        <h2
+          v-if="title"
+          class="chat-list__title"
+        >
+          {{ title }}
         </h2>
 
         <button
-          v-if="actions"
+          v-if="actions.length"
           class="chat-list__button-actions"
           @click="isOpenMenu = !isOpenMenu"
         >
@@ -24,12 +27,12 @@
           />
         </button>
 
-        <!-- chats[0].actions условные данные -->
-        <transition name="menu">
+        <transition>
           <ContextMenu
-            v-if="isOpenMenu && chats[0].actions"
-            :actions="chats[0].actions"
+            v-if="isOpenMenu && actions"
+            :actions="actions"
             class="chat-list__context-menu"
+            @click="action"
           />
         </transition>
       </div>
@@ -92,14 +95,20 @@ const hideMenu = () => {
   isOpenMenu.value = false
 }
 
-// условная переменная, типо когда actions передаем
-const actions = ref(true)
-
 // Define props
 const props = defineProps({
+  title: {
+    type: String,
+    default: 'Чаты',
+  },
   chats: {
     type: Array,
     required: true,
+  },
+  actions: {
+    type: Array,
+    required: false,
+    default: () => [],
   },
   filterEnabled: {
     type: Boolean,
@@ -120,13 +129,12 @@ const selectChat = (chat) => {
 
 const getSortedAndFilteredChats = () => {
   return props.chats
-    .sort((a, b) => {
+    .toSorted((a, b) => {   // immutable sort
       if (a.countUnread > b.countUnread) return -1;
       if (a.countUnread < b.countUnread) return 1;
       if (a.countUnread == b.countUnread) return 0;
     })
     .filter(c => c.name.includes(filter.value));
-  ;
 }
 
 const getFilter = (value) => {

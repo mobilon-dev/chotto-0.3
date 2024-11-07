@@ -24,6 +24,7 @@
         {{ chat['lastActivity.time'] }}
       </p>
 
+      <slot name="actions" />
       <button
         class="chat-info__button-panel"
         @click="$emit('open-panel')"
