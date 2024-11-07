@@ -28,7 +28,7 @@
       </div>
       <div
         class="float-window__content"
-        :style="{ height: contentHeight + 'px' }"
+        style="height: 70%; width: 100%; display: flex;"
       >
         <slot name="default" />
       </div>
@@ -44,13 +44,15 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  height: String,
+  width: String,
 });
 const emit = defineEmits(["close-window", "get-size"]);
 
 const floatWindowPosition = ref({ x: 0, y: 0 });
 const element = ref(null);
 const container = ref(null);
-const dragMode = ref(false);
+const dragMode = ref(true);
 const initialX = ref(0);
 const initialY = ref(0);
 const contentHeight = ref(0);
@@ -167,7 +169,6 @@ onMounted(() => {
 
   &__content {
     margin: var(--float-window-content-margin, 0);
-
     background-color: var(--float-window-content-bg, transparent);
   }
 }
