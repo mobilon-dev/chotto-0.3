@@ -13,9 +13,9 @@ import { onMounted } from 'vue';
 import moment from 'moment';
 
 import ChatApp from './ChatApp.vue';
-// import ChatApp from './BaseChatApp.vue';
-// import ChatApp from './ExtendedChatApp.vue';
-// import ChatApp from './FeedChatApp.vue';
+// import ChatApp from './BaseBaseChatApp.vue';
+// import ChatApp from './BaseExtendedChatApp.vue';
+// import ChatApp from './BaseFeedChatApp.vue';
 
 import { messages, chats, channels, 
   sidebarItems, userProfile, users 
