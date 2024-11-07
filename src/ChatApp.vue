@@ -319,6 +319,8 @@ onMounted(() => {
   chatsStore.chats = props.dataProvider.getChats();
   channels.value = props.dataProvider.getChannels();
   sidebarItems.value = props.dataProvider.getSidebarItems()
+
+  document.documentElement.dataset.theme = 'green';
 });
 </script>
 
