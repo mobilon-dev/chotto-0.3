@@ -1,23 +1,22 @@
 <template>
   <div class="chat-panel">
-    <div class="chat-panel__container">
-      <div class="chat-panel__title-container">
-        <p
-          v-if="title"
-          class="chat-panel__title"
-        >
-          {{ title }}
-        </p>
+    <div class="chat-panel__title-container">
+      <p
+        v-if="title"
+        class="chat-panel__title"
+      >
+        {{ title }}
+      </p>
 
-        <button
-          class="chat-panel__button-close"
-          @click="$emit('close-panel')"
-        >
-          <span class="pi pi-times" />
-        </button>
-      </div>
+      <button
+        class="chat-panel__button-close"
+        @click="$emit('close-panel')"
+      >
+        <span class="pi pi-times" />
+      </button>
+    </div>
 
-
+    <div>
       <slot name="content" />
     </div>
   </div>
@@ -40,6 +39,11 @@ const emit = defineEmits(['close-panel']);
   lang="scss"
 >
 .chat-panel {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  height: 100%;
+
   &__container {
     height: 100%;
     background-color: var(--chat-panel-bg);
@@ -69,6 +73,7 @@ const emit = defineEmits(['close-panel']);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 80px;
   }
 
   &__title {

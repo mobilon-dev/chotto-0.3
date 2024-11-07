@@ -21,6 +21,7 @@
     <div 
       v-if="isOpenChatPanel" 
       :style="{ 'flex-basis': isOpenChatPanel ? '40%' : '0%'}"
+      class="chatpanel"
     >
       <slot name="chatpanel" />
     </div>
@@ -39,3 +40,10 @@ const props = defineProps({
   },
 })
 </script>
+
+<style scoped lang="scss">
+.chatpanel {
+  background-color: #ffffff;
+  border-left: var(--chat-pannel-border, none);
+}
+</style>
