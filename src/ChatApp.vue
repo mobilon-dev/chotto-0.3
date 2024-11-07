@@ -65,67 +65,6 @@
         </template>
       </ChatPanel>
     </div>
-    <!-- <FloatWindow
-      v-if="isOpenFloatWindow"
-      class="chat-app__float-window"
-      :title="'Заголовок'"
-      @close-window="isOpenFloatWindow = !isOpenFloatWindow"
-    >
-      <div class="chat-app__left-bar">
-        <SideBar
-          :sidebar-items="sidebarItems"
-          @select-item="selectItem"
-        />
-      </div>
-
-
-      <div class="chat-app__float-center-bar">
-        <UserProfile :user="userProfile" />
-        <ChatList
-          :chats="chatsStore.chats"
-          filter-enabled
-          @select="selectChat"
-          @action="chatAction"
-        />
-        <ThemeMode :themes="themes" />
-      </div>
-
-      <div
-        class="chat-app__float-right-bar"
-        :style="{ gridColumn: isOpenChatPanel ? '3' : '3 / 5' }"
-      >
-        <div
-          v-if="selectedChat"
-          class="chat-app__right-bar-container"
-        >
-          <ChatInfo
-            :chat="selectedChat"
-            @open-panel="isOpenChatPanel = !isOpenChatPanel"
-          />
-          <Feed
-            :objects="messages"
-            :style="{ padding: isOpenChatPanel ? '0 20px 10px 20px' : '0 80px 10px 80px' }"
-            @message-action="messageAction"
-          />
-          <ChatInput
-            :enable-emoji="true"
-            :channels="channels"
-            @send="addMessage"
-          />
-        </div>
-        <p
-          v-else
-          class="chat-app__welcome-text"
-        >
-          Выберите контакт для начала общения
-        </p>
-      </div>
-      <ChatPanel
-        v-if="isOpenChatPanel"
-        class="chat-app__float-chat-panel"
-        @close-panel="isOpenChatPanel = !isOpenChatPanel"
-      />
-    </FloatWindow> -->
     <SelectUser
       v-if="modalShow"
       :title="modalTitle"
@@ -149,8 +88,9 @@ import {
   ThemeMode,
   SideBar,
   ChatPanel,
-  FloatWindow,
-} from "./components/features";
+  // FloatWindow,
+  SelectUser,
+} from "./components";
 
 import {
   formatTimestamp,
@@ -161,7 +101,6 @@ import {
 
 import { useChatsStore } from './stores/useChatStore';
 import { transformToFeed } from './transform/transformToFeed';
-import { SelectUser } from './components/modals';
 
 
 // Define props
@@ -213,7 +152,6 @@ const sidebarItems = ref([])
 const isOpenChatPanel = ref(false)
 const isOpenFloatWindow = ref(true)
 
-
 const modalShow = ref(false);
 const modalTitle = ref('');
 const users = ref([]);
@@ -233,7 +171,10 @@ const updateChatAppSize = () => {
 }
 
 const selectItem = (item) => {
-  console.log('selected sidebar item', item);
+  console.log('selected sidebar item', item.itemId);
+  const selectedItem = sidebarItems.value.find(i => i.itemId === item.itemId);
+  sidebarItems.value.map(si => si.selected = false);
+  selectedItem.selected = true;
 };
 
 const chatAction = (data) => {
