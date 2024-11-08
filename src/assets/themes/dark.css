@@ -28,7 +28,7 @@
 
   /* Inputs */
   --inputtext-color: var(--neutral-200);
-  --inputtext-border: 1px solid var(--neutral-200);
+  --inputtext-border: 1px solid var(--neutral-400);
   --inputtext-placeholder-color: var(--neutral-400);
 
   --inputtext-hover-border-color: var(--neutral-400);

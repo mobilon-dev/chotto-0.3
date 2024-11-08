@@ -264,7 +264,7 @@ const hideMenu = () => {
   }
 
   &__time {
-    font-size: 12px;
+    font-size: var(--chat-item-font-size-time);
     color: var(--chat-item-color-time);
     font-weight: var(--chat-item-font-weight-time);
 

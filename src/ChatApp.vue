@@ -259,7 +259,9 @@ onMounted(() => {
   userProfile.value = props.authProvider.getUserProfile();
   chatsStore.chats = props.dataProvider.getChats();
   channels.value = props.dataProvider.getChannels();
-  sidebarItems.value = props.dataProvider.getSidebarItems();
+  sidebarItems.value = props.dataProvider.getSidebarItems()
+
+  document.documentElement.dataset.theme = 'green';
 });
 </script>
 

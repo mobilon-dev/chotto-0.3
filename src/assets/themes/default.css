@@ -3,6 +3,7 @@
   --app-bg: var(--default-white);
   --app-color: var(--neutral-900);
   --app-template-col: min-content 1.25fr 3fr 1.25fr;
+  --app-font-family: 'Montserrat', sans-serif;
 
   /* Blocks */
   --rigth-bar-bg: var(--neutral-100);
@@ -47,7 +48,7 @@
   /* Inputs */
   --inputtext-background: var(transparent);
   --inputtext-color: var(--neutral-700);
-  --inputtext-border: 1px solid var(--neutral-400);
+  --inputtext-border: 1px solid var(--neutral-300);
   --inputtext-placeholder-color: var(--neutral-500);
 
   --inputtext-hover-border-color: var(--neutral-500);
@@ -81,16 +82,15 @@
   --chat-item-background-color-unread: var(--emerald-500);
   --chat-item-color-time: var(--neutral-400);
   --chat-item-font-weight-time: 500;
-
+  --chat-item-font-size-time: 12px;
   /* _____________________________________________ */
 
   /* Chat Info */
   --chat-info-padding: 20px 15px 20px 40px;
   --chat-info-font-size-title: 18px;
-
-
-  /* Feed */
-  --feed-button-down-bg: var(--default-white);
+  --chat-info-font-weight-time: 500
+    /* Feed */
+    --feed-button-down-bg: var(--default-white);
 
   /* Text Message */
   --text-message-right-background-color: var(--emerald-200);

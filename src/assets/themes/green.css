@@ -6,6 +6,7 @@
   --app-container-bg: var(--default-white);
   --app-template-col: min-content 1.5fr 3fr 1.25fr;
   --app-margin: 30px 0;
+  --app-font-family: "Open Sans", sans-serif;
 
   /* Titles */
 
@@ -62,17 +63,17 @@
   --chat-item-border-radius: 0;
   --chat-item-margin-name: 8px;
   --chat-item-font-weight-last-message: 400;
-  --chat-item-font-weight-name: 500;
-  --chat-item-color-last-message: var(--neutral-700);
+  --chat-item-font-weight-name: 400;
+  --chat-item-color-last-message: var(--neutral-400);
   --chat-item-border: 1px solid var(--neutral-200);
   --chat-item-selected: var(--neutral-100);
 
   /* Details Container */
   --chat-item-color-unread: var(--neutral-50);
   --chat-item-background-color-unread: var(--p-red-500);
-  --chat-item-color-time: var(--neutral-700);
+  --chat-item-color-time: var(--neutral-400);
   --chat-item-font-weight-time: 400;
-
+  --chat-item-font-size-time: 14px;
   /* _____________________________________________ */
 
   /* Inputs */
@@ -111,5 +112,5 @@
   /* Chat Info */
   --chat-info-padding: 10px 15px 10px 40px;
   --chat-info-font-size-title: 16px;
-
+  --chat-info-font-weight-time: 400
 }
