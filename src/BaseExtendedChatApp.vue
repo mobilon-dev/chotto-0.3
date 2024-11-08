@@ -3,6 +3,7 @@
     <BaseContainer
       height="90vh"
       width="70vw"
+      theme="green"
     >
       <ExtendedLayout>
         <template #first-col>
