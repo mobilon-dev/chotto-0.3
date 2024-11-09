@@ -52,6 +52,7 @@
   --chat-list-filter-margin: 0 12px 20px 9px;
   --chat-list-button-actions-width: 26px;
   --chat-list-button-actions-height: 26px;
+  --chat-list-items-padding: 0 0px 0 0px;
 
   /* _____________________________________________ */
 
@@ -112,5 +113,11 @@
   /* Chat Info */
   --chat-info-padding: 10px 15px 10px 40px;
   --chat-info-font-size-title: 16px;
-  --chat-info-font-weight-time: 400
+  --chat-info-font-weight-time: 400;
+
+  /* Layouts */
+
+  /* Extended layout */
+
+  --layout-extended-column-border: 1px solid var(--neutral-200);
 }
