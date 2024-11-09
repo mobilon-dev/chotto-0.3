@@ -5,7 +5,7 @@
   --app-border-color: var(--neutral-200);
   --app-container-bg: var(--default-white);
   --app-template-col: min-content 1.5fr 3fr 1.25fr;
-  --app-margin: 30px 0;
+  --app-margin: 0px 0;
   --app-font-family: "Open Sans", sans-serif;
 
   /* Titles */

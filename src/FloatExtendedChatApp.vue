@@ -237,6 +237,5 @@ onMounted(() => {
   chatsStore.chats = props.dataProvider.getChats();
   channels.value = props.dataProvider.getChannels();
   sidebarItems.value = props.dataProvider.getSidebarItems();
-  console.log('eee', sidebarItems.value)
 });
 </script>

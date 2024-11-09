@@ -4,11 +4,9 @@
       height="70vh"
       width="70vw"
     >
-      <!-- @todo: параметрически задавать ширину и высоту -->
       <BaseLayout>
         <template #first-col>
           <UserProfile :user="userProfile" />
-          <!-- @todo: убрать классы, должны уйти внутрь компонента -->
           <ChatList 
             :chats="chatsStore.chats"
             filter-enabled
@@ -18,7 +16,6 @@
           <ThemeMode :themes="themes" />
         </template>
         <template #second-col>
-          <!-- @todo: как-то надо style обернуть-->
           <div 
             v-if="selectedChat"
             style="height: 100%; width: 100%; display: flex; flex-direction: column;"
@@ -30,11 +27,6 @@
             <!-- @todo: padding в BaseContainer'е не работать -->
             <Feed
               :objects="messages"
-              :style="{
-                padding: isOpenChatPanel
-                  ? '0 20px 50px 20px'
-                  : '0 80px 50px 80px',
-              }"
               @message-action="messageAction"
               @load-more="loadMore"
             />
@@ -76,7 +68,6 @@ import {
   ThemeMode,
   SideBar,
   ChatPanel,
-  // FloatWindow,
   BaseContainer,
   BaseLayout,
 } from "./components";
@@ -137,7 +128,6 @@ const channels = ref([]);
 const sidebarItems = ref([]);
 
 const isOpenChatPanel = ref(false);
-const isOpenFloatWindow = ref(true);
 
 const modalShow = ref(false);
 const modalTitle = ref("");
