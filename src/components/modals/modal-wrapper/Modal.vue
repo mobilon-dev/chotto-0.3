@@ -10,36 +10,44 @@ const data = ref(null)
 </script>
 
 <template>
-    <transition name="modal-fade">
-        <div class="modal-backdrop">
-            <div
-                class="modal"
-                role="dialog"
-                aria-labelledby="modalTitle"
-                aria-describedby="modalDescription">
-                <section class="modal-body" id="modalDescription">
-                    <slot name="default"></slot>
-                </section>
-                <button
-                    type="button"
-                    class="btn-green"
-                    @click="$emit('close')"
-                    aria-label="Close modal">
-                    Close me!
-                </button>
-                <button
-                    type="button"
-                    class="btn-green"
-                    @click="handleConfirm(data)"
-                    aria-label="Close modal">
-                    confirm
-                </button>
-            </div>
+  <transition name="modal-fade">
+    <div class="modal-backdrop">
+      <div
+        class="modal"
+        role="dialog"
+        aria-labelledby="modalTitle"
+        aria-describedby="modalDescription"
+      >
+        <section
+          id="modalDescription"
+          class="modal-body"
+        >
+          <slot name="default" />
+        </section>
+        <div class="buttons">
+          <button
+            type="button"
+            class="btn-green"
+            aria-label="Close modal"
+            @click="handleConfirm(data)"
+          >
+            OK
+          </button>
+          <button
+            type="button"
+            class="btn-green"
+            aria-label="Close modal"
+            @click="$emit('close')"
+          >
+            Cancel
+          </button>
         </div>
-    </transition>
+      </div>
+    </div>
+  </transition>
 </template>
 
-<style>
+<style scoped>
 .modal-backdrop {
     position: fixed;
     top: 0;
@@ -48,34 +56,22 @@ const data = ref(null)
     right: 0;
     background-color: rgba(0, 0, 0, 0.3);
     display: flex;
-    justify-content: center;
+    justify-content: center;  
     align-items: center;
+    z-index:100;
 }
 
 .modal {
     background: #fff;
-    box-shadow: 2px 2px 20px 1px;
+    box-shadow: 2px 2px 10px 1px;
     overflow-x: auto;
-    display: flex;
+    display: flex; 
     flex-direction: column;
 }
 
-.modal-header,
-.modal-footer {
-    padding: 15px;
-    display: flex;
-}
-
-.modal-header {
-    position: relative;
-    border-bottom: 1px solid #eeeeee;
-    color: #4aae9b;
-    justify-content: space-between;
-}
-
-.modal-footer {
-    border-top: 1px solid #eeeeee;
-    flex-direction: column;
+.buttons {
+  display: block;
+  margin: 10px 10px 10px 10px;
 }
 
 .modal-body {
@@ -83,25 +79,6 @@ const data = ref(null)
     padding: 20px 10px;
 }
 
-.btn-close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    border: none;
-    font-size: 20px;
-    padding: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    color: #4aae9b;
-    background: transparent;
-}
-
-.btn-green {
-    color: white;
-    background: #4aae9b;
-    border: 1px solid #4aae9b;
-    border-radius: 2px;
-}
 
 .modal-fade-enter,
 .modal-fade-leave-to {

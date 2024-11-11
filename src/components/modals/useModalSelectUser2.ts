@@ -1,6 +1,6 @@
 import { useModal } from './modal-wrapper/useModal';
 
-export const useSelectUser2 = async (title, users) => {
+export const useModalSelectUser2 = async (title, users) => {
   const data = await useModal({
     //в component должен быть встроен emit change(key: value)
     component: import('./SelectUser2.vue'),

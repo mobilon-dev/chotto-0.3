@@ -1,8 +1,12 @@
 <template>
-    <div>
-        <p>ready?</p>
-        <input type="text" v-model="nameRef" @input="handleInput()" />
-    </div>
+  <div>
+    <p>ready?</p>
+    <input
+      v-model="nameRef"
+      type="text"
+      @input="handleInput()"
+    >
+  </div>
 </template>
 
 <script setup>

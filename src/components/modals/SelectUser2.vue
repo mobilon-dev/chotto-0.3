@@ -1,24 +1,24 @@
 <template>
   <div>
-      <div class="modal-content">
-        <h2> {{ title }}</h2>
-        <div class="participant-list">
-          <div
-            v-for="user in users"
-            :key="user.userId"
-            class="participant-item"
+    <div class="modal-content">
+      <h2> {{ title }}</h2>
+      <div class="participant-list">
+        <div
+          v-for="user in users"
+          :key="user.userId"
+          class="participant-item"
+        >
+          <input
+            :id="user.userId"
+            v-model="selectedUsers"
+            type="checkbox"
+            :value="user.userId"
+            @change="onChange"
           >
-            <input
-              :id="user.userId"
-              v-model="selectedUsers"
-              type="checkbox"
-              :value="user.userId"
-              @change="onChange"
-            >
-            <label :for="user.userId">{{ user.name || 'unknown username' }}</label>
-          </div> 
-        </div>
+          <label :for="user.userId">{{ user.name || 'unknown username' }}</label>
+        </div> 
       </div>
+    </div>
   </div>
 </template>
 
