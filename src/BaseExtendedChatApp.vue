@@ -60,13 +60,6 @@
           </chat-wrapper>
         </template>
       </ExtendedLayout>
-      <SelectUser
-        v-if="modalShow"
-        :title="modalTitle"
-        :users="users"
-        @confirm="selectUsers"
-        @close="onCloseModal"
-      />
     </BaseContainer>
   </div>
 </template>
@@ -85,9 +78,10 @@ import {
   ChatPanel,
   BaseContainer,
   ExtendedLayout,
-  SelectUser,
+  // SelectUser,
   ChatWrapper,
   useModalSelectUser2,
+  useModalCreateChat,
 } from "./components";
 
 import {
@@ -148,8 +142,8 @@ const sidebarItems = ref([]);
 const isOpenChatPanel = ref(false);
 
 const modalShow = ref(false);
-const modalTitle = ref("");
-const users = ref([]);
+// const modalTitle = ref("");
+// const users = ref([]);
 
 
 const selectItem = (item) => {
@@ -159,8 +153,16 @@ const selectItem = (item) => {
 const chatAction = async (data) => {
   console.log("chat action", data);
   if (data.action === "add") {
+    /*
+    const data = await useModalCreateChat('Укажите название нового чата');
+    console.log('chat:', data.name);
+    */
+
     const data = await useModalSelectUser2('tetet', getUsers());
     console.log('users:', data.selectedUsers);
+
+
+
     /*
     modalTitle.value = `Добавить в чат ${data.chatId}`;
     users.value = getUsers();
@@ -169,6 +171,7 @@ const chatAction = async (data) => {
   }
 };
 
+/*
 const selectUsers = (users) => {
   console.log("users selected", users);
 };
@@ -176,6 +179,7 @@ const selectUsers = (users) => {
 const onCloseModal = () => {
   modalShow.value = false;
 };
+*/
 
 const messageAction = (data) => {
   console.log("message action", data);

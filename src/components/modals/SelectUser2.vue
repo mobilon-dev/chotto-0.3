@@ -1,23 +1,21 @@
 <template>
   <div>
-    <div class="modal-content">
-      <h2> {{ title }}</h2>
-      <div class="participant-list">
-        <div
-          v-for="user in users"
-          :key="user.userId"
-          class="participant-item"
+    <h2> {{ title }}</h2>
+    <div class="participant-list">
+      <div
+        v-for="user in users"
+        :key="user.userId"
+        class="participant-item"
+      >
+        <input
+          :id="user.userId"
+          v-model="selectedUsers"
+          type="checkbox"
+          :value="user.userId"
+          @change="onChange"
         >
-          <input
-            :id="user.userId"
-            v-model="selectedUsers"
-            type="checkbox"
-            :value="user.userId"
-            @change="onChange"
-          >
-          <label :for="user.userId">{{ user.name || 'unknown username' }}</label>
-        </div> 
-      </div>
+        <label :for="user.userId">{{ user.name || 'unknown username' }}</label>
+      </div> 
     </div>
   </div>
 </template>
@@ -50,17 +48,12 @@ const onChange = () => {
 </script>
 
 <style scoped>
-.modal-content {
-	background-color: white;
-	padding: 20px;
-	border-radius: 8px;
-	width: 300px;
-}
 
 .participant-list {
   margin-top: 10px;
 	max-height: 200px;
 }
+
 .participant-item {
 	display: flex;
 	align-items: center;
@@ -69,16 +62,6 @@ const onChange = () => {
 
 .participant-item input[type='checkbox'] {
 	margin-right: 10px;
-}
-
-.modal-actions {
-	display: flex;
-	justify-content: flex-end;
-	margin-top: 20px;
-}
-
-.modal-actions button {
-	margin-left: 10px;
 }
 
 </style>
