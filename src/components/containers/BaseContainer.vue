@@ -1,7 +1,7 @@
 <template>
   <div
     class="base__container"
-    :style="{ height: contentHeight + 'px' }"
+    :style="{ height, width }"
   >
     <slot name="default" />
   </div>
@@ -9,10 +9,17 @@
 
 <script setup>
 
+import { onMounted } from 'vue';
+
 const props = defineProps({
-  contentHeight: {
-    type: String,
-    default: '1002',
+  height: String,
+  width: String,  
+  theme: String,
+})
+
+onMounted(() => {
+  if (props.theme) {
+    document.documentElement.dataset.theme = props.theme;
   }
 })
 

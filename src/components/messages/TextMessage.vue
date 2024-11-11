@@ -25,7 +25,9 @@
         class="text-message__content"
         @mouseenter="showMenu"
       >
-        <p class="text-message__text">{{ message.text }}</p>
+        <p class="text-message__text">
+          {{ message.text }}
+        </p>
         <div class="text-message__info-container">
           <span
             v-if="message.time"

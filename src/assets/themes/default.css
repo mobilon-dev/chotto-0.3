@@ -42,7 +42,7 @@
   --chat-list-button-actions-color: var(--neutral-600);
   --chat-list-button-actions-width: 32px;
   --chat-list-button-actions-height: 32px;
-  --chat-list-items-padding: 0 6px 0 0;
+  --chat-list-items-padding: 0 5px 0 5px;
   --chat-list-filter-margin: 0 12px 30px 9px;
 
   /* Inputs */
@@ -157,4 +157,12 @@
   /* Scroll Bar */
   --scrollbar-bg: var(--neutral-50);
   --scrollbar-thumb-bg: var(--neutral-300);
+
+
+
+  /* Layouts */
+
+  /* Extended layout */
+
+  --layout-extended-column-border: 0px solid var(--neutral-200);
 }

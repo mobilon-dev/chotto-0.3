@@ -1,62 +1,20 @@
 <template>
-  <div>
-    <BaseContainer>
-      <!-- @todo: параметрически задавать ширину и высоту -->
-      <BaseLayout>
-        <template #first-col>
-          <UserProfile :user="userProfile" />
-          <!-- @todo: убрать классы, должны уйти внутрь компонента -->
-          <ChatList
-            class="chat-app__chat-list"  
-            :chats="chatsStore.chats"
-            filter-enabled
-            @select="selectChat"
-            @action="chatAction"
+  <div class="chat-app">
+    <BaseContainer width="30vw" height="70vh">  
+      <FeedLayout>
+          <ChatInfo
+            :chat="selectedChat"
           />
-          <ThemeMode :themes="themes" />
-        </template>
-        <template #second-col>
-          <div
-            v-if="selectedChat"
-            class="chat-app__right-bar-container"
-          >
-            <ChatInfo
-              :chat="selectedChat"
-              @open-panel="isOpenChatPanel = !isOpenChatPanel"
-            />
-            <!-- @todo: padding в BaseContainer'е не работать -->
-            <Feed
-              :objects="messages"
-              :style="{
-                padding: isOpenChatPanel
-                  ? '0 20px 50px 20px'
-                  : '0 80px 50px 80px',
-              }"
-              @message-action="messageAction"
-              @load-more="loadMore"
-            />
-            <ChatInput
-              :enable-emoji="true"
-              :channels="channels"
-              @send="addMessage"
-            />
-          </div>
-          <p
-            v-else
-            class="chat-app__welcome-text"
-          >
-            Выберите контакт для начала общения
-          </p>
-        </template>
-      </BaseLayout>
-      <!-- @todo: заменить на composable modals -->
-      <SelectUser
-        v-if="modalShow"
-        :title="modalTitle"
-        :users="users"
-        @confirm="selectUsers"
-        @close="onCloseModal"
-      />
+          <Feed
+            :objects="messages"            
+            @message-action="messageAction"
+            @load-more="loadMore"
+          />
+          <ChatInput
+            :enable-emoji="true"
+            @send="addMessage"
+          />
+      </FeedLayout>
     </BaseContainer>
   </div>
 </template>
@@ -74,9 +32,8 @@ import {
   ThemeMode,
   SideBar,
   ChatPanel,
-  // FloatWindow,
   BaseContainer,
-  BaseLayout,
+  FeedLayout,
 } from "./components";
 
 import {
@@ -88,7 +45,7 @@ import {
 
 import { useChatsStore } from "./stores/useChatStore";
 import { transformToFeed } from "./transform/transformToFeed";
-import { SelectUser } from "./components/modals";
+
 
 // Define props
 const props = defineProps({
@@ -135,7 +92,6 @@ const channels = ref([]);
 const sidebarItems = ref([]);
 
 const isOpenChatPanel = ref(false);
-const isOpenFloatWindow = ref(true);
 
 const modalShow = ref(false);
 const modalTitle = ref("");
@@ -241,7 +197,8 @@ onMounted(() => {
   chatsStore.chats = props.dataProvider.getChats();
   channels.value = props.dataProvider.getChannels();
   sidebarItems.value = props.dataProvider.getSidebarItems();
+  console.log(chatsStore.chats);
+  selectChat(chatsStore.chats[1]);
 });
-
 </script>
 

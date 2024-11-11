@@ -17,7 +17,7 @@ Vue3 Chat UI components - собери свой интерфейс чата
 
 ## скриншот
 
-![](images/screenshot4.png)
+![](images/screenshot5.png)
 
 
 # разработка
@@ -61,3 +61,6 @@ Vue3 Chat UI components - собери свой интерфейс чата
 - https://github.com/mattmezza/vue-beautiful-chat
 
 - https://github.com/MatheusrdSantos/vue-quick-chat
+
+- https://github.com/Yonom/assistant-ui
+

@@ -1,14 +1,13 @@
 <template>
-  <div class="chat-app">
-    <BaseContainer>
-      <ExtendedLayout>
+  <div>
+    <BaseContainer
+      height="70vh"
+      width="70vw"
+    >
+      <BaseLayout>
         <template #first-col>
-          <SideBar :sidebar-items="sidebarItems" @select-item="selectItem" />
-        </template>
-        <template #second-col>
           <UserProfile :user="userProfile" />
-          <ChatList
-            class="chat-app__chat-list"
+          <ChatList 
             :chats="chatsStore.chats"
             filter-enabled
             @select="selectChat"
@@ -16,19 +15,18 @@
           />
           <ThemeMode :themes="themes" />
         </template>
-        <template #third-col>
-          <div v-if="selectedChat" class="chat-app__right-bar-container">
+        <template #second-col>
+          <div 
+            v-if="selectedChat"
+            style="height: 100%; width: 100%; display: flex; flex-direction: column;"
+          >
             <ChatInfo
               :chat="selectedChat"
               @open-panel="isOpenChatPanel = !isOpenChatPanel"
             />
+            <!-- @todo: padding в BaseContainer'е не работать -->
             <Feed
               :objects="messages"
-              :style="{
-                padding: isOpenChatPanel
-                  ? '0 20px 50px 20px'
-                  : '0 80px 50px 80px',
-              }"
               @message-action="messageAction"
               @load-more="loadMore"
             />
@@ -38,14 +36,14 @@
               @send="addMessage"
             />
           </div>
-          <p v-else class="chat-app__welcome-text">
+          <p
+            v-else
+          >
             Выберите контакт для начала общения
           </p>
         </template>
-        <template #fourth-col>
-          <SideBar :sidebar-items="sidebarItems" @select-item="selectItem"
-        /></template>
-      </ExtendedLayout>
+      </BaseLayout>
+      <!-- @todo: заменить на composable modals -->
       <SelectUser
         v-if="modalShow"
         :title="modalTitle"
@@ -71,8 +69,7 @@ import {
   SideBar,
   ChatPanel,
   BaseContainer,
-  ExtendedLayout,
-  SelectUser,
+  BaseLayout,
 } from "./components";
 
 import {
@@ -84,7 +81,7 @@ import {
 
 import { useChatsStore } from "./stores/useChatStore";
 import { transformToFeed } from "./transform/transformToFeed";
-
+import { SelectUser } from "./components/modals";
 
 // Define props
 const props = defineProps({
@@ -131,7 +128,6 @@ const channels = ref([]);
 const sidebarItems = ref([]);
 
 const isOpenChatPanel = ref(false);
-const isOpenFloatWindow = ref(true);
 
 const modalShow = ref(false);
 const modalTitle = ref("");
@@ -237,6 +233,7 @@ onMounted(() => {
   chatsStore.chats = props.dataProvider.getChats();
   channels.value = props.dataProvider.getChannels();
   sidebarItems.value = props.dataProvider.getSidebarItems();
-  console.log('eee', sidebarItems.value)
 });
+
 </script>
+

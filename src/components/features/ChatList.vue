@@ -1,84 +1,84 @@
 <template>
   <div class="chat-list">
-    <div class="chat-list__container">
-      <div 
-        class="chat-list__title-container"
-        @mouseleave="hideMenu"
-        >
-        <h2
-          v-if="title"
-          class="chat-list__title"
-        >
-          {{ title }}
-        </h2>
+    <!-- div class="chat-list__container" -->
+    <div 
+      class="chat-list__title-container"
+      @mouseleave="hideMenu"
+    >
+      <h2
+        v-if="title"
+        class="chat-list__title"
+      >
+        {{ title }}
+      </h2>
 
-        <button
-          v-if="actions.length"
-          class="chat-list__button-actions"
-          @click="isOpenMenu = !isOpenMenu"
-        >
-          <span
-            v-if="isOpenMenu"
-            class="pi pi-minus"
-          />
-          <span
-            v-else
-            class="pi pi-plus"
-          />
-        </button>
+      <button
+        v-if="actions.length"
+        class="chat-list__button-actions"
+        @click="isOpenMenu = !isOpenMenu"
+      >
+        <span
+          v-if="isOpenMenu"
+          class="pi pi-minus"
+        />
+        <span
+          v-else
+          class="pi pi-plus"
+        />
+      </button>
 
-        <transition>
-          <ContextMenu
-            v-if="isOpenMenu && actions"
-            :actions="actions"
-            class="chat-list__context-menu"
-            @click="action"
-          />
-        </transition>
+      <transition>
+        <ContextMenu
+          v-if="isOpenMenu && actions"
+          :actions="actions"
+          class="chat-list__context-menu"
+          @click="action"
+        />
+      </transition>
+    </div>
+
+
+    <ChatFilter
+      v-if="filterEnabled"
+      class="chat-list__filter"
+      @update="getFilter"
+    />
+
+    <div class="chat-list__items">
+      <div class="chat-list__fixed-items-top">
+        <chat
+          v-for="chat in getSortedAndFilteredChats().filter(c => c.isFixedTop)"
+          :key="chat.chatId"
+          class="chat-list__item"
+          :chat="chat"
+          @select="selectChat"
+          @action="action"
+        />
       </div>
 
+      <div class="chat-list__scrollable-items">
+        <chat
+          v-for="chat in getSortedAndFilteredChats().filter(c => !c.isFixedBottom && !c.isFixedTop)"
+          :key="chat.chatId"
+          class="chat-list__item"
+          :chat="chat"
+          @select="selectChat"
+          @action="action"
+        />
+      </div>
 
-      <ChatFilter
-        v-if="filterEnabled"
-        class="chat-list__filter"
-        @update="getFilter"
-      />
-
-      <div class="chat-list__items">
-        <div class="chat-list__fixed-items-top">
-          <chat
-            v-for="chat in getSortedAndFilteredChats().filter(c => c.isFixedTop)"
-            :key="chat.chatId"
-            class="chat-list__item"
-            :chat="chat"
-            @select="selectChat"
-            @action="action"
-          />
-        </div>
-
-        <div class="chat-list__scrollable-items">
-          <chat
-            v-for="chat in getSortedAndFilteredChats().filter(c => !c.isFixedBottom && !c.isFixedTop)"
-            :key="chat.chatId"
-            class="chat-list__item"
-            :chat="chat"
-            @select="selectChat"
-            @action="action"
-          />
-        </div>
-
-        <div class="chat-list__fixed-items-bottom">
-          <chat
-            v-for="chat in getSortedAndFilteredChats().filter(c => c.isFixedBottom)"
-            :key="chat.chatId"
-            class="chat-list__item"
-            :chat="chat"
-            @select="selectChat"
-            @action="action"
-          />
-        </div>
+      <div class="chat-list__fixed-items-bottom">
+        <chat
+          v-for="chat in getSortedAndFilteredChats().filter(c => c.isFixedBottom)"
+          :key="chat.chatId"
+          class="chat-list__item"
+          :chat="chat"
+          @select="selectChat"
+          @action="action"
+        />
       </div>
     </div>
+    <!-- /div -->
   </div>
 </template>
 
@@ -153,18 +153,29 @@ const action = (data) => emit('action', data);
 >
 .chat-list {
   background-color: transparent;
+  flex-grow: 1;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  height: 80%;
 
+  /*
   &__container {
     display: flex;
     flex-direction: column;
     height: 100%;
   }
+    */
 
   &__filter {
     margin: var(--chat-list-filter-margin);
   }
 
   &__items {
+    display: block;
+    height: '30vh';
+    scroll-behavior: smooth;
+
     overflow-y: auto;
     padding: var(--chat-list-items-padding);
 

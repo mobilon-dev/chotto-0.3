@@ -4,9 +4,15 @@
       v-if="user"
       class="profile__container"
     >
-      <h2 class="profile__name">{{ user.name }}</h2>
-      <p class="profile__email">{{ user.email }}</p>
-      <p class="profile__phone">{{ user.phone }}</p>
+      <h2 class="profile__name">
+        {{ user.name }}
+      </h2>
+      <p class="profile__email">
+        {{ user.email }}
+      </p>
+      <p class="profile__phone">
+        {{ user.phone }}
+      </p>
     </div>
   </div>
 </template>
