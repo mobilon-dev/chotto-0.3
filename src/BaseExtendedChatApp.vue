@@ -87,6 +87,10 @@ import {
   ExtendedLayout,
   SelectUser,
   ChatWrapper,
+  SelectUser2,
+  useModal,
+  Demo,
+  useSelectUser2,
 } from "./components";
 
 import {
@@ -155,12 +159,16 @@ const selectItem = (item) => {
   console.log("selected sidebar item", item);
 };
 
-const chatAction = (data) => {
+const chatAction = async (data) => {
   console.log("chat action", data);
   if (data.action === "add") {
+    const data = await useSelectUser2('tetet', getUsers());
+    console.log('users:', data.selectedUsers);
+    /*
     modalTitle.value = `Добавить в чат ${data.chatId}`;
     users.value = getUsers();
     modalShow.value = true;
+    */
   }
 };
 
