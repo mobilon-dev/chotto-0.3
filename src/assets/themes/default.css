@@ -20,8 +20,9 @@
 
   /* Chat Panel */
   --chat-panel-bg: var(--neutral-100);
-  --chat-pannel-widget-bg: var(--neutral-200);
-  --chat-pannel-margin: 30px 0 30px 10px;
+  --chat-panel-widget-bg: var(--neutral-200);
+  --chat-panel-margin: 0px 0px 0px 10px;
+  --chat-panel-border-radius: 12px 12px 12px 12px;
 
   /* Side Bar */
   --sidebar-padding-container: 18px 8px 30px 8px;
@@ -86,11 +87,13 @@
   /* _____________________________________________ */
 
   /* Chat Info */
-  --chat-info-padding: 20px 15px 20px 40px;
+  --chat-info-padding: 20px 20px 20px 20px;
   --chat-info-font-size-title: 18px;
-  --chat-info-font-weight-time: 500
-    /* Feed */
-    --feed-button-down-bg: var(--default-white);
+  --chat-info-font-weight-time: 500;
+  --chat-info-border-radius: 12px 12px 0 0;
+
+  /* Feed */
+  --feed-button-down-bg: var(--default-white);
 
   /* Text Message */
   --text-message-right-background-color: var(--emerald-200);
@@ -146,6 +149,7 @@
 
   /* Chat Input */
   --chat-input-background: var(--neutral-200);
+  --chat-input-border-radius: 0 0 12px 12px;
 
   /* Status Message */
   --status-message-color-received: var(--neutral-500);

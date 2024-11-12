@@ -13,7 +13,7 @@
 
   /* Chat Panel */
   --chat-panel-bg: var(--neutral-800);
-  --chat-pannel-widget-bg: var(--neutral-700);
+  --chat-panel-widget-bg: var(--neutral-700);
 
   /* Tool Bar */
   --sidebar-border: 1px solid var(--neutral-500);
