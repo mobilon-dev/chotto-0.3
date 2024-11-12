@@ -42,8 +42,12 @@ const props = defineProps({
 </script>
 
 <style scoped lang="scss">
+
 .chatpanel {
-  background-color: #ffffff;
-  border-left: var(--chat-pannel-border, none);
+  padding: 10px 10px 10px 10px;
+  margin: var(--chat-panel-margin);
+  background-color: var(--chat-input-background);
+  border-left: var(--chat-panel-border, none);
+  border-radius: var(--chat-panel-border-radius);
 }
 </style>

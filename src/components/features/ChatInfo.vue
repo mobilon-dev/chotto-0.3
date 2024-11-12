@@ -53,7 +53,9 @@ const emit = defineEmits(['open-panel']);
 >
 .chat-info {
   &__container {
+    border-radius: var(--chat-info-border-radius); 
     padding: var(--chat-info-padding);
+    background-color: var(--chat-input-background);
     display: flex;
     gap: 10px;
     border-bottom: 1px solid var(--neutral-200);
