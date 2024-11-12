@@ -10,12 +10,16 @@ export const messages = [
       { action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=pin' }, 
       { action: 'delete', title: 'удалить' }]
   },
-  { chatId: 1, type: "message.text", text: "Привет!", direction: 'outgoing', status: 'received', timestamp: '1727027959', 
+  { chatId: 1, type: "message.text", text: "Привет! Сообщение с просмотрами",
+    direction: 'outgoing', status: 'received', timestamp: '1727027959',
+    views: 1000,
     actions: [
-      { action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=pin' }, 
+      { action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=pin' },
       { action: 'delete', title: 'удалить' }] },
   { chatId: 1, type: "message.image", url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg", timestamp: '1727027959', 
-    alt: "Example Image", direction: 'outgoing', status: 'received', actions: [
+    alt: "Example Image", direction: 'outgoing',
+    views: 1667,
+    status: 'received', actions: [
       { action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=pin' }, 
       { action: 'delete', title: 'удалить' }] },
   { chatId: 1, type: "message.video", url: "https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3", 
