@@ -18,12 +18,12 @@ const data = ref(null)
         aria-labelledby="modalTitle"
         aria-describedby="modalDescription"
       >
-        <section
+        <div
           id="modalDescription"
           class="modal-body"
         >
           <slot name="default" />
-        </section>
+        </div>
         <div class="buttons">
           <button
             type="button"
@@ -64,6 +64,8 @@ const data = ref(null)
 .modal {
     background: #fff;
     box-shadow: 2px 2px 10px 1px;
+    min-width: 300px;
+    min-height: 300px;
     overflow-x: auto;
     display: flex; 
     flex-direction: column;
@@ -77,6 +79,7 @@ const data = ref(null)
 .modal-body {
     position: relative;
     padding: 20px 10px;
+    flex-grow: 1;
 }
 
 
