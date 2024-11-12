@@ -132,19 +132,12 @@ const themes = [
 
 const chatsStore = useChatsStore();
 
-// Reactive data
 const selectedChat = ref(null);
 const messages = ref([]);
 const userProfile = ref({});
 const channels = ref([]);
 const sidebarItems = ref([]);
-
 const isOpenChatPanel = ref(false);
-
-const modalShow = ref(false);
-// const modalTitle = ref("");
-// const users = ref([]);
-
 
 const selectItem = (item) => {
   console.log("selected sidebar item", item);
@@ -153,33 +146,10 @@ const selectItem = (item) => {
 const chatAction = async (data) => {
   console.log("chat action", data);
   if (data.action === "add") {
-    /*
-    const data = await useModalCreateChat('Укажите название нового чата');
-    console.log('chat:', data.name);
-    */
-
-    const data = await useModalSelectUser2('tetet', getUsers());
+    const data = await useModalSelectUser2('Укажите новых участников чата', getUsers());
     console.log('users:', data.selectedUsers);
-
-
-
-    /*
-    modalTitle.value = `Добавить в чат ${data.chatId}`;
-    users.value = getUsers();
-    modalShow.value = true;
-    */
   }
 };
-
-/*
-const selectUsers = (users) => {
-  console.log("users selected", users);
-};
-
-const onCloseModal = () => {
-  modalShow.value = false;
-};
-*/
 
 const messageAction = (data) => {
   console.log("message action", data);
@@ -224,7 +194,7 @@ const addMessage = (message) => {
 const selectChat = (chat) => {
   selectedChat.value = chat;
   chatsStore.setUnreadCounter(chat.chatId, 0);
-  messages.value = getFeedObjects(); // Обновляем сообщения при выборе контакта
+  messages.value = getFeedObjects(); // Обновляем сообщения при выборе чата
 };
 
 const handleEvent = async (event) => {
@@ -240,7 +210,6 @@ const handleEvent = async (event) => {
 };
 
 onMounted(() => {
-  // console.log('mounted')
   props.eventor.subscribe(handleEvent);
   userProfile.value = props.authProvider.getUserProfile();
   chatsStore.chats = props.dataProvider.getChats();
