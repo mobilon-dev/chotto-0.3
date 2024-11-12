@@ -1,7 +1,5 @@
 <template>
-  <div
-    style="display: flex; height: 100%; width: 100%; align-items: stretch;"
-  >
+  <div style="display: flex; height: 100%; width: 100%; align-items: stretch;">
     <div
       v-if="isSelectedChat"
       style="height: 100%; width: 100%; display: flex; flex-direction: column; align-items: stretch;"
@@ -17,10 +15,10 @@
         Выберите контакт для начала общения
       </p>
     </div>
-    
-    <div 
-      v-if="isOpenChatPanel" 
-      :style="{ 'flex-basis': isOpenChatPanel ? '40%' : '0%'}"
+
+    <div
+      v-if="isOpenChatPanel"
+      :style="{ 'flex-basis': isOpenChatPanel ? '40%' : '0%' }"
       class="chatpanel"
     >
       <slot name="chatpanel" />
@@ -28,7 +26,10 @@
   </div>
 </template>
 
-<script lang="ts" setup>
+<script
+  lang="ts"
+  setup
+>
 const props = defineProps({
   isOpenChatPanel: {
     type: Boolean,
@@ -41,8 +42,11 @@ const props = defineProps({
 })
 </script>
 
-<style scoped lang="scss">
 
+<style
+  scoped
+  lang="scss"
+>
 .chatpanel {
   padding: 10px 10px 10px 10px;
   margin: var(--chat-panel-margin);

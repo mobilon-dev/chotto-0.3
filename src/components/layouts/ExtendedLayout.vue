@@ -14,7 +14,10 @@
 
 <script setup></script>
 
-<style scoped lang="scss">
+<style
+  scoped
+  lang="scss"
+>
 .extend-layout {
   &__container {
     height: inherit;
@@ -24,18 +27,22 @@
     background-color: var(--app-container-bg, transparent);
     margin: var(--app-margin, 0);
     position: relative;
+
     border-top: var(--layout-extended-column-border);
     border-left: var(--layout-extended-column-border);
   }
+
   &__first-col {
     position: relative;
     grid-column: 1;
     display: flex;
     flex-direction: column;
     height: inherit;
+    margin: var(--left-bar-margin);
     border-right: var(--layout-extended-column-border);
     border-bottom: var(--layout-extended-column-border);
   }
+
   &__second-col {
     position: relative;
     grid-column: 2;
@@ -45,6 +52,7 @@
     border-right: var(--layout-extended-column-border);
     border-bottom: var(--layout-extended-column-border);
   }
+
   &__third-col {
     position: relative;
     display: flex;

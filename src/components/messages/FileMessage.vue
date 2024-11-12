@@ -224,7 +224,6 @@ const getStatus = computed(() => {
   &__left,
   &__right {
     display: grid;
-    column-gap: 12px;
     margin: var(--file-message-margin);
   }
 
@@ -234,6 +233,7 @@ const getStatus = computed(() => {
     .file-message__avatar {
       grid-column: 1;
       grid-row: 2;
+      margin-right: 12px;
     }
 
     .file-message__subtext {
@@ -266,6 +266,7 @@ const getStatus = computed(() => {
     .file-message__avatar {
       grid-column: 2;
       grid-row: 2;
+      margin-left: 12px;
     }
 
     .file-message__subtext {

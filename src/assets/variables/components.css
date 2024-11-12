@@ -65,6 +65,7 @@
   --video-message-width: 200px;
   --video-message-height: 200px;
   --video-message-border-radius: 50%;
+  --video-message-margin: 0 0 10px 0;
 
   --video-message-button-width: 40px;
   --video-message-button-height: 40px;
@@ -110,6 +111,6 @@
   /* Subtext */
   --subtext-font-size: 12px;
 
-  /* FloatWindow */
+  /* FloatContainer */
   --float-window-padding: 18px 20px;
 }

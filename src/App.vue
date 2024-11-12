@@ -5,6 +5,8 @@
       :data-provider="dataProvider"
       :eventor="eventor"
     />
+
+    <!-- <ChatAppFloat /> -->
   </div>
 </template>
 
@@ -16,10 +18,11 @@ import moment from 'moment';
 import ChatApp from './BaseExtendedChatApp.vue';
 // import ChatApp from './BaseFeedChatApp.vue';
 
-// import ChatApp from './FloatExtendedChatApp.vue';
+import ChatAppFloat from './FloatExtendedChatApp.vue';
 
-import { messages, chats, channels, 
-  sidebarItems, userProfile, users 
+import {
+  messages, chats, channels,
+  sidebarItems, userProfile, users
 } from './data';
 
 // Mock data
@@ -34,7 +37,7 @@ const data3 = {
 
 // Define the auth provider
 const authProvider = {
-  getUserProfile() {return data3.userProfile}
+  getUserProfile() { return data3.userProfile }
 };
 
 // Define the data provider
@@ -94,7 +97,7 @@ onMounted(() => {
       userId: 'testUserId',
       timestamp: moment().unix(),
     };
-        
+
     data3.messages.push(newMessage);
     eventor.push({ type: 'message', data: newMessage });
   }, 3000);

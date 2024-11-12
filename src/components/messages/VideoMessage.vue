@@ -61,19 +61,22 @@
         {{ `${remaningTime}` }}
       </p>
 
-      <span class="video-message__time">{{ message.time }}</span>
+      <div class="video-message__info-container">
+        <span class="video-message__time">{{ message.time }}</span>
 
-      <div
-        v-if="getClass(message) === 'video-message__right' && message.status"
-        class="video-message__status"
-        :class="getStatus"
-      >
-        <span
-          v-if="message.status !== 'sent'"
-          class="pi pi-check"
-        />
-        <span class="pi pi-check" />
+        <div
+          v-if="getClass(message) === 'video-message__right' && message.status"
+          class="video-message__status"
+          :class="getStatus"
+        >
+          <span
+            v-if="message.status !== 'sent'"
+            class="pi pi-check"
+          />
+          <span class="pi pi-check" />
+        </div>
       </div>
+
     </div>
   </div>
 </template>
@@ -173,6 +176,16 @@ onMounted(() => {
     width: var(--video-message-width);
   }
 
+  &__info-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    column-gap: 6px;
+  }
+
   &__avatar {
     align-self: center;
     object-fit: cover;
@@ -238,22 +251,16 @@ onMounted(() => {
   &__remaining-time {
     position: absolute;
     bottom: 0;
-    left: 16px;
+    left: 0;
     font-size: var(--g-message-font-size-remaining-time);
   }
 
   &__time {
-    position: absolute;
-    bottom: 0;
-    right: 16px;
     font-size: var(--g-message-font-size-time);
   }
 
   &__status {
     display: flex;
-    position: absolute;
-    bottom: 1px;
-    right: -4px;
 
     span {
       font-weight: 400;
@@ -311,13 +318,30 @@ onMounted(() => {
 
   &__left,
   &__right {
-    display: flex;
-    align-items: center;
-    column-gap: 20px;
+    display: grid;
+    margin: var(--video-message-margin);
   }
 
   &__left {
-    justify-content: flex-start;
+    grid-template-columns: min-content 1fr;
+
+    .video-message__avatar {
+      grid-column: 1;
+      grid-row: 2;
+      margin-right: 12px;
+    }
+
+    .video-message__subtext {
+      grid-column: 2;
+      grid-row: 1;
+      margin: 0 0 2px 10px;
+    }
+
+    .video-message__content {
+      grid-column: 2;
+      background-color: var(--text-message-left-background-color);
+      color: var(--text-message-text-color);
+    }
 
     .video-message__menu-button {
       top: 50%;
@@ -331,10 +355,24 @@ onMounted(() => {
   }
 
   &__right {
-    justify-content: flex-end;
+    grid-template-columns: 1fr min-content;
 
     .video-message__avatar {
-      order: 1;
+      grid-column: 2;
+      grid-row: 2;
+      margin-left: 12px;
+    }
+
+    .video-message__subtext {
+      grid-column: 1;
+      grid-row: 1;
+      margin: 0 10px 2px auto;
+    }
+
+
+    .video-message__content {
+      grid-column: 1;
+      margin-left: auto;
     }
 
     .video-message__menu-button {

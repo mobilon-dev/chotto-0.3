@@ -12,10 +12,17 @@
       <div
         ref="container"
         class="float-window__controls"
+        :style="{ backgroundColor: props.colorTitle ? props.colorTitle : '' }"
         @mousedown="mouseDown"
         @mouseup="turnOffDragMode"
         @mouseleave="turnOffDragMode"
       >
+        <img
+          class="float-window__avatar"
+          v-if="props.avatar"
+          :src="props.avatar"
+          :alt="props.title"
+        >
         <p class="float-window__title">
           {{ props.title }}
         </p>
@@ -44,15 +51,23 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  height: String,
-  width: String,
+  colorTitle: {
+    type: String,
+    required: true,
+  },
+  avatar: {
+    type: String,
+    required: true,
+  },
+  Height: String,
+  Width: String,
 });
 const emit = defineEmits(["close-window", "get-size"]);
 
 const floatWindowPosition = ref({ x: 0, y: 0 });
 const element = ref(null);
 const container = ref(null);
-const dragMode = ref(true);
+const dragMode = ref(false);
 const initialX = ref(0);
 const initialY = ref(0);
 const contentHeight = ref(0);
@@ -125,10 +140,14 @@ onMounted(() => {
 });
 </script>
 
-<style scoped lang="scss">
+<style
+  scoped
+  lang="scss"
+>
 .float-window {
   z-index: 1000;
   width: fit-content;
+  position: absolute;
 
   &__container {
     width: 1200px;
@@ -137,7 +156,6 @@ onMounted(() => {
     border-radius: var(--float-window-border-radius);
     background-color: var(--float-window-bg);
     box-shadow: var(--float-window-box-shadow);
-    border: 2px solid;
   }
 
   &__controls {
@@ -148,6 +166,12 @@ onMounted(() => {
     padding: var(--float-window-padding);
     background-color: var(--float-window-bg-header);
     border-radius: var(--float-window-border-radius-header);
+  }
+
+  &__avatar {
+    width: var(--avatar-width-small);
+    height: var(--avatar-height-small);
+    border-radius: 50%;
   }
 
   &__title {

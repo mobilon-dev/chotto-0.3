@@ -7,9 +7,9 @@
     >
       <ExtendedLayout>
         <template #first-col>
-          <SideBar 
-            :sidebar-items="sidebarItems" 
-            @select-item="selectItem" 
+          <SideBar
+            :sidebar-items="sidebarItems"
+            @select-item="selectItem"
           />
           <ThemeMode :themes="themes" />
         </template>
@@ -25,7 +25,7 @@
         </template>
 
         <template #third-col>
-          <chat-wrapper 
+          <chat-wrapper
             :is-open-chat-panel="isOpenChatPanel"
             :is-selected-chat="!!selectedChat"
           >
@@ -53,7 +53,7 @@
                 @send="addMessage"
               />
             </template>
-            
+
             <template #chatpanel>
               <ChatPanel
                 v-if="isOpenChatPanel"

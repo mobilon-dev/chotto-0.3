@@ -1,7 +1,7 @@
 import BaseContainer from './BaseContainer.vue';
-import FloatWindow from './FloatWindow.vue';
+import FloatContainer from './FloatContainer.vue';
 
 export {
   BaseContainer,
-  FloatWindow,
+  FloatContainer,
 }

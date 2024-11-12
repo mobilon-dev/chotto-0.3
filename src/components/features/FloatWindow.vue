@@ -112,9 +112,10 @@ onMounted(() => {
 .float-window {
   z-index: 1000;
   width: fit-content;
+  background-color: red;
 
   &__container {
-    width: 1200px;
+    width: 1800px;
     height: 900px;
     border-radius: var(--float-window-border-radius);
     background-color: var(--float-window-bg);
