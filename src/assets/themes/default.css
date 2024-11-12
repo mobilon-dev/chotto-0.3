@@ -86,7 +86,7 @@
   /* _____________________________________________ */
 
   /* Chat Info */
-  --chat-info-padding: 20px 15px 20px 40px;
+  --chat-info-padding: 20px 20px 20px 20px;
   --chat-info-font-size-title: 18px;
   --chat-info-font-weight-time: 500
     /* Feed */

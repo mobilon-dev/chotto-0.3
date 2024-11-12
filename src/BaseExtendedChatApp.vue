@@ -26,14 +26,22 @@
 
         <template #third-col>
           <chat-wrapper 
-            :is-open-chat-panel="isOpenChatPanel" 
+            :is-open-chat-panel="isOpenChatPanel"
             :is-selected-chat="!!selectedChat"
           >
             <template #default>
               <ChatInfo
                 :chat="selectedChat"
-                @open-panel="isOpenChatPanel = !isOpenChatPanel"
-              />
+              >
+                <template #actions>
+                  <button
+                    class="chat-info__button-panel"
+                    @click="isOpenChatPanel = !isOpenChatPanel"
+                  >
+                    <span class="pi pi-info-circle" />
+                  </button>
+                </template>
+              </ChatInfo>
               <Feed
                 :objects="messages"
                 @message-action="messageAction"
@@ -78,7 +86,6 @@ import {
   ChatPanel,
   BaseContainer,
   ExtendedLayout,
-  // SelectUser,
   ChatWrapper,
   useModalSelectUser2,
   useModalCreateChat,

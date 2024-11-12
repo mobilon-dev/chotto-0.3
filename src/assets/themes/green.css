@@ -111,9 +111,9 @@
   --feed-button-down-bg: var(--neutral-200);
 
   /* Chat Info */
-  --chat-info-padding: 10px 15px 10px 40px;
+  --chat-info-padding: 10px 15px 10px 15px;
   --chat-info-font-size-title: 16px;
-  --chat-info-font-weight-time: 400;
+  --chat-info-font-weight-time: 300;
 
   /* Layouts */
 

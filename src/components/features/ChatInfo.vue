@@ -1,36 +1,35 @@
-<template>
-  <div class="chat-info">
-    <div
-      v-if="chat"
-      class="chat-info__container"
-    >
-      <div class="chat-info__avatar-container">
-        <img
-          v-if="props.chat.avatar"
-          :src="props.chat.avatar"
-          width="48"
-          height="48"
-        >
-        <span
-          v-else
-          class="pi pi-user"
-        />
-      </div>
-
+<template>  
+  <div
+    v-if="chat"
+    class="chat-info__container"
+  >
+    <div class="chat-info__avatar-container">
+      <img
+        v-if="props.chat.avatar"
+        :src="props.chat.avatar"
+        width="48"
+        height="48"
+      >
+      <span
+        v-else
+        class="pi pi-user"
+      />
+    </div>
+    <div class="chat-info__info-container">
       <h2 class="chat-info__title">
         {{ chat.name }}
       </h2>
-      <p class="chat-info__time">
+      <p
+        v-if="chat['lastActivity.time']"
+        class="chat-info__time"
+      >
         {{ chat['lastActivity.time'] }}
       </p>
-
+    </div>
+    <div
+      class="chat-info__actions"
+    >
       <slot name="actions" />
-      <button
-        class="chat-info__button-panel"
-        @click="$emit('open-panel')"
-      >
-        <span class="pi pi-info-circle" />
-      </button>
     </div>
   </div>
 </template>
@@ -55,9 +54,8 @@ const emit = defineEmits(['open-panel']);
 .chat-info {
   &__container {
     padding: var(--chat-info-padding);
-    display: grid;
-    grid-template-columns: min-content auto min-content;
-    column-gap: 20px;
+    display: flex;
+    gap: 10px;
     border-bottom: 1px solid var(--neutral-200);
   }
 
@@ -70,7 +68,7 @@ const emit = defineEmits(['open-panel']);
     height: var(--avatar-height-medium);
     border-radius: var(--avatar-border-radius);
     background-size: cover;
-    grid-row: 1 / 3;
+
 
     span {
       font-size: var(--avatar-icon-size-medium);
@@ -83,8 +81,12 @@ const emit = defineEmits(['open-panel']);
     }
   }
 
-  &__title {
+  &__info-container { 
+    display: flex;
+    flex-direction: column;
+  }
 
+  &__title {
     grid-column: 2;
     align-self: center;
     font-weight: 500;
@@ -98,17 +100,8 @@ const emit = defineEmits(['open-panel']);
     grid-column: 2;
   }
 
-  &__button-panel {
-    background-color: transparent;
-    border: none;
-    grid-column: 3;
-    grid-row: 1 / 3;
-    cursor: pointer;
-
-    span {
-      font-size: var(--icon-font-size-medium);
-      color: var(--neutral-600);
-    }
+  &__actions {
+    flex-grow: 1;
   }
 }
 </style>
