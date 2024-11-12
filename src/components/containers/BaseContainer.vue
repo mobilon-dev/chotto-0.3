@@ -13,7 +13,7 @@ import { onMounted } from 'vue';
 
 const props = defineProps({
   height: String,
-  width: String,  
+  width: String,
   theme: String,
 })
 
@@ -25,7 +25,10 @@ onMounted(() => {
 
 </script>
 
-<style scoped lang="scss">
+<style
+  scoped
+  lang="scss"
+>
 .base {
   &__container {
     transition: all 0.3s ease;

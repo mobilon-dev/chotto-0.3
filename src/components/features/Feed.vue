@@ -36,6 +36,7 @@ import DateMessage from '../messages/DateMessage.vue';
 import AudioMessage from '../messages/AudioMessage.vue';
 import VideoMessage from '../messages/VideoMessage.vue'
 import CallMessage from '../messages/CallMessage.vue'
+import SystemMessage from '../messages/SystemMessage.vue'
 
 const refFeed = ref();
 const initialScroll = ref(0)
@@ -72,6 +73,7 @@ const scrollTopCheck = () => {
 
 // Register components
 const componentsMap = (type) => {
+
   const r = {
     'message.text': TextMessage,
     'message.image': ImageMessage,
@@ -79,6 +81,7 @@ const componentsMap = (type) => {
     'message.audio': AudioMessage,
     'message.video': VideoMessage,
     'message.call': CallMessage,
+    'message.system': SystemMessage,
     'system.date': DateMessage,
   };
   return r[type];
@@ -115,6 +118,7 @@ const messageAction = (message) => {
 
   &__container {
     margin-top: auto;
+    padding: 0 30px;
   }
 
   &__message {

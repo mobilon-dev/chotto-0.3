@@ -6,7 +6,7 @@
   /* Blocks */
   --rigth-bar-bg: var(--neutral-800);
 
-  /* FloatWindow */
+  /* FloatContainer */
   --float-window-bg: var(--neutral-700);
   --float-window-box-shadow: 0px 0px 20px -10px rgba(144, 144, 144, 0.2);
   --float-window-bg-header: var(--neutral-800);

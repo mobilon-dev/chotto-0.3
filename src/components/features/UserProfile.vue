@@ -4,6 +4,20 @@
       v-if="user"
       class="profile__container"
     >
+      <div
+        v-if="user.avatar"
+        class="profile__avatar-container"
+      >
+        <span
+          class="profile__status"
+          :style="{ backgroundColor: user.status }"
+        />
+        <img
+          :src="user.avatar"
+          height="48"
+          width="48"
+        >
+      </div>
       <h2 class="profile__name">
         {{ user.name }}
       </h2>
@@ -33,16 +47,52 @@ const props = defineProps({
   lang="scss"
 >
 .profile {
+
+  &__container {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    padding: 20px 12px 20px 9px;
+  }
+
   &__name {
+    grid-column: 2;
     font-size: 20px
   }
 
   &__email {
+    grid-column: 2;
     font-size: 16px;
   }
 
   &__phone {
+    grid-column: 2;
     font-size: 16px;
+  }
+
+  &__avatar-container {
+    grid-row: 1 / 4;
+    position: relative;
+    display: flex;
+    margin: auto 15px auto 0;
+    position: relative;
+    border-radius: var(--avatar-border-radius);
+
+    img {
+      border-radius: var(--avatar-border-radius);
+      object-fit: cover;
+    }
+  }
+
+  &__status {
+    position: absolute;
+    bottom: 0;
+    right: 5px;
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: transparent;
+    z-index: 1;
   }
 }
 </style>

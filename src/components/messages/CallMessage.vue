@@ -203,7 +203,6 @@ function getClass(message) {
   &__left,
   &__right {
     display: grid;
-    column-gap: 12px;
     margin: var(--text-message-margin);
   }
 
@@ -213,6 +212,7 @@ function getClass(message) {
     .call-message__avatar {
       grid-column: 1;
       grid-row: 2;
+      margin-right: 12px;
     }
 
     .call-message__subtext {
@@ -234,6 +234,7 @@ function getClass(message) {
     .call-message__avatar {
       grid-column: 2;
       grid-row: 2;
+      margin-left: 12px;
     }
 
     .call-message__subtext {
