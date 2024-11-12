@@ -4,8 +4,8 @@
     <input
       v-model="name"
       type="text"
-      @input="onChange"
       class="name"
+      @input="onChange"
     >    
   </div>
 </template>
