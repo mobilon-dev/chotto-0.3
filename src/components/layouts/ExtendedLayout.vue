@@ -51,7 +51,6 @@
     flex-direction: column;
     grid-column: 3;
     height: inherit;
-    background-color: var(--rigth-bar-bg);
     border-right: var(--layout-extended-column-border);
     border-bottom: var(--layout-extended-column-border);
   }

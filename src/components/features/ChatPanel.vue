@@ -91,14 +91,5 @@ const emit = defineEmits(['close-panel']);
       color: var(--neutral-600);
     }
   }
-
-  &__a,
-  &__b,
-  &__c {
-    background-color: var(--chat-pannel-widget-bg);
-    border-radius: 10px;
-    padding: 10px;
-  }
-
 }
 </style>

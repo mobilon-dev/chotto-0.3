@@ -14,11 +14,22 @@ const chat = {
   name: 'Ch-001',
   chatId: 'testChatId',
   avatar: null,
+  'lastActivity.time': 'вчера',
 };
 
 export const Standard: Story = {
   args: {
-    chat: chat,
-    actions: 'test'
+    chat: {
+      ...chat,
+    },
+  },
+};
+
+export const WithAvatar: Story = {
+  args: {
+    chat: {
+      ...chat,
+      avatar: 'https://placehold.jp/30/dd6699/ffffff/64x64.png?text=JP'
+    },
   },
 };

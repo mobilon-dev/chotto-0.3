@@ -32,12 +32,14 @@
   --float-window-border-radius-header: 0;
 
   /* Chat Input */
-  --chat-input-background: transparent;
+  --chat-input-background: var(--neutral-100);
+  --chat-input-border-radius: 0px 0px 0px 0px;
 
   /* Chat Panel */
   --chat-panel-bg: transparent;
-  --chat-pannel-margin: 0;
-  --chat-pannel-border: 1px solid var(--neutral-200);
+  --chat-panel-margin: 0;
+  --chat-panel-border: 1px solid var(--neutral-200);
+  --chat-panel-border-radius: 0px 0px 0px 0px;
 
   /* Side Bar */
   --sidebar-padding-container: 10px 8px 22px 8px;
@@ -111,9 +113,10 @@
   --feed-button-down-bg: var(--neutral-200);
 
   /* Chat Info */
-  --chat-info-padding: 10px 15px 10px 40px;
+  --chat-info-padding: 10px 15px 10px 15px;
   --chat-info-font-size-title: 16px;
-  --chat-info-font-weight-time: 400;
+  --chat-info-font-weight-time: 300;
+  --chat-info-border-radius: 0px 0px 0 0;
 
   /* Layouts */
 

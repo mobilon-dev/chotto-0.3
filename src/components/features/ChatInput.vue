@@ -139,7 +139,7 @@ const onSelectEmoji = (emoji) => {
     position: relative;
     display: flex;
     align-items: center;
-    border-radius: 0 0 12px 12px;
+    border-radius: var(--chat-input-border-radius);
     border-top: 1px solid var(--neutral-300);
     background-color: var(--chat-input-background);
     padding-top: 22px;
