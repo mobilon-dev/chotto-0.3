@@ -18,8 +18,8 @@
         @mouseleave="turnOffDragMode"
       >
         <img
-          class="float-window__avatar"
           v-if="props.avatar"
+          class="float-window__avatar"
           :src="props.avatar"
           :alt="props.title"
         >
@@ -35,7 +35,7 @@
       </div>
       <div
         class="float-window__content"
-        style="height: 70%; width: 100%; display: flex;"
+        :style="{ height: contentHeight + 'px' }"
       >
         <slot name="default" />
       </div>

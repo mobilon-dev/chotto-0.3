@@ -2,7 +2,7 @@
   <div>
     <FloatContainer
       title="Header"
-      colorTitle="#d4d4d4"
+      color-title="#d4d4d4"
       avatar="https://placehold.jp/30/336633/ffffff/64x64.png?text=MV"
       height="90vh"
       width="70vw"

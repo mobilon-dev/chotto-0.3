@@ -76,7 +76,6 @@
           <span class="pi pi-check" />
         </div>
       </div>
-
     </div>
   </div>
 </template>
