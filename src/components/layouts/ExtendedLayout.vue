@@ -61,6 +61,7 @@
     height: inherit;
     border-right: var(--layout-extended-column-border);
     border-bottom: var(--layout-extended-column-border);
+    background-color: var(--rigth-bar-bg);
   }
 }
 

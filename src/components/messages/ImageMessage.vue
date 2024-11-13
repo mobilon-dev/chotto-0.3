@@ -244,7 +244,7 @@ const getStatus = computed(() => {
     right: 0;
     bottom: 0;
     background-color: var(--modal-mask-background);
-    z-index: 100;
+    z-index: 1000;
   }
 
   &__modal-close-button {

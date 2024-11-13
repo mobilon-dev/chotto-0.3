@@ -1,4 +1,4 @@
-<template>  
+<template>
   <div
     v-if="chat"
     class="chat-info__container"
@@ -26,9 +26,7 @@
         {{ chat['lastActivity.time'] }}
       </p>
     </div>
-    <div
-      class="chat-info__actions"
-    >
+    <div class="chat-info__actions">
       <slot name="actions" />
     </div>
   </div>
@@ -53,9 +51,8 @@ const emit = defineEmits(['open-panel']);
 >
 .chat-info {
   &__container {
-    border-radius: var(--chat-info-border-radius); 
+    border-radius: var(--chat-info-border-radius);
     padding: var(--chat-info-padding);
-    background-color: var(--chat-input-background);
     display: flex;
     gap: 10px;
     border-bottom: 1px solid var(--neutral-200);
@@ -83,7 +80,7 @@ const emit = defineEmits(['open-panel']);
     }
   }
 
-  &__info-container { 
+  &__info-container {
     display: flex;
     flex-direction: column;
   }

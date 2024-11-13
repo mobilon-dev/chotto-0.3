@@ -35,7 +35,7 @@
       </div>
       <div
         class="float-window__content"
-        style="height: 70%; width: 100%; display: flex;"
+        :style="{ height: contentHeight + 'px' }"
       >
         <slot name="default" />
       </div>

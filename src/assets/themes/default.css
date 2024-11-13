@@ -73,7 +73,7 @@
 
   /* Info Container */
   --chat-item-border-radius: 6px;
-  --chat-item-selected: var(--neutral-200);
+  --chat-item-selected: var(--neutral-100);
   --chat-item-color-last-message: var(--neutral-400);
   --chat-item-font-weight-last-message: 500;
   --chat-item-font-weight-name: 600;

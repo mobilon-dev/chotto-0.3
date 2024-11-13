@@ -31,7 +31,7 @@
   --float-window-border-radius-header: 0;
 
   /* Chat Input */
-  --chat-input-background: var(--neutral-100);
+  --chat-input-background: transparent;
   --chat-input-border-radius: 0px 0px 0px 0px;
 
   /* Chat Panel */
@@ -53,7 +53,7 @@
   --chat-list-filter-margin: 0 12px 20px 9px;
   --chat-list-button-actions-width: 26px;
   --chat-list-button-actions-height: 26px;
-  --chat-list-items-padding: 0 0px 0 0px;
+  --chat-list-items-padding: 0 6px 0 0;
 
   /* _____________________________________________ */
 

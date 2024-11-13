@@ -115,10 +115,10 @@ const messageAction = (message) => {
   overflow-y: auto;
   background-image: url('../../../public/chat-background.svg');
   scroll-behavior: smooth;
+  padding: 0 30px 10px 30px;
 
   &__container {
     margin-top: auto;
-    padding: 0 30px;
   }
 
   &__message {
