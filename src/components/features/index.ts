@@ -10,8 +10,6 @@ import ChatPanel from './ChatPanel.vue'
 import ChannelSelector from './ChannelSelector.vue';
 import Chat from './Chat.vue';
 import ChatFilter from './ChatFilter.vue';
-import FloatWindow from './FloatWindow.vue';
-
 
 export {
   ChatInfo,
@@ -26,5 +24,4 @@ export {
   ChannelSelector,
   Chat,
   ChatFilter,
-  // FloatWindow,
 }
