@@ -20,7 +20,10 @@ export const chats = [
     ]
   },
   {
-    chatId: 3, name: "Анна", countUnread: 0, isFixedBottom: true, actions: [
+    chatId: 3, name: "Анна",
+    countUnread: 0, 
+    typing: true,
+    isFixedBottom: true, actions: [
       { action: 'edit', title: 'изменить' }, { action: 'unpin', title: 'открепить' },
     ]
   },
