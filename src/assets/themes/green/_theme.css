@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&display=swap');
+@import url(variables.css);
 
-@import url(green/components.css);
-@import url(green/containers.css);
-@import url(green/layouts.css);
-@import url(green/messages.css);
+@import url(components.css);
+@import url(containers.css);
+@import url(layouts.css);
+@import url(messages.css);
 
 [data-theme="green"] {
   --app-bg: var(--deefault-white);

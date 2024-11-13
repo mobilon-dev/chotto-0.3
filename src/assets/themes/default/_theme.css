@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900');
 
+@import url(variables.css);
+
 :root {
 
   --app-bg: var(--default-white);
