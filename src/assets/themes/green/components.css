@@ -1,0 +1,79 @@
+[data-theme="green"] {
+  /* Titles */
+
+  --h2-font-size: 20px;
+  --h2-font-weight: 700;
+
+  /* Avatars */
+
+  --avatar-width-small: 40px;
+  --avatar-height-small: 40px;
+  --avatar-width-medium: 50px;
+  --avatar-height-medium: 50px;
+
+  /* Blocks */
+  --rigth-bar-bg: #fcfafa;
+  --right-bar-margin: 0;
+
+  --center-bar-border: 1px solid var(--neutral-200);
+
+  /* Chat Input */
+  --chat-input-background: var(--neutral-100);
+  --chat-input-border-radius: 0px 0px 0px 0px;
+
+  /* Chat Panel */
+  --chat-panel-bg: transparent;
+  --chat-panel-margin: 0;
+  --chat-panel-border: 1px solid var(--neutral-200);
+  --chat-panel-border-radius: 0px 0px 0px 0px;
+
+  /* Side Bar */
+  --sidebar-padding-container: 10px 8px 22px 8px;
+  --sidebar-bg-container: #f3f3f3;
+  --sidebar-box-shadow: none;
+  --sidebar-image-width: 43px;
+  --sidebar-image-height: 43px;
+  --sidebar-font-weight-name: 400;
+  --sidebar-row-gap-list: 14px;
+
+  /* Chat List */
+  --chat-list-filter-margin: 0 12px 20px 9px;
+  --chat-list-button-actions-width: 26px;
+  --chat-list-button-actions-height: 26px;
+  --chat-list-items-padding: 0 0px 0 0px;
+
+  /* _____________________________________________ */
+
+  /* Chat Item */
+
+  --chat-item-padding-container: 11px 15px;
+
+  /* Info Container */
+  --chat-item-border-radius: 0;
+  --chat-item-margin-name: 8px;
+  --chat-item-font-weight-last-message: 400;
+  --chat-item-font-weight-name: 400;
+  --chat-item-color-last-message: var(--neutral-400);
+  --chat-item-border: 1px solid var(--neutral-200);
+  --chat-item-selected: var(--neutral-100);
+
+  /* Details Container */
+  --chat-item-color-unread: var(--neutral-50);
+  --chat-item-background-color-unread: var(--p-red-500);
+  --chat-item-color-time: var(--neutral-400);
+  --chat-item-font-weight-time: 400;
+  --chat-item-font-size-time: 14px;
+  /* _____________________________________________ */
+
+  /* Inputs */
+  --inputtext-border-radius: 5px;
+
+  /* Feed */
+  --feed-button-down-bg: var(--neutral-200);
+
+  /* Chat Info */
+  --chat-info-padding: 10px 15px 10px 15px;
+  --chat-info-font-size-title: 16px;
+  --chat-info-font-weight-time: 300;
+  --chat-info-border-radius: 0px 0px 0 0;  
+}

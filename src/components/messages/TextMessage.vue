@@ -134,6 +134,7 @@ const getStatus = computed(() => {
     align-items: center;
     justify-content: flex-end;
     column-gap: 6px;
+    background-color: var(--message-background-color);
   }
 
   &__time {
@@ -177,9 +178,9 @@ const getStatus = computed(() => {
   }
 
   &__subtext {
-    font-weight: 500;
-    font-size: var(--subtext-font-size);
-    color: var(--subtext-color);
+    /* font-weight: 500; */
+    font-size: var(--message-subtext-font-size);
+    color: var(--message-subtext-color);
   }
 
   &__avatar {

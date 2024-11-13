@@ -1,0 +1,5 @@
+[data-theme="green"] {
+  /* Layouts */
+  /* Extended layout */
+  --layout-extended-column-border: 1px solid var(--neutral-200);
+}
