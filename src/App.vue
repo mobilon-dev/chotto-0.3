@@ -6,7 +6,7 @@
       :eventor="eventor"
     />
 
-    <!-- <ChatAppFloat /> -->
+    <ChatAppFloat />
   </div>
 </template>
 

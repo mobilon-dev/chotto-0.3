@@ -1,19 +1,20 @@
 <template>
   <div class="chat-app">
-    <BaseContainer width="30vw" height="70vh">  
+    <BaseContainer
+      width="30vw"
+      height="70vh"
+    >
       <FeedLayout>
-          <ChatInfo
-            :chat="selectedChat"
-          />
-          <Feed
-            :objects="messages"            
-            @message-action="messageAction"
-            @load-more="loadMore"
-          />
-          <ChatInput
-            :enable-emoji="true"
-            @send="addMessage"
-          />
+        <ChatInfo :chat="selectedChat" />
+        <Feed
+          :objects="messages"
+          @message-action="messageAction"
+          @load-more="loadMore"
+        />
+        <ChatInput
+          :enable-emoji="true"
+          @send="addMessage"
+        />
       </FeedLayout>
     </BaseContainer>
   </div>
@@ -201,4 +202,3 @@ onMounted(() => {
   selectChat(chatsStore.chats[1]);
 });
 </script>
-
