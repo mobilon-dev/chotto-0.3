@@ -1,0 +1,139 @@
+
+:root {
+  /* Blocks */
+  --rigth-bar-bg: var(--neutral-100);
+  --right-bar-margin: 30px 0;
+
+  --left-bar-margin: 0 6px 0 0;
+
+
+  /* Chat Panel */
+  --chat-panel-bg: var(--neutral-100);
+  --chat-panel-widget-bg: var(--neutral-200);
+  --chat-panel-margin: 0px 0px 0px 10px;
+  --chat-panel-border-radius: 12px 12px 12px 12px;
+
+  /* Side Bar */
+  --sidebar-padding-container: 18px 8px 30px 8px;
+  --sidebar-border: 1px solid var(--neutral-200);
+  --sidebar-box-shadow: -13px 0px 20px -21px rgba(0, 0, 0, 0.2);
+  --sidebar-image-width: 49px;
+  --sidebar-image-height: 49px;
+  --sidebar-font-weight-name: 500;
+  --sidebar-row-gap-list: 10px;
+
+  /* Chat List */
+  --chat-list-fixed-background-color: var(--default-white);
+  --chat-list-menu-button: var(--default-white);
+  --chat-list-menu-button-color-hover: var(--neutral-700);
+  --chat-list-scrollbar-bg: var(--neutral-50);
+  --chat-list-scrollbar-thumb-bg: var(--neutral-300);
+  --chat-list-button-actions-bg: var(--neutral-300);
+  --chat-list-button-actions-color: var(--neutral-600);
+  --chat-list-button-actions-width: 32px;
+  --chat-list-button-actions-height: 32px;
+  --chat-list-items-padding: 0 5px 0 5px;
+  --chat-list-filter-margin: 0 12px 30px 9px;
+
+  /* Inputs */
+  --inputtext-background: var(transparent);
+  --inputtext-color: var(--neutral-700);
+  --inputtext-border: 1px solid var(--neutral-300);
+  --inputtext-placeholder-color: var(--neutral-500);
+
+  --inputtext-hover-border-color: var(--neutral-500);
+  --inputtext-focus-border-color: var(--neutral-700);
+
+  /* Avatars */
+  --avatar-background-color: var(--neutral-300);
+  --avatar-icon-color: var(--neutral-500);
+
+  /* Icons */
+  --icon-color: var(--neutral-600);
+
+  /* Modals */
+  --modal-background-color: var(--default-white);
+
+  /* _____________________________________________ */
+
+  /* Chat Item */
+
+  --chat-item-padding-container: 15px;
+
+  /* Info Container */
+  --chat-item-border-radius: 6px;
+  --chat-item-selected: var(--neutral-200);
+  --chat-item-color-last-message: var(--neutral-400);
+  --chat-item-font-weight-last-message: 500;
+  --chat-item-font-weight-name: 600;
+
+  /* Details Container */
+  --chat-item-color-unread: var(--neutral-100);
+  --chat-item-background-color-unread: var(--emerald-500);
+  --chat-item-color-time: var(--neutral-400);
+  --chat-item-font-weight-time: 500;
+  --chat-item-font-size-time: 12px;
+  /* _____________________________________________ */
+
+  /* Chat Info */
+  --chat-info-padding: 20px 20px 20px 20px;
+  --chat-info-font-size-title: 18px;
+  --chat-info-font-weight-time: 500;
+  --chat-info-border-radius: 12px 12px 0 0;
+
+  /* Feed */
+  --feed-button-down-bg: var(--default-white);
+
+  /* Channels */
+  --channels-popover-background-color: var(--default-white);
+
+  /* Сontext Menu */
+  --context-menu-background: var(--default-white);
+
+  /* Chat Input */
+  --chat-input-background: var(--neutral-200);
+  --chat-input-border-radius: 0 0 12px 12px;
+
+
+  /* Scroll Bar */
+  --scrollbar-bg: var(--neutral-50);
+  --scrollbar-thumb-bg: var(--neutral-300);
+
+
+  /* Chat Item */
+
+  /* Info Container */
+  --chat-item-font-size-name: 16px;
+  --chat-item-font-size-last-message: 14px;
+
+  /* Details Container */
+  --chat-item-min-width-unread: 22px;
+  --chat-item-min-height-unread: 22px;
+  --chat-item-font-size-unread: 14px;
+
+
+  /* Channels */
+
+  --channels-title-font-size: 14px;
+
+  --channels-selected-gap: 6px;
+  --channels-selected-align-items: center;
+  --channels-selected-icon-width: 16px;
+  --channels-selected-icon-height: 16px;
+
+  --channels-popover-position-top: -54px;
+  --channels-popover-position-right: 78px;
+  --channels-popover-padding: 18px;
+  --channels-popover-border-radius: 10px;
+
+  /* Сontext Menu */
+
+  --context-menu-border-radius: 8px;
+  --context-menu-padding: 12px 0;
+  --context-menu-list-row-gap: 6px;
+  --context-menu-item-column-gap: 12px;
+
+  /* Chat Input */
+  --chat-input-button-padding: 14px;
+
+}
