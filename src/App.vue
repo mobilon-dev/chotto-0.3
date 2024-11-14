@@ -84,31 +84,33 @@ const createEventor = () => {
 
 const eventor = createEventor();
 
+const data = {
+  chatId: 2,
+  type: "message.text",
+  direction: 'incoming',
+  status: 'sent',
+  userId: 'testUserId',  
+};
+
 // Эмуляция событий с сервера
 onMounted(() => {
   setTimeout(() => {
-    // Симулируем получение нового сообщения с сервера
-    const newMessage = {
-      chatId: 2,
-      type: "message.text",
-      text: "Новое сообщение от сервера!",
-      direction: 'incoming',
-      status: 'sent',
-      userId: 'testUserId',
-      timestamp: moment().unix(),
-    };
-
-    data3.messages.push(newMessage);
-    eventor.push({ type: 'message', data: newMessage });
+    const newM = {...data, text: 'new message 1', timestamp: moment().unix()};
+    data3.messages.push(newM);
+    eventor.push({ type: 'message', data: newM});
   }, 3000);
 
   setTimeout(() => {
-    // Симулируем получение системного уведомления с сервера
+    const newM = {...data, text: 'new message 2', timestamp: moment().unix()};
+    data3.messages.push(newM);
+    eventor.push({ type: 'message', data: newM});
+  }, 5000);
+
+  setTimeout(() => {
     const systemNotification = {
       type: 'system',
       text: 'Системное уведомление от сервера',
     };
-    //handleServerEvent({ type: 'notification', data: systemNotification });
     eventor.push({ type: 'notification', data: systemNotification });
   }, 6000);
 });
