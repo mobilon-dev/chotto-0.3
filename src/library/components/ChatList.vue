@@ -86,7 +86,7 @@
 import { ref } from 'vue';
 import Chat from "./Chat.vue";
 import ChatFilter from './ChatFilter.vue';
-import ContextMenu from '../features/ContextMenu.vue'
+import ContextMenu from './ContextMenu.vue'
 
 const filter = ref('');
 const isOpenMenu = ref(false)

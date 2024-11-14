@@ -89,7 +89,7 @@ import {
   ChatWrapper,
   useModalSelectUser2,
   useModalCreateChat,
-} from "./components";
+} from "./library";
 
 import {
   formatTimestamp,

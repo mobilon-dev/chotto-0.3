@@ -83,7 +83,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import ContextMenu from '../features/ContextMenu.vue'
+import ContextMenu from '../components/ContextMenu.vue'
 // Define props
 const props = defineProps({
   chat: {
