@@ -44,7 +44,7 @@
               </ChatInfo>
               <Feed
                 :objects="messages"
-                :isScrollToBottomOnUpdateObjectsEnabled="isScrollToBottomOnUpdateObjectsEnabled"
+                :is-scroll-to-bottom-on-update-objects-enabled="isScrollToBottomOnUpdateObjectsEnabled"
                 @message-action="messageAction"
                 @load-more="loadMore"
               />

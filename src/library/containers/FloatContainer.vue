@@ -6,6 +6,9 @@
       left: floatWindowPosition.x + 'px',
       top: floatWindowPosition.y + 'px',
       userSelect: dragMode ? 'none' : 'auto',
+      height: height,
+      width: width,
+      display: flex,
     }"
   >
     <div class="float-window__container">
@@ -150,8 +153,8 @@ onMounted(() => {
   position: absolute;
 
   &__container {
-    width: 1200px;
-    height: 900px;
+    width: 100%;
+    height: 100%;
     position: relative;
     border-radius: var(--float-window-border-radius);
     background-color: var(--float-window-bg);

@@ -89,7 +89,7 @@ import {
   ExtendedLayout,
   SelectUser,
   ChatWrapper,
-} from "./components";
+} from "./library";
 
 import {
   formatTimestamp,
