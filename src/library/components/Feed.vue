@@ -18,7 +18,7 @@
       <button
         v-if="isShowButton"
         class="message-feed__button-down"
-        @click="scrollToFeedBottom"
+        @click="scrollToBottomForce"
       >
         <span class="pi pi-angle-down" />
       </button>
@@ -56,7 +56,7 @@ const props = defineProps({
   }
 });
 
-const isScrollToBottomEnabled = ref(props.isScrollToBottomOnUpdateObjectsEnabled);
+
 const emit = defineEmits(['messageAction', 'loadMore']);
 
 const scrollTopCheck = () => {
@@ -93,12 +93,19 @@ const componentsMap = (type) => {
 }
 
 function scrollToBottom() {
-  if (isScrollToBottomEnabled.value) {
+  if (props.isScrollToBottomOnUpdateObjectsEnabled) {
     nextTick(function () {
       const element = unref(refFeed);
       element.scrollTop = element.scrollHeight;
     })
   }
+}
+
+function scrollToBottomForce() {
+  nextTick(function () {
+    const element = unref(refFeed);
+    element.scrollTop = element.scrollHeight;
+  })
 }
 
 onUpdated(() => scrollToBottom);

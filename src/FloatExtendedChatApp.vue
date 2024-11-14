@@ -62,13 +62,6 @@
           </chat-wrapper>
         </template>
       </ExtendedLayout>
-      <SelectUser
-        v-if="modalShow"
-        :title="modalTitle"
-        :users="users"
-        @confirm="selectUsers"
-        @close="onCloseModal"
-      />
     </FloatContainer>
   </div>
 </template>
