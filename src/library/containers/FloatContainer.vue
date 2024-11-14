@@ -59,8 +59,8 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  Height: String,
-  Width: String,
+  height: String,
+  width: String,
 });
 const emit = defineEmits(["close-window", "get-size"]);
 

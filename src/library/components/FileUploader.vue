@@ -1,11 +1,18 @@
 <template>
-  <div class="container" @mouseover="onHover" @mouseout="onHoverOut">
+  <div
+    class="container"
+    @mouseover="onHover"
+    @mouseout="onHoverOut"
+  >
     <div
       v-if="canUploadFile && uploadStatus !== 'success'"
       class="chat-input__button-file"
     >
       <label>
-        <input type="file" @change="onFileSelected" />
+        <input
+          type="file"
+          @change="onFileSelected"
+        >
         <span>
           <i class="pi pi-file-arrow-up" />
         </span>
@@ -32,10 +39,10 @@
   </div>
   <FileDropDownMenu
     :hovered="hovered"
-    @fileSelected="handleFileChange"
+    :can-upload-file="canUploadFile"
+    @file-selected="handleFileChange"
     @mouseover="onHover"
     @mouseout="onHoverOut"
-    :canUploadFile="canUploadFile"
   />
 </template>
 
