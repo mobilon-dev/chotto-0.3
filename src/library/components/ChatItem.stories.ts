@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
  
-import Chat from './Chat.vue';
+import ChatItem from './ChatItem.vue';
  
-const meta: Meta<typeof Chat> = {
-  component: Chat,
+const meta: Meta<typeof ChatItem> = {
+  component: ChatItem,
 };
  
 export default meta;
-type Story = StoryObj<typeof Chat>;
+type Story = StoryObj<typeof ChatItem>;
  
 const chat = {  
   name: "John Doe",
@@ -21,7 +21,7 @@ const actions = [
   {action: 'delete', title: 'удалить',},
 ]
 
-export const ChatBasic: Story = {
+export const ChatItemBasic: Story = {
   args: {
     chat: {
       ...chat,
@@ -29,7 +29,7 @@ export const ChatBasic: Story = {
   },
 };
 
-export const ChatWithoutLastMessage: Story = {
+export const ChatItemWithoutLastMessage: Story = {
   args: {
     chat: {
       ...chat,
@@ -38,7 +38,7 @@ export const ChatWithoutLastMessage: Story = {
   },
 };
 
-export const ChatWithAvatar: Story = {
+export const ChatItemWithAvatar: Story = {
   args: {
     chat: {
       ...chat,
@@ -48,7 +48,7 @@ export const ChatWithAvatar: Story = {
 };
 
 
-export const ChatWithUnread: Story = {
+export const ChatItemWithUnread: Story = {
   args: {
     chat: {
       ...chat,
@@ -57,7 +57,7 @@ export const ChatWithUnread: Story = {
   },
 };
 
-export const ChatWithLongLastMessage: Story = {
+export const ChatItemWithLongLastMessage: Story = {
   args: {
     chat: { ...chat,
       lastMessage: "Очень длинное текстовое сообщение. Его надо как-то немного спрятать",
@@ -66,7 +66,7 @@ export const ChatWithLongLastMessage: Story = {
   },
 };
 
-export const ChatSelected: Story = {
+export const ChatItemSelected: Story = {
   args: {
     chat: {
       ...chat,
@@ -75,7 +75,7 @@ export const ChatSelected: Story = {
   },
 };
 
-export const ChatWithActions: Story = {
+export const ChatItemWithActions: Story = {
   args: {
     chat: {
       ...chat,
@@ -84,7 +84,7 @@ export const ChatWithActions: Story = {
   },
 };
 
-export const ChatWithStatusOnline: Story = {
+export const ChatItemWithStatusOnline: Story = {
   args: {
     chat: {
       ...chat,
@@ -93,7 +93,7 @@ export const ChatWithStatusOnline: Story = {
   },
 };
 
-export const ChatWithStatusOffline: Story = {
+export const ChatItemWithStatusOffline: Story = {
   args: {
     chat: {
       ...chat,
@@ -103,7 +103,7 @@ export const ChatWithStatusOffline: Story = {
 };
 
 
-export const ChatMax: Story = {
+export const ChatItemMax: Story = {
   args: {
     chat: {
       ...chat,
