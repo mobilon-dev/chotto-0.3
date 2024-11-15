@@ -1,18 +1,13 @@
 <template>
   <div
     class="container"
-    @mouseover="onHover"
-    @mouseout="onHoverOut"
+    @click="onClick"
   >
     <div
       v-if="canUploadFile && uploadStatus !== 'success'"
       class="chat-input__button-file"
     >
       <label>
-        <input
-          type="file"
-          @change="onFileSelected"
-        >
         <span>
           <i class="pi pi-file-arrow-up" />
         </span>
@@ -38,11 +33,9 @@
     </div>
   </div>
   <FileDropDownMenu
-    :hovered="hovered"
+    :clicked="clicked"
     :can-upload-file="canUploadFile"
     @file-selected="handleFileChange"
-    @mouseover="onHover"
-    @mouseout="onHoverOut"
   />
 </template>
 
@@ -58,16 +51,8 @@ const props = defineProps({
   },
 });
 
-const hovered = ref(false);
+const clicked = ref(false);
 const toggleState = ref(false);
-
-const onHover = () => {
-  hovered.value = true;
-};
-
-const onHoverOut = () => {
-  hovered.value = false;
-};
 
 const selectedFile = ref(null);
 const uploadStatus = ref("");
@@ -76,6 +61,10 @@ const previewUrl = ref("");
 const isImage = ref(false);
 const isVideo = ref(false);
 const isModalOpen = ref(false);
+
+const onClick = () => {
+  clicked.value = !clicked.value;
+};
 
 const emit = defineEmits(["fileUploaded"]);
 watch(
@@ -90,6 +79,7 @@ watch(
 );
 
 const onFileSelected = (event) => {
+  clicked.value = false;
   console.log("onFileSelected", event.target.files[0]);
   selectedFile.value = event.target.files[0];
   if (selectedFile.value) {
