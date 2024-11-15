@@ -1,0 +1,13 @@
+
+:root {
+  /* FloatContainer */
+  --float-window-padding: 18px 20px;
+
+  /* FloatContainer */
+  --float-window-bg: var(--default-white);
+  --float-window-box-shadow: 0px 0px 20px -7px rgba(0, 0, 0, 0.2);
+  --float-window-bg-header: var(--neutral-300);
+  --float-window-border-radius: 12px;
+  --float-window-border-radius-header: 12px 12px 0 0;
+
+}

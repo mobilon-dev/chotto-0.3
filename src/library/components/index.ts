@@ -8,10 +8,8 @@ import ThemeMode from './ThemeMode.vue';
 import SideBar from './SideBar.vue';
 import ChatPanel from './ChatPanel.vue'
 import ChannelSelector from './ChannelSelector.vue';
-import Chat from './Chat.vue';
+import ChatItem from './ChatItem.vue';
 import ChatFilter from './ChatFilter.vue';
-import FloatWindow from './FloatWindow.vue';
-
 
 export {
   ChatInfo,
@@ -24,7 +22,6 @@ export {
   SideBar,
   ChatPanel,
   ChannelSelector,
-  Chat,
+  ChatItem,
   ChatFilter,
-  // FloatWindow,
 }

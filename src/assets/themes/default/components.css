@@ -1,22 +1,11 @@
+
 :root {
-
-  --app-bg: var(--default-white);
-  --app-color: var(--neutral-900);
-  --app-template-col: min-content 1.25fr 3fr 1.25fr;
-  --app-font-family: 'Montserrat', sans-serif;
-
   /* Blocks */
   --rigth-bar-bg: var(--neutral-100);
   --right-bar-margin: 30px 0;
 
   --left-bar-margin: 0 6px 0 0;
 
-  /* FloatContainer */
-  --float-window-bg: var(--default-white);
-  --float-window-box-shadow: 0px 0px 20px -7px rgba(0, 0, 0, 0.2);
-  --float-window-bg-header: var(--neutral-300);
-  --float-window-border-radius: 12px;
-  --float-window-border-radius-header: 12px 12px 0 0;
 
   /* Chat Panel */
   --chat-panel-bg: var(--neutral-100);
@@ -95,52 +84,6 @@
   /* Feed */
   --feed-button-down-bg: var(--default-white);
 
-  /* Text Message */
-  --text-message-right-background-color: var(--emerald-200);
-  --text-message-left-background-color: var(--neutral-200);
-  --text-message-text-color: var(--neutral-900);
-
-  /* File Message */
-  --file-message-background-color: var(--neutral-200);
-  --file-message-link-color: var(--neutral-900);
-
-  /* _____________________________________________ */
-
-  /* Audio Message */
-  --audio-message-background-left: var(--neutral-200);
-  --audio-message-background-right: var(--emerald-200);
-
-  --audio-message-button-background-color-left: var(--neutral-400);
-  --audio-message-button-background-color-right: var(--neutral-100);
-  --audio-message-button-icon-color-left: var(--neutral-100);
-  --audio-message-button-icon-color-right: var(--neutral-500);
-
-  /* progress-bar-container -> pbc */
-  --audio-message-pbc-background-color: var(--neutral-400);
-
-  /* progress-bar -> pb */
-  --audio-message-pb-background-color: var(--emerald-500);
-
-  /* _____________________________________________ */
-
-  /* Video Message */
-  --video-message-button-background: rgba(0, 0, 0, 0.67);
-
-  /* Call Message */
-  --call-message-backgroung-icon: var(--neutral-400);
-  --call-message-color-icon-error: var(--p-red-500);
-  --call-message-font-size-title: 16px;
-  --call-message-color-duration: var(--neutral-700);
-
-  /* Date Message */
-  --date-message-color: var(--neutral-700);
-
-  /* General Message */
-  --g-message-font-size-text: 16px;
-  --g-message-font-size-time: 12px;
-  --g-message-font-size-remaining-time: 12px;
-  --g-message-color-time: var(--neutral-700);
-
   /* Channels */
   --channels-popover-background-color: var(--default-white);
 
@@ -151,20 +94,50 @@
   --chat-input-background: var(--neutral-200);
   --chat-input-border-radius: 0 0 12px 12px;
 
-  /* Status Message */
-  --status-message-color-received: var(--neutral-500);
-  --status-message-color-read: #00c2ff;
-
-  /* Subtext */
-  --subtext-color: var(--neutral-500);
 
   /* Scroll Bar */
   --scrollbar-bg: var(--neutral-50);
   --scrollbar-thumb-bg: var(--neutral-300);
 
+<<<<<<< HEAD:src/assets/themes/default.css
   /* Layouts */
+=======
 
-  /* Extended layout */
+  /* Chat Item */
 
-  --layout-extended-column-border: 0px solid var(--neutral-200);
+  /* Info Container */
+  --chat-item-font-size-name: 16px;
+  --chat-item-font-size-last-message: 14px;
+>>>>>>> 6d29430c4c3a66ed985439babbd9c98a6c39b86f:src/assets/themes/default/components.css
+
+  /* Details Container */
+  --chat-item-min-width-unread: 22px;
+  --chat-item-min-height-unread: 22px;
+  --chat-item-font-size-unread: 14px;
+
+
+  /* Channels */
+
+  --channels-title-font-size: 14px;
+
+  --channels-selected-gap: 6px;
+  --channels-selected-align-items: center;
+  --channels-selected-icon-width: 16px;
+  --channels-selected-icon-height: 16px;
+
+  --channels-popover-position-top: -54px;
+  --channels-popover-position-right: 78px;
+  --channels-popover-padding: 18px;
+  --channels-popover-border-radius: 10px;
+
+  /* Сontext Menu */
+
+  --context-menu-border-radius: 8px;
+  --context-menu-padding: 12px 0;
+  --context-menu-list-row-gap: 6px;
+  --context-menu-item-column-gap: 12px;
+
+  /* Chat Input */
+  --chat-input-button-padding: 14px;
+
 }

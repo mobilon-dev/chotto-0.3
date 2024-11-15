@@ -46,7 +46,7 @@
 
     <div class="chat-list__items">
       <div class="chat-list__fixed-items-top">
-        <chat
+        <ChatItem
           v-for="chat in getSortedAndFilteredChats().filter(c => c.isFixedTop)"
           :key="chat.chatId"
           class="chat-list__item"
@@ -57,7 +57,7 @@
       </div>
 
       <div class="chat-list__scrollable-items">
-        <chat
+        <ChatItem
           v-for="chat in getSortedAndFilteredChats().filter(c => !c.isFixedBottom && !c.isFixedTop)"
           :key="chat.chatId"
           class="chat-list__item"
@@ -68,7 +68,7 @@
       </div>
 
       <div class="chat-list__fixed-items-bottom">
-        <chat
+        <ChatItem
           v-for="chat in getSortedAndFilteredChats().filter(c => c.isFixedBottom)"
           :key="chat.chatId"
           class="chat-list__item"
@@ -84,9 +84,9 @@
 
 <script setup>
 import { ref } from 'vue';
-import Chat from "./Chat.vue";
+import ChatItem from "./ChatItem.vue";
 import ChatFilter from './ChatFilter.vue';
-import ContextMenu from '../features/ContextMenu.vue'
+import ContextMenu from './ContextMenu.vue'
 
 const filter = ref('');
 const isOpenMenu = ref(false)

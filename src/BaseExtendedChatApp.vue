@@ -44,6 +44,7 @@
               </ChatInfo>
               <Feed
                 :objects="messages"
+                :is-scroll-to-bottom-on-update-objects-enabled="isScrollToBottomOnUpdateObjectsEnabled"
                 @message-action="messageAction"
                 @load-more="loadMore"
               />
@@ -89,7 +90,7 @@ import {
   ChatWrapper,
   useModalSelectUser2,
   useModalCreateChat,
-} from "./components";
+} from "./library";
 
 import {
   formatTimestamp,
@@ -145,6 +146,7 @@ const userProfile = ref({});
 const channels = ref([]);
 const sidebarItems = ref([]);
 const isOpenChatPanel = ref(false);
+const isScrollToBottomOnUpdateObjectsEnabled = ref(false);
 
 const selectItem = (item) => {
   console.log("selected sidebar item", item);
@@ -169,13 +171,14 @@ const getUsers = () => {
 
 const loadMore = () => {
   // do load more messages to feed
-  console.log("load more");
+  console.log("load more");  
 };
 
 const getFeedObjects = () => {
   // console.log('get feed')
   if (selectedChat.value) {
     // здесь обработка для передачи сообщений в feed
+    isScrollToBottomOnUpdateObjectsEnabled.value = true;
     const messages = props.dataProvider.getFeed(selectedChat.value.chatId);
     const messages3 = transformToFeed(messages);
     return messages3;

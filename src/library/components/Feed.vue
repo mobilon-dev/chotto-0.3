@@ -18,7 +18,7 @@
       <button
         v-if="isShowButton"
         class="message-feed__button-down"
-        @click="scrollToFeedBottom"
+        @click="scrollToBottomForce"
       >
         <span class="pi pi-angle-down" />
       </button>
@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-import { ref, unref, watch, nextTick, onUpdated, onMounted } from 'vue';
+import { ref, unref, watch, nextTick, onUpdated } from 'vue';
 
 import FileMessage from "../messages/FileMessage.vue";
 import ImageMessage from "../messages/ImageMessage.vue";
@@ -39,20 +39,25 @@ import CallMessage from '../messages/CallMessage.vue'
 import SystemMessage from '../messages/SystemMessage.vue'
 
 const refFeed = ref();
-const initialScroll = ref(0)
+// const initialScroll = ref(0)
 const isShowButton = ref(false)
 
-// Define props
 const props = defineProps({
   objects: {
     type: Array,
     required: true,
   },
+  // при новом сообщении необходимо прокручивать ленту вниз,
+  // а при загрузке более ранних сообщений - нет
+  isScrollToBottomOnUpdateObjectsEnabled: {
+    type: Boolean,
+    required: true,
+    default: false,
+  }
 });
 
+
 const emit = defineEmits(['messageAction', 'loadMore']);
-
-
 
 const scrollTopCheck = () => {
   const element = unref(refFeed);
@@ -87,15 +92,24 @@ const componentsMap = (type) => {
   return r[type];
 }
 
-function scrollToFeedBottom() {
+function scrollToBottom() {
+  if (props.isScrollToBottomOnUpdateObjectsEnabled) {
+    nextTick(function () {
+      const element = unref(refFeed);
+      element.scrollTop = element.scrollHeight;
+    })
+  }
+}
+
+function scrollToBottomForce() {
   nextTick(function () {
     const element = unref(refFeed);
     element.scrollTop = element.scrollHeight;
   })
 }
 
-onUpdated(() => scrollToFeedBottom);
-watch(() => props.objects, scrollToFeedBottom);
+onUpdated(() => scrollToBottom);
+watch(() => props.objects, scrollToBottom);
 
 const messageAction = (message) => {
   emit('messageAction', message);

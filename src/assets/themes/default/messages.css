@@ -1,15 +1,57 @@
 :root {
+  /* Text Message */
+  --text-message-right-background-color: var(--emerald-200);
+  --text-message-left-background-color: var(--neutral-200);
+  --text-message-text-color: var(--neutral-900);
 
-  /* Chat Item */
+  /* File Message */
+  --file-message-background-color: var(--neutral-200);
+  --file-message-link-color: var(--neutral-900);
 
-  /* Info Container */
-  --chat-item-font-size-name: 16px;
-  --chat-item-font-size-last-message: 14px;
+  /* _____________________________________________ */
 
-  /* Details Container */
-  --chat-item-min-width-unread: 22px;
-  --chat-item-min-height-unread: 22px;
-  --chat-item-font-size-unread: 14px;
+  /* Audio Message */
+  --audio-message-background-left: var(--neutral-200);
+  --audio-message-background-right: var(--emerald-200);
+
+  --audio-message-button-background-color-left: var(--neutral-400);
+  --audio-message-button-background-color-right: var(--neutral-100);
+  --audio-message-button-icon-color-left: var(--neutral-100);
+  --audio-message-button-icon-color-right: var(--neutral-500);
+
+  /* progress-bar-container -> pbc */
+  --audio-message-pbc-background-color: var(--neutral-400);
+
+  /* progress-bar -> pb */
+  --audio-message-pb-background-color: var(--emerald-500);
+
+  /* _____________________________________________ */
+
+  /* Video Message */
+  --video-message-button-background: rgba(0, 0, 0, 0.67);
+
+  /* Call Message */
+  --call-message-backgroung-icon: var(--neutral-400);
+  --call-message-color-icon-error: var(--p-red-500);
+  --call-message-font-size-title: 16px;
+  --call-message-color-duration: var(--neutral-700);
+
+  /* Date Message */
+  --date-message-color: var(--neutral-700);
+
+  /* General Message */
+  --g-message-font-size-text: 16px;
+  --g-message-font-size-time: 12px;
+  --g-message-font-size-remaining-time: 12px;
+  --g-message-color-time: var(--neutral-700);
+
+
+  /* Status Message */
+  --status-message-color-received: var(--neutral-500);
+  --status-message-color-read: #00c2ff;
+
+  /* Subtext */
+  --subtext-color: var(--neutral-500);
 
 
   /* Text Message */
@@ -80,37 +122,12 @@
   --call-message-icon-height: 38px;
   --call-message-icon-width: 38px;
 
-  /* Channels */
-
-  --channels-title-font-size: 14px;
-
-  --channels-selected-gap: 6px;
-  --channels-selected-align-items: center;
-  --channels-selected-icon-width: 16px;
-  --channels-selected-icon-height: 16px;
-
-  --channels-popover-position-top: -54px;
-  --channels-popover-position-right: 78px;
-  --channels-popover-padding: 18px;
-  --channels-popover-border-radius: 10px;
-
-  /* Сontext Menu */
-
-  --context-menu-border-radius: 8px;
-  --context-menu-padding: 12px 0;
-  --context-menu-list-row-gap: 6px;
-  --context-menu-item-column-gap: 12px;
-
   /* Chat Input */
   --chat-input-button-padding: 14px;
 
   /* Status Message */
-
   --status-message-font-size: 12px;
 
   /* Subtext */
   --subtext-font-size: 12px;
-
-  /* FloatContainer */
-  --float-window-padding: 18px 20px;
 }

@@ -35,7 +35,7 @@ import {
   ChatPanel,
   BaseContainer,
   FeedLayout,
-} from "./components";
+} from "./library";
 
 import {
   formatTimestamp,

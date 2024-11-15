@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900');
+
+@import url(variables.css);
+
+@import url(components.css);
+@import url(containers.css);
+@import url(layouts.css);
+@import url(messages.css);
+
+:root {
+
+  --app-bg: var(--default-white);
+  --app-color: var(--neutral-900);
+  --app-template-col: min-content 1.25fr 3fr 1.25fr;
+  --app-font-family: 'Montserrat', sans-serif;
+}

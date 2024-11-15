@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&display=swap');
+@import url(variables.css);
+
+@import url(components.css);
+@import url(containers.css);
+@import url(layouts.css);
+@import url(messages.css);
+
+[data-theme="green"] {
+  --app-bg: var(--deefault-white);
+  --app-color: var(--neutral-950);
+  --app-border-color: var(--neutral-200);
+  --app-container-bg: var(--default-white);
+  --app-template-col: min-content 1.5fr 3fr 1.25fr;
+  --app-margin: 0px 0;
+  --app-font-family: "Open Sans", sans-serif;
+}

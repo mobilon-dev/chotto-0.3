@@ -70,7 +70,7 @@ import {
   ChatPanel,
   BaseContainer,
   BaseLayout,
-} from "./components";
+} from "./library";
 
 import {
   formatTimestamp,
@@ -81,7 +81,7 @@ import {
 
 import { useChatsStore } from "./stores/useChatStore";
 import { transformToFeed } from "./transform/transformToFeed";
-import { SelectUser } from "./components/modals";
+import { SelectUser } from "./library/modals";
 
 // Define props
 const props = defineProps({

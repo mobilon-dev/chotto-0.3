@@ -1,13 +1,4 @@
 [data-theme="green"] {
-
-  --app-bg: var(--deefault-white);
-  --app-color: var(--neutral-950);
-  --app-border-color: var(--neutral-200);
-  --app-container-bg: var(--default-white);
-  --app-template-col: min-content 1.5fr 3fr 1.25fr;
-  --app-margin: 0px 0;
-  --app-font-family: "Open Sans", sans-serif;
-
   /* Titles */
 
   --h2-font-size: 20px;
@@ -25,10 +16,6 @@
   --right-bar-margin: 0;
 
   --center-bar-border: 1px solid var(--neutral-200);
-
-  /* FloatContainer */
-  --float-window-border-radius: 0;
-  --float-window-border-radius-header: 0;
 
   /* Chat Input */
   --chat-input-background: transparent;
@@ -81,33 +68,6 @@
   /* Inputs */
   --inputtext-border-radius: 5px;
 
-  /* Text Message */
-  --text-message-right-background-color: #d9fdd3;
-  --text-message-left-background-color: var(--default-white);
-
-  /* File Message */
-  --file-message-background-color: var(--default-white);
-
-  /* _____________________________________________ */
-
-  /* Audio Message */
-  --audio-message-background-left: var(--default-white);
-  --audio-message-background-right: #d9fdd3;
-
-  /* Call Message */
-  --call-message-font-size-title: 15px;
-
-  /* Date Message */
-  --date-message-color: var(--neutral-700);
-  --date-bg: #fcfafa;
-  --date-border: 1px solid #d3d6db;
-
-  /* General Message */
-  --g-message-font-size-text: 14px;
-  --g-message-font-size-time: 14px;
-  --g-message-font-size-remaining-time: 14px;
-  --g-message-margin-text: 0 0 8px 0;
-
   /* Feed */
   --feed-button-down-bg: var(--neutral-200);
 
@@ -115,11 +75,5 @@
   --chat-info-padding: 10px 15px 10px 15px;
   --chat-info-font-size-title: 16px;
   --chat-info-font-weight-time: 300;
-  --chat-info-border-radius: 0px 0px 0 0;
-
-  /* Layouts */
-
-  /* Extended layout */
-
-  --layout-extended-column-border: 1px solid var(--neutral-200);
+  --chat-info-border-radius: 0px 0px 0 0;  
 }

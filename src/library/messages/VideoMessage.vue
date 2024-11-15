@@ -76,7 +76,6 @@
           <span class="pi pi-check" />
         </div>
       </div>
-
     </div>
   </div>
 </template>
@@ -84,7 +83,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 
-import ContextMenu from '../features/ContextMenu.vue'
+import ContextMenu from '../components/ContextMenu.vue'
 
 const props = defineProps({
   message: {
