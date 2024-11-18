@@ -37,6 +37,7 @@ import AudioMessage from '../messages/AudioMessage.vue';
 import VideoMessage from '../messages/VideoMessage.vue'
 import CallMessage from '../messages/CallMessage.vue'
 import SystemMessage from '../messages/SystemMessage.vue'
+import TypingMessage from '../messages/TypingMessage.vue'
 
 const refFeed = ref();
 // const initialScroll = ref(0)
@@ -88,6 +89,7 @@ const componentsMap = (type) => {
     'message.call': CallMessage,
     'message.system': SystemMessage,
     'system.date': DateMessage,
+    'message.typing': TypingMessage
   };
   return r[type];
 }
@@ -156,7 +158,7 @@ const messageAction = (message) => {
 
     span {
       font-size: var(--icon-font-size-medium);
-      color: var(--icon-color);
+      color: var(--feed-icon-color);
     }
   }
 

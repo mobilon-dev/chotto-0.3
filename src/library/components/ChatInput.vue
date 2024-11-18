@@ -139,10 +139,10 @@ const onSelectEmoji = (emoji) => {
     position: relative;
     display: flex;
     align-items: center;
+    padding-top: 22px;
     border-radius: var(--chat-input-border-radius);
     border-top: 1px solid var(--neutral-300);
     background-color: var(--chat-input-background);
-    padding-top: 22px;
   }
 
   &__button-file {
@@ -157,10 +157,10 @@ const onSelectEmoji = (emoji) => {
 
     span {
       display: block;
-      font-size: var(--icon-font-size-medium);
-      color: var(--icon-color);
       cursor: pointer;
-      padding: var(--chat-input-button-padding);
+      padding: 14px;
+      font-size: var(--icon-font-size-medium);
+      color: var(--chat-input-icon-color);
     }
   }
 
@@ -168,11 +168,11 @@ const onSelectEmoji = (emoji) => {
     border: none;
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
-    color: var(--inputtext-color);
-    font-size: var(--inputtext-font-size);
-    background-color: var(--inputtext-background);
+    background-color: transparent;
     padding: var(--inputtext-padding);
     width: var(--inputtext-width);
+    color: var(--inputtext-color);
+    font-size: var(--inputtext-font-size);
 
     &:focus-visible {
       outline: none;
@@ -190,10 +190,10 @@ const onSelectEmoji = (emoji) => {
 
     span {
       display: block;
-      font-size: var(--icon-font-size-medium);
-      color: var(--icon-color);
       cursor: pointer;
-      padding: var(--chat-input-button-padding);
+      padding: 14px;
+      font-size: var(--icon-font-size-medium);
+      color: var(--chat-input-icon-color);
     }
   }
 

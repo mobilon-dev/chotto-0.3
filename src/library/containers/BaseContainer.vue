@@ -32,8 +32,7 @@ onMounted(() => {
 .base {
   &__container {
     transition: all 0.3s ease;
-    background-color: var(--app-container-bg, transparent);
-    margin: var(--app-margin, 0);
+    background-color: var(--base-container-bg, transparent);
   }
 }
 

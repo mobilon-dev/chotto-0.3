@@ -32,8 +32,8 @@ const props = defineProps({
     padding: 6px 18px;
     margin-bottom: 18px;
     width: fit-content;
-    background-color: var(--date-bg, transparent);
-    border: var(--date-border);
+    background-color: var(--date-message-bg, transparent);
+    border: var(--date-message-border);
   }
 
   &__text {

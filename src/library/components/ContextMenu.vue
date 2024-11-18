@@ -50,16 +50,16 @@ const click = (index) => {
   &__container {
     width: fit-content;
     box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.11);
-    border-radius: var(--context-menu-border-radius);
+    border-radius: 8px;
+    padding: 12px 0;
     background-color: var(--context-menu-background);
-    padding: var(--context-menu-padding);
   }
 
   &__list {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    row-gap: var(--context-menu-list-row-gap);
+    row-gap: 6px;
   }
 
   &__item {
@@ -69,7 +69,7 @@ const click = (index) => {
     cursor: pointer;
     padding: 0 16px;
     width: 100%;
-    column-gap: var(--context-menu-item-column-gap);
+    column-gap: 12px;
   }
 
   &__item:not(:last-child) {

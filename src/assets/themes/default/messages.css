@@ -1,23 +1,37 @@
 :root {
-  /* Text Message */
-  --text-message-right-background-color: var(--emerald-200);
-  --text-message-left-background-color: var(--neutral-200);
-  --text-message-text-color: var(--neutral-900);
+
+  /* General Message*/
+  --base-message-right-bg: var(--emerald-200);
+  --base-message-left-bg: var(--neutral-200);
+
+  --base-message-font-size-text: 16px;
+  --base-message-font-size-time: 12px;
+  --base-message-font-size-remaining-time: 12px;
+  --base-message-status-font-size: 12px;
+  --base-message-views-font-size: 12px;
+  --base-message-views-icon-font-size: 13px;
+
+  --base-message-color-time: var(--neutral-700);
+  --base-message-color-views: var(--neutral-700);
+  --base-message-subtext-color: var(--neutral-500);
+  --base-message-status-color-received: var(--neutral-500);
+  --base-message-status-color-read: #00c2ff;
+
+  --base-message-margin: 0 0 10px 0;
+
+
+
+  /* Date Message */
+  --date-message-color: var(--neutral-700);
 
   /* File Message */
-  --file-message-background-color: var(--neutral-200);
-  --file-message-link-color: var(--neutral-900);
+  --file-message-icon-color: var(--neutral-600);
+  --file-message-text-color: var(--neutral-900);
 
   /* _____________________________________________ */
 
   /* Audio Message */
-  --audio-message-background-left: var(--neutral-200);
-  --audio-message-background-right: var(--emerald-200);
-
-  --audio-message-button-background-color-left: var(--neutral-400);
-  --audio-message-button-background-color-right: var(--neutral-100);
-  --audio-message-button-icon-color-left: var(--neutral-100);
-  --audio-message-button-icon-color-right: var(--neutral-500);
+  --audio-message-button-icon-color: var(--neutral-100);
 
   /* progress-bar-container -> pbc */
   --audio-message-pbc-background-color: var(--neutral-400);
@@ -27,107 +41,7 @@
 
   /* _____________________________________________ */
 
-  /* Video Message */
-  --video-message-button-background: rgba(0, 0, 0, 0.67);
-
   /* Call Message */
-  --call-message-backgroung-icon: var(--neutral-400);
-  --call-message-color-icon-error: var(--p-red-500);
   --call-message-font-size-title: 16px;
   --call-message-color-duration: var(--neutral-700);
-
-  /* Date Message */
-  --date-message-color: var(--neutral-700);
-
-  /* General Message */
-  --g-message-font-size-text: 16px;
-  --g-message-font-size-time: 12px;
-  --g-message-font-size-remaining-time: 12px;
-  --g-message-color-time: var(--neutral-700);
-
-
-  /* Status Message */
-  --status-message-color-received: var(--neutral-500);
-  --status-message-color-read: #00c2ff;
-
-  /* Subtext */
-  --subtext-color: var(--neutral-500);
-
-
-  /* Text Message */
-
-  --text-message-border-radius: 14px;
-  --text-message-max-width: 40%;
-  --text-message-margin: 0 0 10px 0;
-  --text-message-padding: 10px 10px 4px 16px;
-
-  /* File Message */
-
-  --file-message-border-radius: 14px;
-  --file-message-gap: 12px;
-  --file-message-margin: 0 0 10px 0;
-  --file-message-padding: 10px 10px 4px 16px;
-
-  /* Image Message */
-
-  --image-message-max-width: 40%;
-  --image-message-margin: 0 0 7px 0;
-
-  /* _____________________________________________ */
-
-  /* Audio Message */
-
-  --audio-message-gap: 12px;
-  --audio-message-width: 40%;
-  --audio-message-border-radius: 14px;
-  --audio-message-padding: 10px 16px 4px 16px;
-  --audio-message-margin: 0 0 10px 0;
-
-  --audio-message-button-width: 38px;
-  --audio-message-button-height: 38px;
-  --audio-message-button-border-radius: 50%;
-
-
-  /* progress-bar-container -> pbc */
-
-  --audio-message-pbc-border-radius: 10px;
-  --audio-message-pbc-height: 8px;
-
-  /* progress-bar -> pb */
-
-  --audio-message-pb-border-radius: 10px;
-
-  /* remaining-time -> rt */
-
-  --audio-message-rt-font-size: 12px;
-  /* _____________________________________________ */
-
-  /* Video Message */
-
-  --video-message-width: 200px;
-  --video-message-height: 200px;
-  --video-message-border-radius: 50%;
-  --video-message-margin: 0 0 10px 0;
-
-  --video-message-button-width: 40px;
-  --video-message-button-height: 40px;
-  --video-message-button-border-radius: 50%;
-
-  /* Call Message */
-
-  --call-message-padding: 10px 16px 4px 16px;
-  --call-message-width: 51%;
-  --call-message-min-width: 30%;
-  --call-message-gap: 12px;
-  --call-message-icon-height: 38px;
-  --call-message-icon-width: 38px;
-
-  /* Chat Input */
-  --chat-input-button-padding: 14px;
-
-  /* Status Message */
-  --status-message-font-size: 12px;
-
-  /* Subtext */
-  --subtext-font-size: 12px;
 }

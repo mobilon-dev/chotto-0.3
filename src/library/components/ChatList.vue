@@ -1,7 +1,7 @@
 <template>
   <div class="chat-list">
     <!-- div class="chat-list__container" -->
-    <div 
+    <div
       class="chat-list__title-container"
       @mouseleave="hideMenu"
     >
@@ -173,7 +173,6 @@ const action = (data) => emit('action', data);
 
   &__items {
     display: block;
-    height: '30vh';
     scroll-behavior: smooth;
 
     overflow-y: auto;
@@ -222,25 +221,25 @@ const action = (data) => emit('action', data);
     justify-content: space-between;
     align-items: center;
     column-gap: 50px;
-    padding: 0 12px 20px 9px;
+    padding: var(--chat-list-title-container-padding);
   }
 
   &__button-actions {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: var(--chat-list-button-actions-width);
-    height: var(--chat-list-button-actions-height);
     border: none;
-    background-color: var(--chat-list-button-actions-bg);
     border-radius: 50%;
     opacity: 0.8;
     cursor: pointer;
+    width: var(--chat-list-button-actions-width);
+    height: var(--chat-list-button-actions-height);
+    background-color: var(--chat-list-button-actions-bg);
 
     span {
+      transition: all 0.2s;
       font-size: var(--icon-font-size-small);
       color: var(--chat-list-button-actions-color);
-      transition: all 0.2s;
     }
   }
 

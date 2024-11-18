@@ -54,6 +54,7 @@ const emit = defineEmits(['open-panel']);
     border-radius: var(--chat-info-border-radius);
     padding: var(--chat-info-padding);
     display: flex;
+    align-items: center;
     gap: 10px;
     border-bottom: 1px solid var(--neutral-200);
   }
@@ -68,10 +69,9 @@ const emit = defineEmits(['open-panel']);
     border-radius: var(--avatar-border-radius);
     background-size: cover;
 
-
     span {
       font-size: var(--avatar-icon-size-medium);
-      color: var(--avatar-icon-color);
+      color: var(--neutral-500);
     }
 
     img {
@@ -100,7 +100,17 @@ const emit = defineEmits(['open-panel']);
   }
 
   &__actions {
-    flex-grow: 1;
+    margin-left: auto;
+    background-color: transparent;
+    border: none;
+    grid-column: 3;
+    grid-row: 1 / 3;
+    cursor: pointer;
+
+    span {
+      font-size: var(--icon-font-size-medium);
+      color: var(--neutral-600);
+    }
   }
 }
 </style>

@@ -1,8 +1,8 @@
 <template>
-  <div style="display: flex; height: 100%; width: 100%; align-items: stretch;">
+  <div class="chat-wrapper">
     <div
       v-if="isSelectedChat"
-      style="height: 100%; width: 100%; display: flex; flex-direction: column; align-items: stretch;"
+      class="chat-wrapper__selected-chat"
     >
       <slot name="default" />
     </div>
@@ -18,8 +18,8 @@
 
     <div
       v-if="isOpenChatPanel"
+      class="chat-wrapper__chat-panel"
       :style="{ 'flex-basis': isOpenChatPanel ? '40%' : '0%' }"
-      class="chatpanel"
     >
       <slot name="chatpanel" />
     </div>
@@ -47,11 +47,26 @@ const props = defineProps({
   scoped
   lang="scss"
 >
-.chatpanel {
-  padding: 10px 10px 10px 10px;
-  margin: var(--chat-panel-margin);
-  background-color: var(--chat-input-background);
-  border-left: var(--chat-panel-border, none);
-  border-radius: var(--chat-panel-border-radius);
+.chat-wrapper {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: stretch;
+
+  &__selected-chat {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  &__chat-panel {
+    padding: 10px 10px 10px 10px;
+    margin: var(--chat-panel-margin);
+    background-color: var(--chat-panel-bg);
+    border-left: var(--chat-panel-border, none);
+    border-radius: var(--chat-panel-border-radius);
+  }
 }
 </style>

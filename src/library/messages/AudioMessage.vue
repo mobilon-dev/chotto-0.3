@@ -191,10 +191,10 @@ onMounted(() => {
     position: relative;
     display: grid;
     grid-template-columns: min-content 1fr;
-    column-gap: var(--audio-message-gap);
-    padding: var(--audio-message-padding);
-    width: var(--audio-message-width);
-    border-radius: var(--audio-message-border-radius);
+    column-gap: 12px;
+    width: 40%;
+    border-radius: 14px;
+    padding: 10px 16px 4px 16px;
   }
 
   &__play,
@@ -203,9 +203,9 @@ onMounted(() => {
     cursor: pointer;
     position: relative;
     grid-row: 1 / 3;
-    width: var(--audio-message-button-width);
-    height: var(--audio-message-button-height);
-    border-radius: var(--audio-message-button-border-radius);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
 
     span {
       display: flex;
@@ -221,8 +221,8 @@ onMounted(() => {
     position: relative;
     width: 100%;
     align-self: center;
-    height: var(--audio-message-pbc-height);
-    border-radius: var(--audio-message-pbc-border-radius);
+    border-radius: 10px;
+    height: 8px;
     background-color: var(--audio-message-pbc-background-color);
   }
 
@@ -232,21 +232,20 @@ onMounted(() => {
     top: 0;
     bottom: 0;
     transition: width 0.2s ease-in-out;
-    border-radius: var(--audio-message-pb-border-radius);
+    border-radius: 10px;
     background-color: var(--audio-message-pb-background-color);
   }
 
   &__remaining-time {
     grid-column: 2;
     margin-bottom: -10px;
-    font-size: var(--g-message-font-size-remaining-time);
+    font-size: var(--base-message-font-size-remaining-time);
     height: fit-content;
   }
 
   &__avatar {
     align-self: center;
     object-fit: cover;
-    background-color: var(--avatar-background-color);
     min-width: var(--avatar-width-small);
     min-height: var(--avatar-height-small);
     border-radius: var(--avatar-border-radius);
@@ -254,7 +253,7 @@ onMounted(() => {
 
   &__subtext {
     font-size: 12px;
-    color: var(--subtext-color);
+    color: var(--base-message-subtext-color);
     font-weight: 500;
   }
 
@@ -270,15 +269,15 @@ onMounted(() => {
     display: flex;
 
     span {
-      color: var(--status-message-color-received);
-      font-size: var(--status-message-font-size);
+      color: var(--base-message-status-color-received);
+      font-size: var(--base-message-status-font-size);
       font-weight: 400;
     }
   }
 
   &__status--received {
     span {
-      color: var(--status-message-color-received);
+      color: var(--base-message-status-color-received);
 
       &:first-child {
         margin-right: -8px;
@@ -288,7 +287,7 @@ onMounted(() => {
 
   &__status--read {
     span {
-      color: var(--status-message-color-read);
+      color: var(--base-message-status-color-read);
 
       &:first-child {
         margin-right: -8px;
@@ -297,8 +296,8 @@ onMounted(() => {
   }
 
   &__time {
-    font-size: var(--g-message-font-size-time);
-    color: var(--g-message-color-time);
+    font-size: var(--base-message-font-size-time);
+    color: var(--base-message-color-time);
   }
 
   &__menu-button {
@@ -326,17 +325,17 @@ onMounted(() => {
 
   &__play,
   &__pause {
-    background-color: var(--audio-message-button-background-color-left);
+    background-color: var(--neutral-400);
 
     span {
-      color: var(--audio-message-button-icon-color-left);
+      color: var(--audio-message-button-icon-color);
     }
   }
 
   &__left,
   &__right {
     display: grid;
-    margin: var(--audio-message-margin);
+    margin: var(--base-message-margin);
   }
 
   &__left {
@@ -356,7 +355,7 @@ onMounted(() => {
 
     .audio-message__content {
       grid-column: 2;
-      background-color: var(--audio-message-background-left);
+      background-color: var(--base-message-left-bg);
     }
 
     .audio-message__menu-button {
@@ -388,7 +387,7 @@ onMounted(() => {
     .audio-message__content {
       grid-column: 1;
       margin-left: auto;
-      background-color: var(--audio-message-background-right);
+      background-color: var(--base-message-right-bg);
     }
 
     .audio-message__menu-button {

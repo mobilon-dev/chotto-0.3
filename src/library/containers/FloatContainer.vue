@@ -188,7 +188,7 @@ onMounted(() => {
     background-color: transparent;
     border: none;
     font-size: var(--icon-font-size-large);
-    color: var(--icon-color);
+    color: var(--float-container-icon-color);
     width: fit-content;
     margin-left: auto;
     cursor: pointer;

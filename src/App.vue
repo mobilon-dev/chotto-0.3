@@ -89,21 +89,21 @@ const data = {
   type: "message.text",
   direction: 'incoming',
   status: 'sent',
-  userId: 'testUserId',  
+  userId: 'testUserId',
 };
 
 // Эмуляция событий с сервера
 onMounted(() => {
   setTimeout(() => {
-    const newM = {...data, text: 'new message 1', timestamp: moment().unix()};
+    const newM = { ...data, text: 'new message 1', timestamp: moment().unix() };
     data3.messages.push(newM);
-    eventor.push({ type: 'message', data: newM});
+    eventor.push({ type: 'message', data: newM });
   }, 3000);
 
   setTimeout(() => {
-    const newM = {...data, text: 'new message 2', timestamp: moment().unix()};
+    const newM = { ...data, text: 'new message 2', timestamp: moment().unix() };
     data3.messages.push(newM);
-    eventor.push({ type: 'message', data: newM});
+    eventor.push({ type: 'message', data: newM });
   }, 5000);
 
   setTimeout(() => {

@@ -2,6 +2,11 @@
   /* Layouts */
 
   /* Extended layout */
+  --layout-extended-bg: var(--default-white);
+  --layout-extended-third-col-bg: var(--neutral-100);
 
-  --layout-extended-column-border: 0px solid var(--neutral-200);
+  /* Base layout */
+  --layout-base-bg: var(--neutral-100);
+
+
 }

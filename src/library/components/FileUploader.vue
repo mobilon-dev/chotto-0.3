@@ -153,7 +153,10 @@ const uploadFile = async () => {
 };
 </script>
 
-<style scoped lang="scss">
+<style
+  scoped
+  lang="scss"
+>
 .chat-input {
   &__container {
     position: relative;
@@ -177,10 +180,10 @@ const uploadFile = async () => {
 
     span {
       display: block;
-      font-size: var(--icon-font-size-medium);
-      color: var(--icon-color);
       cursor: pointer;
-      padding: var(--chat-input-button-padding);
+      padding: 14px;
+      font-size: var(--icon-font-size-medium);
+      color: var(--file-uploader-icon-color);
     }
   }
 }

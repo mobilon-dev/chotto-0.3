@@ -11,7 +11,10 @@
 
 <script setup></script>
 
-<style scoped lang="scss">
+<style
+  scoped
+  lang="scss"
+>
 .base-layout {
   &__container {
     height: inherit;
@@ -19,20 +22,20 @@
     display: grid;
     grid-template-columns: 1.25fr 3fr;
     transition: all 0.3s ease;
-    background-color: var(--app-container-bg, transparent);
-    margin: var(--app-margin, 0);
+    background-color: var(--layout-base-bg, transparent);
     position: relative;
   }
+
   &__first-col {
     position: relative;
     margin-right: 20px;
     grid-column: 1;
-    border-right: 1px solid var(--sidebar-border-color);
     display: flex;
     flex-direction: column;
     /* вычитаем маргины сверху и снизу */
     height: inherit;
   }
+
   &__second-col {
     position: relative;
     display: flex;
@@ -40,7 +43,7 @@
     grid-column: 2;
     height: inherit;
     border-radius: 12px;
-    background-color: var(--rigth-bar-bg);
+    background-color: var(--layout-base-second-col-bg);
   }
 }
 
