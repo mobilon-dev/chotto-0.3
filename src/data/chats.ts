@@ -14,17 +14,20 @@ export const chats = [
       { action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/dd6699/ffffff/64x64.png?text=pin' },
       { action: 'delete', title: 'удалить', icon: 'https://placehold.jp/30/dd6699/ffffff/64x64.png?text=del' },
     ],
-    typing: true
+    typing: true,
   },
   {
-    chatId: 2, name: "Мария", countUnread: 0, isFixedTop: true, 'lastActivity.time': 'час назад', statusMessage: 'received', actions: [
+    chatId: 2, name: "Мария", countUnread: 0, isFixedTop: true, 
+    'lastActivity.time': 'час назад', 
+    'lastMessage.status': 'received', 
+    actions: [
       { action: 'edit', title: 'изменить' }, { action: 'unpin', title: 'открепить' },
     ]
   },
   {
     chatId: 3, name: "Анна",
     countUnread: 0,
-    'lastMessage.status': 'read',
+    'lastMessage.status': 'se',
     isFixedBottom: true, actions: [
       { action: 'edit', title: 'изменить' }, { action: 'unpin', title: 'открепить' },
     ]
@@ -45,9 +48,10 @@ export const chats = [
     ]
   },
   {
-    chatId: 7, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
+    chatId: 7, name: "Василий 2", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
       { action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' },
-    ]
+    ],
+    typing: true,
   },
   {
     chatId: 8, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
