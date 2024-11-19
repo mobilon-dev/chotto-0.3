@@ -38,6 +38,36 @@ export const ChatItemWithoutLastMessage: Story = {
   },
 };
 
+export const ChatItemWithLastMessageStatusSend: Story = {
+  args: {
+    chat: {
+      ...chat,
+      countUnread: "0",
+      'lastMessage.status': 'send',
+    },
+  },
+};
+
+export const ChatItemWithLastMessageStatusReceived: Story = {
+  args: {
+    chat: {
+      ...chat,
+      countUnread: "0",
+      'lastMessage.status': 'received',
+    },
+  },
+};
+
+export const ChatItemWithLastMessageStatusRead: Story = {
+  args: {
+    chat: {
+      ...chat,
+      countUnread: "0",
+      'lastMessage.status': 'read',
+    },
+  },
+};
+
 export const ChatItemWithAvatar: Story = {
   args: {
     chat: {
@@ -98,6 +128,16 @@ export const ChatItemWithStatusOffline: Story = {
     chat: {
       ...chat,
       status: '#FF0000',
+    },
+  },
+};
+
+
+export const ChatItemWithTyping: Story = {
+  args: {
+    chat: {
+      ...chat,
+      typing: true,
     },
   },
 };

@@ -12,25 +12,25 @@ type Story = StoryObj<typeof SideBar>;
 const sidebarItems = [
   {
     itemId: 'itemId0',
-    icon: 'https://dummyimage.com/64x64/000/fff.png&text=SD',
+    icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=SD',
     name: 'manager1 manage',
     selected: false,
   },
   {
     itemId: 'itemId1',
-    icon: 'https://dummyimage.com/64x64/000/fff.png&text=PN',
+    icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
     name: 'manager2',
     selected: false,
   },
   {
     itemId: 'itemId2',
-    icon: 'https://dummyimage.com/64x64/000/fff.png&text=MV',
+    icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=MV',
     name: 'manager3 manage',
     selected: false,
   },
   {
     itemId: 'itemId3',
-    icon: 'https://dummyimage.com/64x64/000/fff.png&text=PS',
+    icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PS',
     name: 'manager4',
     isFixedBottom: true,
     selected: false,
@@ -40,7 +40,7 @@ const sidebarItems = [
 const sidebarItemsWithNotifications = [
   {
     itemId: 'itemId0',
-    icon: 'https://dummyimage.com/64x64/000/fff.png&text=SD',
+    icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=SD',
     name: 'manager1',
     notificationCount: 10,
     notificationColor: '#FF0000',
@@ -48,7 +48,7 @@ const sidebarItemsWithNotifications = [
   },
   {
     itemId: 'itemId1',
-    icon: 'https://dummyimage.com/64x64/000/fff.png&text=PN',
+    icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
     name: 'manager2',
     notificationCount: 100,
     notificationColor: '#00FF00',
@@ -56,7 +56,7 @@ const sidebarItemsWithNotifications = [
   },
   {
     itemId: 'itemId2',
-    icon: 'https://dummyimage.com/64x64/000/fff.png&text=MV',
+    icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=MV',
     name: 'manager3',
     notificationCount: 3,
     notificationColor: '#0000FF',
@@ -64,7 +64,7 @@ const sidebarItemsWithNotifications = [
   },
   {
     itemId: 'itemId3',
-    icon: 'https://dummyimage.com/64x64/000/fff.png&text=PS',
+    icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PS',
     name: 'manager4',
     isFixedBottom: true,
     notificationCount: 17,
@@ -88,7 +88,7 @@ export const SidebarWithNotifications: Story = {
 const sidebarItemsWithSelected = [
   {
     itemId: 'itemId0',
-    icon: 'https://dummyimage.com/64x64/000/fff.png&text=SD',
+    icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=SD',
     name: 'manager1',
     notificationCount: 10,
     notificationColor: '#FF0000',
@@ -96,7 +96,7 @@ const sidebarItemsWithSelected = [
   },
   {
     itemId: 'itemId1',
-    icon: 'https://dummyimage.com/64x64/000/fff.png&text=PN',
+    icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
     name: 'manager2',
     notificationCount: 100,
     notificationColor: '#00FF00',
@@ -104,7 +104,7 @@ const sidebarItemsWithSelected = [
   },
   {
     itemId: 'itemId2',
-    icon: 'https://dummyimage.com/64x64/000/fff.png&text=MV',
+    icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=MV',
     name: 'manager3',
     notificationCount: 3,
     notificationColor: '#0000FF',
@@ -112,7 +112,7 @@ const sidebarItemsWithSelected = [
   },
   {
     itemId: 'itemId3',
-    icon: 'https://dummyimage.com/64x64/000/fff.png&text=PS',
+    icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PS',
     name: 'manager4',
     isFixedBottom: true,
     notificationCount: 17,

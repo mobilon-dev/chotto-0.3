@@ -5,7 +5,7 @@ import TextMessage from './TextMessage.vue';
 const meta: Meta<typeof TextMessage> = {
   component: TextMessage,
 };
- 
+
 export default meta;
 type Story = StoryObj<typeof TextMessage>;
 
@@ -22,11 +22,11 @@ const actions = [
   { 
     action: 'edit', 
     title: 'изменить', 
-    icon: 'https://dummyimage.com/16x16/000/fff.png&text=edit',
+    icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=edit',
   },
   { action: 'delete', 
     title: 'удалить', 
-    icon: 'https://dummyimage.com/16x16/000/fff.png&text=del',
+    icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=del',
   },
 ]
 
@@ -53,6 +53,16 @@ export const LeftMessage: Story = {
     message: {
       ...message,
       position: 'left',
+    },
+  },
+};
+
+export const LeftMessageWithViews: Story = {
+  args: {
+    message: {
+      ...message,
+      position: 'left',
+      views: 18495,
     },
   },
 };
@@ -100,7 +110,7 @@ export const LeftMessageWithAvatar: Story = {
     message: {
       ...message,
       position: 'left',
-      avatar: 'https://dummyimage.com/64x64/000/fff.png&text=PN',
+      avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
     },
   },
 };
@@ -120,6 +130,16 @@ export const RightMessage: Story = {
     message: {
       ...message,
       position: 'right',
+    },
+  },
+};
+
+export const RightMessageWithViews: Story = {
+  args: {
+    message: {
+      ...message,
+      position: 'right',
+      views: 18495,
     },
   },
 };
@@ -152,12 +172,12 @@ export const RightMessageWithoutTime: Story = {
   },
 };
 
-export const RightMessageStatusSent: Story = {
+export const RightMessageStatusSend: Story = {
   args: {
     message: {
       ...message,
       position: 'right',
-      status: 'sent',
+      status: 'send',
     },
   },
 };
@@ -197,7 +217,7 @@ export const RightMessageWithAvatar: Story = {
     message: {
       ...message,
       position: 'right',
-      avatar: 'https://dummyimage.com/64x64/000/fff.png&text=PN',
+      avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
     },
   },
 };
@@ -219,7 +239,7 @@ export const LeftMessageMax: Story = {
       position: 'left',
       subText: 'тест тест тест тест',
       actions,
-      avatar: 'https://dummyimage.com/64x64/000/fff.png&text=SD',
+      avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=SD',
       time: 'два дня назад',
     },
   },
@@ -232,7 +252,7 @@ export const RightMessageMax: Story = {
       position: 'right',
       subText: 'тест тест тест тест',
       actions,
-      avatar: 'https://dummyimage.com/64x64/000/fff.png&text=SD',
+      avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=SD',
       time: 'два дня назад',
     },
   },

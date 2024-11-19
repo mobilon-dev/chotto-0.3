@@ -3,7 +3,6 @@
     <BaseContainer
       height="90vh"
       width="70vw"
-      theme="light"
     >
       <ExtendedLayout>
         <template #first-col>
@@ -11,7 +10,7 @@
             :sidebar-items="sidebarItems"
             @select-item="selectItem"
           />
-          <ThemeMode :themes="themes" />
+          <ThemeMode :themes="themes" :show="true"/>
         </template>
 
         <template #second-col>
@@ -90,6 +89,7 @@ import {
   ChatWrapper,
   useModalSelectUser2,
   useModalCreateChat,
+  useModalCreateChat2,
 } from "./library";
 
 import {
@@ -131,6 +131,7 @@ const themes = [
   {
     code: "green",
     name: "Green",
+    default: true,
   },
   {
     code: "diamond",
@@ -155,8 +156,9 @@ const selectItem = (item) => {
 const chatAction = async (data) => {
   console.log("chat action", data);
   if (data.action === "add") {
-    const data = await useModalSelectUser2('Укажите новых участников чата', getUsers());
-    console.log('users:', data.selectedUsers);
+    // const data = await useModalSelectUser2('Укажите новых участников чата', getUsers());
+    const data = await useModalCreateChat2('Добавьте контакт');
+    console.log('users:', data.contact);
   }
 };
 

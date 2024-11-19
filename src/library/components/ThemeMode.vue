@@ -1,10 +1,11 @@
 <template>
-  <div>
+  <div v-if="show">
     <select @change="changeTheme($event)">
       <option 
         v-for="(theme, index) in props.themes"
         :key="index"
         :value="theme.code"
+        :selected="theme.default === true"
       >
         {{ theme.name }}
       </option>
@@ -13,22 +14,38 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 const props = defineProps({
   themes: {
     type: Array,
     default: () => [],
   },
+  show: Boolean,
 });
 
-const currentTheme = ref('light'); // Начальная тема
+
+const getDefaultThemeCode = () => {
+  const defaultTheme = props.themes.find(t => t.default === true);
+  if(!defaultTheme) {
+    return props.themes[0].code;
+  }
+  return defaultTheme.code;
+}
 
 const changeTheme = (event) => {
-  const themeCode = event.target.value;
-  currentTheme.value = themeCode;
-  document.documentElement.dataset.theme = themeCode;
+  const themeCode = event.target.value;  
+  setTheme(themeCode);
 };
+
+const setTheme = (themeCode) => {
+  document.documentElement.dataset.theme = themeCode;
+}
+
+onMounted(() => {
+  const code = getDefaultThemeCode();
+  setTheme(code);
+})
 
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="clicked && canUploadFile"
+    v-if="canUploadFile"
     class="dropDownMenu"
   >
     <div class="label-container">
@@ -43,11 +43,6 @@ const props = defineProps({
     type: Boolean,
     required: true,
     default: true,
-  },
-  clicked: {
-    type: Boolean,
-    required: true,
-    default: false,
   },
 });
 

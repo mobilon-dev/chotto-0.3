@@ -30,6 +30,16 @@ export const LeftImageMessage: Story = {
   },
 };
 
+export const LeftImageMessageWithViews: Story = {
+  args: {   
+    message: { 
+      ...imageMessage,
+      position: 'left',
+      views: 121212,
+    },
+  },
+};
+
 export const LeftImageMessageWithSubtext: Story = {
   args: {   
     message: { 
@@ -56,6 +66,16 @@ export const RightImageMessage: Story = {
     message: {
       ...imageMessage,
       position: 'right',
+    },
+  },
+};
+
+export const RightImageMessageWithViews: Story = {
+  args: {   
+    message: { 
+      ...imageMessage,
+      position: 'right',
+      views: 121212,
     },
   },
 };

@@ -1,13 +1,13 @@
 import { useModal } from './modal-wrapper/useModal';
 
-export const useModalCreateChat = async (title: string) => {
+export const useModalCreateChat2 = async (title: string) => {
   const data = await useModal({
     //в component должен быть встроен emit change(key: value)
-    component: import('./CreateChat.vue'),
+    component: import('./CreateChat2.vue'),
     attrs: {
       title, 
     },
   });
-  console.log('data', data);
+  // console.log('data', data);
   return data;
 }

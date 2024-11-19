@@ -16,7 +16,7 @@ export const messages = [
   },
   {
     chatId: 1, type: "message.text", text: "Привет! Сообщение с просмотрами",
-    direction: 'outgoing', status: 'smth', timestamp: '1727027959',
+    direction: 'outgoing', status: 'received', timestamp: '1727027959',
     views: 1000,
     actions: [
       { action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=pin' },

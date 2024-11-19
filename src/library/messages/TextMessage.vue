@@ -32,6 +32,7 @@
           <div
             v-if="message.views"
             class="text-message__views"
+            @click="viewsAction"
           >
             <span class="pi pi-eye" />
             <p>{{ message.views }}</p>
@@ -102,7 +103,12 @@ const hideMenu = () => {
 
 const clickAction = (action) => {
   hideMenu();
-  emit('action', { messageId: props.message.messageId, ...action });
+  emit('action', { messageId: props.message.messageId, type: 'menu', ...action });
+}
+
+const viewsAction = () => {
+  hideMenu();
+  emit('action', { messageId: props.message.messageId, type: 'views' });
 }
 
 function getClass(message) {
