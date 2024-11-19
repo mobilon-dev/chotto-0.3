@@ -6,7 +6,7 @@
       v-model="contact.name"
       type="text"
       @input="onChange"
-    ><br/>
+    ><br>
     <label>Телефон</label>
     <input
       v-model="contact.phone"

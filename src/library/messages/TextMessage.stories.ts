@@ -5,7 +5,7 @@ import TextMessage from './TextMessage.vue';
 const meta: Meta<typeof TextMessage> = {
   component: TextMessage,
 };
- 
+
 export default meta;
 type Story = StoryObj<typeof TextMessage>;
 

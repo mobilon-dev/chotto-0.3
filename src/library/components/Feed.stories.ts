@@ -20,6 +20,7 @@ const objects = [
     time: '15 часов назад', position: 'right', status: 'read', filename: "Документ.pdf"},
   { type: "message.text",  messageId: '6', text: "Привет!", direction: 'incoming', time: '16:30', isRead: true},
   { type: "message.image", messageId: '7', url: "https://example.com/image.jpg", time: '17:00', alt: "Example Image", direction: 'outgoing'},
+  { type: "message.typing", messageId: '8'},
 ];
 
 export const Primary: Story = {

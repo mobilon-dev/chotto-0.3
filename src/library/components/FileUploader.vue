@@ -5,7 +5,10 @@
       class="chat-input__button-file"
     >
       <label>
-        <input type="file" @change="onFileSelected" />
+        <input
+          type="file"
+          @change="onFileSelected"
+        >
         <span>
           <i class="pi pi-file-arrow-up" />
         </span>
@@ -31,10 +34,10 @@
     </div-->
     <div v-if="!canUploadFile && uploadStatus === 'success'">
       <FilePreview
-        :previewUrl="previewUrl"
-        :isImage="isImage"
-        :isVideo="isVideo"
-        :fileName="selectedFile.name"
+        :preview-url="previewUrl"
+        :is-image="isImage"
+        :is-video="isVideo"
+        :file-name="selectedFile.name"
         @reset="resetSelectedFile"
       />
     </div>

@@ -2,16 +2,32 @@
   <div class="preview-container">
     <div class="preview">
       <div v-if="props.isImage">
-        <img :src="previewUrl" alt="Image Preview" class="preview-image" />
+        <img
+          :src="previewUrl"
+          alt="Image Preview"
+          class="preview-image"
+        >
       </div>
       <div v-else-if="props.isVideo">
-        <video :src="previewUrl" class="preview-video" />
+        <video
+          :src="previewUrl"
+          class="preview-video"
+        />
       </div>
       <div v-else>
-        <span class="pi pi-file" style="font-size: 2.5rem" />
+        <span
+          class="pi pi-file"
+          style="font-size: 2.5rem"
+        />
       </div>
-      <div class="preview-icon preview-reset" @click="handleReset">
-        <span class="pi pi-times" style="font-size: 2.5rem" />
+      <div
+        class="preview-icon preview-reset"
+        @click="handleReset"
+      >
+        <span
+          class="pi pi-times"
+          style="font-size: 2.5rem"
+        />
       </div>
     </div>
     <span class="preview-name">{{ fileName }}</span>
