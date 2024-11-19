@@ -3,7 +3,6 @@
     <BaseContainer
       height="90vh"
       width="70vw"
-      theme="light"
     >
       <ExtendedLayout>
         <template #first-col>
@@ -11,7 +10,7 @@
             :sidebar-items="sidebarItems"
             @select-item="selectItem"
           />
-          <ThemeMode :themes="themes" />
+          <ThemeMode :themes="themes" :show="true"/>
         </template>
 
         <template #second-col>
@@ -132,6 +131,7 @@ const themes = [
   {
     code: "green",
     name: "Green",
+    default: true,
   },
   {
     code: "diamond",

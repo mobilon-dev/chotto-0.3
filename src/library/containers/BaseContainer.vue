@@ -8,19 +8,9 @@
 </template>
 
 <script setup>
-
-import { onMounted } from 'vue';
-
 const props = defineProps({
   height: String,
   width: String,
-  theme: String,
-})
-
-onMounted(() => {
-  if (props.theme) {
-    document.documentElement.dataset.theme = props.theme;
-  }
 })
 
 </script>

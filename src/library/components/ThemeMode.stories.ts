@@ -17,6 +17,7 @@ const ThemeModeItems = [
   {
     code: 'dark',
     name: 'Dark',
+    default: true,
   },
   {
     code: 'green',
