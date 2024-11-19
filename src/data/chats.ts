@@ -40,7 +40,7 @@ export const chats = [
     ]
   },
   {
-    chatId: 6, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', isFixed: false, actions: [
+    chatId: 6, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', statusMessage: 'smth', isFixed: false, actions: [
       { action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' },
     ]
   },

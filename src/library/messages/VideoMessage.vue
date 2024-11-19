@@ -65,7 +65,7 @@
         <span class="video-message__time">{{ message.time }}</span>
 
         <div
-          v-if="getClass(message) === 'video-message__right' && message.status"
+          v-if="getClass(message) === 'video-message__right' && statuses.includes(message.status)"
           class="video-message__status"
           :class="getStatus"
         >
@@ -144,6 +144,8 @@ const remaningTime = computed(() => {
     return ''
   }
 })
+
+const statuses = ['read', 'received', 'send']
 
 const getStatus = computed(() => {
   switch (props.message.status) {

@@ -56,7 +56,7 @@
       <div class="audio-message__info-container">
         <span class="audio-message__time">{{ message.time }}</span>
         <div
-          v-if="getClass(message) === 'audio-message__right' && message.status"
+          v-if="getClass(message) === 'audio-message__right' && statuses.includes(message.status)"
           class="audio-message__status"
           :class="getStatus"
         >
@@ -155,6 +155,8 @@ const progressPercent = computed(() => {
   }
   return 0;
 });
+
+const statuses = ['read', 'received', 'send']
 
 const getStatus = computed(() => {
   switch (props.message.status) {

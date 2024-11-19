@@ -46,7 +46,7 @@
           <span class="image-message__time">{{ message.time }}</span>
 
           <div
-            v-if="getClass(message) === 'image-message__right' && message.status"
+            v-if="getClass(message) === 'image-message__right' && statuses.includes(message.status)"
             class="image-message__status"
             :class="getStatus"
           >
@@ -134,6 +134,8 @@ const hideMenu = () => {
 function getClass(message) {
   return message.position === 'left' ? 'image-message__left' : 'image-message__right';
 }
+
+const statuses = ['read', 'received', 'send']
 
 const getStatus = computed(() => {
   switch (props.message.status) {
