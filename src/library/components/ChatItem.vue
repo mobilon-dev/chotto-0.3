@@ -10,7 +10,7 @@
     >
       <div class="chat-item__avatar-container">
         <span
-          class="chat-item__status"
+          class="chat-item__status-user"
           :style="{ backgroundColor: props.chat.status }"
         />
         <img
@@ -29,11 +29,12 @@
         <div class="chat-item__name">
           {{ chat.name }}
         </div>
+
         <div
-          v-if="chat.lastMessage"
+          v-if="chat.lastMessage || chat.typing"
           class="chat-item__last-message"
         >
-          {{ chat.lastMessage }}
+          {{ showText }}
         </div>
       </div>
 
@@ -42,17 +43,14 @@
           v-if="!(buttonMenuVisible && chat.actions) && chat['lastActivity.time']"
           class="chat-item__time"
         >
-          {{ chat['lastActivity.time']
-          }}
+          {{ chat['lastActivity.time'] }}
         </div>
         <div
-          v-if="!(buttonMenuVisible && chat.actions) && chat.countUnread > 0"
+          v-if="chat.countUnread > 0"
           class="chat-item__unread"
         >
           {{ chat.countUnread }}
         </div>
-
-
 
         <button
           v-if="buttonMenuVisible && chat.actions"
@@ -62,14 +60,30 @@
           <span class="pi pi-ellipsis-h" />
         </button>
 
+        <div
+          v-if="chat.countUnread < 1"
+          class="chat-item__status-chat-container"
+        >
+          <div
+            v-if="chat.statusMessage"
+            class="chat-item__status-message"
+            :class="getStatus"
+          >
+            <span
+              v-if="chat.statusMessage !== 'send'"
+              class="pi pi-check"
+            />
+            <span class="pi pi-check" />
+          </div>
 
-        <span
-          v-if="chat.isFixedTop || chat.isFixedBottom"
-          class="chat-item__fixed pi pi-thumbtack"
-        />
+          <span
+            v-if="(chat.isFixedTop || chat.isFixedBottom)"
+            class="chat-item__fixed pi pi-thumbtack"
+          />
+        </div>
       </div>
 
-      <transition>
+      <transition name="menu">
         <ContextMenu
           v-if="isOpenMenu && chat.actions"
           class="chat-item__context-menu"
@@ -82,7 +96,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import ContextMenu from './ContextMenu.vue'
 // Define props
 const props = defineProps({
@@ -121,6 +135,41 @@ const hideMenu = () => {
   buttonMenuVisible.value = false;
   isOpenMenu.value = false
 };
+
+const getStatus = computed(() => {
+  switch (props.chat.statusMessage) {
+    case 'read':
+      return 'chat-item__status-message--read'
+    case 'received':
+      return 'chat-item__status-message--received'
+    default:
+      return ''
+  }
+})
+
+let timer;
+const typingText = 'typing...';
+const isTypingText = ref(false);
+
+const showText = computed(() => {
+  if (props.chat.typing) {
+    return isTypingText.value ? typingText : props.chat.lastMessage;
+  } else {
+    return props.chat.lastMessage;
+  }
+});
+
+onMounted(() => {
+  if (props.chat.typing) {
+    timer = setInterval(() => {
+      isTypingText.value = !isTypingText.value;
+    }, 2000);
+  }
+});
+
+onUnmounted(() => {
+  clearInterval(timer);
+});
 </script>
 
 <style
@@ -164,14 +213,14 @@ const hideMenu = () => {
     align-items: center;
     object-fit: cover;
     margin-right: 15px;
-    background-color: var(--avatar-background-color);
+    background-color: var(--neutral-300);
     min-width: var(--avatar-width-medium);
     min-height: var(--avatar-height-medium);
     border-radius: var(--avatar-border-radius);
 
     span {
       font-size: var(--avatar-icon-size-medium);
-      color: var(--avatar-icon-color);
+      color: var(--neutral-500);
     }
 
     img {
@@ -180,7 +229,7 @@ const hideMenu = () => {
     }
   }
 
-  &__status {
+  &__status-user {
     position: absolute;
     bottom: 0;
     right: 5px;
@@ -194,19 +243,19 @@ const hideMenu = () => {
 
   &__info-container {
     flex-grow: 1;
-    align-self: center;
+    align-self: flex-start;
     margin-right: 15px;
   }
 
   &__name {
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    font-size: 16px;
     font-weight: var(--chat-item-font-weight-name);
-    font-size: var(--chat-item-font-size-name);
   }
 
   &__last-message {
+    font-size: 14px;
     font-weight: var(--chat-item-font-weight-last-message);
-    font-size: var(--chat-item-font-size-last-message);
     color: var(--chat-item-color-last-message);
   }
 
@@ -219,10 +268,6 @@ const hideMenu = () => {
     span {
       color: var(--neutral-500);
     }
-  }
-
-  &__fixed {
-    margin-top: auto;
   }
 
   &__menu-button {
@@ -256,11 +301,11 @@ const hideMenu = () => {
     font-weight: 400;
     margin-left: auto;
     margin-top: auto;
-    min-width: var(--chat-item-min-width-unread);
-    min-height: var(--chat-item-min-height-unread);
+    min-width: 22px;
+    min-height: 22px;
+    font-size: 14px;
     color: var(--chat-item-color-unread);
-    background-color: var(--chat-item-background-color-unread);
-    font-size: var(--chat-item-font-size-unread);
+    background-color: var(--chat-item-bg-unread);
   }
 
   &__time {
@@ -275,18 +320,66 @@ const hideMenu = () => {
     top: 40%;
     right: 0;
   }
+
+  &__status-chat-container {
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+    margin-top: auto;
+  }
+
+  &__status-message {
+    display: flex;
+
+    span {
+      font-weight: 400;
+      color: var(--chat-item-message-status-color-received);
+      font-size: var(--chat-item-message-status-font-size);
+    }
+  }
+
+  &__status-message--received {
+    span {
+      color: var(--chat-item-message-status-color-received);
+
+      &:first-child {
+        margin-right: -8px;
+      }
+    }
+  }
+
+  &__status-message--read {
+    span {
+      color: var(--chat-item-message-status-color-read);
+
+      &:first-child {
+        margin-right: -8px;
+      }
+    }
+  }
+
 }
 
-.v-enter-active {
+.text-enter-active,
+.text-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.text-enter-from,
+.text-leave-to {
+  opacity: 0;
+}
+
+.menu-enter-active {
   transition: all 0.2s ease-out;
 }
 
-.v-leave-active {
+.menu-leave-active {
   transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
-.v-enter-from,
-.v-leave-to {
+.menu-enter-from,
+.menu-leave-to {
   transform: translateY(20px);
   opacity: 0;
 }

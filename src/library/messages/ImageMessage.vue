@@ -35,7 +35,16 @@
           :alt="message.alt"
         >
         <div class="image-message__info-container">
+          <div
+            v-if="message.views"
+            class="image-message__views"
+          >
+            <span class="pi pi-eye" />
+            <p>{{ message.views }}</p>
+          </div>
+
           <span class="image-message__time">{{ message.time }}</span>
+
           <div
             v-if="getClass(message) === 'image-message__right' && message.status"
             class="image-message__status"
@@ -146,7 +155,6 @@ const getStatus = computed(() => {
   &__avatar {
     align-self: center;
     object-fit: cover;
-    background-color: var(--avatar-background-color);
     min-width: var(--avatar-width-small);
     min-height: var(--avatar-height-small);
     border-radius: var(--avatar-border-radius);
@@ -164,9 +172,25 @@ const getStatus = computed(() => {
     background-color: rgb(0 0 0 / 39%);
   }
 
+  &__views {
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+
+    span {
+      font-size: var(--base-message-views-icon-font-size);
+      color: var(--neutral-200);
+    }
+
+    p {
+      font-size: var(--base-message-views-font-size);
+      color: var(--neutral-200);
+    }
+  }
+
   &__time {
     color: var(--neutral-200);
-    font-size: var(--g-message-font-size-time);
+    font-size: var(--base-message-font-size-time);
   }
 
   &__status {
@@ -175,7 +199,7 @@ const getStatus = computed(() => {
     span {
       font-weight: 400;
       color: var(--default-white);
-      font-size: var(--status-message-font-size);
+      font-size: var(--base-message-status-font-size);
     }
   }
 
@@ -191,7 +215,7 @@ const getStatus = computed(() => {
 
   &__status--read {
     span {
-      color: var(--status-message-color-read);
+      color: var(--base-message-status-color-read);
 
       &:first-child {
         margin-right: -8px;
@@ -201,8 +225,8 @@ const getStatus = computed(() => {
 
   &__subtext {
     font-weight: 500;
-    font-size: var(--subtext-font-size);
-    color: var(--subtext-color);
+    font-size: 12px;
+    color: var(--base-message-subtext-color);
   }
 
   &__button {
@@ -230,7 +254,7 @@ const getStatus = computed(() => {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 101;
-    background-color: var(--modal-background-color);
+    background-color: var(--modal-bg);
     border-radius: var(--modal-border-radius);
     padding: var(--modal-padding);
     width: var(--modal-width);
@@ -256,14 +280,14 @@ const getStatus = computed(() => {
     cursor: pointer;
 
     span {
-      color: var(--icon-color);
+      color: var(--modal-icon-color);
       font-size: var(--icon-font-size-medium);
     }
   }
 
   &__content {
     position: relative;
-    max-width: var(--image-message-max-width);
+    max-width: 40%;
   }
 
 
@@ -293,7 +317,7 @@ const getStatus = computed(() => {
   &__left,
   &__right {
     display: grid;
-    margin: var(--image-message-margin);
+    margin: 0 0 7px 0;
   }
 
   &__left {

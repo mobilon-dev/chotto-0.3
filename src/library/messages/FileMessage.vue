@@ -121,7 +121,6 @@ const getStatus = computed(() => {
   &__avatar {
     align-self: center;
     object-fit: cover;
-    background-color: var(--avatar-background-color);
     min-width: var(--avatar-width-small);
     min-height: var(--avatar-height-small);
     border-radius: var(--avatar-border-radius);
@@ -129,30 +128,29 @@ const getStatus = computed(() => {
 
   &__subtext {
     font-size: 12px;
-    color: var(--subtext-color);
+    color: var(--base-message-subtext-color);
     font-weight: 500;
   }
 
   &__content {
     position: relative;
     width: fit-content;
-    border-radius: var(--file-message-border-radius);
+    border-radius: 14px;
     background-color: var(--file-message-background-color);
-    padding: var(--file-message-padding);
+    padding: 10px 10px 4px 16px;
   }
 
   &__link {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    font-size: var(--g-message-font-size-text);
-    column-gap: var(--file-message-gap);
-    color: var(--file-message-link-color);
-    margin: var(--g-message-margin-text);
+    font-size: var(--base-message-font-size-text);
+    column-gap: 12px;
+    color: var(--file-message-text-color);
 
     span {
       font-size: var(--icon-font-size-medium);
-      color: var(--icon-color);
+      color: var(--file-message-icon-color);
     }
   }
 
@@ -168,7 +166,7 @@ const getStatus = computed(() => {
 
     span {
       color: var(--neutral-500);
-      font-size: var(--status-message-font-size);
+      font-size: var(--base-message-status-font-size);
       font-weight: 400;
     }
   }
@@ -185,7 +183,7 @@ const getStatus = computed(() => {
 
   &__status--read {
     span {
-      color: var(--status-message-color-read);
+      color: var(--base-message-status-color-read);
 
       &:first-child {
         margin-right: -8px;
@@ -194,8 +192,8 @@ const getStatus = computed(() => {
   }
 
   &__time {
-    font-size: var(--g-message-font-size-time);
-    color: var(--g-message-color-time);
+    font-size: var(--base-message-font-size-time);
+    color: var(--base-message-color-time);
   }
 
   &__menu-button {
@@ -224,7 +222,7 @@ const getStatus = computed(() => {
   &__left,
   &__right {
     display: grid;
-    margin: var(--file-message-margin);
+    margin: var(--base-message-margin);
   }
 
   &__left {
@@ -244,7 +242,7 @@ const getStatus = computed(() => {
 
     .file-message__content {
       grid-column: 2;
-      background-color: var(--text-message-left-background-color);
+      background-color: var(--base-message-left-bg);
       color: var(--text-message-text-color);
     }
 
@@ -278,7 +276,7 @@ const getStatus = computed(() => {
     .file-message__content {
       grid-column: 1;
       margin-left: auto;
-      background-color: var(--text-message-right-background-color);
+      background-color: var(--base-message-right-bg);
       color: var(--text-message-text-color);
     }
 

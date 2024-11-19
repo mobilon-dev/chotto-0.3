@@ -140,6 +140,8 @@ const remaningTime = computed(() => {
       const time = audioDuration.value - currentTime.value;
       return formatTime(time);
     }
+  } else {
+    return ''
   }
 })
 
@@ -171,8 +173,8 @@ onMounted(() => {
 .video-message {
   &__content {
     position: relative;
-    height: var(--video-message-height);
-    width: var(--video-message-width);
+    height: 200px;
+    width: 200px;
   }
 
   &__info-container {
@@ -188,7 +190,6 @@ onMounted(() => {
   &__avatar {
     align-self: center;
     object-fit: cover;
-    background-color: var(--avatar-background-color);
     min-width: var(--avatar-width-small);
     min-height: var(--avatar-height-small);
     border-radius: var(--avatar-border-radius);
@@ -221,10 +222,10 @@ onMounted(() => {
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: var(--video-message-button-background);
-      width: var(--video-message-button-width);
-      height: var(--video-message-button-height);
-      border-radius: var(--video-message-button-border-radius);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.67);
       font-size: var(--icon-font-size-medium);
       color: var(--neutral-100);
     }
@@ -242,20 +243,20 @@ onMounted(() => {
 
   &__video {
     object-fit: cover;
-    height: var(--video-message-height);
-    width: var(--video-message-width);
-    border-radius: var(--video-message-border-radius);
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
   }
 
   &__remaining-time {
     position: absolute;
     bottom: 0;
     left: 0;
-    font-size: var(--g-message-font-size-remaining-time);
+    font-size: var(--base-message-font-size-remaining-time);
   }
 
   &__time {
-    font-size: var(--g-message-font-size-time);
+    font-size: var(--base-message-font-size-time);
   }
 
   &__status {
@@ -263,8 +264,8 @@ onMounted(() => {
 
     span {
       font-weight: 400;
-      color: var(--status-message-color-received);
-      font-size: var(--status-message-font-size);
+      color: var(--base-message-status-color-received);
+      font-size: var(--base-message-status-font-size);
     }
   }
 
@@ -272,7 +273,7 @@ onMounted(() => {
     right: -8px;
 
     span {
-      color: var(--status-message-color-received);
+      color: var(--base-message-status-color-received);
 
       &:first-child {
         margin-right: -8px;
@@ -284,7 +285,7 @@ onMounted(() => {
     right: -8px;
 
     span {
-      color: var(--status-message-color-read);
+      color: var(--base-message-status-color-read);
 
       &:first-child {
         margin-right: -8px;
@@ -318,7 +319,7 @@ onMounted(() => {
   &__left,
   &__right {
     display: grid;
-    margin: var(--video-message-margin);
+    margin: var(--base-message-margin);
   }
 
   &__left {
@@ -338,7 +339,7 @@ onMounted(() => {
 
     .video-message__content {
       grid-column: 2;
-      background-color: var(--text-message-left-background-color);
+      background-color: var(--base-message-left-bg);
       color: var(--text-message-text-color);
     }
 

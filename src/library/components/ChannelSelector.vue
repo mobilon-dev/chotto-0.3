@@ -114,9 +114,9 @@ onUnmounted(() => {
     span {
       display: block;
       cursor: pointer;
-      padding: var(--chat-input-button-padding);
+      padding: 14px;
       font-size: var(--icon-font-size-medium);
-      color: var(--icon-color);
+      color: var(--channels-selector-icon-color);
     }
   }
 
@@ -128,25 +128,25 @@ onUnmounted(() => {
 
   &__title {
     font-weight: 500;
-    font-size: var(--channels-title-font-size);
+    font-size: 14px;
   }
 
   &__selected {
     display: flex;
     justify-content: flex-start;
-    align-items: var(--channels-selected-align-items);
-    column-gap: var(--channels-selected-gap);
+    column-gap: 6px;
+    align-items: center;
   }
 
   &__icon {
     display: block;
     height: fit-content;
-    width: var(--channels-selected-icon-width);
-    height: var(--channels-selected-icon-height);
+    width: 16px;
+    height: 16px;
 
     img {
-      width: var(--channels-selected-icon-width);
-      height: var(--channels-selected-icon-height);
+      width: 16px;
+      height: 16px;
     }
   }
 
@@ -154,11 +154,11 @@ onUnmounted(() => {
     position: absolute;
     width: fit-content;
     box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.11);
-    top: var(--channels-popover-position-top);
-    right: var(--channels-popover-position-right);
-    background-color: var(--channels-popover-background-color);
-    padding: var(--channels-popover-padding);
-    border-radius: var(--channels-popover-border-radius);
+    top: -54px;
+    right: 78px;
+    padding: 18px;
+    border-radius: 10px;
+    background-color: var(--channels-selector-popover-background-color);
   }
 
   &__popover-list {

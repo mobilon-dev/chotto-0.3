@@ -29,6 +29,13 @@
           {{ message.text }}
         </p>
         <div class="text-message__info-container">
+          <div
+            v-if="message.views"
+            class="text-message__views"
+          >
+            <span class="pi pi-eye" />
+            <p>{{ message.views }}</p>
+          </div>
           <span
             v-if="message.time"
             class="text-message__time"
@@ -39,7 +46,7 @@
             :class="getStatus"
           >
             <span
-              v-if="message.status !== 'sent'"
+              v-if="message.status !== 'send'"
               class="pi pi-check"
             />
             <span class="pi pi-check" />
@@ -124,9 +131,9 @@ const getStatus = computed(() => {
     position: relative;
     word-wrap: break-word;
     width: fit-content;
-    padding: var(--text-message-padding);
-    max-width: var(--text-message-max-width);
-    border-radius: var(--text-message-border-radius);
+    max-width: 40%;
+    border-radius: 14px;
+    padding: 10px 10px 4px 16px;
   }
 
   &__info-container {
@@ -137,9 +144,25 @@ const getStatus = computed(() => {
     background-color: var(--message-background-color);
   }
 
+  &__views {
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+
+    span {
+      font-size: var(--base-message-views-icon-font-size);
+      color: var(--base-message-color-views);
+    }
+
+    p {
+      font-size: var(--base-message-views-font-size);
+      color: var(--base-message-color-views);
+    }
+  }
+
   &__time {
-    font-size: var(--g-message-font-size-time);
-    color: var(--g-message-color-time);
+    font-size: var(--base-message-font-size-time);
+    color: var(--base-message-color-time);
   }
 
   &__status {
@@ -147,14 +170,14 @@ const getStatus = computed(() => {
 
     span {
       font-weight: 400;
-      color: var(--status-message-color-received);
-      font-size: var(--status-message-font-size);
+      color: var(--base-message-status-color-received);
+      font-size: var(--base-message-status-font-size);
     }
   }
 
   &__status--received {
     span {
-      color: var(--status-message-color-received);
+      color: var(--base-message-status-color-received);
 
       &:first-child {
         margin-right: -8px;
@@ -164,7 +187,7 @@ const getStatus = computed(() => {
 
   &__status--read {
     span {
-      color: var(--status-message-color-read);
+      color: var(--base-message-status-color-read);
 
       &:first-child {
         margin-right: -8px;
@@ -173,20 +196,18 @@ const getStatus = computed(() => {
   }
 
   &__text {
-    font-size: var(--g-message-font-size-text);
-    margin: var(--g-message-margin-text, 0);
+    font-size: var(--base-message-font-size-text);
   }
 
   &__subtext {
-    /* font-weight: 500; */
-    font-size: var(--message-subtext-font-size);
-    color: var(--message-subtext-color);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--base-message-subtext-color);
   }
 
   &__avatar {
     align-self: center;
     object-fit: cover;
-    background-color: var(--avatar-background-color);
     min-width: var(--avatar-width-small);
     min-height: var(--avatar-height-small);
     border-radius: var(--avatar-border-radius);
@@ -218,7 +239,7 @@ const getStatus = computed(() => {
   &__left,
   &__right {
     display: grid;
-    margin: var(--text-message-margin);
+    margin: var(--base-message-margin);
   }
 
   &__left {
@@ -238,7 +259,7 @@ const getStatus = computed(() => {
 
     .text-message__content {
       grid-column: 2;
-      background-color: var(--text-message-left-background-color);
+      background-color: var(--base-message-left-bg);
       color: var(--text-message-text-color);
     }
 
@@ -271,7 +292,7 @@ const getStatus = computed(() => {
     .text-message__content {
       grid-column: 1;
       margin-left: auto;
-      background-color: var(--text-message-right-background-color);
+      background-color: var(--base-message-right-bg);
       color: var(--text-message-text-color);
     }
 

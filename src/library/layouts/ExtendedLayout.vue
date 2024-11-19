@@ -24,12 +24,11 @@
     display: grid;
     grid-template-columns: min-content 1.25fr 3fr min-content;
     transition: all 0.3s ease;
-    background-color: var(--app-container-bg, transparent);
-    margin: var(--app-margin, 0);
+    background-color: var(--layout-extended-bg, transparent);
     position: relative;
 
-    border-top: var(--layout-extended-column-border);
-    border-left: var(--layout-extended-column-border);
+    border-top: var(--layout-extended-column-border, none);
+    border-left: var(--layout-extended-column-border, none);
   }
 
   &__first-col {
@@ -38,9 +37,8 @@
     display: flex;
     flex-direction: column;
     height: inherit;
-    margin: var(--left-bar-margin);
-    border-right: var(--layout-extended-column-border);
-    border-bottom: var(--layout-extended-column-border);
+    border-right: var(--layout-extended-column-border, none);
+    border-bottom: var(--layout-extended-column-border, none);
   }
 
   &__second-col {
@@ -49,8 +47,8 @@
     display: flex;
     flex-direction: column;
     height: inherit;
-    border-right: var(--layout-extended-column-border);
-    border-bottom: var(--layout-extended-column-border);
+    border-right: var(--layout-extended-column-border, none);
+    border-bottom: var(--layout-extended-column-border, none);
   }
 
   &__third-col {
@@ -59,8 +57,9 @@
     flex-direction: column;
     grid-column: 3;
     height: inherit;
-    border-right: var(--layout-extended-column-border);
-    border-bottom: var(--layout-extended-column-border);
+    border-right: var(--layout-extended-column-border, none);
+    border-bottom: var(--layout-extended-column-border, none);
+    background-color: var(--layout-extended-third-col-bg);
   }
 }
 

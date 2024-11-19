@@ -3,13 +3,11 @@
     <BaseContainer
       width="30vw"
       height="70vh"
-    >  
+    >
       <FeedLayout>
-        <ChatInfo
-          :chat="selectedChat"
-        />
+        <ChatInfo :chat="selectedChat" />
         <Feed
-          :objects="messages"            
+          :objects="messages"
           @message-action="messageAction"
           @load-more="loadMore"
         />
@@ -204,4 +202,3 @@ onMounted(() => {
   selectChat(chatsStore.chats[1]);
 });
 </script>
-

@@ -1,33 +1,24 @@
 [data-theme="green"] {
 
   /* General Message */
-  --g-message-font-size-text: 14px;
-  --g-message-font-size-time: 10px;
-  --g-message-font-size-remaining-time: 14px;
-  --g-message-margin-text: 0 0 8px 0;
-  --message-background-color: ;
-  --message-subtext-font-size: 12px;
-  --message-subtext-color: var(--neutral-700);
-  
+  --base-message-font-size-text: 14px;
+  --base-message-font-size-time: 10px;
+  --base-message-views-font-size: 10px;
+  --base-message-views-icon-font-size: 12px;
+  --base-message-font-size-remaining-time: 14px;
 
-  /* Text Message */
-  --text-message-right-background-color: #d9fdd3;
-  --text-message-left-background-color: var(--neutral-100);
+  --base-message-right-bg: #d9fdd3;
+  --base-message-left-bg: var(--default-white);
+  --base-message-subtext-color: var(--neutral-700);
 
-  /* File Message */
-  --file-message-background-color: var(--default-white);
+  --base-message-margin: 0 0 8px 0;
 
   /* _____________________________________________ */
-
-  /* Audio Message */
-  --audio-message-background-left: var(--default-white);
-  --audio-message-background-right: #d9fdd3;
 
   /* Call Message */
   --call-message-font-size-title: 15px;
 
   /* Date Message */
-  --date-message-color: var(--neutral-700);
-  --date-bg: #fcfafa;
-  --date-border: 1px solid #d3d6db;
+  --date-message-bg: #fcfafa;
+  --date-message-border: 1px solid #d3d6db;
 }

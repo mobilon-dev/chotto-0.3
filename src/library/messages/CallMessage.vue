@@ -24,7 +24,7 @@
       <div class="call-message__content">
         <span
           class="call-message__icon pi pi-phone"
-          :style="{ color: message.isMissedCall ? 'var(--call-message-color-icon-error)' : 'var(--neutral-100)' }"
+          :style="{ color: message.isMissedCall ? 'var(--p-red-500)' : 'var(--neutral-100)' }"
         />
 
         <span
@@ -86,11 +86,12 @@ function getClass(message) {
     width: fit-content;
     display: grid;
     grid-template-columns: min-content 1fr;
-    column-gap: var(--call-message-gap);
-    max-width: var(--call-message-width);
-    min-width: var(--call-message-min-width);
-    padding: var(--call-message-padding);
-    border-radius: var(--text-message-border-radius);
+    border-radius: 14px;
+    column-gap: 12px;
+    max-width: 51%;
+    min-width: 30%;
+    padding: 10px 16px 4px 16px;
+
   }
 
   &__info-container {
@@ -115,10 +116,10 @@ function getClass(message) {
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    height: var(--call-message-icon-height);
-    width: var(--call-message-icon-width);
-    background-color: var(--call-message-backgroung-icon);
-    color: var(--call-message-color-icon-error);
+    height: 38px;
+    width: 38px;
+    background-color: var(--neutral-400);
+    color: var(--p-red-500);
     font-size: var(--avatar-icon-size-small);
   }
 
@@ -128,8 +129,8 @@ function getClass(message) {
   }
 
   &__time {
-    font-size: var(--g-message-font-size-time);
-    color: var(--g-message-color-time);
+    font-size: var(--base-message-font-size-time);
+    color: var(--base-message-color-time);
   }
 
   &__status {
@@ -137,14 +138,14 @@ function getClass(message) {
 
     span {
       font-weight: 400;
-      color: var(--status-message-color-received);
-      font-size: var(--status-message-font-size);
+      color: var(--base-message-status-color-received);
+      font-size: var(--base-message-status-font-size);
     }
   }
 
   &__status--received {
     span {
-      color: var(--status-message-color-received);
+      color: var(--base-message-status-color-received);
 
       &:first-child {
         margin-right: -8px;
@@ -154,7 +155,7 @@ function getClass(message) {
 
   &__status--read {
     span {
-      color: var(--status-message-color-read);
+      color: var(--base-message-status-color-read);
 
       &:first-child {
         margin-right: -8px;
@@ -164,14 +165,13 @@ function getClass(message) {
 
   &__subtext {
     font-weight: 500;
-    font-size: var(--subtext-font-size);
-    color: var(--subtext-color);
+    font-size: 12px;
+    color: var(--base-message-subtext-color);
   }
 
   &__avatar {
     align-self: center;
     object-fit: cover;
-    background-color: var(--avatar-background-color);
     min-width: var(--avatar-width-small);
     min-height: var(--avatar-height-small);
     border-radius: var(--avatar-border-radius);
@@ -203,7 +203,7 @@ function getClass(message) {
   &__left,
   &__right {
     display: grid;
-    margin: var(--text-message-margin);
+    margin: var(--base-message-margin);
   }
 
   &__left {
@@ -223,7 +223,7 @@ function getClass(message) {
 
     .call-message__content {
       grid-column: 2;
-      background-color: var(--text-message-left-background-color);
+      background-color: var(--base-message-left-bg);
       color: var(--text-message-text-color);
     }
   }
@@ -246,7 +246,7 @@ function getClass(message) {
     .call-message__content {
       grid-column: 1;
       margin-left: auto;
-      background-color: var(--text-message-right-background-color);
+      background-color: var(--base-message-right-bg);
       color: var(--text-message-text-color);
     }
   }

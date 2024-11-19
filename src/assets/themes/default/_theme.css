@@ -11,6 +11,44 @@
 
   --app-bg: var(--default-white);
   --app-color: var(--neutral-900);
-  --app-template-col: min-content 1.25fr 3fr 1.25fr;
   --app-font-family: 'Montserrat', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+#app {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  font-weight: 400;
+  font-family: var(--app-font-family);
+  color: var(--app-color);
+  background-color: var(--app-bg);
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+p,
+h1,
+h2 {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
 }

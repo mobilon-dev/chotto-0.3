@@ -4,4 +4,6 @@
   --float-window-border-radius: 0;
   --float-window-border-radius-header: 0;
 
+  /* Base Container */
+  --base-container-bg: var(--default-white)
 }

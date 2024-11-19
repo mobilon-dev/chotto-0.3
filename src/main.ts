@@ -3,9 +3,8 @@ import { createPinia } from 'pinia'
 
 import 'primeicons/primeicons.css'
 
-import App from './App.vue'; 
+import App from './App.vue';
 
-import './assets/app.css'
 import './assets/style.css'
 
 const pinia = createPinia()

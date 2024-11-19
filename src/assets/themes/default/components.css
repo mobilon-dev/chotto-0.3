@@ -1,17 +1,9 @@
-
 :root {
-  /* Blocks */
-  --rigth-bar-bg: var(--neutral-100);
-  --right-bar-margin: 30px 0;
-
-  --left-bar-margin: 0 6px 0 0;
-
 
   /* Chat Panel */
   --chat-panel-bg: var(--neutral-100);
-  --chat-panel-widget-bg: var(--neutral-200);
   --chat-panel-margin: 0px 0px 0px 10px;
-  --chat-panel-border-radius: 12px 12px 12px 12px;
+  --chat-panel-border-radius: 12px;
 
   /* Side Bar */
   --sidebar-padding-container: 18px 8px 30px 8px;
@@ -32,27 +24,30 @@
   --chat-list-button-actions-color: var(--neutral-600);
   --chat-list-button-actions-width: 32px;
   --chat-list-button-actions-height: 32px;
-  --chat-list-items-padding: 0 5px 0 5px;
-  --chat-list-filter-margin: 0 12px 30px 9px;
+  --chat-list-items-padding: 0 12px 0 12px;
+  --chat-list-filter-margin: 0 12px 30px 12px;
+  --chat-list-title-container-padding: 0 12px 20px 12px;
 
-  /* Inputs */
-  --inputtext-background: var(transparent);
-  --inputtext-color: var(--neutral-700);
-  --inputtext-border: 1px solid var(--neutral-300);
-  --inputtext-placeholder-color: var(--neutral-500);
+  /* Chat Filter */
+  /* --chat-filter-input-color: var(--neutral-700); */
+  --chat-filter-input-border: 1px solid var(--neutral-300);
+  /* --chat-filter-input-placeholder-color: var(--neutral-500); */
+  --chat-filter-hover-border-color: var(--neutral-500);
+  --chat-filter-focus-border-color: var(--neutral-700);
 
-  --inputtext-hover-border-color: var(--neutral-500);
-  --inputtext-focus-border-color: var(--neutral-700);
+  /* Chat Input */
+  --chat-input-background: var(--neutral-200);
+  --chat-input-border-radius: 0 0 12px 12px;
 
-  /* Avatars */
-  --avatar-background-color: var(--neutral-300);
-  --avatar-icon-color: var(--neutral-500);
+  /* --chat-input-color: var(--neutral-700); */
+  /* --chat-input-placeholder-color: var(--neutral-500); */
+  --chat-input-icon-color: var(--neutral-600);
 
-  /* Icons */
-  --icon-color: var(--neutral-600);
+  /* File Uploader */
+  --file-uploader-icon-color: var(--neutral-600);
 
-  /* Modals */
-  --modal-background-color: var(--default-white);
+  /* Float Container */
+  --float-container-icon-color: var(--neutral-600);
 
   /* _____________________________________________ */
 
@@ -60,16 +55,21 @@
 
   --chat-item-padding-container: 15px;
 
+  --chat-item-message-status-font-size: 12px;
+  --chat-item-message-status-color-received: var(--neutral-500);
+  --chat-item-message-status-color-read: #00c2ff;
+
+
   /* Info Container */
   --chat-item-border-radius: 6px;
-  --chat-item-selected: var(--neutral-200);
+  --chat-item-selected: var(--neutral-100);
   --chat-item-color-last-message: var(--neutral-400);
   --chat-item-font-weight-last-message: 500;
   --chat-item-font-weight-name: 600;
 
   /* Details Container */
   --chat-item-color-unread: var(--neutral-100);
-  --chat-item-background-color-unread: var(--emerald-500);
+  --chat-item-bg-unread: var(--emerald-500);
   --chat-item-color-time: var(--neutral-400);
   --chat-item-font-weight-time: 500;
   --chat-item-font-size-time: 12px;
@@ -83,57 +83,18 @@
 
   /* Feed */
   --feed-button-down-bg: var(--default-white);
-
-  /* Channels */
-  --channels-popover-background-color: var(--default-white);
+  --feed-icon-color: var(--neutral-600);
 
   /* Сontext Menu */
   --context-menu-background: var(--default-white);
 
-  /* Chat Input */
-  --chat-input-background: var(--neutral-200);
-  --chat-input-border-radius: 0 0 12px 12px;
+  /* Channel Selector */
+  --channels-selector-icon-color: var(--neutral-600);
 
+  --channels-selector-popover-background-color: var(--default-white);
+  --channels-selector-popover-border-radius: 10px;
 
   /* Scroll Bar */
   --scrollbar-bg: var(--neutral-50);
   --scrollbar-thumb-bg: var(--neutral-300);
-
-
-  /* Chat Item */
-
-  /* Info Container */
-  --chat-item-font-size-name: 16px;
-  --chat-item-font-size-last-message: 14px;
-
-  /* Details Container */
-  --chat-item-min-width-unread: 22px;
-  --chat-item-min-height-unread: 22px;
-  --chat-item-font-size-unread: 14px;
-
-
-  /* Channels */
-
-  --channels-title-font-size: 14px;
-
-  --channels-selected-gap: 6px;
-  --channels-selected-align-items: center;
-  --channels-selected-icon-width: 16px;
-  --channels-selected-icon-height: 16px;
-
-  --channels-popover-position-top: -54px;
-  --channels-popover-position-right: 78px;
-  --channels-popover-padding: 18px;
-  --channels-popover-border-radius: 10px;
-
-  /* Сontext Menu */
-
-  --context-menu-border-radius: 8px;
-  --context-menu-padding: 12px 0;
-  --context-menu-list-row-gap: 6px;
-  --context-menu-item-column-gap: 12px;
-
-  /* Chat Input */
-  --chat-input-button-padding: 14px;
-
 }

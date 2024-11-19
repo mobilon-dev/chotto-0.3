@@ -73,7 +73,6 @@ const emit = defineEmits(['close-panel']);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 80px;
   }
 
   &__title {
