@@ -57,6 +57,16 @@ export const LeftMessage: Story = {
   },
 };
 
+export const LeftMessageWithViews: Story = {
+  args: {
+    message: {
+      ...message,
+      position: 'left',
+      views: 18495,
+    },
+  },
+};
+
 export const LeftMessageLongText: Story = {
   args: {
     message: {
@@ -120,6 +130,16 @@ export const RightMessage: Story = {
     message: {
       ...message,
       position: 'right',
+    },
+  },
+};
+
+export const RightMessageWithViews: Story = {
+  args: {
+    message: {
+      ...message,
+      position: 'right',
+      views: 18495,
     },
   },
 };

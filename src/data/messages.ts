@@ -15,7 +15,7 @@ export const messages = [
     chatId: 1, type: "message.typing", subText: '89829445678', avatar: 'https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg',
   },
   {
-    chatId: 1, type: "message.text", text: "Привет! Сообщение с просмотрами",
+    chatId: 1, type: "message.text", text: "Привет! Сообщение с просмотрами", messageId: 'test_messageId',
     direction: 'outgoing', status: 'received', timestamp: '1727027959',
     views: 1000,
     actions: [
