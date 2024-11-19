@@ -26,7 +26,7 @@ export const StandardWithAvatar: Story = {
   args: {
     user: {
       ...userProfile,
-      avatar: 'https://dummyimage.com/64x64/000/fff.png&text=MV',
+      avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=MV',
     },
   },
 };

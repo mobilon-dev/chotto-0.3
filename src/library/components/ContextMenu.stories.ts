@@ -21,9 +21,9 @@ export const Standard: Story = {
 };
 
 const actionsWithIcons = [
-  {action: 'pin', title: 'прикрепить', icon: 'https://dummyimage.com/64x64/000/fff.png&text=pin'},
-  {action: 'edit', title: 'изменить', icon: 'https://dummyimage.com/64x64/000/fff.png&text=edit'},
-  {action: 'delete', title: 'удалить', icon: 'https://dummyimage.com/64x64/000/fff.png&text=del'},
+  {action: 'pin', title: 'прикрепить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=pin'},
+  {action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=edit'},
+  {action: 'delete', title: 'удалить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=del'},
 ];
 
 export const WithIcons: Story = {
