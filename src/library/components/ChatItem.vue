@@ -65,12 +65,12 @@
           class="chat-item__status-chat-container"
         >
           <div
-            v-if="chat.statusMessage"
+            v-if="chat['lastMessage.status']"
             class="chat-item__status-message"
             :class="getStatus"
           >
             <span
-              v-if="chat.statusMessage !== 'send'"
+              v-if="chat['lastMessage.status'] !== 'send'"
               class="pi pi-check"
             />
             <span class="pi pi-check" />
@@ -137,7 +137,7 @@ const hideMenu = () => {
 };
 
 const getStatus = computed(() => {
-  switch (props.chat.statusMessage) {
+  switch (props.chat['lastMessage.status']) {
     case 'read':
       return 'chat-item__status-message--read'
     case 'received':

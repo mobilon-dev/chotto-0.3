@@ -7,7 +7,7 @@
   >
     <img
       v-if="message.avatar"
-      class="file-message__avatar"
+      class="audio-message__avatar"
       :src="message.avatar"
       height="32"
       width="32"

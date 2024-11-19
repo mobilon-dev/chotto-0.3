@@ -172,12 +172,12 @@ export const RightMessageWithoutTime: Story = {
   },
 };
 
-export const RightMessageStatusSent: Story = {
+export const RightMessageStatusSend: Story = {
   args: {
     message: {
       ...message,
       position: 'right',
-      status: 'sent',
+      status: 'send',
     },
   },
 };

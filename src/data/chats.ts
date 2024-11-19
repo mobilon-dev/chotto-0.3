@@ -8,7 +8,7 @@ export const chats = [
     'lastActivity.time': 'час назад',
     isFixed: false,
     status: "#767676",
-    statusMessage: 'read',
+    'lastMessage.status': 'read',
     actions: [
       { action: 'add', title: 'добавить', icon: 'https://placehold.jp/30/dd6699/ffffff/64x64.png?text=add' },
       { action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/dd6699/ffffff/64x64.png?text=pin' },
@@ -24,7 +24,7 @@ export const chats = [
   {
     chatId: 3, name: "Анна",
     countUnread: 0,
-    statusMessage: 'read',
+    'lastMessage.status': 'read',
     isFixedBottom: true, actions: [
       { action: 'edit', title: 'изменить' }, { action: 'unpin', title: 'открепить' },
     ]
