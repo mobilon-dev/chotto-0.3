@@ -1,29 +1,42 @@
 <template>
-  <div
-    class="container"
-    @click="onClick"
-  >
+  <div class="container">
     <div
       v-if="canUploadFile && uploadStatus !== 'success'"
       class="chat-input__button-file"
     >
       <label>
+        <input type="file" @change="onFileSelected" />
         <span>
           <i class="pi pi-file-arrow-up" />
         </span>
       </label>
     </div>
-    <div v-if="!canUploadFile && uploadStatus === 'success'">
-      <p>Файл загружен и готов к отправке.</p>
 
-      <!-- PreviewModal 
+    <!--div
+      class="preview-container"
+      v-if="!canUploadFile && uploadStatus === 'success'"
+    >
+      <div class="preview">
+        <img :src="previewUrl" alt="Image Preview" class="preview-image" />
+      </div>
+      <span class="preview-name">{{ selectedFile.name }}</span>
+      <PreviewModal 
         v-if="isModalOpen"
         :previewUrl="previewUrl"
         :isImage="isImage"
         :isVideo="isVideo"
         :fileName="selectedFile.name"
         :handleSendEventFunction='sendFunctionWrapper'
-      /-->
+      />
+    </div-->
+    <div v-if="!canUploadFile && uploadStatus === 'success'">
+      <FilePreview
+        :previewUrl="previewUrl"
+        :isImage="isImage"
+        :isVideo="isVideo"
+        :fileName="selectedFile.name"
+        @reset="resetSelectedFile"
+      />
     </div>
     <div v-else-if="uploadStatus === 'uploading'">
       <p>Загрузка файла...</p>
@@ -32,8 +45,9 @@
       <p>Ошибка при загрузке файла.</p>
     </div>
   </div>
+
   <FileDropDownMenu
-    :clicked="clicked"
+    class="file-drop-down"
     :can-upload-file="canUploadFile"
     @file-selected="handleFileChange"
   />
@@ -41,8 +55,8 @@
 
 <script setup>
 import { ref, watch, nextTick } from "vue";
-import PreviewModal from "./PreviewModal.vue";
 import FileDropDownMenu from "./FileDropDownMenu.vue";
+import FilePreview from "./FilePreview.vue";
 const props = defineProps({
   canUploadFile: {
     type: Boolean,
@@ -62,10 +76,6 @@ const isImage = ref(false);
 const isVideo = ref(false);
 const isModalOpen = ref(false);
 
-const onClick = () => {
-  clicked.value = !clicked.value;
-};
-
 const emit = defineEmits(["fileUploaded"]);
 watch(
   () => props.canUploadFile,
@@ -78,6 +88,13 @@ watch(
   }
 );
 
+const resetSelectedFile = () => {
+  selectedFile.value = null;
+  emit("fileUploaded", "");
+  fileLink.value = "";
+  previewUrl.value = "";
+};
+
 const onFileSelected = (event) => {
   clicked.value = false;
   console.log("onFileSelected", event.target.files[0]);
@@ -85,7 +102,6 @@ const onFileSelected = (event) => {
   if (selectedFile.value) {
     generatePreview();
     uploadFile();
-    isModalOpen.value = true;
   }
 };
 
@@ -95,7 +111,6 @@ const handleFileChange = (file) => {
   if (selectedFile.value) {
     generatePreview();
     uploadFile();
-    isModalOpen.value = true;
   }
 };
 
@@ -211,10 +226,44 @@ const uploadFile = async () => {
 .preview-video {
   max-width: 200px;
   max-height: 200px;
-  margin-top: 10px;
+  border-radius: 5px;
 }
 
 .container {
   position: relative;
+}
+
+.file-drop-down {
+  display: none;
+}
+
+.file-drop-down:hover {
+  display: inherit;
+}
+
+.container:hover + .file-drop-down {
+  display: inherit;
+}
+
+.preview {
+  max-width: 150px;
+  max-height: 100px;
+  overflow: hidden;
+  border-radius: 5px;
+  border: 1px solid;
+}
+
+.preview-container {
+  margin-left: 10px;
+}
+
+.preview-name {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 150px;
+  width: 150px;
+
+  display: inline-block;
 }
 </style>
