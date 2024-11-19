@@ -1,13 +1,11 @@
 <template>
-  <div
-    class="container"
-    @click="onClick"
-  >
+  <div class="container">
     <div
       v-if="canUploadFile && uploadStatus !== 'success'"
       class="chat-input__button-file"
     >
       <label>
+        <input type="file" @change="onFileSelected" />
         <span>
           <i class="pi pi-file-arrow-up" />
         </span>
@@ -33,7 +31,7 @@
     </div>
   </div>
   <FileDropDownMenu
-    :clicked="clicked"
+    class="file-drop-down"
     :can-upload-file="canUploadFile"
     @file-selected="handleFileChange"
   />
@@ -213,5 +211,17 @@ const uploadFile = async () => {
 
 .container {
   position: relative;
+}
+
+.file-drop-down {
+  display: none;
+}
+
+.file-drop-down:hover {
+  display: inherit;
+}
+
+.container:hover + .file-drop-down {
+  display: inherit;
 }
 </style>

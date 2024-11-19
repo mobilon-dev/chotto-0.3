@@ -1,8 +1,5 @@
 <template>
-  <div
-    v-if="clicked && canUploadFile"
-    class="dropDownMenu"
-  >
+  <div v-if="canUploadFile" class="dropDownMenu">
     <div class="label-container">
       <label class="label-row">
         <i class="pi pi-image" />
@@ -12,7 +9,7 @@
           accept="image/*"
           type="file"
           @change="handleFileChange"
-        >
+        />
       </label>
       <label class="label-row">
         <i class="pi pi-video" />
@@ -22,16 +19,12 @@
           accept="video/*"
           type="file"
           @change="handleFileChange"
-        >
+        />
       </label>
       <label class="label-row">
         <i class="pi pi-file" />
         <span class="label-title">Файл</span>
-        <input
-          style="display: none"
-          type="file"
-          @change="handleFileChange"
-        >
+        <input style="display: none" type="file" @change="handleFileChange" />
       </label>
     </div>
   </div>
@@ -43,11 +36,6 @@ const props = defineProps({
     type: Boolean,
     required: true,
     default: true,
-  },
-  clicked: {
-    type: Boolean,
-    required: true,
-    default: false,
   },
 });
 
