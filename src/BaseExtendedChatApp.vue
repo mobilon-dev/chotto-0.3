@@ -10,7 +10,10 @@
             :sidebar-items="sidebarItems"
             @select-item="selectItem"
           />
-          <ThemeMode :themes="themes" :show="true"/>
+          <ThemeMode
+            :themes="themes"
+            :show="true"
+          />
         </template>
 
         <template #second-col>
