@@ -42,7 +42,7 @@
             class="text-message__time"
           >{{ message.time }}</span>
           <div
-            v-if="getClass(message) === 'text-message__right' && message.status"
+            v-if="getClass(message) === 'text-message__right' && statuses.includes(message.status)"
             class="text-message__status"
             :class="getStatus"
           >
@@ -114,6 +114,8 @@ const viewsAction = () => {
 function getClass(message) {
   return message.position === 'left' ? 'text-message__left' : 'text-message__right';
 }
+
+const statuses = ['read', 'received', 'send']
 
 const getStatus = computed(() => {
   switch (props.message.status) {

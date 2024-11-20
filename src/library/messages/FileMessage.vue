@@ -37,7 +37,7 @@
       <div class="file-message__info-container">
         <span class="file-message__time">{{ message.time }}</span>
         <div
-          v-if="getClass(message) === 'file-message__right' && message.status"
+          v-if="getClass(message) === 'file-message__right' && statuses.includes(message.status)"
           class="file-message__status"
           :class="getStatus"
         >
@@ -98,6 +98,8 @@ const hideMenu = () => {
 function getClass(message) {
   return message.position === 'left' ? 'file-message__left' : 'file-message__right';
 }
+
+const statuses = ['read', 'received', 'send']
 
 const getStatus = computed(() => {
   switch (props.message.status) {

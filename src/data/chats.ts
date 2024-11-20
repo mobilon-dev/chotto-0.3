@@ -17,9 +17,9 @@ export const chats = [
     typing: true,
   },
   {
-    chatId: 2, name: "Мария", countUnread: 0, isFixedTop: true, 
-    'lastActivity.time': 'час назад', 
-    'lastMessage.status': 'received', 
+    chatId: 2, name: "Мария", countUnread: 0, isFixedTop: true,
+    'lastActivity.time': 'час назад',
+    'lastMessage.status': 'received',
     actions: [
       { action: 'edit', title: 'изменить' }, { action: 'unpin', title: 'открепить' },
     ]

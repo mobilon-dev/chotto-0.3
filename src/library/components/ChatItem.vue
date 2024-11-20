@@ -65,7 +65,7 @@
           class="chat-item__status-chat-container"
         >
           <div
-            v-if="chat['lastMessage.status']"
+            v-if="statuses.includes(chat['lastMessage.status'])"
             class="chat-item__status-message"
             :class="getStatus"
           >
@@ -135,6 +135,8 @@ const hideMenu = () => {
   buttonMenuVisible.value = false;
   isOpenMenu.value = false
 };
+
+const statuses = ['read', 'received', 'send']
 
 const getStatus = computed(() => {
   switch (props.chat['lastMessage.status']) {
