@@ -77,6 +77,7 @@
 
 <script setup>
 import { onMounted, ref, watch } from "vue";
+import moment from 'moment';
 
 import {
   ChatInfo,
@@ -203,7 +204,7 @@ const addMessage = (message) => {
     url: message.url || null,
     filename: message.filename || null,
     direction: "outgoing",
-    timestamp: "1727112546",
+    timestamp: moment().unix(),
   });
   messages.value = getFeedObjects(); // Обновление сообщений
 };
