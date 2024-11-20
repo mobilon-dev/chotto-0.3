@@ -12,5 +12,6 @@ type Story = StoryObj<typeof FileUploader>;
 
 export const Standard: Story = {
   args: {
+    storybook: true,
   },
 };

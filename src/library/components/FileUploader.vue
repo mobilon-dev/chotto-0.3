@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" :class="{'storybook-container' : storybook}">
     <div
       v-if="canUploadFile && uploadStatus !== 'success'"
       class="chat-input__button-file"
@@ -8,30 +8,13 @@
         <input
           type="file"
           @change="onFileSelected"
+          ref="fileInput" 
         >
         <span>
           <i class="pi pi-file-arrow-up" />
         </span>
       </label>
     </div>
-
-    <!--div
-      class="preview-container"
-      v-if="!canUploadFile && uploadStatus === 'success'"
-    >
-      <div class="preview">
-        <img :src="previewUrl" alt="Image Preview" class="preview-image" />
-      </div>
-      <span class="preview-name">{{ selectedFile.name }}</span>
-      <PreviewModal 
-        v-if="isModalOpen"
-        :previewUrl="previewUrl"
-        :isImage="isImage"
-        :isVideo="isVideo"
-        :fileName="selectedFile.name"
-        :handleSendEventFunction='sendFunctionWrapper'
-      />
-    </div-->
     <div v-if="!canUploadFile && uploadStatus === 'success'">
       <FilePreview
         :preview-url="previewUrl"
@@ -48,28 +31,32 @@
       <p>Ошибка при загрузке файла.</p>
     </div>
   </div>
-
-  <FileDropDownMenu
-    class="file-drop-down"
-    :can-upload-file="canUploadFile"
-    @file-selected="handleFileChange"
-  />
+  <transition>
+    <ContextMenu
+      v-if="canUploadFile"
+      class="file-drop-down"
+      :actions="actions"
+      @click="triggerFileUpload"
+    />
+  </transition>
+  
 </template>
 
 <script setup>
 import { ref, watch, nextTick } from "vue";
-import FileDropDownMenu from "./FileDropDownMenu.vue";
 import FilePreview from "./FilePreview.vue";
+import ContextMenu from "./ContextMenu.vue";
 const props = defineProps({
   canUploadFile: {
     type: Boolean,
     required: true,
     default: true,
   },
+  storybook:{
+    type: Boolean,
+    default: false
+  }
 });
-
-const clicked = ref(false);
-const toggleState = ref(false);
 
 const selectedFile = ref(null);
 const uploadStatus = ref("");
@@ -77,7 +64,25 @@ const fileLink = ref("");
 const previewUrl = ref("");
 const isImage = ref(false);
 const isVideo = ref(false);
-const isModalOpen = ref(false);
+const fileInput = ref(null);
+
+const actions = [
+  {
+    action: 'image/*',
+    title : 'Фото',
+    icon : '../src/assets/icons/image.svg',
+   },
+   {
+    action: 'video/*',
+    title : 'Видео',
+    icon : '../src/assets/icons/camera-video.svg',
+   },
+   {
+    action: '',
+    title : 'Файл',
+    icon : '../src/assets/icons/file-earmark.svg',
+   },
+]
 
 const emit = defineEmits(["fileUploaded"]);
 watch(
@@ -99,18 +104,8 @@ const resetSelectedFile = () => {
 };
 
 const onFileSelected = (event) => {
-  clicked.value = false;
   console.log("onFileSelected", event.target.files[0]);
   selectedFile.value = event.target.files[0];
-  if (selectedFile.value) {
-    generatePreview();
-    uploadFile();
-  }
-};
-
-const handleFileChange = (file) => {
-  console.log("onFileSelected", file);
-  selectedFile.value = file;
   if (selectedFile.value) {
     generatePreview();
     uploadFile();
@@ -169,6 +164,14 @@ const uploadFile = async () => {
     uploadStatus.value = "error";
   }
 };
+
+const triggerFileUpload = (action) => {
+  if (fileInput.value && props.canUploadFile) {
+    fileInput.value.accept = action.action
+    fileInput.value.click();
+  }
+};
+
 </script>
 
 <style
@@ -176,16 +179,6 @@ const uploadFile = async () => {
   lang="scss"
 >
 .chat-input {
-  &__container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    border-radius: 0 0 12px 12px;
-    border-top: 1px solid var(--neutral-300);
-    background-color: var(--chat-input-background);
-    padding-top: 22px;
-  }
-
   &__button-file {
     input {
       position: absolute;
@@ -206,25 +199,6 @@ const uploadFile = async () => {
   }
 }
 
-.new-chat-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  width: 300px;
-}
-
 .preview-image,
 .preview-video {
   max-width: 200px;
@@ -238,6 +212,19 @@ const uploadFile = async () => {
 
 .file-drop-down {
   display: none;
+  font-size: inherit;
+  background: white;
+  outline: none;
+  border-radius: 4px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 60%;
+  align-items: center;
+  margin: 0;
+  max-width: fit-content;
+  max-height: fit-content;
+  z-index: 2;
 }
 
 .file-drop-down:hover {
@@ -246,6 +233,7 @@ const uploadFile = async () => {
 
 .container:hover + .file-drop-down {
   display: inherit;
+  
 }
 
 .preview {
@@ -266,7 +254,11 @@ const uploadFile = async () => {
   text-overflow: ellipsis;
   max-width: 150px;
   width: 150px;
-
   display: inline-block;
+}
+
+.storybook-container{
+  padding-top: 70px;
+  height: 200px
 }
 </style>
