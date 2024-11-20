@@ -155,12 +155,12 @@ const uploadFile = async () => {
     console.log('result', result);
     // fileLink.value = result.url;
     uploadStatus.value = "success";
-    props.canUploadFile = false;
+    // props.canUploadFile = false;
     
     emit("fileUploaded", {
       url: result.url, 
-      type: selectedFile.value.type, 
-      name: selectedFile.value.name,
+      type: getTypeFileByMime(selectedFile.value.type),
+      filename: selectedFile.value.name,
       size: selectedFile.value.size,
     });
   } catch (error) {
@@ -236,8 +236,7 @@ const triggerFileUpload = (action) => {
 }
 
 .container:hover + .file-drop-down {
-  display: inherit;
-  
+  display: inherit;  
 }
 
 .preview {
