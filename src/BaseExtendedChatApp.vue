@@ -10,7 +10,10 @@
             :sidebar-items="sidebarItems"
             @select-item="selectItem"
           />
-          <ThemeMode :themes="themes" :show="true"/>
+          <ThemeMode
+            :themes="themes"
+            :show="true"
+          />
         </template>
 
         <template #second-col>
@@ -74,6 +77,7 @@
 
 <script setup>
 import { onMounted, ref, watch } from "vue";
+import moment from 'moment';
 
 import {
   ChatInfo,
@@ -197,8 +201,10 @@ const addMessage = (message) => {
     text: message.text,
     type: message.type,
     chatId: selectedChat.value.chatId,
+    url: message.url || null,
+    filename: message.filename || null,
     direction: "outgoing",
-    timestamp: "1727112546",
+    timestamp: moment().unix(),
   });
   messages.value = getFeedObjects(); // Обновление сообщений
 };

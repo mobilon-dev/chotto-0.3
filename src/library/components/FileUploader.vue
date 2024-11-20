@@ -1,14 +1,17 @@
 <template>
-  <div class="container" :class="{'storybook-container' : storybook}">
+  <div
+    class="container"
+    :class="{'storybook-container' : storybook}"
+  >
     <div
       v-if="canUploadFile && uploadStatus !== 'success'"
       class="chat-input__button-file"
     >
       <label>
         <input
+          ref="fileInput"
           type="file"
-          @change="onFileSelected"
-          ref="fileInput" 
+          @change="onFileSelected" 
         >
         <span>
           <i class="pi pi-file-arrow-up" />
@@ -39,13 +42,13 @@
       @click="triggerFileUpload"
     />
   </transition>
-  
 </template>
 
 <script setup>
 import { ref, watch, nextTick } from "vue";
 import FilePreview from "./FilePreview.vue";
 import ContextMenu from "./ContextMenu.vue";
+import { getTypeFileByMime } from "../../helpers";
 const props = defineProps({
   canUploadFile: {
     type: Boolean,
@@ -60,7 +63,6 @@ const props = defineProps({
 
 const selectedFile = ref(null);
 const uploadStatus = ref("");
-const fileLink = ref("");
 const previewUrl = ref("");
 const isImage = ref(false);
 const isVideo = ref(false);
@@ -114,18 +116,15 @@ const onFileSelected = (event) => {
 
 const generatePreview = () => {
   const file = selectedFile.value;
-  const fileType = file.type;
-  console.log(fileType);
+  const fileType = getTypeFileByMime(file.type);
 
-  if (fileType.startsWith("image/")) {
-    isImage.value = true;
-    isVideo.value = false;
-  } else if (fileType.startsWith("video/")) {
-    isImage.value = false;
+  isImage.value = false;
+  isVideo.value = false;
+
+  if (fileType === 'image') {
+    isImage.value = true;  
+  } else if (fileType === 'video') {
     isVideo.value = true;
-  } else {
-    isImage.value = false;
-    isVideo.value = false;
   }
 
   if (isImage.value || isVideo.value) {
@@ -144,21 +143,26 @@ const uploadFile = async () => {
   const formData = new FormData();
   formData.append("file", selectedFile.value);
 
+  const url = "https://filebump.services.mobilon.ru/upload";
   try {
-    const response = await fetch(
-      "https://filebump.services.mobilon.ru/upload",
+    const response = await fetch(url,
       {
         method: "POST",
         body: formData,
       }
     );
     const result = await response.json();
-    fileLink.value = result.url;
+    console.log('result', result);
+    // fileLink.value = result.url;
     uploadStatus.value = "success";
-    props.canUploadFile = false;
-
-    // emit event with link
-    emit("fileUploaded", { url: fileLink.value, type: "message.file" });
+    // props.canUploadFile = false;
+    
+    emit("fileUploaded", {
+      url: result.url, 
+      type: getTypeFileByMime(selectedFile.value.type),
+      filename: selectedFile.value.name,
+      size: selectedFile.value.size,
+    });
   } catch (error) {
     console.error("Ошибка при загрузке файла:", error);
     uploadStatus.value = "error";
@@ -232,8 +236,7 @@ const triggerFileUpload = (action) => {
 }
 
 .container:hover + .file-drop-down {
-  display: inherit;
-  
+  display: inherit;  
 }
 
 .preview {

@@ -88,7 +88,6 @@ const fileUploaded = (obj) => {
 }
 
 const sendTyping = (event) => {
-  // console.log('typing', event.target.value);
   emit('typing', event.target.value);
 }
 
@@ -101,8 +100,11 @@ const sendMessage = () => {
   };
 
   if (fileLink.value) {
-    messageObject.type = 'message.file';
-    messageObject.text = fileLink.value;
+    messageObject.type = 'message.' + fileLink.value.type;
+    messageObject.url = fileLink.value.url;
+    messageObject.filename = fileLink.value.filename;
+    messageObject.text = message?.value?.trim();
+    messageObject.size = fileLink.value.size;
   } else {
     messageObject.type = 'message.text';
     messageObject.text = message.value.trim();
