@@ -26,8 +26,20 @@ const actionsWithIcons = [
   {action: 'delete', title: 'удалить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=del'},
 ];
 
+const actionsFileDropDown = [
+  {action: 'image/*', title : 'Фото', icon : '../src/assets/icons/image.svg',},
+  {action: 'video/*', title : 'Видео', icon : '../src/assets/icons/camera-video.svg',},
+  {action: '', title : 'Файл', icon : '../src/assets/icons/file-earmark.svg',},
+]
+
 export const WithIcons: Story = {
   args: {
     actions: actionsWithIcons,
+  },
+};
+
+export const FileDropDownMenu: Story = {
+  args: {
+    actions: actionsFileDropDown,
   },
 };
