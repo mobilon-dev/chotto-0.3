@@ -9,8 +9,11 @@
     <div
       v-else
       class="chat-input__button-file"
+      :class="{'chat-input__button-file-disabled' : !canUploadFile}"
     >
-      <label>
+      <label
+        @click="handleFileUpload"
+        >
         <input
           type="file"
           @change="onFileSelected"
@@ -103,6 +106,12 @@ const onFileSelected = (event) => {
   }
 };
 
+const handleFileUpload = (event) => {
+  if (!props.canUploadFile){
+    event.preventDefault()
+  }
+}
+
 const generatePreview = () => {
   const file = selectedFile.value;
   const fileType = file.type;
@@ -194,6 +203,12 @@ const triggerFileUpload = (action) => {
       padding: 14px;
       font-size: var(--icon-font-size-medium);
       color: var(--file-uploader-icon-color);
+    }
+  }
+  &__button-file-disabled{
+    span {
+      cursor: auto;
+      color: lightgray;
     }
   }
 }
