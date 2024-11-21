@@ -1,24 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
  
-import ContextMenu from './ContextMenu.vue';
+import ButtonContextMenu from './ButtonContextMenu.vue';
 
-const meta: Meta<typeof ContextMenu> = {
-  component: ContextMenu,
+const meta: Meta<typeof ButtonContextMenu> = {
+  component: ButtonContextMenu,
 };
  
 export default meta;
-type Story = StoryObj<typeof ContextMenu>;
+type Story = StoryObj<typeof ButtonContextMenu>;
  
 const actions = [
   {action: 'edit', title: 'изменить'},
   {action: 'delete', title: 'удалить'},
 ];
-  
-export const Standard: Story = {
-  args: {
-    actions,
-  },
-};
 
 const actionsWithIcons = [
   {action: 'pin', title: 'прикрепить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=pin'},
@@ -31,15 +25,32 @@ const actionsFileDropDown = [
   {action: 'video/*', title : 'Видео', prime: 'video',},
   {action: '', title : 'Файл', prime: 'file',},
 ]
+  
+export const Standard: Story = {
+  args: {
+    actions,
+    buttonClass: 'pi pi-list',
+  },
+};
 
 export const WithIcons: Story = {
   args: {
     actions: actionsWithIcons,
+    buttonClass: 'pi pi-list',
   },
 };
 
 export const FileDropDownMenu: Story = {
   args: {
     actions: actionsFileDropDown,
+    buttonClass: 'pi pi-file-arrow-up'
+  },
+};
+
+export const WithoutIcon: Story = {
+  args: {
+    actions,
+    buttonClass: '',
+    buttonTitle: 'Нажми сюда'
   },
 };
