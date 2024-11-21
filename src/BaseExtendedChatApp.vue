@@ -21,6 +21,7 @@
           <ChatList
             :chats="chatsStore.chats"
             filter-enabled
+            :actions="[{action: 'add', title: 'Добавить'}]"
             @select="selectChat"
             @action="chatAction"
           />
