@@ -71,7 +71,7 @@ import ChannelSelector from './ChannelSelector.vue'
 const emit = defineEmits(['send', 'typing']);
 
 // Define reactive message state
-const message = defineModel();
+const message = defineModel({type: String});
 const refInput = ref(null);
 const fileLink = ref(null);
 const fileSize = ref('')
@@ -93,11 +93,6 @@ const props = defineProps({
     required: false,
     default: () => { return [] }
   },
-
-  // fileUploaderComponent: {
-  //   type: Object,
-  //   default: null,
-  // },
 })
 
 
@@ -158,7 +153,7 @@ const sendMessage = () => {
 
   emit('send', messageObject);
   fileLink.value = false;
-  message.value = '';
+  message.value = null;
   unref(refInput).focus()
 };
 
@@ -187,16 +182,18 @@ const onSelectEmoji = (emoji) => {
     position: relative;
     display: grid;
     align-items: center;
-    padding-top: 22px;
     border-radius: var(--chat-input-border-radius);
     border-top: 1px solid var(--neutral-300);
     background-color: var(--chat-input-background);
+    padding: 5px;
+    grid-gap: 5px;
   }
   &__first-line{
     display: flex;
   }
   &__second-line{
     display: flex;
+    grid-gap: 5px;
   }
   &__third-line{
     display: flex;
@@ -223,10 +220,10 @@ const onSelectEmoji = (emoji) => {
   }
 
   &__input {
-    border: none;
+    border: 1px solid var(--neutral-300);
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
-    background-color: transparent;
+    background-color: #ffffff;
     padding: var(--inputtext-padding);
     width: var(--inputtext-width);
     color: var(--inputtext-color);
@@ -246,12 +243,12 @@ const onSelectEmoji = (emoji) => {
   &__button-emoji,
   &__button-send {
     background-color: transparent;
-    border: none;
+    border: 0px solid var(--neutral-300);;
 
     span {
       display: block;
       cursor: pointer;
-      padding: 14px;
+      padding: 12px;
       font-size: var(--icon-font-size-medium);
       color: var(--chat-input-icon-color);
     }

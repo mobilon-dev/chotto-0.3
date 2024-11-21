@@ -71,9 +71,9 @@ function handleReset() {
 <style scoped lang="scss">
 .preview {
   &__container{
-    margin-left: 10px;
+    /* margin-left: 10px; */
     display: flex;
-    border: 1px solid;
+    border: 1px solid var(--neutral-300);
     min-width: 300px;
     max-width: 400px;
     width: fit-content;
