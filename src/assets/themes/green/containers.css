@@ -1,6 +1,10 @@
 [data-theme="green"] {
 
-  /* FloatContainer */
+  /* General */
+  --container-color: var(--neutral-950);
+  --container-font-family: "Open Sans", sans-serif;
+
+  /* Float Container */
   --float-window-border-radius: 0;
   --float-window-border-radius-header: 0;
 

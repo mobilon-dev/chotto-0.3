@@ -67,7 +67,7 @@
         <div
           v-if="getClass(message) === 'video-message__right' && statuses.includes(message.status)"
           class="video-message__status"
-          :class="getStatus"
+          :class="status"
         >
           <span
             v-if="message.status !== 'sent'"
@@ -84,6 +84,8 @@
 import { ref, computed, onMounted } from 'vue'
 
 import ContextMenu from '../components/ContextMenu.vue'
+
+import { getStatus, statuses } from "../../helpers";
 
 const props = defineProps({
   message: {
@@ -113,6 +115,7 @@ const hideMenu = () => {
   isOpenMenu.value = false
 };
 
+const status = computed(() => getStatus(props.message.status))
 
 function togglePlayPause() {
   if (player.value) {
@@ -142,19 +145,6 @@ const remaningTime = computed(() => {
     }
   } else {
     return ''
-  }
-})
-
-const statuses = ['read', 'received', 'send']
-
-const getStatus = computed(() => {
-  switch (props.message.status) {
-    case 'read':
-      return 'video-message__status--read'
-    case 'received':
-      return 'video-message__status--received'
-    default:
-      return ''
   }
 })
 
@@ -271,7 +261,7 @@ onMounted(() => {
     }
   }
 
-  &__status--received {
+  .status--received {
     right: -8px;
 
     span {
@@ -283,7 +273,7 @@ onMounted(() => {
     }
   }
 
-  &__status--read {
+  .status--read {
     right: -8px;
 
     span {

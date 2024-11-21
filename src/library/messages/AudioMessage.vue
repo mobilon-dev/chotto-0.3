@@ -58,7 +58,7 @@
         <div
           v-if="getClass(message) === 'audio-message__right' && statuses.includes(message.status)"
           class="audio-message__status"
-          :class="getStatus"
+          :class="status"
         >
           <span
             v-if="message.status !== 'sent'"
@@ -93,6 +93,8 @@ import { ref, onMounted, computed } from 'vue'
 
 import ContextMenu from '../components/ContextMenu.vue'
 
+import { getStatus, statuses } from "../../helpers";
+
 // Define props
 const props = defineProps({
   message: {
@@ -117,6 +119,8 @@ const hideMenu = () => {
   buttonMenuVisible.value = false;
   isOpenMenu.value = false
 };
+
+const status = computed(() => getStatus(props.message.status))
 
 function togglePlayPause() {
   if (player.value) {
@@ -155,19 +159,6 @@ const progressPercent = computed(() => {
   }
   return 0;
 });
-
-const statuses = ['read', 'received', 'send']
-
-const getStatus = computed(() => {
-  switch (props.message.status) {
-    case 'read':
-      return 'audio-message__status--read'
-    case 'received':
-      return 'audio-message__status--received'
-    default:
-      return ''
-  }
-})
 
 function getClass(message) {
   return message.position === 'left' ? 'audio-message__left' : 'audio-message__right';
@@ -277,7 +268,7 @@ onMounted(() => {
     }
   }
 
-  &__status--received {
+  .status--received {
     span {
       color: var(--base-message-status-color-received);
 
@@ -287,7 +278,7 @@ onMounted(() => {
     }
   }
 
-  &__status--read {
+  .status--read {
     span {
       color: var(--base-message-status-color-read);
 

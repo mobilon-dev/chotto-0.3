@@ -156,6 +156,9 @@ onMounted(() => {
     width: 100%;
     height: 100%;
     position: relative;
+    font-weight: 400;
+    color: var(--container-color);
+    font-family: var(--container-font-family);
     border-radius: var(--float-window-border-radius);
     background-color: var(--float-window-bg);
     box-shadow: var(--float-window-box-shadow);
@@ -166,7 +169,7 @@ onMounted(() => {
     justify-content: space-between;
     align-items: center;
     cursor: grab;
-    padding: var(--float-window-padding);
+    padding: 18px 20px;
     background-color: var(--float-window-bg-header);
     border-radius: var(--float-window-border-radius-header);
   }
@@ -198,5 +201,32 @@ onMounted(() => {
     margin: var(--float-window-content-margin, 0);
     background-color: var(--float-window-content-bg, transparent);
   }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  p,
+  h1,
+  h2 {
+    margin: 0;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
 }
 </style>

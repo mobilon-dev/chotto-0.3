@@ -48,7 +48,7 @@
           <div
             v-if="getClass(message) === 'image-message__right' && statuses.includes(message.status)"
             class="image-message__status"
-            :class="getStatus"
+            :class="status"
           >
             <span
               v-if="message.status !== 'sent'"
@@ -110,6 +110,8 @@ import { ref, computed } from 'vue';
 
 import ContextMenu from '../components/ContextMenu.vue'
 
+import { getStatus, statuses } from "../../helpers";
+
 const props = defineProps({
   message: {
     type: Object,
@@ -131,22 +133,11 @@ const hideMenu = () => {
   isOpenMenu.value = false
 };
 
+const status = computed(() => getStatus(props.message.status))
+
 function getClass(message) {
   return message.position === 'left' ? 'image-message__left' : 'image-message__right';
 }
-
-const statuses = ['read', 'received', 'send']
-
-const getStatus = computed(() => {
-  switch (props.message.status) {
-    case 'read':
-      return 'image-message__status--read'
-    case 'received':
-      return 'image-message__status--received'
-    default:
-      return ''
-  }
-})
 </script>
 
 <style
@@ -205,7 +196,7 @@ const getStatus = computed(() => {
     }
   }
 
-  &__status--received {
+  .status--received {
     span {
       color: var(--default-white);
 
@@ -215,7 +206,7 @@ const getStatus = computed(() => {
     }
   }
 
-  &__status--read {
+  .status--read {
     span {
       color: var(--base-message-status-color-read);
 

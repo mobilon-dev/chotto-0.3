@@ -87,7 +87,6 @@ const emit = defineEmits(['open-panel']);
 
   &__title {
     grid-column: 2;
-    align-self: center;
     font-weight: 500;
     font-size: var(--chat-info-font-size-title);
   }

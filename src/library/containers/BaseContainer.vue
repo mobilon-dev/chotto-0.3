@@ -1,9 +1,11 @@
 <template>
-  <div
-    class="base__container"
-    :style="{ height, width }"
-  >
-    <slot name="default" />
+  <div class="base">
+    <div
+      class="base__container"
+      :style="{ height, width }"
+    >
+      <slot name="default" />
+    </div>
   </div>
 </template>
 
@@ -15,15 +17,42 @@ const props = defineProps({
 
 </script>
 
-<style
-  scoped
-  lang="scss"
->
+<style lang="scss">
 .base {
   &__container {
     transition: all 0.3s ease;
+    font-weight: 400;
     background-color: var(--base-container-bg, transparent);
+    color: var(--container-color);
+    font-family: var(--container-font-family);
   }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  p,
+  h1,
+  h2 {
+    margin: 0;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
 }
 
 .v-enter-active,

@@ -39,7 +39,7 @@
         <div
           v-if="getClass(message) === 'file-message__right' && statuses.includes(message.status)"
           class="file-message__status"
-          :class="getStatus"
+          :class="status"
         >
           <span
             v-if="message.status !== 'sent'"
@@ -74,6 +74,8 @@ import { computed, ref } from 'vue'
 
 import ContextMenu from '../components/ContextMenu.vue'
 
+import { getStatus, statuses } from "../../helpers";
+
 // Define props
 const props = defineProps({
   message: {
@@ -94,23 +96,11 @@ const hideMenu = () => {
   isOpenMenu.value = false
 };
 
+const status = computed(() => getStatus(props.message.status))
 
 function getClass(message) {
   return message.position === 'left' ? 'file-message__left' : 'file-message__right';
 }
-
-const statuses = ['read', 'received', 'send']
-
-const getStatus = computed(() => {
-  switch (props.message.status) {
-    case 'read':
-      return 'file-message__status--read'
-    case 'received':
-      return 'file-message__status--received'
-    default:
-      return ''
-  }
-})
 
 </script>
 
@@ -173,7 +163,7 @@ const getStatus = computed(() => {
     }
   }
 
-  &__status--received {
+  .status--received {
     span {
       color: var(--neutral-500);
 
@@ -183,7 +173,7 @@ const getStatus = computed(() => {
     }
   }
 
-  &__status--read {
+  .status--read {
     span {
       color: var(--base-message-status-color-read);
 
