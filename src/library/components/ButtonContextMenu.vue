@@ -3,16 +3,22 @@
     <button
       class="button"
       :class="{
-        'hoverable-button' : mode == 'hover',
         'disabled-button' : disabled,
       }"
       @click="toggle"
+      @mouseover="hover"
+      @mouseout="hoverout"
     >
-      <span :class="buttonDescription.class" >
-        {{ buttonDescription.title }}
+      <span :class="buttonClass" >
+        {{ buttonTitle }}
       </span>
     </button>
-    <div class="context-menu" ref="contextMenu">
+    <div 
+      class="context-menu" 
+      ref="contextMenu" 
+      @mouseover="hover"
+      @mouseout="hoverout"
+    >
       <div class="context-menu__container">
         <ul class="context-menu__list">
           <li
@@ -49,16 +55,18 @@ const props = defineProps({
   },
   mode: {
     type: String,
-    required:false,
+    required: false,
     default: 'hover',
   },
-  buttonDescription: {
-    type: Object,
+  buttonClass: {
+    type: String,
     required: false,
-    default: {
-      class: 'pi pi-list',
-      title: '',
-    }
+    default:  '',
+  },
+  buttonTitle: {
+    type: String,
+    required: false,
+    default:  '',
   },
   disabled: {
     type: Boolean,
@@ -74,14 +82,24 @@ const actionScope = ref(null)
 
 const click = (index) => {
   const action = props.actions[index];
-  if (props.mode != 'hover'){
-    contextMenu.value.style.display = 'none'
-  }
+  contextMenu.value.style.display = 'none'
   emit('click', action);
 }
 
 const toggle = () => {
   if (props.mode != 'hover'){
+    contextMenu.value.style.display = 'inherit'
+  }
+}
+
+const hover = () => {
+  if (props.mode == 'hover'){
+    contextMenu.value.style.display = 'inherit'
+  }
+}
+
+const hoverout = () => {
+  if (props.mode == 'hover'){
     contextMenu.value.style.display = 'none'
   }
 }

@@ -24,6 +24,7 @@
         :actions="channels"
         :mode="'hover'"
         @click="selectChannel"
+        :buttonClass="'pi pi-list'"
       />
       
     </div>
