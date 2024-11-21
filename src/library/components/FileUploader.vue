@@ -156,7 +156,6 @@ const uploadFile = async () => {
     const result = await response.json();
     fileLink.value = result.url;
     uploadStatus.value = "success";
-    props.canUploadFile = false;
 
     // emit event with link
     emit("fileUploaded", { 
