@@ -18,8 +18,8 @@
       </div>
       <span
         v-else
-        class="channels__selected"
-      >Чат не выбран</span>
+        class="channels__selected channels__title"
+      >Канал не выбран</span>
       <ButtonContextMenu
         :actions="channels"
         :mode="'hover'"
