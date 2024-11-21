@@ -1,5 +1,8 @@
 <template>
-  <div class="uploader-container" :class="{'storybook-container' : storybook}">
+  <div
+    class="uploader-container"
+    :class="{'storybook-container' : storybook}"
+  >
     <div v-if="uploadStatus === 'uploading'">
       <p>Загрузка файла...</p>
     </div>
@@ -13,11 +16,11 @@
     >
       <label
         @click="handleFileUpload"
-        >
+      >
         <input
+          ref="fileInput"
           type="file"
-          @change="onFileSelected"
-          ref="fileInput" 
+          @change="onFileSelected" 
         >
         <span>
           <i class="pi pi-file-arrow-up" />
@@ -31,13 +34,13 @@
       @click="triggerFileUpload"
     />
   </div>
-  
-  
 </template>
 
 <script setup>
 import { ref, watch, nextTick } from "vue";
 import ContextMenu from "./ContextMenu.vue";
+import {getTypeFileByMime} from '../../helpers'
+
 const props = defineProps({
   canUploadFile: {
     type: Boolean,
@@ -114,18 +117,14 @@ const handleFileUpload = (event) => {
 
 const generatePreview = () => {
   const file = selectedFile.value;
-  const fileType = file.type;
-  console.log(fileType);
+  const fileType = getTypeFileByMime(file.type);
+  isImage.value = false;
+  isVideo.value = false;
 
-  if (fileType.startsWith("image/")) {
-    isImage.value = true;
-    isVideo.value = false;
-  } else if (fileType.startsWith("video/")) {
-    isImage.value = false;
+  if (fileType === 'image') {
+    isImage.value = true;    
+  } else if (fileType === "video") {
     isVideo.value = true;
-  } else {
-    isImage.value = false;
-    isVideo.value = false;
   }
 
   if (isImage.value || isVideo.value) {
@@ -145,9 +144,10 @@ const uploadFile = async () => {
   const formData = new FormData();
   formData.append("file", selectedFile.value);
 
+  const url = "https://filebump.services.mobilon.ru/upload";
   try {
     const response = await fetch(
-      "https://filebump.services.mobilon.ru/upload",
+      url,
       {
         method: "POST",
         body: formData,
@@ -160,8 +160,10 @@ const uploadFile = async () => {
 
     // emit event with link
     emit("fileUploaded", { 
-      url: fileLink.value, 
-      type: "message.file", 
+      url: result.url, 
+      type: getTypeFileByMime(selectedFile.value.type),
+      filename: selectedFile.value.name,
+      size: selectedFile.value.size,
       previewUrl: previewUrl.value,
       isImage: isImage.value,
       isVideo: isVideo.value,

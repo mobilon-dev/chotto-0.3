@@ -4,29 +4,28 @@
     class="channels"
   >
     <div class="channels__container">
-        <div
-          v-if="selectedChannel"
-          class="channels__selected"
-        >
-          <span
-            v-if="selectedChannel.icon"
-            class="channels__icon"
-          >
-            <img :src="selectedChannel.icon">
-          </span>
-          <span class="channels__title">{{ selectedChannel.title }}</span>
-        </div>
+      <div
+        v-if="selectedChannel"
+        class="channels__selected"
+      >
         <span
-          v-else
-          class="channels__selected"
-        >Чат не выбран</span>
+          v-if="selectedChannel.icon"
+          class="channels__icon"
+        >
+          <img :src="selectedChannel.icon">
+        </span>
+        <span class="channels__title">{{ selectedChannel.title }}</span>
+      </div>
+      <span
+        v-else
+        class="channels__selected"
+      >Чат не выбран</span>
       <ButtonContextMenu
         :actions="channels"
         :mode="'hover'"
+        :button-class="'pi pi-list'"
         @click="selectChannel"
-        :buttonClass="'pi pi-list'"
       />
-      
     </div>
   </div>
 </template>

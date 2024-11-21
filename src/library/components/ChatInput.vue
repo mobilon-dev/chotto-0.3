@@ -1,27 +1,28 @@
 <template>
   <div class="chat-input">
     <div class="chat-input__container">
-      <div class="chat-input__first-line" v-if="fileLink">
+      <div
+        v-if="fileLink"
+        class="chat-input__first-line"
+      >
         <FilePreview
           :preview-url="fileLink.previewUrl"
           :is-image="fileLink.isImage"
           :is-video="fileLink.isVideo"
-          :fileName="fileLink.selectedFile.name"
-          :fileSize="fileSize"
+          :file-name="fileLink.selectedFile.name"
+          :file-size="fileSize"
           @reset="resetUploadedFile"
         />
       </div>
       <div class="chat-input__second-line">
         <textarea
           ref="refInput"
+          v-model="message"
           class="chat-input__input"
+          placeholder="Type a message..."
           @keydown.enter="sendMessage"
           @input="sendTyping"
-          v-model="message"
-          placeholder="Type a message..."
-        
-        >
-        </textarea>
+        />
         <button
           class="chat-input__button-send"
           @click="sendMessage"
@@ -31,14 +32,14 @@
       </div>
       <div class="chat-input__third-line">
         <Transition>
-        <EmojiPicker
-          v-if="enabledEmojiPicker"
-          class="chat-input__emoji"
-          :native="true"
-          :theme="changeThemeDialogEmoji"
-          picker-type=""
-          @select="onSelectEmoji"
-        />
+          <EmojiPicker
+            v-if="enabledEmojiPicker"
+            class="chat-input__emoji"
+            :native="true"
+            :theme="changeThemeDialogEmoji"
+            picker-type=""
+            @select="onSelectEmoji"
+          />
         </Transition>
         <FileUploader
           :can-upload-file="canUploadFile"
@@ -145,7 +146,10 @@ const sendMessage = () => {
   };
 
   if (fileLink.value) {
-    messageObject.type = 'message.file';
+    messageObject.type = 'message.' + fileLink.value.type;
+    messageObject.url = fileLink.value.url;
+    messageObject.filename = fileLink.value.filename;
+    messageObject.size = fileLink.value.size;
     messageObject.text = fileLink.value;
   } else {
     messageObject.type = 'message.text';
