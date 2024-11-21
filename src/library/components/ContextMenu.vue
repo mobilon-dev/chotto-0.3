@@ -14,6 +14,11 @@
             width="18"
             height="18"
           >
+          <i 
+            v-else-if="action.prime"
+            :class="'pi pi-' + action.prime" 
+          >
+          </i>
           <span>{{ action.title }}</span>
         </li>
       </ul>

@@ -34,7 +34,6 @@
 
 <script setup>
 import { ref, watch, nextTick } from "vue";
-import FilePreview from "./FilePreview.vue";
 import ContextMenu from "./ContextMenu.vue";
 const props = defineProps({
   canUploadFile: {
@@ -60,17 +59,17 @@ const actions = [
   {
     action: 'image/*',
     title : 'Фото',
-    icon : '../src/assets/icons/image.svg',
+    prime: 'image',
    },
    {
     action: 'video/*',
     title : 'Видео',
-    icon : '../src/assets/icons/camera-video.svg',
+    prime: 'video',
    },
    {
     action: '',
     title : 'Файл',
-    icon : '../src/assets/icons/file-earmark.svg',
+    prime: 'file',
    },
 ]
 
