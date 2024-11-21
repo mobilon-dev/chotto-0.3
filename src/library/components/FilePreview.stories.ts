@@ -16,6 +16,7 @@ export const ImageOrVideo: Story = {
     isImage: true,
     isVideo: false,
     fileName: "Sun-Day--1200x834.jpg",
+    fileSize: "195.2Гб"
   },
 };
 
@@ -25,5 +26,16 @@ export const File: Story = {
     isImage: false,
     isVideo: false,
     fileName: "file.pdf",
+    fileSize: "195.2Гб"
+  },
+};
+
+export const FileLongName: Story = {
+  args: {
+    previewUrl: "",
+    isImage: false,
+    isVideo: false,
+    fileName: "Требования безопасности к рабочему месту токаря-слесаря 25ого разряда ОАО Инновационные решения 2000-2035.pdf",
+    fileSize: "195.2Гб"
   },
 };

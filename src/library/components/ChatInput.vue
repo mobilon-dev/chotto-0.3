@@ -1,7 +1,36 @@
 <template>
   <div class="chat-input">
     <div class="chat-input__container">
-      <Transition>
+      <div class="chat-input__first-line" v-if="fileLink">
+        <FilePreview
+          :preview-url="fileLink.previewUrl"
+          :is-image="fileLink.isImage"
+          :is-video="fileLink.isVideo"
+          :fileName="fileLink.selectedFile.name"
+          :fileSize="fileSize"
+          @reset="resetUploadedFile"
+        />
+      </div>
+      <div class="chat-input__second-line">
+        <textarea
+          ref="refInput"
+          class="chat-input__input"
+          @keydown.enter="sendMessage"
+          @input="sendTyping"
+          v-model="message"
+          placeholder="Type a message..."
+        
+        >
+        </textarea>
+        <button
+          class="chat-input__button-send"
+          @click="sendMessage"
+        >
+          <span class="pi pi-send" />
+        </button>
+      </div>
+      <div class="chat-input__third-line">
+        <Transition>
         <EmojiPicker
           v-if="enabledEmojiPicker"
           class="chat-input__emoji"
@@ -10,41 +39,27 @@
           picker-type=""
           @select="onSelectEmoji"
         />
-      </Transition>
-      <FileUploader
-        :can-upload-file="canUploadFile"
-        @file-uploaded="fileUploaded"
-      />
-
-      <input
-        ref="refInput"
-        v-model="message"
-        class="chat-input__input"
-        placeholder="Type a message..."
-        @keydown.enter="sendMessage"
-        @input="sendTyping"
-      >
-      <ChannelSelector :channels="channels" />
-      <button
-        class="chat-input__button-emoji"
-        @click="toogleDialogEmoji"
-      >
-        <span class="pi pi-face-smile" />
-      </button>
-      <button
-        class="chat-input__button-send"
-        @click="sendMessage"
-      >
-        <span class="pi pi-send" />
-      </button>
+        </Transition>
+        <FileUploader
+          :can-upload-file="canUploadFile"
+          @file-uploaded="fileUploaded"
+        />
+        <ChannelSelector :channels="channels" />
+        <button
+          class="chat-input__button-emoji"
+          @click="toogleDialogEmoji"
+        >
+          <span class="pi pi-face-smile" />
+        </button>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { computed, ref, unref } from 'vue';
-import { FileUploader } from '.';
-
+import { computed, ref, unref, watch } from 'vue';
+import { FileUploader  } from '.';
+import FilePreview from './FilePreview.vue';
 // import picker compopnent
 import EmojiPicker from 'vue3-emoji-picker';
 import 'vue3-emoji-picker/css';
@@ -57,6 +72,7 @@ const emit = defineEmits(['send', 'typing']);
 const message = defineModel();
 const refInput = ref(null);
 const fileLink = ref(null);
+const fileSize = ref('')
 
 const canUploadFile = computed(() => {
   return !fileLink.value || fileLink.value === '';
@@ -82,12 +98,40 @@ const props = defineProps({
   // },
 })
 
+
+watch(
+  () => message.value,
+  () => {
+    refInput.value.style.height = "auto"
+    refInput.value.style.height = refInput.value.scrollHeight + 'px'
+  }
+);
+
+const sizeMeasurement = ['б','Кб',"Мб","Гб"]
+
+
 const fileUploaded = (obj) => {
   console.log('fileUploaded', obj);
-  fileLink.value = obj;
+  if (obj){
+    let size = obj.selectedFile.size
+    let index = 0
+    while(size > 1024){
+      size = size / 1024
+      index++
+    }
+    size = size.toFixed(2) + sizeMeasurement[index]
+    fileSize.value = size
+  }
+    fileLink.value = obj;
+}
+
+const resetUploadedFile = () => {
+  console.log('reset uploaded file')
+  fileLink.value = null
 }
 
 const sendTyping = (event) => {
+  // console.log('typing', event.target.value);
   emit('typing', event.target.value);
 }
 
@@ -100,11 +144,8 @@ const sendMessage = () => {
   };
 
   if (fileLink.value) {
-    messageObject.type = 'message.' + fileLink.value.type;
-    messageObject.url = fileLink.value.url;
-    messageObject.filename = fileLink.value.filename;
-    messageObject.text = message?.value?.trim();
-    messageObject.size = fileLink.value.size;
+    messageObject.type = 'message.file';
+    messageObject.text = fileLink.value;
   } else {
     messageObject.type = 'message.text';
     messageObject.text = message.value.trim();
@@ -139,12 +180,21 @@ const onSelectEmoji = (emoji) => {
 .chat-input {
   &__container {
     position: relative;
-    display: flex;
+    display: grid;
     align-items: center;
     padding-top: 22px;
     border-radius: var(--chat-input-border-radius);
     border-top: 1px solid var(--neutral-300);
     background-color: var(--chat-input-background);
+  }
+  &__first-line{
+    display: flex;
+  }
+  &__second-line{
+    display: flex;
+  }
+  &__third-line{
+    display: flex;
   }
 
   &__button-file {
@@ -155,6 +205,7 @@ const onSelectEmoji = (emoji) => {
       display: block;
       width: 0;
       height: 0;
+      
     }
 
     span {
@@ -175,7 +226,9 @@ const onSelectEmoji = (emoji) => {
     width: var(--inputtext-width);
     color: var(--inputtext-color);
     font-size: var(--inputtext-font-size);
-
+    white-space: normal;
+    overflow-y: hidden;
+    resize: none;
     &:focus-visible {
       outline: none;
     }

@@ -1,54 +1,41 @@
 <template>
-  <div
-    class="container"
-    :class="{'storybook-container' : storybook}"
-  >
+  <div class="uploader-container" :class="{'storybook-container' : storybook}">
+    <div v-if="uploadStatus === 'uploading'">
+      <p>Загрузка файла...</p>
+    </div>
+    <div v-else-if="uploadStatus === 'error'">
+      <p>Ошибка при загрузке файла.</p>
+    </div>
     <div
-      v-if="canUploadFile && uploadStatus !== 'success'"
+      v-else
       class="chat-input__button-file"
     >
       <label>
         <input
-          ref="fileInput"
           type="file"
-          @change="onFileSelected" 
+          @change="onFileSelected"
+          ref="fileInput" 
         >
         <span>
           <i class="pi pi-file-arrow-up" />
         </span>
       </label>
     </div>
-    <div v-if="!canUploadFile && uploadStatus === 'success'">
-      <FilePreview
-        :preview-url="previewUrl"
-        :is-image="isImage"
-        :is-video="isVideo"
-        :file-name="selectedFile.name"
-        @reset="resetSelectedFile"
-      />
-    </div>
-    <div v-else-if="uploadStatus === 'uploading'">
-      <p>Загрузка файла...</p>
-    </div>
-    <div v-else-if="uploadStatus === 'error'">
-      <p>Ошибка при загрузке файла.</p>
-    </div>
-  </div>
-  <transition>
     <ContextMenu
       v-if="canUploadFile"
       class="file-drop-down"
       :actions="actions"
       @click="triggerFileUpload"
     />
-  </transition>
+  </div>
+  
+  
 </template>
 
 <script setup>
 import { ref, watch, nextTick } from "vue";
 import FilePreview from "./FilePreview.vue";
 import ContextMenu from "./ContextMenu.vue";
-import { getTypeFileByMime } from "../../helpers";
 const props = defineProps({
   canUploadFile: {
     type: Boolean,
@@ -63,6 +50,7 @@ const props = defineProps({
 
 const selectedFile = ref(null);
 const uploadStatus = ref("");
+const fileLink = ref("");
 const previewUrl = ref("");
 const isImage = ref(false);
 const isVideo = ref(false);
@@ -100,12 +88,14 @@ watch(
 
 const resetSelectedFile = () => {
   selectedFile.value = null;
-  emit("fileUploaded", "");
-  fileLink.value = "";
+  emit("fileUploaded", null);
+  fileLink.value = null;
   previewUrl.value = "";
+  uploadStatus.value = ""
 };
 
 const onFileSelected = (event) => {
+  resetSelectedFile()
   console.log("onFileSelected", event.target.files[0]);
   selectedFile.value = event.target.files[0];
   if (selectedFile.value) {
@@ -116,15 +106,18 @@ const onFileSelected = (event) => {
 
 const generatePreview = () => {
   const file = selectedFile.value;
-  const fileType = getTypeFileByMime(file.type);
+  const fileType = file.type;
+  console.log(fileType);
 
-  isImage.value = false;
-  isVideo.value = false;
-
-  if (fileType === 'image') {
-    isImage.value = true;  
-  } else if (fileType === 'video') {
+  if (fileType.startsWith("image/")) {
+    isImage.value = true;
+    isVideo.value = false;
+  } else if (fileType.startsWith("video/")) {
+    isImage.value = false;
     isVideo.value = true;
+  } else {
+    isImage.value = false;
+    isVideo.value = false;
   }
 
   if (isImage.value || isVideo.value) {
@@ -140,28 +133,31 @@ const generatePreview = () => {
 
 const uploadFile = async () => {
   uploadStatus.value = "uploading";
+
   const formData = new FormData();
   formData.append("file", selectedFile.value);
 
-  const url = "https://filebump.services.mobilon.ru/upload";
   try {
-    const response = await fetch(url,
+    const response = await fetch(
+      "https://filebump.services.mobilon.ru/upload",
       {
         method: "POST",
         body: formData,
       }
     );
     const result = await response.json();
-    console.log('result', result);
-    // fileLink.value = result.url;
+    fileLink.value = result.url;
     uploadStatus.value = "success";
-    // props.canUploadFile = false;
-    
-    emit("fileUploaded", {
-      url: result.url, 
-      type: getTypeFileByMime(selectedFile.value.type),
-      filename: selectedFile.value.name,
-      size: selectedFile.value.size,
+    props.canUploadFile = false;
+
+    // emit event with link
+    emit("fileUploaded", { 
+      url: fileLink.value, 
+      type: "message.file", 
+      previewUrl: previewUrl.value,
+      isImage: isImage.value,
+      isVideo: isVideo.value,
+      selectedFile: selectedFile.value,
     });
   } catch (error) {
     console.error("Ошибка при загрузке файла:", error);
@@ -210,7 +206,7 @@ const triggerFileUpload = (action) => {
   border-radius: 5px;
 }
 
-.container {
+.uploader-container {
   position: relative;
 }
 
@@ -223,7 +219,7 @@ const triggerFileUpload = (action) => {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 60%;
+  bottom: 80%;
   align-items: center;
   margin: 0;
   max-width: fit-content;
@@ -235,8 +231,9 @@ const triggerFileUpload = (action) => {
   display: inherit;
 }
 
-.container:hover + .file-drop-down {
-  display: inherit;  
+.uploader-container:hover .file-drop-down {
+  display: inherit;
+  
 }
 
 .preview {
@@ -261,7 +258,8 @@ const triggerFileUpload = (action) => {
 }
 
 .storybook-container{
-  padding-top: 70px;
-  height: 200px
+  padding-top: 20px;
+  margin-top: 50px;
+  height: 100px;
 }
 </style>
