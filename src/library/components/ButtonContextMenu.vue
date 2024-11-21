@@ -125,15 +125,6 @@ onUnmounted(() => {
   lang="scss"
 >
 
-.hoverable-button:hover + .context-menu {
-  display: inherit;
-}
-
-.hoverable-button + .context-menu:hover {
-  display: inherit;
-}
-
-
 .button {
     background-color: transparent;
     border: none;

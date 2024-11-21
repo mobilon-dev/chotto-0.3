@@ -255,8 +255,7 @@ const onSelectEmoji = (emoji) => {
 
   &__emoji {
     position: absolute;
-    bottom: 80px;
-    right: 1%;
+    bottom: 40%;
   }
 }
 
