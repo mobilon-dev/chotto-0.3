@@ -44,13 +44,14 @@
           :can-upload-file="canUploadFile"
           @file-uploaded="fileUploaded"
         />
-        <ChannelSelector :channels="channels" />
+        
         <button
           class="chat-input__button-emoji"
           @click="toogleDialogEmoji"
         >
           <span class="pi pi-face-smile" />
         </button>
+        <ChannelSelector :channels="channels" />
       </div>
     </div>
   </div>
