@@ -145,7 +145,7 @@ const sendMessage = () => {
     messageObject.url = fileLink.value.url;
     messageObject.filename = fileLink.value.filename;
     messageObject.size = fileLink.value.size;
-    messageObject.text = fileLink.value;
+    messageObject.text = message?.value?.trim();
   } else {
     messageObject.type = 'message.text';
     messageObject.text = message.value.trim();
