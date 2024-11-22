@@ -67,7 +67,7 @@
           <div
             v-if="statuses.includes(chat['lastMessage.status'])"
             class="chat-item__status-message"
-            :class="getStatus"
+            :class="status"
           >
             <span
               v-if="chat['lastMessage.status'] !== 'send'"
@@ -98,6 +98,8 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import ContextMenu from './ContextMenu.vue'
+import { getStatus, statuses } from "../../helpers";
+
 // Define props
 const props = defineProps({
   chat: {
@@ -136,18 +138,7 @@ const hideMenu = () => {
   isOpenMenu.value = false
 };
 
-const statuses = ['read', 'received', 'send']
-
-const getStatus = computed(() => {
-  switch (props.chat['lastMessage.status']) {
-    case 'read':
-      return 'chat-item__status-message--read'
-    case 'received':
-      return 'chat-item__status-message--received'
-    default:
-      return ''
-  }
-})
+const status = computed(() => getStatus(props.chat['lastMessage.status']))
 
 let timer;
 const typingText = 'typing...';
@@ -339,27 +330,19 @@ onUnmounted(() => {
       font-size: var(--chat-item-message-status-font-size);
     }
   }
+}
 
-  &__status-message--received {
-    span {
-      color: var(--chat-item-message-status-color-received);
+.status--received span {
+  color: var(--chat-item-message-status-color-received);
+}
 
-      &:first-child {
-        margin-right: -8px;
-      }
-    }
-  }
+.status--read span {
+  color: var(--chat-item-message-status-color-read);
+}
 
-  &__status-message--read {
-    span {
-      color: var(--chat-item-message-status-color-read);
-
-      &:first-child {
-        margin-right: -8px;
-      }
-    }
-  }
-
+.status--received span:first-child,
+.status--read span:first-child {
+  margin-right: -8px;
 }
 
 .text-enter-active,
