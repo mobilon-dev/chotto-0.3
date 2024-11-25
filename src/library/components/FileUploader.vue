@@ -24,11 +24,11 @@
         :actions="actions"
         :mode="'hover'"
         :button-class="'pi pi-file-arrow-up'"
-        @click="triggerFileUpload"
-        @buttonClick="triggerFileUploadDefault"
-        :menuSide="'top'"
-        :contextMenuKey="'file-uploader'"
+        :menu-side="'top'"
+        :context-menu-key="'file-uploader'"
         :disabled="!canUploadFile"
+        @click="triggerFileUpload"
+        @button-click="triggerFileUploadDefault"
       />
     </div>
   </div>

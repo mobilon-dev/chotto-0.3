@@ -32,7 +32,6 @@
         </button>
       </div>
       <div class="chat-input__third-line">
-        
         <FileUploader
           :can-upload-file="canUploadFile"
           @file-uploaded="fileUploaded"
@@ -53,7 +52,10 @@
             @select="onSelectEmoji"
           />
         </Transition>
-        <ChannelSelector :channels="channels" />
+        <ChannelSelector
+          :channels="channels"
+          @select-channel="onSelectChannel"
+        />
       </div>
     </div>
   </div>
@@ -69,7 +71,7 @@ import 'vue3-emoji-picker/css';
 import ChannelSelector from './ChannelSelector.vue'
 
 // Define emits
-const emit = defineEmits(['send', 'typing']);
+const emit = defineEmits(['send', 'typing', 'selectChannel']);
 
 // Define reactive message state
 const message = defineModel({type: String});
@@ -129,6 +131,10 @@ const resetUploadedFile = () => {
 const sendTyping = (event) => {
   // console.log('typing', event.target.value);
   emit('typing', event.target.value);
+}
+
+const onSelectChannel = (channel) => {
+  emit('selectChannel', channel);
 }
 
 // Define the method to send the message

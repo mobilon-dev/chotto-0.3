@@ -38,20 +38,19 @@
                 <template #actions>
                   <div style="display: flex;">
                     <button
-                    class="chat-info__button-panel"
-                    @click="isOpenChatPanel = !isOpenChatPanel"
-                  >
-                    <span class="pi pi-info-circle" />
-                  </button>
-                  <ButtonContextMenu
-                  :actions="actions"
-                  :buttonClass="'pi pi-list'"
-                  :mode="'click'"
-                  :menuSide="'bottom'"
-                  :contextMenuKey="'top-actions'"
-                  />
+                      class="chat-info__button-panel"
+                      @click="isOpenChatPanel = !isOpenChatPanel"
+                    >
+                      <span class="pi pi-info-circle" />
+                    </button>
+                    <ButtonContextMenu
+                      :actions="actions"
+                      :button-class="'pi pi-list'"
+                      :mode="'click'"
+                      :menu-side="'bottom'"
+                      :context-menu-key="'top-actions'"
+                    />
                   </div>
-                  
                 </template>
               </ChatInfo>
               <Feed
@@ -64,6 +63,7 @@
                 :enable-emoji="true"
                 :channels="channels"
                 @send="addMessage"
+                @select-channel="onSelectChannel"
               />
             </template>
 
@@ -104,6 +104,7 @@ import {
   useModalSelectUser2,
   useModalCreateChat,
   useModalCreateChat2,
+  ButtonContextMenu,
 } from "./library";
 
 import {
@@ -115,7 +116,6 @@ import {
 
 import { useChatsStore } from "./stores/useChatStore";
 import { transformToFeed } from "./transform/transformToFeed";
-import ButtonContextMenu from "./library/components/ButtonContextMenu.vue";
 
 
 // Define props
@@ -236,6 +236,10 @@ const getFeedObjects = () => {
     return [];
   }
 };
+
+const onSelectChannel = (channel) => {
+  console.log('selected channel', channel);
+}
 
 const addMessage = (message) => {
   console.log(message);
