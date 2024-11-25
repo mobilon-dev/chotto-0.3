@@ -130,7 +130,6 @@ const selectChat = (chat) => {
 const getSortedAndFilteredChats = () => {
   return props.chats
     .toSorted((a, b) => {
-      if(!(a.metadata && b.metadata)) return 0;
       if (Number(a['lastActivity.timestamp']) > Number(b['lastActivity.timestamp'])) return -1;
       if (Number(a['lastActivity.timestamp']) < Number(b['lastActivity.timestamp'])) return 1;
       if (Number(a['lastActivity.timestamp']) == Number(b['lastActivity.timestamp'])) return 0;
@@ -141,7 +140,7 @@ const getSortedAndFilteredChats = () => {
       if (a.countUnread == b.countUnread) return 0;
     })
     .filter(c => {
-      return c.name.includes(filter.value) || 
+      return c.name.includes(filter.value) ||
         c.metadata.includes(filter.value);
     });
 }
