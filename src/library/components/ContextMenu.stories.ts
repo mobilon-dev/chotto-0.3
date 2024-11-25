@@ -27,9 +27,9 @@ const actionsWithIcons = [
 ];
 
 const actionsFileDropDown = [
-  {action: 'image/*', title : 'Фото', icon : '../src/assets/icons/image.svg',},
-  {action: 'video/*', title : 'Видео', icon : '../src/assets/icons/camera-video.svg',},
-  {action: '', title : 'Файл', icon : '../src/assets/icons/file-earmark.svg',},
+  {action: 'image/*', title : 'Фото', prime: 'image',},
+  {action: 'video/*', title : 'Видео', prime: 'video',},
+  {action: '', title : 'Файл', prime: 'file',},
 ]
 
 export const WithIcons: Story = {

@@ -121,20 +121,28 @@ const emit = defineEmits(['select', 'action']);
 
 // Define method
 const selectChat = (chat) => {
-  emit('select', chat);
   props.chats.forEach(c => c.isSelected = false);
   const c = props.chats.find(c => c.chatId === chat.chatId);
   c.isSelected = true;
+  emit('select', chat);
 };
 
 const getSortedAndFilteredChats = () => {
   return props.chats
+    .toSorted((a, b) => {
+      if (Number(a['lastActivity.timestamp']) > Number(b['lastActivity.timestamp'])) return -1;
+      if (Number(a['lastActivity.timestamp']) < Number(b['lastActivity.timestamp'])) return 1;
+      if (Number(a['lastActivity.timestamp']) == Number(b['lastActivity.timestamp'])) return 0;
+    })
     .toSorted((a, b) => {   // immutable sort
       if (a.countUnread > b.countUnread) return -1;
       if (a.countUnread < b.countUnread) return 1;
       if (a.countUnread == b.countUnread) return 0;
     })
-    .filter(c => c.name.includes(filter.value));
+    .filter(c => {
+      return c.name.includes(filter.value) ||
+        c.metadata.includes(filter.value);
+    });
 }
 
 const getFilter = (value) => {

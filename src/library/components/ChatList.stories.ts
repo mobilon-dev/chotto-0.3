@@ -147,3 +147,31 @@ export const ChatsWithStatuses: Story = {
     filterEnabled: false,
   },
 };
+
+const chatsWithTypings = [{
+  chatId: '100',
+  avatar: "https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png",
+  name: "John Doe",
+  lastMessage: "Привет!",
+  countUnread: "21",
+  'lastActivity.time': "12:11",
+  status: '#FF0000',
+  typing: true,
+},{
+  chatId: '102',
+  name: "John Doe 2",
+  lastMessage: "Привет 2!",
+  countUnread: "677",
+  'lastActivity.time': "12:12",
+  status: '#00FF00',
+  typing: true,
+}];
+
+
+
+export const ChatsWithTypings: Story = {
+  args: {
+    chats: [...chats, ...chatsWithTypings],
+    filterEnabled: false,
+  },
+};

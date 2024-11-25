@@ -1,54 +1,44 @@
 <template>
   <div
-    class="container"
+    class="uploader-container"
     :class="{'storybook-container' : storybook}"
   >
-    <div
-      v-if="canUploadFile && uploadStatus !== 'success'"
-      class="chat-input__button-file"
-    >
-      <label>
-        <input
-          ref="fileInput"
-          type="file"
-          @change="onFileSelected" 
-        >
-        <span>
-          <i class="pi pi-file-arrow-up" />
-        </span>
-      </label>
-    </div>
-    <div v-if="!canUploadFile && uploadStatus === 'success'">
-      <FilePreview
-        :preview-url="previewUrl"
-        :is-image="isImage"
-        :is-video="isVideo"
-        :file-name="selectedFile.name"
-        @reset="resetSelectedFile"
-      />
-    </div>
-    <div v-else-if="uploadStatus === 'uploading'">
+    <div v-if="uploadStatus === 'uploading'">
       <p>Загрузка файла...</p>
     </div>
     <div v-else-if="uploadStatus === 'error'">
       <p>Ошибка при загрузке файла.</p>
     </div>
+    
+    <div
+      v-else
+      class="chat-input__button-file"
+      :class="{'chat-input__button-file-disabled' : !canUploadFile}"
+    >
+      <input
+        ref="fileInput"
+        type="file"
+        @change="onFileSelected" 
+      >
+      <ButtonContextMenu
+        :actions="actions"
+        :mode="'hover'"
+        :button-class="'pi pi-file-arrow-up'"
+        :menu-side="'top'"
+        :context-menu-key="'file-uploader'"
+        :disabled="!canUploadFile"
+        @click="triggerFileUpload"
+        @button-click="triggerFileUploadDefault"
+      />
+    </div>
   </div>
-  <transition>
-    <ContextMenu
-      v-if="canUploadFile"
-      class="file-drop-down"
-      :actions="actions"
-      @click="triggerFileUpload"
-    />
-  </transition>
 </template>
 
 <script setup>
 import { ref, watch, nextTick } from "vue";
-import FilePreview from "./FilePreview.vue";
-import ContextMenu from "./ContextMenu.vue";
-import { getTypeFileByMime } from "../../helpers";
+import ButtonContextMenu from "./ButtonContextMenu.vue";
+import {getTypeFileByMime} from '../../helpers'
+
 const props = defineProps({
   canUploadFile: {
     type: Boolean,
@@ -63,26 +53,33 @@ const props = defineProps({
 
 const selectedFile = ref(null);
 const uploadStatus = ref("");
+const fileLink = ref("");
 const previewUrl = ref("");
 const isImage = ref(false);
 const isVideo = ref(false);
+const isAudio = ref(false)
 const fileInput = ref(null);
 
 const actions = [
   {
+    action: 'audio/*',
+    title: 'Аудио',
+    prime: 'headphones',
+  },
+  {
     action: 'image/*',
     title : 'Фото',
-    icon : '../src/assets/icons/image.svg',
+    prime: 'image',
    },
    {
     action: 'video/*',
     title : 'Видео',
-    icon : '../src/assets/icons/camera-video.svg',
+    prime: 'video',
    },
    {
     action: '',
     title : 'Файл',
-    icon : '../src/assets/icons/file-earmark.svg',
+    prime: 'file',
    },
 ]
 
@@ -100,12 +97,14 @@ watch(
 
 const resetSelectedFile = () => {
   selectedFile.value = null;
-  emit("fileUploaded", "");
-  fileLink.value = "";
+  emit("fileUploaded", null);
+  fileLink.value = null;
   previewUrl.value = "";
+  uploadStatus.value = ""
 };
 
 const onFileSelected = (event) => {
+  resetSelectedFile()
   console.log("onFileSelected", event.target.files[0]);
   selectedFile.value = event.target.files[0];
   if (selectedFile.value) {
@@ -114,17 +113,21 @@ const onFileSelected = (event) => {
   }
 };
 
+
 const generatePreview = () => {
   const file = selectedFile.value;
   const fileType = getTypeFileByMime(file.type);
-
   isImage.value = false;
   isVideo.value = false;
+  isAudio.value = false
 
   if (fileType === 'image') {
-    isImage.value = true;  
-  } else if (fileType === 'video') {
+    isImage.value = true;    
+  } else if (fileType === "video") {
     isVideo.value = true;
+  }
+  else if (fileType === 'audio'){
+    isAudio.value = true
   }
 
   if (isImage.value || isVideo.value) {
@@ -138,30 +141,37 @@ const generatePreview = () => {
   }
 };
 
+
 const uploadFile = async () => {
   uploadStatus.value = "uploading";
+
   const formData = new FormData();
   formData.append("file", selectedFile.value);
 
   const url = "https://filebump.services.mobilon.ru/upload";
   try {
-    const response = await fetch(url,
+    const response = await fetch(
+      url,
       {
         method: "POST",
         body: formData,
       }
     );
     const result = await response.json();
-    console.log('result', result);
-    // fileLink.value = result.url;
+    fileLink.value = result.url;
     uploadStatus.value = "success";
-    // props.canUploadFile = false;
-    
-    emit("fileUploaded", {
+
+    // emit event with link
+    emit("fileUploaded", { 
       url: result.url, 
       type: getTypeFileByMime(selectedFile.value.type),
       filename: selectedFile.value.name,
       size: selectedFile.value.size,
+      previewUrl: previewUrl.value,
+      isImage: isImage.value,
+      isVideo: isVideo.value,
+      isAudio: isAudio.value,
+      selectedFile: selectedFile.value,
     });
   } catch (error) {
     console.error("Ошибка при загрузке файла:", error);
@@ -172,6 +182,12 @@ const uploadFile = async () => {
 const triggerFileUpload = (action) => {
   if (fileInput.value && props.canUploadFile) {
     fileInput.value.accept = action.action
+    fileInput.value.click();
+  }
+};
+
+const triggerFileUploadDefault = () => {
+  if (fileInput.value && props.canUploadFile) {
     fileInput.value.click();
   }
 };
@@ -201,6 +217,12 @@ const triggerFileUpload = (action) => {
       color: var(--file-uploader-icon-color);
     }
   }
+  &__button-file-disabled{
+    span {
+      cursor: auto;
+      color: lightgray;
+    }
+  }
 }
 
 .preview-image,
@@ -210,7 +232,7 @@ const triggerFileUpload = (action) => {
   border-radius: 5px;
 }
 
-.container {
+.uploader-container {
   position: relative;
 }
 
@@ -223,7 +245,7 @@ const triggerFileUpload = (action) => {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 60%;
+  bottom: 80%;
   align-items: center;
   margin: 0;
   max-width: fit-content;
@@ -235,8 +257,9 @@ const triggerFileUpload = (action) => {
   display: inherit;
 }
 
-.container:hover + .file-drop-down {
-  display: inherit;  
+.uploader-container:hover .file-drop-down {
+  display: inherit;
+  
 }
 
 .preview {
@@ -261,7 +284,8 @@ const triggerFileUpload = (action) => {
 }
 
 .storybook-container{
-  padding-top: 70px;
-  height: 200px
+  padding-top: 20px;
+  margin-top: 50px;
+  height: 100px;
 }
 </style>

@@ -34,12 +34,21 @@
             <template #default>
               <ChatInfo :chat="selectedChat">
                 <template #actions>
-                  <button
-                    class="chat-info__button-panel"
-                    @click="isOpenChatPanel = !isOpenChatPanel"
-                  >
-                    <span class="pi pi-info-circle" />
-                  </button>
+                  <div style="display: flex;">
+                    <button
+                      class="chat-info__button-panel"
+                      @click="isOpenChatPanel = !isOpenChatPanel"
+                    >
+                      <span class="pi pi-info-circle" />
+                    </button>
+                    <ButtonContextMenu
+                      :actions="actions"
+                      :button-class="'pi pi-list'"
+                      :mode="'click'"
+                      :menu-side="'bottom'"
+                      :context-menu-key="'top-actions'"
+                    />
+                  </div>
                 </template>
               </ChatInfo>
               <Feed
@@ -54,6 +63,7 @@
                 :channels="channels"
                 :templates="templates"
                 @send="addMessage"
+                @select-channel="onSelectChannel"
               />
             </template>
 
@@ -94,6 +104,7 @@ import {
   useModalSelectUser2,
   useModalCreateChat,
   useModalCreateChat2,
+  ButtonContextMenu,
 } from "./library";
 
 import {
@@ -148,6 +159,39 @@ const themes = [
   },
 ];
 
+const actions = [
+  {
+    action: 'image/*',
+    title : 'Данные контакта',
+    prime: '',
+   },
+   {
+    action: 'video/*',
+    title : 'Выбрать сообшение',
+    prime: '',
+   },
+   {
+    action: '',
+    title : 'Закрыть чат',
+    prime: '',
+   },
+   {
+    action: '',
+    title : 'Без звука',
+    prime: '',
+   },
+   {
+    action: '',
+    title : 'Исчезающие сообщения',
+    prime: '',
+   },
+   {
+    action: '',
+    title : 'Очистить чат',
+    prime: '',
+   },
+]
+
 const chatsStore = useChatsStore();
 
 const selectedChat = ref(null);
@@ -198,6 +242,10 @@ const getFeedObjects = () => {
     return [];
   }
 };
+
+const onSelectChannel = (channel) => {
+  console.log('selected channel', channel);
+}
 
 const addMessage = (message) => {
   console.log(message);

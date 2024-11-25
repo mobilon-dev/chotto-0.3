@@ -4,60 +4,38 @@
     class="channels"
   >
     <div class="channels__container">
-      <button
-        class="channels__button"
-        @click="toggle"
+      <div
+        v-if="selectedChannel"
+        class="channels__selected"
       >
-        <span class="pi pi-list" />
-      </button>
-
-      <div class="channels__title-container">
-        <div
-          v-if="selectedChannel"
-          class="channels__selected"
-        >
-          <span
-            v-if="selectedChannel.icon"
-            class="channels__icon"
-          >
-            <img :src="selectedChannel.icon">
-          </span>
-          <span class="channels__title">{{ selectedChannel.title }}</span>
-        </div>
         <span
-          v-else
-          class="channels__title"
-        >Чат не выбран</span>
-      </div>
-
-      <Transition>
-        <div
-          v-if="showPopup"
-          class="channels__popover"
-          @click.stop
+          v-if="selectedChannel.icon"
+          class="channels__icon"
         >
-          <div class="channels__popover-container">
-            <ul class="channels__popover-list">
-              <li
-                v-for="channel in channels"
-                :key="channel.channelId"
-                class="channels__popover-item"
-                @click="selectChannel(channel)"
-              >
-                {{ channel.title }}
-              </li>
-            </ul>
-          </div>
-        </div>
-      </Transition>
+          <img :src="selectedChannel.icon">
+        </span>
+        <span class="channels__title">{{ selectedChannel.title }}</span>
+      </div>
+      <span
+        v-else
+        class="channels__selected channels__title"
+      >Канал не выбран</span>
+      <ButtonContextMenu
+        :actions="channels"
+        :mode="'hover'"
+        :button-class="'pi pi-list'"
+        :menu-side="'top'"
+        :context-menu-key="'channels'"
+        @click="selectChannel"
+      />
     </div>
   </div>
 </template>
 
 <script setup>
-import { onMounted, onUnmounted, ref } from 'vue'
+import { ref } from 'vue'
+import ButtonContextMenu from './ButtonContextMenu.vue';
 
-const showPopup = ref(true)
 const customDiv = ref(null)
 
 const props = defineProps({
@@ -78,27 +56,9 @@ const selectedChannel = ref(getDefaultChannel())
 const selectChannel = (channel) => {
   // console.log('channel selected', channel);
   selectedChannel.value = channel;
-  toggle();
   emit('selectChannel', selectedChannel.value);
 }
 
-const toggle = () => {
-  showPopup.value = !showPopup.value
-}
-
-const handleClickOutside = (event) => {
-  if (customDiv.value && !customDiv.value.contains(event.target)) {
-    showPopup.value = false
-  }
-}
-
-onMounted(() => {
-  document.addEventListener("click", handleClickOutside)
-})
-
-onUnmounted(() => {
-  document.removeEventListener("click", handleClickOutside)
-})
 </script>
 
 <style
@@ -106,7 +66,9 @@ onUnmounted(() => {
   lang="scss"
 >
 .channels {
-
+  &__container{
+    display: flex;
+  }
   &__button {
     background-color: transparent;
     border: none;
@@ -120,12 +82,6 @@ onUnmounted(() => {
     }
   }
 
-  &__title-container {
-    position: absolute;
-    top: 4px;
-    right: 10px;
-  }
-
   &__title {
     font-weight: 500;
     font-size: 14px;
@@ -136,6 +92,7 @@ onUnmounted(() => {
     justify-content: flex-start;
     column-gap: 6px;
     align-items: center;
+    margin-left: 10px;
   }
 
   &__icon {

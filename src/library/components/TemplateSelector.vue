@@ -92,7 +92,7 @@ const selectedTemplate = computed(() => props.templates.find(item => item.isSele
 >
 .template-selector {
   position: absolute;
-  bottom: 80px;
+  bottom: 124px;
   left: 0;
   right: 0;
   z-index: 100;
@@ -102,10 +102,12 @@ const selectedTemplate = computed(() => props.templates.find(item => item.isSele
     display: grid;
     grid-template-columns: 1.3fr 1fr;
     grid-template-rows: min-content 1fr min-content;
+    column-gap: 14px;
     width: 100%;
     height: 500px;
-    padding: 16px 0 10px 0;
+    padding: 16px 20px 10px 20px;
     background-color: var(--template-selector-bg);
+    border: 1px solid var(--neutral-200);
   }
 
   &__button-close {
@@ -129,6 +131,7 @@ const selectedTemplate = computed(() => props.templates.find(item => item.isSele
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+    border: 1px solid var(--neutral-200);
 
     &::-webkit-scrollbar {
       width: 6px;
@@ -152,7 +155,6 @@ const selectedTemplate = computed(() => props.templates.find(item => item.isSele
     cursor: pointer;
     transition: 0.2s;
     padding: 10px 12px;
-
 
     &:hover {
       background-color: var(--template-selector-item-hover);
@@ -188,6 +190,10 @@ const selectedTemplate = computed(() => props.templates.find(item => item.isSele
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+  }
+
+  &__preview-container {
+    border: 1px solid var(--neutral-200);
   }
 
   &__preview {
@@ -230,7 +236,7 @@ const selectedTemplate = computed(() => props.templates.find(item => item.isSele
     display: block;
     width: fit-content;
     justify-self: flex-end;
-    margin: 16px 30px 0 0;
+    margin: 16px 0 0 0;
     font-size: 17px;
     background-color: var(--template-selector-button-paste-bg);
     color: var(--template-selector-button-paste-color);
