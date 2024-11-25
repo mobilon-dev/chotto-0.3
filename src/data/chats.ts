@@ -3,7 +3,7 @@ export const chats = [
     chatId: 1,
     name: "Василий",
     avatar: 'https://img.freepik.com/free-photo/smiley-man-relaxing-outdoors_23-2148739334.jpg',
-    countUnread: 1,
+    countUnread: 102,
     lastMessage: 'test',
     'lastActivity.time': 'час назад',
     isFixed: false,
@@ -33,7 +33,7 @@ export const chats = [
     ]
   },
   {
-    chatId: 4, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', statusMessage: 'received', isFixed: false, status: "#00b972", actions: [
+    chatId: 4, name: "Федор Викторович Добронравов", countUnread: 0, lastMessage: 'Lorem ipsum dolor sit amet, consectetur', 'lastActivity.time': 'час назад', statusMessage: 'received', isFixed: false, status: "#00b972", actions: [
       { action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' },
     ]
   },

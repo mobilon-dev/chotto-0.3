@@ -22,7 +22,7 @@ import ChatApp from './BaseExtendedChatApp.vue';
 
 import {
   messages, chats, channels,
-  sidebarItems, userProfile, users
+  sidebarItems, userProfile, users, templates
 } from './data';
 
 // Mock data
@@ -33,6 +33,7 @@ const data3 = {
   sidebarItems,
   userProfile,
   users,
+  templates
 };
 
 // Define the auth provider
@@ -50,6 +51,9 @@ const dataProvider = {
   },
   getChannels() {
     return data3.channels;
+  },
+  getTemplates() {
+    return data3.templates;
   },
   getChats() {
     return data3.chats;
@@ -118,7 +122,7 @@ onMounted(() => {
 
 <style scoped>
 .container {
-  width: 74vw;
+  width: 70vw;
   margin: 30px auto;
 }
 </style>

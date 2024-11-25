@@ -1,0 +1,6 @@
+[data-theme="dark"] {
+
+  /* Extended layout */
+  --layout-extended-third-col-bg: var(--neutral-800);
+  --layout-extended-bg: var(--neutral-900)
+}

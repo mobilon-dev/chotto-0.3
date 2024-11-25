@@ -24,13 +24,32 @@
         @keydown.enter="sendMessage"
         @input="sendTyping"
       >
+
+      <button
+        class="chat-input__button-template"
+        @click="isOpenTemplateSelector = !isOpenTemplateSelector"
+      >
+        <span class="pi pi-objects-column" />
+      </button>
+
+      <transition>
+        <TemplateSelector
+          v-if="isOpenTemplateSelector"
+          :templates="templates.templates"
+          @close-template-window="isOpenTemplateSelector = !isOpenTemplateSelector"
+          @paste-template="pastedTemplate"
+        />
+      </transition>
+
       <ChannelSelector :channels="channels" />
+
       <button
         class="chat-input__button-emoji"
         @click="toogleDialogEmoji"
       >
         <span class="pi pi-face-smile" />
       </button>
+
       <button
         class="chat-input__button-send"
         @click="sendMessage"
@@ -49,6 +68,7 @@ import { FileUploader } from '.';
 import EmojiPicker from 'vue3-emoji-picker';
 import 'vue3-emoji-picker/css';
 import ChannelSelector from './ChannelSelector.vue'
+import TemplateSelector from './TemplateSelector.vue'
 
 // Define emits
 const emit = defineEmits(['send', 'typing']);
@@ -58,11 +78,18 @@ const message = defineModel();
 const refInput = ref(null);
 const fileLink = ref(null);
 
+const isOpenTemplateSelector = ref(false)
+
 const canUploadFile = computed(() => {
   return !fileLink.value || fileLink.value === '';
 })
 
 const enabledEmojiPicker = ref(false) // это типа показывать или нет панель выбора емоджи
+
+const pastedTemplate = (template) => {
+  message.value = template
+  isOpenTemplateSelector.value = !isOpenTemplateSelector.value
+}
 
 const props = defineProps({
   enableEmoji: {
@@ -75,6 +102,12 @@ const props = defineProps({
     required: false,
     default: () => { return [] }
   },
+
+  templates: {
+    type: Array,
+    required: false,
+    default: () => { return [] }
+  }
 
   // fileUploaderComponent: {
   //   type: Object,
@@ -143,7 +176,7 @@ const onSelectEmoji = (emoji) => {
     align-items: center;
     padding-top: 22px;
     border-radius: var(--chat-input-border-radius);
-    border-top: 1px solid var(--neutral-300);
+    border-top: var(--chat-input-border);
     background-color: var(--chat-input-background);
   }
 
@@ -173,7 +206,7 @@ const onSelectEmoji = (emoji) => {
     background-color: transparent;
     padding: var(--inputtext-padding);
     width: var(--inputtext-width);
-    color: var(--inputtext-color);
+    color: var(--chat-input-color);
     font-size: var(--inputtext-font-size);
 
     &:focus-visible {
@@ -181,12 +214,13 @@ const onSelectEmoji = (emoji) => {
     }
 
     &::placeholder {
-      color: var(--inputtext-placeholder-color);
+      color: var(--chat-input-placeholder-color);
     }
   }
 
   &__button-emoji,
-  &__button-send {
+  &__button-send,
+  &__button-template {
     background-color: transparent;
     border: none;
 

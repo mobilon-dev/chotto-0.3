@@ -21,7 +21,7 @@
       <video
         ref="player"
         class="video-message__video"
-        :src="message.url"
+        src="/sample-10s.mp4"
       />
       <div class="video-message__controls">
         <transition>
@@ -76,6 +76,10 @@
           <span class="pi pi-check" />
         </div>
       </div>
+
+      <button class="video-message__download-button">
+        <span class="pi pi-download"></span>
+      </button>
     </div>
   </div>
 </template>
@@ -177,6 +181,29 @@ onMounted(() => {
     align-items: center;
     justify-content: flex-end;
     column-gap: 6px;
+  }
+
+  &__download-button {
+    position: absolute;
+    left: 8px;
+    bottom: 8px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 12px;
+    padding: 6px 6px;
+    background-color: rgba(0, 0, 0, 0.67);
+    cursor: pointer;
+
+    span {
+      color: var(--neutral-200);
+      font-size: 12px;
+    }
   }
 
   &__avatar {
@@ -332,7 +359,6 @@ onMounted(() => {
     .video-message__content {
       grid-column: 2;
       background-color: var(--base-message-left-bg);
-      color: var(--text-message-text-color);
     }
 
     .video-message__menu-button {

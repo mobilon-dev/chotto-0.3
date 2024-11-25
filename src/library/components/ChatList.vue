@@ -176,6 +176,7 @@ const action = (data) => emit('action', data);
     scroll-behavior: smooth;
 
     overflow-y: auto;
+    overflow-x: hidden;
     padding: var(--chat-list-items-padding);
 
     &::-webkit-scrollbar {

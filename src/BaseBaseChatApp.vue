@@ -7,7 +7,7 @@
       <BaseLayout>
         <template #first-col>
           <UserProfile :user="userProfile" />
-          <ChatList 
+          <ChatList
             :chats="chatsStore.chats"
             filter-enabled
             @select="selectChat"
@@ -16,7 +16,7 @@
           <ThemeMode :themes="themes" />
         </template>
         <template #second-col>
-          <div 
+          <div
             v-if="selectedChat"
             style="height: 100%; width: 100%; display: flex; flex-direction: column;"
           >
@@ -36,9 +36,7 @@
               @send="addMessage"
             />
           </div>
-          <p
-            v-else
-          >
+          <p v-else>
             Выберите контакт для начала общения
           </p>
         </template>
@@ -236,4 +234,3 @@ onMounted(() => {
 });
 
 </script>
-

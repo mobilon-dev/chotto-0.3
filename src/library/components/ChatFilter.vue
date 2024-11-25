@@ -38,7 +38,7 @@ const update = () => {
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
     width: var(--inputtext-width);
-    color: var(--inputtext-color);
+    color: var(--chat-filter-input-color);
     padding: var(--inputtext-padding);
     border: var(--chat-filter-input-border);
     border-radius: var(--inputtext-border-radius);
@@ -46,7 +46,7 @@ const update = () => {
     transition: border-color var(--inputtext-transition-duration);
 
     &::placeholder {
-      color: var(--inputtext-placeholder-color);
+      color: var(--chat-filter-input-placeholder-color);
     }
 
     &:hover {

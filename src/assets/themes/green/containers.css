@@ -5,8 +5,8 @@
   --container-font-family: "Open Sans", sans-serif;
 
   /* Float Container */
-  --float-window-border-radius: 0;
-  --float-window-border-radius-header: 0;
+  --float-container-border-radius: 0;
+  --float-container-border-radius-header: 0;
 
   /* Base Container */
   --base-container-bg: var(--default-white)

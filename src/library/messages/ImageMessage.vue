@@ -25,8 +25,8 @@
       class="image-message__content"
       @mouseenter="showMenu"
     >
-      <button
-        class="image-message__button"
+      <div
+        class="image-message__preview-button"
         @click="isOpen = true"
       >
         <img
@@ -57,7 +57,11 @@
             <span class="pi pi-check" />
           </div>
         </div>
-      </button>
+
+        <button class="image-message__download-button">
+          <span class="pi pi-download"></span>
+        </button>
+      </div>
 
 
       <Teleport to="body">
@@ -165,6 +169,25 @@ function getClass(message) {
     background-color: rgb(0 0 0 / 39%);
   }
 
+  &__download-button {
+    position: absolute;
+    left: 8px;
+    bottom: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 12px;
+    padding: 6px 6px;
+    background-color: rgb(0 0 0 / 39%);
+    cursor: pointer;
+
+    span {
+      color: var(--neutral-200);
+      font-size: 12px;
+    }
+  }
+
   &__views {
     display: flex;
     align-items: center;
@@ -222,9 +245,7 @@ function getClass(message) {
     color: var(--base-message-subtext-color);
   }
 
-  &__button {
-    border: none;
-    background-color: transparent;
+  &__preview-button {
     cursor: pointer;
     padding: 0;
   }

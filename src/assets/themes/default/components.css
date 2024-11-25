@@ -21,7 +21,6 @@
   --chat-list-scrollbar-bg: var(--neutral-50);
   --chat-list-scrollbar-thumb-bg: var(--neutral-300);
   --chat-list-button-actions-bg: var(--neutral-300);
-  --chat-list-button-actions-color: var(--neutral-600);
   --chat-list-button-actions-width: 32px;
   --chat-list-button-actions-height: 32px;
   --chat-list-items-padding: 0 12px 0 12px;
@@ -29,18 +28,19 @@
   --chat-list-title-container-padding: 0 12px 20px 12px;
 
   /* Chat Filter */
-  /* --chat-filter-input-color: var(--neutral-700); */
+  --chat-filter-input-color: var(--neutral-700);
   --chat-filter-input-border: 1px solid var(--neutral-300);
-  /* --chat-filter-input-placeholder-color: var(--neutral-500); */
+  --chat-filter-input-placeholder-color: var(--neutral-500);
   --chat-filter-hover-border-color: var(--neutral-500);
   --chat-filter-focus-border-color: var(--neutral-700);
 
   /* Chat Input */
   --chat-input-background: var(--neutral-200);
   --chat-input-border-radius: 0 0 12px 12px;
+  --chat-input-border: 1px solid var(--neutral-300);
 
-  /* --chat-input-color: var(--neutral-700); */
-  /* --chat-input-placeholder-color: var(--neutral-500); */
+  --chat-input-color: var(--neutral-700);
+  --chat-input-placeholder-color: var(--neutral-500);
   --chat-input-icon-color: var(--neutral-600);
 
   /* File Uploader */
@@ -77,12 +77,14 @@
 
   /* Chat Info */
   --chat-info-padding: 20px 20px 20px 20px;
-  --chat-info-font-size-title: 18px;
   --chat-info-font-weight-time: 500;
+  --chat-info-font-weight-title: 600;
   --chat-info-border-radius: 12px 12px 0 0;
+  --chat-info-border: 1px solid var(--neutral-200);
 
   /* Feed */
   --feed-button-down-bg: var(--default-white);
+  --feed-button-down-uread-color: var(--neutral-100);
   --feed-icon-color: var(--neutral-600);
 
   /* Сontext Menu */
@@ -97,4 +99,14 @@
   /* Scroll Bar */
   --scrollbar-bg: var(--neutral-50);
   --scrollbar-thumb-bg: var(--neutral-300);
+
+  /* Template Selector */
+  --template-selector-bg: var(--default-white);
+  --template-selector-item-hover: var(--neutral-50);
+  --template-selector-item-selected: var(--neutral-100);
+  --template-selector-border: 1px solid var(--neutral-200);
+  --template-selector-icon-color: var(--neutral-500);
+  --template-selector-preview-bg: var(--neutral-100);
+  --template-selector-button-paste-bg: var(--neutral-200);
+  --template-selector-button-paste-color: var(--neutral-800);
 }

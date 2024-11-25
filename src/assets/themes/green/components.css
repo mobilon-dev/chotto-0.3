@@ -56,5 +56,9 @@
   --chat-info-padding: 10px 15px 10px 15px;
   --chat-info-font-size-title: 16px;
   --chat-info-font-weight-time: 300;
+  --chat-info-font-weight-title: 500;
   --chat-info-border-radius: 0;
+
+  /* Template Selector */
+  --template-selector-preview-bg: #fcfafa;
 }
