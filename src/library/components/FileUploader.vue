@@ -15,25 +15,21 @@
       class="chat-input__button-file"
       :class="{'chat-input__button-file-disabled' : !canUploadFile}"
     >
-      <label
-        @click="handleFileUpload"
+      <input
+        ref="fileInput"
+        type="file"
+        @change="onFileSelected" 
       >
-        <input
-          ref="fileInput"
-          type="file"
-          @change="onFileSelected" 
-        >
-        <ButtonContextMenu
-          :actions="actions"
-          :mode="'hover'"
-          :button-class="'pi pi-file-arrow-up'"
-          @click="triggerFileUpload"
-          @buttonClick="triggerFileUploadDefault"
-          :menuSide="'top'"
-          :contextMenuKey="'file-uploader'"
-          :disabled="!canUploadFile"
-        />
-      </label>
+      <ButtonContextMenu
+        :actions="actions"
+        :mode="'hover'"
+        :button-class="'pi pi-file-arrow-up'"
+        @click="triggerFileUpload"
+        @buttonClick="triggerFileUploadDefault"
+        :menuSide="'top'"
+        :contextMenuKey="'file-uploader'"
+        :disabled="!canUploadFile"
+      />
     </div>
   </div>
 </template>
@@ -61,9 +57,15 @@ const fileLink = ref("");
 const previewUrl = ref("");
 const isImage = ref(false);
 const isVideo = ref(false);
+const isAudio = ref(false)
 const fileInput = ref(null);
 
 const actions = [
+  {
+    action: 'audio/*',
+    title: 'Аудио',
+    prime: 'headphones',
+  },
   {
     action: 'image/*',
     title : 'Фото',
@@ -117,11 +119,15 @@ const generatePreview = () => {
   const fileType = getTypeFileByMime(file.type);
   isImage.value = false;
   isVideo.value = false;
+  isAudio.value = false
 
   if (fileType === 'image') {
     isImage.value = true;    
   } else if (fileType === "video") {
     isVideo.value = true;
+  }
+  else if (fileType === 'audio'){
+    isAudio.value = true
   }
 
   if (isImage.value || isVideo.value) {
@@ -134,6 +140,7 @@ const generatePreview = () => {
     previewUrl.value = ""; // No preview available
   }
 };
+
 
 const uploadFile = async () => {
   uploadStatus.value = "uploading";
@@ -163,6 +170,7 @@ const uploadFile = async () => {
       previewUrl: previewUrl.value,
       isImage: isImage.value,
       isVideo: isVideo.value,
+      isAudio: isAudio.value,
       selectedFile: selectedFile.value,
     });
   } catch (error) {

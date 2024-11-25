@@ -25,6 +25,11 @@ const actionsFileDropDown = [
   {action: 'video/*', title : 'Видео', prime: 'video',},
   {action: '', title : 'Файл', prime: 'file',},
 ]
+
+const actionsLA = [
+  {action: 'edit', title: 'слишком длинное-длинное поле в слишком коротком-коротком меню'},
+  {action: 'delete', title: 'слишком длинное-длинное поле в слишком коротком-коротком меню'},
+];
   
 export const StandardRight: Story = {
   args: {
@@ -93,6 +98,16 @@ export const StandardBottom: Story = {
     actions: actions,
     buttonClass: 'pi pi-list',
     menuSide: 'bottom',
-    contextMenuKey: 'sr',
+    contextMenuKey: 'sb',
+  },
+};
+
+export const LongActions: Story = {
+  args: {
+    storybook: true,
+    actions: actionsLA,
+    buttonClass: 'pi pi-list',
+    menuSide: 'right',
+    contextMenuKey: 'la',
   },
 };
