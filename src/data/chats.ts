@@ -15,7 +15,7 @@ export const chats = [
       { action: 'delete', title: 'удалить', icon: 'https://placehold.jp/30/dd6699/ffffff/64x64.png?text=del' },
     ],
     typing: true,
-    metadata: '',
+    filterMetadata: '',    // фильтр работает по name и данным в filterMetadata
   },
   {
     chatId: 2, name: "Мария",
@@ -26,7 +26,7 @@ export const chats = [
     actions: [
       { action: 'edit', title: 'изменить' }, { action: 'unpin', title: 'открепить' },
     ],
-   metadata: '',
+   filterMetadata: '',
   },
   {
     chatId: 3, name: "Анна",
@@ -36,7 +36,7 @@ export const chats = [
     actions: [
       { action: 'edit', title: 'изменить' }, { action: 'unpin', title: 'открепить' },
     ],
-    metadata: '',
+    filterMetadata: '',
   },
   {
     chatId: 4, name: "Василий 22", 
@@ -47,7 +47,7 @@ export const chats = [
     status: "#00b972", actions: [
       { action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' },
     ],
-    metadata: '',
+    filterMetadata: '',
   },
   {
     chatId: 5, name: "Василий 33", 
@@ -58,7 +58,7 @@ export const chats = [
     actions: [
       { action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' },
     ],
-    metadata: '',
+    filterMetadata: '',
   },
   {
     chatId: 6, name: "Василий", 
@@ -67,7 +67,7 @@ export const chats = [
     actions: [
       { action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' },
     ],
-    metadata: '',
+    filterMetadata: '',
   },
   {
     chatId: 7, name: "Василий 2", 
@@ -77,7 +77,7 @@ export const chats = [
       { action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' },
     ],
     typing: true,
-    metadata: '',
+    filterMetadata: '',
   },
   {
     chatId: 8, name: "Василий",
@@ -86,7 +86,7 @@ export const chats = [
     actions: [
       { action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' },
     ],
-    metadata: '',
+    filterMetadata: '',
   },
   {
     chatId: 9, name: "Василий", 
@@ -104,7 +104,7 @@ export const chats = [
     actions: [
       { action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' },
     ],
-    metadata: '',
+    filterMetadata: '',
   },
   {
     chatId: 11, name: "Василий",
@@ -113,7 +113,7 @@ export const chats = [
     actions: [
       { action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' },
     ],
-    metadata: '',
+    filterMetadata: '',
   },
   {
     chatId: 12, name: "Василий", 
@@ -122,6 +122,6 @@ export const chats = [
     actions: [
       { action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' },
     ],
-    metadata: '',
+    filterMetadata: '',
   },
 ];
