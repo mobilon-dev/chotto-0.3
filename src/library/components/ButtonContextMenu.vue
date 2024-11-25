@@ -1,5 +1,5 @@
 <template>
-  <div ref="actionScope" :id="'container-'+props.contextMenuKey" style="position: relative;">
+  <div ref="actionScope" :id="'container-'+props.contextMenuKey" style="position: relative; width: fit-content;">
     <button
       class="button"
       :class="{
@@ -80,11 +80,11 @@ const props = defineProps({
   },
   contextMenuKey: {
     type: String,
-
+    default: 'key',
   }
 });
 
-const emit = defineEmits(['click']);
+const emit = defineEmits(['click','buttonClick']);
 
 const contextMenu = ref(null)
 const actionScope = ref(null)
@@ -96,14 +96,16 @@ const click = (index) => {
 }
 
 const toggle = () => {
-  
-  if (props.mode != 'hover'){
+  if (!props.disabled){
+    if (props.mode != 'hover'){
     contextMenu.value.style.display = 'inherit'
+  }
+  emit('buttonClick')
   }
 }
 
 const hover = () => {
-  if (props.mode == 'hover'){
+  if (props.mode == 'hover' && !props.disabled ){
     contextMenu.value.style.display = 'inherit'
   }
 }
@@ -124,7 +126,7 @@ onMounted(() => {
   const side = {
     'top' : {
       h: -0.92,
-      w: 0.25,
+      w: 0,
     },
     'bottom' : {
       h: 0.8,
@@ -145,26 +147,24 @@ onMounted(() => {
     width =  document.getElementById('container-'+props.contextMenuKey).offsetWidth
     height =  document.getElementById('context-menu-'+props.contextMenuKey).offsetHeight
     contextMenu.value.style.left = side[props.menuSide].w * width + 'px'
-    contextMenu.value.style.top = side[props.menuSide].h * height + 'px'
   }
   if (props.menuSide == 'bottom'){
     width =  document.getElementById('context-menu-'+props.contextMenuKey).offsetWidth
     height =  document.getElementById('container-'+props.contextMenuKey).offsetHeight
     contextMenu.value.style.right = side[props.menuSide].w * width + 'px'
-    contextMenu.value.style.top = side[props.menuSide].h * height + 'px'
   }
   if (props.menuSide == 'left'){
     width =  document.getElementById('container-'+props.contextMenuKey).offsetWidth
     height =  document.getElementById('context-menu-'+props.contextMenuKey).offsetHeight
-    contextMenu.value.style.right = side[props.menuSide].w * width + 'px'
-    contextMenu.value.style.top = side[props.menuSide].h * height + 'px'
   }
   if (props.menuSide == 'right'){
     width =  document.getElementById('container-'+props.contextMenuKey).offsetWidth
     height =  document.getElementById('context-menu-'+props.contextMenuKey).offsetHeight
     contextMenu.value.style.left = side[props.menuSide].w * width + 'px'
-    contextMenu.value.style.top = side[props.menuSide].h * height + 'px'
+    
   }
+  contextMenu.value.style.top = side[props.menuSide].h * height + 'px'
+  contextMenu.value.style.display = 'none'
   document.addEventListener("click", handleClickOutside)
 })
 
@@ -203,15 +203,17 @@ onUnmounted(() => {
     width: fit-content;
     box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.11);
     border-radius: 8px;
-    padding: 12px 0;
+    
     background-color: var(--context-menu-background);
   }
 
   &__list {
-    display: flex;
+    padding: 12px 0;
+    display: grid;
     flex-direction: column;
     align-items: flex-start;
     row-gap: 6px;
+    padding-left: 0px;
   }
 
   &__item {
@@ -220,7 +222,7 @@ onUnmounted(() => {
     align-items: center;
     cursor: pointer;
     padding: 0 16px;
-    width: 100%;
+    width: inherit;
     column-gap: 12px;
   }
 

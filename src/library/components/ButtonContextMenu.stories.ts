@@ -30,6 +30,7 @@ export const Standard: Story = {
   args: {
     actions,
     buttonClass: 'pi pi-list',
+    menuSide: 'right',
   },
 };
 
@@ -37,13 +38,17 @@ export const WithIcons: Story = {
   args: {
     actions: actionsWithIcons,
     buttonClass: 'pi pi-list',
+    contextMenuKey: 'wi',
+    menuSide: 'right',
   },
 };
 
 export const FileDropDownMenu: Story = {
   args: {
     actions: actionsFileDropDown,
-    buttonClass: 'pi pi-file-arrow-up'
+    buttonClass: 'pi pi-file-arrow-up',
+    contextMenuKey: 'fddm',
+    menuSide: 'right',
   },
 };
 
@@ -51,6 +56,8 @@ export const WithoutIcon: Story = {
   args: {
     actions,
     buttonClass: '',
-    buttonTitle: 'Нажми сюда'
+    buttonTitle: 'Нажми сюда',
+    contextMenuKey: 'woi',
+    menuSide: 'right',
   },
 };

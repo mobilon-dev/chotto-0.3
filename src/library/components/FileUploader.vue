@@ -9,6 +9,7 @@
     <div v-else-if="uploadStatus === 'error'">
       <p>Ошибка при загрузке файла.</p>
     </div>
+    
     <div
       v-else
       class="chat-input__button-file"
@@ -22,23 +23,24 @@
           type="file"
           @change="onFileSelected" 
         >
-        <span>
-          <i class="pi pi-file-arrow-up" />
-        </span>
+        <ButtonContextMenu
+          :actions="actions"
+          :mode="'hover'"
+          :button-class="'pi pi-file-arrow-up'"
+          @click="triggerFileUpload"
+          @buttonClick="triggerFileUploadDefault"
+          :menuSide="'top'"
+          :contextMenuKey="'file-uploader'"
+          :disabled="!canUploadFile"
+        />
       </label>
     </div>
-    <ContextMenu
-      v-if="canUploadFile"
-      class="file-drop-down"
-      :actions="actions"
-      @click="triggerFileUpload"
-    />
   </div>
 </template>
 
 <script setup>
 import { ref, watch, nextTick } from "vue";
-import ContextMenu from "./ContextMenu.vue";
+import ButtonContextMenu from "./ButtonContextMenu.vue";
 import {getTypeFileByMime} from '../../helpers'
 
 const props = defineProps({
@@ -109,11 +111,6 @@ const onFileSelected = (event) => {
   }
 };
 
-const handleFileUpload = (event) => {
-  if (!props.canUploadFile){
-    event.preventDefault()
-  }
-}
 
 const generatePreview = () => {
   const file = selectedFile.value;
@@ -177,6 +174,12 @@ const uploadFile = async () => {
 const triggerFileUpload = (action) => {
   if (fileInput.value && props.canUploadFile) {
     fileInput.value.accept = action.action
+    fileInput.value.click();
+  }
+};
+
+const triggerFileUploadDefault = () => {
+  if (fileInput.value && props.canUploadFile) {
     fileInput.value.click();
   }
 };
