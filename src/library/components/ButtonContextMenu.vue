@@ -214,7 +214,8 @@ onUnmounted(() => {
   z-index: 200;
   position: absolute;
   &__container {
-    width: fit-content;
+    width: max-content;
+    max-width: 250px;
     box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.11);
     border-radius: 8px;
     

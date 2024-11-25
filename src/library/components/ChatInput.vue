@@ -9,6 +9,7 @@
           :preview-url="fileLink.previewUrl"
           :is-image="fileLink.isImage"
           :is-video="fileLink.isVideo"
+          :is-audio="fileLink.isAudio"
           :file-name="fileLink.selectedFile.name"
           :file-size="fileSize"
           @reset="resetUploadedFile"
@@ -45,7 +46,6 @@
         </button>
         <Transition>
           <EmojiPicker
-            v-if="enabledEmojiPicker"
             class="chat-input__emoji"
             :native="true"
             :theme="changeThemeDialogEmoji"
@@ -80,8 +80,6 @@ const fileSize = ref('')
 const canUploadFile = computed(() => {
   return !fileLink.value || fileLink.value === '';
 })
-
-const enabledEmojiPicker = ref(false) // это типа показывать или нет панель выбора емоджи
 
 const props = defineProps({
   enableEmoji: {
@@ -135,7 +133,6 @@ const sendTyping = (event) => {
 
 // Define the method to send the message
 const sendMessage = () => {
-  enabledEmojiPicker.value = false;
   const messageObject = {
     type: null,
     text: null,
@@ -158,9 +155,6 @@ const sendMessage = () => {
   unref(refInput).focus()
 };
 
-const toogleDialogEmoji = () => {
-  enabledEmojiPicker.value = !enabledEmojiPicker.value;
-}
 
 const changeThemeDialogEmoji = computed(() => {
   if (document.documentElement.classList.contains('dark')) {
@@ -255,9 +249,18 @@ const onSelectEmoji = (emoji) => {
     }
   }
 
+  &__button-emoji:hover + &__emoji{
+    display: inherit;
+  }
+
   &__emoji {
+    display: none;
     position: absolute;
     bottom: 40%;
+  }
+
+  &__emoji:hover{
+    display: inherit;
   }
 }
 

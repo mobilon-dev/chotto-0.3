@@ -14,6 +14,12 @@
           class="preview__video"
         />
       </div>
+      <div v-else-if="props.isAudio">
+        <span
+          class="pi pi-headphones"
+          style="font-size: 2.5rem"
+        />
+      </div>
       <div v-else>
         <span
           class="pi pi-file"
@@ -47,6 +53,10 @@ const props = defineProps({
     default: false,
   },
   isVideo: {
+    type: Boolean,
+    default: false,
+  },
+  isAudio: {
     type: Boolean,
     default: false,
   },
