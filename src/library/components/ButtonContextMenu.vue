@@ -1,5 +1,5 @@
 <template>
-  <div ref="actionScope">
+  <div ref="actionScope" :id="'container-'+props.contextMenuKey" style="position: relative;">
     <button
       class="button"
       :class="{
@@ -9,17 +9,18 @@
       @mouseover="hover"
       @mouseout="hoverout"
     >
-      <span :class="buttonClass">
+      <span :class="buttonClass" >
         {{ buttonTitle }}
       </span>
     </button>
-    <div 
-      ref="contextMenu" 
+      <div 
+      :id="'context-menu-' + props.contextMenuKey"
       class="context-menu" 
+      ref="contextMenu" 
       @mouseover="hover"
       @mouseout="hoverout"
     >
-      <div class="context-menu__container">
+      <div  class="context-menu__container">
         <ul class="context-menu__list">
           <li
             v-for="(action, index) in props.actions"
@@ -36,13 +37,14 @@
             <i 
               v-else-if="action.prime"
               :class="'pi pi-' + action.prime" 
-            />
+            >
+            </i>
             <span>{{ action.title }}</span>
           </li>
         </ul>
       </div>
     </div>
-  </div>
+    </div>
 </template>
 
 <script setup>
@@ -71,6 +73,14 @@ const props = defineProps({
     type: Boolean,
     default: false,
     required: false,
+  },
+  menuSide: {
+    type: String,
+    default: 'top'
+  },
+  contextMenuKey: {
+    type: String,
+
   }
 });
 
@@ -86,6 +96,7 @@ const click = (index) => {
 }
 
 const toggle = () => {
+  
   if (props.mode != 'hover'){
     contextMenu.value.style.display = 'inherit'
   }
@@ -110,6 +121,50 @@ const handleClickOutside = (event) => {
 }
 
 onMounted(() => {
+  const side = {
+    'top' : {
+      h: -0.92,
+      w: 0.25,
+    },
+    'bottom' : {
+      h: 0.8,
+      w: -0.25,
+    },
+    'left' : {
+      h: -0.25,
+      w: 0.8,
+    },
+    'right' : {
+      h: -0.25,
+      w: 0.8,
+    },
+  }
+
+  let width, height
+  if (props.menuSide == 'top'){
+    width =  document.getElementById('container-'+props.contextMenuKey).offsetWidth
+    height =  document.getElementById('context-menu-'+props.contextMenuKey).offsetHeight
+    contextMenu.value.style.left = side[props.menuSide].w * width + 'px'
+    contextMenu.value.style.top = side[props.menuSide].h * height + 'px'
+  }
+  if (props.menuSide == 'bottom'){
+    width =  document.getElementById('context-menu-'+props.contextMenuKey).offsetWidth
+    height =  document.getElementById('container-'+props.contextMenuKey).offsetHeight
+    contextMenu.value.style.right = side[props.menuSide].w * width + 'px'
+    contextMenu.value.style.top = side[props.menuSide].h * height + 'px'
+  }
+  if (props.menuSide == 'left'){
+    width =  document.getElementById('container-'+props.contextMenuKey).offsetWidth
+    height =  document.getElementById('context-menu-'+props.contextMenuKey).offsetHeight
+    contextMenu.value.style.right = side[props.menuSide].w * width + 'px'
+    contextMenu.value.style.top = side[props.menuSide].h * height + 'px'
+  }
+  if (props.menuSide == 'right'){
+    width =  document.getElementById('container-'+props.contextMenuKey).offsetWidth
+    height =  document.getElementById('context-menu-'+props.contextMenuKey).offsetHeight
+    contextMenu.value.style.left = side[props.menuSide].w * width + 'px'
+    contextMenu.value.style.top = side[props.menuSide].h * height + 'px'
+  }
   document.addEventListener("click", handleClickOutside)
 })
 
@@ -143,9 +198,7 @@ onUnmounted(() => {
 }
 .context-menu {
   z-index: 200;
-  display: none;
   position: absolute;
-  bottom: 40%;
   &__container {
     width: fit-content;
     box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.11);
