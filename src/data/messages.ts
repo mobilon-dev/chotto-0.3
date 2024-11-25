@@ -10,7 +10,6 @@ export const messages = [
       { action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=pin' },
       { action: 'delete', title: 'удалить' }]
   },
-
   {
     chatId: 1, type: "message.typing", subText: '89829445678', avatar: 'https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg',
   },
