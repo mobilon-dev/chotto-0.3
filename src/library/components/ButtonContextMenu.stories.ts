@@ -26,31 +26,73 @@ const actionsFileDropDown = [
   {action: '', title : 'Файл', prime: 'file',},
 ]
   
-export const Standard: Story = {
+export const StandardRight: Story = {
   args: {
-    actions,
+    storybook: true,
+    actions: actions,
     buttonClass: 'pi pi-list',
+    menuSide: 'right',
+    contextMenuKey: 'sr',
   },
 };
 
 export const WithIcons: Story = {
   args: {
+    storybook: true,
     actions: actionsWithIcons,
     buttonClass: 'pi pi-list',
+    contextMenuKey: 'wi',
+    menuSide: 'left',
   },
 };
 
 export const FileDropDownMenu: Story = {
   args: {
+    storybook: true,
     actions: actionsFileDropDown,
-    buttonClass: 'pi pi-file-arrow-up'
+    buttonClass: 'pi pi-file-arrow-up',
+    contextMenuKey: 'fddm',
+    menuSide: 'right',
   },
 };
 
 export const WithoutIcon: Story = {
   args: {
-    actions,
+    storybook: true,
+    actions: actions,
     buttonClass: '',
-    buttonTitle: 'Нажми сюда'
+    buttonTitle: 'Нажми сюда',
+    contextMenuKey: 'woi',
+    menuSide: 'right',
+  },
+};
+
+export const StandardTop: Story = {
+  args: {
+    storybook: true,
+    actions: actions,
+    buttonClass: 'pi pi-list',
+    menuSide: 'top',
+    contextMenuKey: 'st',
+  },
+};
+
+export const StandardLeft: Story = {
+  args: {
+    storybook: true,
+    actions: actions,
+    buttonClass: 'pi pi-list',
+    menuSide: 'left',
+    contextMenuKey: 'sl',
+  },
+};
+
+export const StandardBottom: Story = {
+  args: {
+    storybook: true,
+    actions: actions,
+    buttonClass: 'pi pi-list',
+    menuSide: 'bottom',
+    contextMenuKey: 'sr',
   },
 };

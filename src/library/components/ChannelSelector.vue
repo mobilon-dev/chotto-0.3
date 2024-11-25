@@ -25,6 +25,8 @@
         :mode="'hover'"
         :button-class="'pi pi-list'"
         @click="selectChannel"
+        :menuSide="'top'"
+        :contextMenuKey="'channels'"
       />
     </div>
   </div>

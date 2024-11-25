@@ -31,16 +31,7 @@
         </button>
       </div>
       <div class="chat-input__third-line">
-        <Transition>
-          <EmojiPicker
-            v-if="enabledEmojiPicker"
-            class="chat-input__emoji"
-            :native="true"
-            :theme="changeThemeDialogEmoji"
-            picker-type=""
-            @select="onSelectEmoji"
-          />
-        </Transition>
+        
         <FileUploader
           :can-upload-file="canUploadFile"
           @file-uploaded="fileUploaded"
@@ -52,6 +43,16 @@
         >
           <span class="pi pi-face-smile" />
         </button>
+        <Transition>
+          <EmojiPicker
+            v-if="enabledEmojiPicker"
+            class="chat-input__emoji"
+            :native="true"
+            :theme="changeThemeDialogEmoji"
+            picker-type=""
+            @select="onSelectEmoji"
+          />
+        </Transition>
         <ChannelSelector :channels="channels" />
       </div>
     </div>

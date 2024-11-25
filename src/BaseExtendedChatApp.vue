@@ -21,7 +21,6 @@
           <ChatList
             :chats="chatsStore.chats"
             filter-enabled
-            :actions="[{action: 'add', title: 'Добавить'}]"
             @select="selectChat"
             @action="chatAction"
           />
@@ -37,12 +36,22 @@
                 :chat="selectedChat"
               >
                 <template #actions>
-                  <button
+                  <div style="display: flex;">
+                    <button
                     class="chat-info__button-panel"
                     @click="isOpenChatPanel = !isOpenChatPanel"
                   >
                     <span class="pi pi-info-circle" />
                   </button>
+                  <ButtonContextMenu
+                  :actions="actions"
+                  :buttonClass="'pi pi-list'"
+                  :mode="'click'"
+                  :menuSide="'bottom'"
+                  :contextMenuKey="'top-actions'"
+                  />
+                  </div>
+                  
                 </template>
               </ChatInfo>
               <Feed
@@ -106,6 +115,7 @@ import {
 
 import { useChatsStore } from "./stores/useChatStore";
 import { transformToFeed } from "./transform/transformToFeed";
+import ButtonContextMenu from "./library/components/ButtonContextMenu.vue";
 
 
 // Define props
@@ -143,6 +153,39 @@ const themes = [
     name: "Diamond",
   },
 ];
+
+const actions = [
+  {
+    action: 'image/*',
+    title : 'Данные контакта',
+    prime: '',
+   },
+   {
+    action: 'video/*',
+    title : 'Выбрать сообшение',
+    prime: '',
+   },
+   {
+    action: '',
+    title : 'Закрыть чат',
+    prime: '',
+   },
+   {
+    action: '',
+    title : 'Без звука',
+    prime: '',
+   },
+   {
+    action: '',
+    title : 'Исчезающие сообщения',
+    prime: '',
+   },
+   {
+    action: '',
+    title : 'Очистить чат',
+    prime: '',
+   },
+]
 
 const chatsStore = useChatsStore();
 
