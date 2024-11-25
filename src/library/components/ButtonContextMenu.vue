@@ -1,5 +1,13 @@
 <template>
-  <div ref="actionScope" :id="'container-'+props.contextMenuKey" style="position: relative; width: fit-content;">
+  <div 
+    ref="actionScope" 
+    :id="'container-'+props.contextMenuKey" 
+    style="
+      position: relative;
+      width: fit-content;
+    "
+    :class="{'storybook-container' : storybook}"
+  >
     <button
       class="button"
       :class="{
@@ -81,6 +89,11 @@ const props = defineProps({
   contextMenuKey: {
     type: String,
     default: 'key',
+  },
+  storybook:{
+    type: Boolean,
+    required: false,
+    default: false,
   }
 });
 
@@ -97,7 +110,7 @@ const click = (index) => {
 
 const toggle = () => {
   if (!props.disabled){
-    if (props.mode != 'hover'){
+    if (props.mode == 'click'){
     contextMenu.value.style.display = 'inherit'
   }
   emit('buttonClick')
@@ -117,7 +130,7 @@ const hoverout = () => {
 }
 
 const handleClickOutside = (event) => {
-  if (props.mode != 'hover' && actionScope.value && !actionScope.value.contains(event.target)) {
+  if (props.mode == 'click' && actionScope.value && !actionScope.value.contains(event.target)) {
     contextMenu.value.style.display = 'none'
   }
 }
@@ -125,20 +138,20 @@ const handleClickOutside = (event) => {
 onMounted(() => {
   const side = {
     'top' : {
-      h: -0.92,
-      w: 0,
+      h: -1,
+      w: -0.25,
     },
     'bottom' : {
-      h: 0.8,
+      h: 1,
       w: -0.25,
     },
     'left' : {
       h: -0.25,
-      w: 0.8,
+      w: 1,
     },
     'right' : {
       h: -0.25,
-      w: 0.8,
+      w: 1,
     },
   }
 
@@ -156,6 +169,7 @@ onMounted(() => {
   if (props.menuSide == 'left'){
     width =  document.getElementById('container-'+props.contextMenuKey).offsetWidth
     height =  document.getElementById('context-menu-'+props.contextMenuKey).offsetHeight
+    contextMenu.value.style.right = side[props.menuSide].w * width + 'px'
   }
   if (props.menuSide == 'right'){
     width =  document.getElementById('container-'+props.contextMenuKey).offsetWidth
@@ -230,5 +244,9 @@ onUnmounted(() => {
     padding-bottom: 6px;
     border-bottom: 1px solid var(--neutral-300);
   }
+}
+
+.storybook-container{
+ margin: 100px;
 }
 </style>
