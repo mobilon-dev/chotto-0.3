@@ -15,10 +15,10 @@
       />
     </div>
     <typing-message 
-      v-if="chat.typing" 
+      v-if="typing" 
       :message="{
-        subText: chat.titleTyping, 
-        avatar: chat.avatarTyping,
+        subText: typing.title, 
+        avatar: typing.avatar,
       }"
     />
     <transition>
@@ -73,10 +73,10 @@ const props = defineProps({
     required: true,
     default: false,
   },
-  chat: {
-    type: Object,
-    required: true,
-  },
+  typing: {
+    type: [Object,Boolean],
+    default: false,
+  }
 });
 
 

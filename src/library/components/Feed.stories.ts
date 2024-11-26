@@ -20,34 +20,18 @@ const objects = [
   { type: "message.text",  messageId: '6', text: "Привет!", direction: 'incoming', time: '16:30'},
   { type: "message.image", messageId: '7', url: "https://example.com/image.jpg", time: '17:00', alt: "Example Image", direction: 'outgoing'},
 ];
-const chat = {
-  chatId: 1,
-  typing: false,
-  userTyping: 'test sergey 1',
-}
 
-const chatTyping = {
-  chatId: 2,
-  typing: true,
-}
-
-const chatGroupTyping = {
-  chatId: 3,
-  typing: true,
-  titleTyping: 'test sergey 1',
-  avatarTyping: "https://placehold.jp/30/336633/ffffff/64x64.png?text=MV",
-}
 export const Primary: Story = {
   args: {
     objects,
-    chat: chat,
+    typing: false,
   },
 };
 
 export const WithDates: Story = {
   args: {
     objects,
-    chat: chat,
+    typing: false,
   },
 };
 
@@ -58,20 +42,23 @@ export const WithButtonUnread: Story = {
     buttonParams: {
       unreadAmount: 100,
     },
-    chat: chat,
+    typing: false,
   },
 };
 
 export const PrimaryTyping: Story = {
   args: {
     objects,
-    chat: chatTyping,
+    typing: true,
   },
 };
 
-export const PrimaryGroupTyping: Story = {
+export const PrimaryTypingWithAvatarAndTitle: Story = {
   args: {
     objects,
-    chat: chatGroupTyping,
+    typing: {
+      title: 'test sergey 1',
+      avatar: "https://placehold.jp/30/336633/ffffff/64x64.png?text=MV",
+    }
   },
 };
