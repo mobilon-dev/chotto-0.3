@@ -14,6 +14,13 @@
         @action="messageAction"
       />
     </div>
+    <typing-message 
+      v-if="typing" 
+      :message="{
+        subText: typing.title, 
+        avatar: typing.avatar,
+      }"
+    />
     <transition>
       <button
         v-if="isShowButton"
@@ -64,6 +71,10 @@ const props = defineProps({
   isScrollToBottomOnUpdateObjectsEnabled: {
     type: Boolean,
     required: true,
+    default: false,
+  },
+  typing: {
+    type: [Object,Boolean],
     default: false,
   }
 });
