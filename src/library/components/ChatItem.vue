@@ -157,8 +157,9 @@ watch(
   () => {
     if(props.chat.typing){
       timer = setInterval(() => {
-        if (typingIndex.value < 2)
+        if (typingIndex.value < 2){
           typingIndex.value += 1
+        }
         else {
           typingIndex.value = 0
         }
