@@ -96,8 +96,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
-import { nextTick } from 'process';
+import { ref, computed, watch } from 'vue'
 import ContextMenu from './ContextMenu.vue'
 import { getStatus, statuses } from "../../helpers";
 
@@ -142,42 +141,36 @@ const hideMenu = () => {
 const status = computed(() => getStatus(props.chat['lastMessage.status']))
 
 let timer;
-const typingText = 'typing...';
-const isTypingText = ref(false);
+const typingIndex = ref(0)
+const typingText = ['typing.', 'typing..', 'typing...']
 
 const showText = computed(() => {
   if (props.chat.typing) {
-    return isTypingText.value ? typingText : props.chat.lastMessage;
+    return typingText[typingIndex.value];
   } else {
     return props.chat.lastMessage;
   }
 });
 
-onMounted(() => {
-  if (props.chat.typing) {
-    timer = setInterval(() => {
-      isTypingText.value = !isTypingText.value;
-    }, 2000);
-  }
-});
-
-onUnmounted(() => {
-  clearInterval(timer);
-});
-
 watch(
   () => props.chat.typing,
   () => {
-    nextTick(() => {
-      if (props.chat.typing === true) {
-        isTypingText.value = true;
-      }
-      else {
-        isTypingText.value = false
-      }
-    });
+    if(props.chat.typing){
+      timer = setInterval(() => {
+        if (typingIndex.value < 2)
+          typingIndex.value += 1
+        else {
+          typingIndex.value = 0
+        }
+      }, 1000);
+    }
+    else{
+      typingIndex.value = 0
+      clearInterval(timer);
+    }
   }
-);
+)
+
 
 </script>
 
