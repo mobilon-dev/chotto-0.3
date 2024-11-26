@@ -40,7 +40,7 @@
 
       <div class="chat-item__details-container">
         <div
-          v-if="!(buttonMenuVisible && chat.actions) && chat['lastActivity.time']"
+          v-if="chat['lastActivity.time']"
           class="chat-item__time"
         >
           {{ chat['lastActivity.time'] }}
@@ -49,7 +49,7 @@
           v-if="chat.countUnread > 0"
           class="chat-item__unread"
         >
-          {{ chat.countUnread }}
+          {{ chat.countUnread > 99 ? '99+' : chat.countUnread }}
         </div>
 
         <button
@@ -220,6 +220,7 @@ watch(
     display: flex;
     justify-content: center;
     align-items: center;
+    align-self: center;
     object-fit: cover;
     margin-right: 15px;
     background-color: var(--neutral-300);
@@ -260,15 +261,27 @@ watch(
     margin-bottom: 8px;
     font-size: 16px;
     font-weight: var(--chat-item-font-weight-name);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
   }
 
   &__last-message {
     font-size: 14px;
     font-weight: var(--chat-item-font-weight-last-message);
     color: var(--chat-item-color-last-message);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+
   }
 
   &__details-container {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -281,8 +294,9 @@ watch(
 
   &__menu-button {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    width: 100%;
+    top: 0;
+    right: 0;
     border: none;
     background-color: var(--chat-list-menu-button);
     cursor: pointer;
@@ -312,7 +326,7 @@ watch(
     margin-top: auto;
     min-width: 22px;
     min-height: 22px;
-    font-size: 14px;
+    font-size: 12px;
     color: var(--chat-item-color-unread);
     background-color: var(--chat-item-bg-unread);
   }
@@ -321,7 +335,7 @@ watch(
     font-size: var(--chat-item-font-size-time);
     color: var(--chat-item-color-time);
     font-weight: var(--chat-item-font-weight-time);
-
+    white-space: nowrap;
   }
 
   &__context-menu {

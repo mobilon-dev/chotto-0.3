@@ -224,7 +224,6 @@ function getClass(message) {
     .call-message__content {
       grid-column: 2;
       background-color: var(--base-message-left-bg);
-      color: var(--text-message-text-color);
     }
   }
 
@@ -247,7 +246,6 @@ function getClass(message) {
       grid-column: 1;
       margin-left: auto;
       background-color: var(--base-message-right-bg);
-      color: var(--text-message-text-color);
     }
   }
 }

@@ -42,12 +42,10 @@
 
   /* Inputs */
 
-  --inputtext-font-size: 14px;
+  --inputtext-font-size: 16px;
   --inputtext-padding: 0.5rem 0.75rem;
   --inputtext-width: 100%;
   --inputtext-border-radius: 6px;
-  --inputtext-color: var(--neutral-700);
-  --inputtext-placeholder-color: var(--neutral-500);
   --inputtext-transition-duration: 0.2s;
 
   /* Titles */

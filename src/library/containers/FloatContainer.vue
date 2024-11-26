@@ -159,9 +159,9 @@ onMounted(() => {
     font-weight: 400;
     color: var(--container-color);
     font-family: var(--container-font-family);
-    border-radius: var(--float-window-border-radius);
-    background-color: var(--float-window-bg);
-    box-shadow: var(--float-window-box-shadow);
+    border-radius: var(--float-container-border-radius);
+    background-color: var(--float-container-bg);
+    box-shadow: var(--float-container-box-shadow);
   }
 
   &__controls {
@@ -170,8 +170,8 @@ onMounted(() => {
     align-items: center;
     cursor: grab;
     padding: 18px 20px;
-    background-color: var(--float-window-bg-header);
-    border-radius: var(--float-window-border-radius-header);
+    background-color: var(--float-container-bg-header);
+    border-radius: var(--float-container-border-radius-header);
   }
 
   &__avatar {
@@ -198,8 +198,8 @@ onMounted(() => {
   }
 
   &__content {
-    margin: var(--float-window-content-margin, 0);
-    background-color: var(--float-window-content-bg, transparent);
+    margin: var(--float-container-content-margin, 0);
+    background-color: var(--float-container-content-bg, transparent);
   }
 
   *,

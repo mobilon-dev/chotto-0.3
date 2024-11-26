@@ -1,0 +1,39 @@
+[data-theme="dark"] {
+  /* General Message*/
+  --base-message-right-bg: var(--emerald-800);
+  --base-message-left-bg: var(--neutral-700);
+  --base-message-status-color-received: var(--neutral-200);
+  --base-message-color-time: var(--neutral-200);
+  --base-message-subtext-color: var(--neutral-400);
+  --base-message-color-views: var(--neutral-200);
+
+  /* File Message */
+  --file-message-link-color: var(--neutral-200);
+  --file-message-icon-color: var(--neutral-300);
+  --file-message-text-color: var(--neutral-200);
+
+  /* Image Message */
+  --image-message-modal-icon-color: var(--neutral-300);
+  --image-message-modal-bg: var(--neutral-900);
+
+
+  /* _____________________________________________ */
+
+  /* Audio Message */
+  --audio-message-button-icon-color: var(--neutral-800);
+  --audio-message-download-button: var(--neutral-300);
+
+  /* progress-bar-container -> pbc */
+  --audio-message-pbc-background-color: var(--neutral-400);
+
+  /* progress-bar -> pb */
+  --audio-message-pb-background-color: var(--emerald-600);
+
+  /* _____________________________________________ */
+
+  /* Call Message */
+  --call-message-color-duration: var(--neutral-200);
+
+  /* Date Message */
+  --date-message-color: var(--neutral-200);
+}

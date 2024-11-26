@@ -24,9 +24,9 @@
         :actions="channels"
         :mode="'hover'"
         :button-class="'pi pi-list'"
+        :menu-side="'top'"
+        :context-menu-key="'channels'"
         @click="selectChannel"
-        :menuSide="'top'"
-        :contextMenuKey="'channels'"
       />
     </div>
   </div>
@@ -80,10 +80,6 @@ const selectChannel = (channel) => {
       font-size: var(--icon-font-size-medium);
       color: var(--channels-selector-icon-color);
     }
-  }
-
-  &__title-container {
-
   }
 
   &__title {

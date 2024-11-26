@@ -10,6 +10,8 @@ import ChatPanel from './ChatPanel.vue'
 import ChannelSelector from './ChannelSelector.vue';
 import ChatItem from './ChatItem.vue';
 import ChatFilter from './ChatFilter.vue';
+import ButtonContextMenu from './ButtonContextMenu.vue';
+import TemplateSelector from './TemplateSelector.vue'
 
 export {
   ChatInfo,
@@ -24,4 +26,6 @@ export {
   ChannelSelector,
   ChatItem,
   ChatFilter,
+  ButtonContextMenu,
+  TemplateSelector
 }

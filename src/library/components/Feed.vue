@@ -20,7 +20,14 @@
         class="message-feed__button-down"
         @click="scrollToBottomForce"
       >
-        <span class="pi pi-angle-down" />
+        <div
+          v-if="buttonParams"
+          :style="{ backgroundColor: buttonParams.color }"
+          class="message-feed__unread-amount"
+        >
+          {{ buttonParams.unreadAmount }}
+        </div>
+        <span class="pi pi-angle-down message-feed__icon-down" />
       </button>
     </transition>
   </div>
@@ -46,6 +53,10 @@ const isShowButton = ref(false)
 const props = defineProps({
   objects: {
     type: Array,
+    required: true,
+  },
+  buttonParams: {
+    type: Object,
     required: true,
   },
   // при новом сообщении необходимо прокручивать ленту вниз,
@@ -155,11 +166,28 @@ const messageAction = (message) => {
     align-items: center;
     cursor: pointer;
     background-color: var(--feed-button-down-bg);
+    font-family: "Open Sans", sans-serif;
+  }
 
-    span {
-      font-size: var(--icon-font-size-medium);
-      color: var(--feed-icon-color);
-    }
+  &__icon-down {
+    font-size: var(--icon-font-size-medium);
+    color: var(--feed-icon-color);
+  }
+
+  &__unread-amount {
+    position: absolute;
+    top: -8px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    width: 22px;
+    height: 22px;
+    color: var(--feed-button-down-uread-color);
+    border-radius: 50%;
   }
 
   &::-webkit-scrollbar {

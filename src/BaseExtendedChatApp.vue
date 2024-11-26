@@ -32,29 +32,27 @@
             :is-selected-chat="!!selectedChat"
           >
             <template #default>
-              <ChatInfo
-                :chat="selectedChat"
-              >
+              <ChatInfo :chat="selectedChat">
                 <template #actions>
                   <div style="display: flex;">
                     <button
-                    class="chat-info__button-panel"
-                    @click="isOpenChatPanel = !isOpenChatPanel"
-                  >
-                    <span class="pi pi-info-circle" />
-                  </button>
-                  <ButtonContextMenu
-                  :actions="actions"
-                  :buttonClass="'pi pi-list'"
-                  :mode="'click'"
-                  :menuSide="'bottom'"
-                  :contextMenuKey="'top-actions'"
-                  />
+                      class="chat-info__button-panel"
+                      @click="isOpenChatPanel = !isOpenChatPanel"
+                    >
+                      <span class="pi pi-info-circle" />
+                    </button>
+                    <ButtonContextMenu
+                      :actions="actions"
+                      :button-class="'pi pi-list'"
+                      :mode="'click'"
+                      :menu-side="'bottom'"
+                      :context-menu-key="'top-actions'"
+                    />
                   </div>
-                  
                 </template>
               </ChatInfo>
               <Feed
+                :buttonParams="buttonParams"
                 :objects="messages"
                 :is-scroll-to-bottom-on-update-objects-enabled="isScrollToBottomOnUpdateObjectsEnabled"
                 @message-action="messageAction"
@@ -63,7 +61,9 @@
               <ChatInput
                 :enable-emoji="true"
                 :channels="channels"
+                :templates="templates"
                 @send="addMessage"
+                @select-channel="onSelectChannel"
               />
             </template>
 
@@ -104,6 +104,7 @@ import {
   useModalSelectUser2,
   useModalCreateChat,
   useModalCreateChat2,
+  ButtonContextMenu,
 } from "./library";
 
 import {
@@ -115,7 +116,6 @@ import {
 
 import { useChatsStore } from "./stores/useChatStore";
 import { transformToFeed } from "./transform/transformToFeed";
-import ButtonContextMenu from "./library/components/ButtonContextMenu.vue";
 
 
 // Define props
@@ -133,6 +133,11 @@ const props = defineProps({
     required: true,
   },
 });
+
+const buttonParams = {
+  color: '#10b981',
+  unreadAmount: 12
+}
 
 const themes = [
   {
@@ -193,6 +198,7 @@ const selectedChat = ref(null);
 const messages = ref([]);
 const userProfile = ref({});
 const channels = ref([]);
+const templates = ref([]);
 const sidebarItems = ref([]);
 const isOpenChatPanel = ref(false);
 const isScrollToBottomOnUpdateObjectsEnabled = ref(false);
@@ -221,7 +227,7 @@ const getUsers = () => {
 
 const loadMore = () => {
   // do load more messages to feed
-  console.log("load more");  
+  console.log("load more");
 };
 
 const getFeedObjects = () => {
@@ -236,6 +242,10 @@ const getFeedObjects = () => {
     return [];
   }
 };
+
+const onSelectChannel = (channel) => {
+  console.log('selected channel', channel);
+}
 
 const addMessage = (message) => {
   console.log(message);
@@ -276,6 +286,7 @@ onMounted(() => {
   userProfile.value = props.authProvider.getUserProfile();
   chatsStore.chats = props.dataProvider.getChats();
   channels.value = props.dataProvider.getChannels();
+  templates.value = props.dataProvider.getTemplates()
   sidebarItems.value = props.dataProvider.getSidebarItems();
   console.log('eee', sidebarItems.value)
 });

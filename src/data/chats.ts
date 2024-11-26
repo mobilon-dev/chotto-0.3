@@ -2,7 +2,7 @@ export const chats = [
   {
     chatId: 1, name: "Василий",
     avatar: 'https://img.freepik.com/free-photo/smiley-man-relaxing-outdoors_23-2148739334.jpg',
-    countUnread: 1,
+    countUnread: 102,
     lastMessage: 'test',
     'lastActivity.time': 'час назад',    // читаемый формат - для пользователей
     'lastActivity.timestamp': '1727001759',   // для сортировки
@@ -26,7 +26,7 @@ export const chats = [
     actions: [
       { action: 'edit', title: 'изменить' }, { action: 'unpin', title: 'открепить' },
     ],
-   filterMetadata: '',
+    filterMetadata: '',
   },
   {
     chatId: 3, name: "Анна",
@@ -39,29 +39,24 @@ export const chats = [
     filterMetadata: '',
   },
   {
-    chatId: 4, name: "Василий 22", 
-    countUnread: 0, lastMessage: 'test', 
-    'lastActivity.time': 'час назад',
-    'lastActivity.timestamp': '1727027359',
-    'lastMessage.status': 'received',
-    status: "#00b972", actions: [
+    chatId: 4, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', statusMessage: 'received', isFixed: false, status: "#00b972", actions: [
       { action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' },
     ],
     filterMetadata: '',
   },
   {
-    chatId: 5, name: "Василий 33", 
-    countUnread: 0, lastMessage: 'test', 
-    'lastActivity.time': 'час назад', 
+    chatId: 5, name: "Василий 33",
+    countUnread: 0, lastMessage: 'test',
+    'lastActivity.time': 'час назад',
     'lastActivity.timestamp': '1727027259',
-    'lastMessage.status': 'send',  
+    'lastMessage.status': 'send',
     actions: [
       { action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' },
     ],
     filterMetadata: '',
   },
   {
-    chatId: 6, name: "Василий", 
+    chatId: 6, name: "Василий",
     countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад',
     'lastActivity.timestamp': '1727023159',
     actions: [
@@ -70,7 +65,7 @@ export const chats = [
     filterMetadata: '',
   },
   {
-    chatId: 7, name: "Василий 2", 
+    chatId: 7, name: "Василий 2",
     countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад',
     'lastActivity.timestamp': '1727021159',
     actions: [
@@ -89,7 +84,7 @@ export const chats = [
     filterMetadata: '',
   },
   {
-    chatId: 9, name: "Василий", 
+    chatId: 9, name: "Василий",
     countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад',
     'lastActivity.timestamp': '1727021159',
     actions: [
@@ -116,7 +111,7 @@ export const chats = [
     filterMetadata: '',
   },
   {
-    chatId: 12, name: "Василий", 
+    chatId: 12, name: "Василий",
     countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад',
     'lastActivity.timestamp': '1727021159',
     actions: [

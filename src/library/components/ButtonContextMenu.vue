@@ -1,7 +1,7 @@
 <template>
   <div 
-    ref="actionScope" 
     :id="'container-'+props.contextMenuKey" 
+    ref="actionScope" 
     style="
       position: relative;
       width: fit-content;
@@ -17,18 +17,18 @@
       @mouseover="hover"
       @mouseout="hoverout"
     >
-      <span :class="buttonClass" >
+      <span :class="buttonClass">
         {{ buttonTitle }}
       </span>
     </button>
-      <div 
+    <div 
       :id="'context-menu-' + props.contextMenuKey"
-      class="context-menu" 
       ref="contextMenu" 
+      class="context-menu" 
       @mouseover="hover"
       @mouseout="hoverout"
     >
-      <div  class="context-menu__container">
+      <div class="context-menu__container">
         <ul class="context-menu__list">
           <li
             v-for="(action, index) in props.actions"
@@ -45,14 +45,13 @@
             <i 
               v-else-if="action.prime"
               :class="'pi pi-' + action.prime" 
-            >
-            </i>
+            />
             <span>{{ action.title }}</span>
           </li>
         </ul>
       </div>
     </div>
-    </div>
+  </div>
 </template>
 
 <script setup>
