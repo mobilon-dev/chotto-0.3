@@ -169,7 +169,8 @@ watch(
       typingIndex.value = 0
       clearInterval(timer);
     }
-  }
+  },
+  {immediate: true}
 )
 
 

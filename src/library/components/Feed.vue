@@ -14,6 +14,13 @@
         @action="messageAction"
       />
     </div>
+    <typing-message 
+      v-if="chat.typing" 
+      :message="{
+        subText: chat.titleTyping, 
+        avatar: chat.avatarTyping,
+      }"
+    />
     <transition>
       <button
         v-if="isShowButton"
@@ -65,7 +72,11 @@ const props = defineProps({
     type: Boolean,
     required: true,
     default: false,
-  }
+  },
+  chat: {
+    type: Object,
+    required: true,
+  },
 });
 
 

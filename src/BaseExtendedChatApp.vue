@@ -57,6 +57,7 @@
                 :is-scroll-to-bottom-on-update-objects-enabled="isScrollToBottomOnUpdateObjectsEnabled"
                 @message-action="messageAction"
                 @load-more="loadMore"
+                :chat="selectedChat"
               />
               <ChatInput
                 :enable-emoji="true"
