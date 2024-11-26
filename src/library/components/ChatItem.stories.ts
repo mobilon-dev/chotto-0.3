@@ -14,6 +14,7 @@ const chat = {
   lastMessage: "Привет!",
   countUnread: "2",
   'lastActivity.time': "12:34",
+  typing: false,
 };
 
 const actions = [
