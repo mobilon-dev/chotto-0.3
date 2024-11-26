@@ -76,6 +76,10 @@
         <span class="pi pi-ellipsis-h" />
       </button>
 
+      <button class="audio-message__download-button">
+        <span class="pi pi-download"></span>
+      </button>
+
       <transition>
         <ContextMenu
           v-if="isOpenMenu && message.actions"
@@ -185,9 +189,9 @@ onMounted(() => {
     display: grid;
     grid-template-columns: min-content 1fr;
     column-gap: 12px;
-    width: 40%;
+    width: 43%;
     border-radius: 14px;
-    padding: 10px 16px 4px 16px;
+    padding: 10px 26px 4px 16px;
   }
 
   &__play,
@@ -256,6 +260,26 @@ onMounted(() => {
     display: flex;
     align-items: center;
     column-gap: 6px;
+  }
+
+  &__download-button {
+    position: absolute;
+    right: 8px;
+    top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 12px;
+    background-color: transparent;
+    padding: 0;
+    cursor: pointer;
+
+    span {
+      color: var(--audio-message-download-button);
+      font-weight: 600;
+      font-size: 12px;
+    }
   }
 
   &__status {

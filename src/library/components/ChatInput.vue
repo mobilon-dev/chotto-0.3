@@ -36,7 +36,7 @@
           :can-upload-file="canUploadFile"
           @file-uploaded="fileUploaded"
         />
-        
+
         <button
           class="chat-input__button-emoji"
           @click="toogleDialogEmoji"
@@ -52,6 +52,23 @@
             @select="onSelectEmoji"
           />
         </Transition>
+
+        <button
+          class="chat-input__button-template"
+          @click="isOpenTemplateSelector = !isOpenTemplateSelector"
+        >
+          <span class="pi pi-objects-column" />
+        </button>
+
+        <transition>
+          <TemplateSelector
+            v-if="isOpenTemplateSelector"
+            :templates="templates.templates"
+            @close-template-window="isOpenTemplateSelector = !isOpenTemplateSelector"
+            @paste-template="pastedTemplate"
+          />
+        </transition>
+
         <ChannelSelector
           :channels="channels"
           @select-channel="onSelectChannel"
@@ -63,21 +80,28 @@
 
 <script setup>
 import { computed, ref, unref, watch } from 'vue';
-import { FileUploader  } from '.';
+import { FileUploader } from '.';
 import FilePreview from './FilePreview.vue';
 // import picker compopnent
 import EmojiPicker from 'vue3-emoji-picker';
 import 'vue3-emoji-picker/css';
 import ChannelSelector from './ChannelSelector.vue'
+import TemplateSelector from './TemplateSelector.vue'
 
 // Define emits
 const emit = defineEmits(['send', 'typing', 'selectChannel']);
 
 // Define reactive message state
-const message = defineModel({type: String});
+const message = defineModel({ type: String });
 const refInput = ref(null);
 const fileLink = ref(null);
 const fileSize = ref('')
+const isOpenTemplateSelector = ref(false)
+
+const pastedTemplate = (template) => {
+  message.value = template
+  isOpenTemplateSelector.value = !isOpenTemplateSelector.value
+}
 
 const canUploadFile = computed(() => {
   return !fileLink.value || fileLink.value === '';
@@ -94,6 +118,11 @@ const props = defineProps({
     required: false,
     default: () => { return [] }
   },
+  templates: {
+    type: Array,
+    required: false,
+    default: () => { return [] }
+  }
 })
 
 
@@ -105,22 +134,22 @@ watch(
   }
 );
 
-const sizeMeasurement = ['б','Кб',"Мб","Гб"]
+const sizeMeasurement = ['б', 'Кб', "Мб", "Гб"]
 
 
 const fileUploaded = (obj) => {
   console.log('fileUploaded', obj);
-  if (obj){
+  if (obj) {
     let size = obj.selectedFile.size
     let index = 0
-    while(size > 1024){
+    while (size > 1024) {
       size = size / 1024
       index++
     }
     size = size.toFixed(2) + sizeMeasurement[index]
     fileSize.value = size
   }
-    fileLink.value = obj;
+  fileLink.value = obj;
 }
 
 const resetUploadedFile = () => {
@@ -189,14 +218,17 @@ const onSelectEmoji = (emoji) => {
     padding: 5px;
     grid-gap: 5px;
   }
-  &__first-line{
+
+  &__first-line {
     display: flex;
   }
-  &__second-line{
+
+  &__second-line {
     display: flex;
     grid-gap: 5px;
   }
-  &__third-line{
+
+  &__third-line {
     display: flex;
   }
 
@@ -208,7 +240,7 @@ const onSelectEmoji = (emoji) => {
       display: block;
       width: 0;
       height: 0;
-      
+
     }
 
     span {
@@ -232,6 +264,7 @@ const onSelectEmoji = (emoji) => {
     white-space: normal;
     overflow-y: hidden;
     resize: none;
+
     &:focus-visible {
       outline: none;
     }
@@ -242,9 +275,11 @@ const onSelectEmoji = (emoji) => {
   }
 
   &__button-emoji,
-  &__button-send {
+  &__button-send,
+  &__button-template {
     background-color: transparent;
-    border: 0px solid var(--neutral-300);;
+    border: 0px solid var(--neutral-300);
+    ;
 
     span {
       display: block;
@@ -255,7 +290,7 @@ const onSelectEmoji = (emoji) => {
     }
   }
 
-  &__button-emoji:hover + &__emoji{
+  &__button-emoji:hover+&__emoji {
     display: inherit;
   }
 
@@ -265,7 +300,7 @@ const onSelectEmoji = (emoji) => {
     bottom: 40%;
   }
 
-  &__emoji:hover{
+  &__emoji:hover {
     display: inherit;
   }
 }

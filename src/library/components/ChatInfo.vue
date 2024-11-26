@@ -56,7 +56,7 @@ const emit = defineEmits(['open-panel']);
     display: flex;
     align-items: center;
     gap: 10px;
-    border-bottom: 1px solid var(--neutral-200);
+    border-bottom: var(--chat-info-border);
   }
 
   &__avatar-container {
@@ -87,7 +87,7 @@ const emit = defineEmits(['open-panel']);
 
   &__title {
     grid-column: 2;
-    font-weight: 500;
+    font-weight: var(--chat-info-font-weight-title);
     font-size: var(--chat-info-font-size-title);
   }
 

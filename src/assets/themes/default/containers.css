@@ -5,11 +5,10 @@
   --container-font-family: 'Montserrat', sans-serif;
 
   /* Float Container */
-  --float-window-bg: var(--default-white);
-  --float-window-box-shadow: 0px 0px 20px -7px rgba(0, 0, 0, 0.2);
-  --float-window-bg-header: var(--neutral-300);
-  --float-window-border-radius: 12px;
-  --float-window-border-radius-header: 12px 12px 0 0;
+  --float-container-bg: var(--default-white);
+  --float-container-box-shadow: 0px 0px 20px -7px rgba(0, 0, 0, 0.2);
+  --float-container-bg-header: var(--neutral-300);
+  --float-container-border-radius: 12px;
+  --float-container-border-radius-header: 12px 12px 0 0;
 
-  /* Base Container */
 }

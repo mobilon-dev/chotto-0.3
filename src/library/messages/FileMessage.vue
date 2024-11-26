@@ -57,6 +57,10 @@
         <span class="pi pi-ellipsis-h" />
       </button>
 
+      <button class="file-message__download-button">
+        <span class="pi pi-download"></span>
+      </button>
+
       <transition>
         <ContextMenu
           v-if="isOpenMenu && message.actions"
@@ -129,7 +133,7 @@ function getClass(message) {
     width: fit-content;
     border-radius: 14px;
     background-color: var(--file-message-background-color);
-    padding: 10px 10px 4px 16px;
+    padding: 10px 30px 4px 16px;
   }
 
   &__link {
@@ -151,6 +155,26 @@ function getClass(message) {
     align-items: center;
     justify-content: flex-end;
     column-gap: 6px;
+  }
+
+  &__download-button {
+    position: absolute;
+    right: 8px;
+    top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 12px;
+    background-color: transparent;
+    padding: 0;
+    cursor: pointer;
+
+    span {
+      color: var(--audio-message-download-button);
+      font-weight: 600;
+      font-size: 12px;
+    }
   }
 
   &__status {
@@ -235,7 +259,6 @@ function getClass(message) {
     .file-message__content {
       grid-column: 2;
       background-color: var(--base-message-left-bg);
-      color: var(--text-message-text-color);
     }
 
     .file-message__menu-button {
@@ -269,7 +292,6 @@ function getClass(message) {
       grid-column: 1;
       margin-left: auto;
       background-color: var(--base-message-right-bg);
-      color: var(--text-message-text-color);
     }
 
     .file-message__menu-button {

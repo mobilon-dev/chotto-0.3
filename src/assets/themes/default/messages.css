@@ -32,6 +32,7 @@
 
   /* Audio Message */
   --audio-message-button-icon-color: var(--neutral-100);
+  --audio-message-download-button: var(--neutral-500);
 
   /* progress-bar-container -> pbc */
   --audio-message-pbc-background-color: var(--neutral-400);

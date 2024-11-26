@@ -1,0 +1,76 @@
+[data-theme="dark"] {
+
+  /* Chat Panel */
+  --chat-panel-bg: var(--neutral-800);
+
+  /* Tool Bar */
+  --sidebar-border: 1px solid var(--neutral-500);
+  --sidebar-box-shadow: -13px 0px 20px -21px rgba(255, 255, 255, 0.2);
+
+  /* Chat List */
+  --chat-list-fixed-background-color: var(--neutral-900);
+  --chat-list-menu-button: var(--neutral-900);
+  --chat-list-menu-button-color-hover: var(--neutral-200);
+  --chat-list-button-actions-bg: var(--neutral-600);
+
+  /* Chat Filter */
+  --chat-filter-input-color: var(--neutral-200);
+  --chat-filter-input-border: 1px solid var(--neutral-400);
+  --chat-filter-input-placeholder-color: var(--neutral-400);
+  --chat-filter-hover-border-color: var(--neutral-400);
+  --chat-filter-focus-border-color: var(--neutral-600);
+
+  /* Chat Input */
+  --chat-input-color: var(--neutral-200);
+  --chat-input-placeholder-color: var(--neutral-400);
+  --chat-input-icon-color: var(--neutral-300);
+
+  /* File Uploader */
+  --file-uploader-icon-color: var(--neutral-300);
+
+  /* _____________________________________________ */
+
+  /* Chat Item */
+
+  /* Info Container */
+  --chat-item-selected: var(--neutral-800);
+  --chat-item-color-last-message: var(--neutral-400);
+
+  /* Details Container */
+  --chat-item-color-unread: var(--neutral-900);
+
+  /* Chat Info */
+  --chat-info-border: 1px solid var(--neutral-500);
+
+  /* _____________________________________________ */
+
+  /* Feed */
+  --feed-button-down-bg: var(--neutral-600);
+  --feed-button-down-uread-color: var(--neutral-900);
+  --feed-icon-color: var(--neutral-300);
+
+  /* Channels */
+  --channels-selector-popover-background-color: var(--neutral-600);
+  --channels-selector-icon-color: var(--neutral-300);
+
+  /* Сontext Menu */
+  --context-menu-background: var(--neutral-700);
+
+  /* Chat Input */
+  --chat-input-background: var(--neutral-700);
+  --chat-input-border: 1px solid var(--neutral-500);
+
+  /* Scroll Bar */
+  --scrollbar-bg: var(--neutral-600);
+  --scrollbar-thumb-bg: var(--neutral-400);
+
+  /* Template Selector */
+  --template-selector-bg: var(--neutral-800);
+  --template-selector-item-hover: var(--neutral-700);
+  --template-selector-item-selected: var(--neutral-600);
+  --template-selector-border: 1px solid var(--neutral-400);
+  --template-selector-icon-color: var(--neutral-400);
+  --template-selector-preview-bg: var(--neutral-800);
+  --template-selector-button-paste-bg: var(--neutral-600);
+  --template-selector-button-paste-color: var(--neutral-100);
+}

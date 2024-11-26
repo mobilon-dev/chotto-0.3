@@ -1,0 +1,10 @@
+[data-theme="dark"] {
+  /* General */
+  --container-color: var(--neutral-100);
+
+  /* Float Container */
+  --float-container-bg: var(--neutral-700);
+  --float-container-box-shadow: 0px 0px 20px -10px rgba(144, 144, 144, 0.2);
+  --float-container-bg-header: var(--neutral-800);
+  --float-container-icon-color: var(--neutral-300);
+}
