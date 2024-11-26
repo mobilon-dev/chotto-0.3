@@ -96,7 +96,8 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
+import { nextTick } from 'process';
 import ContextMenu from './ContextMenu.vue'
 import { getStatus, statuses } from "../../helpers";
 
@@ -163,6 +164,21 @@ onMounted(() => {
 onUnmounted(() => {
   clearInterval(timer);
 });
+
+watch(
+  () => props.chat.typing,
+  () => {
+    nextTick(() => {
+      if (props.chat.typing === true) {
+        isTypingText.value = true;
+      }
+      else {
+        isTypingText.value = false
+      }
+    });
+  }
+);
+
 </script>
 
 <style
