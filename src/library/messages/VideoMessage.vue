@@ -21,7 +21,7 @@
       <video
         ref="player"
         class="video-message__video"
-        src="/sample-10s.mp4"
+        :src="message.url"
       />
       <div class="video-message__controls">
         <transition>
