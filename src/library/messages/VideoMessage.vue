@@ -77,9 +77,13 @@
         </div>
       </div>
 
-      <button class="video-message__download-button">
+      <a
+        class="video-message__download-button"
+        :href="message.url"
+        download
+      >
         <span class="pi pi-download"></span>
-      </button>
+      </a>
     </div>
   </div>
 </template>

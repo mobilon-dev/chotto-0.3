@@ -35,7 +35,8 @@
   --chat-filter-focus-border-color: var(--neutral-700);
 
   /* Chat Input */
-  --chat-input-background: var(--neutral-200);
+  --chat-input-container-bg: var(--neutral-100);
+  --chat-input-background: var(--default-white);
   --chat-input-border-radius: 0 0 12px 12px;
   --chat-input-border: 1px solid var(--neutral-300);
 

@@ -76,9 +76,13 @@
         <span class="pi pi-ellipsis-h" />
       </button>
 
-      <button class="audio-message__download-button">
-        <span class="pi pi-download"></span>
-      </button>
+      <a
+        class="audio-message__download-button"
+        :href="message.url"
+        download
+      >
+        <span class="pi pi-download" />
+      </a>
 
       <transition>
         <ContextMenu

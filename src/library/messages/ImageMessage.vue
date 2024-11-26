@@ -58,9 +58,13 @@
           </div>
         </div>
 
-        <button class="image-message__download-button">
+        <a
+          class="image-message__download-button"
+          :href="message.url"
+          download
+        >
           <span class="pi pi-download"></span>
-        </button>
+        </a>
       </div>
 
 
