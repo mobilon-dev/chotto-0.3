@@ -148,6 +148,7 @@ const messageAction = (message) => {
 >
 .message-feed {
   height: 100%;
+  max-height: inherit;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
