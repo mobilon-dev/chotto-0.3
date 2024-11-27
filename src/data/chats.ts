@@ -76,12 +76,11 @@ export const chats = [
   },
   {
     chatId: 8, name: "Василий",
-    countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад',
-    'lastActivity.timestamp': '1727021159',
+
     actions: [
       { action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' },
     ],
-    filterMetadata: '',
+
   },
   {
     chatId: 9, name: "Василий",
