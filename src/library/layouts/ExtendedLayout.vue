@@ -40,7 +40,7 @@ const startResize = (event) => {
 const resize = (event) => {
   if (isResizing.value) {
     const newWidth = initialWidth.value + (event.clientX - startX.value);
-    resizableDiv.value.style.width = `${Math.max(258, newWidth)}px`;
+    resizableDiv.value.style.width = `${Math.max(270, newWidth)}px`;
   }
 };
 

@@ -1,6 +1,7 @@
 [data-theme="green"] {
 
   /* Chat Input */
+  --chat-input-container-bg: var(--default-white);
   --chat-input-background: transparent;
   --chat-input-border-radius: 0;
 

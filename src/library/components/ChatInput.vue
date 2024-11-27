@@ -213,8 +213,8 @@ const onSelectEmoji = (emoji) => {
     display: grid;
     align-items: center;
     border-radius: var(--chat-input-border-radius);
-    border-top: 1px solid var(--neutral-300);
-    background-color: var(--chat-input-background);
+    border-top: var(--chat-input-border);
+    background-color: var(--chat-input-container-bg);
     padding: 5px;
     grid-gap: 5px;
   }
@@ -256,7 +256,7 @@ const onSelectEmoji = (emoji) => {
     border: 1px solid var(--neutral-300);
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
-    background-color: #ffffff;
+    background-color: var(--chat-input-background);
     padding: var(--inputtext-padding);
     width: var(--inputtext-width);
     color: var(--inputtext-color);
@@ -270,7 +270,7 @@ const onSelectEmoji = (emoji) => {
     }
 
     &::placeholder {
-      color: var(--inputtext-placeholder-color);
+      color: var(--chat-input-placeholder-color);
     }
   }
 

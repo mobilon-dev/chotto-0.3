@@ -57,9 +57,13 @@
         <span class="pi pi-ellipsis-h" />
       </button>
 
-      <button class="file-message__download-button">
+      <a
+        class="file-message__download-button"
+        :href="message.url"
+        download
+      >
         <span class="pi pi-download"></span>
-      </button>
+      </a>
 
       <transition>
         <ContextMenu
