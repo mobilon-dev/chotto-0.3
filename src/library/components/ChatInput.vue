@@ -34,6 +34,7 @@
       <div class="chat-input__third-line">
         <FileUploader
           :can-upload-file="canUploadFile"
+          :filebump-url="filebumpUrl"
           @file-uploaded="fileUploaded"
         />
 
@@ -122,9 +123,11 @@ const props = defineProps({
     type: Array,
     required: false,
     default: () => { return [] }
+  },
+  filebumpUrl: {
+    type: String,
   }
 })
-
 
 watch(
   () => message.value,

@@ -64,7 +64,7 @@
           download
           target="_blank"
         >
-          <span class="pi pi-download"></span>
+          <span class="pi pi-download" />
         </a>
       </div>
 

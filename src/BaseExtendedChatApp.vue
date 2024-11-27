@@ -52,17 +52,18 @@
                 </template>
               </ChatInfo>
               <Feed
-                :buttonParams="buttonParams"
+                :button-params="buttonParams"
                 :objects="messages"
                 :is-scroll-to-bottom-on-update-objects-enabled="isScrollToBottomOnUpdateObjectsEnabled"
+                :typing="selectedChat.typing ? {avatar: selectedChat.avatar,title: selectedChat.title} : false"
                 @message-action="messageAction"
                 @load-more="loadMore"
-                :typing="selectedChat.typing ? {avatar: selectedChat.avatar,title: selectedChat.title} : false"
               />
               <ChatInput
                 :enable-emoji="true"
                 :channels="channels"
                 :templates="templates"
+                :filebump-url="filebumpUrl"
                 @send="addMessage"
                 @select-channel="onSelectChannel"
               />
@@ -203,6 +204,7 @@ const templates = ref([]);
 const sidebarItems = ref([]);
 const isOpenChatPanel = ref(false);
 const isScrollToBottomOnUpdateObjectsEnabled = ref(false);
+const filebumpUrl = ref('https://filebump2.services.mobilon.ru');
 
 const selectItem = (item) => {
   console.log("selected sidebar item", item);

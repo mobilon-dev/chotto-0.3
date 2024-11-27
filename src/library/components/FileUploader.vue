@@ -48,7 +48,10 @@ const props = defineProps({
   storybook:{
     type: Boolean,
     default: false
-  }
+  },
+  filebumpUrl: {
+    type: String,
+  },
 });
 
 const selectedFile = ref(null);
@@ -148,7 +151,10 @@ const uploadFile = async () => {
   const formData = new FormData();
   formData.append("file", selectedFile.value);
 
-  const url = "https://filebump.services.mobilon.ru/upload";
+  const oldFilebumpUrl = 'https://filebump2.services.mobilon.ru';
+  const url = (props.filebumpUrl ? 
+    props.filebumpUrl : oldFilebumpUrl) + "/upload";
+
   try {
     const response = await fetch(
       url,
