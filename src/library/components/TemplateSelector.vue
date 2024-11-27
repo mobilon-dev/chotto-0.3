@@ -66,7 +66,7 @@
 
 <script setup>
 import { computed } from 'vue'
-import { useMessage } from './useMessage';
+import { useMessage } from '../../helpers/useMessage';
 const props = defineProps({
   templates: {
     type: Array,

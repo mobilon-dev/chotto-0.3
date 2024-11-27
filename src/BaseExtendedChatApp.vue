@@ -62,7 +62,6 @@
               <ChatInput
                 :enable-emoji="true"
                 :channels="channels"
-                :templates="templates"
                 :filebump-url="filebumpUrl"
                 @send="addMessage"
                 @select-channel="onSelectChannel"

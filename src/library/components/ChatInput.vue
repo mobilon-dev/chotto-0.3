@@ -76,7 +76,7 @@ import EmojiPicker from 'vue3-emoji-picker';
 import 'vue3-emoji-picker/css';
 import ChannelSelector from './ChannelSelector.vue'
 import TemplateSelector from './TemplateSelector.vue'
-import { useMessage } from './useMessage';
+import { useMessage } from '../../helpers/useMessage';
 // Define emits
 const emit = defineEmits(['send', 'typing', 'selectChannel']);
 
