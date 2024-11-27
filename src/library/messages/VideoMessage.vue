@@ -81,6 +81,7 @@
         class="video-message__download-button"
         :href="message.url"
         download
+        target="_blank"
       >
         <span class="pi pi-download"></span>
       </a>
