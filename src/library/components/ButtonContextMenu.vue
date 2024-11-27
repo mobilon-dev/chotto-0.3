@@ -6,9 +6,8 @@
       position: relative;
       width: fit-content;
     "
-    :class="{'storybook-container' : storybook}"
   >
-    <button
+    <div
       class="button"
       :class="{
         'disabled-button' : disabled,
@@ -20,7 +19,7 @@
       <span :class="buttonClass">
         {{ buttonTitle }}
       </span>
-    </button>
+    </div>
     <div 
       :id="'context-menu-' + props.contextMenuKey"
       ref="contextMenu" 
@@ -89,11 +88,6 @@ const props = defineProps({
     type: String,
     default: 'key',
   },
-  storybook:{
-    type: Boolean,
-    required: false,
-    default: false,
-  }
 });
 
 const emit = defineEmits(['click','buttonClick']);
@@ -192,20 +186,16 @@ onUnmounted(() => {
   lang="scss"
 >
 
-.button {
-    background-color: transparent;
-    border: none;
+.button span {
+  display: block;
+  cursor: pointer;
+  padding: 5px 14px;
+  font-size: var(--icon-font-size-medium);
+  color: var(--channels-selector-icon-color);
+}
+  
 
-    span {
-      display: block;
-      cursor: pointer;
-      padding: 14px;
-      font-size: var(--icon-font-size-medium);
-      color: var(--channels-selector-icon-color);
-    }
-  }
-
-  .disabled-button span {
+.disabled-button span {
   color: lightgray;
   cursor: auto;
 }
@@ -244,9 +234,5 @@ onUnmounted(() => {
     padding-bottom: 6px;
     border-bottom: 1px solid var(--neutral-300);
   }
-}
-
-.storybook-container{
- margin: 100px;
 }
 </style>

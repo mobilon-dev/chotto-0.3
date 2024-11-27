@@ -132,7 +132,8 @@ const selectedTemplate = computed(() => props.templates.find(item => item.isSele
     flex-direction: column;
     overflow-y: auto;
     border: 1px solid var(--neutral-200);
-
+    margin: 0px;
+    padding-left: 0px;
     &::-webkit-scrollbar {
       width: 6px;
       background-color: var(--scrollbar-bg);
@@ -198,6 +199,7 @@ const selectedTemplate = computed(() => props.templates.find(item => item.isSele
 
   &__preview {
     height: 100%;
+    box-sizing: border-box;
     background-color: var(--template-selector-preview-bg);
     padding: 20px;
     background-image: url('../../../public/chat-background.svg');

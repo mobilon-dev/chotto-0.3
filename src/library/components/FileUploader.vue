@@ -1,7 +1,6 @@
 <template>
   <div
     class="uploader-container"
-    :class="{'storybook-container' : storybook}"
   >
     <div v-if="uploadStatus === 'uploading'">
       <p>Загрузка файла...</p>
@@ -9,18 +8,8 @@
     <div v-else-if="uploadStatus === 'error'">
       <p>Ошибка при загрузке файла.</p>
     </div>
-    
-    <div
-      v-else
-      class="chat-input__button-file"
-      :class="{'chat-input__button-file-disabled' : !canUploadFile}"
-    >
-      <input
-        ref="fileInput"
-        type="file"
-        @change="onFileSelected" 
-      >
       <ButtonContextMenu
+        v-else
         :actions="actions"
         :mode="'hover'"
         :button-class="'pi pi-file-arrow-up'"
@@ -30,7 +19,12 @@
         @click="triggerFileUpload"
         @button-click="triggerFileUploadDefault"
       />
-    </div>
+    <input
+      style="display: none;"
+      ref="fileInput"
+      type="file"
+      @change="onFileSelected" 
+    >
   </div>
 </template>
 
@@ -44,10 +38,6 @@ const props = defineProps({
     type: Boolean,
     required: true,
     default: true,
-  },
-  storybook:{
-    type: Boolean,
-    default: false
   },
   filebumpUrl: {
     type: String,
@@ -204,94 +194,7 @@ const triggerFileUploadDefault = () => {
   scoped
   lang="scss"
 >
-.chat-input {
-  &__button-file {
-    input {
-      position: absolute;
-      z-index: -1;
-      opacity: 0;
-      display: block;
-      width: 0;
-      height: 0;
-    }
-
-    span {
-      display: block;
-      cursor: pointer;
-      padding: 14px;
-      font-size: var(--icon-font-size-medium);
-      color: var(--file-uploader-icon-color);
-    }
-  }
-  &__button-file-disabled{
-    span {
-      cursor: auto;
-      color: lightgray;
-    }
-  }
-}
-
-.preview-image,
-.preview-video {
-  max-width: 200px;
-  max-height: 200px;
-  border-radius: 5px;
-}
-
 .uploader-container {
-  position: relative;
-}
-
-.file-drop-down {
-  display: none;
-  font-size: inherit;
-  background: white;
-  outline: none;
-  border-radius: 4px;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 80%;
-  align-items: center;
-  margin: 0;
-  max-width: fit-content;
-  max-height: fit-content;
-  z-index: 2;
-}
-
-.file-drop-down:hover {
-  display: inherit;
-}
-
-.uploader-container:hover .file-drop-down {
-  display: inherit;
-  
-}
-
-.preview {
-  max-width: 150px;
-  max-height: 100px;
-  overflow: hidden;
-  border-radius: 5px;
-  border: 1px solid;
-}
-
-.preview-container {
-  margin-left: 10px;
-}
-
-.preview-name {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  max-width: 150px;
-  width: 150px;
-  display: inline-block;
-}
-
-.storybook-container{
-  padding-top: 20px;
-  margin-top: 50px;
-  height: 100px;
+  display: flex;
 }
 </style>
