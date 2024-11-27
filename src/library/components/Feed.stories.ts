@@ -21,6 +21,11 @@ const objects = [
   { type: "message.image", messageId: '7', url: "https://example.com/image.jpg", time: '17:00', alt: "Example Image", direction: 'outgoing'},
 ];
 
+const buttonParams = {
+  color: '#10b981',
+  unreadAmount: 12
+}
+
 export const Primary: Story = {
   args: {
     objects,
@@ -39,11 +44,10 @@ export const WithDates: Story = {
 export const WithButtonUnread: Story = {
   args: {
     objects,
-    buttonParams: {
-      unreadAmount: 100,
-    },
+    buttonParams: buttonParams,
     typing: false,
   },
+  decorators: [() => ({ template: '<div style="max-height: 300px;"><story/></div>' })]
 };
 
 export const PrimaryTyping: Story = {
