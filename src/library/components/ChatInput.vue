@@ -38,25 +38,7 @@
           :can-upload-file="canUploadFile"
           @file-uploaded="fileUploaded"
         />
-
-        <button
-          class="chat-input__button-emoji"
-          @click="toogleDialogEmoji"
-        >
-          <span class="pi pi-face-smile" />
-        </button>
-        <Transition>
-          <EmojiPicker
-            class="chat-input__emoji"
-            :native="true"
-            :theme="changeThemeDialogEmoji"
-            picker-type=""
-            @select="onSelectEmoji"
-          />
-        </Transition>
         <slot name="buttons"></slot>
-        
-
         <ChannelSelector
           style="margin-top: 9px;"
           :channels="channels"
@@ -71,11 +53,7 @@
 import { computed, ref, unref, watch } from 'vue';
 import { FileUploader } from '.';
 import FilePreview from './FilePreview.vue';
-// import picker compopnent
-import EmojiPicker from 'vue3-emoji-picker';
-import 'vue3-emoji-picker/css';
 import ChannelSelector from './ChannelSelector.vue'
-import TemplateSelector from './TemplateSelector.vue'
 import { useMessage } from '../../helpers/useMessage';
 // Define emits
 const emit = defineEmits(['send', 'typing', 'selectChannel']);
@@ -91,11 +69,6 @@ const canUploadFile = computed(() => {
 })
 
 const props = defineProps({
-  enableEmoji: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
   channels: {
     type: Array,
     required: false,
@@ -176,17 +149,6 @@ const sendMessage = () => {
   unref(refInput).focus()
 };
 
-
-const changeThemeDialogEmoji = computed(() => {
-  if (document.documentElement.classList.contains('dark')) {
-    return 'dark'
-  }
-})
-
-const onSelectEmoji = (emoji) => {
-  message.value = (message.value ? message.value : '') + emoji.i;
-  // console.log('emoji', emoji)
-}
 </script>
 
 <style
@@ -260,9 +222,7 @@ const onSelectEmoji = (emoji) => {
     }
   }
 
-  &__button-emoji,
-  &__button-send,
-  &__button-template {
+  &__button-send{
     background-color: transparent;
     border: 0px solid var(--neutral-300);
     ;
@@ -274,20 +234,6 @@ const onSelectEmoji = (emoji) => {
       font-size: var(--icon-font-size-medium);
       color: var(--chat-input-icon-color);
     }
-  }
-
-  &__button-emoji:hover+&__emoji {
-    display: inherit;
-  }
-
-  &__emoji {
-    display: none;
-    position: absolute;
-    bottom: 50px;
-  }
-
-  &__emoji:hover {
-    display: inherit;
   }
 }
 
