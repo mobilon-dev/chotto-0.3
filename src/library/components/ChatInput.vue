@@ -54,22 +54,8 @@
             @select="onSelectEmoji"
           />
         </Transition>
-
-        <button
-          class="chat-input__button-template"
-          @click="isOpenTemplateSelector = !isOpenTemplateSelector"
-        >
-          <span class="pi pi-objects-column" />
-        </button>
-
-        <transition>
-          <TemplateSelector
-            v-if="isOpenTemplateSelector"
-            :templates="templates.templates"
-            @close-template-window="isOpenTemplateSelector = !isOpenTemplateSelector"
-            @paste-template="pastedTemplate"
-          />
-        </transition>
+        <slot name="buttons"></slot>
+        
 
         <ChannelSelector
           style="margin-top: 9px;"
@@ -90,21 +76,15 @@ import EmojiPicker from 'vue3-emoji-picker';
 import 'vue3-emoji-picker/css';
 import ChannelSelector from './ChannelSelector.vue'
 import TemplateSelector from './TemplateSelector.vue'
-
+import { useMessage } from './useMessage';
 // Define emits
 const emit = defineEmits(['send', 'typing', 'selectChannel']);
 
 // Define reactive message state
-const message = defineModel({ type: String });
+const message = useMessage()
 const refInput = ref(null);
 const fileLink = ref(null);
 const fileSize = ref('')
-const isOpenTemplateSelector = ref(false)
-
-const pastedTemplate = (template) => {
-  message.value = template
-  isOpenTemplateSelector.value = !isOpenTemplateSelector.value
-}
 
 const canUploadFile = computed(() => {
   return !fileLink.value || fileLink.value === '';
@@ -130,6 +110,7 @@ const props = defineProps({
     type: String,
   }
 })
+
 
 watch(
   () => message.value,

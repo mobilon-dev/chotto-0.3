@@ -66,7 +66,25 @@
                 :filebump-url="filebumpUrl"
                 @send="addMessage"
                 @select-channel="onSelectChannel"
-              />
+              >
+                <template v-slot:buttons>
+                  <button
+                    class="button-template"
+                    @click="isOpenTemplateSelector = !isOpenTemplateSelector"
+                  >
+                    <span class="pi pi-objects-column" />
+                  </button>
+
+                  <transition>
+                    <TemplateSelector
+                      v-if="isOpenTemplateSelector"
+                      :templates="templates.templates"
+                      @close-template-window="isOpenTemplateSelector = !isOpenTemplateSelector"
+                      
+                    />
+                  </transition>
+                </template>
+              </ChatInput>
             </template>
 
             <template #chatpanel>
@@ -107,6 +125,7 @@ import {
   useModalCreateChat,
   useModalCreateChat2,
   ButtonContextMenu,
+  TemplateSelector,
 } from "./library";
 
 import {
@@ -205,6 +224,7 @@ const sidebarItems = ref([]);
 const isOpenChatPanel = ref(false);
 const isScrollToBottomOnUpdateObjectsEnabled = ref(false);
 const filebumpUrl = ref('https://filebump2.services.mobilon.ru');
+const isOpenTemplateSelector = ref(false)
 
 const selectItem = (item) => {
   console.log("selected sidebar item", item);
@@ -294,3 +314,19 @@ onMounted(() => {
   console.log('eee', sidebarItems.value)
 });
 </script>
+
+<style>
+.button-template {
+    background-color: transparent;
+    border: 0px solid var(--neutral-300);
+    ;
+
+    span {
+      display: block;
+      cursor: pointer;
+      padding: 14px;
+      font-size: var(--icon-font-size-medium);
+      color: var(--chat-input-icon-color);
+    }
+  }
+</style>

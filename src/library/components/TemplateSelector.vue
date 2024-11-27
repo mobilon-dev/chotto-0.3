@@ -56,7 +56,7 @@
 
       <button
         class="template-selector__button-paste"
-        @click="$emit('pasteTemplate', selectedTemplate.template)"
+        @click="handlePutMessage"
       >
         Вставить
       </button>
@@ -66,7 +66,7 @@
 
 <script setup>
 import { computed } from 'vue'
-
+import { useMessage } from './useMessage';
 const props = defineProps({
   templates: {
     type: Array,
@@ -74,6 +74,13 @@ const props = defineProps({
     default: () => { return [] }
   }
 })
+
+const message = useMessage()
+
+const handlePutMessage = () => {
+  emit('closeTemplateWindow')
+  message.value = selectedTemplate.value.template
+}
 
 const emit = defineEmits(['closeTemplateWindow', 'pasteTemplate'])
 
