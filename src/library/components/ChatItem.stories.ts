@@ -30,6 +30,23 @@ export const ChatItemBasic: Story = {
   },
 };
 
+export const ChatItemBasic300px: Story = {
+  args: {
+    chat: {
+      ...chat,
+    },
+  },
+  decorators: [() => ({ template: '<div style="max-width: 300px;"><story/></div>' })]
+};
+
+export const ChatItemBasic500px: Story = {
+  args: {
+    chat: {
+      ...chat,
+    },
+  },
+  decorators: [() => ({ template: '<div style="max-width: 500px;"><story/></div>' })]
+};
 export const ChatItemWithoutLastMessage: Story = {
   args: {
     chat: {

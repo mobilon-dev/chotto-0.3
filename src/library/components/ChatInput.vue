@@ -33,8 +33,9 @@
       </div>
       <div class="chat-input__third-line">
         <FileUploader
-          :can-upload-file="canUploadFile"
+          style="margin-top: 9px;"
           :filebump-url="filebumpUrl"
+          :can-upload-file="canUploadFile"
           @file-uploaded="fileUploaded"
         />
 
@@ -71,6 +72,7 @@
         </transition>
 
         <ChannelSelector
+          style="margin-top: 9px;"
           :channels="channels"
           @select-channel="onSelectChannel"
         />
@@ -287,7 +289,7 @@ const onSelectEmoji = (emoji) => {
     span {
       display: block;
       cursor: pointer;
-      padding: 12px;
+      padding: 14px;
       font-size: var(--icon-font-size-medium);
       color: var(--chat-input-icon-color);
     }
@@ -300,7 +302,7 @@ const onSelectEmoji = (emoji) => {
   &__emoji {
     display: none;
     position: absolute;
-    bottom: 40%;
+    bottom: 50px;
   }
 
   &__emoji:hover {

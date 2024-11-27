@@ -4,6 +4,10 @@ import ButtonContextMenu from './ButtonContextMenu.vue';
 
 const meta: Meta<typeof ButtonContextMenu> = {
   component: ButtonContextMenu,
+  parameters: {
+    layout: 'centered',
+  },
+  decorators: [() => ({ template: '<div style="margin: 100px;"><story/></div>' })]
 };
  
 export default meta;
@@ -33,17 +37,16 @@ const actionsLA = [
   
 export const StandardRight: Story = {
   args: {
-    storybook: true,
     actions: actions,
     buttonClass: 'pi pi-list',
     menuSide: 'right',
     contextMenuKey: 'sr',
   },
+  
 };
 
 export const WithIcons: Story = {
   args: {
-    storybook: true,
     actions: actionsWithIcons,
     buttonClass: 'pi pi-list',
     contextMenuKey: 'wi',
@@ -53,7 +56,6 @@ export const WithIcons: Story = {
 
 export const FileDropDownMenu: Story = {
   args: {
-    storybook: true,
     actions: actionsFileDropDown,
     buttonClass: 'pi pi-file-arrow-up',
     contextMenuKey: 'fddm',
@@ -63,7 +65,6 @@ export const FileDropDownMenu: Story = {
 
 export const WithoutIcon: Story = {
   args: {
-    storybook: true,
     actions: actions,
     buttonClass: '',
     buttonTitle: 'Нажми сюда',
@@ -74,7 +75,6 @@ export const WithoutIcon: Story = {
 
 export const StandardTop: Story = {
   args: {
-    storybook: true,
     actions: actions,
     buttonClass: 'pi pi-list',
     menuSide: 'top',
@@ -84,7 +84,6 @@ export const StandardTop: Story = {
 
 export const StandardLeft: Story = {
   args: {
-    storybook: true,
     actions: actions,
     buttonClass: 'pi pi-list',
     menuSide: 'left',
@@ -94,7 +93,6 @@ export const StandardLeft: Story = {
 
 export const StandardBottom: Story = {
   args: {
-    storybook: true,
     actions: actions,
     buttonClass: 'pi pi-list',
     menuSide: 'bottom',
@@ -104,7 +102,6 @@ export const StandardBottom: Story = {
 
 export const LongActions: Story = {
   args: {
-    storybook: true,
     actions: actionsLA,
     buttonClass: 'pi pi-list',
     menuSide: 'right',
