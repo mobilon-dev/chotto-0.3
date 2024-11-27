@@ -62,11 +62,16 @@
               <ChatInput
                 :enable-emoji="true"
                 :channels="channels"
-                :templates="templates"
                 :filebump-url="filebumpUrl"
                 @send="addMessage"
                 @select-channel="onSelectChannel"
-              />
+              >
+                <template v-slot:buttons>
+                  <ButtonTemplateSelector
+                    :templates="templates.templates"
+                  />
+                </template>
+              </ChatInput>
             </template>
 
             <template #chatpanel>
@@ -107,6 +112,7 @@ import {
   useModalCreateChat,
   useModalCreateChat2,
   ButtonContextMenu,
+  ButtonTemplateSelector,
 } from "./library";
 
 import {

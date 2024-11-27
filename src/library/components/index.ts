@@ -12,6 +12,7 @@ import ChatItem from './ChatItem.vue';
 import ChatFilter from './ChatFilter.vue';
 import ButtonContextMenu from './ButtonContextMenu.vue';
 import TemplateSelector from './TemplateSelector.vue'
+import ButtonTemplateSelector from './ButtonTemplateSelector.vue';
 
 export {
   ChatInfo,
@@ -27,5 +28,6 @@ export {
   ChatItem,
   ChatFilter,
   ButtonContextMenu,
-  TemplateSelector
+  TemplateSelector,
+  ButtonTemplateSelector,
 }
