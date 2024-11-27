@@ -68,6 +68,7 @@ const selectChannel = (channel) => {
 .channels {
   &__container{
     display: flex;
+    margin-top: 9px;
   }
   &__button {
     background-color: transparent;

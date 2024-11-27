@@ -39,11 +39,6 @@
           @file-uploaded="fileUploaded"
         />
         <slot name="buttons"></slot>
-        <ChannelSelector
-          style="margin-top: 9px;"
-          :channels="channels"
-          @select-channel="onSelectChannel"
-        />
       </div>
     </div>
   </div>
@@ -53,7 +48,6 @@
 import { computed, ref, unref, watch } from 'vue';
 import { FileUploader } from '.';
 import FilePreview from './FilePreview.vue';
-import ChannelSelector from './ChannelSelector.vue'
 import { useMessage } from '../../helpers/useMessage';
 // Define emits
 const emit = defineEmits(['send', 'typing', 'selectChannel']);
@@ -69,11 +63,6 @@ const canUploadFile = computed(() => {
 })
 
 const props = defineProps({
-  channels: {
-    type: Array,
-    required: false,
-    default: () => { return [] }
-  },
   templates: {
     type: Array,
     required: false,
@@ -119,10 +108,6 @@ const resetUploadedFile = () => {
 const sendTyping = (event) => {
   // console.log('typing', event.target.value);
   emit('typing', event.target.value);
-}
-
-const onSelectChannel = (channel) => {
-  emit('selectChannel', channel);
 }
 
 // Define the method to send the message

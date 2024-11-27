@@ -60,15 +60,17 @@
                 @load-more="loadMore"
               />
               <ChatInput
-                :channels="channels"
                 :filebump-url="filebumpUrl"
                 @send="addMessage"
-                @select-channel="onSelectChannel"
               >
                 <template #buttons>
                   <ButtonEmojiPicker/>
                   <ButtonTemplateSelector
                     :templates="templates.templates"
+                  />
+                  <ChannelSelector 
+                    :channels="channels"
+                    @select-channel="onSelectChannel"
                   />
                 </template>
               </ChatInput>
@@ -125,6 +127,7 @@ import {
 
 import { useChatsStore } from "./stores/useChatStore";
 import { transformToFeed } from "./transform/transformToFeed";
+import ChannelSelector from "./library/components/ChannelSelector.vue";
 
 
 // Define props
