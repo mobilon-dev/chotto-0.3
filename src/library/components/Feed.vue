@@ -29,7 +29,7 @@
       >
         <div
           v-if="buttonParams"
-          :style="{ backgroundColor: buttonParams.color }"
+          :style="{ backgroundColor: buttonParams.color || '#00ff00' }"
           class="message-feed__unread-amount"
         >
           {{ buttonParams.unreadAmount }}
@@ -54,7 +54,6 @@ import SystemMessage from '../messages/SystemMessage.vue'
 import TypingMessage from '../messages/TypingMessage.vue'
 
 const refFeed = ref();
-// const initialScroll = ref(0)
 const isShowButton = ref(false)
 
 const props = defineProps({
@@ -64,7 +63,7 @@ const props = defineProps({
   },
   buttonParams: {
     type: Object,
-    required: true,
+    required: false,
   },
   // при новом сообщении необходимо прокручивать ленту вниз,
   // а при загрузке более ранних сообщений - нет
