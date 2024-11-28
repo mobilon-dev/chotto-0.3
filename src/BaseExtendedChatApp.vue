@@ -41,13 +41,13 @@
                     >
                       <span class="pi pi-info-circle" />
                     </button>
-                    <ButtonContextMenu
+                    <!--ButtonContextMenu
                       :actions="actions"
                       :button-class="'pi pi-list'"
                       :mode="'click'"
                       :menu-side="'bottom'"
                       :context-menu-key="'top-actions'"
-                    />
+                    /-->
                   </div>
                 </template>
               </ChatInfo>
@@ -60,15 +60,19 @@
                 @load-more="loadMore"
               />
               <ChatInput
-                :enable-emoji="true"
-                :channels="channels"
-                :filebump-url="filebumpUrl"
                 @send="addMessage"
-                @select-channel="onSelectChannel"
               >
-                <template v-slot:buttons>
+                <template #buttons>
+                  <FileUploader
+                    :filebump-url="filebumpUrl"
+                  />
+                  <ButtonEmojiPicker/>
                   <ButtonTemplateSelector
                     :templates="templates.templates"
+                  />
+                  <ChannelSelector 
+                    :channels="channels"
+                    @select-channel="onSelectChannel"
                   />
                 </template>
               </ChatInput>
@@ -113,6 +117,8 @@ import {
   useModalCreateChat2,
   ButtonContextMenu,
   ButtonTemplateSelector,
+  ButtonEmojiPicker,
+  FileUploader,
 } from "./library";
 
 import {
@@ -124,6 +130,7 @@ import {
 
 import { useChatsStore } from "./stores/useChatStore";
 import { transformToFeed } from "./transform/transformToFeed";
+import ChannelSelector from "./library/components/ChannelSelector.vue";
 
 
 // Define props

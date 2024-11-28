@@ -26,19 +26,26 @@
       @change="onFileSelected" 
     >
   </div>
+  <teleport v-if="message.fileName" to="#chat-input-first-line">
+    <FilePreview
+      :preview-url="previewUrl"
+      :is-image="isImage"
+      :is-video="isVideo"
+      :is-audio="isAudio"
+      :file-name="selectedFile.name"
+      :file-size="fileSize"
+      @reset="resetSelectedFile"
+    />
+  </teleport>
 </template>
 
 <script setup>
-import { ref, watch, nextTick } from "vue";
+import { ref, computed } from "vue";
 import ButtonContextMenu from "./ButtonContextMenu.vue";
 import {getTypeFileByMime} from '../../helpers'
-
+import FilePreview from "./FilePreview.vue";
+import { useMessage } from "../../helpers/useMessage";
 const props = defineProps({
-  canUploadFile: {
-    type: Boolean,
-    required: true,
-    default: true,
-  },
   filebumpUrl: {
     type: String,
   },
@@ -46,12 +53,13 @@ const props = defineProps({
 
 const selectedFile = ref(null);
 const uploadStatus = ref("");
-const fileLink = ref("");
 const previewUrl = ref("");
 const isImage = ref(false);
 const isVideo = ref(false);
 const isAudio = ref(false)
 const fileInput = ref(null);
+const fileSize = ref('')
+const { message, setMessageFile, resetMessageFile } = useMessage()
 
 const actions = [
   {
@@ -77,21 +85,14 @@ const actions = [
 ]
 
 const emit = defineEmits(["fileUploaded"]);
-watch(
-  () => props.canUploadFile,
-  () => {
-    nextTick(() => {
-      if (props.canUploadFile === true) {
-        uploadStatus.value = null;
-      }
-    });
-  }
-);
+
+const canUploadFile = computed(() => {
+  return !message.value.fileUrl || message.value.fileUrl === '';
+})
 
 const resetSelectedFile = () => {
   selectedFile.value = null;
-  emit("fileUploaded", null);
-  fileLink.value = null;
+  resetMessageFile()
   previewUrl.value = "";
   uploadStatus.value = ""
 };
@@ -122,7 +123,6 @@ const generatePreview = () => {
   else if (fileType === 'audio'){
     isAudio.value = true
   }
-
   if (isImage.value || isVideo.value) {
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -132,8 +132,16 @@ const generatePreview = () => {
   } else {
     previewUrl.value = ""; // No preview available
   }
+  const sizeMeasurement = ['б', 'Кб', "Мб", "Гб"]
+  let size = file.size
+  let index = 0
+  while (size > 1024) {
+    size = size / 1024
+    index++
+  }
+  size = size.toFixed(2) + sizeMeasurement[index]
+  fileSize.value = size
 };
-
 
 const uploadFile = async () => {
   uploadStatus.value = "uploading";
@@ -154,21 +162,15 @@ const uploadFile = async () => {
       }
     );
     const result = await response.json();
-    fileLink.value = result.url;
     uploadStatus.value = "success";
 
     // emit event with link
-    emit("fileUploaded", { 
-      url: result.url, 
-      type: getTypeFileByMime(selectedFile.value.type),
-      filename: selectedFile.value.name,
+    setMessageFile({
+      url: result.url,
+      name: selectedFile.value.name,
       size: selectedFile.value.size,
-      previewUrl: previewUrl.value,
-      isImage: isImage.value,
-      isVideo: isVideo.value,
-      isAudio: isAudio.value,
-      selectedFile: selectedFile.value,
-    });
+      type: getTypeFileByMime(selectedFile.value.type),
+    })
   } catch (error) {
     console.error("Ошибка при загрузке файла:", error);
     uploadStatus.value = "error";
@@ -176,14 +178,14 @@ const uploadFile = async () => {
 };
 
 const triggerFileUpload = (action) => {
-  if (fileInput.value && props.canUploadFile) {
+  if (fileInput.value && canUploadFile) {
     fileInput.value.accept = action.action
     fileInput.value.click();
   }
 };
 
 const triggerFileUploadDefault = () => {
-  if (fileInput.value && props.canUploadFile) {
+  if (fileInput.value && canUploadFile) {
     fileInput.value.click();
   }
 };
@@ -195,6 +197,7 @@ const triggerFileUploadDefault = () => {
   lang="scss"
 >
 .uploader-container {
+  margin-top: 9px;
   display: flex;
 }
 </style>
