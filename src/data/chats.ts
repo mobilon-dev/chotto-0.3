@@ -4,7 +4,7 @@ export const chats = [
     avatar: 'https://img.freepik.com/free-photo/smiley-man-relaxing-outdoors_23-2148739334.jpg',
     countUnread: 102,
     lastMessage: 'test',
-    'lastActivity.time': 'час назад',    // читаемый формат - для пользователей
+    'lastActivity.time': 'час назад',         // читаемый формат - для пользователей
     'lastActivity.timestamp': '1727001759',   // для сортировки
     isFixedBottom: false,
     status: "#767676",
@@ -15,7 +15,7 @@ export const chats = [
       { action: 'delete', title: 'удалить', icon: 'https://placehold.jp/30/dd6699/ffffff/64x64.png?text=del' },
     ],
     typing: true,
-    filterMetadata: '',    // фильтр работает по name и данным в filterMetadata
+    metadata: '',    // фильтр работает по name и данным в metadata
   },
   {
     chatId: 2, name: "Мария",
@@ -26,7 +26,7 @@ export const chats = [
     actions: [
       { action: 'edit', title: 'изменить' }, { action: 'unpin', title: 'открепить' },
     ],
-    filterMetadata: '',
+    metadata: '',
   },
   {
     chatId: 3, name: "Анна",
@@ -36,13 +36,13 @@ export const chats = [
     actions: [
       { action: 'edit', title: 'изменить' }, { action: 'unpin', title: 'открепить' },
     ],
-    filterMetadata: '',
+    metadata: '',
   },
   {
     chatId: 4, name: "Василий", countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад', statusMessage: 'received', isFixed: false, status: "#00b972", actions: [
       { action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' },
     ],
-    filterMetadata: '',
+    metadata: '',
   },
   {
     chatId: 5, name: "Василий 33",
@@ -53,7 +53,7 @@ export const chats = [
     actions: [
       { action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' },
     ],
-    filterMetadata: '',
+    metadata: '',
   },
   {
     chatId: 6, name: "Василий",
@@ -62,7 +62,7 @@ export const chats = [
     actions: [
       { action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' },
     ],
-    filterMetadata: '',
+    metadata: '',
   },
   {
     chatId: 7, name: "Василий 2",
@@ -72,7 +72,7 @@ export const chats = [
       { action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' },
     ],
     typing: true,
-    filterMetadata: '',
+    metadata: '',
   },
   {
     chatId: 8, name: "Василий",
@@ -81,7 +81,7 @@ export const chats = [
     actions: [
       { action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' },
     ],
-    filterMetadata: '',
+    metadata: '',
   },
   {
     chatId: 9, name: "Василий",
@@ -99,7 +99,7 @@ export const chats = [
     actions: [
       { action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' },
     ],
-    filterMetadata: '',
+    metadata: '',
   },
   {
     chatId: 11, name: "Василий",
@@ -108,7 +108,7 @@ export const chats = [
     actions: [
       { action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' },
     ],
-    filterMetadata: '',
+    metadata: '',
   },
   {
     chatId: 12, name: "Василий",
@@ -117,6 +117,6 @@ export const chats = [
     actions: [
       { action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' },
     ],
-    filterMetadata: '',
+    metadata: '',
   },
 ];
