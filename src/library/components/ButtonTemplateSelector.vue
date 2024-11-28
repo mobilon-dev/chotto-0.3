@@ -1,31 +1,83 @@
 <template>
   <button
+    ref="templateButton"
     class="button-template"
-    @click="isOpenTemplateSelector = !isOpenTemplateSelector"
+    @click="toggle"
+    @mouseover="hover"
+    @mouseout="hoverout"
   >
     <span class="pi pi-objects-column" />
   </button>
   <transition>
-    <TemplateSelector
-      v-if="isOpenTemplateSelector"
-      :templates="templates"
-      @close-template-window="isOpenTemplateSelector = !isOpenTemplateSelector"         
-    />
+    <div
+      ref="template"
+      @mouseover="hover"
+      @mouseout="hoverout"
+    >
+      <TemplateSelector
+        :templates="templates"
+        @close-template-window="close"         
+      />
+    </div>
   </transition>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import TemplateSelector from './TemplateSelector.vue';
 const props = defineProps({
   templates: {
     type: Array,
     required: false,
     default: () => { return [] }
+  },
+  mode:{
+    type: String,
+    required: false,
+    default: 'click'
   }
 })
 
-const isOpenTemplateSelector = ref(false)
+const templateButton = ref(null)
+const template = ref(null)
+
+
+const toggle = () => {
+  if (props.mode == 'click'){
+    template.value.style.display = 'inherit'
+  }
+}
+
+const hover = () => {
+  if (props.mode == 'hover'){
+    template.value.style.display = 'inherit'
+  }
+}
+
+const hoverout = () => {
+  if (props.mode == 'hover'){
+    template.value.style.display = 'none'
+  }
+}
+
+const handleClickOutside = (event) => {
+  if (props.mode == 'click' && !templateButton.value.contains(event.target) && !template.value.contains(event.target)) {
+    template.value.style.display = 'none'
+  }
+}
+
+const close = () => {
+  template.value.style.display = 'none'
+}
+
+onMounted(() => {
+  template.value.style.display = 'none'
+  document.addEventListener("click", handleClickOutside)
+})
+
+onUnmounted(() => {
+  document.removeEventListener("click", handleClickOutside)
+})
 
 </script>
 

@@ -75,11 +75,11 @@ const props = defineProps({
   }
 })
 
-const message = useMessage()
+const {message} = useMessage()
 
 const handlePutMessage = () => {
   emit('closeTemplateWindow')
-  message.value = selectedTemplate.value.template
+  message.value.text = selectedTemplate.value.template
 }
 
 const emit = defineEmits(['closeTemplateWindow', 'pasteTemplate'])

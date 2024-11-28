@@ -71,6 +71,7 @@
                   />
                   <ButtonTemplateSelector
                     :templates="templates.templates"
+                    :mode="'click'"
                   />
                   <ChannelSelector 
                     :channels="channels"
