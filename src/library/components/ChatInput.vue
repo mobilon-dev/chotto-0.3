@@ -12,7 +12,7 @@
           v-model="message.text"
           class="chat-input__input"
           placeholder="Type a message..."
-          @keydown.enter="sendMessage"
+          @keydown.enter="keyEnter"
           @input="sendTyping"
         />
         <button
@@ -47,7 +47,6 @@ const props = defineProps({
   },
 })
 
-
 watch(
   () => message.value.text,
   () => {
@@ -59,6 +58,18 @@ watch(
 const sendTyping = (event) => {
   // console.log('typing', event.target.value);
   emit('typing', event.target.value);
+}
+
+const keyEnter = (event) => {
+  if (event.ctrlKey){
+    let caret = event.target.selectionStart;
+    event.target.setRangeText("\n", caret, caret, "end");
+    message.value.text = event.target.value
+    console.log(message.value.text)
+  }
+  else {
+    sendMessage()
+  }
 }
 
 // Define the method to send the message
@@ -146,6 +157,7 @@ const sendMessage = () => {
     white-space: normal;
     overflow-y: hidden;
     resize: none;
+    white-space: pre-wrap;
 
     &:focus-visible {
       outline: none;

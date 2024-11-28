@@ -81,7 +81,6 @@ const handleClickOutside = (event) => {
 }
 
 onMounted(() => {
-  console.log(emoji)
   emoji.value.style.display = 'none'
   document.addEventListener("click", handleClickOutside)
 })
