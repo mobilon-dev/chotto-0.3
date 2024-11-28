@@ -40,7 +40,7 @@
 
       <div class="chat-item__details-container">
         <div
-          v-if="chat['lastActivity.time']"
+          v-if="chat['lastActivity.time'] && !buttonMenuVisible"
           class="chat-item__time"
         >
           {{ chat['lastActivity.time'] }}
@@ -155,9 +155,9 @@ const showText = computed(() => {
 watch(
   () => props.chat.typing,
   () => {
-    if(props.chat.typing){
+    if (props.chat.typing) {
       timer = setInterval(() => {
-        if (typingIndex.value < 2){
+        if (typingIndex.value < 2) {
           typingIndex.value += 1
         }
         else {
@@ -165,12 +165,12 @@ watch(
         }
       }, 1000);
     }
-    else{
+    else {
       typingIndex.value = 0
       clearInterval(timer);
     }
   },
-  {immediate: true}
+  { immediate: true }
 )
 
 
@@ -288,10 +288,8 @@ watch(
   }
 
   &__menu-button {
-    position: absolute;
+    order: 0;
     width: 100%;
-    top: 0;
-    right: 0;
     border: none;
     background-color: var(--chat-list-menu-button);
     cursor: pointer;
@@ -312,6 +310,7 @@ watch(
   }
 
   &__unread {
+    order: 1;
     display: flex;
     justify-content: center;
     align-items: center;
