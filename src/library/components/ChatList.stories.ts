@@ -8,7 +8,8 @@ const meta: Meta<typeof ChatList> = {
  
 export default meta;
 type Story = StoryObj<typeof ChatList>;
- 
+
+const template = '<div style="max-width: 350px; max-height:700px;"><story/></div>';
 
 const chats = [{
   chatId: '1',
@@ -36,6 +37,7 @@ export const ChatlistBasic: Story = {
   args: {
     chats,
   },
+  decorators: [() => ({template})],
 };
 
 export const ChatlistWithEnabledFilter: Story = {
@@ -43,6 +45,7 @@ export const ChatlistWithEnabledFilter: Story = {
     chats,
     filterEnabled: true,
   },
+  decorators: [() => ({template})],
 };
 
 export const ChatlistWithActions: Story = {
@@ -51,6 +54,7 @@ export const ChatlistWithActions: Story = {
     actions: actionsChatList,
     filterEnabled: true,
   },
+  decorators: [() => ({template})],
 };
 
 const chats10 = [0,1,2,3,4,5,6,7,8,9].map(() => {
@@ -69,6 +73,7 @@ export const Entities10: Story = {
     chats: [...chats, ...chats10],
     filterEnabled: true,
   },
+  decorators: [() => ({template})],
 };
 
 const fixedChats = [{
@@ -93,6 +98,7 @@ export const WithFixedChats: Story = {
     chats: [...chats, ...chats10 ,...fixedChats],
     filterEnabled: true,
   },
+  decorators: [() => ({template})],
 };
 
 const actions = [
@@ -122,6 +128,7 @@ export const ChatsWithActions: Story = {
     chats: [...chats, ...chatsWithActions],
     filterEnabled: true,
   },
+  decorators: [() => ({template})],
 };
 
 const chatsWithStatuses = [{
@@ -146,6 +153,7 @@ export const ChatsWithStatuses: Story = {
     chats: [...chats, ...chatsWithStatuses],
     filterEnabled: false,
   },
+  decorators: [() => ({template})],
 };
 
 const chatsWithTypings = [{
@@ -168,10 +176,10 @@ const chatsWithTypings = [{
 }];
 
 
-
 export const ChatsWithTypings: Story = {
   args: {
     chats: [...chats, ...chatsWithTypings],
     filterEnabled: false,
   },
+  decorators: [() => ({template})],
 };

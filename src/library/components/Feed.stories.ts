@@ -40,14 +40,15 @@ export const WithDates: Story = {
   },
 };
 
-// @todo: сделать показ количества непрочитанных в стори
 export const WithButtonUnread: Story = {
   args: {
     objects,
     buttonParams: buttonParams,
     typing: false,
   },
-  decorators: [() => ({ template: '<div style="max-height: 300px;"><story/></div>' })]
+  decorators: [() => ({ 
+    template: '<div style="max-height: 300px;"><story/></div>' 
+  })],
 };
 
 export const PrimaryTyping: Story = {
