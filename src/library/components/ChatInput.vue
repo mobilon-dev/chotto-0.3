@@ -31,7 +31,7 @@
 </template>
 
 <script setup>
-import { ref, unref, watch } from 'vue';
+import { ref, unref, watch, nextTick } from 'vue';
 import { useMessage } from '../../helpers/useMessage';
 // Define emits
 const emit = defineEmits(['send', 'typing', 'selectChannel']);
@@ -51,8 +51,11 @@ const props = defineProps({
 watch(
   () => message.value.text,
   () => {
-    refInput.value.style.height = "auto"
-    refInput.value.style.height = refInput.value.scrollHeight + 'px'
+    nextTick(function () {
+      refInput.value.style.height = 'auto'
+      refInput.value.style.scrollHeight = "auto"
+      refInput.value.style.height = refInput.value.scrollHeight + 'px'
+    })
   }
 );
 
@@ -165,7 +168,7 @@ const sendMessage = () => {
     overflow-y: hidden;
     resize: none;
     white-space: pre-wrap;
-
+    max-height: 140px;
     &:focus-visible {
       outline: none;
     }
