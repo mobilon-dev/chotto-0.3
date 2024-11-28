@@ -3,10 +3,9 @@
     <div class="chat-input__container">
       <div
         
-        class="chat-input__first-line"
         id="chat-input-first-line"
-      >
-      </div>
+        class="chat-input__first-line"
+      />
       <div class="chat-input__second-line">
         <textarea
           ref="refInput"
@@ -24,7 +23,7 @@
         </button>
       </div>
       <div class="chat-input__third-line">
-        <slot name="buttons"></slot>
+        <slot name="buttons" />
       </div>
     </div>
   </div>

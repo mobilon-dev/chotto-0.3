@@ -8,25 +8,28 @@
     <div v-else-if="uploadStatus === 'error'">
       <p>Ошибка при загрузке файла.</p>
     </div>
-      <ButtonContextMenu
-        v-else
-        :actions="actions"
-        :mode="'hover'"
-        :button-class="'pi pi-file-arrow-up'"
-        :menu-side="'top'"
-        :context-menu-key="'file-uploader'"
-        :disabled="!canUploadFile"
-        @click="triggerFileUpload"
-        @button-click="triggerFileUploadDefault"
-      />
+    <ButtonContextMenu
+      v-else
+      :actions="actions"
+      :mode="'hover'"
+      :button-class="'pi pi-file-arrow-up'"
+      :menu-side="'top'"
+      :context-menu-key="'file-uploader'"
+      :disabled="!canUploadFile"
+      @click="triggerFileUpload"
+      @button-click="triggerFileUploadDefault"
+    />
     <input
-      style="display: none;"
       ref="fileInput"
+      style="display: none;"
       type="file"
       @change="onFileSelected" 
     >
   </div>
-  <teleport v-if="message.fileName" to="#chat-input-first-line">
+  <teleport
+    v-if="message.fileName"
+    to="#chat-input-first-line"
+  >
     <FilePreview
       :preview-url="previewUrl"
       :is-image="isImage"
