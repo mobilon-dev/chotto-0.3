@@ -12,11 +12,12 @@
           v-model="message.text"
           class="chat-input__input"
           placeholder="Type a message..."
-          @keydown.enter="sendMessage"
+          @keydown.enter="keyEnter"
           @input="sendTyping"
         />
         <button
           class="chat-input__button-send"
+          :class="{'chat-input__button-send-disabled' : message.text == ''  && message.fileUrl == '' }"
           @click="sendMessage"
         >
           <span class="pi pi-send" />
@@ -30,7 +31,7 @@
 </template>
 
 <script setup>
-import { ref, unref, watch } from 'vue';
+import { ref, unref, watch, nextTick } from 'vue';
 import { useMessage } from '../../helpers/useMessage';
 // Define emits
 const emit = defineEmits(['send', 'typing', 'selectChannel']);
@@ -47,12 +48,14 @@ const props = defineProps({
   },
 })
 
-
 watch(
   () => message.value.text,
   () => {
-    refInput.value.style.height = "auto"
-    refInput.value.style.height = refInput.value.scrollHeight + 'px'
+    nextTick(function () {
+      refInput.value.style.height = 'auto'
+      refInput.value.style.scrollHeight = "auto"
+      refInput.value.style.height = refInput.value.scrollHeight + 'px'
+    })
   }
 );
 
@@ -61,11 +64,28 @@ const sendTyping = (event) => {
   emit('typing', event.target.value);
 }
 
+const keyEnter = (event) => {
+  if (event.ctrlKey){
+    let caret = event.target.selectionStart;
+    event.target.setRangeText("\n", caret, caret, "end");
+    message.value.text = event.target.value
+  }
+  else {
+    event.preventDefault()
+    sendMessage()
+  }
+}
+
 // Define the method to send the message
 const sendMessage = () => {
-  const messageObject = {
+  console.log(message.value)
+  if (message.value.text != '' || message.value.fileUrl != '' ){
+    const messageObject = {
     type: null,
     text: null,
+    url: null,
+    filename: null,
+    size: null,
   };
 
   if (message.value.fileUrl) {
@@ -81,6 +101,7 @@ const sendMessage = () => {
   emit('send', messageObject);
   resetMessage()
   unref(refInput).focus()
+  }
 };
 
 </script>
@@ -146,7 +167,8 @@ const sendMessage = () => {
     white-space: normal;
     overflow-y: hidden;
     resize: none;
-
+    white-space: pre-wrap;
+    max-height: 140px;
     &:focus-visible {
       outline: none;
     }
@@ -167,6 +189,12 @@ const sendMessage = () => {
       padding: 14px;
       font-size: var(--icon-font-size-medium);
       color: var(--chat-input-icon-color);
+    }
+  }
+  &__button-send-disabled{
+    span {
+      cursor: auto;
+      color: var(--chat-input-icon-color-disabled);
     }
   }
 }

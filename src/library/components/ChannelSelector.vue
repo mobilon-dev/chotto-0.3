@@ -22,7 +22,7 @@
       >Канал не выбран</span>
       <ButtonContextMenu
         :actions="channels"
-        :mode="'hover'"
+        :mode="mode"
         :button-class="'pi pi-list'"
         :menu-side="'top'"
         :context-menu-key="'channels'"
@@ -43,6 +43,11 @@ const props = defineProps({
     type: Array,
     required: false,
     default: () => [],
+  },
+  mode:{
+    type: String,
+    required: false,
+    default: 'hover'
   }
 })
 
