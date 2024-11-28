@@ -24,7 +24,8 @@
   --chat-input-color: var(--neutral-200);
   --chat-input-placeholder-color: var(--neutral-400);
   --chat-input-icon-color: var(--neutral-300);
-
+  --chat-input-icon-color-disabled: var(--neutral-600);
+  
   /* File Uploader */
   --file-uploader-icon-color: var(--neutral-300);
 

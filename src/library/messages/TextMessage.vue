@@ -197,6 +197,7 @@ function getClass(message) {
 
   &__text {
     font-size: var(--base-message-font-size-text);
+    white-space: pre-wrap;
   }
 
   &__subtext {

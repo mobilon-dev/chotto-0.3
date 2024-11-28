@@ -17,6 +17,7 @@
         />
         <button
           class="chat-input__button-send"
+          :class="{'chat-input__button-send-disabled' : message.text == ''  && message.fileUrl == '' }"
           @click="sendMessage"
         >
           <span class="pi pi-send" />
@@ -65,18 +66,23 @@ const keyEnter = (event) => {
     let caret = event.target.selectionStart;
     event.target.setRangeText("\n", caret, caret, "end");
     message.value.text = event.target.value
-    console.log(message.value.text)
   }
   else {
+    event.preventDefault()
     sendMessage()
   }
 }
 
 // Define the method to send the message
 const sendMessage = () => {
-  const messageObject = {
+  console.log(message.value)
+  if (message.value.text != '' || message.value.fileUrl != '' ){
+    const messageObject = {
     type: null,
     text: null,
+    url: null,
+    filename: null,
+    size: null,
   };
 
   if (message.value.fileUrl) {
@@ -92,6 +98,7 @@ const sendMessage = () => {
   emit('send', messageObject);
   resetMessage()
   unref(refInput).focus()
+  }
 };
 
 </script>
@@ -179,6 +186,12 @@ const sendMessage = () => {
       padding: 14px;
       font-size: var(--icon-font-size-medium);
       color: var(--chat-input-icon-color);
+    }
+  }
+  &__button-send-disabled{
+    span {
+      cursor: auto;
+      color: var(--chat-input-icon-color-disabled);
     }
   }
 }
