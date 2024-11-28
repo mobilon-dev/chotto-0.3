@@ -65,7 +65,7 @@ export const chats = [
     filterMetadata: '',
   },
   {
-    chatId: 7, name: "Василий 2",
+    chatId: 7, name: "Василий 2 фывфывыф фывфывфыввыв",
     countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад',
     'lastActivity.timestamp': '1727021159',
     actions: [

@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 const resizableDiv = ref(null);
 let isResizing = ref(false);
@@ -48,6 +48,12 @@ const stopResize = () => {
   isResizing.value = false;
   document.removeEventListener('mousemove', resize);
 };
+
+onMounted(() => {
+  if (resizableDiv.value) {
+    resizableDiv.value.style.width = '350px'
+  }
+})
 </script>
 
 <style
@@ -58,7 +64,7 @@ const stopResize = () => {
   &__container {
     height: inherit;
     display: grid;
-    grid-template-columns: min-content auto 3fr min-content;
+    grid-template-columns: min-content min-content 3fr min-content;
     transition: all 0.3s ease;
     background-color: var(--layout-extended-bg, transparent);
     position: relative;
@@ -109,9 +115,9 @@ const stopResize = () => {
   content: "";
   position: absolute;
   top: 0;
-  right: 0;
+  right: -8px;
   bottom: 0;
-  width: 2px;
+  width: 4%;
   cursor: e-resize;
   background-color: rgba(0, 0, 0, 0);
   z-index: 10;

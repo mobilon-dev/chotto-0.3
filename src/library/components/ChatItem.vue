@@ -250,6 +250,7 @@ watch(
     flex-grow: 1;
     align-self: flex-start;
     margin-right: 15px;
+    overflow-x: hidden;
   }
 
   &__name {
