@@ -82,10 +82,12 @@ const props = defineProps({
   },
   menuSide: {
     type: String,
+    required: false,
     default: 'top'
   },
   contextMenuKey: {
     type: String,
+    required: false,
     default: 'key',
   },
 });

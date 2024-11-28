@@ -66,7 +66,9 @@
                   <FileUploader
                     :filebump-url="filebumpUrl"
                   />
-                  <ButtonEmojiPicker />
+                  <ButtonEmojiPicker 
+                    :mode="'hover'"
+                  />
                   <ButtonTemplateSelector
                     :templates="templates.templates"
                   />
