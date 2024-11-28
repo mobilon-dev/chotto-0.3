@@ -23,7 +23,7 @@ import 'vue3-emoji-picker/css';
 import {computed} from 'vue'
 import { useMessage } from '../../helpers/useMessage';
 
-const message = useMessage()
+const {message} = useMessage()
 
 const changeThemeDialogEmoji = computed(() => {
   if (document.documentElement.classList.contains('dark')) {
@@ -32,7 +32,7 @@ const changeThemeDialogEmoji = computed(() => {
 })
 
 const onSelectEmoji = (emoji) => {
-  message.value = (message.value ? message.value : '') + emoji.i;
+  message.value.text = (message.value.text ? message.value.text : '') + emoji.i;
   // console.log('emoji', emoji)
 }
 

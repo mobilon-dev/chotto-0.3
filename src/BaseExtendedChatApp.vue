@@ -41,13 +41,13 @@
                     >
                       <span class="pi pi-info-circle" />
                     </button>
-                    <ButtonContextMenu
+                    <!--ButtonContextMenu
                       :actions="actions"
                       :button-class="'pi pi-list'"
                       :mode="'click'"
                       :menu-side="'bottom'"
                       :context-menu-key="'top-actions'"
-                    />
+                    /-->
                   </div>
                 </template>
               </ChatInfo>
@@ -60,10 +60,12 @@
                 @load-more="loadMore"
               />
               <ChatInput
-                :filebump-url="filebumpUrl"
                 @send="addMessage"
               >
                 <template #buttons>
+                  <FileUploader
+                    :filebump-url="filebumpUrl"
+                  />
                   <ButtonEmojiPicker/>
                   <ButtonTemplateSelector
                     :templates="templates.templates"
@@ -115,7 +117,8 @@ import {
   useModalCreateChat2,
   ButtonContextMenu,
   ButtonTemplateSelector,
-  ButtonEmojiPicker
+  ButtonEmojiPicker,
+  FileUploader,
 } from "./library";
 
 import {

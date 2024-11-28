@@ -2,23 +2,15 @@
   <div class="chat-input">
     <div class="chat-input__container">
       <div
-        v-if="fileLink"
+        
         class="chat-input__first-line"
+        id="chat-input-first-line"
       >
-        <FilePreview
-          :preview-url="fileLink.previewUrl"
-          :is-image="fileLink.isImage"
-          :is-video="fileLink.isVideo"
-          :is-audio="fileLink.isAudio"
-          :file-name="fileLink.selectedFile.name"
-          :file-size="fileSize"
-          @reset="resetUploadedFile"
-        />
       </div>
       <div class="chat-input__second-line">
         <textarea
           ref="refInput"
-          v-model="message"
+          v-model="message.text"
           class="chat-input__input"
           placeholder="Type a message..."
           @keydown.enter="sendMessage"
@@ -32,12 +24,6 @@
         </button>
       </div>
       <div class="chat-input__third-line">
-        <FileUploader
-          style="margin-top: 9px;"
-          :filebump-url="filebumpUrl"
-          :can-upload-file="canUploadFile"
-          @file-uploaded="fileUploaded"
-        />
         <slot name="buttons"></slot>
       </div>
     </div>
@@ -45,22 +31,14 @@
 </template>
 
 <script setup>
-import { computed, ref, unref, watch } from 'vue';
-import { FileUploader } from '.';
-import FilePreview from './FilePreview.vue';
+import { ref, unref, watch } from 'vue';
 import { useMessage } from '../../helpers/useMessage';
 // Define emits
 const emit = defineEmits(['send', 'typing', 'selectChannel']);
-
+//
 // Define reactive message state
-const message = useMessage()
+const {message, resetMessage} = useMessage()
 const refInput = ref(null);
-const fileLink = ref(null);
-const fileSize = ref('')
-
-const canUploadFile = computed(() => {
-  return !fileLink.value || fileLink.value === '';
-})
 
 const props = defineProps({
   templates: {
@@ -68,42 +46,16 @@ const props = defineProps({
     required: false,
     default: () => { return [] }
   },
-  filebumpUrl: {
-    type: String,
-  }
 })
 
 
 watch(
-  () => message.value,
+  () => message.value.text,
   () => {
     refInput.value.style.height = "auto"
     refInput.value.style.height = refInput.value.scrollHeight + 'px'
   }
 );
-
-const sizeMeasurement = ['б', 'Кб', "Мб", "Гб"]
-
-
-const fileUploaded = (obj) => {
-  console.log('fileUploaded', obj);
-  if (obj) {
-    let size = obj.selectedFile.size
-    let index = 0
-    while (size > 1024) {
-      size = size / 1024
-      index++
-    }
-    size = size.toFixed(2) + sizeMeasurement[index]
-    fileSize.value = size
-  }
-  fileLink.value = obj;
-}
-
-const resetUploadedFile = () => {
-  console.log('reset uploaded file')
-  fileLink.value = null
-}
 
 const sendTyping = (event) => {
   // console.log('typing', event.target.value);
@@ -117,20 +69,18 @@ const sendMessage = () => {
     text: null,
   };
 
-  if (fileLink.value) {
-    messageObject.type = 'message.' + fileLink.value.type;
-    messageObject.url = fileLink.value.url;
-    messageObject.filename = fileLink.value.filename;
-    messageObject.size = fileLink.value.size;
-    messageObject.text = message?.value?.trim();
+  if (message.value.fileUrl) {
+    messageObject.type = 'message.' + message.value.fileType;
+    messageObject.url = message.value.fileUrl;
+    messageObject.filename = message.value.fileName;
+    messageObject.size = message.value.fileSize;
+    messageObject.text = message?.value?.text.trim();
   } else {
     messageObject.type = 'message.text';
-    messageObject.text = message.value.trim();
+    messageObject.text = message.value.text.trim();
   }
-
   emit('send', messageObject);
-  fileLink.value = false;
-  message.value = null;
+  resetMessage()
   unref(refInput).focus()
 };
 
