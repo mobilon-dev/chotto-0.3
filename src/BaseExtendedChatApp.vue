@@ -76,6 +76,7 @@
                   <ChannelSelector 
                     :channels="channels"
                     @select-channel="onSelectChannel"
+                    :mode="'hover'"
                   />
                 </template>
               </ChatInput>
