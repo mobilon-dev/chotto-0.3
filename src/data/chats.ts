@@ -1,6 +1,6 @@
 export const chats = [
   {
-    chatId: 1, name: "Василий",
+    chatId: 1, name: "Василий ВасилийВасилийВасилий Василий",
     avatar: 'https://img.freepik.com/free-photo/smiley-man-relaxing-outdoors_23-2148739334.jpg',
     countUnread: 102,
     lastMessage: 'test',
