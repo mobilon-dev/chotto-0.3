@@ -18,13 +18,17 @@ const chats = [{
   lastMessage: "Привет!",
   countUnread: "21",
   'lastActivity.time': "12:34",
+  'lastActivity.timestamp': 1732779106,
   isSelected: true,
+  metadata: 'Sergey',
 },{
   chatId: '2',
   name: "John Doe 2",
   lastMessage: "Привет 2!",
   countUnread: "677",
   'lastActivity.time': "12:11",
+  'lastActivity.timestamp': 1732779306,
+  metadata: 'Petr',
 }];
 
 const actionsChatList = [
@@ -44,6 +48,13 @@ export const ChatlistWithEnabledFilter: Story = {
   args: {
     chats,
     filterEnabled: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'filter работает по name и metadata, например, попробуйте ввести Sergey'
+      },
+    },
   },
   decorators: [() => ({template})],
 };
@@ -83,6 +94,7 @@ const fixedChats = [{
   lastMessage: "Привет!",
   countUnread: "21",
   'lastActivity.time': "12:34",
+  'lastActivity.timestamp': 1732771306,
   isFixedTop: true,
 },{
   chatId: '2',
@@ -90,6 +102,7 @@ const fixedChats = [{
   lastMessage: "Привет 2!",
   countUnread: "677",
   'lastActivity.time': "12:11",
+  'lastActivity.timestamp': 1732775306,
   isFixedBottom: true,
 }];
 
@@ -113,6 +126,7 @@ const chatsWithActions = [{
   lastMessage: "Привет!",
   countUnread: "21",
   'lastActivity.time': "12:11",
+  'lastActivity.timestamp': 1732745306,
   actions,
 },{
   chatId: '102',
@@ -120,6 +134,7 @@ const chatsWithActions = [{
   lastMessage: "Привет 2!",
   countUnread: "677",
   'lastActivity.time': "12:12",
+  'lastActivity.timestamp': 1732735306,
   actions,
 }];
 
@@ -138,6 +153,7 @@ const chatsWithStatuses = [{
   lastMessage: "Привет!",
   countUnread: "21",
   'lastActivity.time': "12:11",
+  'lastActivity.timestamp': 1732735306,
   status: '#FF0000',
 },{
   chatId: '102',
@@ -145,6 +161,7 @@ const chatsWithStatuses = [{
   lastMessage: "Привет 2!",
   countUnread: "677",
   'lastActivity.time': "12:12",
+  'lastActivity.timestamp': 1732735306,
   status: '#00FF00'
 }];
 
