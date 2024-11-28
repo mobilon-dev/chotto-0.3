@@ -99,7 +99,7 @@ const selectedTemplate = computed(() => props.templates.find(item => item.isSele
 >
 .template-selector {
   position: absolute;
-  bottom: 124px;
+  bottom: 100%;
   left: 0;
   right: 0;
   z-index: 100;
@@ -202,14 +202,16 @@ const selectedTemplate = computed(() => props.templates.find(item => item.isSele
 
   &__preview-container {
     border: 1px solid var(--neutral-200);
+    max-height: 375px;
+    overflow-y: auto;
+    background-color: var(--template-selector-preview-bg);
+    background-image: url('../../../public/chat-background.svg');
   }
 
   &__preview {
     height: 100%;
     box-sizing: border-box;
-    background-color: var(--template-selector-preview-bg);
     padding: 20px;
-    background-image: url('../../../public/chat-background.svg');
   }
 
   &__preview-wrapper {
