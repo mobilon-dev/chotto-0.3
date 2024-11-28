@@ -115,9 +115,9 @@ onMounted(() => {
   content: "";
   position: absolute;
   top: 0;
-  right: -8px;
+  right: -2px;
   bottom: 0;
-  width: 4%;
+  width: 10px;
   cursor: e-resize;
   background-color: rgba(0, 0, 0, 0);
   z-index: 10;
