@@ -9,11 +9,24 @@ const meta: Meta<typeof CallMessage> = {
 export default meta;
 type Story = StoryObj<typeof CallMessage>;
 
-export const LeftMessage: Story = {
+export const NoAnswerLeft: Story = {
   args: {
     message: {
-      url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
+      //url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
       position: 'left',
+      messageId: 'testMessageId',
+      time: '12:00',
+      status: 'read',
+      
+    },
+  },
+};
+
+export const NoAnswerRight: Story = {
+  args: {
+    message: {
+      //url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
+      position: 'right',
       messageId: 'testMessageId',
       time: '12:00',
       status: 'read',
@@ -21,14 +34,55 @@ export const LeftMessage: Story = {
   },
 };
 
-export const RightMessage: Story = {
+export const CallHappenedLeft: Story = {
   args: {
     message: {
-      url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
+      //url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
+      position: 'left',
+      messageId: 'testMessageId',
+      time: '12:00',
+      status: 'read',
+      callDuration: '5:00',
+    },
+  },
+};
+
+export const CallHappenedRight: Story = {
+  args: {
+    message: {
+      //url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
       position: 'right',
       messageId: 'testMessageId',
       time: '12:00',
       status: 'read',
+      callDuration: '5:00',
+    },
+  },
+};
+
+
+export const RecallLeft: Story = {
+  args: {
+    message: {
+      //url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
+      position: 'left',
+      messageId: 'testMessageId',
+      time: '12:00',
+      status: 'read',
+      isMissedCall: true,
+    },
+  },
+};
+
+export const RecallRight: Story = {
+  args: {
+    message: {
+      //url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
+      position: 'right',
+      messageId: 'testMessageId',
+      time: '12:00',
+      status: 'read',
+      isMissedCall: true,
     },
   },
 };

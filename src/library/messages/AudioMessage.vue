@@ -97,22 +97,24 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
 
 import ContextMenu from '../components/ContextMenu.vue'
 
 import { getStatus, statuses } from "../../helpers";
 
+import { audioMessage } from '../../types';
+
 // Define props
 const props = defineProps({
   message: {
-    type: Object,
+    type: Object as () => audioMessage,
     required: true,
   },
 });
 
-const player = ref(null);
+const player = ref<HTMLAudioElement | null>();
 const isPlaying = ref(false);
 const audioDuration = ref(0);
 const currentTime = ref(0)
@@ -128,6 +130,8 @@ const hideMenu = () => {
   buttonMenuVisible.value = false;
   isOpenMenu.value = false
 };
+
+const clickAction = () => {}
 
 const status = computed(() => getStatus(props.message.status))
 
@@ -174,12 +178,14 @@ function getClass(message) {
 }
 
 onMounted(() => {
-  player.value.addEventListener('loadedmetadata', () => {
-    audioDuration.value = player.value.duration;
+  if (player.value != null){
+    player.value.addEventListener('loadedmetadata', () => {
+    audioDuration.value = player.value != null ? player.value.duration : 0;
   });
   player.value.addEventListener('timeupdate', () => {
-    currentTime.value = player.value.currentTime;
+    currentTime.value = player.value != null ? player.value.currentTime : 0;
   });
+  } 
 });
 </script>
 
