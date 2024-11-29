@@ -53,14 +53,14 @@ import CallMessage from '../messages/CallMessage.vue'
 import SystemMessage from '../messages/SystemMessage.vue'
 import TypingMessage from '../messages/TypingMessage.vue'
 
-import { FeedObject, FeedTyping, FeedUnreadButton } from '../../types';
+import { IFeedObject, FeedTyping, FeedUnreadButton } from '../../types';
 
 const refFeed = ref();
 const isShowButton = ref(false)
 
 const props = defineProps({
   objects: {
-    type: Array as () => FeedObject[],
+    type: Array as () => IFeedObject[],
     required: true,
   },
   buttonParams: {

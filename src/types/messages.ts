@@ -1,6 +1,6 @@
 import {Action} from './components'
 
-export interface IAudioMessage { 
+  export interface IAudioMessage { 
     messageId: string
     position: string
     time: string
@@ -27,6 +27,7 @@ export interface IAudioMessage {
   }
 
   export interface IDateMessage { 
+    messageId?: string
     text: string
   }
 

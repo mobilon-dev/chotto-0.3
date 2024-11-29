@@ -1,4 +1,6 @@
-export interface FeedObject { 
+import { IAudioMessage, ICallMessage, IDateMessage, IFileMessage, IImageMessage, ISystemMessage,ITextMessage,ITypingMessage,IVideoMessage } from "./messages"
+
+export interface IFeedObject { 
     messageId: string
     type: string
     text?: string
@@ -15,6 +17,17 @@ export interface FeedObject {
     callDuration?: string
     isMissedCall?: Boolean
   }
+
+export type TFeedObject = 
+  IAudioMessage |
+  ICallMessage |
+  IDateMessage | 
+  IFileMessage | 
+  IImageMessage | 
+  ISystemMessage |
+  ITextMessage |
+  ITypingMessage |
+  IVideoMessage
 
 export interface Action{
     action: string
