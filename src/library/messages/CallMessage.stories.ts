@@ -12,7 +12,7 @@ type Story = StoryObj<typeof CallMessage>;
 export const NoAnswerLeft: Story = {
   args: {
     message: {
-      //url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
+      url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
       position: 'left',
       messageId: 'testMessageId',
       time: '12:00',
@@ -25,7 +25,7 @@ export const NoAnswerLeft: Story = {
 export const NoAnswerRight: Story = {
   args: {
     message: {
-      //url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
+      url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
       position: 'right',
       messageId: 'testMessageId',
       time: '12:00',
@@ -37,7 +37,7 @@ export const NoAnswerRight: Story = {
 export const CallHappenedLeft: Story = {
   args: {
     message: {
-      //url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
+      url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
       position: 'left',
       messageId: 'testMessageId',
       time: '12:00',
@@ -50,7 +50,7 @@ export const CallHappenedLeft: Story = {
 export const CallHappenedRight: Story = {
   args: {
     message: {
-      //url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
+      url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
       position: 'right',
       messageId: 'testMessageId',
       time: '12:00',
@@ -64,7 +64,7 @@ export const CallHappenedRight: Story = {
 export const RecallLeft: Story = {
   args: {
     message: {
-      //url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
+      url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
       position: 'left',
       messageId: 'testMessageId',
       time: '12:00',
@@ -77,7 +77,7 @@ export const RecallLeft: Story = {
 export const RecallRight: Story = {
   args: {
     message: {
-      //url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
+      url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
       position: 'right',
       messageId: 'testMessageId',
       time: '12:00',

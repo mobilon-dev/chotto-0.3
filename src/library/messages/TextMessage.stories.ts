@@ -99,6 +99,7 @@ export const LeftMessageWithoutTime: Story = {
     message: {
       ...messageWithoutTime,
       position: 'left',
+      time:'',
     },
   },
 };
@@ -176,6 +177,7 @@ export const RightMessageWithoutTime: Story = {
     message: {
       ...messageWithoutTime,
       position: 'right',
+      time:'',
     },
   },
 };

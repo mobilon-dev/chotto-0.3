@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
  
 import AudioMessage from './AudioMessage.vue';
-import { audioMessage } from '../../types'; 
+ 
 const meta: Meta<typeof AudioMessage> = {
   component: AudioMessage,
 };
@@ -9,13 +9,12 @@ const meta: Meta<typeof AudioMessage> = {
 export default meta;
 type Story = StoryObj<typeof AudioMessage>;
 
-const message : audioMessage = {
+const message  = {
   url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
   position: 'left',
   messageId: 'testMessageId',
   time: '12:00',
   status: 'read',
-  timestamp: 0,
 };
 
 const actions = [

@@ -1,10 +1,9 @@
 import {Action} from './components'
 
-export interface audioMessage { 
+export interface IAudioMessage { 
     messageId: string
     position: string
     time: string
-    timestamp: Number
     url: string
     status: string
     avatar?: string
@@ -13,12 +12,12 @@ export interface audioMessage {
     views?: Number
   }
 
-  export interface callMessage { 
+  export interface ICallMessage { 
     messageId: string
     position: string
     time: string
-    timestamp: Number
     status: string
+    url?: string
     isMissedCall?: Boolean
     callDuration?: string
     avatar?: string
@@ -27,18 +26,15 @@ export interface audioMessage {
     views?: Number
   }
 
-  export interface dateMessage { 
-    messageId: string
+  export interface IDateMessage { 
     text: string
-    timestamp: Number
   }
 
-  export interface fileMessage { 
+  export interface IFileMessage { 
     messageId: string
     filename: string
     position: string
     time: string
-    timestamp: Number
     url: string
     status: string
     avatar?: string
@@ -47,11 +43,10 @@ export interface audioMessage {
     views?: Number
   }
 
-  export interface imageMessage { 
+  export interface IImageMessage { 
     messageId: string
     position: string
     time: string
-    timestamp: Number
     url: string
     alt?: string
     status: string
@@ -61,36 +56,33 @@ export interface audioMessage {
     views?: Number
   }
 
-  export interface systemMessage { 
+  export interface ISystemMessage { 
     messageId: string
     text: string
-    timestamp: Number
   }
 
-  export interface textMessage { 
+  export interface ITextMessage { 
     messageId: string
     text: string
     position: string
     status: string
     time: string
-    timestamp: Number
     avatar?: string
     subText?: string 
     actions?: Action[]
     views?: Number
   }
 
-  export interface typingMessage { 
+  export interface ITypingMessage { 
     avatar?: string
     subText?: string 
   }
 
-  export interface videoMessage { 
+  export interface IVideoMessage { 
     messageId: string
     position: string
     status: string
     time: string
-    timestamp: Number
     url: string
     alt?: string
     avatar?: string

@@ -104,12 +104,12 @@ import ContextMenu from '../components/ContextMenu.vue'
 
 import { getStatus, statuses } from "../../helpers";
 
-import { audioMessage } from '../../types';
+import { IAudioMessage } from '../../types';
 
 // Define props
 const props = defineProps({
   message: {
-    type: Object as () => audioMessage,
+    type: Object as () => IAudioMessage,
     required: true,
   },
 });

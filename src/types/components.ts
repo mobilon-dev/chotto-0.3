@@ -1,32 +1,32 @@
 export interface FeedObject { 
-    messageId: String
-    type: String
-    text?: String
-    position?: String
-    status?: String
-    time?: String
-    url?: String
-    alt?: String
-    filename?: String
-    avatar?: String
-    subtext?: String 
+    messageId: string
+    type: string
+    text?: string
+    position?: string
+    status?: string
+    time?: string
+    url?: string
+    alt?: string
+    filename?: string
+    avatar?: string
+    subtext?: string 
     actions?: Action[]
     views?: Number
-    callDuration?: String
+    callDuration?: string
     isMissedCall?: Boolean
   }
-  
+
 export interface Action{
-    action: String
-    title: String
-    icon?: String
-    prime?: String  
+    action: string
+    title: string
+    icon?: string
+    prime?: string  
 }
 
 //аналог TypingMessage - убрать?
 export interface FeedTyping {
-    title?: String
-    avatar?: String
+    title?: string
+    avatar?: string
   }
   
 export interface FeedUnreadButton{

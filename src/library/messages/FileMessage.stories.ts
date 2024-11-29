@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
  
 import FileMessage from './FileMessage.vue';
- 
+import {IFileMessage} from '../../types'
+
 const meta: Meta<typeof FileMessage> = {
   component: FileMessage,
 };
@@ -9,10 +10,12 @@ const meta: Meta<typeof FileMessage> = {
 export default meta;
 type Story = StoryObj<typeof FileMessage>;
 
-const fileMessage = {
+const fileMessage  = {
   filename: "document.pdf",
   url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg",
   time: '20:55',
+  status: 'read',
+  messageId: 'testId'
 };
 
 const actions = [

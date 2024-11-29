@@ -114,16 +114,18 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, computed } from 'vue';
 
 import ContextMenu from '../components/ContextMenu.vue'
 
 import { getStatus, statuses } from "../../helpers";
 
+import { IImageMessage } from '../../types';
+
 const props = defineProps({
   message: {
-    type: Object,
+    type: Object as () => IImageMessage,
     required: true,
   },
 });
@@ -132,6 +134,8 @@ const isOpen = ref(false);
 
 const isOpenMenu = ref(false)
 const buttonMenuVisible = ref(false);
+
+const clickAction = () => {}
 
 const showMenu = () => {
   buttonMenuVisible.value = true;

@@ -23,10 +23,13 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+
+import { ITypingMessage } from '../../types';
+
 const props = defineProps({
   message: {
-    type: Object,
+    type: Object as () => ITypingMessage,
     required: true,
   },
 });

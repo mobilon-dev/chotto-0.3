@@ -78,23 +78,27 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed, ref } from 'vue'
 
 import ContextMenu from '../components/ContextMenu.vue'
 
 import { getStatus, statuses } from "../../helpers";
 
+import {IFileMessage} from '../../types'
+
 // Define props
 const props = defineProps({
   message: {
-    type: Object,
+    type: Object as () => IFileMessage,
     required: true,
   },
 });
 
 const isOpenMenu = ref(false)
 const buttonMenuVisible = ref(false);
+
+const clickAction = () => {}
 
 const showMenu = () => {
   buttonMenuVisible.value = true;
