@@ -17,8 +17,8 @@
     <typing-message 
       v-if="typing" 
       :message="{
-        subText: typing.title, 
-        avatar: typing.avatar,
+        subText: (typing as Typing).title, 
+        avatar: (typing as Typing).avatar,
       }"
     />
     <transition>
@@ -40,7 +40,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, unref, watch, nextTick, onUpdated } from 'vue';
 
 import FileMessage from "../messages/FileMessage.vue";
@@ -56,13 +56,36 @@ import TypingMessage from '../messages/TypingMessage.vue'
 const refFeed = ref();
 const isShowButton = ref(false)
 
+interface FeedObject { 
+  messageId: String
+  type: String
+  text?: String
+  position?: String
+  status?: String
+  time?: String
+  url?: String
+  alt?: String
+  filename?: String
+  direction?: String
+}
+
+interface Typing {
+  title?: String
+  avatar?: String
+}
+
+interface Button{
+  color: string
+  unreadAmount: Number
+}
+
 const props = defineProps({
   objects: {
-    type: Array,
+    type: Array as () => FeedObject[],
     required: true,
   },
   buttonParams: {
-    type: Object,
+    type: Object as () => Button,
     required: false,
   },
   // при новом сообщении необходимо прокручивать ленту вниз,
@@ -73,7 +96,7 @@ const props = defineProps({
     default: false,
   },
   typing: {
-    type: [Object,Boolean],
+    type: [Object as () => Typing, Boolean],
     default: false,
   }
 });
