@@ -12,7 +12,7 @@ export interface IFeedObject {
     filename?: string
     avatar?: string
     subtext?: string 
-    actions?: Action[]
+    actions?: IAction[]
     views?: Number
     callDuration?: string
     isMissedCall?: Boolean
@@ -29,7 +29,7 @@ export type TFeedObject =
   ITypingMessage |
   IVideoMessage
 
-export interface Action{
+export interface IAction{
     action: string
     title: string
     icon?: string
@@ -37,12 +37,12 @@ export interface Action{
 }
 
 //аналог TypingMessage - убрать?
-export interface FeedTyping {
+export interface IFeedTyping {
     title?: string
     avatar?: string
   }
   
-export interface FeedUnreadButton{
+export interface IFeedUnreadButton{
     color: string
     unreadAmount: Number
   }

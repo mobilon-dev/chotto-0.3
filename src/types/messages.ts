@@ -1,4 +1,4 @@
-import {Action} from './components'
+import {IAction} from './components'
 
   export interface IAudioMessage { 
     messageId: string
@@ -8,7 +8,7 @@ import {Action} from './components'
     status: string
     avatar?: string
     subText?: string 
-    actions?: Action[]
+    actions?: IAction[]
     views?: Number
   }
 
@@ -22,7 +22,7 @@ import {Action} from './components'
     callDuration?: string
     avatar?: string
     subText?: string 
-    actions?: Action[]
+    actions?: IAction[]
     views?: Number
   }
 
@@ -40,7 +40,7 @@ import {Action} from './components'
     status: string
     avatar?: string
     subText?: string 
-    actions?: Action[]
+    actions?: IAction[]
     views?: Number
   }
 
@@ -53,7 +53,7 @@ import {Action} from './components'
     status: string
     avatar?: string
     subText?: string 
-    actions?: Action[]
+    actions?: IAction[]
     views?: Number
   }
 
@@ -70,7 +70,7 @@ import {Action} from './components'
     time: string
     avatar?: string
     subText?: string 
-    actions?: Action[]
+    actions?: IAction[]
     views?: Number
   }
 
@@ -88,6 +88,6 @@ import {Action} from './components'
     alt?: string
     avatar?: string
     subText?: string 
-    actions?: Action[]
+    actions?: IAction[]
     views?: Number
   }
