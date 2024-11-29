@@ -44,7 +44,12 @@ const template = ref(null)
 
 const toggle = () => {
   if (props.mode == 'click'){
-    template.value.style.display = 'inherit'
+    if (template.value.style.display == 'none'){
+      template.value.style.display = 'inherit'
+    }
+    else if (template.value.style.display == 'inherit'){
+      template.value.style.display = 'none'
+    }
   }
 }
 

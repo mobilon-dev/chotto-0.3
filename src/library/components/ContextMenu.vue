@@ -50,20 +50,23 @@ const click = (index) => {
 >
 .context-menu {
   z-index: 200;
-
+  position: absolute;
   &__container {
-    width: fit-content;
+    width: max-content;
+    max-width: 250px;
     box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.11);
     border-radius: 8px;
-    padding: 12px 0;
+    
     background-color: var(--context-menu-background);
   }
 
   &__list {
-    display: flex;
+    padding: 12px 0;
+    display: grid;
     flex-direction: column;
     align-items: flex-start;
     row-gap: 6px;
+    padding-left: 0px;
   }
 
   &__item {
@@ -72,7 +75,7 @@ const click = (index) => {
     align-items: center;
     cursor: pointer;
     padding: 0 16px;
-    width: 100%;
+    width: inherit;
     column-gap: 12px;
   }
 
