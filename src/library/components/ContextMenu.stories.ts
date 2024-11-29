@@ -4,6 +4,7 @@ import ContextMenu from './ContextMenu.vue';
 
 const meta: Meta<typeof ContextMenu> = {
   component: ContextMenu,
+  decorators: [() => ({ template: '<div style="min-height: 100px;"><story/></div>' })]
 };
  
 export default meta;
