@@ -18,6 +18,14 @@ const message = {
   status: 'read',
 };
 
+const messageLink = {
+  text: 'Красивое недлинное сообщение и ссылка на github.com',
+  position: 'left',
+  messageId: 'testMessageId',
+  time: '12:00',
+  status: 'read',
+};
+
 const actions = [
   { 
     action: 'edit', 
@@ -254,6 +262,24 @@ export const RightMessageMax: Story = {
       actions,
       avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=SD',
       time: 'два дня назад',
+    },
+  },
+};
+
+export const LeftMessageWithLink: Story = {
+  args: {
+    message: {
+      ...messageLink,
+      position: 'left',
+    },
+  },
+};
+
+export const RightMessageWithLink: Story = {
+  args: {
+    message: {
+      ...messageLink,
+      position: 'right',
     },
   },
 };

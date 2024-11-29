@@ -25,9 +25,11 @@
         class="text-message__content"
         @mouseenter="showMenu"
       >
-        <p class="text-message__text">
-          {{ message.text }}
-        </p>
+        <p 
+          v-html="linkedText" 
+          class="text-message__text"
+          @click="inNewWindow"
+        />
         <div class="text-message__info-container">
           <div
             v-if="message.views"
@@ -76,11 +78,13 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 
 import ContextMenu from '../components/ContextMenu.vue'
 
 import { getStatus, statuses } from "../../helpers";
+
+import linkifyStr from "linkify-string";
 
 // Define props
 const props = defineProps({
@@ -94,6 +98,21 @@ const emit = defineEmits(['action']);
 
 const isOpenMenu = ref(false)
 const buttonMenuVisible = ref(false);
+const linkedText = ref('')
+
+watch(
+  () => props.message.text,
+  () => {
+    linkedText.value = linkifyStr(props.message.text)
+  },
+  {immediate: true}
+)
+
+function inNewWindow(event) {
+  event.preventDefault()
+  if (event.target.href)
+  window.open(event.target.href, '_blank');
+} 
 
 const showMenu = () => {
   buttonMenuVisible.value = true;
