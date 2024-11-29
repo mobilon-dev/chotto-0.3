@@ -12,8 +12,8 @@ type Story = StoryObj<typeof SystemMessage>;
 export const Standard: Story = {
   args: {
     message: {
+      messageId: 'testId',
       text: 'text text text text text',
-      timestamp: 1731473985,
     },
   },
 };

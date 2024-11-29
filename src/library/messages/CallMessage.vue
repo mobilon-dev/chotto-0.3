@@ -58,11 +58,14 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+
+import {ICallMessage} from '../../types'
+
 // Define props
 const props = defineProps({
   message: {
-    type: Object,
+    type: Object as () => ICallMessage,
     required: true,
   },
 });

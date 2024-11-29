@@ -10,6 +10,8 @@ export default meta;
 type Story = StoryObj<typeof ImageMessage>;
 
 const imageMessage = {
+  messageId: 'testId',
+  status: 'read',
   text: "Вот картинка55656",
   url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg",
   time: '20:55',

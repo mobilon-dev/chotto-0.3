@@ -8,11 +8,13 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+
+import { ISystemMessage } from '../../types';
 
 const props = defineProps({
   message: {
-    type: Object,
+    type: Object as () => ISystemMessage,
     required: true,
   },
 });

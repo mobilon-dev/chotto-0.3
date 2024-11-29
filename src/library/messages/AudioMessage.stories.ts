@@ -9,7 +9,7 @@ const meta: Meta<typeof AudioMessage> = {
 export default meta;
 type Story = StoryObj<typeof AudioMessage>;
 
-const message = {
+const message  = {
   url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
   position: 'left',
   messageId: 'testMessageId',

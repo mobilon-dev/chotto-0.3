@@ -89,16 +89,18 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 
 import ContextMenu from '../components/ContextMenu.vue'
 
 import { getStatus, statuses } from "../../helpers";
 
+import { IVideoMessage } from '../../types';
+
 const props = defineProps({
   message: {
-    type: Object,
+    type: Object as () => IVideoMessage,
     required: true,
   },
 });
@@ -107,13 +109,15 @@ function getClass(message) {
   return message.position === 'left' ? 'video-message__left' : 'video-message__right';
 }
 
-const player = ref(null);
+const player = ref<HTMLVideoElement | null>();
 const isPlaying = ref(false);
 const audioDuration = ref(0);
 const currentTime = ref(0)
 
 const isOpenMenu = ref(false)
 const buttonMenuVisible = ref(false);
+
+const clickAction = () => {}
 
 const showMenu = () => {
   buttonMenuVisible.value = true;
@@ -158,12 +162,15 @@ const remaningTime = computed(() => {
 })
 
 onMounted(() => {
-  player.value.addEventListener('loadedmetadata', () => {
-    audioDuration.value = player.value.duration;
+  if (player.value != null){
+    player.value.addEventListener('loadedmetadata', () => {
+    audioDuration.value = player.value != null ? player.value.duration : 0;
   });
   player.value.addEventListener('timeupdate', () => {
-    currentTime.value = player.value.currentTime;
+    currentTime.value = player.value != null ? player.value.currentTime : 0;
   });
+  }
+  
 });
 </script>
 

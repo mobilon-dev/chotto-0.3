@@ -8,10 +8,13 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+
+import { IDateMessage } from '../../types';
+
 const props = defineProps({
   message: {
-    type: Object,
+    type: Object as () => IDateMessage,
     required: true,
     default: () => { }
   }

@@ -17,8 +17,8 @@
     <typing-message 
       v-if="typing" 
       :message="{
-        subText: typing.title, 
-        avatar: typing.avatar,
+        subText: (typing as IFeedTyping).title, 
+        avatar: (typing as IFeedTyping).avatar,
       }"
     />
     <transition>
@@ -40,7 +40,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, unref, watch, nextTick, onUpdated } from 'vue';
 
 import FileMessage from "../messages/FileMessage.vue";
@@ -53,16 +53,18 @@ import CallMessage from '../messages/CallMessage.vue'
 import SystemMessage from '../messages/SystemMessage.vue'
 import TypingMessage from '../messages/TypingMessage.vue'
 
+import { IFeedObject, IFeedTyping, IFeedUnreadButton } from '../../types';
+
 const refFeed = ref();
 const isShowButton = ref(false)
 
 const props = defineProps({
   objects: {
-    type: Array,
+    type: Array as () => IFeedObject[],
     required: true,
   },
   buttonParams: {
-    type: Object,
+    type: Object as () => IFeedUnreadButton,
     required: false,
   },
   // при новом сообщении необходимо прокручивать ленту вниз,
@@ -73,7 +75,7 @@ const props = defineProps({
     default: false,
   },
   typing: {
-    type: [Object,Boolean],
+    type: [Object as () => IFeedTyping, Boolean],
     default: false,
   }
 });
