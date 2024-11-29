@@ -28,7 +28,7 @@ let initialX = ref(0);
 let startX = ref(0);
 
 const startResize = (event) => {
-  if (event.offsetX >= resizableDiv.value.offsetWidth - 10) {
+  if (event.offsetX >= resizableDiv.value.offsetWidth - 20) {
     isResizing.value = true;
     initialWidth.value = resizableDiv.value.offsetWidth;
     initialX.value = event.clientX;
@@ -115,12 +115,12 @@ onMounted(() => {
   content: "";
   position: absolute;
   top: 0;
-  right: -2px;
+  right: 6px;
   bottom: 0;
   width: 10px;
   cursor: e-resize;
   background-color: rgba(0, 0, 0, 0);
-  z-index: 10;
+  z-index: 100;
 }
 
 .v-enter-active,
