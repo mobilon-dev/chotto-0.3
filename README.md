@@ -64,3 +64,5 @@ Vue3 Chat UI components - собери свой интерфейс чата
 
 - https://github.com/Yonom/assistant-ui
 
+- https://github.com/rustic-ai/ui-components
+
