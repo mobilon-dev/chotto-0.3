@@ -12,7 +12,7 @@
       style="width: 100%"
     >
       <p>
-        {{ $t('noChatSelected') }}
+        {{ i18n.global.t('noChatSelected') }}
       </p>
     </div>
 
@@ -30,6 +30,8 @@
   lang="ts"
   setup
 >
+import { i18n } from '../../helpers/useI18n';
+
 const props = defineProps({
   isOpenChatPanel: {
     type: Boolean,

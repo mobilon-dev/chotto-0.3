@@ -157,7 +157,7 @@ const props = defineProps({
   locale: {
     type: String,
     required: false,
-    default: 'en',
+    default: 'ru',
   }
 });
 

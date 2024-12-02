@@ -5,7 +5,7 @@
         ref="refInput"
         class="chat-filter__input"
         type="text"
-        :placeholder="$t('chatFilterPlaceholder')"
+        :placeholder="i18n.global.t('chatFilterPlaceholder')"
         @input="update"
       >
     </div>
@@ -14,7 +14,7 @@
 
 <script setup>
 import { ref, unref } from 'vue';
-
+import { i18n } from '../../helpers/useI18n';
 const refInput = ref('');
 
 // Define emits

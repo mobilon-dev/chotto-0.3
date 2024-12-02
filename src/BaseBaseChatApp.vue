@@ -37,7 +37,7 @@
             />
           </div>
           <p v-else>
-            {{ $t('noChatSelected') }}
+            {{ i18n.global.t('noChatSelected') }}
           </p>
         </template>
       </BaseLayout>
@@ -75,6 +75,7 @@ import {
   insertDaySeparators,
   playNotificationAudio,
   sortByTimestamp,
+  i18n
 } from "./helpers";
 
 import { useChatsStore } from "./stores/useChatStore";

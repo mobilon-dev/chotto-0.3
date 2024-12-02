@@ -11,7 +11,7 @@
           ref="refInput"
           v-model="message.text"
           class="chat-input__input"
-          :placeholder="$t('chatInputPlaceholder')"
+          :placeholder="i18n.global.t('chatInputPlaceholder')"
           @keydown.enter="keyEnter"
           @input="sendTyping"
         />
@@ -33,6 +33,7 @@
 <script setup>
 import { ref, unref, watch, nextTick } from 'vue';
 import { useMessage } from '../../helpers/useMessage';
+import { i18n } from '../../helpers/useI18n';
 // Define emits
 const emit = defineEmits(['send', 'typing', 'selectChannel']);
 //

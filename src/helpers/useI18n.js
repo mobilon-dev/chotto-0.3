@@ -35,11 +35,26 @@ let messages = {
 
 const locale = ref(locales[1]);
 
- export const i18n = createI18n({
-   allowComposition: true,
-   locale: locale.value.code,
-   messages:messages,
-   legacy: false,
+export const i18n = createI18n({
+  allowComposition: true,
+  locale: locale.value.code,
+  messages:{
+    ru:{
+      chatListTitle: 'Чаты',
+      chatFilterPlaceholder: 'Поиск диалога',
+      noChatSelected: 'Выберите контакт для начала общения',
+      typing: 'печатает',
+      chatInputPlaceholder: 'Введите сообщение...',
+    },
+    en:{
+      chatListTitle: 'Chats',
+      chatFilterPlaceholder: 'Chat search',
+      noChatSelected: 'Choose contact to start conversation',
+      typing: 'typing',
+      chatInputPlaceholder: 'Type a message...',
+    }
+  },
+  legacy: false,
 });
 
 watch(
@@ -54,16 +69,9 @@ watch(
     {immediate: true}
 )
 
-export const t = useI18n().t;
-
 export function useI18n() {
 
-  function t(msg) {
-    return messages[locale.value.code][msg];
-  }
-
   return {
-    t,
     i18n,
     locale,
     locales,
