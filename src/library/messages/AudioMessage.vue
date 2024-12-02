@@ -93,11 +93,23 @@
           @click="clickAction"
         />
       </transition>
+
+
+      <div
+        v-if="message.text"
+        class="audio-message__text-container"
+      >
+        <p>{{ message.text }}</p>
+      </div>
+
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
+<script
+  setup
+  lang="ts"
+>
 import { ref, onMounted, computed } from 'vue'
 
 import ContextMenu from '../components/ContextMenu.vue'
@@ -131,7 +143,7 @@ const hideMenu = () => {
   isOpenMenu.value = false
 };
 
-const clickAction = () => {}
+const clickAction = () => { }
 
 const status = computed(() => getStatus(props.message.status))
 
@@ -178,14 +190,14 @@ function getClass(message) {
 }
 
 onMounted(() => {
-  if (player.value != null){
+  if (player.value != null) {
     player.value.addEventListener('loadedmetadata', () => {
-    audioDuration.value = player.value != null ? player.value.duration : 0;
-  });
-  player.value.addEventListener('timeupdate', () => {
-    currentTime.value = player.value != null ? player.value.currentTime : 0;
-  });
-  } 
+      audioDuration.value = player.value != null ? player.value.duration : 0;
+    });
+    player.value.addEventListener('timeupdate', () => {
+      currentTime.value = player.value != null ? player.value.currentTime : 0;
+    });
+  }
 });
 </script>
 
@@ -351,6 +363,15 @@ onMounted(() => {
     position: absolute;
   }
 
+  &__text-container {
+    grid-column: 1 / 3;
+    margin-top: 10px;
+
+    p {
+      font-size: var(--base-message-font-size-text);
+    }
+  }
+
   &__play,
   &__pause {
     background-color: var(--neutral-400);
@@ -392,8 +413,9 @@ onMounted(() => {
     }
 
     .audio-message__context-menu {
-      top: 80%;
+      top: 50%;
       left: 100%;
+      margin-top: 20px;
     }
   }
 
@@ -424,8 +446,9 @@ onMounted(() => {
     }
 
     .audio-message__context-menu {
-      top: 80%;
+      top: 50%;
       right: 100%;
+      margin-top: 20px;
     }
   }
 

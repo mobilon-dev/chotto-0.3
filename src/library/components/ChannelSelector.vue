@@ -44,7 +44,7 @@ const props = defineProps({
     required: false,
     default: () => [],
   },
-  mode:{
+  mode: {
     type: String,
     required: false,
     default: 'hover'
@@ -71,10 +71,11 @@ const selectChannel = (channel) => {
   lang="scss"
 >
 .channels {
-  &__container{
+  &__container {
     display: flex;
     margin-top: 9px;
   }
+
   &__button {
     background-color: transparent;
     border: none;

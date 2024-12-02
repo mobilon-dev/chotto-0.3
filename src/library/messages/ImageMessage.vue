@@ -5,13 +5,13 @@
     :messageId="message.messageId"
     @mouseleave="hideMenu"
   >
+
     <img
       v-if="message.avatar"
       class="image-message__avatar"
       :src="message.avatar"
       height="32"
       width="32"
-      :style="{ gridRow: message.subText ? '2' : '1' }"
     >
 
     <p
@@ -24,13 +24,16 @@
     <div
       class="image-message__content"
       @mouseenter="showMenu"
+      @mouseleave="buttonDownloadVisible = !buttonDownloadVisible"
     >
+
       <div
         class="image-message__preview-button"
-        @click="isOpen = true"
+        @click="isOpenModal = true"
       >
         <img
           class="image-message__preview-image"
+          :style="{ borderRadius: message.text ? '8px 8px 0 0' : '8px' }"
           :src="message.url"
           :alt="message.alt"
         >
@@ -59,6 +62,7 @@
         </div>
 
         <a
+          v-if="buttonDownloadVisible"
           class="image-message__download-button"
           :href="message.url"
           download
@@ -67,32 +71,6 @@
           <span class="pi pi-download" />
         </a>
       </div>
-
-
-      <Teleport to="body">
-        <transition name="modal-fade">
-          <div
-            v-if="isOpen"
-            class="image-message__modal-overlay"
-          >
-            <div class="image-message__modal">
-              <button
-                class="image-message__modal-close-button"
-                @click="isOpen = false"
-              >
-                <span>
-                  <i class="pi pi-times" />
-                </span>
-              </button>
-              <img
-                class="image-message__modal-image"
-                :src="message.url"
-                :alt="message.alt"
-              >
-            </div>
-          </div>
-        </transition>
-      </Teleport>
 
       <button
         v-if="buttonMenuVisible && message.actions"
@@ -111,10 +89,46 @@
         />
       </transition>
     </div>
+
+    <div
+      v-if="message.text"
+      class="image-message__text-container"
+    >
+      <p>{{ message.text }}</p>
+    </div>
+
+
+    <Teleport to="body">
+      <transition name="modal-fade">
+        <div
+          v-if="isOpenModal"
+          class="image-message__modal-overlay"
+        >
+          <div class="image-message__modal">
+            <button
+              class="image-message__modal-close-button"
+              @click="isOpenModal = false"
+            >
+              <span>
+                <i class="pi pi-times" />
+              </span>
+            </button>
+            <img
+              class="image-message__modal-image"
+              :src="message.url"
+              :alt="message.alt"
+            >
+          </div>
+        </div>
+      </transition>
+    </Teleport>
   </div>
 </template>
 
-<script setup lang="ts">
+<script
+  setup
+  lang="ts"
+>
 import { ref, computed } from 'vue';
 
 import ContextMenu from '../components/ContextMenu.vue'
@@ -130,15 +144,18 @@ const props = defineProps({
   },
 });
 
-const isOpen = ref(false);
+
+const isOpenModal = ref(false);
 
 const isOpenMenu = ref(false)
 const buttonMenuVisible = ref(false);
+const buttonDownloadVisible = ref(false)
 
-const clickAction = () => {}
+const clickAction = () => { }
 
 const showMenu = () => {
   buttonMenuVisible.value = true;
+  buttonDownloadVisible.value = true
 };
 
 const hideMenu = () => {
@@ -158,9 +175,17 @@ function getClass(message) {
   lang="scss"
 >
 .image-message {
+
+  &__content {
+    position: relative;
+    max-width: 40%;
+  }
+
   &__avatar {
-    align-self: center;
+    grid-row: 1 / -1;
+    align-self: end;
     object-fit: cover;
+    margin-bottom: 6px;
     min-width: var(--avatar-width-small);
     min-height: var(--avatar-height-small);
     border-radius: var(--avatar-border-radius);
@@ -168,8 +193,8 @@ function getClass(message) {
 
   &__info-container {
     position: absolute;
-    bottom: 8px;
     right: 8px;
+    bottom: 4px;
     display: flex;
     align-items: center;
     column-gap: 8px;
@@ -181,7 +206,7 @@ function getClass(message) {
   &__download-button {
     position: absolute;
     left: 8px;
-    bottom: 8px;
+    bottom: 4px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -255,13 +280,15 @@ function getClass(message) {
   }
 
   &__preview-button {
+    display: flex;
+    flex-direction: column;
     cursor: pointer;
     padding: 0;
+    cursor: zoom-in;
   }
 
   &__preview-image {
     width: 100%;
-    border-radius: 5px;
   }
 
   &__modal-image {
@@ -308,12 +335,6 @@ function getClass(message) {
     }
   }
 
-  &__content {
-    position: relative;
-    max-width: 40%;
-  }
-
-
   &__menu-button {
     position: absolute;
     background-color: transparent;
@@ -337,10 +358,22 @@ function getClass(message) {
     position: absolute;
   }
 
+  &__text-container {
+    padding: 6px 10px 6px 10px;
+    border-radius: 0 0 8px 8px;
+    max-width: 40%;
+    width: 100%;
+
+    p {
+      font-size: var(--base-message-font-size-text);
+    }
+  }
+
   &__left,
   &__right {
     display: grid;
-    margin: 0 0 7px 0;
+    grid-template-rows: min-content 1fr min-content;
+    margin: var(--base-message-margin);
   }
 
   &__left {
@@ -348,7 +381,6 @@ function getClass(message) {
 
     .image-message__avatar {
       grid-column: 1;
-      grid-row: 2;
       margin-right: 12px;
     }
 
@@ -362,14 +394,20 @@ function getClass(message) {
       grid-column: 2;
     }
 
+    .image-message__text-container {
+      grid-column: 2;
+      background-color: var(--base-message-left-bg);
+    }
+
     .image-message__menu-button {
       top: 50%;
       right: -40px;
     }
 
     .image-message__context-menu {
-      top: 56%;
+      top: 50%;
       left: 100%;
+      margin-top: 20px;
     }
   }
 
@@ -378,7 +416,6 @@ function getClass(message) {
 
     .image-message__avatar {
       grid-column: 2;
-      grid-row: 2;
       margin-left: 12px;
     }
 
@@ -393,14 +430,21 @@ function getClass(message) {
       margin-left: auto;
     }
 
+    .image-message__text-container {
+      grid-column: 1;
+      margin-left: auto;
+      background-color: var(--base-message-right-bg);
+    }
+
     .image-message__menu-button {
       top: 50%;
       left: -40px;
     }
 
     .image-message__context-menu {
-      top: 56%;
+      top: 50%;
       right: 100%;
+      margin-top: 20px;
     }
   }
 }

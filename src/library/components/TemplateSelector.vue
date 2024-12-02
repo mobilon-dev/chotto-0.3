@@ -8,28 +8,68 @@
         />
       </button>
 
-      <ul class="template-selector__list">
+      <ul class="template-selector__list-groups">
         <li
-          v-for="(item, index) in templates"
+          v-for="(item, index) in uniqueGroups"
           :key="index"
-          class="template-selector__item"
-          :class="{ 'template-selector__item-selected': item.isSelected }"
-          @click="selectTemplate(item)"
+          class="template-selector__item-group"
+          :class="{ 'template-selector__item-selected': selectedGroup === item }"
+          @click="clearSelectedTemplate"
         >
-          <p class="template-selector__item-group">
-            {{ item.groupId }}
-          </p>
-
-          <div class="template-selector__item-template">
-            <p class="template-selector__item-title">
-              {{ item.title }}
-            </p>
-            <p class="template-selector__item-text">
-              {{ item.template }}
-            </p>
-          </div>
+          <input
+            :id="index"
+            v-model="selectedGroup"
+            :value="item"
+            class="template-selector__input-group"
+            type="radio"
+          >
+          <label
+            class="template-selector__label-group"
+            :for="index"
+          >{{ item.groupId }}</label>
         </li>
       </ul>
+
+      <div class="template-selector__searching-container">
+        <input
+          v-model="searchQuery"
+          class="template-selector__searching-input"
+          type="text"
+          placeholder="Поиск шаблона"
+        >
+      </div>
+
+      <div class="template-selector__templates">
+        <ul
+          v-if="searchedTemplate.length !== 0"
+          class="template-selector__list-templates"
+        >
+          <li
+            v-for="(item, index) in searchedTemplate"
+            :key="index"
+            class="template-selector__item-template"
+            :class="{ 'template-selector__item-selected': item.isSelected }"
+            @click="selectTemplate(item)"
+          >
+            <div class="template-selector__item-template-info">
+              <p class="template-selector__item-title">
+                {{ item.title }}
+              </p>
+              <p class="template-selector__item-text">
+                {{ item.template }}
+              </p>
+            </div>
+          </li>
+        </ul>
+
+        <p
+          v-else
+          class="template-selector__plug"
+        >
+          Шаблоны отсутствуют
+        </p>
+      </div>
+
 
       <div class="template-selector__preview-container">
         <div
@@ -48,7 +88,7 @@
 
         <p
           v-else
-          class="template-selector__preview-title"
+          class="template-selector__plug"
         >
           Предпросмотр шаблона
         </p>
@@ -65,7 +105,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useMessage } from '../../helpers/useMessage';
 const props = defineProps({
   templates: {
@@ -75,7 +115,7 @@ const props = defineProps({
   }
 })
 
-const {message} = useMessage()
+const { message } = useMessage()
 
 const handlePutMessage = () => {
   emit('closeTemplateWindow')
@@ -84,13 +124,43 @@ const handlePutMessage = () => {
 
 const emit = defineEmits(['closeTemplateWindow', 'pasteTemplate'])
 
+const selectedGroup = ref(null)
+const selectedTemplate = ref(null);
+const searchQuery = ref('');
+
 const selectTemplate = (item) => {
-  props.templates.forEach(c => c.isSelected = false);
-  const c = props.templates.find(c => c.templateId === item.templateId);
-  c.isSelected = true;
+  props.templates.forEach(с => с.isSelected = false);
+  item.isSelected = true;
+  selectedTemplate.value = item;
 };
 
-const selectedTemplate = computed(() => props.templates.find(item => item.isSelected))
+const clearSelectedTemplate = () => {
+  props.templates.forEach(template => template.isSelected = false);
+};
+
+const uniqueGroups = computed(() => {
+  return props.templates.filter((item, index, arr) => {
+    return !arr.some((otherItem, otherIndex) => {
+      return otherIndex < index && item.groupId === otherItem.groupId;
+    });
+  });
+});
+
+const filteredTemplates = computed(() => {
+  if (!selectedGroup.value) {
+    return props.templates
+  }
+  return props.templates.filter(item => item.groupId === selectedGroup.value.groupId)
+})
+
+const searchedTemplate = computed(() => {
+  const lowerQuery = searchQuery.value.trim().toLowerCase();
+  return filteredTemplates.value.filter((item) => {
+    console.log(item)
+    return item.title.toLowerCase().includes(lowerQuery) || item.template.toLowerCase().includes(lowerQuery);
+  });
+});
+
 </script>
 
 <style
@@ -107,8 +177,8 @@ const selectedTemplate = computed(() => props.templates.find(item => item.isSele
 
   &__container {
     display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    grid-template-rows: min-content 1fr min-content;
+    grid-template-columns: 0.4fr 1.3fr 1fr;
+    grid-template-rows: min-content auto 1fr min-content;
     column-gap: 14px;
     width: 100%;
     height: 500px;
@@ -118,7 +188,7 @@ const selectedTemplate = computed(() => props.templates.find(item => item.isSele
   }
 
   &__button-close {
-    grid-column: 2;
+    grid-column: 3;
     align-self: flex-start;
     display: block;
     background-color: transparent;
@@ -133,14 +203,12 @@ const selectedTemplate = computed(() => props.templates.find(item => item.isSele
     }
   }
 
-  &__list {
+  &__list-groups {
+    grid-column: 1;
     grid-row: 2 / 5;
-    display: flex;
-    flex-direction: column;
     overflow-y: auto;
     border: 1px solid var(--neutral-200);
-    margin: 0px;
-    padding-left: 0px;
+
     &::-webkit-scrollbar {
       width: 6px;
       background-color: var(--scrollbar-bg);
@@ -156,21 +224,38 @@ const selectedTemplate = computed(() => props.templates.find(item => item.isSele
     }
   }
 
-  &__item {
-    display: grid;
-    grid-template-columns: min-content 1fr;
-    gap: 20px;
-    cursor: pointer;
+  &__templates {
+    grid-column: 2;
+    grid-row: 3 / 5;
+    border: 1px solid var(--neutral-200);
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+      background-color: var(--scrollbar-bg);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background-color: var(--scrollbar-thumb-bg);
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: 10px;
+    }
+  }
+
+  &__item-template,
+  &__item-group {
     transition: 0.2s;
-    padding: 10px 12px;
 
     &:hover {
       background-color: var(--template-selector-item-hover);
     }
-  }
 
-  &__item:not(:last-child) {
-    border-bottom: var(--template-selector-border);
+    &:not(:last-child) {
+      border-bottom: var(--template-selector-border);
+    }
   }
 
   &__item-selected {
@@ -181,9 +266,22 @@ const selectedTemplate = computed(() => props.templates.find(item => item.isSele
     }
   }
 
-  &__item-group {
-    align-self: center;
+  &__item-template {
+    cursor: pointer;
+    padding: 10px 12px;
+  }
 
+  &__input-group {
+    display: none;
+  }
+
+  &__label-group {
+    text-align: center;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 10px 12px;
+    cursor: pointer;
   }
 
   &__item-title {
@@ -200,12 +298,61 @@ const selectedTemplate = computed(() => props.templates.find(item => item.isSele
     -webkit-box-orient: vertical;
   }
 
+  &__searching-container {
+    grid-column: 2;
+    grid-row: 2;
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  &__searching-input {
+    background-color: transparent;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    width: var(--inputtext-width);
+    color: var(--chat-filter-input-color);
+    padding: var(--inputtext-padding);
+    border: var(--chat-filter-input-border);
+    border-radius: var(--inputtext-border-radius);
+    font-size: var(--inputtext-font-size);
+    transition: border-color var(--inputtext-transition-duration);
+
+    &::placeholder {
+      color: var(--chat-filter-input-placeholder-color);
+    }
+
+    &:hover {
+      border-color: var(--chat-filter-hover-border-color);
+    }
+
+    &:focus-visible {
+      border-color: var(--chat-filter-focus-border-color);
+      outline: none;
+    }
+  }
+
   &__preview-container {
+    grid-row: 2 / 5;
+    grid-column: 3;
     border: 1px solid var(--neutral-200);
     max-height: 375px;
     overflow-y: auto;
     background-color: var(--template-selector-preview-bg);
     background-image: url('../../../public/chat-background.svg');
+
+    &::-webkit-scrollbar {
+      width: 6px;
+      background-color: var(--scrollbar-bg);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background-color: var(--scrollbar-thumb-bg);
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: 10px;
+    }
   }
 
   &__preview {
@@ -221,7 +368,7 @@ const selectedTemplate = computed(() => props.templates.find(item => item.isSele
     max-width: 70%;
   }
 
-  &__preview-title {
+  &__plug {
     width: 100%;
     height: 100%;
     font-size: 15px;
@@ -232,6 +379,7 @@ const selectedTemplate = computed(() => props.templates.find(item => item.isSele
 
   &__preview-text {
     font-size: 14px;
+    word-break: break-word;
   }
 
   &__preview-time {
@@ -242,7 +390,7 @@ const selectedTemplate = computed(() => props.templates.find(item => item.isSele
   }
 
   &__button-paste {
-    grid-column: 2;
+    grid-column: 3;
     grid-row: 4;
     display: block;
     width: fit-content;

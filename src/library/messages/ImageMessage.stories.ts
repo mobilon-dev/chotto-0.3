@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
- 
+
 import ImageMessage from './ImageMessage.vue';
- 
+
 const meta: Meta<typeof ImageMessage> = {
   component: ImageMessage,
 };
- 
+
 export default meta;
 type Story = StoryObj<typeof ImageMessage>;
 
@@ -24,8 +24,8 @@ const actions = [
 
 
 export const LeftImageMessage: Story = {
-  args: {   
-    message: { 
+  args: {
+    message: {
       ...imageMessage,
       position: 'left',
     },
@@ -33,8 +33,8 @@ export const LeftImageMessage: Story = {
 };
 
 export const LeftImageMessageWithViews: Story = {
-  args: {   
-    message: { 
+  args: {
+    message: {
       ...imageMessage,
       position: 'left',
       views: 121212,
@@ -43,8 +43,8 @@ export const LeftImageMessageWithViews: Story = {
 };
 
 export const LeftImageMessageWithSubtext: Story = {
-  args: {   
-    message: { 
+  args: {
+    message: {
       ...imageMessage,
       position: 'left',
       subText: 'sub text sub text',
@@ -53,8 +53,8 @@ export const LeftImageMessageWithSubtext: Story = {
 };
 
 export const LeftImageMessageWithActions: Story = {
-  args: {   
-    message: { 
+  args: {
+    message: {
       ...imageMessage,
       position: 'left',
       actions,
@@ -64,7 +64,7 @@ export const LeftImageMessageWithActions: Story = {
 
 
 export const RightImageMessage: Story = {
-  args: {   
+  args: {
     message: {
       ...imageMessage,
       position: 'right',
@@ -73,8 +73,8 @@ export const RightImageMessage: Story = {
 };
 
 export const RightImageMessageWithViews: Story = {
-  args: {   
-    message: { 
+  args: {
+    message: {
       ...imageMessage,
       position: 'right',
       views: 121212,
@@ -83,8 +83,8 @@ export const RightImageMessageWithViews: Story = {
 };
 
 export const RightImageMessageWithSubtext: Story = {
-  args: {   
-    message: { 
+  args: {
+    message: {
       ...imageMessage,
       position: 'right',
       subText: 'sub text sub text',
@@ -94,8 +94,8 @@ export const RightImageMessageWithSubtext: Story = {
 
 
 export const RightImageMessageStatusSent: Story = {
-  args: {   
-    message: { 
+  args: {
+    message: {
       ...imageMessage,
       position: 'right',
       status: 'sent',
@@ -104,8 +104,8 @@ export const RightImageMessageStatusSent: Story = {
 };
 
 export const RightImageMessageStatusReceived: Story = {
-  args: {   
-    message: { 
+  args: {
+    message: {
       ...imageMessage,
       position: 'right',
       status: 'received',
@@ -114,8 +114,8 @@ export const RightImageMessageStatusReceived: Story = {
 };
 
 export const RightImageMessageStatusRead: Story = {
-  args: {   
-    message: { 
+  args: {
+    message: {
       ...imageMessage,
       position: 'right',
       status: 'read',
@@ -124,11 +124,12 @@ export const RightImageMessageStatusRead: Story = {
 };
 
 export const RightImageMessageWithActions: Story = {
-  args: {   
-    message: { 
+  args: {
+    message: {
       ...imageMessage,
       position: 'right',
       actions,
     },
   },
 };
+

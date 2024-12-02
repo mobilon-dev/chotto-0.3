@@ -32,7 +32,10 @@
         target="_blank"
       >
         <span class="pi pi-file" />
-        {{ message.filename }}
+        <p class="file-message__filename-text">
+          {{ message.filename }}
+        </p>
+
       </a>
       <div class="file-message__info-container">
         <span class="file-message__time">{{ message.time }}</span>
@@ -74,18 +77,29 @@
           @click="clickAction"
         />
       </transition>
+
+      <div
+        v-if="message.text"
+        class="file-message__text-container"
+      >
+        <p>{{ message.text }}</p>
+      </div>
+
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
+<script
+  setup
+  lang="ts"
+>
 import { computed, ref } from 'vue'
 
 import ContextMenu from '../components/ContextMenu.vue'
 
 import { getStatus, statuses } from "../../helpers";
 
-import {IFileMessage} from '../../types'
+import { IFileMessage } from '../../types'
 
 // Define props
 const props = defineProps({
@@ -98,7 +112,7 @@ const props = defineProps({
 const isOpenMenu = ref(false)
 const buttonMenuVisible = ref(false);
 
-const clickAction = () => {}
+const clickAction = () => { }
 
 const showMenu = () => {
   buttonMenuVisible.value = true;
@@ -123,6 +137,15 @@ function getClass(message) {
 >
 .file-message {
 
+  &__content {
+    position: relative;
+    width: fit-content;
+    border-radius: 14px;
+    background-color: var(--file-message-background-color);
+    padding: 10px 30px 4px 16px;
+    max-width: 40%;
+  }
+
   &__avatar {
     align-self: center;
     object-fit: cover;
@@ -137,26 +160,34 @@ function getClass(message) {
     font-weight: 500;
   }
 
-  &__content {
-    position: relative;
-    width: fit-content;
-    border-radius: 14px;
-    background-color: var(--file-message-background-color);
-    padding: 10px 30px 4px 16px;
+  &__text-container {
+    margin-top: 10px;
+
+    p {
+      font-size: var(--base-message-font-size-text);
+    }
   }
 
   &__link {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    font-size: var(--base-message-font-size-text);
     column-gap: 12px;
-    color: var(--file-message-text-color);
 
     span {
       font-size: var(--icon-font-size-medium);
       color: var(--file-message-icon-color);
     }
+  }
+
+  &__filename-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    margin-right: 40px;
+    font-size: var(--base-message-font-size-text);
+    color: var(--file-message-text-color);
   }
 
   &__info-container {
@@ -276,8 +307,9 @@ function getClass(message) {
     }
 
     .file-message__context-menu {
-      top: 100%;
+      top: 50%;
       left: 100%;
+      margin-top: 20px;
     }
 
   }
@@ -309,8 +341,9 @@ function getClass(message) {
     }
 
     .file-message__context-menu {
-      top: 100%;
+      top: 50%;
       right: 100%;
+      margin-top: 20px;
     }
   }
 }

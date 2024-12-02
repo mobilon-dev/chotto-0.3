@@ -55,25 +55,19 @@
                 :button-params="buttonParams"
                 :objects="messages"
                 :is-scroll-to-bottom-on-update-objects-enabled="isScrollToBottomOnUpdateObjectsEnabled"
-                :typing="selectedChat.typing ? {avatar: selectedChat.avatar,title: selectedChat.title} : false"
+                :typing="selectedChat.typing ? { avatar: selectedChat.avatar, title: selectedChat.title } : false"
                 @message-action="messageAction"
                 @load-more="loadMore"
               />
-              <ChatInput
-                @send="addMessage"
-              >
+              <ChatInput @send="addMessage">
                 <template #buttons>
-                  <FileUploader
-                    :filebump-url="filebumpUrl"
-                  />
-                  <ButtonEmojiPicker 
-                    :mode="'hover'"
-                  />
+                  <FileUploader :filebump-url="filebumpUrl" />
+                  <ButtonEmojiPicker :mode="'hover'" />
                   <ButtonTemplateSelector
                     :templates="templates.templates"
                     :mode="'click'"
                   />
-                  <ChannelSelector 
+                  <ChannelSelector
                     :channels="channels"
                     @select-channel="onSelectChannel"
                     :mode="'hover'"
@@ -154,7 +148,6 @@ const props = defineProps({
 });
 
 const buttonParams = {
-  color: '#10b981',
   unreadAmount: 12
 }
 
@@ -181,34 +174,34 @@ const themes = [
 const actions = [
   {
     action: 'image/*',
-    title : 'Данные контакта',
+    title: 'Данные контакта',
     prime: '',
-   },
-   {
+  },
+  {
     action: 'video/*',
-    title : 'Выбрать сообшение',
+    title: 'Выбрать сообшение',
     prime: '',
-   },
-   {
+  },
+  {
     action: '',
-    title : 'Закрыть чат',
+    title: 'Закрыть чат',
     prime: '',
-   },
-   {
+  },
+  {
     action: '',
-    title : 'Без звука',
+    title: 'Без звука',
     prime: '',
-   },
-   {
+  },
+  {
     action: '',
-    title : 'Исчезающие сообщения',
+    title: 'Исчезающие сообщения',
     prime: '',
-   },
-   {
+  },
+  {
     action: '',
-    title : 'Очистить чат',
+    title: 'Очистить чат',
     prime: '',
-   },
+  },
 ]
 
 const chatsStore = useChatsStore();
