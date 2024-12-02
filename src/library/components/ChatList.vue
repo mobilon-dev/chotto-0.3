@@ -6,10 +6,10 @@
       @mouseleave="hideMenu"
     >
       <h2
-        v-if="title || localedDefaultTitle"
+        
         class="chat-list__title"
       >
-        {{ title == '' ? localedDefaultTitle : title }}
+        {{ t('chatListTitle') }}
       </h2>
 
       <button
@@ -83,16 +83,14 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 import ChatItem from "./ChatItem.vue";
 import ChatFilter from './ChatFilter.vue';
 import ContextMenu from './ContextMenu.vue'
 import { t } from '../../helpers/useI18n';
-import { nextTick } from 'process';
 
 const filter = ref('');
 const isOpenMenu = ref(false)
-const localedDefaultTitle = ref('')
 
 const hideMenu = () => {
   isOpenMenu.value = false
@@ -101,10 +99,6 @@ const hideMenu = () => {
 
 // Define props
 const props = defineProps({
-  title: {
-    type: String,
-    default: '',
-  },
   chats: {
     type: Array,
     required: true,
@@ -119,18 +113,6 @@ const props = defineProps({
     required: true,
   },
 });
-
-watch(
-  () => props.title,
-  () => {
-    if (props.title == ''){
-      nextTick(() => {
-        localedDefaultTitle.value = t('chatListTitle')
-      })
-    }
-  },
-  {immediate:true}
-)
 
 // Define emits
 const emit = defineEmits(['select', 'action']);

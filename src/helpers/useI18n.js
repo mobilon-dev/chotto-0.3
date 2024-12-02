@@ -1,3 +1,4 @@
+import { nextTick } from "process";
 import { ref, watch } from "vue";
 
 import { createI18n } from "vue-i18n";
@@ -44,8 +45,13 @@ const locale = ref(locales[1]);
 watch(
     () => locale.value,
     () => {
-        i18n.global.locale.value = locale.value.code 
+      nextTick(
+        () => {
+          i18n.global.locale.value = locale.value.code 
+        }
+      )
     },
+    {immediate: true}
 )
 
 export const t = useI18n().t;
