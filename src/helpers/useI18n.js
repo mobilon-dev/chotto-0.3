@@ -16,23 +16,6 @@ const locales = [
   },
 ];
 
-let messages = {
-    ru:{
-        chatListTitle: 'Чаты',
-        chatFilterPlaceholder: 'Поиск диалога',
-        noChatSelected: 'Выберите контакт для начала общения',
-        typing: 'печатает',
-        chatInputPlaceholder: 'Введите сообщение...',
-    },
-    en:{
-        chatListTitle: 'Chats',
-        chatFilterPlaceholder: 'Chat search',
-        noChatSelected: 'Choose contact to start conversation',
-        typing: 'typing',
-        chatInputPlaceholder: 'Type a message...',
-    }
-}
-
 const locale = ref(locales[1]);
 
 export const i18n = createI18n({
