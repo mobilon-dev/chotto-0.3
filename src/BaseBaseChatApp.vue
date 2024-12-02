@@ -37,7 +37,7 @@
             />
           </div>
           <p v-else>
-            Выберите контакт для начала общения
+            {{ $t('noChatSelected') }}
           </p>
         </template>
       </BaseLayout>
@@ -80,6 +80,9 @@ import {
 import { useChatsStore } from "./stores/useChatStore";
 import { transformToFeed } from "./transform/transformToFeed";
 import { SelectUser } from "./library/modals";
+import { useI18n } from  "./helpers/useI18n";
+
+const {locale, locales} = useI18n()
 
 // Define props
 const props = defineProps({
@@ -95,6 +98,11 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  locale: {
+    type: String,
+    required: false,
+    default: 'ru',
+  }
 });
 
 const themes = [
@@ -225,7 +233,7 @@ const handleEvent = async (event) => {
 };
 
 onMounted(() => {
-  // console.log('mounted')
+  locale.value = locales.find((loc) => loc.code == props.locale)
   props.eventor.subscribe(handleEvent);
   userProfile.value = props.authProvider.getUserProfile();
   chatsStore.chats = props.dataProvider.getChats();

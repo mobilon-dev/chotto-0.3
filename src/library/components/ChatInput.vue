@@ -11,7 +11,7 @@
           ref="refInput"
           v-model="message.text"
           class="chat-input__input"
-          placeholder="Type a message..."
+          :placeholder="$t('chatInputPlaceholder')"
           @keydown.enter="keyEnter"
           @input="sendTyping"
         />

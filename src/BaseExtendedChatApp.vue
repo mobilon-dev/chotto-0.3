@@ -135,6 +135,9 @@ import {
 import { useChatsStore } from "./stores/useChatStore";
 import { transformToFeed } from "./transform/transformToFeed";
 import ChannelSelector from "./library/components/ChannelSelector.vue";
+import { useI18n } from  "./helpers/useI18n";
+
+const {locale, locales} = useI18n()
 
 
 // Define props
@@ -151,6 +154,11 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  locale: {
+    type: String,
+    required: false,
+    default: 'en',
+  }
 });
 
 const buttonParams = {
@@ -302,6 +310,7 @@ const handleEvent = async (event) => {
 };
 
 onMounted(() => {
+  locale.value = locales.find((loc) => loc.code == props.locale)
   props.eventor.subscribe(handleEvent);
   userProfile.value = props.authProvider.getUserProfile();
   chatsStore.chats = props.dataProvider.getChats();
