@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 
-import ImageMessage from './ImageMessage.vue';
+import {ImageMessage} from './';
+import {IImageMessage} from '../../types'
 
 const meta: Meta<typeof ImageMessage> = {
   component: ImageMessage,
@@ -9,12 +10,12 @@ const meta: Meta<typeof ImageMessage> = {
 export default meta;
 type Story = StoryObj<typeof ImageMessage>;
 
-const imageMessage = {
+const imageMessage:IImageMessage = {
   messageId: 'testId',
   status: 'read',
-  text: "Вот картинка55656",
   url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg",
   time: '20:55',
+  position: 'left',
 };
 
 const actions = [
@@ -28,7 +29,17 @@ export const LeftImageMessage: Story = {
     message: {
       ...imageMessage,
       position: 'left',
-    },
+    } as IImageMessage,
+  },
+};
+
+export const LeftImageMessageWithText: Story = {
+  args: {
+    message: {
+      ...imageMessage,
+      position: 'left',
+      text: 'Текст текст текст текст текст текст текст текст текст',
+    } as IImageMessage,
   },
 };
 
@@ -72,13 +83,23 @@ export const RightImageMessage: Story = {
   },
 };
 
+export const RightImageMessageWithText: Story = {
+  args: {
+    message: {
+      ...imageMessage,
+      position: 'right',
+      text: 'Текст текст текст текст текст текст текст текст текст',
+    } as IImageMessage,
+  },
+};
+
 export const RightImageMessageWithViews: Story = {
   args: {
     message: {
       ...imageMessage,
       position: 'right',
       views: 121212,
-    },
+    } as IImageMessage,
   },
 };
 
@@ -93,12 +114,12 @@ export const RightImageMessageWithSubtext: Story = {
 };
 
 
-export const RightImageMessageStatusSent: Story = {
+export const RightImageMessageStatusSend: Story = {
   args: {
     message: {
       ...imageMessage,
       position: 'right',
-      status: 'sent',
+      status: 'send',
     },
   },
 };
