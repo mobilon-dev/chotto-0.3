@@ -95,7 +95,7 @@
 >
 import { computed, ref } from 'vue'
 
-import {ContextMenu} from '../components'
+import { ContextMenu } from '../components'
 
 import { getStatus, statuses } from "../../helpers";
 
@@ -161,7 +161,7 @@ function getClass(message) {
   }
 
   &__text-container {
-    margin-top: 10px;
+    margin-top: 6px;
 
     p {
       font-size: var(--base-message-font-size-text);

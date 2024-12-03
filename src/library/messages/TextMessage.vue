@@ -25,8 +25,8 @@
         class="text-message__content"
         @mouseenter="showMenu"
       >
-        <p 
-          v-html="linkedText" 
+        <p
+          v-html="linkedText"
           class="text-message__text"
           @click="inNewWindow"
         />
@@ -49,7 +49,7 @@
             :class="status"
           >
             <span
-              v-if="message.status !== 'send'"
+              v-if="message.status !== 'sent'"
               class="pi pi-check"
             />
             <span class="pi pi-check" />
@@ -77,11 +77,14 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script
+  setup
+  lang="ts"
+>
 import { computed, ref, watch } from 'vue'
 import linkifyStr from "linkify-string";
 
-import {ContextMenu} from '../components'
+import { ContextMenu } from '../components'
 import { getStatus, statuses } from "../../helpers";
 import { ITextMessage } from '../../types';
 
@@ -104,14 +107,14 @@ watch(
   () => {
     linkedText.value = linkifyStr(props.message.text)
   },
-  {immediate: true}
+  { immediate: true }
 )
 
 function inNewWindow(event) {
   event.preventDefault()
   if (event.target.href)
-  window.open(event.target.href, '_blank');
-} 
+    window.open(event.target.href, '_blank');
+}
 
 const showMenu = () => {
   buttonMenuVisible.value = true;

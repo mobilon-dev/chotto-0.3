@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
- 
+
 import ChatItem from './ChatItem.vue';
- 
+
 const meta: Meta<typeof ChatItem> = {
   component: ChatItem,
 };
- 
+
 export default meta;
 type Story = StoryObj<typeof ChatItem>;
- 
-const chat = {  
+
+const chat = {
   name: "John Doe",
   lastMessage: "Привет!",
   countUnread: "2",
@@ -18,8 +18,8 @@ const chat = {
 };
 
 const actions = [
-  {action: 'edit', title: 'изменить',},
-  {action: 'delete', title: 'удалить',},
+  { action: 'edit', title: 'изменить', },
+  { action: 'delete', title: 'удалить', },
 ]
 
 export const ChatItemBasic: Story = {
@@ -61,7 +61,7 @@ export const ChatItemWithLastMessageStatusSend: Story = {
     chat: {
       ...chat,
       countUnread: "0",
-      'lastMessage.status': 'send',
+      'lastMessage.status': 'sent',
     },
   },
 };
@@ -107,7 +107,8 @@ export const ChatItemWithUnread: Story = {
 
 export const ChatItemWithLongLastMessage: Story = {
   args: {
-    chat: { ...chat,
+    chat: {
+      ...chat,
       lastMessage: "Очень длинное текстовое сообщение. Его надо как-то немного спрятать",
       countUnread: "0",
     },

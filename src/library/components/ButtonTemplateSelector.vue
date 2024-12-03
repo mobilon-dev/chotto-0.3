@@ -16,7 +16,8 @@
     >
       <TemplateSelector
         :templates="templates"
-        @close-template-window="close"         
+        :group-templates="groupTemplates"
+        @close-template-window="close"
       />
     </div>
   </transition>
@@ -31,7 +32,12 @@ const props = defineProps({
     required: false,
     default: () => { return [] }
   },
-  mode:{
+  groupTemplates: {
+    type: Array,
+    required: false,
+    default: () => { return [] }
+  },
+  mode: {
     type: String,
     required: false,
     default: 'click'
@@ -43,24 +49,24 @@ const template = ref(null)
 
 
 const toggle = () => {
-  if (props.mode == 'click'){
-    if (template.value.style.display == 'none'){
+  if (props.mode == 'click') {
+    if (template.value.style.display == 'none') {
       template.value.style.display = 'inherit'
     }
-    else if (template.value.style.display == 'inherit'){
+    else if (template.value.style.display == 'inherit') {
       template.value.style.display = 'none'
     }
   }
 }
 
 const hover = () => {
-  if (props.mode == 'hover'){
+  if (props.mode == 'hover') {
     template.value.style.display = 'inherit'
   }
 }
 
 const hoverout = () => {
-  if (props.mode == 'hover'){
+  if (props.mode == 'hover') {
     template.value.style.display = 'none'
   }
 }
@@ -90,17 +96,17 @@ onUnmounted(() => {
   scoped
   lang="scss"
 >
-  .button-template {
-    background-color: transparent;
-    border: 0px solid var(--neutral-300);
-    ;
+.button-template {
+  background-color: transparent;
+  border: 0px solid var(--neutral-300);
+  ;
 
-    span {
-      display: block;
-      cursor: pointer;
-      padding: 14px;
-      font-size: var(--icon-font-size-medium);
-      color: var(--chat-input-icon-color);
-    }
+  span {
+    display: block;
+    cursor: pointer;
+    padding: 14px;
+    font-size: var(--icon-font-size-medium);
+    color: var(--chat-input-icon-color);
   }
+}
 </style>

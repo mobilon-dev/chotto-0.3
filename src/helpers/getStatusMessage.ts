@@ -1,4 +1,4 @@
-export const statuses: string[] = ['read', 'received', 'send']
+export const statuses: string[] = ['read', 'received', 'sent']
 
 export const getStatus = (status: string): string => {
   switch (status) {

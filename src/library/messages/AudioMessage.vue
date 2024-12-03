@@ -112,7 +112,7 @@
 >
 import { ref, onMounted, computed } from 'vue'
 
-import {ContextMenu} from '../components'
+import { ContextMenu } from '../components'
 import { getStatus, statuses } from "../../helpers";
 import { IAudioMessage } from '../../types';
 
@@ -363,7 +363,7 @@ onMounted(() => {
 
   &__text-container {
     grid-column: 1 / 3;
-    margin-top: 10px;
+    margin-top: 6px;
 
     p {
       font-size: var(--base-message-font-size-text);

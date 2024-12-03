@@ -70,7 +70,7 @@
             :class="status"
           >
             <span
-              v-if="chat['lastMessage.status'] !== 'send'"
+              v-if="chat['lastMessage.status'] !== 'sent'"
               class="pi pi-check"
             />
             <span class="pi pi-check" />
@@ -98,7 +98,7 @@
 <script setup>
 import { ref, computed, watch } from 'vue'
 
-import {ContextMenu} from '.'
+import { ContextMenu } from '.'
 import { getStatus, statuses } from "../../helpers";
 import { t } from '../../locale/useLocale'
 
@@ -139,7 +139,7 @@ const status = computed(() => getStatus(props.chat['lastMessage.status']))
 
 let timer;
 const typingIndex = ref(0)
-const typingText = [t('component.ChatItem.typing')+'.', t('component.ChatItem.typing')+'..', t('component.ChatItem.typing')+'...']
+const typingText = [t('component.ChatItem.typing') + '.', t('component.ChatItem.typing') + '..', t('component.ChatItem.typing') + '...']
 
 const showText = computed(() => {
   if (props.chat.typing) {
