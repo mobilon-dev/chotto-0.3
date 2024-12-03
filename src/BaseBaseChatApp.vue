@@ -37,7 +37,7 @@
             />
           </div>
           <p v-else>
-            {{ i18n.global.t('noChatSelected') }}
+            {{ t('layout.ChatWrapper.noSelectedChat') }}
           </p>
         </template>
       </BaseLayout>
@@ -81,9 +81,9 @@ import {
 import { useChatsStore } from "./stores/useChatStore";
 import { transformToFeed } from "./transform/transformToFeed";
 import { SelectUser } from "./library/modals";
-import { useI18n } from  "./helpers/useI18n";
+import { useLocale } from "./locale/useLocale";
 
-const {locale, locales} = useI18n()
+const {locale, locales} = useLocale()
 
 // Define props
 const props = defineProps({
