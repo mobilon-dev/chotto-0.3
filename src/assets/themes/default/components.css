@@ -87,7 +87,8 @@
   /* Feed */
   --feed-button-down-bg: var(--default-white);
   --feed-button-down-uread-color: var(--neutral-100);
-  --feed-icon-color: var(--neutral-600);
+  --feed-button-down-uread-bg: var(--emerald-500);
+  --feed-button-down-icon-color: var(--neutral-600);
 
   /* Сontext Menu */
   --context-menu-background: var(--default-white);

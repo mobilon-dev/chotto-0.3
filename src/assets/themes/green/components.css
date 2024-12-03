@@ -52,6 +52,7 @@
 
   /* Feed */
   --feed-button-down-bg: var(--neutral-200);
+  --feed-button-down-uread-bg: var(--p-red-500);
 
   /* Chat Info */
   --chat-info-padding: 10px 15px 10px 15px;

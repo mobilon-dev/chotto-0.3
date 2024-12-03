@@ -14,12 +14,12 @@
         @action="messageAction"
       />
     </div>
-    <typing-message 
-      v-if="typing" 
+    <typing-message
+      v-if="typing"
       :message="{
-        subText: (typing as IFeedTyping).title, 
-        avatar: (typing as IFeedTyping).avatar,
-      }"
+      subText: (typing as IFeedTyping).title,
+      avatar: (typing as IFeedTyping).avatar,
+    }"
     />
     <transition>
       <button
@@ -29,7 +29,6 @@
       >
         <div
           v-if="buttonParams"
-          :style="{ backgroundColor: buttonParams.color || '#00ff00' }"
           class="message-feed__unread-amount"
         >
           {{ buttonParams.unreadAmount }}
@@ -40,7 +39,10 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script
+  setup
+  lang="ts"
+>
 import { ref, unref, watch, nextTick, onUpdated } from 'vue';
 
 import FileMessage from "../messages/FileMessage.vue";
@@ -184,7 +186,7 @@ const messageAction = (message) => {
 
   &__icon-down {
     font-size: var(--icon-font-size-medium);
-    color: var(--feed-icon-color);
+    color: var(--feed-button-down-icon-color);
   }
 
   &__unread-amount {
@@ -200,6 +202,7 @@ const messageAction = (message) => {
     width: 22px;
     height: 22px;
     color: var(--feed-button-down-uread-color);
+    background-color: var(--feed-button-down-uread-bg);
     border-radius: 50%;
   }
 

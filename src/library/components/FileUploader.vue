@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="uploader-container"
-  >
+  <div class="uploader-container">
     <div v-if="uploadStatus === 'uploading'">
       <p>Загрузка файла...</p>
     </div>
@@ -23,7 +21,7 @@
       ref="fileInput"
       style="display: none;"
       type="file"
-      @change="onFileSelected" 
+      @change="onFileSelected"
     >
   </div>
   <teleport
@@ -45,7 +43,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import ButtonContextMenu from "./ButtonContextMenu.vue";
-import {getTypeFileByMime} from '../../helpers'
+import { getTypeFileByMime } from '../../helpers'
 import FilePreview from "./FilePreview.vue";
 import { useMessage } from "../../helpers/useMessage";
 const props = defineProps({
@@ -72,19 +70,19 @@ const actions = [
   },
   {
     action: 'image/*',
-    title : 'Фото',
+    title: 'Фото',
     prime: 'image',
-   },
-   {
+  },
+  {
     action: 'video/*',
-    title : 'Видео',
+    title: 'Видео',
     prime: 'video',
-   },
-   {
+  },
+  {
     action: '',
-    title : 'Файл',
+    title: 'Файл',
     prime: 'file',
-   },
+  },
 ]
 
 const emit = defineEmits(["fileUploaded"]);
@@ -119,11 +117,11 @@ const generatePreview = () => {
   isAudio.value = false
 
   if (fileType === 'image') {
-    isImage.value = true;    
+    isImage.value = true;
   } else if (fileType === "video") {
     isVideo.value = true;
   }
-  else if (fileType === 'audio'){
+  else if (fileType === 'audio') {
     isAudio.value = true
   }
   if (isImage.value || isVideo.value) {
@@ -153,7 +151,7 @@ const uploadFile = async () => {
   formData.append("file", selectedFile.value);
 
   const oldFilebumpUrl = 'https://filebump2.services.mobilon.ru';
-  const url = (props.filebumpUrl ? 
+  const url = (props.filebumpUrl ?
     props.filebumpUrl : oldFilebumpUrl) + "/upload";
 
   try {
