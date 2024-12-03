@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
- 
+
 import FileMessage from './FileMessage.vue';
-import {IFileMessage} from '../../types'
+import { IFileMessage } from '../../types'
 
 const meta: Meta<typeof FileMessage> = {
   component: FileMessage,
 };
- 
+
 export default meta;
 type Story = StoryObj<typeof FileMessage>;
 
-const fileMessage  = {
+const fileMessage = {
   filename: "document.pdf",
   url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg",
   time: '20:55',
@@ -25,8 +25,8 @@ const actions = [
 
 
 export const LeftFileMessage: Story = {
-  args: {   
-    message: { 
+  args: {
+    message: {
       ...fileMessage,
       position: 'left',
     },
@@ -34,8 +34,8 @@ export const LeftFileMessage: Story = {
 };
 
 export const LeftFileMessageWithSubtext: Story = {
-  args: {   
-    message: { 
+  args: {
+    message: {
       ...fileMessage,
       position: 'left',
       subText: 'sub text sub text'
@@ -44,7 +44,7 @@ export const LeftFileMessageWithSubtext: Story = {
 };
 
 export const LeftFileMessageWithActions: Story = {
-  args: {   
+  args: {
     message: {
       ...fileMessage,
       position: 'left',
@@ -55,7 +55,7 @@ export const LeftFileMessageWithActions: Story = {
 
 
 export const RightFileMessage: Story = {
-  args: {   
+  args: {
     message: {
       ...fileMessage,
       position: 'right',
@@ -64,7 +64,7 @@ export const RightFileMessage: Story = {
 };
 
 export const RightFileMessageStatusSent: Story = {
-  args: {   
+  args: {
     message: {
       ...fileMessage,
       position: 'right',
@@ -74,7 +74,7 @@ export const RightFileMessageStatusSent: Story = {
 };
 
 export const RightFileMessageStatusReceived: Story = {
-  args: {   
+  args: {
     message: {
       ...fileMessage,
       position: 'right',
@@ -84,7 +84,7 @@ export const RightFileMessageStatusReceived: Story = {
 };
 
 export const RightFileMessageStatusRead: Story = {
-  args: {   
+  args: {
     message: {
       ...fileMessage,
       position: 'right',
@@ -94,8 +94,8 @@ export const RightFileMessageStatusRead: Story = {
 };
 
 export const RightFileMessageWithSubtext: Story = {
-  args: {   
-    message: { 
+  args: {
+    message: {
       ...fileMessage,
       position: 'right',
       subText: 'sub text sub text'
@@ -104,11 +104,33 @@ export const RightFileMessageWithSubtext: Story = {
 };
 
 export const RightFileMessageWithActions: Story = {
-  args: {   
+  args: {
     message: {
       ...fileMessage,
       position: 'right',
       actions,
+    }
+  },
+};
+
+export const RightFileMessageWithActionsAndText: Story = {
+  args: {
+    message: {
+      ...fileMessage,
+      position: 'right',
+      actions,
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+    }
+  },
+};
+
+export const LeftFileMessageWithActionsAndText: Story = {
+  args: {
+    message: {
+      ...fileMessage,
+      position: 'left',
+      actions,
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
     }
   },
 };

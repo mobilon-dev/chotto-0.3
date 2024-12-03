@@ -25,7 +25,7 @@
   --chat-input-placeholder-color: var(--neutral-400);
   --chat-input-icon-color: var(--neutral-300);
   --chat-input-icon-color-disabled: var(--neutral-600);
-  
+
   /* File Uploader */
   --file-uploader-icon-color: var(--neutral-300);
 
@@ -48,7 +48,7 @@
   /* Feed */
   --feed-button-down-bg: var(--neutral-600);
   --feed-button-down-uread-color: var(--neutral-900);
-  --feed-icon-color: var(--neutral-300);
+  --feed-button-down-icon-color: var(--neutral-300);
 
   /* Channels */
   --channels-selector-popover-background-color: var(--neutral-600);

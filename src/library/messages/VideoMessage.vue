@@ -5,39 +5,79 @@
     :messageId="message.messageId"
     @mouseleave="hideMenu"
   >
+
     <img
       v-if="message.avatar"
       class="video-message__avatar"
       :src="message.avatar"
       height="32"
       width="32"
-      :style="{ gridRow: message.subText ? '2' : '1' }"
     >
+
+    <p
+      v-if="message.subText"
+      class="video-message__subtext"
+    >
+      {{ message.subText }}
+    </p>
 
     <div
       class="video-message__content"
       @mouseenter="showMenu"
+      @mouseleave="buttonDownloadVisible = !buttonDownloadVisible"
     >
-      <video
-        ref="player"
-        class="video-message__video"
-        :src="message.url"
-      />
-      <div class="video-message__controls">
-        <transition>
-          <button
-            v-show="!isPlaying"
-            class="video-message__play"
-            @click="togglePlayPause"
-          >
-            <span class="pi pi-play" />
-          </button>
-        </transition>
-        <button
-          v-show="isPlaying"
-          class="video-message__pause"
-          @click="togglePlayPause"
+
+      <div
+        class="video-message__preview-button"
+        @click="isOpenModal = true"
+      >
+        <video
+          ref="previewPlayer"
+          class="video-message__video"
+          :style="{ borderRadius: message.text ? '8px 8px 0 0' : '8px' }"
+          @ended="playAgain"
+          :src="message.url"
+          :muted="true"
+          autoplay
         />
+
+        <!-- <p class="video-message__remaining-time">
+        {{ `${remaningTime}` }}
+      </p> -->
+
+        <div class="video-message__info-container">
+          <div
+            v-if="message.views"
+            class="video-message__views"
+          >
+            <span class="pi pi-eye" />
+            <p>{{ message.views }}</p>
+          </div>
+
+          <span class="video-message__time">{{ message.time }}</span>
+
+          <div
+            v-if="getClass(message) === 'video-message__right' && statuses.includes(message.status)"
+            class="video-message__status"
+            :class="status"
+          >
+            <span
+              v-if="message.status !== 'sent'"
+              class="pi pi-check"
+            />
+            <span class="pi pi-check" />
+          </div>
+        </div>
+
+        <a
+          v-if="buttonDownloadVisible"
+          class="video-message__download-button"
+          :href="message.url"
+          download
+          target="_blank"
+        >
+          <span class="pi pi-download" />
+        </a>
       </div>
 
       <button
@@ -57,40 +97,52 @@
         />
       </transition>
 
-      <p class="video-message__remaining-time">
-        {{ `${remaningTime}` }}
-      </p>
-
-      <div class="video-message__info-container">
-        <span class="video-message__time">{{ message.time }}</span>
-
-        <div
-          v-if="getClass(message) === 'video-message__right' && statuses.includes(message.status)"
-          class="video-message__status"
-          :class="status"
-        >
-          <span
-            v-if="message.status !== 'sent'"
-            class="pi pi-check"
-          />
-          <span class="pi pi-check" />
-        </div>
-      </div>
-
-      <a
-        class="video-message__download-button"
-        :href="message.url"
-        download
-        target="_blank"
-      >
-        <span class="pi pi-download" />
-      </a>
     </div>
+
+
+    <div
+      v-if="message.text"
+      class="video-message__text-container"
+    >
+      <p>{{ message.text }}</p>
+    </div>
+
+
+    <Teleport to="body">
+      <transition name="modal-fade">
+        <div
+          v-if="isOpenModal"
+          class="video-message__modal-overlay"
+        >
+          <div class="video-message__modal">
+            <button
+              class="video-message__modal-close-button"
+              @click="isOpenModal = false"
+            >
+              <span>
+                <i class="pi pi-times" />
+              </span>
+            </button>
+            <video
+              ref="player"
+              class="video-message__modal-video"
+              :src="message.url"
+              :alt="message.alt"
+              controls
+              autoplay
+            />
+          </div>
+        </div>
+      </transition>
+    </Teleport>
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+<script
+  setup
+  lang="ts"
+>
+import { ref, computed, onMounted, watch } from 'vue'
 
 import ContextMenu from '../components/ContextMenu.vue'
 
@@ -110,17 +162,21 @@ function getClass(message) {
 }
 
 const player = ref<HTMLVideoElement | null>();
-const isPlaying = ref(false);
-const audioDuration = ref(0);
-const currentTime = ref(0)
+const previewPlayer = ref<HTMLVideoElement | null>();
+// const isPlaying = ref(false);
+// const audioDuration = ref(0);
+// const currentTime = ref(0)
 
+const isOpenModal = ref(false);
 const isOpenMenu = ref(false)
 const buttonMenuVisible = ref(false);
+const buttonDownloadVisible = ref(false)
 
-const clickAction = () => {}
+const clickAction = () => { }
 
 const showMenu = () => {
   buttonMenuVisible.value = true;
+  buttonDownloadVisible.value = true
 };
 
 const hideMenu = () => {
@@ -130,48 +186,70 @@ const hideMenu = () => {
 
 const status = computed(() => getStatus(props.message.status))
 
-function togglePlayPause() {
-  if (player.value) {
-    if (isPlaying.value) {
-      player.value.pause();
-    } else {
-      player.value.play();
+const playAgain = () => {
+  if (previewPlayer.value) {
+    previewPlayer.value.currentTime = 0;
+    previewPlayer.value.play();
+  }
+};
+
+
+watch([player, previewPlayer], ([playerVal, previewVal]) => {
+  if (playerVal) {
+    if (previewVal) {
+      previewVal.pause();
+      previewVal.currentTime = 0;
     }
-    isPlaying.value = !isPlaying.value;
+  } else if (previewVal) {
+    previewVal.play();
+    previewVal.currentTime = 0;
   }
-}
-
-const formatTime = (time) => {
-  const minutes = Math.floor(time / 60);
-  const seconds = Math.floor(time % 60);
-  return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-}
-
-const remaningTime = computed(() => {
-  if (player.value) {
-    if (currentTime.value >= audioDuration.value) {
-      isPlaying.value = false
-      return '00:00';
-    } else {
-      const time = audioDuration.value - currentTime.value;
-      return formatTime(time);
-    }
-  } else {
-    return ''
-  }
-})
-
-onMounted(() => {
-  if (player.value != null){
-    player.value.addEventListener('loadedmetadata', () => {
-    audioDuration.value = player.value != null ? player.value.duration : 0;
-  });
-  player.value.addEventListener('timeupdate', () => {
-    currentTime.value = player.value != null ? player.value.currentTime : 0;
-  });
-  }
-  
 });
+
+// function togglePlayPause() {
+
+//   if (previewPlayer.value) {
+//     console.log('я тут')
+//     if (isPlaying.value) {
+//       previewPlayer.value.pause();
+//     } else {
+//       previewPlayer.value.play();
+//     }
+//     isPlaying.value = !isPlaying.value;
+//   }
+// }
+
+// const formatTime = (time) => {
+//   const minutes = Math.floor(time / 60);
+//   const seconds = Math.floor(time % 60);
+//   return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+// }
+
+// const remaningTime = computed(() => {
+//   if (previewPlayer.value) {
+//     if (currentTime.value >= audioDuration.value) {
+//       isPlaying.value = false
+//       return '00:00';
+//     } else {
+//       const time = audioDuration.value - currentTime.value;
+//       return formatTime(time);
+//     }
+//   } else {
+//     return ''
+//   }
+// })
+
+// onMounted(() => {
+//   if (previewPlayer.value != null) {
+//     previewPlayer.value.addEventListener('loadedmetadata', () => {
+//       audioDuration.value = previewPlayer.value != null ? previewPlayer.value.duration : 0;
+//     });
+//     previewPlayer.value.addEventListener('timeupdate', () => {
+//       currentTime.value = previewPlayer.value != null ? previewPlayer.value.currentTime : 0;
+//     });
+//   }
+
+// });
 </script>
 
 <style
@@ -181,35 +259,34 @@ onMounted(() => {
 .video-message {
   &__content {
     position: relative;
-    height: 200px;
-    width: 200px;
+    max-width: 40%;
+    height: 100%;
+    cursor: zoom-in;
   }
 
   &__info-container {
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: 4px;
+    right: 8px;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    column-gap: 6px;
+    column-gap: 8px;
+    border-radius: 12px;
+    padding: 6px 10px;
+    background-color: rgb(0 0 0 / 39%);
   }
 
   &__download-button {
     position: absolute;
     left: 8px;
-    bottom: 8px;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    width: fit-content;
+    bottom: 4px;
     display: flex;
     justify-content: center;
     align-items: center;
     border: none;
     border-radius: 12px;
     padding: 6px 6px;
-    background-color: rgba(0, 0, 0, 0.67);
+    background-color: rgb(0 0 0 / 39%);
     cursor: pointer;
 
     span {
@@ -218,8 +295,61 @@ onMounted(() => {
     }
   }
 
+  &__views {
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+
+    span {
+      font-size: var(--base-message-views-icon-font-size);
+      color: var(--neutral-200);
+    }
+
+    p {
+      font-size: var(--base-message-views-font-size);
+      color: var(--neutral-200);
+    }
+  }
+
+  &__time {
+    color: var(--neutral-200);
+    font-size: var(--base-message-font-size-time);
+  }
+
+  &__status {
+    display: flex;
+
+    span {
+      font-weight: 400;
+      color: var(--default-white);
+      font-size: var(--base-message-status-font-size);
+    }
+  }
+
+  .status--received {
+    span {
+      color: var(--default-white);
+
+      &:first-child {
+        margin-right: -8px;
+      }
+    }
+  }
+
+  .status--read {
+    span {
+      color: var(--base-message-status-color-read);
+
+      &:first-child {
+        margin-right: -8px;
+      }
+    }
+  }
+
   &__avatar {
-    align-self: center;
+    grid-row: 1 / -1;
+    align-self: end;
+    margin-bottom: 6px;
     object-fit: cover;
     min-width: var(--avatar-width-small);
     min-height: var(--avatar-height-small);
@@ -235,28 +365,28 @@ onMounted(() => {
     height: 100%;
   }
 
-
   &__play {
     background-color: transparent;
     border: none;
-    width: 100%;
-    height: 100%;
     border-radius: 50%;
     cursor: pointer;
     padding: 0;
+    width: 100%;
+    height: 100%;
+
 
     span {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
       display: flex;
       justify-content: center;
       align-items: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.67);
       width: 40px;
       height: 40px;
-      border-radius: 50%;
-      background-color: rgba(0, 0, 0, 0.67);
       font-size: var(--icon-font-size-medium);
       color: var(--neutral-100);
     }
@@ -274,15 +404,17 @@ onMounted(() => {
 
   &__video {
     object-fit: cover;
-    height: 200px;
-    width: 200px;
-    border-radius: 50%;
+    width: 100%;
   }
 
   &__remaining-time {
     position: absolute;
-    bottom: 0;
-    left: 0;
+    left: 8px;
+    bottom: 4px;
+    border-radius: 12px;
+    padding: 6px 10px;
+    background-color: rgb(0 0 0 / 39%);
+    color: var(--neutral-200);
     font-size: var(--base-message-font-size-remaining-time);
   }
 
@@ -290,38 +422,15 @@ onMounted(() => {
     font-size: var(--base-message-font-size-time);
   }
 
-  &__status {
+  &__subtext {
+    font-weight: 500;
+    font-size: 12px;
+    color: var(--base-message-subtext-color);
+  }
+
+  &__preview-button {
     display: flex;
-
-    span {
-      font-weight: 400;
-      color: var(--base-message-status-color-received);
-      font-size: var(--base-message-status-font-size);
-    }
-  }
-
-  .status--received {
-    right: -8px;
-
-    span {
-      color: var(--base-message-status-color-received);
-
-      &:first-child {
-        margin-right: -8px;
-      }
-    }
-  }
-
-  .status--read {
-    right: -8px;
-
-    span {
-      color: var(--base-message-status-color-read);
-
-      &:first-child {
-        margin-right: -8px;
-      }
-    }
+    flex-direction: column;
   }
 
   &__menu-button {
@@ -347,9 +456,21 @@ onMounted(() => {
     position: absolute;
   }
 
+  &__text-container {
+    padding: 6px 10px 6px 10px;
+    border-radius: 0 0 8px 8px;
+    max-width: 40%;
+    width: 100%;
+
+    p {
+      font-size: var(--base-message-font-size-text);
+    }
+  }
+
   &__left,
   &__right {
     display: grid;
+    grid-template-rows: min-content 1fr min-content;
     margin: var(--base-message-margin);
   }
 
@@ -358,7 +479,6 @@ onMounted(() => {
 
     .video-message__avatar {
       grid-column: 1;
-      grid-row: 2;
       margin-right: 12px;
     }
 
@@ -370,6 +490,10 @@ onMounted(() => {
 
     .video-message__content {
       grid-column: 2;
+    }
+
+    .video-message__text-container {
+      grid-column: 2;
       background-color: var(--base-message-left-bg);
     }
 
@@ -379,8 +503,9 @@ onMounted(() => {
     }
 
     .video-message__context-menu {
-      top: 56%;
+      top: 50%;
       left: 100%;
+      margin-top: 20px;
     }
   }
 
@@ -389,7 +514,6 @@ onMounted(() => {
 
     .video-message__avatar {
       grid-column: 2;
-      grid-row: 2;
       margin-left: 12px;
     }
 
@@ -405,29 +529,81 @@ onMounted(() => {
       margin-left: auto;
     }
 
+    .video-message__text-container {
+      grid-column: 1;
+      margin-left: auto;
+      background-color: var(--base-message-right-bg);
+    }
+
     .video-message__menu-button {
       top: 50%;
       left: -40px;
     }
 
     .video-message__context-menu {
-      top: 56%;
+      top: 50%;
       right: 100%;
+      margin-top: 20px;
+    }
+  }
+
+  &__modal-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+
+  &__modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 101;
+    background-color: var(--modal-bg);
+    border-radius: var(--modal-border-radius);
+    padding: var(--modal-padding);
+    width: var(--modal-width);
+    box-shadow: var(--modal-overlay-shadow);
+  }
+
+  &__modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--modal-mask-background);
+    z-index: 1000;
+  }
+
+  &__modal-close-button {
+    display: block;
+    background-color: transparent;
+    border: none;
+    padding: 4px;
+    margin: 0 0 14px auto;
+    cursor: pointer;
+
+    span {
+      color: var(--modal-icon-color);
+      font-size: var(--icon-font-size-medium);
     }
   }
 }
 
-.v-enter-active {
-  transition: all 0.1s ease-out;
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition: opacity 0.2s ease;
 }
 
-.v-leave-active {
-  transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
-}
-
-.v-enter-from,
-.v-leave-to {
-  transform: scale(0.9);
+.modal-fade-enter-from,
+.modal-fade-leave-to {
   opacity: 0;
+}
+
+.modal-fade-enter-to,
+.modal-fade-leave-from {
+  opacity: 1;
 }
 </style>

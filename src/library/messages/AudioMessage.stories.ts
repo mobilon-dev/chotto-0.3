@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
- 
+
 import AudioMessage from './AudioMessage.vue';
- 
+
 const meta: Meta<typeof AudioMessage> = {
   component: AudioMessage,
 };
- 
+
 export default meta;
 type Story = StoryObj<typeof AudioMessage>;
 
-const message  = {
+const message = {
   url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
   position: 'left',
   messageId: 'testMessageId',
@@ -44,7 +44,8 @@ export const LeftMessageWithActions: Story = {
 
 export const RightMessage: Story = {
   args: {
-    message: {...message,
+    message: {
+      ...message,
       position: 'right'
     },
   },
@@ -52,7 +53,8 @@ export const RightMessage: Story = {
 
 export const RightMessageSent: Story = {
   args: {
-    message: {...message,
+    message: {
+      ...message,
       position: 'right',
       status: 'sent',
     },
@@ -61,7 +63,8 @@ export const RightMessageSent: Story = {
 
 export const RightMessageReceived: Story = {
   args: {
-    message: {...message,
+    message: {
+      ...message,
       position: 'right',
       status: 'received',
     },
@@ -70,7 +73,8 @@ export const RightMessageReceived: Story = {
 
 export const RightMessageRead: Story = {
   args: {
-    message: {...message,
+    message: {
+      ...message,
       position: 'right',
       status: 'read',
     },
@@ -83,6 +87,28 @@ export const RightMessageWithActions: Story = {
       ...message,
       position: 'right',
       actions,
+    },
+  },
+};
+
+export const RightMessageWithActionsAndText: Story = {
+  args: {
+    message: {
+      ...message,
+      position: 'right',
+      actions,
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+    },
+  },
+};
+
+export const LeftMessageWithActionsAndText: Story = {
+  args: {
+    message: {
+      ...message,
+      position: 'left',
+      actions,
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
     },
   },
 };
