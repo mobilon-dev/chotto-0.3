@@ -8,7 +8,7 @@
       userSelect: dragMode ? 'none' : 'auto',
       height: height,
       width: width,
-      display: flex,
+      display: 'flex',
     }"
   >
     <div class="float-window__container">

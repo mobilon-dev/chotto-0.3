@@ -99,7 +99,7 @@
 import { ref, computed, watch } from 'vue'
 import ContextMenu from './ContextMenu.vue'
 import { getStatus, statuses } from "../../helpers";
-
+import { t } from '../../locale/useLocale'
 // Define props
 const props = defineProps({
   chat: {
@@ -142,7 +142,7 @@ const status = computed(() => getStatus(props.chat['lastMessage.status']))
 
 let timer;
 const typingIndex = ref(0)
-const typingText = ['typing.', 'typing..', 'typing...']
+const typingText = [t('component.ChatItem.typing')+'.', t('component.ChatItem.typing')+'..', t('component.ChatItem.typing')+'...']
 
 const showText = computed(() => {
   if (props.chat.typing) {

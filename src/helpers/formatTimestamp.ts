@@ -10,10 +10,10 @@ export function formatTimestamp(timestamp: string) {
   const minutes = Math.floor(seconds / 60);
   const hours = Math.floor(minutes / 60);
   const days = Math.floor(hours / 24);
-
+  
   // Выбираем формат времени в зависимости от времени прошедшего
   if (days > 30) {
-    return date.toLocaleString(); // Если больше месяца, показываем только дату
+    return new Date(date).toLocaleDateString("ru-RU"); // Если больше месяца, показываем только дату
   } else if (days > 0) {
     return `${days} ${days === 1 ? 'день' : 'дня'} назад`;
   } else if (hours > 0) {

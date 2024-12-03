@@ -37,7 +37,7 @@
             />
           </div>
           <p v-else>
-            Выберите контакт для начала общения
+            {{ t('layout.ChatWrapper.noSelectedChat') }}
           </p>
         </template>
       </BaseLayout>
@@ -75,11 +75,15 @@ import {
   insertDaySeparators,
   playNotificationAudio,
   sortByTimestamp,
+  i18n
 } from "./helpers";
 
 import { useChatsStore } from "./stores/useChatStore";
 import { transformToFeed } from "./transform/transformToFeed";
 import { SelectUser } from "./library/modals";
+import { useLocale } from "./locale/useLocale";
+
+const {locale, locales} = useLocale()
 
 // Define props
 const props = defineProps({
@@ -95,6 +99,11 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  locale: {
+    type: String,
+    required: false,
+    default: 'ru',
+  }
 });
 
 const themes = [
@@ -225,7 +234,7 @@ const handleEvent = async (event) => {
 };
 
 onMounted(() => {
-  // console.log('mounted')
+  locale.value = locales.find((loc) => loc.code == props.locale)
   props.eventor.subscribe(handleEvent);
   userProfile.value = props.authProvider.getUserProfile();
   chatsStore.chats = props.dataProvider.getChats();

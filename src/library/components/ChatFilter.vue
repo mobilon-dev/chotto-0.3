@@ -5,7 +5,7 @@
         ref="refInput"
         class="chat-filter__input"
         type="text"
-        placeholder="Поиск диалога"
+        :placeholder="t('component.ChatFilter.InputPlaceholder')"
         @input="update"
       >
     </div>
@@ -14,7 +14,7 @@
 
 <script setup>
 import { ref, unref } from 'vue';
-
+import { t } from '../../locale/useLocale';
 const refInput = ref('');
 
 // Define emits

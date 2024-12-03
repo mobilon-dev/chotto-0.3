@@ -6,10 +6,10 @@
       @mouseleave="hideMenu"
     >
       <h2
-        v-if="title"
+        
         class="chat-list__title"
       >
-        {{ title }}
+        {{ t('component.ChatList.Title') }}
       </h2>
 
       <button
@@ -87,6 +87,7 @@ import { ref } from 'vue';
 import ChatItem from "./ChatItem.vue";
 import ChatFilter from './ChatFilter.vue';
 import ContextMenu from './ContextMenu.vue'
+import { t } from '../../locale/useLocale';
 
 const filter = ref('');
 const isOpenMenu = ref(false)
@@ -95,12 +96,9 @@ const hideMenu = () => {
   isOpenMenu.value = false
 }
 
+
 // Define props
 const props = defineProps({
-  title: {
-    type: String,
-    default: 'Чаты',
-  },
   chats: {
     type: Array,
     required: true,

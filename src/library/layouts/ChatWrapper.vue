@@ -12,7 +12,7 @@
       style="width: 100%"
     >
       <p>
-        Выберите контакт для начала общения
+        {{ t('layout.ChatWrapper.noSelectedChat') }}
       </p>
     </div>
 
@@ -30,6 +30,8 @@
   lang="ts"
   setup
 >
+import { t } from '../../locale/useLocale';
+
 const props = defineProps({
   isOpenChatPanel: {
     type: Boolean,
