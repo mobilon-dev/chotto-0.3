@@ -49,7 +49,7 @@ export const chats = [
     countUnread: 0, lastMessage: 'test',
     'lastActivity.time': 'час назад',
     'lastActivity.timestamp': '1727027259',
-    'lastMessage.status': 'send',
+    'lastMessage.status': 'sent',
     actions: [
       { action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' },
     ],

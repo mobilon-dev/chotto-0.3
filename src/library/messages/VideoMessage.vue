@@ -21,15 +21,13 @@
       {{ message.subText }}
     </p>
 
-    <div
-      class="video-message__content"
-      @mouseenter="showMenu"
-      @mouseleave="buttonDownloadVisible = !buttonDownloadVisible"
-    >
+    <div class="video-message__content">
 
       <div
         class="video-message__preview-button"
         @click="isOpenModal = true"
+        @mouseenter="showMenu"
+        @mouseleave="buttonDownloadVisible = !buttonDownloadVisible"
       >
         <video
           ref="previewPlayer"
@@ -45,50 +43,61 @@
         {{ `${remaningTime}` }}
       </p> -->
 
-        <div class="video-message__info-container">
+        <transition name="modal-fade">
           <div
-            v-if="message.views"
-            class="video-message__views"
+            v-if="buttonDownloadVisible"
+            class="video-message__info-container"
           >
-            <span class="pi pi-eye" />
-            <p>{{ message.views }}</p>
+            <div
+              v-if="message.views"
+              class="video-message__views"
+            >
+              <span class="pi pi-eye" />
+              <p>{{ message.views }}</p>
+            </div>
+
+            <span class="video-message__time">{{ message.time }}</span>
+
+            <div
+              v-if="getClass(message) === 'video-message__right' && statuses.includes(message.status)"
+              class="video-message__status"
+              :class="status"
+            >
+              <span
+                v-if="message.status !== 'sent'"
+                class="pi pi-check"
+              />
+              <span class="pi pi-check" />
+            </div>
           </div>
+        </transition>
 
-          <span class="video-message__time">{{ message.time }}</span>
 
-          <div
-            v-if="getClass(message) === 'video-message__right' && statuses.includes(message.status)"
-            class="video-message__status"
-            :class="status"
+        <transition name="modal-fade">
+          <a
+            v-if="buttonDownloadVisible"
+            class="video-message__download-button"
+            :href="message.url"
+            download
+            target="_blank"
           >
-            <span
-              v-if="message.status !== 'sent'"
-              class="pi pi-check"
-            />
-            <span class="pi pi-check" />
-          </div>
-        </div>
-
-        <a
-          v-if="buttonDownloadVisible"
-          class="video-message__download-button"
-          :href="message.url"
-          download
-          target="_blank"
-        >
-          <span class="pi pi-download" />
-        </a>
+            <span class="pi pi-download" />
+          </a>
+        </transition>
       </div>
 
-      <button
-        v-if="buttonMenuVisible && message.actions"
-        class="video-message__menu-button"
-        @click="isOpenMenu = !isOpenMenu"
-      >
-        <span class="pi pi-ellipsis-h" />
-      </button>
+      <transition name="modal-fade">
+        <button
+          v-if="buttonMenuVisible && message.actions"
+          class="video-message__menu-button"
+          @click="isOpenMenu = !isOpenMenu"
+        >
+          <span class="pi pi-ellipsis-h" />
+        </button>
+      </transition>
 
-      <transition>
+
+      <transition name="context-menu">
         <ContextMenu
           v-if="isOpenMenu && message.actions"
           class="video-message__context-menu"
@@ -97,14 +106,12 @@
         />
       </transition>
 
-    </div>
-
-
-    <div
-      v-if="message.text"
-      class="video-message__text-container"
-    >
-      <p>{{ message.text }}</p>
+      <div
+        v-if="message.text"
+        class="video-message__text-container"
+      >
+        <p>{{ message.text }}</p>
+      </div>
     </div>
 
 
@@ -144,7 +151,7 @@
 >
 import { ref, computed, onMounted, watch } from 'vue'
 
-import {ContextMenu} from '../components'
+import { ContextMenu } from '../components'
 import { getStatus, statuses } from "../../helpers";
 import { IVideoMessage } from '../../types';
 
@@ -259,7 +266,6 @@ watch([player, previewPlayer], ([playerVal, previewVal]) => {
     position: relative;
     max-width: 40%;
     height: 100%;
-    cursor: zoom-in;
   }
 
   &__info-container {
@@ -403,6 +409,8 @@ watch([player, previewPlayer], ([playerVal, previewVal]) => {
   &__video {
     object-fit: cover;
     width: 100%;
+    max-height: 500px;
+    cursor: zoom-in;
   }
 
   &__remaining-time {
@@ -427,6 +435,7 @@ watch([player, previewPlayer], ([playerVal, previewVal]) => {
   }
 
   &__preview-button {
+    position: relative;
     display: flex;
     flex-direction: column;
   }
@@ -457,8 +466,6 @@ watch([player, previewPlayer], ([playerVal, previewVal]) => {
   &__text-container {
     padding: 6px 10px 6px 10px;
     border-radius: 0 0 8px 8px;
-    max-width: 40%;
-    width: 100%;
 
     p {
       font-size: var(--base-message-font-size-text);
@@ -548,8 +555,10 @@ watch([player, previewPlayer], ([playerVal, previewVal]) => {
   &__modal-video {
     width: 100%;
     height: 100%;
+    max-height: 60%;
     object-fit: cover;
     border-radius: 5px;
+    max-height: 80vh;
   }
 
   &__modal {
@@ -561,7 +570,7 @@ watch([player, previewPlayer], ([playerVal, previewVal]) => {
     background-color: var(--modal-bg);
     border-radius: var(--modal-border-radius);
     padding: var(--modal-padding);
-    width: var(--modal-width);
+    max-width: 45%;
     box-shadow: var(--modal-overlay-shadow);
   }
 
@@ -588,6 +597,20 @@ watch([player, previewPlayer], ([playerVal, previewVal]) => {
       font-size: var(--icon-font-size-medium);
     }
   }
+}
+
+.context-menu-enter-active {
+  transition: all 0.1s ease-out;
+}
+
+.context-menu-leave-active {
+  transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.context-menu-enter-from,
+.context-menu-leave-to {
+  transform: scale(0.9);
+  opacity: 0;
 }
 
 .modal-fade-enter-active,

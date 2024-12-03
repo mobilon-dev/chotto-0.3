@@ -10,23 +10,28 @@
 
       <ul class="template-selector__list-groups">
         <li
-          v-for="(item, index) in uniqueGroups"
+          v-for="(item, index) in groupTemplates"
           :key="index"
           class="template-selector__item-group"
           :class="{ 'template-selector__item-selected': selectedGroup === item }"
           @click="clearSelectedTemplate"
         >
-          <input
-            :id="index"
-            v-model="selectedGroup"
-            :value="item"
-            class="template-selector__input-group"
-            type="radio"
-          >
-          <label
-            class="template-selector__label-group"
-            :for="index"
-          >{{ item.groupId }}</label>
+          <label class="template-selector__label-group">
+            <img
+              v-if="item.iconUrl"
+              class="template-selector__item-group-icon"
+              :src="item.iconUrl"
+              :alt="item.title"
+            >
+            <input
+              :id="index"
+              v-model="selectedGroup"
+              :value="item"
+              class="template-selector__input-group"
+              type="radio"
+            >
+            <span>{{ item.title }}</span>
+          </label>
         </li>
       </ul>
 
@@ -105,10 +110,16 @@
 </template>
 
 <script setup>
-import { computed, ref, watch } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import { useMessage } from '../../helpers/useMessage';
 const props = defineProps({
   templates: {
+    type: Array,
+    required: false,
+    default: () => { return [] }
+  },
+
+  groupTemplates: {
     type: Array,
     required: false,
     default: () => { return [] }
@@ -138,14 +149,6 @@ const clearSelectedTemplate = () => {
   props.templates.forEach(template => template.isSelected = false);
 };
 
-const uniqueGroups = computed(() => {
-  return props.templates.filter((item, index, arr) => {
-    return !arr.some((otherItem, otherIndex) => {
-      return otherIndex < index && item.groupId === otherItem.groupId;
-    });
-  });
-});
-
 const filteredTemplates = computed(() => {
   if (!selectedGroup.value) {
     return props.templates
@@ -160,7 +163,6 @@ const searchedTemplate = computed(() => {
     return item.title.toLowerCase().includes(lowerQuery) || item.template.toLowerCase().includes(lowerQuery);
   });
 });
-
 </script>
 
 <style
@@ -177,7 +179,7 @@ const searchedTemplate = computed(() => {
 
   &__container {
     display: grid;
-    grid-template-columns: 0.4fr 1.3fr 1fr;
+    grid-template-columns: 0.5fr 1.3fr 1fr;
     grid-template-rows: min-content auto 1fr min-content;
     column-gap: 14px;
     width: 100%;
@@ -258,6 +260,11 @@ const searchedTemplate = computed(() => {
     }
   }
 
+  &__item-group {
+    display: flex;
+    align-items: center;
+  }
+
   &__item-selected {
     background-color: var(--template-selector-item-selected);
 
@@ -271,17 +278,27 @@ const searchedTemplate = computed(() => {
     padding: 10px 12px;
   }
 
-  &__input-group {
-    display: none;
-  }
-
   &__label-group {
-    text-align: center;
-    display: block;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
     width: 100%;
     height: 100%;
-    padding: 10px 12px;
     cursor: pointer;
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
+
+    input {
+      display: none;
+    }
+
+    span {
+      line-height: 1;
+    }
   }
 
   &__item-title {

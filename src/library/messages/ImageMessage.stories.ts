@@ -93,7 +93,7 @@ export const RightImageMessageWithSubtext: Story = {
 };
 
 
-export const RightImageMessageStatusSent: Story = {
+export const RightImageMessageStatusSend: Story = {
   args: {
     message: {
       ...imageMessage,

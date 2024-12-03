@@ -21,15 +21,13 @@
       {{ message.subText }}
     </p>
 
-    <div
-      class="image-message__content"
-      @mouseenter="showMenu"
-      @mouseleave="buttonDownloadVisible = !buttonDownloadVisible"
-    >
+    <div class="image-message__content">
 
       <div
         class="image-message__preview-button"
         @click="isOpenModal = true"
+        @mouseenter="showMenu"
+        @mouseleave="buttonDownloadVisible = !buttonDownloadVisible"
       >
         <img
           class="image-message__preview-image"
@@ -37,48 +35,60 @@
           :src="message.url"
           :alt="message.alt"
         >
-        <div class="image-message__info-container">
+
+        <transition name="modal-fade">
           <div
-            v-if="message.views"
-            class="image-message__views"
+            v-if="buttonDownloadVisible"
+            class="image-message__info-container"
           >
-            <span class="pi pi-eye" />
-            <p>{{ message.views }}</p>
+            <div
+              v-if="message.views"
+              class="image-message__views"
+            >
+              <span class="pi pi-eye" />
+              <p>{{ message.views }}</p>
+            </div>
+
+            <span class="image-message__time">{{ message.time }}</span>
+
+            <div
+              v-if="getClass(message) === 'image-message__right' && statuses.includes(message.status)"
+              class="image-message__status"
+              :class="status"
+            >
+              <span
+                v-if="message.status !== 'sent'"
+                class="pi pi-check"
+              />
+              <span class="pi pi-check" />
+            </div>
           </div>
+        </transition>
 
-          <span class="image-message__time">{{ message.time }}</span>
-
-          <div
-            v-if="getClass(message) === 'image-message__right' && statuses.includes(message.status)"
-            class="image-message__status"
-            :class="status"
+        <transition name="modal-fade">
+          <a
+            v-if="buttonDownloadVisible"
+            class="image-message__download-button"
+            :href="message.url"
+            download
+            target="_blank"
           >
-            <span
-              v-if="message.status !== 'sent'"
-              class="pi pi-check"
-            />
-            <span class="pi pi-check" />
-          </div>
-        </div>
+            <span class="pi pi-download" />
+          </a>
+        </transition>
 
-        <a
-          v-if="buttonDownloadVisible"
-          class="image-message__download-button"
-          :href="message.url"
-          download
-          target="_blank"
-        >
-          <span class="pi pi-download" />
-        </a>
       </div>
 
-      <button
-        v-if="buttonMenuVisible && message.actions"
-        class="image-message__menu-button"
-        @click="isOpenMenu = !isOpenMenu"
-      >
-        <span class="pi pi-ellipsis-h" />
-      </button>
+      <transition name="modal-fade">
+        <button
+          v-if="buttonMenuVisible && message.actions"
+          class="image-message__menu-button"
+          @click="isOpenMenu = !isOpenMenu"
+        >
+          <span class="pi pi-ellipsis-h" />
+        </button>
+      </transition>
+
 
       <transition name="context-menu">
         <ContextMenu
@@ -88,13 +98,13 @@
           @click="clickAction"
         />
       </transition>
-    </div>
 
-    <div
-      v-if="message.text"
-      class="image-message__text-container"
-    >
-      <p>{{ message.text }}</p>
+      <div
+        v-if="message.text"
+        class="image-message__text-container"
+      >
+        <p>{{ message.text }}</p>
+      </div>
     </div>
 
 
@@ -131,7 +141,7 @@
 >
 import { ref, computed } from 'vue';
 
-import {ContextMenu} from '../components'
+import { ContextMenu } from '../components'
 import { getStatus, statuses } from "../../helpers";
 import { IImageMessage } from '../../types';
 
@@ -278,15 +288,17 @@ function getClass(message) {
   }
 
   &__preview-button {
+    position: relative;
     display: flex;
     flex-direction: column;
-    cursor: pointer;
     padding: 0;
-    cursor: zoom-in;
+
   }
 
   &__preview-image {
     width: 100%;
+    max-height: 500px;
+    cursor: zoom-in;
   }
 
   &__modal-image {
@@ -294,6 +306,7 @@ function getClass(message) {
     height: 100%;
     object-fit: cover;
     border-radius: 5px;
+    max-height: 80vh;
   }
 
   &__modal {
@@ -305,7 +318,7 @@ function getClass(message) {
     background-color: var(--modal-bg);
     border-radius: var(--modal-border-radius);
     padding: var(--modal-padding);
-    width: var(--modal-width);
+    max-width: 45%;
     box-shadow: var(--modal-overlay-shadow);
   }
 
@@ -359,8 +372,6 @@ function getClass(message) {
   &__text-container {
     padding: 6px 10px 6px 10px;
     border-radius: 0 0 8px 8px;
-    max-width: 40%;
-    width: 100%;
 
     p {
       font-size: var(--base-message-font-size-text);

@@ -5,3 +5,4 @@ export * from './sidebarItems';
 export * from './userProfile';
 export * from './users';
 export * from './templates';
+export * from './groupTemplates'

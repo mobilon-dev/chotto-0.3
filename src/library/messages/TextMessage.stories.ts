@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
- 
+
 import TextMessage from './TextMessage.vue';
- 
+
 const meta: Meta<typeof TextMessage> = {
   component: TextMessage,
 };
@@ -27,13 +27,14 @@ const messageLink = {
 };
 
 const actions = [
-  { 
-    action: 'edit', 
-    title: 'изменить', 
+  {
+    action: 'edit',
+    title: 'изменить',
     icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=edit',
   },
-  { action: 'delete', 
-    title: 'удалить', 
+  {
+    action: 'delete',
+    title: 'удалить',
     icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=del',
   },
 ]
@@ -46,10 +47,10 @@ const messageWithoutTime = {
 
 const messageLongText = {
   text: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ' +
-  'The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', ' + 
-  'making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, ' +
-  'and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, ' +
-  'sometimes by accident, sometimes on purpose (injected humour and the like).',
+    'The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', ' +
+    'making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, ' +
+    'and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, ' +
+    'sometimes by accident, sometimes on purpose (injected humour and the like).',
   time: '25:13',
   messageId: 'testMessageId',
   status: 'read',
@@ -99,7 +100,7 @@ export const LeftMessageWithoutTime: Story = {
     message: {
       ...messageWithoutTime,
       position: 'left',
-      time:'',
+      time: '',
     },
   },
 };
@@ -177,7 +178,7 @@ export const RightMessageWithoutTime: Story = {
     message: {
       ...messageWithoutTime,
       position: 'right',
-      time:'',
+      time: '',
     },
   },
 };
@@ -187,7 +188,7 @@ export const RightMessageStatusSend: Story = {
     message: {
       ...message,
       position: 'right',
-      status: 'send',
+      status: 'sent',
     },
   },
 };
@@ -285,3 +286,4 @@ export const RightMessageWithLink: Story = {
     },
   },
 };
+

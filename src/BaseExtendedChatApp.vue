@@ -64,7 +64,8 @@
                   <FileUploader :filebump-url="filebumpUrl" />
                   <ButtonEmojiPicker :mode="'hover'" />
                   <ButtonTemplateSelector
-                    :templates="templates.templates"
+                    :templates="templates"
+                    :group-templates="groupTemplates"
                     :mode="'click'"
                   />
                   <ChannelSelector
@@ -129,9 +130,9 @@ import {
 import { useChatsStore } from "./stores/useChatStore";
 import { transformToFeed } from "./transform/transformToFeed";
 import ChannelSelector from "./library/components/ChannelSelector.vue";
-import { useLocale } from  "./locale/useLocale";
+import { useLocale } from "./locale/useLocale";
 
-const {locale, locales} = useLocale()
+const { locale, locales } = useLocale()
 
 
 // Define props
@@ -219,6 +220,7 @@ const messages = ref([]);
 const userProfile = ref({});
 const channels = ref([]);
 const templates = ref([]);
+const groupTemplates = ref([])
 const sidebarItems = ref([]);
 const isOpenChatPanel = ref(false);
 const isScrollToBottomOnUpdateObjectsEnabled = ref(false);
@@ -278,7 +280,7 @@ const addMessage = (message) => {
     chatId: selectedChat.value.chatId,
     url: message.url || null,
     filename: message.filename || null,
-    status: 'send',
+    status: 'sent',
     direction: "outgoing",
     timestamp: moment().unix(),
   });
@@ -310,6 +312,7 @@ onMounted(() => {
   chatsStore.chats = props.dataProvider.getChats();
   channels.value = props.dataProvider.getChannels();
   templates.value = props.dataProvider.getTemplates()
+  groupTemplates.value = props.dataProvider.getGroupTemplates()
   sidebarItems.value = props.dataProvider.getSidebarItems();
   console.log('eee', sidebarItems.value)
 });
