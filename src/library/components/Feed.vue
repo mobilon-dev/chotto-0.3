@@ -45,15 +45,17 @@
 >
 import { ref, unref, watch, nextTick, onUpdated } from 'vue';
 
-import FileMessage from "../messages/FileMessage.vue";
-import ImageMessage from "../messages/ImageMessage.vue";
-import TextMessage from "../messages/TextMessage.vue";
-import DateMessage from '../messages/DateMessage.vue';
-import AudioMessage from '../messages/AudioMessage.vue';
-import VideoMessage from '../messages/VideoMessage.vue'
-import CallMessage from '../messages/CallMessage.vue'
-import SystemMessage from '../messages/SystemMessage.vue'
-import TypingMessage from '../messages/TypingMessage.vue'
+import {
+  FileMessage,
+  ImageMessage,
+  TextMessage,
+  DateMessage,
+  AudioMessage,
+  VideoMessage,
+  CallMessage,
+  SystemMessage,
+  TypingMessage
+} from "../messages";
 
 import { IFeedObject, IFeedTyping, IFeedUnreadButton } from '../../types';
 

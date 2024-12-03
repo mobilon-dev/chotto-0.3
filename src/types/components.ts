@@ -43,6 +43,6 @@ export interface IFeedTyping {
   }
   
 export interface IFeedUnreadButton{
-    color: string
+    // color: string
     unreadAmount: Number
   }

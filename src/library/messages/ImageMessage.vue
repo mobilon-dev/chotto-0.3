@@ -131,10 +131,8 @@
 >
 import { ref, computed } from 'vue';
 
-import ContextMenu from '../components/ContextMenu.vue'
-
+import {ContextMenu} from '../components'
 import { getStatus, statuses } from "../../helpers";
-
 import { IImageMessage } from '../../types';
 
 const props = defineProps({

@@ -95,7 +95,7 @@
 >
 import { computed, ref } from 'vue'
 
-import ContextMenu from '../components/ContextMenu.vue'
+import {ContextMenu} from '../components'
 
 import { getStatus, statuses } from "../../helpers";
 

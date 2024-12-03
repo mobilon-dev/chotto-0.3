@@ -144,10 +144,8 @@
 >
 import { ref, computed, onMounted, watch } from 'vue'
 
-import ContextMenu from '../components/ContextMenu.vue'
-
+import {ContextMenu} from '../components'
 import { getStatus, statuses } from "../../helpers";
-
 import { IVideoMessage } from '../../types';
 
 const props = defineProps({

@@ -112,10 +112,8 @@
 >
 import { ref, onMounted, computed } from 'vue'
 
-import ContextMenu from '../components/ContextMenu.vue'
-
+import {ContextMenu} from '../components'
 import { getStatus, statuses } from "../../helpers";
-
 import { IAudioMessage } from '../../types';
 
 // Define props

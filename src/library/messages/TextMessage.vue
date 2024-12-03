@@ -79,13 +79,10 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-
-import ContextMenu from '../components/ContextMenu.vue'
-
-import { getStatus, statuses } from "../../helpers";
-
 import linkifyStr from "linkify-string";
 
+import {ContextMenu} from '../components'
+import { getStatus, statuses } from "../../helpers";
 import { ITextMessage } from '../../types';
 
 // Define props
