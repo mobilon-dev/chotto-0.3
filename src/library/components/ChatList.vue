@@ -9,7 +9,7 @@
         
         class="chat-list__title"
       >
-        {{ i18n.global.t('chatListTitle') }}
+        {{ t('component.ChatList.Title') }}
       </h2>
 
       <button
@@ -87,7 +87,7 @@ import { ref } from 'vue';
 import ChatItem from "./ChatItem.vue";
 import ChatFilter from './ChatFilter.vue';
 import ContextMenu from './ContextMenu.vue'
-import { i18n } from '../../helpers/useI18n';
+import { t } from '../../locale/useLocale';
 
 const filter = ref('');
 const isOpenMenu = ref(false)

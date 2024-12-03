@@ -12,7 +12,7 @@
       style="width: 100%"
     >
       <p>
-        {{ i18n.global.t('noChatSelected') }}
+        {{ t('layout.ChatWrapper.noSelectedChat') }}
       </p>
     </div>
 
@@ -30,7 +30,7 @@
   lang="ts"
   setup
 >
-import { i18n } from '../../helpers/useI18n';
+import { t } from '../../locale/useLocale';
 
 const props = defineProps({
   isOpenChatPanel: {

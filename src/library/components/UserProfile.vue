@@ -56,17 +56,20 @@ const props = defineProps({
 
   &__name {
     grid-column: 2;
-    font-size: 20px
+    font-size: 20px;
+    margin: 0;
   }
 
   &__email {
     grid-column: 2;
     font-size: 16px;
+    margin: 0;
   }
 
   &__phone {
     grid-column: 2;
     font-size: 16px;
+    margin: 0;
   }
 
   &__avatar-container {

@@ -33,7 +33,7 @@
       :is-image="isImage"
       :is-video="isVideo"
       :is-audio="isAudio"
-      :file-name="selectedFile.name"
+      :file-name="message.fileName"
       :file-size="fileSize"
       @reset="resetSelectedFile"
     />

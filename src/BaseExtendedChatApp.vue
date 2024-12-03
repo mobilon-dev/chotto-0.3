@@ -129,9 +129,9 @@ import {
 import { useChatsStore } from "./stores/useChatStore";
 import { transformToFeed } from "./transform/transformToFeed";
 import ChannelSelector from "./library/components/ChannelSelector.vue";
-import { useI18n } from  "./helpers/useI18n";
+import { useLocale } from  "./locale/useLocale";
 
-const {locale, locales} = useI18n()
+const {locale, locales} = useLocale()
 
 
 // Define props
