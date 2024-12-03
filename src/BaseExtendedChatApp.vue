@@ -278,6 +278,7 @@ const addMessage = (message) => {
     chatId: selectedChat.value.chatId,
     url: message.url || null,
     filename: message.filename || null,
+    status: 'send',
     direction: "outgoing",
     timestamp: moment().unix(),
   });
