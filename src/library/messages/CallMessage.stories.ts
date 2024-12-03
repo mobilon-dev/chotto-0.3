@@ -15,7 +15,7 @@ const message: ICallMessage = {
   position: 'left',
   messageId: 'testMessageId',
   time: '12:00',
-  status: 'read',
+  //status: 'read',
 };
 
 export const NoAnswerLeft: Story = {
@@ -39,7 +39,7 @@ export const CallHappenedLeft: Story = {
   args: {
     message: {
       ...message,
-      status: 'read',
+      // status: 'read',
       callDuration: '5:00',
     },
   },
@@ -63,7 +63,7 @@ export const RecallLeft: Story = {
       position: 'left',
       messageId: 'testMessageId',
       time: '12:00',
-      status: 'read',
+      // status: 'read',
       isMissedCall: true,
     },
   },
@@ -76,7 +76,7 @@ export const RecallRight: Story = {
       position: 'right',
       messageId: 'testMessageId',
       time: '12:00',
-      status: 'read',
+      // status: 'read',
       isMissedCall: true,
     },
   },
