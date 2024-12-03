@@ -37,6 +37,10 @@ export const messages = [
       { action: 'delete', title: 'удалить' }]
   },
   {
+    chatId: 2, type: "message.video", url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
+    direction: 'outgoing', status: 'read', timestamp: '1727027959',
+  },
+  {
     chatId: 2,
     messageId: 1,
     timestamp: '1731411505',
