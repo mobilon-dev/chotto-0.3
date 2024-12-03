@@ -30,21 +30,11 @@ export const LeftMessage: Story = {
   },
 };
 
-
 export const RightMessage: Story = {
   args: {
     message: {
       ...videoMessage,
       position: 'right',
-    },
-  },
-};
-
-export const RightMessageWithText: Story = {
-  args: {
-    message: {
-      ...videoMessage,
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     },
   },
 };
@@ -59,13 +49,91 @@ export const LeftMessageWithText: Story = {
   },
 };
 
+export const RightMessageWithText: Story = {
+  args: {
+    message: {
+      ...videoMessage,
+      position: 'right',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    },
+  },
+};
 
 export const LeftMessageWithTextAndActions: Story = {
   args: {
     message: {
       ...videoMessage,
       text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      actions
+      actions,
+    },
+  },
+};
+
+export const RightMessageWithTextAndActions: Story = {
+  args: {
+    message: {
+      ...videoMessage,
+      position: 'right',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      actions,
+    },
+  },
+};
+
+export const RightMessageWithStatusSend: Story = {
+  args: {
+    message: {
+      ...videoMessage,
+      position: 'right',
+      status: 'send',
+      actions,
+    },
+  },
+};
+
+export const RightMessageWithStatusReceived: Story = {
+  args: {
+    message: {
+      ...videoMessage,
+      position: 'right',
+      status: 'received',
+      actions,
+    },
+  },
+};
+
+export const RightMessageWithStatusRead: Story = {
+  args: {
+    message: {
+      ...videoMessage,
+      position: 'right',
+      status: 'read',
+      actions,
+    },
+  },
+};
+
+export const RightMessageWithVerticalVideo: Story = {
+  args: {
+    message: {
+      ...videoMessage,
+      url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
+      position: 'right',
+      status: 'read',
+      actions,
+    },
+  },
+};
+
+export const RightMessageWithVerticalVideoAndText: Story = {
+  args: {
+    message: {
+      ...videoMessage,
+      url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      position: 'right',
+      status: 'read',
+      actions,
     },
   },
 };
