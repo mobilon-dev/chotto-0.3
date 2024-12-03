@@ -10,8 +10,8 @@
     <div
       class="button"
       :class="{
-      'disabled-button': disabled,
-    }"
+        'disabled-button': disabled,
+      }"
       @click="toggle"
       @mouseover="hover"
       @mouseout="hoverout"

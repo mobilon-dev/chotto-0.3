@@ -13,15 +13,15 @@
       ref="emoji" 
       class="emoji"
       @mouseover="hover"
-      @mouseout="hoverout">
-    <EmojiPicker
-      :native="true"
-      :theme="changeThemeDialogEmoji"
-      picker-type=""
-      @select="onSelectEmoji"
-    />
+      @mouseout="hoverout"
+    >
+      <EmojiPicker
+        :native="true"
+        :theme="changeThemeDialogEmoji"
+        picker-type=""
+        @select="onSelectEmoji"
+      />
     </div>
-    
   </Transition>
 </template>
 

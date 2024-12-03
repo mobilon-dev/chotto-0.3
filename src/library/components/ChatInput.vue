@@ -17,7 +17,7 @@
         />
         <button
           class="chat-input__button-send"
-          :class="{'chat-input__button-send-disabled' : message.text == ''  && message.fileUrl == '' }"
+          :class="{'chat-input__button-send-disabled' : message.text == '' && message.fileUrl == '' }"
           @click="sendMessage"
         >
           <span class="pi pi-send" />
