@@ -33,7 +33,8 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
-import ContextMenu from './ContextMenu.vue';
+import {ContextMenu} from '.';
+
 const props = defineProps({
   actions: {
     type: Array,

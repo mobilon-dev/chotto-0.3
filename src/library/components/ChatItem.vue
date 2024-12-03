@@ -97,10 +97,11 @@
 
 <script setup>
 import { ref, computed, watch } from 'vue'
-import ContextMenu from './ContextMenu.vue'
+
+import {ContextMenu} from '.'
 import { getStatus, statuses } from "../../helpers";
 import { t } from '../../locale/useLocale'
-// Define props
+
 const props = defineProps({
   chat: {
     type: Object,
@@ -108,10 +109,8 @@ const props = defineProps({
   },
 });
 
-// Define emits
 const emit = defineEmits(['select', 'action']);
 
-// Define method
 const selectChat = () => { emit('select', props.chat); }
 
 const getClass = () => {
@@ -124,8 +123,6 @@ const clickAction = (action) => {
   emit('action', { chatId: props.chat.chatId, ...action });
 }
 
-
-// Управление видимостью меню
 const isOpenMenu = ref(false)
 const buttonMenuVisible = ref(false);
 

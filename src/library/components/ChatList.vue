@@ -1,6 +1,5 @@
 <template>
   <div class="chat-list">
-    <!-- div class="chat-list__container" -->
     <div
       class="chat-list__title-container"
       @mouseleave="hideMenu"
@@ -78,15 +77,12 @@
         />
       </div>
     </div>
-    <!-- /div -->
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import ChatItem from "./ChatItem.vue";
-import ChatFilter from './ChatFilter.vue';
-import ContextMenu from './ContextMenu.vue'
+import {ChatItem, ChatFilter, ContextMenu} from "./";
 import { t } from '../../locale/useLocale';
 
 const filter = ref('');
@@ -144,13 +140,10 @@ const getSortedAndFilteredChats = () => {
 }
 
 const getFilter = (value) => {
-  // console.log('filter', value);
   filter.value = value;
 }
 
 const action = (data) => emit('action', data);
-
-// watch(() => props.chats, getSortedChats);
 </script>
 
 <style
@@ -164,14 +157,6 @@ const action = (data) => emit('action', data);
   align-items: stretch;
   flex-direction: column;
   height: 80%;
-
-  /*
-  &__container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-    */
 
   &__filter {
     margin: var(--chat-list-filter-margin);
