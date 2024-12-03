@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
  
 import CallMessage from './CallMessage.vue';
- 
+import { ICallMessage } from '../../types';
+
 const meta: Meta<typeof CallMessage> = {
   component: CallMessage,
 };
@@ -9,39 +10,36 @@ const meta: Meta<typeof CallMessage> = {
 export default meta;
 type Story = StoryObj<typeof CallMessage>;
 
+const message: ICallMessage = {
+  url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
+  position: 'left',
+  messageId: 'testMessageId',
+  time: '12:00',
+  //status: 'read',
+};
+
 export const NoAnswerLeft: Story = {
   args: {
     message: {
-      url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
-      position: 'left',
-      messageId: 'testMessageId',
-      time: '12:00',
-      status: 'read',
-      
-    },
+      ...message,
+    } as ICallMessage,
   },
 };
 
 export const NoAnswerRight: Story = {
   args: {
     message: {
-      url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
+      ...message,
       position: 'right',
-      messageId: 'testMessageId',
-      time: '12:00',
-      status: 'read',
-    },
+    } as ICallMessage,
   },
 };
 
 export const CallHappenedLeft: Story = {
   args: {
     message: {
-      url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
-      position: 'left',
-      messageId: 'testMessageId',
-      time: '12:00',
-      status: 'read',
+      ...message,
+      // status: 'read',
       callDuration: '5:00',
     },
   },
@@ -50,11 +48,8 @@ export const CallHappenedLeft: Story = {
 export const CallHappenedRight: Story = {
   args: {
     message: {
-      url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
+      ...message,
       position: 'right',
-      messageId: 'testMessageId',
-      time: '12:00',
-      status: 'read',
       callDuration: '5:00',
     },
   },
@@ -68,7 +63,7 @@ export const RecallLeft: Story = {
       position: 'left',
       messageId: 'testMessageId',
       time: '12:00',
-      status: 'read',
+      // status: 'read',
       isMissedCall: true,
     },
   },
@@ -81,7 +76,7 @@ export const RecallRight: Story = {
       position: 'right',
       messageId: 'testMessageId',
       time: '12:00',
-      status: 'read',
+      // status: 'read',
       isMissedCall: true,
     },
   },

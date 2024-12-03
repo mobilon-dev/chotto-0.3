@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
  
 import DateMessage from './DateMessage.vue';
- 
+import {IDateMessage} from '../../types';
+
 const meta: Meta<typeof DateMessage> = {
   component: DateMessage,
 };
@@ -15,6 +16,6 @@ export const Today: Story = {
   args: {
     message: {
       text: 'test',
-    }
+    } as IDateMessage,
   },
 };

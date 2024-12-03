@@ -10,12 +10,13 @@ const meta: Meta<typeof FileMessage> = {
 export default meta;
 type Story = StoryObj<typeof FileMessage>;
 
-const fileMessage = {
+const fileMessage: IFileMessage = {
   filename: "document.pdf",
   url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg",
   time: '20:55',
   status: 'read',
-  messageId: 'testId'
+  position: 'left',
+  messageId: 'testId',
 };
 
 const actions = [
@@ -29,7 +30,7 @@ export const LeftFileMessage: Story = {
     message: {
       ...fileMessage,
       position: 'left',
-    },
+    } as IFileMessage,
   },
 };
 
@@ -68,7 +69,7 @@ export const RightFileMessageStatusSend: Story = {
     message: {
       ...fileMessage,
       position: 'right',
-      status: 'sent',
+      status: 'send',
     }
   },
 };
@@ -119,8 +120,10 @@ export const RightFileMessageWithActionsAndText: Story = {
       ...fileMessage,
       position: 'right',
       actions,
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
-    }
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ' +
+        'tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, ' +
+        'quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    },
   },
 };
 
@@ -130,7 +133,9 @@ export const LeftFileMessageWithActionsAndText: Story = {
       ...fileMessage,
       position: 'left',
       actions,
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ' +
+        'tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, ' +
+        'quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     }
   },
 };

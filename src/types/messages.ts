@@ -17,7 +17,7 @@ export interface ICallMessage {
   messageId: string
   position: string
   time: string
-  status: string
+  // status: string   //??? 
   url?: string
   isMissedCall?: Boolean
   callDuration?: string

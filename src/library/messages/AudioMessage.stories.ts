@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 
 import AudioMessage from './AudioMessage.vue';
+import { IAudioMessage } from '../../types';
 
 const meta: Meta<typeof AudioMessage> = {
   component: AudioMessage,
@@ -9,7 +10,7 @@ const meta: Meta<typeof AudioMessage> = {
 export default meta;
 type Story = StoryObj<typeof AudioMessage>;
 
-const message = {
+const message: IAudioMessage = {
   url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
   position: 'left',
   messageId: 'testMessageId',
@@ -27,7 +28,7 @@ export const LeftMessage: Story = {
     message: {
       ...message,
       position: 'left',
-    },
+    } as IAudioMessage,
   },
 };
 
@@ -37,7 +38,7 @@ export const LeftMessageWithActions: Story = {
       ...message,
       position: 'left',
       actions,
-    },
+    } as IAudioMessage,
   },
 };
 
@@ -47,7 +48,7 @@ export const RightMessage: Story = {
     message: {
       ...message,
       position: 'right'
-    },
+    } as IAudioMessage,
   },
 };
 
@@ -56,8 +57,8 @@ export const RightMessageSend: Story = {
     message: {
       ...message,
       position: 'right',
-      status: 'sent',
-    },
+      status: 'send',
+    } as IAudioMessage,
   },
 };
 
@@ -67,7 +68,7 @@ export const RightMessageReceived: Story = {
       ...message,
       position: 'right',
       status: 'received',
-    },
+    } as IAudioMessage,
   },
 };
 
