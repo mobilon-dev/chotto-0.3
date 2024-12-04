@@ -22,7 +22,7 @@ import ChatApp from './BaseExtendedChatApp.vue';
 
 import {
   messages, chats, channels,
-  sidebarItems, userProfile, users, templates, groupTemplates,
+  sidebarItems, userProfile, users, templates, groupTemplates, wabaTemplates,
 } from './data';
 
 // Mock data
@@ -34,7 +34,8 @@ const data3 = {
   userProfile,
   users,
   templates,
-  groupTemplates
+  groupTemplates,
+  wabaTemplates,
 };
 
 // Define the auth provider
@@ -55,6 +56,9 @@ const dataProvider = {
   },
   getTemplates() {
     return data3.templates;
+  },
+  getWABATemplates() {
+    return data3.wabaTemplates;
   },
   getGroupTemplates() {
     return data3.groupTemplates;
