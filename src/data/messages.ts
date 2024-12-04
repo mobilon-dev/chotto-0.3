@@ -2,7 +2,31 @@ export const messages = [
   {
     chatId: 1, type: "message.call", direction: 'incoming',
     callDuration: "18 мин", isMissedCall: false, timestamp: '1727027959',
-    avatar: 'https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg', subText: '89829445678'
+    avatar: 'https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg', subText: '89829445678',
+    transcript: {
+      dialog: [
+        {
+          time: '00:00',
+          text: 'привет, Вася',
+          position: 'right',
+        },
+        {
+          time: '00:05',
+          text: 'привет, Петя',
+          position: 'left',
+        },
+        {
+          time: '00:10',
+          text: 'как дела?',
+          position: 'right',
+        },
+        {
+          time: '00:15',
+          text: 'все норм',
+          position: 'left',
+        },
+      ],
+    },
   },
   {
     chatId: 1, type: "message.text", text: "Привет!", direction: 'incoming', status: 'read', timestamp: '1727027959', subText: 'test test',
@@ -59,6 +83,9 @@ export const messages = [
   {
     chatId: 2, type: "message.audio", url: "https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3",
     text: "Привет!", direction: 'incoming', status: 'received', subText: '89829445678', timestamp: '1727027959',
+    transcript: {
+      text: 'Привет, доехала хорошо, позвони мне завтра',
+    },
     actions: [{ action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' }]
   },
   {
