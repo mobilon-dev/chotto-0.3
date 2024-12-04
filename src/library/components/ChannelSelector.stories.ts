@@ -51,22 +51,25 @@ const testChannelsList2 = [
   },
 ];
 
-
+const template = '<div style="min-height: 100px; min-width: 600px; margin-top: 150px; padding: 0px 0px"><story/></div>';
 
 export const HaveSelectedChannel: Story = {
   args: {
     channels: testChannelsList,
   },
+  decorators: [() => ({ template })]
 };
 
 export const HaveNotSelectedChannel: Story = {
   args: {
     channels: testChannelsList2,
   },
+  decorators: [() => ({ template })]
 };
 
 export const ChannelsEmptyArray: Story = {
   args: {
     channels: [],
   },
+  decorators: [() => ({ template })]
 };
