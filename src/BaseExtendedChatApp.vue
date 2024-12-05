@@ -233,8 +233,8 @@ const selectItem = (item) => {
 const chatAction = async (data) => {
   console.log("chat action", data);
   if (data.action === "add") {
-    // const data = await useModalSelectUser2('Укажите новых участников чата', getUsers());
-    const data = await useModalCreateChat2('Добавьте контакт');
+    const data = await useModalSelectUser2('Укажите новых участников чата', getUsers());
+    // const data = await useModalCreateChat2('Добавьте контакт');
     console.log('users:', data.contact);
   }
 };

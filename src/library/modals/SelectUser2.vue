@@ -51,7 +51,8 @@ const onChange = () => {
 
 .participant-list {
   margin-top: 10px;
-	max-height: 200px;
+  max-height: 200px;
+  overflow: auto;
 }
 
 .participant-item {
