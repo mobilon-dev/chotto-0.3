@@ -66,3 +66,8 @@ Vue3 Chat UI components - собери свой интерфейс чата
 
 - https://github.com/rustic-ai/ui-components
 
+- https://github.com/chatscope/chat-ui-kit-react
+
+- https://github.com/lobehub/lobe-chat
+
+
