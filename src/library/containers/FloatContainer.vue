@@ -2,6 +2,7 @@
   <div
     ref="element"
     class="float-window"
+    :id="chatAppId"
     :style="{
       left: floatWindowPosition.x + 'px',
       top: floatWindowPosition.y + 'px',
@@ -47,7 +48,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, useId, provide } from "vue";
 
 const props = defineProps({
   title: {
@@ -74,6 +75,9 @@ const dragMode = ref(false);
 const initialX = ref(0);
 const initialY = ref(0);
 const contentHeight = ref(0);
+
+const chatAppId = useId()
+provide('chatAppId', chatAppId)
 
 const centerWindow = () => {
   if (element.value) {

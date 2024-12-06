@@ -110,7 +110,7 @@
 </template>
 
 <script setup>
-import { computed, ref, onMounted } from 'vue'
+import { computed, ref, onMounted, inject } from 'vue'
 import { useMessage } from '../../helpers/useMessage';
 const props = defineProps({
   templates: {
@@ -126,11 +126,12 @@ const props = defineProps({
   }
 })
 
-const { message } = useMessage()
+const chatAppId = inject('chatAppId')
+const { setMessageText } = useMessage(chatAppId)
 
 const handlePutMessage = () => {
   emit('closeTemplateWindow')
-  message.value.text = selectedTemplate.value.template
+  setMessageText(selectedTemplate.value.template)
 }
 
 const emit = defineEmits(['closeTemplateWindow', 'pasteTemplate'])

@@ -1,5 +1,5 @@
 <template>
-  <div class="base">
+  <div class="base" :id="chatAppId">
     <div
       class="base__container"
       :style="{ height, width }"
@@ -10,10 +10,15 @@
 </template>
 
 <script setup>
+import { useId, provide } from 'vue'
+
 const props = defineProps({
   height: String,
   width: String,
 })
+
+const chatAppId = useId()
+provide('chatAppId', chatAppId)
 
 </script>
 

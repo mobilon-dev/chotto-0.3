@@ -29,7 +29,7 @@
 // import picker compopnent
 import EmojiPicker from 'vue3-emoji-picker';
 import 'vue3-emoji-picker/css';
-import {computed, onMounted, onUnmounted, ref} from 'vue'
+import {computed, onMounted, onUnmounted, ref, inject} from 'vue'
 import { useMessage } from '../../helpers/useMessage';
 
 
@@ -43,7 +43,8 @@ const props = defineProps({
 
 const emoji = ref(null)
 const emojiButton = ref(null)
-const {message} = useMessage()
+const chatAppId = inject('chatAppId')
+const { setMessageText, getMessage } = useMessage(chatAppId)
 
 const changeThemeDialogEmoji = computed(() => {
   if (document.documentElement.classList.contains('dark')) {
@@ -52,7 +53,7 @@ const changeThemeDialogEmoji = computed(() => {
 })
 
 const onSelectEmoji = (emoji) => {
-  message.value.text = (message.value.text ? message.value.text : '') + emoji.i;
+  setMessageText(getMessage().text + emoji.i);
   // console.log('emoji', emoji)
 }
 
