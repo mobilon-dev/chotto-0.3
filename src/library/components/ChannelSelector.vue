@@ -25,7 +25,6 @@
         :mode="mode"
         :button-class="'pi pi-list'"
         :menu-side="'top'"
-        :context-menu-key="'channels'"
         @click="selectChannel"
       />
     </div>

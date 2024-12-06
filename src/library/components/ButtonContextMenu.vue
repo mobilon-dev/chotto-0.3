@@ -1,6 +1,6 @@
 <template>
   <div
-    :id="'container-' + props.contextMenuKey"
+    :id="'container-' + buttonContextMenuId"
     ref="actionScope"
     style="
       position: relative;
@@ -21,7 +21,7 @@
       </span>
     </div>
     <ContextMenu
-      :id="'context-menu-' + props.contextMenuKey"
+      :id="'context-menu-' + buttonContextMenuId"
       ref="contextMenu"
       :actions="actions"
       @mouseover="hover"
@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, useId } from 'vue';
 import {ContextMenu} from '.';
 
 const props = defineProps({
@@ -65,12 +65,9 @@ const props = defineProps({
     required: false,
     default: 'top'
   },
-  contextMenuKey: {
-    type: String,
-    required: false,
-    default: 'key',
-  },
 });
+
+const buttonContextMenuId = useId()
 
 const emit = defineEmits(['click', 'buttonClick']);
 const contextMenu = ref(null)
@@ -130,23 +127,23 @@ onMounted(() => {
 
   let width, height
   if (props.menuSide == 'top') {
-    width = document.getElementById('container-' + props.contextMenuKey).offsetWidth
-    height = document.getElementById('context-menu-' + props.contextMenuKey).offsetHeight
+    width = document.getElementById('container-' + buttonContextMenuId).offsetWidth
+    height = document.getElementById('context-menu-' + buttonContextMenuId).offsetHeight
     contextMenu.value.$el.style.left = side[props.menuSide].w * width + 'px'
   }
   if (props.menuSide == 'bottom') {
-    width = document.getElementById('context-menu-' + props.contextMenuKey).offsetWidth
-    height = document.getElementById('container-' + props.contextMenuKey).offsetHeight
+    width = document.getElementById('context-menu-' + buttonContextMenuId).offsetWidth
+    height = document.getElementById('container-' + buttonContextMenuId).offsetHeight
     contextMenu.value.$el.style.right = side[props.menuSide].w * width + 'px'
   }
   if (props.menuSide == 'left') {
-    width = document.getElementById('container-' + props.contextMenuKey).offsetWidth
-    height = document.getElementById('context-menu-' + props.contextMenuKey).offsetHeight
+    width = document.getElementById('container-' + buttonContextMenuId).offsetWidth
+    height = document.getElementById('context-menu-' + buttonContextMenuId).offsetHeight
     contextMenu.value.$el.style.right = side[props.menuSide].w * width + 'px'
   }
   if (props.menuSide == 'right') {
-    width = document.getElementById('container-' + props.contextMenuKey).offsetWidth
-    height = document.getElementById('context-menu-' + props.contextMenuKey).offsetHeight
+    width = document.getElementById('container-' + buttonContextMenuId).offsetWidth
+    height = document.getElementById('context-menu-' + buttonContextMenuId).offsetHeight
     contextMenu.value.$el.style.left = side[props.menuSide].w * width + 'px'
 
   }

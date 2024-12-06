@@ -12,7 +12,6 @@
       :mode="'hover'"
       :button-class="'pi pi-file-arrow-up'"
       :menu-side="'top'"
-      :context-menu-key="'file-uploader'"
       :disabled="!canUploadFile"
       @click="triggerFileUpload"
       @button-click="triggerFileUploadDefault"
