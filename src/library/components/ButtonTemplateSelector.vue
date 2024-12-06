@@ -2,6 +2,7 @@
   <button
     ref="templateButton"
     class="button-template"
+    :class="{'button-template-disabled' : state == 'disabled'}"
     @click="toggle"
     @mouseover="hover"
     @mouseout="hoverout"
@@ -41,7 +42,11 @@ const props = defineProps({
     type: String,
     required: false,
     default: 'click'
-  }
+  },
+  state:{
+    type: String,
+    default: 'active',
+  },
 })
 
 const templateButton = ref(null)
@@ -49,7 +54,7 @@ const template = ref(null)
 
 
 const toggle = () => {
-  if (props.mode == 'click') {
+  if (props.mode == 'click' && props.state == 'active') {
     if (template.value.style.display == 'none') {
       template.value.style.display = 'inherit'
     }
@@ -60,13 +65,13 @@ const toggle = () => {
 }
 
 const hover = () => {
-  if (props.mode == 'hover') {
+  if (props.mode == 'hover' && props.state == 'active') {
     template.value.style.display = 'inherit'
   }
 }
 
 const hoverout = () => {
-  if (props.mode == 'hover') {
+  if (props.mode == 'hover' && props.state == 'active') {
     template.value.style.display = 'none'
   }
 }
@@ -107,6 +112,13 @@ onUnmounted(() => {
     padding: 14px;
     font-size: var(--icon-font-size-medium);
     color: var(--chat-input-icon-color);
+  }
+}
+
+.button-template-disabled{
+  span{
+    cursor: auto;
+    color: var(--chat-input-icon-color-disabled);
   }
 }
 </style>

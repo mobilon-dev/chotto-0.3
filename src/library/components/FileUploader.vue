@@ -12,8 +12,7 @@
       :mode="'hover'"
       :button-class="'pi pi-file-arrow-up'"
       :menu-side="'top'"
-      :context-menu-key="'file-uploader'"
-      :disabled="!canUploadFile"
+      :disabled="!canUploadFile || state == 'disabled'"
       @click="triggerFileUpload"
       @button-click="triggerFileUploadDefault"
     />
@@ -49,6 +48,10 @@ import { useMessage } from "../../helpers/useMessage";
 const props = defineProps({
   filebumpUrl: {
     type: String,
+  },
+  state:{
+    type: String,
+    default: 'active',
   },
 });
 
@@ -188,7 +191,7 @@ const triggerFileUpload = (action) => {
 };
 
 const triggerFileUploadDefault = () => {
-  if (fileInput.value && canUploadFile) {
+  if (fileInput.value && canUploadFile  && props.state == 'active') {
     fileInput.value.click();
   }
 };

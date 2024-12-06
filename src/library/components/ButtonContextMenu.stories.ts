@@ -40,7 +40,6 @@ export const StandardRight: Story = {
     actions: actions,
     buttonClass: 'pi pi-list',
     menuSide: 'right',
-    contextMenuKey: 'sr',
   },
   
 };
@@ -49,7 +48,6 @@ export const WithIcons: Story = {
   args: {
     actions: actionsWithIcons,
     buttonClass: 'pi pi-list',
-    contextMenuKey: 'wi',
     menuSide: 'left',
   },
 };
@@ -58,7 +56,6 @@ export const FileDropDownMenu: Story = {
   args: {
     actions: actionsFileDropDown,
     buttonClass: 'pi pi-file-arrow-up',
-    contextMenuKey: 'fddm',
     menuSide: 'right',
   },
 };
@@ -68,7 +65,6 @@ export const WithoutIcon: Story = {
     actions: actions,
     buttonClass: '',
     buttonTitle: 'Нажми сюда',
-    contextMenuKey: 'woi',
     menuSide: 'right',
   },
 };
@@ -78,7 +74,6 @@ export const StandardTop: Story = {
     actions: actions,
     buttonClass: 'pi pi-list',
     menuSide: 'top',
-    contextMenuKey: 'st',
   },
 };
 
@@ -87,7 +82,6 @@ export const StandardLeft: Story = {
     actions: actions,
     buttonClass: 'pi pi-list',
     menuSide: 'left',
-    contextMenuKey: 'sl',
   },
 };
 
@@ -96,7 +90,6 @@ export const StandardBottom: Story = {
     actions: actions,
     buttonClass: 'pi pi-list',
     menuSide: 'bottom',
-    contextMenuKey: 'sb',
   },
 };
 
@@ -105,6 +98,5 @@ export const LongActions: Story = {
     actions: actionsLA,
     buttonClass: 'pi pi-list',
     menuSide: 'right',
-    contextMenuKey: 'la',
   },
 };

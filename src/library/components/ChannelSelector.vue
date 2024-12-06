@@ -1,9 +1,9 @@
 <template>
-  <div
-    ref="customDiv"
-    class="channels"
-  >
-    <div class="channels__container">
+  <div class="channels">
+    <div 
+      class="channels__container"
+      :class="{'channels__container-disabled' : state == 'disabled'}"
+    >
       <div
         v-if="selectedChannel"
         class="channels__selected"
@@ -25,7 +25,7 @@
         :mode="mode"
         :button-class="'pi pi-list'"
         :menu-side="'top'"
-        :context-menu-key="'channels'"
+        :disabled="state == 'disabled'"
         @click="selectChannel"
       />
     </div>
@@ -35,8 +35,6 @@
 <script setup>
 import { ref } from 'vue'
 import ButtonContextMenu from './ButtonContextMenu.vue';
-
-const customDiv = ref(null)
 
 const props = defineProps({
   channels: {
@@ -48,7 +46,11 @@ const props = defineProps({
     type: String,
     required: false,
     default: 'hover'
-  }
+  },
+  state:{
+    type: String,
+    default: 'active',
+  },
 })
 
 const emit = defineEmits(['selectChannel']);
@@ -74,6 +76,10 @@ const selectChannel = (channel) => {
   &__container {
     display: flex;
     margin-top: 9px;
+  }
+
+  &__container-disabled{
+    color: var(--chat-input-icon-color-disabled);
   }
 
   &__button {
