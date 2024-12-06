@@ -25,15 +25,15 @@
     >
   </div>
   <teleport
-    v-if="message.fileName"
-    to="#chat-input-first-line"
+    v-if="getMessage().file"
+    :to="'#chat-input-first-line-'+chatAppId"
   >
     <FilePreview
       :preview-url="previewUrl"
       :is-image="isImage"
       :is-video="isVideo"
       :is-audio="isAudio"
-      :file-name="message.fileName"
+      :file-name="getMessage().file.name"
       :file-size="fileSize"
       @reset="resetSelectedFile"
     />
@@ -41,7 +41,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, inject } from "vue";
 import ButtonContextMenu from "./ButtonContextMenu.vue";
 import { getTypeFileByMime } from '../../helpers'
 import FilePreview from "./FilePreview.vue";
@@ -60,7 +60,9 @@ const isVideo = ref(false);
 const isAudio = ref(false)
 const fileInput = ref(null);
 const fileSize = ref('')
-const { message, setMessageFile, resetMessageFile } = useMessage()
+
+const chatAppId = inject('chatAppId')
+const { setMessageFile, resetMessageFile, getMessage } = useMessage(chatAppId)
 
 const actions = [
   {
@@ -88,7 +90,7 @@ const actions = [
 const emit = defineEmits(["fileUploaded"]);
 
 const canUploadFile = computed(() => {
-  return !message.value.fileUrl || message.value.fileUrl === '';
+  return !getMessage().file;
 })
 
 const resetSelectedFile = () => {

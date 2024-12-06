@@ -2,14 +2,13 @@
   <div class="chat-input">
     <div class="chat-input__container">
       <div
-        
-        id="chat-input-first-line"
+        :id="'chat-input-first-line-'+chatAppId"
         class="chat-input__first-line"
       />
       <div class="chat-input__second-line">
         <textarea
           ref="refInput"
-          v-model="message.text"
+          v-model="getMessage().text"
           class="chat-input__input"
           :placeholder="t('component.ChatInput.InputPlaceholder')"
           @keydown.enter="keyEnter"
@@ -17,7 +16,7 @@
         />
         <button
           class="chat-input__button-send"
-          :class="{'chat-input__button-send-disabled' : message.text == '' && message.fileUrl == '' }"
+          :class="{'chat-input__button-send-disabled' : getMessage().text == '' && !getMessage().file}"
           @click="sendMessage"
         >
           <span class="pi pi-send" />
@@ -31,14 +30,15 @@
 </template>
 
 <script setup>
-import { ref, unref, watch, nextTick } from 'vue';
+import { ref, unref, watch, nextTick, inject } from 'vue';
 import { useMessage } from '../../helpers/useMessage';
 import { t } from '../../locale/useLocale';
 // Define emits
 const emit = defineEmits(['send', 'typing', 'selectChannel']);
 //
+const chatAppId = inject('chatAppId')
+const {resetMessage, getMessage, setMessageText} = useMessage(chatAppId)
 // Define reactive message state
-const {message, resetMessage} = useMessage()
 const refInput = ref(null);
 
 const props = defineProps({
@@ -50,7 +50,7 @@ const props = defineProps({
 })
 
 watch(
-  () => message.value.text,
+  () => getMessage().text,
   () => {
     nextTick(function () {
       refInput.value.style.height = 'auto'
@@ -69,7 +69,7 @@ const keyEnter = (event) => {
   if (event.ctrlKey){
     let caret = event.target.selectionStart;
     event.target.setRangeText("\n", caret, caret, "end");
-    message.value.text = event.target.value
+    setMessageText(event.target.value)
   }
   else {
     event.preventDefault()
@@ -79,8 +79,8 @@ const keyEnter = (event) => {
 
 // Define the method to send the message
 const sendMessage = () => {
-  console.log(message.value)
-  if (message.value.text != '' || message.value.fileUrl != '' ){
+  const Message = ref(getMessage())
+  if (Message.value.text != '' || Message.value.file ){
     const messageObject = {
     type: null,
     text: null,
@@ -89,15 +89,15 @@ const sendMessage = () => {
     size: null,
   };
 
-  if (message.value.fileUrl) {
-    messageObject.type = 'message.' + message.value.fileType;
-    messageObject.url = message.value.fileUrl;
-    messageObject.filename = message.value.fileName;
-    messageObject.size = message.value.fileSize;
-    messageObject.text = message?.value?.text.trim();
+  if (Message.value.file) {
+    messageObject.type = 'message.' + Message.value.file.type;
+    messageObject.url = Message.value.file.url;
+    messageObject.filename = Message.value.file.name;
+    messageObject.size = Message.value.file.size;
+    messageObject.text = Message?.value?.text.trim();
   } else {
     messageObject.type = 'message.text';
-    messageObject.text = message.value.text.trim();
+    messageObject.text = Message.value.text.trim();
   }
   emit('send', messageObject);
   resetMessage()
