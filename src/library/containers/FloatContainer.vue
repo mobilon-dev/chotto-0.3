@@ -105,23 +105,16 @@ const mouseMove = (e) => {
     // Вычисление позиции плавающего окна
     const positionX = e.clientX - initialX.value;
     const positionY = e.clientY - initialY.value;
-
-    // Ограничение перемещения, границы
-    floatWindowPosition.value.x = Math.max(
-      0,
-      Math.min(positionX, window.innerWidth - element.value.offsetWidth)
-    );
-    floatWindowPosition.value.y = Math.max(
-      0,
-      Math.min(positionY, window.innerHeight - element.value.offsetHeight)
-    );
+    floatWindowPosition.value.x = positionX
+    floatWindowPosition.value.y = positionY
   }
 };
 
 onMounted(() => {
   //Центрируем окно при монтировании
-  centerWindow();
-
+  //centerWindow();
+  //окно монтируется в углу ближайшего блока с position отличным от static
+  //позволяет более гибко позиционировать в пределах страницы
   document.addEventListener("mousemove", mouseMove);
 
   // Срабатывает, когда изменяется размер окна брузера, не дает выйти за границы плавающему окну. Перерасчет границ.
@@ -159,7 +152,7 @@ onMounted(() => {
   &__container {
     width: 100%;
     height: 100%;
-    position: relative;
+    position: absolute;
     font-weight: 400;
     color: var(--container-color);
     font-family: var(--container-font-family);
