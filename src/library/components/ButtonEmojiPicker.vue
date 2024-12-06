@@ -5,6 +5,7 @@
     @click="toggle"
     @mouseover="hover"
     @mouseout="hoverout"
+    :class="{'button-disabled' : state == 'disabled'}"
   >
     <span class="pi pi-face-smile" />
   </div>
@@ -39,6 +40,10 @@ const props = defineProps({
     required: false,
     default: 'hover',
   },
+  state:{
+    type: String,
+    default: 'active',
+  },
 })
 
 const emoji = ref(null)
@@ -58,19 +63,19 @@ const onSelectEmoji = (emoji) => {
 }
 
 const toggle = () => {
-  if (props.mode == 'click'){
+  if (props.mode == 'click' && props.state == 'active'){
     emoji.value.style.display = 'inherit'
   }
 }
 
 const hover = () => {
-  if (props.mode == 'hover'){
+  if (props.mode == 'hover' && props.state == 'active'){
     emoji.value.style.display = 'inherit'
   }
 }
 
 const hoverout = () => {
-  if (props.mode == 'hover'){
+  if (props.mode == 'hover' && props.state == 'active'){
     emoji.value.style.display = 'none'
   }
 }
@@ -110,6 +115,12 @@ onUnmounted(() => {
     }
   }
 
+  .button-disabled{
+    span{
+      cursor: auto;
+      color: var(--chat-input-icon-color-disabled);
+    }
+  }
   .emoji {
     position: absolute;
     bottom: 50px;

@@ -62,7 +62,7 @@
               <ChatInput @send="addMessage">
                 <template #buttons>
                   <FileUploader :filebump-url="filebumpUrl" />
-                  <ButtonEmojiPicker :mode="'hover'" />
+                  <ButtonEmojiPicker :mode="'hover'" :state="'disabled'"/>
                   <ButtonTemplateSelector
                     :templates="templates"
                     :group-templates="groupTemplates"
