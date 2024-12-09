@@ -10,15 +10,45 @@
 </template>
 
 <script setup>
-import { useId, provide } from 'vue'
+import { useId, provide, onMounted } from 'vue'
 
 const props = defineProps({
   height: String,
   width: String,
+  defaultTheme: {
+    type: String,
+    default: 'green',
+    required: false,
+  },
 })
 
 const chatAppId = useId()
 provide('chatAppId', chatAppId)
+
+const themes = [
+  {
+    code: "light",
+    name: "Light",
+  },
+  {
+    code: "dark",
+    name: "Dark",
+  },
+  {
+    code: "green",
+    name: "Green",
+  },
+  {
+    code: "diamond",
+    name: "Diamond",
+  },
+];
+
+onMounted(() => {
+  const code = themes.find(t => t.code === props.defaultTheme).code;
+  console.log(code)
+  document.getElementById(chatAppId).dataset.theme = code;
+})
 
 </script>
 
