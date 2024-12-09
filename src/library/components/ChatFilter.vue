@@ -35,26 +35,25 @@ const update = () => {
 .chat-filter {
   &__input {
     background-color: transparent;
-    font-family: 'Montserrat', sans-serif;
     font-weight: 400;
-    width: var(--inputtext-width);
-    color: var(--chat-filter-input-color);
-    padding: var(--inputtext-padding);
-    border: var(--chat-filter-input-border);
-    border-radius: var(--inputtext-border-radius);
-    font-size: var(--inputtext-font-size);
-    transition: border-color var(--inputtext-transition-duration);
+    width: var(--input-width);
+    color: var(--input-color);
+    padding: var(--input-padding);
+    border: var(--input-border);
+    border-radius: var(--input-border-radius);
+    font-size: var(--input-font-size);
+    transition: border-color var(--input-transition-duration);
 
     &::placeholder {
-      color: var(--chat-filter-input-placeholder-color);
+      color: var(--input-placeholder-color);
     }
 
     &:hover {
-      border-color: var(--chat-filter-hover-border-color);
+      border-color: var(--input-hover-border-color);
     }
 
     &:focus-visible {
-      border-color: var(--chat-filter-focus-border-color);
+      border-color: var(--input-focus-border-color);
       outline: none;
     }
   }

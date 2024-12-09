@@ -183,7 +183,6 @@ const messageAction = (message) => {
     align-items: center;
     cursor: pointer;
     background-color: var(--feed-button-down-bg);
-    font-family: "Open Sans", sans-serif;
   }
 
   &__icon-down {

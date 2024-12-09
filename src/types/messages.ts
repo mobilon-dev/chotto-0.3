@@ -1,4 +1,5 @@
 import { IAction } from './components'
+import { IDialog } from './components'
 
 export interface IAudioMessage {
   messageId: string
@@ -9,8 +10,11 @@ export interface IAudioMessage {
   avatar?: string
   subText?: string
   actions?: IAction[]
-  views?: Number,
-  text?: String,
+  views?: number,
+  text?: string,
+  transcript?: {
+    text: string;
+  };
 }
 
 export interface ICallMessage {
@@ -24,8 +28,13 @@ export interface ICallMessage {
   avatar?: string
   subText?: string
   actions?: IAction[]
-  views?: Number
+  views?: number
+  transcript?: {
+    dialog: IDialog[];
+  };
 }
+
+
 
 export interface IDateMessage {
   messageId?: string
@@ -42,8 +51,8 @@ export interface IFileMessage {
   avatar?: string
   subText?: string
   actions?: IAction[]
-  views?: Number,
-  text?: String,
+  views?: number,
+  text?: string,
 }
 
 export interface IImageMessage {
@@ -56,8 +65,8 @@ export interface IImageMessage {
   avatar?: string
   subText?: string
   actions?: IAction[]
-  views?: Number,
-  text?: String,
+  views?: number,
+  text?: string,
 }
 
 export interface ISystemMessage {
@@ -74,7 +83,7 @@ export interface ITextMessage {
   avatar?: string
   subText?: string
   actions?: IAction[]
-  views?: Number
+  views?: number
 }
 
 export interface ITypingMessage {
@@ -92,6 +101,6 @@ export interface IVideoMessage {
   avatar?: string
   subText?: string
   actions?: IAction[]
-  views?: Number,
-  text?: String,
+  views?: number,
+  text?: string,
 }

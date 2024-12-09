@@ -86,7 +86,7 @@ export const RightMessageWithStatusSend: Story = {
     message: {
       ...videoMessage,
       position: 'right',
-      status: 'send',
+      status: 'sent',
       actions,
     },
   },

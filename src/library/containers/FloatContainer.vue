@@ -215,6 +215,11 @@ onMounted(() => {
     list-style-type: none;
   }
 
+  input,
+  button {
+    font-family: var(--container-font-family);
+  }
+
   p,
   h1,
   h2 {

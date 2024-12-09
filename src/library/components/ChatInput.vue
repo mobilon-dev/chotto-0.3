@@ -2,7 +2,7 @@
   <div class="chat-input">
     <div class="chat-input__container">
       <div
-        :id="'chat-input-first-line-'+chatAppId"
+        :id="'chat-input-first-line-' + chatAppId"
         class="chat-input__first-line"
       />
       <div class="chat-input__second-line">
@@ -16,7 +16,7 @@
         />
         <button
           class="chat-input__button-send"
-          :class="{'chat-input__button-send-disabled' : getMessage().text == '' && !getMessage().file}"
+          :class="{ 'chat-input__button-send-disabled': getMessage().text == '' && !getMessage().file }"
           @click="sendMessage"
         >
           <span class="pi pi-send" />
@@ -37,7 +37,7 @@ import { t } from '../../locale/useLocale';
 const emit = defineEmits(['send', 'typing', 'selectChannel']);
 //
 const chatAppId = inject('chatAppId')
-const {resetMessage, getMessage, setMessageText} = useMessage(chatAppId)
+const { resetMessage, getMessage, setMessageText } = useMessage(chatAppId)
 // Define reactive message state
 const refInput = ref(null);
 
@@ -66,7 +66,7 @@ const sendTyping = (event) => {
 }
 
 const keyEnter = (event) => {
-  if (event.ctrlKey){
+  if (event.ctrlKey) {
     let caret = event.target.selectionStart;
     event.target.setRangeText("\n", caret, caret, "end");
     setMessageText(event.target.value)
@@ -80,28 +80,28 @@ const keyEnter = (event) => {
 // Define the method to send the message
 const sendMessage = () => {
   const Message = ref(getMessage())
-  if (Message.value.text != '' || Message.value.file ){
+  if (Message.value.text != '' || Message.value.file) {
     const messageObject = {
-    type: null,
-    text: null,
-    url: null,
-    filename: null,
-    size: null,
-  };
+      type: null,
+      text: null,
+      url: null,
+      filename: null,
+      size: null,
+    };
 
-  if (Message.value.file) {
-    messageObject.type = 'message.' + Message.value.file.type;
-    messageObject.url = Message.value.file.url;
-    messageObject.filename = Message.value.file.name;
-    messageObject.size = Message.value.file.size;
-    messageObject.text = Message?.value?.text.trim();
-  } else {
-    messageObject.type = 'message.text';
-    messageObject.text = Message.value.text.trim();
-  }
-  emit('send', messageObject);
-  resetMessage()
-  unref(refInput).focus()
+    if (Message.value.file) {
+      messageObject.type = 'message.' + Message.value.file.type;
+      messageObject.url = Message.value.file.url;
+      messageObject.filename = Message.value.file.name;
+      messageObject.size = Message.value.file.size;
+      messageObject.text = Message?.value?.text.trim();
+    } else {
+      messageObject.type = 'message.text';
+      messageObject.text = Message.value.text.trim();
+    }
+    emit('send', messageObject);
+    resetMessage()
+    unref(refInput).focus()
   }
 };
 
@@ -158,28 +158,28 @@ const sendMessage = () => {
 
   &__input {
     border: 1px solid var(--neutral-300);
-    font-family: 'Montserrat', sans-serif;
     font-weight: 400;
     background-color: var(--chat-input-background);
-    padding: var(--inputtext-padding);
-    width: var(--inputtext-width);
+    padding: var(--input-padding);
+    width: var(--input-width);
     color: var(--inputtext-color);
-    font-size: var(--inputtext-font-size);
+    font-size: var(--input-font-size);
     white-space: normal;
     overflow-y: hidden;
     resize: none;
     white-space: pre-wrap;
     max-height: 140px;
+
     &:focus-visible {
       outline: none;
     }
 
     &::placeholder {
-      color: var(--chat-input-placeholder-color);
+      color: var(--input-placeholder-color);
     }
   }
 
-  &__button-send{
+  &__button-send {
     background-color: transparent;
     border: 0px solid var(--neutral-300);
     ;
@@ -192,7 +192,8 @@ const sendMessage = () => {
       color: var(--chat-input-icon-color);
     }
   }
-  &__button-send-disabled{
+
+  &__button-send-disabled {
     span {
       cursor: auto;
       color: var(--chat-input-icon-color-disabled);

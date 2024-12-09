@@ -1,5 +1,8 @@
 <template>
-  <div class="base" :id="chatAppId">
+  <div
+    class="base"
+    :id="chatAppId"
+  >
     <div
       class="base__container"
       :style="{ height, width }"
@@ -46,6 +49,11 @@ provide('chatAppId', chatAppId)
     margin: 0;
     padding: 0;
     list-style-type: none;
+  }
+
+  input,
+  button {
+    font-family: var(--container-font-family);
   }
 
   p,

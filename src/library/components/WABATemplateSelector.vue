@@ -4,7 +4,7 @@
       <button class="template-selector__button-close">
         <span
           class="pi pi-times"
-          @click="$emit('closeTemplateWindow')"
+          @click="closeTemplateWindow"
         />
       </button>
 
@@ -78,13 +78,16 @@
 
       <div class="template-selector__preview-container">
         <div
-          v-if="selectedTemplate"
+          v-if="formattedText"
           class="template-selector__preview"
         >
           <div class="template-selector__preview-wrapper">
-            <p class="template-selector__preview-text">
-              {{ selectedTemplate.template }}
-            </p>
+            <p
+              ref="previewText"
+              class="template-selector__preview-text"
+              @click="handleClick"
+              v-html="formattedText"
+            />
             <p class="template-selector__preview-time">
               22:22
             </p>
@@ -99,21 +102,48 @@
         </p>
       </div>
 
+      <transition name="modal-fade">
+        <div
+          v-if="isModalVisible"
+          class="template-selector__modal"
+        >
+          <input
+            v-model="newValue"
+            type="text"
+            placeholder="Введите значение"
+          >
+          <button
+            class="template-selector__modal-button-add"
+            @click="updateValue"
+          >
+            Добавить
+          </button>
+          <button
+            class="template-selector__modal-button-cancel"
+            @click="closeModal"
+          >
+            Отменить
+          </button>
+        </div>
+      </transition>
+
+
       <button
         class="template-selector__button-paste"
+        :disabled="allFieldsFilled"
         @click="handlePutMessage"
       >
-        Вставить
+        Отправить
       </button>
     </div>
   </div>
 </template>
 
 <script setup>
-import { computed, ref, onMounted, inject } from 'vue'
+import { computed, ref, reactive, inject, h } from 'vue'
 import { useMessage } from '../../helpers/useMessage';
 const props = defineProps({
-  templates: {
+  wabaTemplates: {
     type: Array,
     required: false,
     default: () => { return [] }
@@ -129,41 +159,109 @@ const props = defineProps({
 const chatAppId = inject('chatAppId')
 const { setMessageText } = useMessage(chatAppId)
 
-const handlePutMessage = () => {
+const closeTemplateWindow = () => {
   emit('closeTemplateWindow')
-  setMessageText(selectedTemplate.value.template)
+  resetValues()
+  closeModal();
 }
 
-const emit = defineEmits(['closeTemplateWindow', 'pasteTemplate'])
+const handlePutMessage = () => {
+  emit('closeTemplateWindow')
+  emit('sendWabaValues', { templateId: props.wabaTemplates.templateId, values: Object.values(wabaValues) })
+  setMessageText(previewText.value.textContent)
+  resetValues()
+}
+
+const emit = defineEmits(['closeTemplateWindow', 'pasteTemplate', 'sendWabaValues'])
 
 const selectedGroup = ref(null)
 const selectedTemplate = ref(null);
 const searchQuery = ref('');
 
 const selectTemplate = (item) => {
-  props.templates.forEach(с => с.isSelected = false);
+  props.wabaTemplates.forEach(с => с.isSelected = false);
   item.isSelected = true;
   selectedTemplate.value = item;
 };
 
 const clearSelectedTemplate = () => {
-  props.templates.forEach(template => template.isSelected = false);
+  props.wabaTemplates.forEach(template => template.isSelected = false);
 };
 
 const filteredTemplates = computed(() => {
   if (!selectedGroup.value) {
-    return props.templates
+    return props.wabaTemplates
   }
-  return props.templates.filter(item => item.groupId === selectedGroup.value.groupId)
+  return props.wabaTemplates.filter(item => item.groupId === selectedGroup.value.groupId)
 })
 
 const searchedTemplate = computed(() => {
   const lowerQuery = searchQuery.value.trim().toLowerCase();
   return filteredTemplates.value.filter((item) => {
+
     return item.title.toLowerCase().includes(lowerQuery) || item.template.toLowerCase().includes(lowerQuery);
   });
 });
 
+// код для подмены переменных
+
+const wabaValues = reactive({});
+const isModalVisible = ref(false);
+const selectedIndex = ref(null);
+const newValue = ref('');
+const previewText = ref(null)
+
+const openModal = (index) => {
+  selectedIndex.value = index;
+  newValue.value = wabaValues[index] || '';
+  isModalVisible.value = true;
+};
+
+const closeModal = () => {
+  isModalVisible.value = false;
+  selectedIndex.value = null;
+  newValue.value = '';
+};
+
+const updateValue = () => {
+  if (selectedIndex.value !== null) {
+    wabaValues[selectedIndex.value] = newValue.value;
+  }
+  closeModal();
+};
+
+// Функция находит {{}} и заменяет их на span.
+// Функция форматирования исходного selectedTemplate.value.template.
+// Содержимое скобочной группы RegEx записываем в переменную index, это будут индексы
+const formattedText = computed(() => {
+  return selectedTemplate.value?.template.replace(/{{(\d+)}}/g, (match, p1) => {
+    const index = parseInt(p1);
+    const placeholder = 'Заполнить'
+    const value = wabaValues[index] || placeholder;
+    return `<span style="padding: 2px 6px; background-color: #ffc468; cursor: pointer; line-height: 1.8; border-radius: 4px" data-index="${index}">${value}</span>`;
+  });
+});
+
+// Делегирование события, считываем индекс из дата-атрибута, который записывали ранее.
+// И передаем его в функцию
+const handleClick = (event) => {
+  const index = event.target.dataset.index;
+  if (index) {
+    openModal(parseInt(index));
+  }
+};
+
+// Проверяем что все поля заполнены.
+// Сравниваем длину объекта, в котором хранятся значения и количество исходных переменных в шаблоне
+const allFieldsFilled = computed(() => {
+  return Object.keys(wabaValues).length !== selectedTemplate.value?.template.match(/{{\d+}}/gi).length
+});
+
+const resetValues = () => {
+  Object.keys(wabaValues).forEach(key => {
+    wabaValues[key] = '';
+  });
+}
 
 </script>
 
@@ -180,6 +278,7 @@ const searchedTemplate = computed(() => {
 
 
   &__container {
+    position: relative;
     display: grid;
     grid-template-columns: 0.5fr 1.3fr 1fr;
     grid-template-rows: min-content auto 1fr min-content;
@@ -420,6 +519,95 @@ const searchedTemplate = computed(() => {
     padding: 8px 16px;
     border-radius: 10px;
     cursor: pointer;
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: default;
+    }
   }
+
+  &__modal {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    width: 34%;
+    padding: 20px 30px;
+    display: grid;
+    column-gap: 12px;
+    box-shadow: 0px 9px 15px 3px rgba(0, 0, 0, 0.2);
+    background-color: var(--default-white);
+    border-radius: 5px;
+    grid-template-columns: repeat(2, 1fr);
+
+    input {
+      grid-column: 1 / 3;
+      margin-bottom: 10px;
+      padding: var(--input-padding);
+      border-radius: var(--input-border-radius);
+      font-size: var(--input-font-size);
+      color: var(--input-color);
+      border: var(--input-border);
+      transition: border-color var(--input-transition-duration);
+
+      &::placeholder {
+        color: var(--input-placeholder-color);
+      }
+
+      &:hover {
+        border-color: var(--input-hover-border-color);
+      }
+
+      &:focus-visible {
+        border-color: var(--input-focus-border-color);
+        outline: none;
+      }
+    }
+  }
+
+  &__modal-button-add {
+    grid-column: 1;
+    border: none;
+    background-color: var(--p-red-200);
+    padding: 6px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  &__modal-button-cancel {
+    grid-column: 2;
+    border: none;
+    background-color: var(--neutral-200);
+    padding: 6px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  &__value-blank {
+    background-color: red;
+    cursor: pointer;
+  }
+
+  &__value-filled {
+    background-color: green;
+    cursor: pointer;
+  }
+}
+
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.modal-fade-enter-from,
+.modal-fade-leave-to {
+  opacity: 0;
+}
+
+.modal-fade-enter-to,
+.modal-fade-leave-from {
+  opacity: 1;
 }
 </style>

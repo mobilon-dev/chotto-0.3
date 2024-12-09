@@ -62,9 +62,17 @@
               <ChatInput @send="addMessage">
                 <template #buttons>
                   <FileUploader :filebump-url="filebumpUrl" />
-                  <ButtonEmojiPicker :mode="'hover'" :state="'disabled'"/>
+                  <ButtonEmojiPicker
+                    :mode="'hover'"
+                    :state="'disabled'"
+                  />
                   <ButtonTemplateSelector
                     :templates="templates"
+                    :group-templates="groupTemplates"
+                    :mode="'click'"
+                  />
+                  <ButtonWabaTemplateSelector
+                    :waba-templates="wabaTemplates"
                     :group-templates="groupTemplates"
                     :mode="'click'"
                   />
@@ -116,6 +124,7 @@ import {
   useModalCreateChat2,
   ButtonContextMenu,
   ButtonTemplateSelector,
+  ButtonWabaTemplateSelector,
   ButtonEmojiPicker,
   FileUploader,
 } from "./library";
@@ -220,6 +229,7 @@ const messages = ref([]);
 const userProfile = ref({});
 const channels = ref([]);
 const templates = ref([]);
+const wabaTemplates = ref([])
 const groupTemplates = ref([])
 const sidebarItems = ref([]);
 const isOpenChatPanel = ref(false);
@@ -312,6 +322,7 @@ onMounted(() => {
   chatsStore.chats = props.dataProvider.getChats();
   channels.value = props.dataProvider.getChannels();
   templates.value = props.dataProvider.getTemplates()
+  wabaTemplates.value = props.dataProvider.getWABATemplates()
   groupTemplates.value = props.dataProvider.getGroupTemplates()
   sidebarItems.value = props.dataProvider.getSidebarItems();
   console.log('eee', sidebarItems.value)

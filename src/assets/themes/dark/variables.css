@@ -1,4 +1,4 @@
-:root {
+[data-theme="dark"] {
 
   /* General */
 
@@ -42,11 +42,16 @@
 
   /* Inputs */
 
-  --inputtext-font-size: 16px;
-  --inputtext-padding: 0.5rem 0.75rem;
-  --inputtext-width: 100%;
-  --inputtext-border-radius: 6px;
-  --inputtext-transition-duration: 0.2s;
+  --input-font-size: 16px;
+  --input-padding: 0.5rem 0.75rem;
+  --input-width: 100%;
+  --input-border-radius: 6px;
+  --input-transition-duration: 0.2s;
+  --input-color: var(--neutral-200);
+  --input-border: 1px solid var(--neutral-400);
+  --input-placeholder-color: var(--neutral-400);
+  --input-hover-border-color: var(--neutral-500);
+  --input-focus-border-color: var(--neutral-600);
 
   /* Titles */
 

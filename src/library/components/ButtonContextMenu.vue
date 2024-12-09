@@ -10,8 +10,8 @@
     <div
       class="button"
       :class="{
-        'disabled-button': disabled,
-      }"
+      'disabled-button': disabled,
+    }"
       @click="toggle"
       @mouseover="hover"
       @mouseout="hoverout"
@@ -33,7 +33,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted, useId } from 'vue';
-import {ContextMenu} from '.';
+import { ContextMenu } from '.';
 
 const props = defineProps({
   actions: {
@@ -127,8 +127,8 @@ onMounted(() => {
 
   let width, height
   if (props.menuSide == 'top') {
-    width = document.getElementById('container-' + buttonContextMenuId).offsetWidth
-    height = document.getElementById('context-menu-' + buttonContextMenuId).offsetHeight
+    width = document.getElementById('container-' + buttonContextMenuId)?.offsetWidth
+    height = document.getElementById('context-menu-' + buttonContextMenuId)?.offsetHeight
     contextMenu.value.$el.style.left = side[props.menuSide].w * width + 'px'
   }
   if (props.menuSide == 'bottom') {

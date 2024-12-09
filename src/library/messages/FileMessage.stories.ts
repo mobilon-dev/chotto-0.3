@@ -69,7 +69,7 @@ export const RightFileMessageStatusSend: Story = {
     message: {
       ...fileMessage,
       position: 'right',
-      status: 'send',
+      status: 'sent',
     }
   },
 };
