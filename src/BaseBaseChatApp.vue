@@ -3,7 +3,6 @@
     <BaseContainer
       height="70vh"
       width="70vw"
-      default-theme="dark"
     >
       <BaseLayout>
         <template #first-col>
@@ -147,6 +146,7 @@ const themes = [
   {
     code: "dark",
     name: "Dark",
+    
   },
   {
     code: "green",
