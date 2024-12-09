@@ -6,7 +6,9 @@
   --layout-extended-third-col-bg: var(--neutral-100);
 
   /* Base layout */
-  --layout-base-bg: var(--neutral-100);
-
-
+  --layout-base-bg: var(--default-white);
+  --layout-base-column-border: 1px solid var(--neutral-200);
+  --layout-base-second-col-bg: var(--neutral-100);
+  /* Feed Layout */
+  
 }
