@@ -156,7 +156,7 @@ const action = (data) => emit('action', data);
   display: flex;
   align-items: stretch;
   flex-direction: column;
-  height: 80%;
+  height: 70%;
 
   &__filter {
     margin: var(--chat-list-filter-margin);

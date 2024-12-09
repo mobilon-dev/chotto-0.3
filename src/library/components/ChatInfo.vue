@@ -89,6 +89,7 @@ const emit = defineEmits(['open-panel']);
     grid-column: 2;
     font-weight: var(--chat-info-font-weight-title);
     font-size: var(--chat-info-font-size-title);
+    margin: 0;
   }
 
   &__time {
@@ -96,6 +97,7 @@ const emit = defineEmits(['open-panel']);
     font-weight: var(--chat-info-font-weight-time);
     color: var(--neutral-400);
     grid-column: 2;
+    margin: 0;
   }
 
   &__actions {

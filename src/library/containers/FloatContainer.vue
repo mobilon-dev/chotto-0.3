@@ -65,11 +65,6 @@ const props = defineProps({
   },
   height: String,
   width: String,
-  defaultTheme: {
-    type: String,
-    default: 'green',
-    required: false,
-  },
 });
 const emit = defineEmits(["close-window", "get-size"]);
 
@@ -83,24 +78,6 @@ const contentHeight = ref(0);
 
 const chatAppId = useId()
 provide('chatAppId', chatAppId)
-const themes = [
-  {
-    code: "light",
-    name: "Light",
-  },
-  {
-    code: "dark",
-    name: "Dark",
-  },
-  {
-    code: "green",
-    name: "Green",
-  },
-  {
-    code: "diamond",
-    name: "Diamond",
-  },
-];
 
 const centerWindow = () => {
   if (element.value) {
@@ -160,10 +137,6 @@ onMounted(() => {
 
   contentHeight.value =
     element.value.offsetHeight - container.value.offsetHeight;
-    
-  const code = themes.find(t => t.code === props.defaultTheme).code;
-  console.log(code)
-  document.getElementById(chatAppId).dataset.theme = code;
 });
 </script>
 
