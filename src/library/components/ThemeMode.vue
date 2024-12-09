@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, inject } from 'vue';
 
 const props = defineProps({
   themes: {
@@ -24,6 +24,7 @@ const props = defineProps({
   show: Boolean,
 });
 
+const chatAppId = inject('chatAppId')
 
 const getDefaultThemeCode = () => {
   const defaultTheme = props.themes.find(t => t.default === true);
@@ -39,7 +40,7 @@ const changeTheme = (event) => {
 };
 
 const setTheme = (themeCode) => {
-  document.documentElement.dataset.theme = themeCode;
+  document.getElementById(chatAppId).dataset.theme = themeCode;
 }
 
 onMounted(() => {

@@ -3,6 +3,7 @@
     <BaseContainer
       height="70vh"
       width="70vw"
+      default-theme="dark"
     >
       <BaseLayout>
         <template #first-col>
@@ -13,32 +14,62 @@
             @select="selectChat"
             @action="chatAction"
           />
-          <ThemeMode :themes="themes" />
+          <ThemeMode
+            :themes="themes"
+            :show="true"
+          />
         </template>
         <template #second-col>
-          <div
-            v-if="selectedChat"
-            style="height: 100%; width: 100%; display: flex; flex-direction: column;"
+          <chat-wrapper
+            :is-open-chat-panel="isOpenChatPanel"
+            :is-selected-chat="!!selectedChat"
           >
-            <ChatInfo
-              :chat="selectedChat"
-              @open-panel="isOpenChatPanel = !isOpenChatPanel"
-            />
-            <!-- @todo: padding в BaseContainer'е не работать -->
-            <Feed
-              :objects="messages"
-              @message-action="messageAction"
-              @load-more="loadMore"
-            />
-            <ChatInput
-              :enable-emoji="true"
-              :channels="channels"
-              @send="addMessage"
-            />
-          </div>
-          <p v-else>
-            {{ t('layout.ChatWrapper.noSelectedChat') }}
-          </p>
+            <template #default>
+              <ChatInfo :chat="selectedChat">
+                <template #actions>
+                  <div style="display: flex;">
+                    <button
+                      class="chat-info__button-panel"
+                      @click="isOpenChatPanel = !isOpenChatPanel"
+                    >
+                      <span class="pi pi-info-circle" />
+                    </button>
+                    <!--ButtonContextMenu
+                      :actions="actions"
+                      :button-class="'pi pi-list'"
+                      :mode="'click'"
+                      :menu-side="'bottom'"
+                      :context-menu-key="'top-actions'"
+                    /-->
+                  </div>
+                </template>
+              </ChatInfo>
+              <Feed
+                :button-params="buttonParams"
+                :objects="messages"
+                :is-scroll-to-bottom-on-update-objects-enabled="isScrollToBottomOnUpdateObjectsEnabled"
+                :typing="selectedChat.typing ? { avatar: selectedChat.avatar, title: selectedChat.title } : false"
+                @message-action="messageAction"
+                @load-more="loadMore"
+              />
+              <ChatInput @send="addMessage">
+                <template #buttons>
+                  <FileUploader :filebump-url="filebumpUrl" />
+                  <ButtonEmojiPicker :mode="'hover'" :state="'disabled'"/>
+                  <ButtonTemplateSelector
+                    :templates="templates"
+                    :group-templates="groupTemplates"
+                    :mode="'click'"
+                  />
+                  <ChannelSelector
+                    :channels="channels"
+                    :mode="'hover'"
+                    @select-channel="onSelectChannel"
+                  />
+                </template>
+              </ChatInput>
+            </template>
+          </chat-wrapper>
         </template>
       </BaseLayout>
       <!-- @todo: заменить на composable modals -->
@@ -68,6 +99,10 @@ import {
   ChatPanel,
   BaseContainer,
   BaseLayout,
+  ChatWrapper,
+  ButtonEmojiPicker,
+  ButtonTemplateSelector,
+  ChannelSelector
 } from "./library";
 
 import {
@@ -75,15 +110,13 @@ import {
   insertDaySeparators,
   playNotificationAudio,
   sortByTimestamp,
-  i18n
 } from "./helpers";
 
 import { useChatsStore } from "./stores/useChatStore";
 import { transformToFeed } from "./transform/transformToFeed";
-import { SelectUser } from "./library/modals";
 import { useLocale } from "./locale/useLocale";
 
-const {locale, locales} = useLocale()
+const {t, locale, locales} = useLocale()
 
 // Define props
 const props = defineProps({
