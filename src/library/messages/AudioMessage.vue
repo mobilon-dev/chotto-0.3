@@ -113,13 +113,13 @@
       </div>
 
       <!-- <div
-        v-if="message.transcript.text"
+        v-if="message.transcript?.text"
         class="audio-message__transcript-container"
       >
         <p @click="isFullTranscript = !isFullTranscript">{{ message.transcript.text }}</p>
-      </div> -->
+      </div>
 
-      <!-- <Teleport to="body">
+      <Teleport to="body">
         <transition name="modal-fade">
           <div
             v-if="isFullTranscript"
@@ -134,7 +134,7 @@
                   <i class="pi pi-times" />
                 </span>
               </button>
-              <p>{{ message.transcript.text }}</p>
+              <p>{{ message.transcript?.text }}</p>
             </div>
           </div>
         </transition>
