@@ -76,6 +76,7 @@
                     :waba-templates="wabaTemplates"
                     :group-templates="groupTemplates"
                     :mode="'click'"
+                    @send-waba-values="sendWabaValues"
                   />
                   <ChannelSelector
                     :channels="channels"
@@ -302,6 +303,10 @@ const addMessage = (message) => {
   });
   messages.value = getFeedObjects(); // Обновление сообщений
 };
+
+const sendWabaValues = (obj) => {
+  console.log('send waba values', obj);
+}
 
 const selectChat = (chat) => {
   selectedChat.value = chat;

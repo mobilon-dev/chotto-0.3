@@ -156,8 +156,10 @@ const props = defineProps({
   }
 })
 
+
 const chatAppId = inject('chatAppId')
 const { setMessageText } = useMessage(chatAppId)
+const emit = defineEmits(['closeTemplateWindow', 'pasteTemplate', 'sendWabaValues'])
 
 const closeTemplateWindow = () => {
   emit('closeTemplateWindow')
@@ -168,11 +170,9 @@ const closeTemplateWindow = () => {
 const handlePutMessage = () => {
   emit('closeTemplateWindow')
   emit('sendWabaValues', { templateId: props.wabaTemplates.templateId, values: Object.values(wabaValues) })
-  setMessageText(previewText.value.textContent)
+  // setMessageText(previewText.value.textContent)
   resetValues()
 }
-
-const emit = defineEmits(['closeTemplateWindow', 'pasteTemplate', 'sendWabaValues'])
 
 const selectedGroup = ref(null)
 const selectedTemplate = ref(null);

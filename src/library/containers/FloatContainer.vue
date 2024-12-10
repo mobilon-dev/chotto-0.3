@@ -1,8 +1,8 @@
 <template>
   <div
+    :id="chatAppId"
     ref="element"
     class="float-window"
-    :id="chatAppId"
     :style="{
       left: floatWindowPosition.x + 'px',
       top: floatWindowPosition.y + 'px',

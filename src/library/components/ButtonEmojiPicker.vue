@@ -2,10 +2,10 @@
   <div
     ref="emojiButton"
     class="button"
+    :class="{'button-disabled' : state == 'disabled'}"
     @click="toggle"
     @mouseover="hover"
     @mouseout="hoverout"
-    :class="{'button-disabled' : state == 'disabled'}"
   >
     <span class="pi pi-face-smile" />
   </div>

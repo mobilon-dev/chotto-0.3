@@ -1,7 +1,7 @@
 <template>
   <div
-    class="base"
     :id="chatAppId"
+    class="base"
   >
     <div
       class="base__container"
