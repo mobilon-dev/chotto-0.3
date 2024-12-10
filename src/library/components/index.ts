@@ -13,6 +13,7 @@ import ChatFilter from './ChatFilter.vue';
 import ButtonContextMenu from './ButtonContextMenu.vue';
 import TemplateSelector from './TemplateSelector.vue'
 import ButtonTemplateSelector from './ButtonTemplateSelector.vue';
+import ButtonWabaTemplateSelector from './ButtonWabaTemplateSelector.vue'
 import ButtonEmojiPicker from './ButtonEmojiPicker.vue';
 import ContextMenu from './ContextMenu.vue';
 
@@ -32,6 +33,7 @@ export {
   ButtonContextMenu,
   TemplateSelector,
   ButtonTemplateSelector,
+  ButtonWabaTemplateSelector,
   ButtonEmojiPicker,
   ContextMenu,
 }

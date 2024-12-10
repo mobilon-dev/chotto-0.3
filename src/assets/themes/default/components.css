@@ -27,21 +27,12 @@
   --chat-list-filter-margin: 0 12px 30px 12px;
   --chat-list-title-container-padding: 0 12px 20px 12px;
 
-  /* Chat Filter */
-  --chat-filter-input-color: var(--neutral-700);
-  --chat-filter-input-border: 1px solid var(--neutral-300);
-  --chat-filter-input-placeholder-color: var(--neutral-500);
-  --chat-filter-hover-border-color: var(--neutral-500);
-  --chat-filter-focus-border-color: var(--neutral-700);
-
   /* Chat Input */
   --chat-input-container-bg: var(--neutral-100);
   --chat-input-background: var(--default-white);
   --chat-input-border-radius: 0 0 12px 12px;
   --chat-input-border: 1px solid var(--neutral-300);
 
-  --chat-input-color: var(--neutral-700);
-  --chat-input-placeholder-color: var(--neutral-500);
   --chat-input-icon-color: var(--neutral-600);
   --chat-input-icon-color-disabled: var(--neutral-200);
 

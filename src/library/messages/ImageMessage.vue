@@ -43,6 +43,7 @@
           >
             <div
               v-if="message.views"
+              @click.stop="viewsAction"
               class="image-message__views"
             >
               <span class="pi pi-eye" />
@@ -68,6 +69,7 @@
         <transition name="modal-fade">
           <a
             v-if="buttonDownloadVisible"
+            @click.stop="() => '//Предотвращаем всплытие события клика'"
             class="image-message__download-button"
             :href="message.url"
             download
@@ -103,7 +105,10 @@
         v-if="message.text"
         class="image-message__text-container"
       >
-        <p>{{ message.text }}</p>
+        <p
+          v-html="linkedText"
+          @click="inNewWindow"
+        ></p>
       </div>
     </div>
 
@@ -139,7 +144,8 @@
   setup
   lang="ts"
 >
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
+import linkifyStr from "linkify-string";
 
 import { ContextMenu } from '../components'
 import { getStatus, statuses } from "../../helpers";
@@ -152,12 +158,35 @@ const props = defineProps({
   },
 });
 
+const emit = defineEmits(['action']);
+
 
 const isOpenModal = ref(false);
 
 const isOpenMenu = ref(false)
 const buttonMenuVisible = ref(false);
 const buttonDownloadVisible = ref(false)
+const linkedText = ref('')
+
+watch(
+  () => props.message.text,
+  () => {
+    if (props.message.text) {
+      linkedText.value = linkifyStr(props.message.text)
+    }
+  },
+  { immediate: true }
+)
+
+function inNewWindow(event) {
+  event.preventDefault()
+  if (event.target.href)
+    window.open(event.target.href, '_blank');
+}
+
+const viewsAction = () => {
+  emit('action', { messageId: props.message.messageId, type: 'views' });
+}
 
 const clickAction = () => { }
 
@@ -234,6 +263,7 @@ function getClass(message) {
     display: flex;
     align-items: center;
     column-gap: 4px;
+    cursor: pointer;
 
     span {
       font-size: var(--base-message-views-icon-font-size);

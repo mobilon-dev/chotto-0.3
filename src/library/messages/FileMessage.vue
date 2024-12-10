@@ -38,7 +38,18 @@
 
       </a>
       <div class="file-message__info-container">
+
+        <div
+          v-if="message.views"
+          @click="viewsAction"
+          class="file-message__views"
+        >
+          <span class="pi pi-eye" />
+          <p>{{ message.views }}</p>
+        </div>
+
         <span class="file-message__time">{{ message.time }}</span>
+
         <div
           v-if="getClass(message) === 'file-message__right' && statuses.includes(message.status)"
           class="file-message__status"
@@ -50,6 +61,7 @@
           />
           <span class="pi pi-check" />
         </div>
+
       </div>
 
       <button
@@ -63,6 +75,7 @@
       <a
         class="file-message__download-button"
         :href="message.url"
+        @click.stop="() => '//Предотвращаем всплытие события клика'"
         download
         target="_blank"
       >
@@ -82,7 +95,10 @@
         v-if="message.text"
         class="file-message__text-container"
       >
-        <p>{{ message.text }}</p>
+        <p
+          v-html="linkedText"
+          @click="inNewWindow"
+        ></p>
       </div>
 
     </div>
@@ -93,7 +109,9 @@
   setup
   lang="ts"
 >
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
+import linkifyStr from "linkify-string";
+
 
 import { ContextMenu } from '../components'
 
@@ -109,8 +127,31 @@ const props = defineProps({
   },
 });
 
+const emit = defineEmits(['action']);
+
 const isOpenMenu = ref(false)
 const buttonMenuVisible = ref(false);
+const linkedText = ref('')
+
+watch(
+  () => props.message.text,
+  () => {
+    if (props.message.text) {
+      linkedText.value = linkifyStr(props.message.text)
+    }
+  },
+  { immediate: true }
+)
+
+function inNewWindow(event) {
+  event.preventDefault()
+  if (event.target.href)
+    window.open(event.target.href, '_blank');
+}
+
+const viewsAction = () => {
+  emit('action', { messageId: props.message.messageId, type: 'views' });
+}
 
 const clickAction = () => { }
 
@@ -244,6 +285,22 @@ function getClass(message) {
       &:first-child {
         margin-right: -8px;
       }
+    }
+  }
+
+  &__views {
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+
+    span {
+      font-size: var(--base-message-views-icon-font-size);
+      color: var(--neutral-200);
+    }
+
+    p {
+      font-size: var(--base-message-views-font-size);
+      color: var(--neutral-200);
     }
   }
 

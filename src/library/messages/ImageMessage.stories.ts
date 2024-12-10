@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 
-import {ImageMessage} from './';
-import {IImageMessage} from '../../types'
+import { ImageMessage } from './';
+import { IImageMessage } from '../../types'
 
 const meta: Meta<typeof ImageMessage> = {
   component: ImageMessage,
@@ -10,7 +10,7 @@ const meta: Meta<typeof ImageMessage> = {
 export default meta;
 type Story = StoryObj<typeof ImageMessage>;
 
-const imageMessage:IImageMessage = {
+const imageMessage: IImageMessage = {
   messageId: 'testId',
   status: 'read',
   url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg",
@@ -119,7 +119,7 @@ export const RightImageMessageStatusSend: Story = {
     message: {
       ...imageMessage,
       position: 'right',
-      status: 'send',
+      status: 'sent',
     },
   },
 };

@@ -1,7 +1,7 @@
 <template>
   <div class="call-message">
     <div
-      :class="getClass(message)"
+      :class="getClass(message, elementType.message)"
       :messageId="message.messageId"
     >
       <img
@@ -12,7 +12,6 @@
         width="32"
         :style="{ gridRow: message.subText ? '2' : '1' }"
       >
-
 
       <p
         v-if="message.subText"
@@ -53,14 +52,55 @@
         <div class="call-message__info-container">
           <span class="call-message__time">{{ message.time }}</span>
         </div>
+
+        <button
+          v-if="message.transcript?.dialog"
+          class="call-message__download-button"
+          @click="isFullTranscript = !isFullTranscript"
+        >
+          <span class="pi pi-arrow-up-right" />
+        </button>
+
+        <Teleport to="body">
+          <transition name="modal-fade">
+            <div
+              v-if="isFullTranscript"
+              class="call-message__modal-overlay"
+            >
+              <div class="call-message__modal">
+                <button
+                  class="call-message__modal-close-button"
+                  @click="isFullTranscript = false"
+                >
+                  <span>
+                    <i class="pi pi-times" />
+                  </span>
+                </button>
+
+                <div
+                  :class="getClass(item, elementType.textDialog)"
+                  v-for="(item, index) in message.transcript?.dialog"
+                >
+                  <p>{{ item.text }}</p>
+                  <span>{{ item.time }}</span>
+                </div>
+
+              </div>
+            </div>
+          </transition>
+        </Teleport>
+
       </div>
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
-
-import {ICallMessage} from '../../types'
+<script
+  setup
+  lang="ts"
+>
+import { ref } from 'vue'
+import { ICallMessage } from '../../types'
 
 // Define props
 const props = defineProps({
@@ -70,9 +110,23 @@ const props = defineProps({
   },
 });
 
+const isFullTranscript = ref(false)
 
-function getClass(message) {
-  return message.position === 'left' ? 'call-message__left' : 'call-message__right';
+const elementType = {
+  textDialog: 'textDialog',
+  message: 'message'
+}
+
+function getClass(element, type) {
+  const position = element.position;
+  switch (type) {
+    case 'textDialog':
+      return position === 'left' ? 'call-message__text-dialog-left' : 'call-message__text-dialog-right';
+    case 'message':
+      return position === 'left' ? 'call-message__left' : 'call-message__right';
+    default:
+      return '';
+  }
 }
 
 </script>
@@ -134,6 +188,26 @@ function getClass(message) {
   &__time {
     font-size: var(--base-message-font-size-time);
     color: var(--base-message-color-time);
+  }
+
+  &__download-button {
+    position: absolute;
+    right: 8px;
+    top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 12px;
+    background-color: transparent;
+    padding: 0;
+    cursor: pointer;
+
+    span {
+      color: var(--audio-message-download-button);
+      font-weight: 600;
+      font-size: 12px;
+    }
   }
 
   &__status {
@@ -203,6 +277,50 @@ function getClass(message) {
     position: absolute;
   }
 
+  &__text-dialog-left,
+  &__text-dialog-right {
+    position: relative;
+    width: fit-content;
+    max-width: 46%;
+    padding-left: 24px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 12px;
+      left: 0;
+      width: 16px;
+      height: 2px;
+      background-color: var(--neutral-700);
+    }
+
+    p {
+      font-size: 22px;
+      margin: 0;
+    }
+
+    span {
+      color: var(--neutral-600);
+    }
+  }
+
+  &__text-dialog-right {
+    padding-left: 0;
+    padding-right: 24px;
+    margin-left: auto;
+
+    &::before {
+      right: 0;
+      left: auto;
+    }
+
+    span {
+      width: fit-content;
+      display: block;
+      margin-left: auto;
+    }
+  }
+
   &__left,
   &__right {
     display: grid;
@@ -251,5 +369,76 @@ function getClass(message) {
       background-color: var(--base-message-right-bg);
     }
   }
+
+  &__modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 101;
+    background-color: var(--modal-bg);
+    border-radius: var(--modal-border-radius);
+    padding: var(--modal-padding);
+    width: 32%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: var(--modal-overlay-shadow);
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+      background-color: var(--scrollbar-bg);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background-color: var(--scrollbar-thumb-bg);
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: 10px;
+    }
+  }
+
+  &__modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--modal-mask-background);
+    z-index: 1000;
+  }
+
+  &__modal-close-button {
+    display: block;
+    background-color: transparent;
+    border: none;
+    padding: 4px;
+    margin: 0 0 14px auto;
+    cursor: pointer;
+
+    span {
+      color: var(--modal-icon-color);
+      font-size: var(--icon-font-size-medium);
+    }
+  }
+}
+
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.modal-fade-enter-from,
+.modal-fade-leave-to {
+  opacity: 0;
+}
+
+.modal-fade-enter-to,
+.modal-fade-leave-from {
+  opacity: 1;
 }
 </style>

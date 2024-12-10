@@ -57,7 +57,7 @@ export const RightMessageSend: Story = {
     message: {
       ...message,
       position: 'right',
-      status: 'send',
+      status: 'sent',
     } as IAudioMessage,
   },
 };

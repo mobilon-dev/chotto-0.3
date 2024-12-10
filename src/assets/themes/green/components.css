@@ -47,9 +47,6 @@
   --chat-item-font-size-time: 14px;
   /* _____________________________________________ */
 
-  /* Chat Filter */
-  --chat-filter-input-border-radius: 5px;
-
   /* Feed */
   --feed-button-down-bg: var(--neutral-200);
   --feed-button-down-uread-bg: var(--p-red-500);
