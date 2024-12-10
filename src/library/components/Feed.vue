@@ -9,6 +9,7 @@
         :is="componentsMap(object.type)"
         v-for="object in objects"
         :key="object.messageId"
+        :id="JSON.stringify(object)"
         class="message-feed__message"
         :message="object"
         @action="messageAction"
@@ -59,6 +60,7 @@ import {
 
 import { IFeedObject, IFeedTyping, IFeedUnreadButton } from '../../types';
 
+const messages = ref();
 const refFeed = ref();
 const isShowButton = ref(false)
 
@@ -85,7 +87,7 @@ const props = defineProps({
 });
 
 
-const emit = defineEmits(['messageAction', 'loadMore']);
+const emit = defineEmits(['messageAction', 'loadMore', 'messageVisible']);
 
 const scrollTopCheck = () => {
   const element = unref(refFeed);
@@ -144,6 +146,28 @@ const messageAction = (message) => {
   emit('messageAction', message);
 }
 
+const callback = (entries : Array<IntersectionObserverEntry>) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      emit('messageVisible', JSON.parse(entry.target.id))
+    }
+  })
+}
+
+const options = {
+  root: document.querySelector('.message-feed__container'),
+  rootMargin: '5px',
+  threshold: 0,
+}
+
+const observer = new IntersectionObserver(callback, options)
+
+watch(
+  ()=>props.objects,
+  () => {
+    messages.value = document.querySelectorAll('.message-feed__message')
+    messages.value.forEach((m) => observer.observe(m))
+})
 
 </script>
 
