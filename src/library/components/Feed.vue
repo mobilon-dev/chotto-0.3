@@ -60,7 +60,7 @@ import {
 
 import { IFeedObject, IFeedTyping, IFeedUnreadButton } from '../../types';
 
-const messages = ref();
+const trackingObjects = ref();
 const refFeed = ref();
 const isShowButton = ref(false)
 
@@ -165,8 +165,8 @@ const observer = new IntersectionObserver(callback, options)
 watch(
   ()=>props.objects,
   () => {
-    messages.value = document.querySelectorAll('.message-feed__message')
-    messages.value.forEach((m) => observer.observe(m))
+    trackingObjects.value = document.querySelectorAll('.message-feed__message')
+    trackingObjects.value.forEach((obj) => observer.observe(obj))
 })
 
 </script>
