@@ -1,7 +1,7 @@
 <template>
   <div
-    class="base"
     :id="chatAppId"
+    class="base"
   >
     <div
       class="base__container"
@@ -22,6 +22,8 @@ const props = defineProps({
 
 const chatAppId = useId()
 provide('chatAppId', chatAppId)
+
+
 
 </script>
 

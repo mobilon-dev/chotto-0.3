@@ -43,6 +43,17 @@ export const LeftImageMessageWithText: Story = {
   },
 };
 
+export const LeftImageMessageWithTextAndLink: Story = {
+  args: {
+    message: {
+      ...imageMessage,
+      position: 'left',
+      text: 'Текст текст текст текст текст текст текст текст текст yandex.ru',
+    } as IImageMessage,
+  },
+};
+
+
 export const LeftImageMessageWithViews: Story = {
   args: {
     message: {
@@ -93,6 +104,16 @@ export const RightImageMessageWithText: Story = {
   },
 };
 
+export const RightImageMessageWithTextAndLink: Story = {
+  args: {
+    message: {
+      ...imageMessage,
+      position: 'right',
+      text: 'Текст текст текст текст текст текст текст текст текст yandex.ru',
+    } as IImageMessage,
+  },
+};
+
 export const RightImageMessageWithViews: Story = {
   args: {
     message: {
@@ -114,7 +135,7 @@ export const RightImageMessageWithSubtext: Story = {
 };
 
 
-export const RightImageMessageStatusSend: Story = {
+export const RightImageMessageStatusSent: Story = {
   args: {
     message: {
       ...imageMessage,

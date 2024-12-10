@@ -169,8 +169,10 @@ const props = defineProps({
   }
 })
 
+
 const chatAppId = inject('chatAppId')
 const { setMessageText } = useMessage(chatAppId)
+const emit = defineEmits(['closeTemplateWindow', 'pasteTemplate', 'sendWabaValues'])
 
 const closeTemplateWindow = () => {
   emit('closeTemplateWindow')
@@ -183,8 +185,6 @@ const handlePutMessage = () => {
   // setMessageText(fullText.value)
   resetValues()
 }
-
-const emit = defineEmits(['closeTemplateWindow', 'pasteTemplate', 'sendWabaValues'])
 
 const selectedGroup = ref(null)
 const selectedTemplate = ref(null);

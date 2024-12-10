@@ -16,12 +16,12 @@
     @mouseout="hoverout"
   >
     <WABATemplateSelector
-      :wabaTemplates="wabaTemplates"
+      :waba-templates="wabaTemplates"
       :group-templates="groupTemplates"
       @close-template-window="close"
+      @send-waba-values="sendWabaValues"
     />
   </div>
-
 </template>
 
 <script setup>
@@ -51,7 +51,7 @@ const props = defineProps({
 
 const templateButton = ref(null)
 const template = ref(null)
-
+const emit = defineEmits(['sendWabaValues']);
 
 const toggle = () => {
   if (props.mode == 'click' && props.state == 'active') {
@@ -94,6 +94,10 @@ onMounted(() => {
 onUnmounted(() => {
   document.removeEventListener("click", handleClickOutside)
 })
+
+const sendWabaValues = (obj) => {
+  emit('sendWabaValues', obj);
+}
 
 </script>
 

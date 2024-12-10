@@ -12,7 +12,6 @@
           @load-more="loadMore"
         />
         <ChatInput
-          :enable-emoji="true"
           @send="addMessage"
         />
       </FeedLayout>

@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
  
-import {ButtonTemplateSelector} from './';
-import {templates, groupTemplates} from '../../data';
+import {ButtonWabaTemplateSelector} from '.';
+import {wabaTemplates, groupTemplates} from '../../data';
  
   
-const meta: Meta<typeof ButtonTemplateSelector> = {
-  component: ButtonTemplateSelector,
+const meta: Meta<typeof ButtonWabaTemplateSelector> = {
+  component: ButtonWabaTemplateSelector,
   parameters: {
     layout: 'centered',
   },
@@ -13,11 +13,11 @@ const meta: Meta<typeof ButtonTemplateSelector> = {
 };
  
 export default meta;
-type Story = StoryObj<typeof ButtonTemplateSelector>;
+type Story = StoryObj<typeof ButtonWabaTemplateSelector>;
  
 export const Standard: Story = {
   args: {
-    templates,
+    wabaTemplates,
     groupTemplates,
   },
 };

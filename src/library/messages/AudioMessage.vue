@@ -104,6 +104,7 @@
         />
       </transition>
 
+      <!--
       <div
         v-if="message.transcript?.text"
         class="audio-message__transcript-container"
@@ -111,8 +112,9 @@
       >
         <p @click="isFullTranscript = !isFullTranscript">{{ message.transcript.text }}</p>
       </div>
+      -->
 
-      <!-- <div
+      <div
         v-if="message.transcript?.text"
         class="audio-message__transcript-container"
       >
@@ -138,7 +140,7 @@
             </div>
           </div>
         </transition>
-      </Teleport> -->
+      </Teleport>
 
       <div
         v-if="message.text"

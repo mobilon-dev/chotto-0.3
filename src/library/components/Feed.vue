@@ -3,12 +3,14 @@
     ref="refFeed"
     class="message-feed"
     @scroll="scrollTopCheck"
+    :id="'feed-container-'+chatAppId"
   >
     <div class="message-feed__container">
       <component
         :is="componentsMap(object.type)"
         v-for="object in objects"
         :key="object.messageId"
+        :id="JSON.stringify(object)"
         class="message-feed__message"
         :message="object"
         @action="messageAction"
@@ -43,7 +45,7 @@
   setup
   lang="ts"
 >
-import { ref, unref, watch, nextTick, onUpdated } from 'vue';
+import { ref, unref, watch, nextTick, onUpdated, inject } from 'vue';
 
 import {
   FileMessage,
@@ -59,6 +61,7 @@ import {
 
 import { IFeedObject, IFeedTyping, IFeedUnreadButton } from '../../types';
 
+const trackingObjects = ref();
 const refFeed = ref();
 const isShowButton = ref(false)
 
@@ -83,9 +86,9 @@ const props = defineProps({
     default: false,
   }
 });
+const chatAppId = inject('chatAppId')
 
-
-const emit = defineEmits(['messageAction', 'loadMore']);
+const emit = defineEmits(['messageAction', 'loadMore', 'messageVisible']);
 
 const scrollTopCheck = () => {
   const element = unref(refFeed);
@@ -144,6 +147,32 @@ const messageAction = (message) => {
   emit('messageAction', message);
 }
 
+const callback = (entries : Array<IntersectionObserverEntry>) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      emit('messageVisible', JSON.parse(entry.target.id))
+    }
+  })
+}
+
+const options = {
+  root: document.getElementById('feed-container-'+chatAppId),
+  rootMargin: '5px',
+  threshold: 0,
+}
+
+const observer = new IntersectionObserver(callback, options)
+
+watch(
+  ()=>props.objects,
+  () => {
+    nextTick(() => {
+      scrollTopCheck()
+      trackingObjects.value = document.querySelectorAll('.message-feed__message')
+      trackingObjects.value.forEach((obj) => observer.observe(obj))
+    })
+  },
+  {immediate: true})
 
 </script>
 

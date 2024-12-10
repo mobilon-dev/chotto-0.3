@@ -52,7 +52,7 @@ export const RightMessage: Story = {
   },
 };
 
-export const RightMessageSend: Story = {
+export const RightMessageSent: Story = {
   args: {
     message: {
       ...message,
@@ -98,7 +98,9 @@ export const RightMessageWithActionsAndText: Story = {
       ...message,
       position: 'right',
       actions,
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor '+
+      'incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, '+
+      'quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
     },
   },
 };
@@ -109,7 +111,66 @@ export const LeftMessageWithActionsAndText: Story = {
       ...message,
       position: 'left',
       actions,
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor '+
+      'incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, '+
+      'quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+    },
+  },
+};
+
+export const RightMessageWithActionsAndTextWithLink: Story = {
+  args: {
+    message: {
+      ...message,
+      position: 'right',
+      actions,
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor '+
+      'incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, '+
+      'quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. yandex.ru'
+    },
+  },
+};
+
+export const LeftMessageWithActionsAndTextWithLink: Story = {
+  args: {
+    message: {
+      ...message,
+      position: 'left',
+      actions,
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor '+
+      'incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, '+
+      'quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. yandex.ru'
+    },
+  },
+};
+
+
+export const RightMessageWithTranscript: Story = {
+  args: {
+    message: {
+      ...message,
+      position: 'right',
+      actions,
+      transcript: {
+        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor '+
+          'incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, '+
+          'quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. yandex.ru',
+      },
+    },
+  },
+};
+
+export const LeftMessageWithTranscript: Story = {
+  args: {
+    message: {
+      ...message,
+      position: 'left',
+      actions,
+      transcript: {
+        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor '+
+          'incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, '+
+          'quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. yandex.ru',
+      },
     },
   },
 };

@@ -81,7 +81,7 @@ export const RightMessageWithTextAndActions: Story = {
   },
 };
 
-export const RightMessageWithStatusSend: Story = {
+export const RightMessageWithStatusSent: Story = {
   args: {
     message: {
       ...videoMessage,
@@ -132,6 +132,37 @@ export const RightMessageWithVerticalVideoAndText: Story = {
       ...videoMessage,
       url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
       text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      position: 'right',
+      status: 'read',
+      actions,
+    },
+  },
+};
+
+export const LeftMessageWithVerticalVideoAndTextWithLink: Story = {
+  args: {
+    message: {
+      ...videoMessage,
+      url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt '+
+      'ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco '+ 
+      'laboris nisi ut aliquip ex ea commodo consequat. github.com',
+      position: 'left',
+      status: 'read',
+      actions,
+    },
+  },
+};
+
+
+export const RightMessageWithVerticalVideoAndTextWithLink: Story = {
+  args: {
+    message: {
+      ...videoMessage,
+      url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt '+
+      'ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco '+ 
+      'laboris nisi ut aliquip ex ea commodo consequat. github.com',
       position: 'right',
       status: 'read',
       actions,

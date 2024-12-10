@@ -81,3 +81,57 @@ export const RecallRight: Story = {
     },
   },
 };
+
+
+const dialog = [
+  {
+    time: '00:00',
+    text: 'привет, Вася',
+    position: 'right',
+  },
+  {
+    time: '00:05',
+    text: 'привет, Петя',
+    position: 'left',
+  },
+  {
+    time: '00:10',
+    text: 'как дела?',
+    position: 'right',
+  },
+  {
+    time: '00:15',
+    text: 'все норм',
+    position: 'left',
+  },
+];
+
+export const LeftCallWithTranscript: Story = {
+  args: {
+    message: {
+      url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
+      position: 'left',
+      messageId: 'testMessageId',
+      time: '12:00',
+      callDuration: '5:00',
+      transcript: {
+        dialog,
+      },
+    },
+  },
+};
+
+export const RightCallWithTranscript: Story = {
+  args: {
+    message: {
+      url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
+      position: 'right',
+      messageId: 'testMessageId',
+      time: '12:00',
+      callDuration: '5:00',
+      transcript: {
+        dialog,
+      }
+    },
+  },
+};

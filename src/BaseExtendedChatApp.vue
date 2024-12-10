@@ -58,27 +58,35 @@
                 :typing="selectedChat.typing ? { avatar: selectedChat.avatar, title: selectedChat.title } : false"
                 @message-action="messageAction"
                 @load-more="loadMore"
+                @message-visible="messageVisible"
               />
               <ChatInput @send="addMessage">
                 <template #buttons>
-                  <FileUploader :filebump-url="filebumpUrl" />
+                  <FileUploader
+                    :filebump-url="filebumpUrl"
+                    :state="'enabled'"
+                  />
                   <ButtonEmojiPicker
                     :mode="'hover'"
-                    :state="'disabled'"
+                    :state="'active'"
                   />
                   <ButtonTemplateSelector
                     :templates="templates"
                     :group-templates="groupTemplates"
                     :mode="'click'"
+                    :state="'active'"
                   />
                   <ButtonWabaTemplateSelector
                     :waba-templates="wabaTemplates"
                     :group-templates="groupTemplates"
                     :mode="'click'"
+                    :state="'active'"
+                    @send-waba-values="sendWabaValues"
                   />
                   <ChannelSelector
                     :channels="channels"
                     :mode="'hover'"
+                    :state="'active'"
                     @select-channel="onSelectChannel"
                   />
                 </template>
@@ -263,6 +271,11 @@ const loadMore = () => {
   console.log("load more");
 };
 
+const messageVisible = (message) => {
+  // processing message in feed visible area 
+  console.log('visible message',message.type)
+}
+
 const getFeedObjects = () => {
   // console.log('get feed')
   if (selectedChat.value) {
@@ -296,6 +309,10 @@ const addMessage = (message) => {
   });
   messages.value = getFeedObjects(); // Обновление сообщений
 };
+
+const sendWabaValues = (obj) => {
+  console.log('send waba values', obj);
+}
 
 const selectChat = (chat) => {
   selectedChat.value = chat;
