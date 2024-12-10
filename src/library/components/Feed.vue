@@ -3,6 +3,7 @@
     ref="refFeed"
     class="message-feed"
     @scroll="scrollTopCheck"
+    :id="'feed-container-'+chatAppId"
   >
     <div class="message-feed__container">
       <component
@@ -44,7 +45,7 @@
   setup
   lang="ts"
 >
-import { ref, unref, watch, nextTick, onUpdated } from 'vue';
+import { ref, unref, watch, nextTick, onUpdated, inject } from 'vue';
 
 import {
   FileMessage,
@@ -85,7 +86,7 @@ const props = defineProps({
     default: false,
   }
 });
-
+const chatAppId = inject('chatAppId')
 
 const emit = defineEmits(['messageAction', 'loadMore', 'messageVisible']);
 
@@ -155,7 +156,7 @@ const callback = (entries : Array<IntersectionObserverEntry>) => {
 }
 
 const options = {
-  root: document.querySelector('.message-feed__container'),
+  root: document.getElementById('feed-container-'+chatAppId),
   rootMargin: '5px',
   threshold: 0,
 }
@@ -165,9 +166,12 @@ const observer = new IntersectionObserver(callback, options)
 watch(
   ()=>props.objects,
   () => {
-    trackingObjects.value = document.querySelectorAll('.message-feed__message')
-    trackingObjects.value.forEach((obj) => observer.observe(obj))
-})
+    nextTick(() => {
+      trackingObjects.value = document.querySelectorAll('.message-feed__message')
+      trackingObjects.value.forEach((obj) => observer.observe(obj))
+    })
+  },
+  {immediate: true})
 
 </script>
 
