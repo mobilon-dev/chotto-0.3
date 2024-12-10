@@ -183,7 +183,7 @@ export const RightMessageWithoutTime: Story = {
   },
 };
 
-export const RightMessageStatusSend: Story = {
+export const RightMessageStatusSent: Story = {
   args: {
     message: {
       ...message,
