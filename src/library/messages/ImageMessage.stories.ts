@@ -135,7 +135,7 @@ export const RightImageMessageWithSubtext: Story = {
 };
 
 
-export const RightImageMessageStatusSend: Story = {
+export const RightImageMessageStatusSent: Story = {
   args: {
     message: {
       ...imageMessage,

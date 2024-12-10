@@ -81,7 +81,7 @@ export const RightMessageWithTextAndActions: Story = {
   },
 };
 
-export const RightMessageWithStatusSend: Story = {
+export const RightMessageWithStatusSent: Story = {
   args: {
     message: {
       ...videoMessage,
