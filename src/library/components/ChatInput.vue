@@ -37,12 +37,12 @@ import {IInputMessage} from '../../types';
 
 
 
-const emit = defineEmits(['send', 'typing', 'selectChannel']);
+const emit = defineEmits(['send', 'typing']);
 
 const chatAppId = inject('chatAppId')
 const { resetMessage, getMessage, setMessageText } = useMessage(chatAppId as string)
 
-const refInput = ref(null);
+const refInput = ref<HTMLElement>();
 
 /*
 const props = defineProps({
@@ -58,9 +58,11 @@ watch(
   () => getMessage().text,
   () => {
     nextTick(function () {
-      refInput.value.style.height = 'auto'
-      refInput.value.style.scrollHeight = "auto"
-      refInput.value.style.height = refInput.value.scrollHeight + 'px'
+      emit('typing')
+      if (refInput.value){
+        refInput.value.style.height = 'auto'
+        refInput.value.style.height = refInput.value.scrollHeight + 'px'
+      }
     })
   }
 );
@@ -87,11 +89,11 @@ const sendMessage = () => {
   const Message = ref(getMessage())
   if (Message.value.text != '' || Message.value.file) {
     const messageObject: IInputMessage = {
-      type: null,
-      text: null,
-      url: null,
-      filename: null,
-      size: null,
+      type: '',
+      text: '',
+      url: '',
+      filename: '',
+      size: '',
     };
 
     if (Message.value.file) {
@@ -106,7 +108,7 @@ const sendMessage = () => {
     }
     emit('send', messageObject);
     resetMessage()
-    unref(refInput).focus()
+    if (refInput.value) refInput.value.focus()
   }
 };
 

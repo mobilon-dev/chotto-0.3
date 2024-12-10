@@ -167,6 +167,7 @@ watch(
   ()=>props.objects,
   () => {
     nextTick(() => {
+      scrollTopCheck()
       trackingObjects.value = document.querySelectorAll('.message-feed__message')
       trackingObjects.value.forEach((obj) => observer.observe(obj))
     })
