@@ -78,16 +78,25 @@
 
       <div class="template-selector__preview-container">
         <div
-          v-if="formattedText"
+          v-if="templateParts"
           class="template-selector__preview"
         >
           <div class="template-selector__preview-wrapper">
-            <p
-              ref="previewText"
-              class="template-selector__preview-text"
-              @click="handleClick"
-              v-html="formattedText"
-            />
+            <div class="template-selector__preview-text-container">
+              <template
+                v-for="(item, index) in templateParts"
+                :key="index"
+              >
+                <span v-if="typeof item === 'string'">{{ item }}</span>
+                <PlaceholderComponent
+                  v-else-if="typeof item === 'object'"
+                  :index="item.index"
+                  :value="wabaValues[item.index] || 'Заполнить'"
+                  :is-filled="!!wabaValues[item.index]"
+                  @click="openModal(item.index)"
+                />
+              </template>
+            </div>
             <p class="template-selector__preview-time">
               22:22
             </p>
@@ -108,9 +117,11 @@
           class="template-selector__modal"
         >
           <input
+            ref="inputRef"
             v-model="newValue"
             type="text"
             placeholder="Введите значение"
+            :autofocus="isModalVisible"
           >
           <button
             class="template-selector__modal-button-add"
@@ -140,8 +151,10 @@
 </template>
 
 <script setup>
-import { computed, ref, reactive, inject, h } from 'vue'
+import { computed, ref, reactive, inject, watch, nextTick } from 'vue'
 import { useMessage } from '../../helpers/useMessage';
+
+import PlaceholderComponent from './PlaceholderComponent.vue'
 const props = defineProps({
   wabaTemplates: {
     type: Array,
@@ -162,13 +175,12 @@ const { setMessageText } = useMessage(chatAppId)
 const closeTemplateWindow = () => {
   emit('closeTemplateWindow')
   resetValues()
-  closeModal();
 }
 
 const handlePutMessage = () => {
   emit('closeTemplateWindow')
-  emit('sendWabaValues', { templateId: props.wabaTemplates.templateId, values: Object.values(wabaValues) })
-  setMessageText(previewText.value.textContent)
+  emit('sendWabaValues', { templateId: props.wabaTemplates.templateId, values: enteredValues.value })
+  // setMessageText(fullText.value)
   resetValues()
 }
 
@@ -207,9 +219,9 @@ const searchedTemplate = computed(() => {
 
 const wabaValues = reactive({});
 const isModalVisible = ref(false);
+const inputRef = ref(null);
 const selectedIndex = ref(null);
 const newValue = ref('');
-const previewText = ref(null)
 
 const openModal = (index) => {
   selectedIndex.value = index;
@@ -224,32 +236,37 @@ const closeModal = () => {
 };
 
 const updateValue = () => {
-  if (selectedIndex.value !== null) {
-    wabaValues[selectedIndex.value] = newValue.value;
-  }
+  updateWabaValue(selectedIndex.value, newValue.value);
   closeModal();
 };
 
-// Функция находит {{}} и заменяет их на span.
-// Функция форматирования исходного selectedTemplate.value.template.
-// Содержимое скобочной группы RegEx записываем в переменную index, это будут индексы
-const formattedText = computed(() => {
-  return selectedTemplate.value?.template.replace(/{{(\d+)}}/g, (match, p1) => {
-    const index = parseInt(p1);
-    const placeholder = 'Заполнить'
-    const value = wabaValues[index] || placeholder;
-    return `<span style="padding: 2px 6px; background-color: #ffc468; cursor: pointer; line-height: 1.8; border-radius: 4px" data-index="${index}">${value}</span>`;
-  });
-});
-
-// Делегирование события, считываем индекс из дата-атрибута, который записывали ранее.
-// И передаем его в функцию
-const handleClick = (event) => {
-  const index = event.target.dataset.index;
-  if (index) {
-    openModal(parseInt(index));
-  }
+const updateWabaValue = (index, value) => {
+  wabaValues[index] = value;
 };
+
+
+const templateParts = computed(() => {
+  const template = selectedTemplate.value?.template;
+  if (!template) return [];
+
+  const matches = [...template.matchAll(/{{\d+}}/g)];
+  const parts = [];
+  let lastIndex = 0;
+
+  matches.forEach(match => {
+    if (match.index > lastIndex) {
+      parts.push(template.substring(lastIndex, match.index));
+    }
+    parts.push({ index: parseInt(match[0].slice(2, -2)) });
+    lastIndex = match.index + match[0].length;
+  });
+
+  if (lastIndex < template.length) {
+    parts.push(template.substring(lastIndex));
+  }
+
+  return parts;
+});
 
 // Проверяем что все поля заполнены.
 // Сравниваем длину объекта, в котором хранятся значения и количество исходных переменных в шаблоне
@@ -257,12 +274,43 @@ const allFieldsFilled = computed(() => {
   return Object.keys(wabaValues).length !== selectedTemplate.value?.template.match(/{{\d+}}/gi).length
 });
 
+// Сброс значений
 const resetValues = () => {
   Object.keys(wabaValues).forEach(key => {
     wabaValues[key] = '';
   });
 }
 
+// Свойство получения всего текста
+const fullText = computed(() => {
+  return templateParts.value.map(item => {
+    if (typeof item === 'string') {
+      return item;
+    } else {
+      return wabaValues[item.index];
+    }
+  }).join('');
+});
+
+// Свойство получения введенных значений
+const enteredValues = computed(() => {
+  const values = [];
+  for (const key in wabaValues) {
+    if (wabaValues[key] !== '' && wabaValues[key] !== 'Заполнить') {
+      values.push(wabaValues[key]);
+    }
+  }
+  return values;
+});
+
+// Фокус при открывании модалки
+watch(isModalVisible, (newVal) => {
+  if (newVal) {
+    nextTick(() => {
+      inputRef.value.focus();
+    });
+  }
+});
 </script>
 
 <style
