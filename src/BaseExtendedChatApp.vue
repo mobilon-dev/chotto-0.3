@@ -68,25 +68,25 @@
                   />
                   <ButtonEmojiPicker
                     :mode="'hover'"
-                    :state="'disabled'"
+                    :state="'active'"
                   />
                   <ButtonTemplateSelector
                     :templates="templates"
                     :group-templates="groupTemplates"
                     :mode="'click'"
-                    :state="'enabled'"
+                    :state="'active'"
                   />
                   <ButtonWabaTemplateSelector
                     :waba-templates="wabaTemplates"
                     :group-templates="groupTemplates"
                     :mode="'click'"
-                    :state="'enabled'"
+                    :state="'active'"
                     @send-waba-values="sendWabaValues"
                   />
                   <ChannelSelector
                     :channels="channels"
                     :mode="'hover'"
-                    :state="'enabled'"
+                    :state="'active'"
                     @select-channel="onSelectChannel"
                   />
                 </template>
