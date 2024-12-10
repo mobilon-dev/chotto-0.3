@@ -29,18 +29,22 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, unref, watch, nextTick, inject } from 'vue';
 import { useMessage } from '../../helpers/useMessage';
 import { t } from '../../locale/useLocale';
-// Define emits
+import {IInputMessage} from '../../types';
+
+
+
 const emit = defineEmits(['send', 'typing', 'selectChannel']);
-//
+
 const chatAppId = inject('chatAppId')
-const { resetMessage, getMessage, setMessageText } = useMessage(chatAppId)
-// Define reactive message state
+const { resetMessage, getMessage, setMessageText } = useMessage(chatAppId as string)
+
 const refInput = ref(null);
 
+/*
 const props = defineProps({
   templates: {
     type: Array,
@@ -48,6 +52,7 @@ const props = defineProps({
     default: () => { return [] }
   },
 })
+*/
 
 watch(
   () => getMessage().text,
@@ -81,7 +86,7 @@ const keyEnter = (event) => {
 const sendMessage = () => {
   const Message = ref(getMessage())
   if (Message.value.text != '' || Message.value.file) {
-    const messageObject = {
+    const messageObject: IInputMessage = {
       type: null,
       text: null,
       url: null,
@@ -93,7 +98,7 @@ const sendMessage = () => {
       messageObject.type = 'message.' + Message.value.file.type;
       messageObject.url = Message.value.file.url;
       messageObject.filename = Message.value.file.name;
-      messageObject.size = Message.value.file.size;
+      messageObject.size = Message.value.file.size.toString();
       messageObject.text = Message?.value?.text.trim();
     } else {
       messageObject.type = 'message.text';
