@@ -62,7 +62,10 @@
               />
               <ChatInput @send="addMessage">
                 <template #buttons>
-                  <FileUploader :filebump-url="filebumpUrl" />
+                  <FileUploader
+                    :filebump-url="filebumpUrl"
+                    :state="'enabled'"
+                  />
                   <ButtonEmojiPicker
                     :mode="'hover'"
                     :state="'disabled'"
@@ -71,16 +74,19 @@
                     :templates="templates"
                     :group-templates="groupTemplates"
                     :mode="'click'"
+                    :state="'enabled'"
                   />
                   <ButtonWabaTemplateSelector
                     :waba-templates="wabaTemplates"
                     :group-templates="groupTemplates"
                     :mode="'click'"
+                    :state="'enabled'"
                     @send-waba-values="sendWabaValues"
                   />
                   <ChannelSelector
                     :channels="channels"
                     :mode="'hover'"
+                    :state="'enabled'"
                     @select-channel="onSelectChannel"
                   />
                 </template>
