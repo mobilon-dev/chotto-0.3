@@ -58,6 +58,7 @@
                 :typing="selectedChat.typing ? { avatar: selectedChat.avatar, title: selectedChat.title } : false"
                 @message-action="messageAction"
                 @load-more="loadMore"
+                @message-visible="messageVisible"
               />
               <ChatInput @send="addMessage">
                 <template #buttons>
@@ -262,6 +263,11 @@ const loadMore = () => {
   // do load more messages to feed
   console.log("load more");
 };
+
+const messageVisible = (message) => {
+  // processing message in feed visible area 
+  console.log('visible message',message.type)
+}
 
 const getFeedObjects = () => {
   // console.log('get feed')
