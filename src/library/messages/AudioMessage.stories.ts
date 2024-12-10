@@ -52,7 +52,7 @@ export const RightMessage: Story = {
   },
 };
 
-export const RightMessageSend: Story = {
+export const RightMessageSent: Story = {
   args: {
     message: {
       ...message,

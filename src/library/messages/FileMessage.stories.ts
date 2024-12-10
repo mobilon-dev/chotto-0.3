@@ -64,7 +64,7 @@ export const RightFileMessage: Story = {
   },
 };
 
-export const RightFileMessageStatusSend: Story = {
+export const RightFileMessageStatusSent: Story = {
   args: {
     message: {
       ...fileMessage,
