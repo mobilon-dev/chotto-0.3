@@ -37,10 +37,39 @@ const longobjects = [
     'sometimes by accident, sometimes on purpose (injected humour and the like).',
  position: 'right',  status: 'read', time: '13 часов назад'},
   { type: "message.image", messageId: '4', url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg",
-    time: '15 часов назад', alt: "Example Image", position: 'left', status: 'read'},
+    time: '15 часов назад', alt: "Example Image", position: 'left', status: 'read',
+    text: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ' +
+    'The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', ' +
+    'making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, ' +
+    'and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, ' +
+    'sometimes by accident, sometimes on purpose (injected humour and the like).',
+
+  },
   { type: "message.file",  messageId: '5', url: "https://example.com/file.pdf",
+    text: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ' +
+    'The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', ' +
+    'making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, ' +
+    'and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, ' +
+    'sometimes by accident, sometimes on purpose (injected humour and the like).',
     time: '15 часов назад', position: 'right', status: 'read', filename: "Документ.pdf"},
   { type: "message.text",  messageId: '6', text: "Привет!",position: 'right', time: '16:30'},
+  {
+    messageId: '7', type: "message.video", url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
+    position: 'right', status: 'read', time: '17:27',
+    text: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ' +
+    'The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', ' +
+    'making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, ' +
+    'and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, ' +
+    'sometimes by accident, sometimes on purpose (injected humour and the like).',
+  },
+  {
+    messageId: '8', type: "message.audio", url: "https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3",
+    position: 'left', status: 'read', time: '17:27',
+    text: "Оченьдлинноесообщениебезпробеловзанимающеесразунесколькострокивызывающеестранноеповедениеокон!",
+    transcript:{
+      text: "Оченьдлинноесообщениебезпробеловзанимающеесразунесколькострокивызывающеестранноеповедениеокон!",
+    }
+  },
 ];
 const buttonParams = {
   color: '#10b981',
