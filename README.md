@@ -17,7 +17,7 @@ Vue3 UI components for chats, conversations, ai
 
 [simple](https://github.com/antirek/chotto-sample)
 
-[demo1: 1 manager + 3 site users](https://determaer.github.io/chat-demo/)
+[demo1: 1 manager + 3 site users](https://determaer.github.io/chat-demo/) ([source](https://github.com/determaer/chat-demo))
 
 
 
