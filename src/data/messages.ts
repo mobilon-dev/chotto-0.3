@@ -113,4 +113,7 @@ export const messages = [
     chatId: 4, type: "message.image", url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg", alt: "Example Image",
     direction: 'outgoing', timestamp: '1726743559',
   },
+  { chatId: 4, type: "message.text", text: "Оченьдлинноесообщениебезпробеловзанимающеесразунесколькострокивызывающеестранноеповедениеокон!", direction: 'incoming', status: 'read', timestamp: '1727027959' },
+  { chatId: 4, type: "message.text", text: "Оченьдлинноесообщениебезпробеловзанимающеесразунесколькострокивызывающеестранноеповедениеокон!", direction: 'outgoing', status: 'read', timestamp: '1727027958' },
+
 ];
