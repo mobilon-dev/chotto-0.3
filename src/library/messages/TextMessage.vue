@@ -1,6 +1,6 @@
 <template>
-  <div class="text-message">
     <div
+      class="text-message"
       :class="getClass(message)"
       :messageId="message.messageId"
       @mouseleave="hideMenu"
@@ -74,7 +74,6 @@
         </transition>
       </div>
     </div>
-  </div>
 </template>
 
 <script
@@ -152,7 +151,7 @@ function getClass(message) {
     position: relative;
     word-wrap: break-word;
     width: fit-content;
-    max-width: 40%;
+    max-width: 20rem;
     border-radius: 14px;
     padding: 10px 10px 4px 16px;
   }
