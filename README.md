@@ -7,21 +7,23 @@ Vue3 Chat UI components - собери свой интерфейс чата
 
 - [storybook](https://mobilon-dev.github.io/chotto/)
 
-## схема
-
-![](images/scheme.png)
-
-## пример
-
-[пример](https://github.com/antirek/chotto-sample)
-
 ## скриншот
 
 ![](images/screenshot7.png)
 
 
+## пример
+
+[пример](https://github.com/antirek/chotto-sample)
+
+[demo1: переписка ч пользователями сайта](https://determaer.github.io/chat-demo/)
+
+
 # разработка
 
+## схема
+
+![](images/scheme.png)
 
 ## install
 
