@@ -132,4 +132,16 @@ export const messages = [
     chatId: 4, type: "message.image", url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg", alt: "Example Image",
     direction: 'incoming', timestamp: '1726743539',text: "Очень длинное сообщение без пробелов занимающее сразу несколько строк и вызывающее странное поведение окон!",
   },
+  {
+    chatId: 4, type: "message.video", url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
+    direction: 'incoming', status: 'read', timestamp: '1727027959',
+    text: "Оченьдлинноесообщениебезпробеловзанимающеесразунесколькострокивызывающеестранноеповедениеокон!",
+
+  },
+  {
+    chatId: 4, type: "message.video", url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
+    direction: 'outgoing', status: 'read', timestamp: '1727027959',
+    text: "Оченьдлинноесообщениебезпробеловзанимающеесразунесколькострокивызывающеестранноеповедениеокон!",
+
+  },
 ];
