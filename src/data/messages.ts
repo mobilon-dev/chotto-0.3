@@ -144,4 +144,16 @@ export const messages = [
     text: "Оченьдлинноесообщениебезпробеловзанимающеесразунесколькострокивызывающеестранноеповедениеокон!",
 
   },
+  {
+    chatId: 4, type: "message.file", url: "https://axiomabio.com/pdf/test.pdf", filename: "оченьдлинноеназваниедокумента.pdf", direction: 'outgoing',
+    status: 'received', timestamp: '1727027959', actions: [{ action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' }],
+    text: "Оченьдлинноесообщениебезпробеловзанимающеесразунесколькострокивызывающеестранноеповедениеокон!",
+
+  },
+  {
+    chatId: 4, type: "message.file", url: "https://axiomabio.com/pdf/test.pdf", filename: "Документ.pdf", direction: 'incoming',
+    status: 'received', timestamp: '1727027959', actions: [{ action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' }],
+    text: "Оченьдлинноесообщениебезпробеловзанимающеесразунесколькострокивызывающеестранноеповедениеокон!",
+
+  },
 ];
