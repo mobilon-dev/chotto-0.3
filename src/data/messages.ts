@@ -107,7 +107,16 @@ export const messages = [
   },
   {
     chatId: 4, type: "message.audio", url: "https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3",
-    text: "Привет!", direction: 'incoming', status: 'read', timestamp: '1727027959'
+    direction: 'incoming', status: 'read', timestamp: '1727027959',
+    text: "Оченьдлинноесообщениебезпробеловзанимающеесразунесколькострокивызывающеестранноеповедениеокон!",
+  },
+  {
+    chatId: 4, type: "message.audio", url: "https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3",
+    direction: 'outgoing', status: 'read', timestamp: '1727027959',
+    text: "Оченьдлинноесообщениебезпробеловзанимающеесразунесколькострокивызывающеестранноеповедениеокон!",
+    transcript:{
+      text: "Оченьдлинноесообщениебезпробеловзанимающеесразунесколькострокивызывающеестранноеповедениеокон!",
+    }
   },
   {
     chatId: 4, type: "message.image", url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg", alt: "Example Image",
