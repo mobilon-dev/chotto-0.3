@@ -13,6 +13,11 @@ Vue3 UI components for chats, conversations, ai
 ![](images/screenshot7.png)
 
 
+## video
+
+[chotto 01: знакомство](https://youtu.be/LbtXeR_P9fs)
+
+
 ## examples
 
 [simple](https://github.com/antirek/chotto-sample)
