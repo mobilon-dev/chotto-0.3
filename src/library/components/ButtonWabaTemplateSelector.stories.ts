@@ -9,7 +9,7 @@ const meta: Meta<typeof ButtonWabaTemplateSelector> = {
   parameters: {
     layout: 'centered',
   },
-  decorators: [() => ({ template: '<div style="min-height: 100px; min-width: 600px; margin-top: 550px; padding: 0px 0px"><story/></div>' })]
+  decorators: [() => ({ template: '<div style="min-height: 100px; min-width: 800px; margin-top: 550px; padding: 0px 0px; position: relative"><story/></div>' })]
 };
  
 export default meta;
