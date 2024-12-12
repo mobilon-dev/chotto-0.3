@@ -189,6 +189,7 @@ const searchedTemplate = computed(() => {
     padding: 16px 20px 10px 20px;
     background-color: var(--template-selector-bg);
     border: 1px solid var(--neutral-200);
+    box-sizing: border-box;
   }
 
   &__button-close {
@@ -212,6 +213,8 @@ const searchedTemplate = computed(() => {
     grid-row: 2 / 5;
     overflow-y: auto;
     border: 1px solid var(--neutral-200);
+    padding: 0;
+    margin: 0;
 
     &::-webkit-scrollbar {
       width: 6px;
@@ -226,6 +229,11 @@ const searchedTemplate = computed(() => {
     &::-webkit-scrollbar-track {
       border-radius: 10px;
     }
+  }
+
+  &__list-templates{
+    padding: 0;
+    margin: 0;
   }
 
   &__templates {
@@ -322,6 +330,7 @@ const searchedTemplate = computed(() => {
     grid-row: 2;
     width: 100%;
     margin-bottom: 16px;
+    margin-right: 10px;
   }
 
   &__searching-input {
@@ -333,6 +342,7 @@ const searchedTemplate = computed(() => {
     color: var(--input-color);
     border: var(--input-border);
     transition: border-color var(--input-transition-duration);
+    box-sizing: border-box;
 
     &::placeholder {
       color: var(--input-placeholder-color);
@@ -383,6 +393,7 @@ const searchedTemplate = computed(() => {
     background-color: var(--base-message-left-bg);
     border-radius: 14px;
     max-width: 70%;
+    margin-bottom: 15px;
   }
 
   &__plug {
@@ -392,6 +403,8 @@ const searchedTemplate = computed(() => {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0;
+    margin: 0;
   }
 
   &__preview-text {

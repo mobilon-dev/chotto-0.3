@@ -9,7 +9,6 @@ const meta: Meta<typeof ButtonTemplateSelector> = {
   parameters: {
     layout: 'centered',
   },
-  decorators: [() => ({ template: '<div style="min-height: 100px; min-width: 600px; margin-top: 550px; padding: 0px 0px"><story/></div>' })]
 };
  
 export default meta;
@@ -20,4 +19,11 @@ export const Standard: Story = {
     templates,
     groupTemplates,
   },
+  decorators: [() => ({ template: '<div style="min-height: 100px; min-width: 800px; margin-top: 550px; padding: 0px 0px; position: relative"><story/></div>' })]
 };
+
+export const InactiveButton: Story = {
+  args: {
+    state: 'disabled',
+  }
+}

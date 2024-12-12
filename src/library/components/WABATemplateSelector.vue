@@ -78,7 +78,7 @@
 
       <div class="template-selector__preview-container">
         <div
-          v-if="templateParts"
+          v-if="templateParts.length > 0"
           class="template-selector__preview"
         >
           <div class="template-selector__preview-wrapper">
@@ -336,6 +336,7 @@ watch(isModalVisible, (newVal) => {
     padding: 16px 20px 10px 20px;
     background-color: var(--template-selector-bg);
     border: 1px solid var(--neutral-200);
+    box-sizing: border-box;
   }
 
   &__button-close {
@@ -359,6 +360,8 @@ watch(isModalVisible, (newVal) => {
     grid-row: 2 / 5;
     overflow-y: auto;
     border: 1px solid var(--neutral-200);
+    padding: 0;
+    margin: 0;
 
     &::-webkit-scrollbar {
       width: 6px;
@@ -373,6 +376,11 @@ watch(isModalVisible, (newVal) => {
     &::-webkit-scrollbar-track {
       border-radius: 10px;
     }
+  }
+
+  &__list-templates{
+    padding: 0;
+    margin: 0;
   }
 
   &__templates {
@@ -469,6 +477,7 @@ watch(isModalVisible, (newVal) => {
     grid-row: 2;
     width: 100%;
     margin-bottom: 16px;
+    margin-right: 10px;
   }
 
   &__searching-input {
@@ -480,6 +489,7 @@ watch(isModalVisible, (newVal) => {
     color: var(--input-color);
     border: var(--input-border);
     transition: border-color var(--input-transition-duration);
+    box-sizing: border-box;
 
     &::placeholder {
       color: var(--input-placeholder-color);
@@ -530,6 +540,7 @@ watch(isModalVisible, (newVal) => {
     background-color: var(--base-message-left-bg);
     border-radius: 14px;
     max-width: 70%;
+    margin-bottom: 15px;
   }
 
   &__plug {
@@ -539,6 +550,8 @@ watch(isModalVisible, (newVal) => {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0;
+    margin: 0;
   }
 
   &__preview-text {
