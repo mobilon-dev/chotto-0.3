@@ -106,6 +106,11 @@
             <p class="template-selector__preview-time">
               22:22
             </p>
+            <WABAQuickReplyButtons
+              v-if="selectedTemplate.buttons"
+              :buttons="selectedTemplate.buttons"
+
+            />
           </div>
         </div>
 
@@ -162,6 +167,7 @@ import { useMessage } from '../../helpers/useMessage';
 
 import PlaceholderComponent from './PlaceholderComponent.vue'
 import WABAAttachmentSection from './WABAAttachmentSection.vue';
+import WABAQuickReplyButtons from './WABAQuickReplyButtons.vue';
 const props = defineProps({
   wabaTemplates: {
     type: Array,

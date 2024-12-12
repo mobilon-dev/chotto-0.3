@@ -83,11 +83,14 @@
   --modal-icon-color: var(--neutral-600);
   --modal-bg: var(--default-white);
 
-  /* WABA Attachment section */
+  /* WABA section */
 
   --not-filled-color: #FEF3B8;
   --not-filled-color-hover:  #fef3b890;
   --filled-color: #dcfcd4;
   --filled-color-hover: #e6fce1;
   --error-color: #F84932;
+
+  --action-color: #3dc8f2;
+  --button-preview-action: #118ABF;
 }
