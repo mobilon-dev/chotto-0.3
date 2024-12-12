@@ -60,6 +60,10 @@ export const wabaTemplates = [
         "text": "Перенести на неделю",
         "type": "QUICK_REPLY",
       },
+      {
+        "text": "Расторгнуть договор",
+        "type": "QUICK_REPLY",
+      },
     ],
   },
   {

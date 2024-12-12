@@ -76,12 +76,18 @@
       </div>
 
 
-      <div class="template-selector__preview-container">
+      <div class="template-selector__preview-container" ref="previewContainer">
         <div
           v-if="templateParts.length > 0"
           class="template-selector__preview"
         >
           <div class="template-selector__preview-wrapper">
+            <WABAAttachmentSection 
+              v-if="selectedTemplate.type != 'TEXT'"
+              :type="selectedTemplate.type"
+              :templateId="selectedTemplate.templateId"
+              @file-selected="handleFileSelected"
+            />
             <div class="template-selector__preview-text-container">
               <template
                 v-for="(item, index) in templateParts"
@@ -100,15 +106,26 @@
             <p class="template-selector__preview-time">
               22:22
             </p>
+            <WABAQuickReplyButtons
+              v-if="selectedTemplate.buttons"
+              :buttons="selectedTemplate.buttons"
+              @select-all-variants="selectAllVariants"
+            />
           </div>
         </div>
-
         <p
           v-else
           class="template-selector__plug"
         >
           Предпросмотр шаблона
         </p>
+        <div class="template-selector__reply-buttons" v-if="allVariantsShow">
+          <div class="template-selector__semitransparent-overlay"  @click="selectAllVariants"></div>
+            <WABASeparatedQuickButtons 
+              :buttons="selectedTemplate.buttons"
+              @select-all-variants="selectAllVariants"  
+            />
+        </div>
       </div>
 
       <transition name="modal-fade">
@@ -141,7 +158,7 @@
 
       <button
         class="template-selector__button-paste"
-        :disabled="allFieldsFilled"
+        :disabled="allFieldsUnFilled"
         @click="handlePutMessage"
       >
         Отправить
@@ -151,10 +168,12 @@
 </template>
 
 <script setup>
-import { computed, ref, reactive, inject, watch, nextTick } from 'vue'
-import { useMessage } from '../../helpers/useMessage';
+import { computed, ref, reactive, watch, nextTick } from 'vue'
 
 import PlaceholderComponent from './PlaceholderComponent.vue'
+import WABAAttachmentSection from './WABAAttachmentSection.vue';
+import WABAQuickReplyButtons from './WABAQuickReplyButtons.vue';
+import WABASeparatedQuickButtons from './WABASeparatedQuickButtons.vue';
 const props = defineProps({
   wabaTemplates: {
     type: Array,
@@ -170,8 +189,7 @@ const props = defineProps({
 })
 
 
-const chatAppId = inject('chatAppId')
-const { setMessageText } = useMessage(chatAppId)
+
 const emit = defineEmits(['closeTemplateWindow', 'pasteTemplate', 'sendWabaValues'])
 
 const closeTemplateWindow = () => {
@@ -181,19 +199,51 @@ const closeTemplateWindow = () => {
 
 const handlePutMessage = () => {
   emit('closeTemplateWindow')
-  emit('sendWabaValues', { templateId: selectedTemplate.value.templateId, values: enteredValues.value })
-  // setMessageText(fullText.value)
+  if (selectedFile.value){
+    emit('sendWabaValues', 
+    { 
+      templateId: selectedTemplate.value.templateId, 
+      values: enteredValues.value, 
+      file: selectedFile.value 
+    })
+  }
+  else {
+    emit('sendWabaValues', 
+    { 
+      templateId: selectedTemplate.value.templateId, 
+      values: enteredValues.value 
+    })
+  }
   resetValues()
 }
 
+const handleFileSelected = (file) => {
+  selectedFile.value = file
+}
+
+
+const previewContainer = ref(null)
 const selectedGroup = ref(null)
 const selectedTemplate = ref(null);
+const selectedFile = ref(null)
 const searchQuery = ref('');
+const allVariantsShow = ref(false)
+
+const selectAllVariants = () => {
+  
+  allVariantsShow.value = !allVariantsShow.value
+  if (allVariantsShow.value){
+    previewContainer.value.scrollTop = 0
+    previewContainer.value.style['overflow-y'] = 'hidden'
+  }
+  else previewContainer.value.style['overflow-y'] = 'scroll'
+}
 
 const selectTemplate = (item) => {
   props.wabaTemplates.forEach(с => с.isSelected = false);
   item.isSelected = true;
   selectedTemplate.value = item;
+  allVariantsShow.value = false;
 };
 
 const clearSelectedTemplate = () => {
@@ -270,9 +320,15 @@ const templateParts = computed(() => {
 
 // Проверяем что все поля заполнены.
 // Сравниваем длину объекта, в котором хранятся значения и количество исходных переменных в шаблоне
-const allFieldsFilled = computed(() => {
-  return Object.keys(wabaValues).length !== selectedTemplate.value?.template.match(/{{\d+}}/gi).length
-});
+const allFieldsUnFilled = computed(() => {
+  if (!selectedTemplate.value)
+  return true
+  const containsVariables = Object.keys(wabaValues).length !== selectedTemplate.value?.template.match(/{{\d+}}/gi).length
+  if (selectedTemplate.value.type === 'TEXT')
+    return containsVariables
+  else if (selectedTemplate.value.type !== 'TEXT')
+    return containsVariables || !selectedFile.value
+  });
 
 // Сброс значений
 const resetValues = () => {
@@ -511,9 +567,10 @@ watch(isModalVisible, (newVal) => {
     border: 1px solid var(--neutral-200);
     max-height: 375px;
     overflow-y: auto;
+    overflow-x: hidden;
     background-color: var(--template-selector-preview-bg);
     background-image: url('../../../public/chat-background.svg');
-
+    position: relative;
     &::-webkit-scrollbar {
       width: 6px;
       background-color: var(--scrollbar-bg);
@@ -542,6 +599,19 @@ watch(isModalVisible, (newVal) => {
     max-width: 70%;
     margin-bottom: 15px;
   }
+
+  &__semitransparent-overlay {
+  height: 100%;
+  background: black;
+  opacity: 0.5;
+}
+
+&__reply-buttons {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  bottom: 0;
+}
 
   &__plug {
     width: 100%;

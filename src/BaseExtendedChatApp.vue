@@ -82,6 +82,7 @@
                     :mode="'click'"
                     :state="'active'"
                     @send-waba-values="sendWabaValues"
+                    :filebump-url="filebumpUrl"
                   />
                   <ChannelSelector
                     :channels="channels"

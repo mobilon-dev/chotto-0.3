@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, provide } from 'vue';
 import WABATemplateSelector from './WABATemplateSelector.vue';
 const props = defineProps({
   wabaTemplates: {
@@ -47,7 +47,12 @@ const props = defineProps({
     type: String,
     default: 'active',
   },
+  filebumpUrl: {
+    type: String,
+  },
 })
+
+provide('filebumpUrl', props.filebumpUrl)
 
 const templateButton = ref(null)
 const template = ref(null)
@@ -76,23 +81,12 @@ const hoverout = () => {
   }
 }
 
-const handleClickOutside = (event) => {
-  if (props.mode == 'click' && !templateButton.value.contains(event.target) && !template.value.contains(event.target)) {
-    template.value.style.display = 'none'
-  }
-}
-
 const close = () => {
   template.value.style.display = 'none'
 }
 
 onMounted(() => {
   template.value.style.display = 'none'
-  document.addEventListener("click", handleClickOutside)
-})
-
-onUnmounted(() => {
-  document.removeEventListener("click", handleClickOutside)
 })
 
 const sendWabaValues = (obj) => {
