@@ -2,7 +2,7 @@
   <div
     class="preview-actions"
     :class="{ 
-      'last-element': index === buttons.length - 1, 
+      'last-element': index === buttons.length - 1 || (index == 2 && buttons.length > 3), 
       'middle-element' : (buttons.length - 1 > index  && index > 0)
      }"
     v-for="(button, index) in buttons.slice(0, 3)"

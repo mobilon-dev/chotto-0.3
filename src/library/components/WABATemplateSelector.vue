@@ -76,7 +76,7 @@
       </div>
 
 
-      <div class="template-selector__preview-container">
+      <div class="template-selector__preview-container" ref="previewContainer">
         <div
           v-if="templateParts.length > 0"
           class="template-selector__preview"
@@ -109,17 +109,23 @@
             <WABAQuickReplyButtons
               v-if="selectedTemplate.buttons"
               :buttons="selectedTemplate.buttons"
-
+              @select-all-variants="selectAllVariants"
             />
           </div>
         </div>
-
         <p
           v-else
           class="template-selector__plug"
         >
           Предпросмотр шаблона
         </p>
+        <div class="template-selector__reply-buttons" v-if="allVariantsShow">
+          <div class="template-selector__semitransparent-overlay"  @click="selectAllVariants"></div>
+            <WABASeparatedQuickButtons 
+              :buttons="selectedTemplate.buttons"
+              @select-all-variants="selectAllVariants"  
+            />
+        </div>
       </div>
 
       <transition name="modal-fade">
@@ -162,12 +168,12 @@
 </template>
 
 <script setup>
-import { computed, ref, reactive, inject, watch, nextTick } from 'vue'
-import { useMessage } from '../../helpers/useMessage';
+import { computed, ref, reactive, watch, nextTick } from 'vue'
 
 import PlaceholderComponent from './PlaceholderComponent.vue'
 import WABAAttachmentSection from './WABAAttachmentSection.vue';
 import WABAQuickReplyButtons from './WABAQuickReplyButtons.vue';
+import WABASeparatedQuickButtons from './WABASeparatedQuickButtons.vue';
 const props = defineProps({
   wabaTemplates: {
     type: Array,
@@ -215,15 +221,29 @@ const handleFileSelected = (file) => {
   selectedFile.value = file
 }
 
+
+const previewContainer = ref(null)
 const selectedGroup = ref(null)
 const selectedTemplate = ref(null);
 const selectedFile = ref(null)
 const searchQuery = ref('');
+const allVariantsShow = ref(false)
+
+const selectAllVariants = () => {
+  
+  allVariantsShow.value = !allVariantsShow.value
+  if (allVariantsShow.value){
+    previewContainer.value.scrollTop = 0
+    previewContainer.value.style['overflow-y'] = 'hidden'
+  }
+  else previewContainer.value.style['overflow-y'] = 'scroll'
+}
 
 const selectTemplate = (item) => {
   props.wabaTemplates.forEach(с => с.isSelected = false);
   item.isSelected = true;
   selectedTemplate.value = item;
+  allVariantsShow.value = false;
 };
 
 const clearSelectedTemplate = () => {
@@ -547,9 +567,10 @@ watch(isModalVisible, (newVal) => {
     border: 1px solid var(--neutral-200);
     max-height: 375px;
     overflow-y: auto;
+    overflow-x: hidden;
     background-color: var(--template-selector-preview-bg);
     background-image: url('../../../public/chat-background.svg');
-
+    position: relative;
     &::-webkit-scrollbar {
       width: 6px;
       background-color: var(--scrollbar-bg);
@@ -578,6 +599,19 @@ watch(isModalVisible, (newVal) => {
     max-width: 70%;
     margin-bottom: 15px;
   }
+
+  &__semitransparent-overlay {
+  height: 100%;
+  background: black;
+  opacity: 0.5;
+}
+
+&__reply-buttons {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  bottom: 0;
+}
 
   &__plug {
     width: 100%;
