@@ -100,7 +100,6 @@ const handleFileChange = (event) => {
       error.value = 'Файл слишком большого размера'
     }
     else if (!error.value){
-      console.log('Selected file:', file);
       selectedFile.value = file
       uploadFile()
     }
@@ -108,37 +107,36 @@ const handleFileChange = (event) => {
 };
 
 const uploadFile = async () => {
-  uploadStatus.value = "uploading";
+  if (selectedFile.value){
+    uploadStatus.value = "uploading";
 
-  const formData = new FormData();
-  if (selectedFile.value) formData.append("file", selectedFile.value);
+const formData = new FormData();
+formData.append("file", selectedFile.value);
 
-  const oldFilebumpUrl = 'https://filebump2.services.mobilon.ru';
-  const url = (filebumpUrl.value ?
-    filebumpUrl.value : oldFilebumpUrl) + "/upload";
+const oldFilebumpUrl = 'https://filebump2.services.mobilon.ru';
+const url = (filebumpUrl.value ?
+  filebumpUrl.value : oldFilebumpUrl) + "/upload";
 
-  try {
-    const response = await fetch(
-      url,
-      {
-        method: "POST",
-        body: formData,
-      }
-    );
-    const result = await response.json();
-    uploadStatus.value = "success";
+try {
+  const response = await fetch(
+    url,
+    {
+      method: "POST",
+      body: formData,
+    }
+  );
+  const result = await response.json();
+  uploadStatus.value = "success";
 
-    // emit event with link
-    /*setMessageFile({
-      url: result.url,
-      name: selectedFile.value.name,
-      size: selectedFile.value.size,
-      type: getTypeFileByMime(selectedFile.value.type),
-    })*/
-   console.log(result)
-  } catch (error) {
-    console.error("Ошибка при загрузке файла:", error);
-    uploadStatus.value = "error";
+  emit('fileSelected',{
+    url: result.url,
+    filename: selectedFile.value.name,
+    filesize: selectedFile.value.size,
+  })
+} catch (error) {
+  console.error("Ошибка при загрузке файла:", error);
+  uploadStatus.value = "error";
+}
   }
 };
 
@@ -158,9 +156,17 @@ watch(
         fileInput.value.value = '';
       }
       selectedFile.value = null
+      emit('fileSelected',null)
     }
   }
 );
+
+watch(
+  () => props.templateId,
+  () => {
+    uploadStatus.value = ''
+  }
+)
 </script>
 
 <style scoped>

@@ -86,6 +86,7 @@
               v-if="selectedTemplate.type != 'TEXT'"
               :type="selectedTemplate.type"
               :templateId="selectedTemplate.templateId"
+              @file-selected="handleFileSelected"
             />
             <div class="template-selector__preview-text-container">
               <template
@@ -146,7 +147,7 @@
 
       <button
         class="template-selector__button-paste"
-        :disabled="allFieldsFilled"
+        :disabled="allFieldsUnFilled"
         @click="handlePutMessage"
       >
         Отправить
@@ -176,8 +177,7 @@ const props = defineProps({
 })
 
 
-const chatAppId = inject('chatAppId')
-const { setMessageText } = useMessage(chatAppId)
+
 const emit = defineEmits(['closeTemplateWindow', 'pasteTemplate', 'sendWabaValues'])
 
 const closeTemplateWindow = () => {
@@ -187,13 +187,31 @@ const closeTemplateWindow = () => {
 
 const handlePutMessage = () => {
   emit('closeTemplateWindow')
-  emit('sendWabaValues', { templateId: selectedTemplate.value.templateId, values: enteredValues.value })
-  // setMessageText(fullText.value)
+  if (selectedFile.value){
+    emit('sendWabaValues', 
+    { 
+      templateId: selectedTemplate.value.templateId, 
+      values: enteredValues.value, 
+      file: selectedFile.value 
+    })
+  }
+  else {
+    emit('sendWabaValues', 
+    { 
+      templateId: selectedTemplate.value.templateId, 
+      values: enteredValues.value 
+    })
+  }
   resetValues()
+}
+
+const handleFileSelected = (file) => {
+  selectedFile.value = file
 }
 
 const selectedGroup = ref(null)
 const selectedTemplate = ref(null);
+const selectedFile = ref(null)
 const searchQuery = ref('');
 
 const selectTemplate = (item) => {
@@ -276,9 +294,15 @@ const templateParts = computed(() => {
 
 // Проверяем что все поля заполнены.
 // Сравниваем длину объекта, в котором хранятся значения и количество исходных переменных в шаблоне
-const allFieldsFilled = computed(() => {
-  return Object.keys(wabaValues).length !== selectedTemplate.value?.template.match(/{{\d+}}/gi).length
-});
+const allFieldsUnFilled = computed(() => {
+  if (!selectedTemplate.value)
+  return true
+  const containsVariables = Object.keys(wabaValues).length !== selectedTemplate.value?.template.match(/{{\d+}}/gi).length
+  if (selectedTemplate.value.type === 'TEXT')
+    return containsVariables
+  else if (selectedTemplate.value.type !== 'TEXT')
+    return containsVariables || !selectedFile.value
+  });
 
 // Сброс значений
 const resetValues = () => {
