@@ -82,6 +82,11 @@
           class="template-selector__preview"
         >
           <div class="template-selector__preview-wrapper">
+            <WABAAttachmentSection 
+              v-if="selectedTemplate.type != 'TEXT'"
+              :type="selectedTemplate.type"
+              :templateId="selectedTemplate.templateId"
+            />
             <div class="template-selector__preview-text-container">
               <template
                 v-for="(item, index) in templateParts"
@@ -155,6 +160,7 @@ import { computed, ref, reactive, inject, watch, nextTick } from 'vue'
 import { useMessage } from '../../helpers/useMessage';
 
 import PlaceholderComponent from './PlaceholderComponent.vue'
+import WABAAttachmentSection from './WABAAttachmentSection.vue';
 const props = defineProps({
   wabaTemplates: {
     type: Array,

@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, provide } from 'vue';
 import WABATemplateSelector from './WABATemplateSelector.vue';
 const props = defineProps({
   wabaTemplates: {
@@ -47,7 +47,12 @@ const props = defineProps({
     type: String,
     default: 'active',
   },
+  filebumpUrl: {
+    type: String,
+  },
 })
+
+provide('filebumpUrl', props.filebumpUrl)
 
 const templateButton = ref(null)
 const template = ref(null)

@@ -82,4 +82,12 @@
   --modal-overlay-shadow: 0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 8px 10px -6px rgba(0, 0, 0, 0.1);
   --modal-icon-color: var(--neutral-600);
   --modal-bg: var(--default-white);
+
+  /* WABA Attachment section */
+
+  --not-filled-color: #FEF3B8;
+  --not-filled-color-hover:  #fef3b890;
+  --filled-color: #dcfcd4;
+  --filled-color-hover: #e6fce1;
+  --error-color: #F84932;
 }
