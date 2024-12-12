@@ -15,3 +15,9 @@ export const Standard: Story = {
   args: {
   },
 };
+
+export const InactiveButton: Story = {
+  args: {
+    state: 'disabled',
+  },
+};
