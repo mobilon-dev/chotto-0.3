@@ -136,6 +136,7 @@ try {
     url: result.url,
     filename: selectedFile.value.name,
     filesize: selectedFile.value.size,
+    filetype: getTypeFileByMime(selectedFile.value.type),
   })
 } catch (error) {
   console.error("Ошибка при загрузке файла:", error);
