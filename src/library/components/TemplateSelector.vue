@@ -186,7 +186,7 @@ const searchedTemplate = computed(() => {
     column-gap: 14px;
     width: 100%;
     height: 500px;
-    padding: 16px 20px 10px 20px;
+    padding: 16px 5px 5px 5px;
     background-color: var(--template-selector-bg);
     border: 1px solid var(--neutral-200);
     box-sizing: border-box;
@@ -241,6 +241,8 @@ const searchedTemplate = computed(() => {
     grid-row: 3 / 5;
     border: 1px solid var(--neutral-200);
     overflow-y: auto;
+    margin-left: -10px;
+    margin-right: 10px;
 
     &::-webkit-scrollbar {
       width: 6px;
@@ -331,6 +333,7 @@ const searchedTemplate = computed(() => {
     width: 100%;
     margin-bottom: 16px;
     margin-right: 10px;
+    margin-left: -10px;
   }
 
   &__searching-input {
@@ -366,6 +369,7 @@ const searchedTemplate = computed(() => {
     overflow-y: auto;
     background-color: var(--template-selector-preview-bg);
     background-image: url('../../../public/chat-background.svg');
+    margin-left: -20px;
 
     &::-webkit-scrollbar {
       width: 6px;
@@ -385,14 +389,14 @@ const searchedTemplate = computed(() => {
   &__preview {
     height: 100%;
     box-sizing: border-box;
-    padding: 20px;
+    padding: 5px;
   }
 
   &__preview-wrapper {
     padding: 10px 10px 4px 16px;
     background-color: var(--base-message-left-bg);
     border-radius: 14px;
-    max-width: 70%;
+    max-width: 90%;
     margin-bottom: 15px;
   }
 

@@ -228,9 +228,6 @@ watch(
   .file-upload{
     background-color: var(--not-filled-color-hover);
   }
-  .file-upload-selected{
-    background-color: var(--filled-color-hover);
-  }
 }
 .file-upload {
   border-radius: 5px;
@@ -243,18 +240,8 @@ watch(
   padding-top: 10px;
   padding-bottom: 10px;
 }
-.file-upload-selected {
-  background-color: var(--filled-color);
-  align-items: left;
-  justify-content: left;
-  cursor: auto;
-}
 .file-upload-icon {
   display: inline;
-  padding-left: 10px;
-}
-.file-uploaded-icon
-{
   padding-left: 10px;
 }
 .file-upload-text {
@@ -262,34 +249,14 @@ watch(
   display: inline;
 }
 .attachment-title {
-  font-size: 10px;
+  font-size: 12px;
   color: #000;
 }
 .file-info {
   margin-top: 1px;
   color: #5f5f5f;
-  font-size: 10px;
+  font-size: 12px;
   word-break: break-word;
-}
-.file-info-selected {
-  text-align: left;
-  color: #000;
-  max-width:200px;
-}
-.decline-icon {
-  display: inline;
-  flex-grow: 1;
-  text-align: right;
-}
-.no-cross {
-  display: none;
-}
-.cross {
-  margin-top: 5px;
-  color: #5f5f5f;
-  display: inline;
-  cursor: pointer;
-  margin-right: 5px;
 }
 .loader-overlay {
   position:absolute;
