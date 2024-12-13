@@ -397,7 +397,8 @@ watch(isModalVisible, (newVal) => {
     border: 1px solid var(--neutral-200);
     box-sizing: border-box;
     min-width: 750px;
-    bottom: 0; right: 0;
+    bottom: 20px; right: 20px;
+    box-shadow: 5px 5px 29px -15px #000000;
   }
 
   &__button-close {
@@ -636,6 +637,7 @@ watch(isModalVisible, (newVal) => {
   &__preview-text-container {
     font-size: 14px;
     word-break: break-word;
+    white-space: pre-line;
   }
 
   &__preview-time {
