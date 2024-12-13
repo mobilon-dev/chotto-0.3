@@ -190,7 +190,7 @@ const props = defineProps({
 
 
 
-const emit = defineEmits(['closeTemplateWindow', 'pasteTemplate', 'sendWabaValues'])
+const emit = defineEmits(['closeTemplateWindow', 'sendWabaValues'])
 
 const closeTemplateWindow = () => {
   emit('closeTemplateWindow')
@@ -199,21 +199,28 @@ const closeTemplateWindow = () => {
 
 const handlePutMessage = () => {
   emit('closeTemplateWindow')
+  const template = {
+      text: '',
+      templateId: '',
+      values: [],
+      file: null,
+      buttons: null,
+    }
   if (selectedFile.value){
-    emit('sendWabaValues', 
-    { 
-      templateId: selectedTemplate.value.templateId, 
-      values: enteredValues.value, 
-      file: selectedFile.value 
-    })
+    template.text = fullText.value
+    template.templateId = selectedTemplate.value.templateId
+    template.values = enteredValues.value
+    template.file = selectedFile.value 
   }
   else {
-    emit('sendWabaValues', 
-    { 
-      templateId: selectedTemplate.value.templateId, 
-      values: enteredValues.value 
-    })
+    template.text = fullText.value
+    template.templateId = selectedTemplate.value.templateId
+    template.values = enteredValues.value
   }
+  if (selectedTemplate.value.buttons){
+    template.buttons = selectedTemplate.value.buttons
+  }
+  emit('sendWabaValues', template)
   resetValues()
 }
 
@@ -342,13 +349,21 @@ const resetValues = () => {
 
 // Свойство получения всего текста
 const fullText = computed(() => {
-  return templateParts.value.map(item => {
+  console.log(templateParts.value, selectedTemplate.value.buttons)
+  let templateText = templateParts.value.map(item => {
     if (typeof item === 'string') {
       return item;
     } else {
       return wabaValues[item.index];
     }
   }).join('');
+  let buttonsText = ''
+  if (selectedTemplate.value.buttons){
+    buttonsText = selectedTemplate.value.buttons.map(b => {
+      return '\n| [' + b.text + ']'
+    }).join('');
+  }
+  return templateText.concat(buttonsText) 
 });
 
 // Свойство получения введенных значений

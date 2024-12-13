@@ -81,8 +81,8 @@
                     :group-templates="groupTemplates"
                     :mode="'click'"
                     :state="'active'"
-                    @send-waba-values="sendWabaValues"
                     :filebump-url="filebumpUrl"
+                    @send-waba-values="sendWabaValues"
                   />
                   <ChannelSelector
                     :channels="channels"
@@ -313,6 +313,26 @@ const addMessage = (message) => {
 
 const sendWabaValues = (obj) => {
   console.log('send waba values', obj);
+  const messageObject = {
+      type: '',
+      text: '',
+      url: '',
+      filename: '',
+      size: '',
+    };
+
+    if (obj.file) {
+      messageObject.type = 'message.' + obj.file.filetype;
+      messageObject.url = obj.file.url;
+      messageObject.filename = obj.file.filename;
+      messageObject.size = obj.file.filesize.toString();
+      messageObject.text = obj.text.trim();
+    } else {
+      messageObject.type = 'message.text';
+      messageObject.text = obj.text.trim();
+    }
+
+  addMessage(messageObject)
 }
 
 const selectChat = (chat) => {
