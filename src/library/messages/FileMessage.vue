@@ -207,6 +207,7 @@ function getClass(message) {
     word-wrap: break-word;
     
     p {
+      white-space: pre-wrap;
       font-size: var(--base-message-font-size-text);
     }
   }

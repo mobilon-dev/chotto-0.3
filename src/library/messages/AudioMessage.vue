@@ -465,6 +465,7 @@ onMounted(() => {
     word-wrap: break-word;
     max-width: 25rem;
     p {
+      white-space: pre-wrap;
       font-size: var(--base-message-font-size-text);
     }
   }
