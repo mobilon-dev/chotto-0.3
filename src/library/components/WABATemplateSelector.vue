@@ -335,6 +335,9 @@ const resetValues = () => {
   Object.keys(wabaValues).forEach(key => {
     wabaValues[key] = '';
   });
+  selectedFile.value = null
+  selectedTemplate.value = null
+  clearSelectedTemplate()
 }
 
 // Свойство получения всего текста
