@@ -385,7 +385,7 @@ watch(isModalVisible, (newVal) => {
 
 
   &__container {
-    position: relative;
+    position: absolute;
     display: grid;
     grid-template-columns: 0.5fr 1.3fr 1fr;
     grid-template-rows: min-content auto 1fr min-content;
@@ -396,6 +396,8 @@ watch(isModalVisible, (newVal) => {
     background-color: var(--template-selector-bg);
     border: 1px solid var(--neutral-200);
     box-sizing: border-box;
+    min-width: 700px;
+    bottom: 0; right: 20%;
   }
 
   &__button-close {
