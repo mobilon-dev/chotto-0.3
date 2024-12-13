@@ -390,14 +390,14 @@ watch(isModalVisible, (newVal) => {
     grid-template-columns: 0.5fr 1.3fr 1fr;
     grid-template-rows: min-content auto 1fr min-content;
     column-gap: 14px;
-    width: 100%;
+    width: 110%;
     height: 500px;
     padding: 16px 5px 5px 5px;
     background-color: var(--template-selector-bg);
     border: 1px solid var(--neutral-200);
     box-sizing: border-box;
-    min-width: 700px;
-    bottom: 0; right: 20%;
+    min-width: 750px;
+    bottom: 0; right: 0;
   }
 
   &__button-close {
