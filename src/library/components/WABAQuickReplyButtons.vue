@@ -56,7 +56,7 @@ const handleQuickReplyClick = (index : Number) => {
 .preview-actions {
   position: relative;
   z-index: 0;
-  font-size: 12px;
+  font-size: 14px;
   display: flex;
   flex-direction: column;
   justify-content: center;

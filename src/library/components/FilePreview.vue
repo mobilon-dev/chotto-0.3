@@ -84,9 +84,7 @@ function handleReset() {
     /* margin-left: 10px; */
     display: flex;
     border: 1px solid var(--neutral-300);
-    min-width: 300px;
     max-width: 400px;
-    width: fit-content;
   }
   &__image,
   &__video{

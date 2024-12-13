@@ -1,41 +1,38 @@
 <template>
   <section class="attachment-section" :class="{'attachment-section-error' : error}">
-    <div class="file-upload" :class="{ 'file-upload-selected': uploadStatus === 'success' }" @click="triggerFileUpload">
-        <input type="file" id="file-upload" ref="fileInput"
-          style="display: none;" @change="handleFileChange" :accept="fileInfo[type].accept">
-        <span
-          v-if="uploadStatus !== 'success'"
-          class="pi pi-paperclip file-upload-icon" 
-        />
-        <span
-          v-else-if="uploadStatus === 'success'"
-          class="file-uploaded-icon"
-          :class="fileInfo[type].icon"
-        />
-        <div class="file-upload-text">
-          <h2 class="attachment-title open-sans-bold">
-            {{ uploadStatus != 'success' ? 'Прикрепить файл' : null}}
-          </h2>
-          <h2 class="file-info open-sans" :class="{'file-info-selected' : uploadStatus === 'success'}">
-            {{ uploadStatus === 'success' ? selectedFile?.name : fileInfo[type].text }}
-          </h2>
-        </div>
-        <div :class="{'decline-icon' : uploadStatus === 'success'}">
-        <span
-          class="pi pi-times no-cross"
-          :class="{cross: uploadStatus === 'success'}"
-          @click="handleFileDecline"
-        />
-        </div>
+    <div class="file-upload" @click="triggerFileUpload" v-if="uploadStatus !== 'success'">
+      <input type="file" id="file-upload" ref="fileInput"
+      style="display: none;" @change="handleFileChange" :accept="fileInfo[type].accept">
+      <span
+        class="pi pi-paperclip file-upload-icon" 
+      />
+      <div class="file-upload-text">
+        <h2 class="attachment-title open-sans-bold">
+          Прикрепить файл 
+        </h2>
+        <h2 class="file-info open-sans">
+          {{ fileInfo[type].text }}
+        </h2>
+      </div>
     </div>
+    <FilePreview
+      v-else-if="uploadStatus === 'success'"
+      :preview-url="previewUrl"
+      :is-image="isImage"
+      :is-video="isVideo"
+      :is-audio="isAudio"
+      :file-name="selectedFile?.name"
+      :file-size="fileSize"
+      @reset="handleFileDecline"
+    />
   </section>
   <div v-if="error" class="error-text">{{ error }}</div>
 </template>
 
 <script setup lang="ts">
 import { ref, watch, inject } from "vue";
-
-    
+import FilePreview from "./FilePreview.vue";
+import { getTypeFileByMime } from "../../helpers";
 const props = defineProps({
   type: {
     type: String,
@@ -52,6 +49,12 @@ const selectedFile = ref<File | null>(null);
 const fileInput = ref<HTMLInputElement>();
 const error = ref('')
 const uploadStatus = ref('')
+const isImage = ref(false)
+const isVideo = ref(false)
+const isAudio = ref(false)
+const previewUrl = ref<string>("")
+const fileSize = ref('')
+
 const emit = defineEmits(['fileSelected']);
 
 const triggerFileUpload = () => {
@@ -102,6 +105,7 @@ const handleFileChange = (event) => {
     else if (!error.value){
       selectedFile.value = file
       uploadFile()
+      generatePreview()
     }
   }
 };
@@ -140,8 +144,44 @@ try {
   }
 };
 
-const handleFileDecline = (event) => {
-  event.stopPropagation()
+const generatePreview = () => {
+  const file = selectedFile.value;
+  if (file){
+    const fileType = getTypeFileByMime(file.type);
+    isImage.value = false;
+    isVideo.value = false;
+    isAudio.value = false
+
+    if (fileType === 'image') {
+      isImage.value = true;
+    } else if (fileType === "video") {
+      isVideo.value = true;
+    }
+    else if (fileType === 'audio') {
+      isAudio.value = true
+    }
+    if (isImage.value || isVideo.value) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        if (e.target?.result)
+          previewUrl.value = String(e.target.result)
+      };
+      reader.readAsDataURL(file);
+    } else {
+      previewUrl.value = ""; // No preview available
+    }
+    const sizeMeasurement = ['б', 'Кб', "Мб", "Гб"]
+    let size = file.size
+    let index = 0
+    while (size > 1024) {
+      size = size / 1024
+      index++
+    }
+    fileSize.value = size.toFixed(2) + sizeMeasurement[index]
+  }
+};
+
+const handleFileDecline = () => {
   if (selectedFile.value) {
     selectedFile.value = null
     uploadStatus.value = ''
@@ -188,9 +228,6 @@ watch(
   .file-upload{
     background-color: var(--not-filled-color-hover);
   }
-  .file-upload-selected{
-    background-color: var(--filled-color-hover);
-  }
 }
 .file-upload {
   border-radius: 5px;
@@ -203,18 +240,8 @@ watch(
   padding-top: 10px;
   padding-bottom: 10px;
 }
-.file-upload-selected {
-  background-color: var(--filled-color);
-  align-items: left;
-  justify-content: left;
-  cursor: auto;
-}
 .file-upload-icon {
   display: inline;
-  padding-left: 10px;
-}
-.file-uploaded-icon
-{
   padding-left: 10px;
 }
 .file-upload-text {
@@ -222,34 +249,14 @@ watch(
   display: inline;
 }
 .attachment-title {
-  font-size: 10px;
+  font-size: 12px;
   color: #000;
 }
 .file-info {
   margin-top: 1px;
   color: #5f5f5f;
-  font-size: 10px;
+  font-size: 12px;
   word-break: break-word;
-}
-.file-info-selected {
-  text-align: left;
-  color: #000;
-  max-width:200px;
-}
-.decline-icon {
-  display: inline;
-  flex-grow: 1;
-  text-align: right;
-}
-.no-cross {
-  display: none;
-}
-.cross {
-  margin-top: 5px;
-  color: #5f5f5f;
-  display: inline;
-  cursor: pointer;
-  margin-right: 5px;
 }
 .loader-overlay {
   position:absolute;

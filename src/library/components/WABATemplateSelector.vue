@@ -335,6 +335,9 @@ const resetValues = () => {
   Object.keys(wabaValues).forEach(key => {
     wabaValues[key] = '';
   });
+  selectedFile.value = null
+  selectedTemplate.value = null
+  clearSelectedTemplate()
 }
 
 // Свойство получения всего текста
@@ -382,17 +385,19 @@ watch(isModalVisible, (newVal) => {
 
 
   &__container {
-    position: relative;
+    position: absolute;
     display: grid;
     grid-template-columns: 0.5fr 1.3fr 1fr;
     grid-template-rows: min-content auto 1fr min-content;
     column-gap: 14px;
-    width: 100%;
+    width: 110%;
     height: 500px;
-    padding: 16px 20px 10px 20px;
+    padding: 16px 5px 5px 5px;
     background-color: var(--template-selector-bg);
     border: 1px solid var(--neutral-200);
     box-sizing: border-box;
+    min-width: 750px;
+    bottom: 0; right: 0;
   }
 
   &__button-close {
@@ -444,6 +449,8 @@ watch(isModalVisible, (newVal) => {
     grid-row: 3 / 5;
     border: 1px solid var(--neutral-200);
     overflow-y: auto;
+    margin-left: -10px;
+    margin-right: 10px;
 
     &::-webkit-scrollbar {
       width: 6px;
@@ -534,6 +541,7 @@ watch(isModalVisible, (newVal) => {
     width: 100%;
     margin-bottom: 16px;
     margin-right: 10px;
+    margin-left: -10px;
   }
 
   &__searching-input {
@@ -571,6 +579,7 @@ watch(isModalVisible, (newVal) => {
     background-color: var(--template-selector-preview-bg);
     background-image: url('../../../public/chat-background.svg');
     position: relative;
+    margin-left: -20px;
     &::-webkit-scrollbar {
       width: 6px;
       background-color: var(--scrollbar-bg);
@@ -589,14 +598,14 @@ watch(isModalVisible, (newVal) => {
   &__preview {
     height: 100%;
     box-sizing: border-box;
-    padding: 20px;
+    padding: 5px;
   }
 
   &__preview-wrapper {
     padding: 10px 10px 4px 16px;
     background-color: var(--base-message-left-bg);
     border-radius: 14px;
-    max-width: 70%;
+    max-width: 90%;
     margin-bottom: 15px;
   }
 
@@ -624,7 +633,7 @@ watch(isModalVisible, (newVal) => {
     margin: 0;
   }
 
-  &__preview-text {
+  &__preview-text-container {
     font-size: 14px;
     word-break: break-word;
   }
