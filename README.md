@@ -1,27 +1,36 @@
 # chotto
-Vue3 Chat UI components - собери свой интерфейс чата
 
-# использование
+Vue3 UI components for chats, conversations, ai
 
-## документация
+# usage
+
+## docs
 
 - [storybook](https://mobilon-dev.github.io/chotto/)
 
-## схема
-
-![](images/scheme.png)
-
-## пример
-
-[пример](https://github.com/antirek/chotto-sample)
-
-## скриншот
+## screnshots
 
 ![](images/screenshot7.png)
 
 
-# разработка
+## video
 
+[chotto 01: знакомство](https://youtu.be/LbtXeR_P9fs)
+
+
+## examples
+
+[simple](https://github.com/antirek/chotto-sample)
+
+[demo1: 1 manager + 3 site users](https://determaer.github.io/chat-demo/) ([source](https://github.com/determaer/chat-demo))
+
+
+
+# development
+
+## scheme
+
+![](images/scheme.png)
 
 ## install
 
@@ -40,13 +49,14 @@ Vue3 Chat UI components - собери свой интерфейс чата
 > npm run build
 
 
-# Дополнительно
 
-### скрины чатов для вдохновения
+# Links
+
+### screenshots
 
 [samples](/samples)
 
-### подобные проекты
+### same projects
 
 - https://github.com/sendbird/sendbird-uikit-react
 

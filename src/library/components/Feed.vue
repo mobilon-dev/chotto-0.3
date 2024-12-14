@@ -2,7 +2,7 @@
   <div
     ref="refFeed"
     class="message-feed"
-    @scroll="scrollTopCheck"
+    @scroll="scrollTopCheck()"
     :id="'feed-container-'+chatAppId"
   >
     <div class="message-feed__container">
@@ -90,7 +90,7 @@ const chatAppId = inject('chatAppId')
 
 const emit = defineEmits(['messageAction', 'loadMore', 'messageVisible']);
 
-const scrollTopCheck = () => {
+const scrollTopCheck = (allowLoadMore: boolean = true) => {
   const element = unref(refFeed);
   const limit = 100;
   const scrollBottom = element.scrollHeight - element.scrollTop - element.clientHeight;
@@ -102,7 +102,7 @@ const scrollTopCheck = () => {
     isShowButton.value = true;
   }
 
-  if (element.scrollTop === 0) {
+  if (element.scrollTop === 0 && allowLoadMore) {
     emit('loadMore');
   }
 };
@@ -167,7 +167,7 @@ watch(
   ()=>props.objects,
   () => {
     nextTick(() => {
-      scrollTopCheck()
+      scrollTopCheck(false)
       trackingObjects.value = document.querySelectorAll('.message-feed__message')
       trackingObjects.value.forEach((obj) => observer.observe(obj))
     })

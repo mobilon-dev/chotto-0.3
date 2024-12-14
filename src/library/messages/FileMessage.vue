@@ -185,6 +185,7 @@ function getClass(message) {
     background-color: var(--file-message-background-color);
     padding: 10px 30px 4px 16px;
     max-width: 40%;
+    max-width: 20rem;
   }
 
   &__avatar {
@@ -203,8 +204,10 @@ function getClass(message) {
 
   &__text-container {
     margin-top: 6px;
-
+    word-wrap: break-word;
+    
     p {
+      white-space: pre-wrap;
       font-size: var(--base-message-font-size-text);
     }
   }

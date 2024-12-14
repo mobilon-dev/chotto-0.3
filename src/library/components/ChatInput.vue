@@ -7,6 +7,7 @@
       />
       <div class="chat-input__second-line">
         <textarea
+          :disabled="state == 'disabled'"
           ref="refInput"
           v-model="getMessage().text"
           class="chat-input__input"
@@ -44,15 +45,15 @@ const { resetMessage, getMessage, setMessageText } = useMessage(chatAppId as str
 
 const refInput = ref<HTMLElement>();
 
-/*
+
 const props = defineProps({
-  templates: {
-    type: Array,
+  state: {
+    type: String,
     required: false,
-    default: () => { return [] }
+    default: 'active', 
   },
 })
-*/
+
 
 watch(
   () => getMessage().text,

@@ -76,12 +76,21 @@
       </div>
 
 
-      <div class="template-selector__preview-container">
+      <div
+        class="template-selector__preview-container"
+        ref="previewContainer"
+      >
         <div
-          v-if="templateParts"
+          v-if="templateParts.length > 0"
           class="template-selector__preview"
         >
           <div class="template-selector__preview-wrapper">
+            <WABAAttachmentSection
+              v-if="selectedTemplate.type != 'TEXT'"
+              :type="selectedTemplate.type"
+              :templateId="selectedTemplate.templateId"
+              @file-selected="handleFileSelected"
+            />
             <div class="template-selector__preview-text-container">
               <template
                 v-for="(item, index) in templateParts"
@@ -100,15 +109,32 @@
             <p class="template-selector__preview-time">
               22:22
             </p>
+            <WABAQuickReplyButtons
+              v-if="selectedTemplate.buttons"
+              :buttons="selectedTemplate.buttons"
+              @select-all-variants="selectAllVariants"
+            />
           </div>
         </div>
-
         <p
           v-else
           class="template-selector__plug"
         >
           Предпросмотр шаблона
         </p>
+        <div
+          class="template-selector__reply-buttons"
+          v-if="allVariantsShow"
+        >
+          <div
+            class="template-selector__semitransparent-overlay"
+            @click="selectAllVariants"
+          ></div>
+          <WABASeparatedQuickButtons
+            :buttons="selectedTemplate.buttons"
+            @select-all-variants="selectAllVariants"
+          />
+        </div>
       </div>
 
       <transition name="modal-fade">
@@ -141,7 +167,7 @@
 
       <button
         class="template-selector__button-paste"
-        :disabled="allFieldsFilled"
+        :disabled="allFieldsUnFilled"
         @click="handlePutMessage"
       >
         Отправить
@@ -151,10 +177,12 @@
 </template>
 
 <script setup>
-import { computed, ref, reactive, inject, watch, nextTick } from 'vue'
-import { useMessage } from '../../helpers/useMessage';
+import { computed, ref, reactive, watch, nextTick } from 'vue'
 
 import PlaceholderComponent from './PlaceholderComponent.vue'
+import WABAAttachmentSection from './WABAAttachmentSection.vue';
+import WABAQuickReplyButtons from './WABAQuickReplyButtons.vue';
+import WABASeparatedQuickButtons from './WABASeparatedQuickButtons.vue';
 const props = defineProps({
   wabaTemplates: {
     type: Array,
@@ -170,9 +198,8 @@ const props = defineProps({
 })
 
 
-const chatAppId = inject('chatAppId')
-const { setMessageText } = useMessage(chatAppId)
-const emit = defineEmits(['closeTemplateWindow', 'pasteTemplate', 'sendWabaValues'])
+
+const emit = defineEmits(['closeTemplateWindow', 'sendWabaValues'])
 
 const closeTemplateWindow = () => {
   emit('closeTemplateWindow')
@@ -181,19 +208,58 @@ const closeTemplateWindow = () => {
 
 const handlePutMessage = () => {
   emit('closeTemplateWindow')
-  emit('sendWabaValues', { templateId: props.wabaTemplates.templateId, values: enteredValues.value })
-  setMessageText(fullText.value)
+  const template = {
+    text: '',
+    templateId: '',
+    values: [],
+    file: null,
+    buttons: null,
+  }
+  if (selectedFile.value) {
+    template.text = fullText.value
+    template.templateId = selectedTemplate.value.templateId
+    template.values = enteredValues.value
+    template.file = selectedFile.value
+  }
+  else {
+    template.text = fullText.value
+    template.templateId = selectedTemplate.value.templateId
+    template.values = enteredValues.value
+  }
+  if (selectedTemplate.value.buttons) {
+    template.buttons = selectedTemplate.value.buttons
+  }
+  emit('sendWabaValues', template)
   resetValues()
 }
 
+const handleFileSelected = (file) => {
+  selectedFile.value = file
+}
+
+
+const previewContainer = ref(null)
 const selectedGroup = ref(null)
 const selectedTemplate = ref(null);
+const selectedFile = ref(null)
 const searchQuery = ref('');
+const allVariantsShow = ref(false)
+
+const selectAllVariants = () => {
+
+  allVariantsShow.value = !allVariantsShow.value
+  if (allVariantsShow.value) {
+    previewContainer.value.scrollTop = 0
+    previewContainer.value.style['overflow-y'] = 'hidden'
+  }
+  else previewContainer.value.style['overflow-y'] = 'scroll'
+}
 
 const selectTemplate = (item) => {
   props.wabaTemplates.forEach(с => с.isSelected = false);
   item.isSelected = true;
   selectedTemplate.value = item;
+  allVariantsShow.value = false;
 };
 
 const clearSelectedTemplate = () => {
@@ -270,8 +336,14 @@ const templateParts = computed(() => {
 
 // Проверяем что все поля заполнены.
 // Сравниваем длину объекта, в котором хранятся значения и количество исходных переменных в шаблоне
-const allFieldsFilled = computed(() => {
-  return Object.keys(wabaValues).length !== selectedTemplate.value?.template.match(/{{\d+}}/gi).length
+const allFieldsUnFilled = computed(() => {
+  if (!selectedTemplate.value)
+    return true
+  const containsVariables = Object.keys(wabaValues).length !== selectedTemplate.value?.template.match(/{{\d+}}/gi).length
+  if (selectedTemplate.value.type === 'TEXT')
+    return containsVariables
+  else if (selectedTemplate.value.type !== 'TEXT')
+    return containsVariables || !selectedFile.value
 });
 
 // Сброс значений
@@ -279,17 +351,28 @@ const resetValues = () => {
   Object.keys(wabaValues).forEach(key => {
     wabaValues[key] = '';
   });
+  selectedFile.value = null
+  selectedTemplate.value = null
+  clearSelectedTemplate()
 }
 
 // Свойство получения всего текста
 const fullText = computed(() => {
-  return templateParts.value.map(item => {
+  console.log(templateParts.value, selectedTemplate.value.buttons)
+  let templateText = templateParts.value.map(item => {
     if (typeof item === 'string') {
       return item;
     } else {
       return wabaValues[item.index];
     }
   }).join('');
+  let buttonsText = ''
+  if (selectedTemplate.value.buttons) {
+    buttonsText = selectedTemplate.value.buttons.map(b => {
+      return '\n| [' + b.text + ']'
+    }).join('');
+  }
+  return templateText.concat(buttonsText)
 });
 
 // Свойство получения введенных значений
@@ -326,16 +409,21 @@ watch(isModalVisible, (newVal) => {
 
 
   &__container {
-    position: relative;
+    position: absolute;
     display: grid;
     grid-template-columns: 0.5fr 1.3fr 1fr;
     grid-template-rows: min-content auto 1fr min-content;
     column-gap: 14px;
-    width: 100%;
+    width: 110%;
     height: 500px;
-    padding: 16px 20px 10px 20px;
+    padding: 16px 5px 5px 5px;
     background-color: var(--template-selector-bg);
     border: 1px solid var(--neutral-200);
+    box-sizing: border-box;
+    min-width: 750px;
+    bottom: 20px;
+    right: 20px;
+    box-shadow: 5px 5px 29px -15px #000000;
   }
 
   &__button-close {
@@ -359,6 +447,8 @@ watch(isModalVisible, (newVal) => {
     grid-row: 2 / 5;
     overflow-y: auto;
     border: 1px solid var(--neutral-200);
+    padding: 0;
+    margin: 0;
 
     &::-webkit-scrollbar {
       width: 6px;
@@ -375,11 +465,18 @@ watch(isModalVisible, (newVal) => {
     }
   }
 
+  &__list-templates {
+    padding: 0;
+    margin: 0;
+  }
+
   &__templates {
     grid-column: 2;
     grid-row: 3 / 5;
     border: 1px solid var(--neutral-200);
     overflow-y: auto;
+    margin-left: -10px;
+    margin-right: 10px;
 
     &::-webkit-scrollbar {
       width: 6px;
@@ -469,6 +566,8 @@ watch(isModalVisible, (newVal) => {
     grid-row: 2;
     width: 100%;
     margin-bottom: 16px;
+    margin-right: 10px;
+    margin-left: -10px;
   }
 
   &__searching-input {
@@ -480,6 +579,7 @@ watch(isModalVisible, (newVal) => {
     color: var(--input-color);
     border: var(--input-border);
     transition: border-color var(--input-transition-duration);
+    box-sizing: border-box;
 
     &::placeholder {
       color: var(--input-placeholder-color);
@@ -501,8 +601,11 @@ watch(isModalVisible, (newVal) => {
     border: 1px solid var(--neutral-200);
     max-height: 375px;
     overflow-y: auto;
+    overflow-x: hidden;
     background-color: var(--template-selector-preview-bg);
     background-image: url('../../../public/chat-background.svg');
+    position: relative;
+    margin-left: -20px;
 
     &::-webkit-scrollbar {
       width: 6px;
@@ -522,14 +625,28 @@ watch(isModalVisible, (newVal) => {
   &__preview {
     height: 100%;
     box-sizing: border-box;
-    padding: 20px;
+    padding: 5px;
   }
 
   &__preview-wrapper {
     padding: 10px 10px 4px 16px;
     background-color: var(--base-message-left-bg);
     border-radius: 14px;
-    max-width: 70%;
+    max-width: 90%;
+    margin-bottom: 15px;
+  }
+
+  &__semitransparent-overlay {
+    height: 100%;
+    background: black;
+    opacity: 0.5;
+  }
+
+  &__reply-buttons {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    bottom: 0;
   }
 
   &__plug {
@@ -539,11 +656,14 @@ watch(isModalVisible, (newVal) => {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0;
+    margin: 0;
   }
 
-  &__preview-text {
+  &__preview-text-container {
     font-size: 14px;
     word-break: break-word;
+    white-space: pre-line;
   }
 
   &__preview-time {

@@ -495,8 +495,10 @@ watch([player, previewPlayer], ([playerVal, previewVal]) => {
   &__text-container {
     padding: 6px 10px 6px 10px;
     border-radius: 0 0 8px 8px;
-
+    word-wrap: break-word;
+    max-width: 25rem;
     p {
+      white-space: pre-wrap;
       font-size: var(--base-message-font-size-text);
     }
   }

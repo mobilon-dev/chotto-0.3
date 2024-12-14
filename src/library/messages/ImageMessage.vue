@@ -402,9 +402,11 @@ function getClass(message) {
   &__text-container {
     padding: 6px 10px 6px 10px;
     border-radius: 0 0 8px 8px;
-
+    word-wrap: break-word;
+    max-width: 25rem;
     p {
       font-size: var(--base-message-font-size-text);
+      white-space: pre-wrap;
     }
   }
 

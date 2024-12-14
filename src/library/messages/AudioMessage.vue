@@ -136,7 +136,12 @@
                   <i class="pi pi-times" />
                 </span>
               </button>
-              <p>{{ message.transcript?.text }}</p>
+              <p style="
+                word-wrap: break-word;
+                max-width: 25rem;"
+              >
+                {{ message.transcript?.text }}
+              </p>
             </div>
           </div>
         </transition>
@@ -457,8 +462,10 @@ onMounted(() => {
   &__text-container,
   &__transcript-container {
     grid-column: 1 / 3;
-
+    word-wrap: break-word;
+    max-width: 25rem;
     p {
+      white-space: pre-wrap;
       font-size: var(--base-message-font-size-text);
     }
   }

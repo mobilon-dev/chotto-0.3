@@ -73,3 +73,11 @@ export const ChannelsEmptyArray: Story = {
   },
   decorators: [() => ({ template })]
 };
+
+export const InactiveChannels: Story = {
+  args: {
+    channels: [],
+    state: 'disabled',
+  },
+  decorators: [() => ({ template })]
+};
