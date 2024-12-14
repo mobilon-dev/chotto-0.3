@@ -182,7 +182,7 @@ const closeTemplateWindow = () => {
 const handlePutMessage = () => {
   emit('closeTemplateWindow')
   emit('sendWabaValues', { templateId: props.wabaTemplates.templateId, values: enteredValues.value })
-  // setMessageText(fullText.value)
+  setMessageText(fullText.value)
   resetValues()
 }
 
