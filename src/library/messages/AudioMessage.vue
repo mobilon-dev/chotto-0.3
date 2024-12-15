@@ -1,10 +1,12 @@
 <template>
   <div
+    v-if="!message.reply"
     class="audio-message"
     :class="getClass(message)"
     :messageId="message.messageId"
     @mouseleave="hideMenu"
   >
+
     <img
       v-if="message.avatar"
       class="audio-message__avatar"
@@ -104,16 +106,6 @@
         />
       </transition>
 
-      <!--
-      <div
-        v-if="message.transcript?.text"
-        class="audio-message__transcript-container"
-        :class="{ 'audio-message__transcript--full': isFullTranscript }"
-      >
-        <p @click="isFullTranscript = !isFullTranscript">{{ message.transcript.text }}</p>
-      </div>
-      -->
-
       <div
         v-if="message.transcript?.text"
         class="audio-message__transcript-container"
@@ -138,8 +130,7 @@
               </button>
               <p style="
                 word-wrap: break-word;
-                max-width: 25rem;"
-              >
+                max-width: 25rem;">
                 {{ message.transcript?.text }}
               </p>
             </div>
@@ -159,6 +150,11 @@
 
     </div>
   </div>
+
+  <BaseReplayMessage
+    v-else
+    :audioMessage="message"
+  />
 </template>
 
 <script
@@ -171,6 +167,7 @@ import linkifyStr from "linkify-string";
 import { ContextMenu } from '../components'
 import { getStatus, statuses } from "../../helpers";
 import { IAudioMessage } from '../../types';
+import BaseReplayMessage from './BaseReplayMessage.vue'
 
 // Define props
 const props = defineProps({
@@ -287,12 +284,15 @@ onMounted(() => {
 >
 .audio-message {
 
+
+
   &__content {
     position: relative;
     display: grid;
     grid-template-columns: min-content 1fr;
     column-gap: 12px;
-    width: 43%;
+    width: 100%;
+    max-width: 25rem;
     border-radius: 14px;
     padding: 10px 26px 4px 16px;
   }
@@ -362,7 +362,7 @@ onMounted(() => {
     margin-left: auto;
     display: flex;
     align-items: center;
-    column-gap: 6px;
+    column-gap: 4px;
   }
 
   &__download-button {
@@ -464,6 +464,7 @@ onMounted(() => {
     grid-column: 1 / 3;
     word-wrap: break-word;
     max-width: 25rem;
+
     p {
       white-space: pre-wrap;
       font-size: var(--base-message-font-size-text);
@@ -478,7 +479,7 @@ onMounted(() => {
     user-select: none;
 
     p {
-      color: var(--neutral-700);
+      color: var(--audio-message-transcript-color);
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;

@@ -1,7 +1,7 @@
 :root {
 
   /* General Message*/
-  --base-message-right-bg: var(--emerald-200);
+  --base-message-right-bg: var(--emerald-100);
   --base-message-left-bg: var(--neutral-200);
 
   --base-message-font-size-text: 16px;
@@ -19,20 +19,24 @@
 
   --base-message-margin: 0 0 10px 0;
 
-
+  /* Reply Messages */
+  --replay-message-right-bg: rgb(152 219 188 / 46%);
+  --replay-message-left-bg: var(--neutral-300);
+  --replay-message-color: var(--neutral-600);
 
   /* Date Message */
   --date-message-color: var(--neutral-700);
 
   /* File Message */
   --file-message-icon-color: var(--neutral-600);
-  --file-message-text-color: var(--neutral-900);
+  --file-message-text-color: var(--neutral-950);
 
   /* _____________________________________________ */
 
   /* Audio Message */
   --audio-message-button-icon-color: var(--neutral-100);
   --audio-message-download-button: var(--neutral-500);
+  --audio-message-transcript-color: var(--neutral-700);
 
   /* progress-bar-container -> pbc */
   --audio-message-pbc-background-color: var(--neutral-400);

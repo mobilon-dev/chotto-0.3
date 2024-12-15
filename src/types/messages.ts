@@ -15,6 +15,10 @@ export interface IAudioMessage {
   transcript?: {
     text: string;
   };
+  reply?: {
+    type: string
+    text: string
+  }
 }
 
 export interface ICallMessage {
@@ -53,6 +57,10 @@ export interface IFileMessage {
   actions?: IAction[]
   views?: number,
   text?: string,
+  reply?: {
+    type: string
+    text: string
+  }
 }
 
 export interface IImageMessage {
@@ -67,6 +75,10 @@ export interface IImageMessage {
   actions?: IAction[]
   views?: number,
   text?: string,
+  reply?: {
+    type: string
+    text: string
+  }
 }
 
 export interface ISystemMessage {
@@ -83,7 +95,11 @@ export interface ITextMessage {
   avatar?: string
   subText?: string
   actions?: IAction[]
-  views?: number
+  views?: number,
+  reply?: {
+    type: string
+    text: string
+  }
 }
 
 export interface ITypingMessage {
@@ -103,4 +119,8 @@ export interface IVideoMessage {
   actions?: IAction[]
   views?: number,
   text?: string,
+  reply?: {
+    type: string
+    text: string
+  }
 }

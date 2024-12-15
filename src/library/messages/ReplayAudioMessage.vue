@@ -1,14 +1,13 @@
 <template>
   <div
-    v-if="!message.reply"
-    class="file-message"
+    class="audio-message"
     :class="getClass(message)"
     :messageId="message.messageId"
     @mouseleave="hideMenu"
   >
     <img
       v-if="message.avatar"
-      class="file-message__avatar"
+      class="audio-message__avatar"
       :src="message.avatar"
       height="32"
       width="32"
@@ -17,43 +16,59 @@
 
     <p
       v-if="message.subText"
-      class="file-message__subtext"
+      class="audio-message__subtext"
     >
       {{ message.subText }}
     </p>
 
     <div
-      class="file-message__content"
+      class="audio-message__content"
       @mouseenter="showMenu"
     >
-      <a
-        class="file-message__link"
-        :href="message.url"
-        download
-        target="_blank"
+      <div
+        class="audio-message__reply-container"
+        @click="onReply"
       >
-        <span class="pi pi-file" />
-        <p class="file-message__filename-text">
-          {{ message.filename }}
-        </p>
+        <div
+          v-show="!isPlaying"
+          class="audio-message__play"
+        >
+          <span class="pi pi-play" />
+        </div>
 
-      </a>
-      <div class="file-message__info-container">
 
+        <div class="audio-message__text-container">
+          <div class="audio-message__reply-description">
+            <span class="pi pi-microphone"></span>
+            <p>Аудиосообщение</p>
+          </div>
+          <p
+            v-if="message.text"
+            v-html="linkedText"
+            @click="inNewWindow"
+          ></p>
+        </div>
+      </div>
+
+      <p
+        v-if="message.reply?.text"
+        class="audio-message__reply-text"
+      >{{ message.reply.text }}</p>
+
+      <div class="audio-message__info-container">
         <div
           v-if="message.views"
           @click="viewsAction"
-          class="file-message__views"
+          class="audio-message__views"
         >
           <span class="pi pi-eye" />
           <p>{{ message.views }}</p>
         </div>
 
-        <span class="file-message__time">{{ message.time }}</span>
-
+        <span class="audio-message__time">{{ message.time }}</span>
         <div
-          v-if="getClass(message) === 'file-message__right' && statuses.includes(message.status)"
-          class="file-message__status"
+          v-if="getClass(message) === 'audio-message__right' && statuses.includes(message.status)"
+          class="audio-message__status"
           :class="status"
         >
           <span
@@ -62,82 +77,53 @@
           />
           <span class="pi pi-check" />
         </div>
-
       </div>
 
       <button
         v-if="buttonMenuVisible && message.actions"
-        class="file-message__menu-button"
+        class="audio-message__menu-button"
         @click="isOpenMenu = !isOpenMenu"
       >
         <span class="pi pi-ellipsis-h" />
       </button>
 
-      <a
-        class="file-message__download-button"
-        :href="message.url"
-        @click.stop="() => '//Предотвращаем всплытие события клика'"
-        download
-        target="_blank"
-      >
-        <span class="pi pi-download" />
-      </a>
-
       <transition>
         <ContextMenu
           v-if="isOpenMenu && message.actions"
-          class="file-message__context-menu"
+          class="audio-message__context-menu"
           :actions="message.actions"
           @click="clickAction"
         />
       </transition>
-
-      <div
-        v-if="message.text"
-        class="file-message__text-container"
-      >
-        <p
-          v-html="linkedText"
-          @click="inNewWindow"
-        ></p>
-      </div>
-
     </div>
   </div>
-
-  <BaseReplayMessage
-    v-else
-    :fileMessage="message"
-  />
 </template>
 
 <script
   setup
   lang="ts"
 >
-import { computed, ref, watch } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 import linkifyStr from "linkify-string";
 
-
 import { ContextMenu } from '../components'
-
 import { getStatus, statuses } from "../../helpers";
-
-import { IFileMessage } from '../../types'
-import BaseReplayMessage from './BaseReplayMessage.vue'
+import { IAudioMessage } from '../../types';
 
 // Define props
 const props = defineProps({
   message: {
-    type: Object as () => IFileMessage,
+    type: Object as () => IAudioMessage,
     required: true,
   },
 });
 
-const emit = defineEmits(['action']);
+const emit = defineEmits(['action', 'reply']);
 
+const isPlaying = ref(false);
 const isOpenMenu = ref(false)
 const buttonMenuVisible = ref(false);
+
 const linkedText = ref('')
 
 watch(
@@ -156,12 +142,6 @@ function inNewWindow(event) {
     window.open(event.target.href, '_blank');
 }
 
-const viewsAction = () => {
-  emit('action', { messageId: props.message.messageId, type: 'views' });
-}
-
-const clickAction = () => { }
-
 const showMenu = () => {
   buttonMenuVisible.value = true;
 };
@@ -171,27 +151,76 @@ const hideMenu = () => {
   isOpenMenu.value = false
 };
 
-const status = computed(() => getStatus(props.message.status))
-
-function getClass(message) {
-  return message.position === 'left' ? 'file-message__left' : 'file-message__right';
+const viewsAction = () => {
+  emit('action', { messageId: props.message.messageId, type: 'views' });
 }
 
+const status = computed(() => getStatus(props.message.status))
+
+const clickAction = () => { }
+
+const onReply = () => {
+  emit('reply', props.message.messageId)
+}
+
+function getClass(message) {
+  return message.position === 'left' ? 'audio-message__left' : 'audio-message__right';
+}
 </script>
 
 <style
   scoped
   lang="scss"
 >
-.file-message {
+.audio-message {
 
   &__content {
     position: relative;
-    width: fit-content;
-    border-radius: 14px;
-    background-color: var(--file-message-background-color);
-    padding: 10px 30px 4px 16px;
+    width: 100%;
     max-width: 25rem;
+    padding: 8px 8px 4px 8px;
+    border-radius: 14px;
+  }
+
+  &__reply-container {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 10px;
+    border-radius: 10px;
+    padding: 6px 10px 6px 10px;
+    overflow: hidden;
+    margin-bottom: 6px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background-color: #07cf9c;
+    }
+  }
+
+  &__play {
+    border: none;
+    position: relative;
+    align-self: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: var(--neutral-400);
+
+    span {
+      display: flex;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: var(--icon-font-size-medium);
+      color: var(--audio-message-button-icon-color);
+    }
   }
 
   &__avatar {
@@ -208,63 +237,12 @@ function getClass(message) {
     font-weight: 500;
   }
 
-  &__text-container {
-    margin-top: 6px;
-    word-wrap: break-word;
-
-    p {
-      white-space: pre-wrap;
-      font-size: var(--base-message-font-size-text);
-    }
-  }
-
-  &__link {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    column-gap: 12px;
-
-    span {
-      font-size: var(--icon-font-size-medium);
-      color: var(--file-message-icon-color);
-    }
-  }
-
-  &__filename-text {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    margin-right: 40px;
-    font-size: var(--base-message-font-size-text);
-    color: var(--file-message-text-color);
-  }
-
   &__info-container {
+    grid-column: 1 / 3;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    column-gap: 2px;
-  }
-
-  &__download-button {
-    position: absolute;
-    right: 8px;
-    top: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    border-radius: 12px;
-    background-color: transparent;
-    padding: 0;
-    cursor: pointer;
-
-    span {
-      color: var(--audio-message-download-button);
-      font-weight: 600;
-      font-size: 12px;
-    }
+    column-gap: 4px;
   }
 
   &__status {
@@ -304,12 +282,12 @@ function getClass(message) {
 
     span {
       font-size: var(--base-message-views-icon-font-size);
-      color: var(--base-message-color-views);
+      color: var(--neutral-200);
     }
 
     p {
       font-size: var(--base-message-views-font-size);
-      color: var(--base-message-color-views);
+      color: var(--neutral-200);
     }
   }
 
@@ -341,6 +319,32 @@ function getClass(message) {
     position: absolute;
   }
 
+  &__text-container {
+    word-wrap: break-word;
+    align-content: center;
+
+    p {
+      font-size: 13px;
+      color: var(--replay-message-color);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  &__reply-description {
+    display: flex;
+    align-items: center;
+    column-gap: 6px;
+    margin-bottom: 4px;
+
+    span {
+      color: var(--replay-message-color);
+    }
+  }
+
   &__left,
   &__right {
     display: grid;
@@ -350,66 +354,115 @@ function getClass(message) {
   &__left {
     grid-template-columns: min-content 1fr;
 
-    .file-message__avatar {
+    .audio-message__avatar {
       grid-column: 1;
       grid-row: 2;
       margin-right: 12px;
     }
 
-    .file-message__subtext {
+    .audio-message__subtext {
       grid-column: 2;
       grid-row: 1;
       margin: 0 0 2px 10px;
     }
 
-    .file-message__content {
+    .audio-message__content {
       grid-column: 2;
       background-color: var(--base-message-left-bg);
     }
 
-    .file-message__menu-button {
+    .audio-message__reply-container {
+      background-color: var(--replay-message-left-bg);
+    }
+
+    .audio-message__menu-button {
       top: 50%;
       right: -40px;
     }
 
-    .file-message__context-menu {
+    .audio-message__context-menu {
       top: 50%;
       left: 100%;
       margin-top: 20px;
     }
-
   }
 
   &__right {
     grid-template-columns: 1fr min-content;
 
-    .file-message__avatar {
+    .audio-message__avatar {
       grid-column: 2;
       grid-row: 2;
       margin-left: 12px;
     }
 
-    .file-message__subtext {
+    .audio-message__subtext {
       grid-column: 1;
       grid-row: 1;
       margin: 0 10px 2px auto;
     }
 
-    .file-message__content {
+    .audio-message__content {
       grid-column: 1;
       margin-left: auto;
       background-color: var(--base-message-right-bg);
     }
 
-    .file-message__menu-button {
+    .audio-message__reply-container {
+      background-color: var(--replay-message-right-bg);
+    }
+
+    .audio-message__menu-button {
       top: 50%;
       left: -40px;
     }
 
-    .file-message__context-menu {
+    .audio-message__context-menu {
       top: 50%;
       right: 100%;
       margin-top: 20px;
+    }
+  }
+
+  &__modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 101;
+    background-color: var(--modal-bg);
+    border-radius: var(--modal-border-radius);
+    padding: var(--modal-padding);
+    max-width: 30%;
+    box-shadow: var(--modal-overlay-shadow);
+
+    p {
+      margin: 0;
+      font-size: 20px;
+    }
+  }
+
+  &__modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--modal-mask-background);
+    z-index: 1000;
+  }
+
+  &__modal-close-button {
+    display: block;
+    background-color: transparent;
+    border: none;
+    padding: 4px;
+    margin: 0 0 14px auto;
+    cursor: pointer;
+
+    span {
+      color: var(--modal-icon-color);
+      font-size: var(--icon-font-size-medium);
     }
   }
 }
@@ -426,5 +479,20 @@ function getClass(message) {
 .v-leave-to {
   transform: scale(0.9);
   opacity: 0;
+}
+
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.modal-fade-enter-from,
+.modal-fade-leave-to {
+  opacity: 0;
+}
+
+.modal-fade-enter-to,
+.modal-fade-leave-from {
+  opacity: 1;
 }
 </style>
