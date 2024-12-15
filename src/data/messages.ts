@@ -156,26 +156,4 @@ export const messages = [
     text: "Оченьдлинноесообщениебезпробеловзанимающеесразунесколькострокивызывающеестранноеповедениеокон!",
 
   },
-  {
-    chatId: 1, type: "message.text", text: "Привет! Извини, давно тебе не писал. Как дела?",
-    direction: 'outgoing', status: 'received', timestamp: '1727027959',
-    actions: [
-      { action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=pin' },
-      { action: 'delete', title: 'удалить' }
-    ],
-    reply: {
-      type: 'message.text',
-      text: 'Привет, что-то давно не пишешь?',
-    },
-  },
-  {
-    chatId: 1, type: "message.text", text: "классное фото, тоже таки хочу",
-    direction: 'outgoing', status: 'received', timestamp: '1727027959',
-    reply: {
-      messageId: 'msg_3450349543',
-      type: 'message.image',
-      text: 'мои новые кроссовки',
-      url: 'https://placehold.jp/30/336633/ffffff/320x160.png?text=кроссовки',
-    },
-  },
 ];
