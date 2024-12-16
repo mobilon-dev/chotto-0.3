@@ -24,7 +24,7 @@ Vue3 UI components for chats, conversations, ai
 
 [demo1: 1 manager + 3 site users](https://determaer.github.io/chat-demo/) ([source](https://github.com/determaer/chat-demo))
 
-
+[demo2: waba templates](https://determaer.github.io/waba-chat-demo/) ([source](https://github.com/determaer/waba-chat-demo))
 
 # development
 
