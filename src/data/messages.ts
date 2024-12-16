@@ -163,6 +163,7 @@ export const messages = [
       { action: 'delete', title: 'удалить' }
     ],
     reply: {
+      messageId: 'msg_3450349541',
       type: 'message.text',
       text: 'Привет, что-то давно не пишешь?',
     },
@@ -171,10 +172,70 @@ export const messages = [
     chatId: 1, type: "message.text", text: "классное фото, тоже таки хочу",
     direction: 'outgoing', status: 'received', timestamp: '1727027959',    
     reply: {
+      messageId: 'msg_3450349542',
+      type: 'message.file',
+      text: 'мои новые кроссовки',
+      filename: 'cross.png',
+      url: 'https://placehold.jp/30/336633/ffffff/320x160.png?text=кроссовки',
+    },
+  },
+  {
+    chatId: 1,url: 'https://placehold.jp/30/336633/ffffff/320x160.png?text=кроссовки',
+    type: "message.image", text: "классное фото, тоже таки хочу",
+    direction: 'outgoing', status: 'received', timestamp: '1727027959',    
+    reply: {
       messageId: 'msg_3450349543',
       type: 'message.image',
       text: 'мои новые кроссовки',
       url: 'https://placehold.jp/30/336633/ffffff/320x160.png?text=кроссовки',
+    },
+  },
+  {
+    chatId: 1, type: "message.text", text: "Привет! Извини, давно тебе не писал. Как дела?",
+    direction: 'incoming', status: 'received', timestamp: '1727027959',
+    actions: [
+      { action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=pin' },
+      { action: 'delete', title: 'удалить' }
+    ],
+    reply: {
+      messageId: 'msg_3450349541',
+      type: 'message.text',
+      text: 'Привет, что-то давно не пишешь?',
+    },
+  },
+  {
+    chatId: 1, type: "message.text", text: "классное фото, тоже таки хочу",
+    direction: 'incoming', status: 'received', timestamp: '1727027959',    
+    reply: {
+      messageId: 'msg_3450349542',
+      type: 'message.image',
+      text: 'мои новые кроссовки',
+      url: 'https://placehold.jp/30/336633/ffffff/320x160.png?text=кроссовки',
+    },
+  },
+  {
+    chatId: 1,url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
+    type: "message.file", text: "ответ на видео", filename: "video.mp4",
+    direction: 'incoming', status: 'received', timestamp: '1727027959',    
+    reply: {
+      messageId: 'msg_3450349543',
+      type: 'message.video',
+      text: 'видео',
+      url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
+    },
+  },
+  {
+    chatId: 1, type: "message.audio", url: "https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3",
+    text: "Привет!", direction: 'incoming', status: 'received', subText: '89829445678', timestamp: '1727027959',
+    transcript: {
+      text: 'Привет, доехала хорошо, позвони мне завтра',
+    },
+    actions: [{ action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' }],
+    reply: {
+      messageId: 'msg_3450349543',
+      type: 'message.audio',
+      text: 'голосовое сообщение',
+      url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
     },
   },
 ];

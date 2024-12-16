@@ -16,6 +16,7 @@ export interface IAudioMessage {
     text: string;
   };
   reply?: {
+    messageId: string
     type: string
     text: string
   }
@@ -58,6 +59,7 @@ export interface IFileMessage {
   views?: number,
   text?: string,
   reply?: {
+    messageId: string
     type: string
     text: string
   }
@@ -76,6 +78,7 @@ export interface IImageMessage {
   views?: number,
   text?: string,
   reply?: {
+    messageId: string
     type: string
     text: string
   }
@@ -97,6 +100,7 @@ export interface ITextMessage {
   actions?: IAction[]
   views?: number,
   reply?: {
+    messageId: string
     type: string
     text: string
   }
@@ -120,6 +124,7 @@ export interface IVideoMessage {
   views?: number,
   text?: string,
   reply?: {
+    messageId: string
     type: string
     text: string
   }

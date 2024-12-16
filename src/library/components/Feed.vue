@@ -14,6 +14,7 @@
         class="message-feed__message"
         :message="object"
         @action="messageAction"
+        @dblclick="feedObjectDoubleClick(object)"
       />
     </div>
     <typing-message
@@ -39,13 +40,22 @@
       </button>
     </transition>
   </div>
+  <teleport
+    v-if="getMessage().reply"
+    :to="'#chat-input-reply-line-'+chatAppId"
+  >
+    <BaseReplyMessage
+      :message="getMessage().reply"
+      class="chat-input-reply"
+    />
+  </teleport>
 </template>
 
 <script
   setup
   lang="ts"
 >
-import { ref, unref, watch, nextTick, onUpdated, inject } from 'vue';
+import { ref, unref, watch, nextTick, onUpdated, inject, computed } from 'vue';
 import {
   FileMessage,
   ImageMessage,
@@ -56,10 +66,12 @@ import {
   CallMessage,
   SystemMessage,
   TypingMessage,
-  BaseReplayMessage,
 } from "../messages";
 
 import { IFeedObject, IFeedTyping, IFeedUnreadButton } from '../../types';
+
+import { useMessage } from '../../helpers/useMessage';
+import BaseReplyMessage from '../messages/BaseReplyMessage.vue';
 
 const trackingObjects = ref();
 const refFeed = ref();
@@ -86,7 +98,9 @@ const props = defineProps({
     default: false,
   }
 });
+
 const chatAppId = inject('chatAppId')
+const { setReply, getMessage } = useMessage(chatAppId as string)
 
 const emit = defineEmits(['messageAction', 'loadMore', 'messageVisible']);
 
@@ -145,6 +159,17 @@ watch(() => props.objects, scrollToBottom);
 
 const messageAction = (message) => {
   emit('messageAction', message);
+}
+
+const feedObjectDoubleClick = (object : IFeedObject) => {
+  if (object.type.indexOf('system') == -1 && object.type.indexOf('typing') == -1)
+    setReply({
+      messageId: object.messageId,
+      type: object.type,
+      text: object.text,
+      filename: object.filename,
+      url: object.url,
+    })
 }
 
 const callback = (entries: Array<IntersectionObserverEntry>) => {

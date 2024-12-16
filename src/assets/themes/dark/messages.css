@@ -8,9 +8,9 @@
   --base-message-color-views: var(--neutral-200);
 
   /* Reply Messages */
-  --replay-message-right-bg: var(--emerald-700);
-  --replay-message-left-bg: var(--neutral-600);
-  --replay-message-color: var(--neutral-200);
+  --reply-message-right-bg: var(--emerald-700);
+  --reply-message-left-bg: var(--neutral-600);
+  --reply-message-color: var(--neutral-200);
 
 
   /* File Message */

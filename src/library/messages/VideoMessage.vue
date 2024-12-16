@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="!message.reply"
+    
     class="video-message"
     :class="getClass(message)"
     :messageId="message.messageId"
@@ -23,7 +23,12 @@
     </p>
 
     <div class="video-message__content">
-
+      <BaseReplyMessage
+        style="margin: 10px 10px 4px 16px;"
+        :class="message.position"
+        v-if="message.reply"
+        :message="message.reply"
+      />
       <div
         class="video-message__preview-button"
         @click="isOpenModal = true"
@@ -33,7 +38,7 @@
         <video
           ref="previewPlayer"
           class="video-message__video"
-          :style="{ borderRadius: message.text ? '8px 8px 0 0' : '8px' }"
+          :style="{ borderRadius: videoBorderRadius }"
           @ended="playAgain"
           :src="message.url"
           :muted="true"
@@ -151,10 +156,7 @@
     </Teleport>
   </div>
 
-  <BaseReplayMessage
-    v-else
-    :videoMessage="message"
-  />
+  
 </template>
 
 <script
@@ -167,7 +169,7 @@ import linkifyStr from "linkify-string";
 import { ContextMenu } from '../components'
 import { getStatus, statuses } from "../../helpers";
 import { IVideoMessage } from '../../types';
-import BaseReplayMessage from './BaseReplayMessage.vue'
+import BaseReplyMessage from './BaseReplyMessage.vue'
 
 const props = defineProps({
   message: {
@@ -248,6 +250,12 @@ watch([player, previewPlayer], ([playerVal, previewVal]) => {
   }
 });
 
+const videoBorderRadius = computed(() => {
+  if(props.message.reply && props.message.text) return '0'
+  if(props.message.text) return '8px 8px 0 0'
+  if(props.message.reply) return '0 0 8px 8px'
+  return '8px'
+})
 
 const closeModal = () => isOpenModal.value = false
 
@@ -280,6 +288,7 @@ onUnmounted(() => {
   &__content {
     position: relative;
     max-width: 25rem;
+    border-radius: 14px;
   }
 
   &__info-container {
@@ -512,11 +521,11 @@ onUnmounted(() => {
 
     .video-message__content {
       grid-column: 2;
+      background-color: var(--base-message-left-bg);
     }
 
     .video-message__text-container {
       grid-column: 2;
-      background-color: var(--base-message-left-bg);
     }
 
     .video-message__menu-button {
@@ -549,12 +558,12 @@ onUnmounted(() => {
     .video-message__content {
       grid-column: 1;
       margin-left: auto;
+      background-color: var(--base-message-right-bg);
     }
 
     .video-message__text-container {
       grid-column: 1;
       margin-left: auto;
-      background-color: var(--base-message-right-bg);
     }
 
     .video-message__menu-button {

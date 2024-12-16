@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="!message.reply"
+    
     class="image-message"
     :class="getClass(message)"
     :messageId="message.messageId"
@@ -23,7 +23,13 @@
     </p>
 
     <div class="image-message__content">
-
+      <BaseReplyMessage
+        style="margin: 10px 10px 4px 16px;"
+        :class="message.position"
+        v-if="message.reply"
+        :message="message.reply"
+      />
+      
       <div
         class="image-message__preview-button"
         @click="isOpenModal = true"
@@ -32,7 +38,7 @@
       >
         <img
           class="image-message__preview-image"
-          :style="{ borderRadius: message.text ? '8px 8px 0 0' : '8px' }"
+          :style="{ borderRadius: imageBorderRadius}"
           :src="message.url"
           :alt="message.alt"
         >
@@ -101,7 +107,7 @@
           @click="clickAction"
         />
       </transition>
-
+      
       <div
         v-if="message.text"
         class="image-message__text-container"
@@ -142,10 +148,7 @@
     </Teleport>
   </div>
 
-  <BaseReplayMessage
-    v-else
-    :imageMessage="message"
-  />
+  
 </template>
 
 <script
@@ -158,7 +161,7 @@ import linkifyStr from "linkify-string";
 import { ContextMenu } from '../components'
 import { getStatus, statuses } from "../../helpers";
 import { IImageMessage } from '../../types';
-import BaseReplayMessage from './BaseReplayMessage.vue'
+import BaseReplyMessage from './BaseReplyMessage.vue'
 
 const props = defineProps({
   message: {
@@ -208,6 +211,13 @@ const hideMenu = () => {
   isOpenMenu.value = false
 };
 
+const imageBorderRadius = computed(() => {
+  if(props.message.reply && props.message.text) return '0'
+  if(props.message.text) return '8px 8px 0 0'
+  if(props.message.reply) return '0 0 8px 8px'
+  return '8px'
+})
+
 const status = computed(() => getStatus(props.message.status))
 
 function getClass(message) {
@@ -246,6 +256,7 @@ onUnmounted(() => {
   &__content {
     position: relative;
     max-width: 25rem;
+    border-radius: 14px;
   }
 
   &__avatar {
@@ -433,7 +444,6 @@ onUnmounted(() => {
     padding: 6px 10px 6px 10px;
     border-radius: 0 0 8px 8px;
     word-wrap: break-word;
-    max-width: 25rem;
 
     p {
       font-size: var(--base-message-font-size-text);
@@ -464,9 +474,6 @@ onUnmounted(() => {
 
     .image-message__content {
       grid-column: 2;
-    }
-
-    .image-message__text-container {
       background-color: var(--base-message-left-bg);
     }
 
@@ -499,10 +506,10 @@ onUnmounted(() => {
     .image-message__content {
       grid-column: 1;
       margin-left: auto;
+      background-color: var(--base-message-right-bg);
     }
 
     .image-message__text-container {
-      background-color: var(--base-message-right-bg);
       margin-left: auto;
     }
 
