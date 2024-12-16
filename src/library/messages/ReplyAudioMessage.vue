@@ -1,25 +1,20 @@
 <template>
   <div
-    class="audio-message__reply-container"
-    @click="onReply"
+    v-show="!isPlaying"
+    class="audio-message__play"
   >
-    <div
-      v-show="!isPlaying"
-      class="audio-message__play"
-    >
-      <span class="pi pi-play" />
+    <span class="pi pi-play" />
+  </div>
+  <div class="audio-message__text-container">
+    <div class="audio-message__reply-description">
+      <span class="pi pi-microphone"></span>
+      <p>Аудиосообщение</p>
     </div>
-    <div class="audio-message__text-container">
-      <div class="audio-message__reply-description">
-        <span class="pi pi-microphone"></span>
-        <p>Аудиосообщение</p>
-      </div>
-      <p
-        v-if="message.text"
-        v-html="linkedText"
-        @click="inNewWindow"
-      ></p>
-    </div>
+    <p
+      v-if="message.text"
+      v-html="linkedText"
+      @click="inNewWindow"
+    ></p>
   </div>
 </template>
 
@@ -39,8 +34,6 @@ const props = defineProps({
     required: true,
   },
 });
-
-const emit = defineEmits(['action', 'reply']);
 
 const isPlaying = ref(false);
 
@@ -62,9 +55,6 @@ function inNewWindow(event) {
     window.open(event.target.href, '_blank');
 }
 
-const onReply = () => {
-  emit('reply', props.message.messageId)
-}
 </script>
 
 <style
@@ -72,27 +62,6 @@ const onReply = () => {
   lang="scss"
 >
 .audio-message {
-
-  &__reply-container {
-    position: relative;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    column-gap: 10px;
-    border-radius: 10px;
-    padding: 6px 10px 6px 10px;
-    overflow: hidden;
-    margin-bottom: 6px;
-
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background-color: #07cf9c;
-    }
-  }
 
   &__play {
     border: none;
@@ -181,18 +150,6 @@ const onReply = () => {
       color: var(--modal-icon-color);
       font-size: var(--icon-font-size-medium);
     }
-  }
-}
-
-.left {
-  .audio-message__reply-container {
-    background-color: var(--reply-message-left-bg);
-  }
-}
-
-.right {
-  .audio-message__reply-container {
-    background-color: var(--reply-message-right-bg);
   }
 }
 

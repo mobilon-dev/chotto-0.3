@@ -2,8 +2,12 @@
   <div class="chat-input">
     <div class="chat-input__container">
       <div
-        :id="'chat-input-first-line-' + chatAppId"
-        class="chat-input__first-line"
+        :id="'chat-input-reply-line-' + chatAppId"
+        class="chat-input__reply-line"
+      />
+      <div
+        :id="'chat-input-file-line-' + chatAppId"
+        class="chat-input__file-line"
       />
       <div class="chat-input__second-line">
         <textarea
@@ -44,7 +48,6 @@ const chatAppId = inject('chatAppId')
 const { resetMessage, getMessage, setMessageText } = useMessage(chatAppId as string)
 
 const refInput = ref<HTMLElement>();
-
 
 const props = defineProps({
   state: {
@@ -131,7 +134,11 @@ const sendMessage = () => {
     grid-gap: 5px;
   }
 
-  &__first-line {
+  &__reply-line {
+    display: flex;
+  }
+
+  &__file-line {
     display: flex;
   }
 

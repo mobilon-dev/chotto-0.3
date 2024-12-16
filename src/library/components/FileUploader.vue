@@ -25,7 +25,7 @@
   </div>
   <teleport
     v-if="getMessage().file"
-    :to="'#chat-input-first-line-'+chatAppId"
+    :to="'#chat-input-file-line-'+chatAppId"
   >
     <FilePreview
       :preview-url="previewUrl"

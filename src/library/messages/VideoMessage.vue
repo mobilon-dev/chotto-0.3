@@ -24,7 +24,7 @@
 
     <div class="video-message__content">
       <BaseReplyMessage
-        style="padding: 10px 10px 4px 16px;"
+        style="margin: 10px 10px 4px 16px;"
         :class="message.position"
         v-if="message.reply"
         :message="message.reply"

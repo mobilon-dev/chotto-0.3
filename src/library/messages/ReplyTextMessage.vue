@@ -1,13 +1,8 @@
 <template>
-  <div
-    class="text-message__reply-container"
-    @click="onReply"
-  >
-    <p
-      v-html="linkedText"
-      @click="inNewWindow"
-    />
-  </div>
+  <p
+    v-html="linkedText"
+    @click="inNewWindow"
+  />
 </template>
 
 <script
@@ -27,8 +22,6 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['action', 'reply']);
-
 const linkedText = ref('')
 
 watch(
@@ -45,35 +38,14 @@ function inNewWindow(event) {
     window.open(event.target.href, '_blank');
 }
 
-const onReply = () => {
-  emit('reply', props.message.messageId)
-}
-
 </script>
 
 <style
   scoped
   lang="scss"
 >
-.text-message {
 
-  &__reply-container {
-    position: relative;
-    padding: 10px 6px 10px 12px;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 6px;
-
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background-color: #07cf9c;
-    }
-
+  .reply-container {
     p {
       font-size: 13px;
       color: var(--reply-message-color);
@@ -86,18 +58,5 @@ const onReply = () => {
       -webkit-box-orient: vertical;
     }
   }
-}
-
-.left {
-    .text-message__reply-container {
-      background-color: var(--reply-message-left-bg);
-    }
-  }
-
-.right {
-  .text-message__reply-container {
-    background-color: var(--reply-message-right-bg);
-  }
-}
 
 </style>

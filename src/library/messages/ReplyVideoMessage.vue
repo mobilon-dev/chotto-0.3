@@ -1,59 +1,54 @@
 <template>
   <div
-    class="video-message__reply-container"
-    @click="onReply"
+    class="video-message__preview-button"
+    @click="isOpenModal = true"
   >
-    <div
-      class="video-message__preview-button"
-      @click="isOpenModal = true"
-    >
-      <video
-        class="video-message__video"
-        :src="message.url"
-        :muted="true"
-      />
-    </div>
-
-    <div class="video-message__text-container">
-      <div class="video-message__reply-description">
-        <span class="pi pi-video"></span>
-        <p>Видео</p>
-      </div>
-      <p
-        v-if="message.text"
-        v-html="linkedText"
-        @click="inNewWindow"
-      ></p>
-    </div>
-    <Teleport to="body">
-      <transition name="modal-fade">
-        <div
-          v-if="isOpenModal"
-          class="video-message__modal-overlay"
-          @click="closeModalOutside"
-        >
-          <div class="video-message__modal">
-            <button
-              class="video-message__modal-close-button"
-              @click="closeModal"
-            >
-              <span>
-                <i class="pi pi-times" />
-              </span>
-            </button>
-            <video
-              ref="player"
-              class="video-message__modal-video"
-              :src="message.url"
-              :alt="message.alt"
-              controls
-              autoplay
-            />
-          </div>
-        </div>
-      </transition>
-    </Teleport>
+    <video
+      class="video-message__video"
+      :src="message.url"
+      :muted="true"
+    />
   </div>
+
+  <div class="video-message__text-container">
+    <div class="video-message__reply-description">
+      <span class="pi pi-video"></span>
+      <p>Видео</p>
+    </div>
+    <p
+      v-if="message.text"
+      v-html="linkedText"
+      @click="inNewWindow"
+    ></p>
+  </div>
+  <Teleport to="body">
+    <transition name="modal-fade">
+      <div
+        v-if="isOpenModal"
+        class="video-message__modal-overlay"
+        @click="closeModalOutside"
+      >
+        <div class="video-message__modal">
+          <button
+            class="video-message__modal-close-button"
+            @click="closeModal"
+          >
+            <span>
+              <i class="pi pi-times" />
+            </span>
+          </button>
+          <video
+            ref="player"
+            class="video-message__modal-video"
+            :src="message.url"
+            :alt="message.alt"
+            controls
+            autoplay
+          />
+        </div>
+      </div>
+    </transition>
+  </Teleport>
 </template>
 
 <script
@@ -71,8 +66,6 @@ const props = defineProps({
     required: true,
   },
 });
-
-const emit = defineEmits(['action', 'reply']);
 
 const player = ref<HTMLVideoElement | null>();
 const isOpenModal = ref(false);
@@ -92,10 +85,6 @@ function inNewWindow(event) {
   event.preventDefault()
   if (event.target.href)
     window.open(event.target.href, '_blank');
-}
-
-const onReply = () => {
-  emit('reply', props.message.messageId)
 }
 
 const closeModal = () => isOpenModal.value = false
@@ -126,26 +115,6 @@ onUnmounted(() => {
   lang="scss"
 >
 .video-message {
-  &__reply-container {
-    position: relative;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    column-gap: 10px;
-    border-radius: 10px;
-    padding: 6px 10px 6px 10px;
-    overflow: hidden;
-    margin-bottom: 6px;
-
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background-color: #07cf9c;
-    }
-  }
 
   &__video {
     width: 60px;
@@ -234,18 +203,6 @@ onUnmounted(() => {
       color: var(--modal-icon-color);
       font-size: var(--icon-font-size-medium);
     }
-  }
-}
-
-.left {
-  .video-message__reply-container {
-    background-color: var(--reply-message-left-bg);
-  }
-}
-
-.right {
-  .video-message__reply-container {
-    background-color: var(--reply-message-right-bg);
   }
 }
 

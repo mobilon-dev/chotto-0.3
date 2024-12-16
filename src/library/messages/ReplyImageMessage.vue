@@ -1,57 +1,52 @@
 <template>
   <div
-    class="image-message__reply-container"
-    @click="onReply"
+    class="image-message__preview-button"
+    @click="isOpenModal = true"
   >
-    <div
-      class="image-message__preview-button"
-      @click="isOpenModal = true"
+    <img
+      class="image-message__preview-image"
+      :src="message.url"
+      :alt="message.alt"
     >
-      <img
-        class="image-message__preview-image"
-        :src="message.url"
-        :alt="message.alt"
-      >
-    </div>
-
-    <div class="image-message__text-container">
-      <div class="image-message__reply-description">
-        <span class="pi pi-camera"></span>
-        <p>Фотография</p>
-      </div>
-      <p
-        v-if="message.text"
-        v-html="linkedText"
-        @click="inNewWindow"
-      ></p>
-    </div>
-
-    <Teleport to="body">
-      <transition name="modal-fade">
-        <div
-          v-if="isOpenModal"
-          class="image-message__modal-overlay"
-          @click="closeModalOutside"
-        >
-          <div class="image-message__modal">
-            <button
-              class="image-message__modal-close-button"
-              @click="closeModal"
-            >
-              <span>
-                <i class="pi pi-times" />
-              </span>
-            </button>
-            <img
-              class="image-message__modal-image"
-              :src="message.url"
-              :alt="message.alt"
-            >
-          </div>
-        </div>
-      </transition>
-    </Teleport>
   </div>
+
+  <div class="image-message__text-container">
+    <div class="image-message__reply-description">
+      <span class="pi pi-camera"></span>
+      <p>Фотография</p>
+    </div>
+    <p
+      v-if="message.text"
+      v-html="linkedText"
+      @click="inNewWindow"
+    ></p>
+  </div>
+
+  <Teleport to="body">
+    <transition name="modal-fade">
+      <div
+        v-if="isOpenModal"
+        class="image-message__modal-overlay"
+        @click="closeModalOutside"
+      >
+        <div class="image-message__modal">
+          <button
+            class="image-message__modal-close-button"
+            @click="closeModal"
+          >
+            <span>
+              <i class="pi pi-times" />
+            </span>
+          </button>
+          <img
+            class="image-message__modal-image"
+            :src="message.url"
+            :alt="message.alt"
+          >
+        </div>
+      </div>
+    </transition>
+  </Teleport>
 </template>
 
 <script
@@ -70,7 +65,6 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['action', 'reply']);
 
 const isOpenModal = ref(false);
 
@@ -90,10 +84,6 @@ function inNewWindow(event) {
   event.preventDefault()
   if (event.target.href)
     window.open(event.target.href, '_blank');
-}
-
-const onReply = () => {
-  emit('reply', props.message.messageId)
 }
 
 const closeModal = () => isOpenModal.value = false
@@ -124,28 +114,6 @@ onUnmounted(() => {
   lang="scss"
 >
 .image-message {
-
-  &__reply-container {
-    position: relative;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    column-gap: 10px;
-    border-radius: 10px;
-    padding: 6px 10px 6px 10px;
-    overflow: hidden;
-    margin-bottom: 6px;
-
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background-color: #07cf9c;
-    }
-  }
-
 
   &__preview-button {
     grid-column: 1;
@@ -235,18 +203,6 @@ onUnmounted(() => {
     span {
       color: var(--reply-message-color);
     }
-  }
-}
-
-.left {
-    .image-message__reply-container {
-      background-color: var(--reply-message-left-bg);
-    }
-  }
-
-.right {
-  .image-message__reply-container {
-    background-color: var(--reply-message-right-bg);
   }
 }
 

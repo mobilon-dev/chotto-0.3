@@ -4,6 +4,7 @@ interface Message {
     id: string
     text: string
     file?: UploadedFile
+    reply?: Reply
 }
 
 interface UploadedFile{
@@ -11,6 +12,14 @@ interface UploadedFile{
     name: string
     size: Number
     type: string
+}
+
+interface Reply{
+    messageId: string
+    type: string
+    text?: string
+    url?: string
+    filename?: string
 }
 
 const messages = ref<Message[]>([])
@@ -39,6 +48,7 @@ export const useMessage = (outId : string) => {
             id: getMessage().id,
             text: '',
             file: undefined,
+            reply: undefined,
         }
     }
 
@@ -47,6 +57,7 @@ export const useMessage = (outId : string) => {
             id: getMessage().id,
             text: text,
             file: getMessage().file,
+            reply: getMessage().reply,
         }
     }
 
@@ -55,6 +66,7 @@ export const useMessage = (outId : string) => {
             id: getMessage().id,
             text: getMessage().text,
             file: file,
+            reply: getMessage().reply,
         }
     }
 
@@ -63,6 +75,25 @@ export const useMessage = (outId : string) => {
             id: getMessage().id,
             text: getMessage().text,
             file: undefined,
+            reply: getMessage().reply,
+        }
+    }
+
+    const setReply = (reply : Reply) => {
+        messages.value[index.value] = {
+            id: getMessage().id,
+            text: getMessage().text,
+            file: getMessage().file,
+            reply: reply,
+        }
+    }
+
+    const resetReply = () => {
+        messages.value[index.value] = {
+            id: getMessage().id,
+            text: getMessage().text,
+            file: getMessage().file,
+            reply: undefined,
         }
     }
 
@@ -70,5 +101,13 @@ export const useMessage = (outId : string) => {
         return messages.value[index.value]
     }
 
-    return { getMessage, resetMessage, setMessageFile, resetMessageFile, setMessageText }
+    return {
+        getMessage, 
+        resetMessage, 
+        setMessageFile, 
+        resetMessageFile, 
+        setMessageText, 
+        setReply, 
+        resetReply 
+    }
 }
