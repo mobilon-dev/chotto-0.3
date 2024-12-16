@@ -29,9 +29,7 @@
         <BaseReplayMessage
         :class="message.position"
         v-if="message.reply"
-        :textMessage="message"
         :message="message.reply"
-
       />
       <p
         v-html="linkedText"

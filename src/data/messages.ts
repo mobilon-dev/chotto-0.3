@@ -214,14 +214,14 @@ export const messages = [
     },
   },
   {
-    chatId: 1,url: 'https://placehold.jp/30/336633/ffffff/320x160.png?text=кроссовки',
-    type: "message.image", text: "классное фото, тоже таки хочу",
+    chatId: 1,url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
+    type: "message.video", text: "ответ на видео",
     direction: 'incoming', status: 'received', timestamp: '1727027959',    
     reply: {
       messageId: 'msg_3450349543',
-      type: 'message.image',
-      text: 'мои новые кроссовки',
-      url: 'https://placehold.jp/30/336633/ffffff/320x160.png?text=кроссовки',
+      type: 'message.video',
+      text: 'видео',
+      url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
     },
   },
 ];
