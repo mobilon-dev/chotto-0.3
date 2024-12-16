@@ -1,8 +1,8 @@
 <template>
   <div class="replay-text">
     <component
-      :is="componentName"
-      :message="selectedMessage"
+      :is="componentsMap(message?.type)"
+      :message="message"
     ></component>
   </div>
 </template>
@@ -11,8 +11,6 @@
   setup
   lang="ts"
 >
-import { computed } from 'vue'
-
 import {
   ReplayTextMessage,
   ReplayImageMessage,
@@ -22,14 +20,11 @@ import {
 } from "../messages";
 
 import {
-  IAudioMessage,
-  IFileMessage,
-  IImageMessage,
-  ITextMessage,
-  IVideoMessage
+  IFeedObject
 } from '../../types';
 
-const props = defineProps({
+defineProps({
+  /*
   audioMessage: {
     type: Object as () => IAudioMessage,
     required: false,
@@ -50,9 +45,14 @@ const props = defineProps({
     type: Object as () => ITextMessage,
     required: false,
   },
+  */
+  message: {
+    type: Object as () => IFeedObject,
+  }
 });
-
+/*
 const componentName = computed(() => {
+  console.log(props.message)
   if (props.textMessage) return ReplayTextMessage;
   if (props.imageMessage) return ReplayImageMessage;
   if (props.fileMessage) return ReplayFileMessage;
@@ -60,7 +60,18 @@ const componentName = computed(() => {
   if (props.videoMessage) return ReplayVideoMessage;
   return null;
 });
-
+*/
+const componentsMap = (type) => {
+const r = {
+  'message.text': ReplayTextMessage,
+  'message.image': ReplayImageMessage,
+  'message.file': ReplayFileMessage,
+  'message.audio': ReplayAudioMessage,
+  'message.video': ReplayVideoMessage,
+};
+return r[type];
+}
+/*
 const selectedMessage = computed(() => {
   if (props.textMessage) return props.textMessage;
   if (props.imageMessage) return props.imageMessage;
@@ -69,6 +80,7 @@ const selectedMessage = computed(() => {
   if (props.videoMessage) return props.videoMessage;
   return null;
 });
+*/
 </script>
 
 <style lang="scss"></style>

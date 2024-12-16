@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="!message.reply"
+    
     class="text-message"
     :class="getClass(message)"
     :messageId="message.messageId"
@@ -26,6 +26,13 @@
       class="text-message__content"
       @mouseenter="showMenu"
     >
+        <BaseReplayMessage
+        :class="message.position"
+        v-if="message.reply"
+        :textMessage="message"
+        :message="message.reply"
+
+      />
       <p
         v-html="linkedText"
         class="text-message__text"
@@ -76,10 +83,7 @@
     </div>
   </div>
 
-  <BaseReplayMessage
-    v-else
-    :textMessage="message"
-  />
+  
 </template>
 
 <script
