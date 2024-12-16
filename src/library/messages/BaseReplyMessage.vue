@@ -1,13 +1,18 @@
 <template>
   <div
-    class="reply-container" 
+    class="reply__container" 
     :class="componentsClassMap(message?.type)"
+    @click="onReply"
   >
     <component
       :is="componentsMap(message?.type)"
       :message="message"
     ></component>
-    
+    <span
+      class="pi pi-times reply__reset"
+      style="font-size: 1rem"
+      @click="handleReset"
+    />
   </div>
 </template>
 
@@ -15,6 +20,8 @@
   setup
   lang="ts"
 >
+import { inject } from "vue";
+import { useMessage } from "../../helpers/useMessage";
 import {
   ReplyTextMessage,
   ReplyImageMessage,
@@ -27,11 +34,21 @@ import {
   IFeedObject
 } from '../../types';
 
-defineProps({
+const emit = defineEmits(['action', 'reply']);
+
+const props = defineProps({
   message: {
     type: Object as () => IFeedObject,
   }
 });
+
+const chatAppId = inject('chatAppId')
+const { resetReply } = useMessage(chatAppId as string)
+
+const onReply = () => {
+  if (props.message)
+    emit('reply', props.message.messageId)
+}
 
 const componentsMap = (type) => {
 const r = {
@@ -47,37 +64,55 @@ return r[type];
 const componentsClassMap = (type) => {
   const r = {
     'message.text': '',
-    'message.image': 'reply-container-grid',
+    'message.image': 'grid',
     'message.file': '',
-    'message.audio': 'reply-container-grid',
-    'message.video': 'reply-container-grid',
+    'message.audio': 'grid',
+    'message.video': 'grid',
   }
   return r[type]
+}
+
+const handleReset = () => {
+  resetReply()
 }
 
 </script>
 
 <style lang="scss">
 
-.reply-container {
-  position: relative;
-  padding: 10px 6px 10px 12px;
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 6px;
+.reply{
+  &__container {
+    position: relative;
+    padding: 10px 6px 10px 12px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 6px;
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background-color: #07cf9c;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background-color: #07cf9c;
+    }
   }
+
+  &__reset{
+    display: none;
+    position: absolute;
+    right:  0;
+    top: 0;
+  }
+
+  &__reset:hover{
+    cursor: pointer;
+  }
+  
 }
 
-.reply-container-grid {
+.grid {
   display: grid;
   grid-template-columns: auto 1fr;
   column-gap: 10px;
@@ -93,7 +128,11 @@ const componentsClassMap = (type) => {
 }
 
 .chat-input-reply{
+  padding-right: 20px;
   border: 1px solid var(--neutral-300);
   border-radius: 0;
+  .reply__reset{
+    display: inherit;
+  }
 }
 </style>

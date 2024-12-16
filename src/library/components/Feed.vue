@@ -74,7 +74,6 @@ import { useMessage } from '../../helpers/useMessage';
 import BaseReplyMessage from '../messages/BaseReplyMessage.vue';
 
 const trackingObjects = ref();
-const clickedObject = ref();
 const refFeed = ref();
 const isShowButton = ref(false)
 
@@ -101,7 +100,7 @@ const props = defineProps({
 });
 
 const chatAppId = inject('chatAppId')
-const { setReply, resetReply, getMessage } = useMessage(chatAppId as string)
+const { setReply, getMessage } = useMessage(chatAppId as string)
 
 const emit = defineEmits(['messageAction', 'loadMore', 'messageVisible']);
 

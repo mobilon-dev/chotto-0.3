@@ -1,4 +1,5 @@
 import { ref } from 'vue';
+import { Reply } from '../types';
 
 interface Message {
     id: string
@@ -12,14 +13,6 @@ interface UploadedFile{
     name: string
     size: Number
     type: string
-}
-
-interface Reply{
-    messageId: string
-    type: string
-    text?: string
-    url?: string
-    filename?: string
 }
 
 const messages = ref<Message[]>([])

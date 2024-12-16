@@ -98,6 +98,7 @@ const sendMessage = () => {
       url: '',
       filename: '',
       size: '',
+      reply: undefined,
     };
 
     if (Message.value.file) {
@@ -109,6 +110,9 @@ const sendMessage = () => {
     } else {
       messageObject.type = 'message.text';
       messageObject.text = Message.value.text.trim();
+    }
+    if (Message.value.reply){
+      messageObject.reply = Message.value.reply
     }
     emit('send', messageObject);
     resetMessage()

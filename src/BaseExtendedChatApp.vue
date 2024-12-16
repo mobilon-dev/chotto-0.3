@@ -307,6 +307,7 @@ const addMessage = (message) => {
     status: 'sent',
     direction: "outgoing",
     timestamp: moment().unix(),
+    reply: message.reply || null,
   });
   messages.value = getFeedObjects(); // Обновление сообщений
 };

@@ -44,19 +44,15 @@ function inNewWindow(event) {
   scoped
   lang="scss"
 >
-
-  .reply-container {
-    p {
-      font-size: 13px;
-      color: var(--reply-message-color);
-      white-space: pre-wrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      line-clamp: 2;
-      -webkit-box-orient: vertical;
-    }
-  }
-
+p {
+  font-size: 13px;
+  color: var(--reply-message-color);
+  white-space: pre-wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
 </style>
