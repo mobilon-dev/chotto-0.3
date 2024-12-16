@@ -56,7 +56,7 @@ import {
   CallMessage,
   SystemMessage,
   TypingMessage,
-  BaseReplayMessage,
+  BaseReplyMessage,
 } from "../messages";
 
 import { IFeedObject, IFeedTyping, IFeedUnreadButton } from '../../types';

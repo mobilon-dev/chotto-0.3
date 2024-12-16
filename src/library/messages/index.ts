@@ -7,12 +7,12 @@ import VideoMessage from './VideoMessage.vue';
 import CallMessage from './CallMessage.vue';
 import SystemMessage from './SystemMessage.vue';
 import TypingMessage from './TypingMessage.vue';
-import ReplayTextMessage from './ReplayTextMessage.vue'
-import ReplayImageMessage from './ReplayImageMessage.vue'
-import ReplayAudioMessage from './ReplayAudioMessage.vue'
-import ReplayVideoMessage from './ReplayVideoMessage.vue'
-import ReplayFileMessage from './ReplayFileMessage.vue'
-import BaseReplayMessage from './BaseReplayMessage.vue'
+import ReplyTextMessage from './ReplyTextMessage.vue'
+import ReplyImageMessage from './ReplyImageMessage.vue'
+import ReplyAudioMessage from './ReplyAudioMessage.vue'
+import ReplyVideoMessage from './ReplyVideoMessage.vue'
+import ReplyFileMessage from './ReplyFileMessage.vue'
+import BaseReplyMessage from './BaseReplyMessage.vue'
 
 export {
   AudioMessage,
@@ -24,10 +24,10 @@ export {
   CallMessage,
   SystemMessage,
   TypingMessage,
-  ReplayTextMessage,
-  ReplayImageMessage,
-  ReplayAudioMessage,
-  ReplayVideoMessage,
-  ReplayFileMessage,
-  BaseReplayMessage
+  ReplyTextMessage,
+  ReplyImageMessage,
+  ReplyAudioMessage,
+  ReplyVideoMessage,
+  ReplyFileMessage,
+  BaseReplyMessage
 }

@@ -23,7 +23,7 @@
     </p>
 
     <div class="video-message__content">
-      <BaseReplayMessage
+      <BaseReplyMessage
         style="padding: 10px 10px 4px 16px;"
         :class="message.position"
         v-if="message.reply"
@@ -169,7 +169,7 @@ import linkifyStr from "linkify-string";
 import { ContextMenu } from '../components'
 import { getStatus, statuses } from "../../helpers";
 import { IVideoMessage } from '../../types';
-import BaseReplayMessage from './BaseReplayMessage.vue'
+import BaseReplyMessage from './BaseReplyMessage.vue'
 
 const props = defineProps({
   message: {

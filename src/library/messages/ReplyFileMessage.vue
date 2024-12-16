@@ -87,7 +87,7 @@ const onReply = () => {
     word-wrap: break-word;
     white-space: pre-wrap;
     font-size: 13px;
-    color: var(--replay-message-color);
+    color: var(--reply-message-color);
   }
 
   &__link {
@@ -110,19 +110,19 @@ const onReply = () => {
     -webkit-box-orient: vertical;
     margin-right: 40px;
     font-size: 13px;
-    color: var(--replay-message-color);
+    color: var(--reply-message-color);
   }
 }
 
 .left {
     .file-message__reply-container {
-      background-color: var(--replay-message-left-bg);
+      background-color: var(--reply-message-left-bg);
     }
   }
 
 .right {
   .file-message__reply-container {
-    background-color: var(--replay-message-right-bg);
+    background-color: var(--reply-message-right-bg);
   }
 }
 

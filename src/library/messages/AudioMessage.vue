@@ -26,7 +26,7 @@
       class="audio-message__content"
       @mouseenter="showMenu"
     >
-      <BaseReplayMessage
+      <BaseReplyMessage
         style="grid-column: 1/3;"
         v-if="message.reply"
         :message="message.reply"
@@ -168,7 +168,7 @@ import linkifyStr from "linkify-string";
 import { ContextMenu } from '../components'
 import { getStatus, statuses } from "../../helpers";
 import { IAudioMessage } from '../../types';
-import BaseReplayMessage from './BaseReplayMessage.vue'
+import BaseReplyMessage from './BaseReplyMessage.vue'
 
 // Define props
 const props = defineProps({

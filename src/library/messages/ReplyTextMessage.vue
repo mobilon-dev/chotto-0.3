@@ -76,7 +76,7 @@ const onReply = () => {
 
     p {
       font-size: 13px;
-      color: var(--replay-message-color);
+      color: var(--reply-message-color);
       white-space: pre-wrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -90,13 +90,13 @@ const onReply = () => {
 
 .left {
     .text-message__reply-container {
-      background-color: var(--replay-message-left-bg);
+      background-color: var(--reply-message-left-bg);
     }
   }
 
 .right {
   .text-message__reply-container {
-    background-color: var(--replay-message-right-bg);
+    background-color: var(--reply-message-right-bg);
   }
 }
 

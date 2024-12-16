@@ -26,7 +26,7 @@
       class="text-message__content"
       @mouseenter="showMenu"
     >
-        <BaseReplayMessage
+        <BaseReplyMessage
         :class="message.position"
         v-if="message.reply"
         :message="message.reply"
@@ -94,7 +94,7 @@ import linkifyStr from "linkify-string";
 import { ContextMenu } from '../components'
 import { getStatus, statuses } from "../../helpers";
 import { ITextMessage } from '../../types';
-import BaseReplayMessage from './BaseReplayMessage.vue'
+import BaseReplyMessage from './BaseReplyMessage.vue'
 
 // Define props
 const props = defineProps({

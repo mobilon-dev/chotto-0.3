@@ -168,7 +168,7 @@ onUnmounted(() => {
 
     p {
       font-size: 13px;
-      color: var(--replay-message-color);
+      color: var(--reply-message-color);
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
@@ -186,7 +186,7 @@ onUnmounted(() => {
     margin-bottom: 4px;
 
     span {
-      color: var(--replay-message-color);
+      color: var(--reply-message-color);
     }
   }
 
@@ -239,13 +239,13 @@ onUnmounted(() => {
 
 .left {
   .video-message__reply-container {
-    background-color: var(--replay-message-left-bg);
+    background-color: var(--reply-message-left-bg);
   }
 }
 
 .right {
   .video-message__reply-container {
-    background-color: var(--replay-message-right-bg);
+    background-color: var(--reply-message-right-bg);
   }
 }
 

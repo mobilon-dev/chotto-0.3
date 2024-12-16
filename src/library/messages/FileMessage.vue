@@ -26,7 +26,7 @@
       class="file-message__content"
       @mouseenter="showMenu"
     >
-      <BaseReplayMessage
+      <BaseReplyMessage
         v-if="message.reply"
         :message="message.reply"
         :class="message.position"
@@ -121,7 +121,7 @@ import { ContextMenu } from '../components'
 import { getStatus, statuses } from "../../helpers";
 
 import { IFileMessage } from '../../types'
-import BaseReplayMessage from './BaseReplayMessage.vue'
+import BaseReplyMessage from './BaseReplyMessage.vue'
 
 // Define props
 const props = defineProps({

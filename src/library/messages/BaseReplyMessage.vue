@@ -1,5 +1,5 @@
 <template>
-  <div class="replay-text">
+  <div class="reply-text">
     <component
       :is="componentsMap(message?.type)"
       :message="message"
@@ -12,12 +12,12 @@
   lang="ts"
 >
 import {
-  ReplayTextMessage,
-  ReplayImageMessage,
-  ReplayAudioMessage,
-  ReplayVideoMessage,
-  ReplayFileMessage,
-} from "../messages";
+  ReplyTextMessage,
+  ReplyImageMessage,
+  ReplyAudioMessage,
+  ReplyVideoMessage,
+  ReplyFileMessage,
+} from ".";
 
 import {
   IFeedObject
@@ -31,11 +31,11 @@ defineProps({
 
 const componentsMap = (type) => {
 const r = {
-  'message.text': ReplayTextMessage,
-  'message.image': ReplayImageMessage,
-  'message.file': ReplayFileMessage,
-  'message.audio': ReplayAudioMessage,
-  'message.video': ReplayVideoMessage,
+  'message.text': ReplyTextMessage,
+  'message.image': ReplyImageMessage,
+  'message.file': ReplyFileMessage,
+  'message.audio': ReplyAudioMessage,
+  'message.video': ReplyVideoMessage,
 };
 return r[type];
 }
