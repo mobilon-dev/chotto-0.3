@@ -16,6 +16,7 @@ export interface IAudioMessage {
     text: string;
   };
   reply?: {
+    messageId: string
     type: string
     text: string
   }

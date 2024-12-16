@@ -224,4 +224,18 @@ export const messages = [
       url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
     },
   },
+  {
+    chatId: 1, type: "message.audio", url: "https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3",
+    text: "Привет!", direction: 'incoming', status: 'received', subText: '89829445678', timestamp: '1727027959',
+    transcript: {
+      text: 'Привет, доехала хорошо, позвони мне завтра',
+    },
+    actions: [{ action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' }],
+    reply: {
+      messageId: 'msg_3450349543',
+      type: 'message.audio',
+      text: 'голосовое сообщение',
+      url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
+    },
+  },
 ];

@@ -1,6 +1,5 @@
 <template>
   <div
-    v-if="!message.reply"
     class="audio-message"
     :class="getClass(message)"
     :messageId="message.messageId"
@@ -22,38 +21,72 @@
     >
       {{ message.subText }}
     </p>
-
+    
     <div
       class="audio-message__content"
       @mouseenter="showMenu"
     >
-      <audio
-        ref="player"
-        :src="message.url"
+      <BaseReplayMessage
+        style="grid-column: 1/3;"
+        v-if="message.reply"
+        :message="message.reply"
+        :class="message.position"
       />
-      <button
-        v-show="!isPlaying"
-        class="audio-message__play"
-        @click="togglePlayPause"
-      >
-        <span class="pi pi-play" />
-      </button>
-      <button
-        v-show="isPlaying"
-        class="audio-message__pause"
-        @click="togglePlayPause"
-      >
-        <span class="pi pi-pause" />
-      </button>
-      <div class="audio-message__progress-bar-container">
-        <div
-          class="audio-message__progress-bar"
-          :style="{ width: progressPercent + '%' }"
+      <div
+      class="audio-message__audio-container">
+        <audio
+          ref="player"
+          :src="message.url"
         />
+        <button
+          v-show="!isPlaying"
+          class="audio-message__play"
+          @click="togglePlayPause"
+        >
+          <span class="pi pi-play" />
+        </button>
+        <button
+          v-show="isPlaying"
+          class="audio-message__pause"
+          @click="togglePlayPause"
+        >
+          <span class="pi pi-pause" />
+        </button>
+        <div class="audio-message__progress-bar-container">
+          <div
+            class="audio-message__progress-bar"
+            :style="{ width: progressPercent + '%' }"
+          />
+        </div>
+        <p class="audio-message__remaining-time">
+          {{ `${formatCurrentTime} / ${formatDuration}` }}
+        </p>
+        <a
+        class="audio-message__download-button"
+        @click.stop="() => '//Предотвращаем всплытие события клика'"
+        :href="message.url"
+        download
+        target="_blank"
+      >
+        <span class="pi pi-download" />
+      </a>
       </div>
-      <p class="audio-message__remaining-time">
-        {{ `${formatCurrentTime} / ${formatDuration}` }}
-      </p>
+      
+      <div
+        v-if="message.transcript?.text"
+        class="audio-message__transcript-container"
+      >
+        <p @click="isFullTranscript = !isFullTranscript">{{ message.transcript.text }}</p>
+      </div>
+      <div
+        v-if="message.text"
+        class="audio-message__text-container"
+      >
+        <p
+          v-html="linkedText"
+          @click="inNewWindow"
+        ></p>
+      </div>
 
       <div class="audio-message__info-container">
         <div
@@ -87,16 +120,6 @@
         <span class="pi pi-ellipsis-h" />
       </button>
 
-      <a
-        class="audio-message__download-button"
-        @click.stop="() => '//Предотвращаем всплытие события клика'"
-        :href="message.url"
-        download
-        target="_blank"
-      >
-        <span class="pi pi-download" />
-      </a>
-
       <transition>
         <ContextMenu
           v-if="isOpenMenu && message.actions"
@@ -105,13 +128,6 @@
           @click="clickAction"
         />
       </transition>
-
-      <div
-        v-if="message.transcript?.text"
-        class="audio-message__transcript-container"
-      >
-        <p @click="isFullTranscript = !isFullTranscript">{{ message.transcript.text }}</p>
-      </div>
 
       <Teleport to="body">
         <transition name="modal-fade">
@@ -138,23 +154,8 @@
         </transition>
       </Teleport>
 
-      <div
-        v-if="message.text"
-        class="audio-message__text-container"
-      >
-        <p
-          v-html="linkedText"
-          @click="inNewWindow"
-        ></p>
-      </div>
-
     </div>
   </div>
-
-  <BaseReplayMessage
-    v-else
-    :audioMessage="message"
-  />
 </template>
 
 <script
@@ -283,18 +284,27 @@ onMounted(() => {
   lang="scss"
 >
 .audio-message {
-
-
-
   &__content {
     position: relative;
     display: grid;
     grid-template-columns: min-content 1fr;
     column-gap: 12px;
-    width: 100%;
+    width: 50%;
+    max-width: 25rem;
+    min-width: 13rem;
+    border-radius: 14px;
+    padding: 10px 26px 4px 16px;
+  }
+
+  &__audio-container{
+    position: relative;
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    column-gap: 12px;
     max-width: 25rem;
     border-radius: 14px;
     padding: 10px 26px 4px 16px;
+    grid-column: 1/3;
   }
 
   &__play,
@@ -367,8 +377,8 @@ onMounted(() => {
 
   &__download-button {
     position: absolute;
-    right: 8px;
-    top: 10px;
+    right: 0;
+    top: 13px;
     display: flex;
     justify-content: center;
     align-items: center;
