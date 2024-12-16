@@ -173,8 +173,9 @@ export const messages = [
     direction: 'outgoing', status: 'received', timestamp: '1727027959',    
     reply: {
       messageId: 'msg_3450349542',
-      type: 'message.image',
+      type: 'message.file',
       text: 'мои новые кроссовки',
+      filename: 'cross.png',
       url: 'https://placehold.jp/30/336633/ffffff/320x160.png?text=кроссовки',
     },
   },

@@ -3,12 +3,10 @@
     class="text-message__reply-container"
     @click="onReply"
   >
-    <div class="text-message__text-container">
-      <p
-        v-html="linkedText"
-        @click="inNewWindow"
-      />
-    </div>
+    <p
+      v-html="linkedText"
+      @click="inNewWindow"
+    />
   </div>
 </template>
 
@@ -16,7 +14,7 @@
   setup
   lang="ts"
 >
-import { computed, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 import linkifyStr from "linkify-string";
 
 import { ITextMessage } from '../../types';
@@ -75,10 +73,6 @@ const onReply = () => {
       height: 100%;
       background-color: #07cf9c;
     }
-  }
-
-
-  &__text-container {
 
     p {
       font-size: 13px;
