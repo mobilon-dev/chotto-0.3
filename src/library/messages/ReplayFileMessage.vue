@@ -1,6 +1,5 @@
 <template>
   <div
-    v-if="!message.reply"
     class="file-message"
     :class="getClass(message)"
     :messageId="message.messageId"
@@ -26,18 +25,33 @@
       class="file-message__content"
       @mouseenter="showMenu"
     >
-      <a
-        class="file-message__link"
-        :href="message.url"
-        download
-        target="_blank"
-      >
-        <span class="pi pi-file" />
-        <p class="file-message__filename-text">
-          {{ message.filename }}
-        </p>
 
-      </a>
+      <div
+        class="file-message__reply-container"
+        @click="onReply"
+      >
+        <div class="file-message__link-container">
+          <a
+            class="file-message__link"
+            :href="message.url"
+            download
+            target="_blank"
+          >
+            <span class="pi pi-file" />
+            <p class="file-message__filename-text">
+              {{ message.filename }}
+            </p>
+
+          </a>
+        </div>
+      </div>
+
+      <p
+        v-if="message.reply?.text"
+        class="file-message__reply-text"
+      >{{ message.reply.text }}</p>
+
+
       <div class="file-message__info-container">
 
         <div
@@ -73,16 +87,6 @@
         <span class="pi pi-ellipsis-h" />
       </button>
 
-      <a
-        class="file-message__download-button"
-        :href="message.url"
-        @click.stop="() => '//Предотвращаем всплытие события клика'"
-        download
-        target="_blank"
-      >
-        <span class="pi pi-download" />
-      </a>
-
       <transition>
         <ContextMenu
           v-if="isOpenMenu && message.actions"
@@ -92,23 +96,8 @@
         />
       </transition>
 
-      <div
-        v-if="message.text"
-        class="file-message__text-container"
-      >
-        <p
-          v-html="linkedText"
-          @click="inNewWindow"
-        ></p>
-      </div>
-
     </div>
   </div>
-
-  <BaseReplayMessage
-    v-else
-    :fileMessage="message"
-  />
 </template>
 
 <script
@@ -124,7 +113,6 @@ import { ContextMenu } from '../components'
 import { getStatus, statuses } from "../../helpers";
 
 import { IFileMessage } from '../../types'
-import BaseReplayMessage from './BaseReplayMessage.vue'
 
 // Define props
 const props = defineProps({
@@ -134,7 +122,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['action']);
+const emit = defineEmits(['action', 'reply']);
 
 const isOpenMenu = ref(false)
 const buttonMenuVisible = ref(false);
@@ -150,17 +138,15 @@ watch(
   { immediate: true }
 )
 
-function inNewWindow(event) {
-  event.preventDefault()
-  if (event.target.href)
-    window.open(event.target.href, '_blank');
-}
-
 const viewsAction = () => {
   emit('action', { messageId: props.message.messageId, type: 'views' });
 }
 
 const clickAction = () => { }
+
+const onReply = () => {
+  emit('reply', props.message.messageId)
+}
 
 const showMenu = () => {
   buttonMenuVisible.value = true;
@@ -190,8 +176,26 @@ function getClass(message) {
     width: fit-content;
     border-radius: 14px;
     background-color: var(--file-message-background-color);
-    padding: 10px 30px 4px 16px;
+    padding: 8px 8px 4px 8px;
     max-width: 25rem;
+  }
+
+  &__reply-container {
+    position: relative;
+    padding: 10px 6px 10px 12px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 6px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background-color: #07cf9c;
+    }
   }
 
   &__avatar {
@@ -222,7 +226,7 @@ function getClass(message) {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    column-gap: 12px;
+    column-gap: 13px;
 
     span {
       font-size: var(--icon-font-size-medium);
@@ -236,8 +240,8 @@ function getClass(message) {
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     margin-right: 40px;
-    font-size: var(--base-message-font-size-text);
-    color: var(--file-message-text-color);
+    font-size: 13px;
+    color: var(--replay-message-color);
   }
 
   &__info-container {
@@ -245,27 +249,9 @@ function getClass(message) {
     align-items: center;
     justify-content: flex-end;
     column-gap: 2px;
+    padding: 0 2px 0 8px;
   }
 
-  &__download-button {
-    position: absolute;
-    right: 8px;
-    top: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    border-radius: 12px;
-    background-color: transparent;
-    padding: 0;
-    cursor: pointer;
-
-    span {
-      color: var(--audio-message-download-button);
-      font-weight: 600;
-      font-size: 12px;
-    }
-  }
 
   &__status {
     display: flex;
@@ -367,6 +353,10 @@ function getClass(message) {
       background-color: var(--base-message-left-bg);
     }
 
+    .file-message__reply-container {
+      background-color: var(--replay-message-left-bg);
+    }
+
     .file-message__menu-button {
       top: 50%;
       right: -40px;
@@ -399,6 +389,10 @@ function getClass(message) {
       grid-column: 1;
       margin-left: auto;
       background-color: var(--base-message-right-bg);
+    }
+
+    .file-message__reply-container {
+      background-color: var(--replay-message-right-bg);
     }
 
     .file-message__menu-button {

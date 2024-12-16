@@ -13,6 +13,10 @@
 
   --base-message-margin: 0 0 8px 0;
 
+  /* Reply Messages */
+  --replay-message-right-bg: #d1f4cc;
+  --replay-message-left-bg: var(--neutral-100);
+
   /* _____________________________________________ */
 
   /* Call Message */

@@ -1,6 +1,5 @@
 <template>
   <div
-    v-if="!message.reply"
     class="video-message"
     :class="getClass(message)"
     :messageId="message.messageId"
@@ -22,71 +21,67 @@
       {{ message.subText }}
     </p>
 
-    <div class="video-message__content">
+    <div
+      class="video-message__content"
+      @mouseenter="showMenu"
+    >
 
       <div
-        class="video-message__preview-button"
-        @click="isOpenModal = true"
-        @mouseenter="showMenu"
-        @mouseleave="buttonDownloadVisible = !buttonDownloadVisible"
+        class="video-message__reply-container"
+        @click="onReply"
       >
-        <video
-          ref="previewPlayer"
-          class="video-message__video"
-          :style="{ borderRadius: message.text ? '8px 8px 0 0' : '8px' }"
-          @ended="playAgain"
-          :src="message.url"
-          :muted="true"
-          autoplay
-        />
+        <div
+          class="video-message__preview-button"
+          @click="isOpenModal = true"
+        >
+          <video
+            class="video-message__video"
+            :src="message.url"
+            :muted="true"
+          />
+        </div>
 
-        <!-- <p class="video-message__remaining-time">
-        {{ `${remaningTime}` }}
-      </p> -->
-
-        <transition name="modal-fade">
-          <div
-            v-if="buttonDownloadVisible"
-            class="video-message__info-container"
-          >
-            <div
-              v-if="message.views"
-              @click.stop="viewsAction"
-              class="video-message__views"
-            >
-              <span class="pi pi-eye" />
-              <p>{{ message.views }}</p>
-            </div>
-
-            <span class="video-message__time">{{ message.time }}</span>
-
-            <div
-              v-if="getClass(message) === 'video-message__right' && statuses.includes(message.status)"
-              class="video-message__status"
-              :class="status"
-            >
-              <span
-                v-if="message.status !== 'sent'"
-                class="pi pi-check"
-              />
-              <span class="pi pi-check" />
-            </div>
+        <div class="video-message__text-container">
+          <div class="video-message__reply-description">
+            <span class="pi pi-video"></span>
+            <p>Видео</p>
           </div>
-        </transition>
+          <p
+            v-if="message.text"
+            v-html="linkedText"
+            @click="inNewWindow"
+          ></p>
+        </div>
+      </div>
 
+      <p
+        v-if="message.reply?.text"
+        class="video-message__reply-text"
+      >{{ message.reply.text }}</p>
 
-        <transition name="modal-fade">
-          <a
-            v-if="buttonDownloadVisible"
-            @click.stop="() => '//Предотвращаем всплытие события клика'"
-            class="video-message__download-button"
-            :href="message.url"
-            download
-            target="_blank"
-          >
-            <span class="pi pi-download" />
-          </a>
-        </transition>
+      <div class="video-message__info-container">
+        <div
+          v-if="message.views"
+          @click.stop="viewsAction"
+          class="video-message__views"
+        >
+          <span class="pi pi-eye" />
+          <p>{{ message.views }}</p>
+        </div>
+
+        <span class="video-message__time">{{ message.time }}</span>
+
+        <div
+          v-if="getClass(message) === 'video-message__right' && statuses.includes(message.status)"
+          class="video-message__status"
+          :class="status"
+        >
+          <span
+            v-if="message.status !== 'sent'"
+            class="pi pi-check"
+          />
+          <span class="pi pi-check" />
+        </div>
       </div>
 
       <transition name="modal-fade">
@@ -108,53 +103,39 @@
           @click="clickAction"
         />
       </transition>
-
-      <div
-        v-if="message.text"
-        class="video-message__text-container"
-      >
-        <p
-          v-html="linkedText"
-          @click="inNewWindow"
-        ></p>
-      </div>
     </div>
 
-
-    <Teleport to="body">
-      <transition name="modal-fade">
-        <div
-          v-if="isOpenModal"
-          class="video-message__modal-overlay"
-          @click="closeModalOutside"
-        >
-          <div class="video-message__modal">
-            <button
-              class="video-message__modal-close-button"
-              @click="closeModal"
-            >
-              <span>
-                <i class="pi pi-times" />
-              </span>
-            </button>
-            <video
-              ref="player"
-              class="video-message__modal-video"
-              :src="message.url"
-              :alt="message.alt"
-              controls
-              autoplay
-            />
-          </div>
-        </div>
-      </transition>
-    </Teleport>
   </div>
 
-  <BaseReplayMessage
-    v-else
-    :videoMessage="message"
-  />
+  <Teleport to="body">
+    <transition name="modal-fade">
+      <div
+        v-if="isOpenModal"
+        class="video-message__modal-overlay"
+        @click="closeModalOutside"
+      >
+        <div class="video-message__modal">
+          <button
+            class="video-message__modal-close-button"
+            @click="closeModal"
+          >
+            <span>
+              <i class="pi pi-times" />
+            </span>
+          </button>
+          <video
+            ref="player"
+            class="video-message__modal-video"
+            :src="message.url"
+            :alt="message.alt"
+            controls
+            autoplay
+          />
+        </div>
+      </div>
+    </transition>
+  </Teleport>
+
 </template>
 
 <script
@@ -167,7 +148,6 @@ import linkifyStr from "linkify-string";
 import { ContextMenu } from '../components'
 import { getStatus, statuses } from "../../helpers";
 import { IVideoMessage } from '../../types';
-import BaseReplayMessage from './BaseReplayMessage.vue'
 
 const props = defineProps({
   message: {
@@ -176,22 +156,16 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['action']);
+const emit = defineEmits(['action', 'reply']);
 
 function getClass(message) {
   return message.position === 'left' ? 'video-message__left' : 'video-message__right';
 }
 
 const player = ref<HTMLVideoElement | null>();
-const previewPlayer = ref<HTMLVideoElement | null>();
-// const isPlaying = ref(false);
-// const audioDuration = ref(0);
-// const currentTime = ref(0)
-
 const isOpenModal = ref(false);
 const isOpenMenu = ref(false)
 const buttonMenuVisible = ref(false);
-const buttonDownloadVisible = ref(false)
 const linkedText = ref('')
 
 watch(
@@ -216,9 +190,12 @@ const viewsAction = () => {
 
 const clickAction = () => { }
 
+const onReply = () => {
+  emit('reply', props.message.messageId)
+}
+
 const showMenu = () => {
   buttonMenuVisible.value = true;
-  buttonDownloadVisible.value = true
 };
 
 const hideMenu = () => {
@@ -227,27 +204,6 @@ const hideMenu = () => {
 };
 
 const status = computed(() => getStatus(props.message.status))
-
-const playAgain = () => {
-  if (previewPlayer.value) {
-    previewPlayer.value.currentTime = 0;
-    previewPlayer.value.play();
-  }
-};
-
-
-watch([player, previewPlayer], ([playerVal, previewVal]) => {
-  if (playerVal) {
-    if (previewVal) {
-      previewVal.pause();
-      previewVal.currentTime = 0;
-    }
-  } else if (previewVal) {
-    previewVal.play();
-    previewVal.currentTime = 0;
-  }
-});
-
 
 const closeModal = () => isOpenModal.value = false
 
@@ -280,37 +236,37 @@ onUnmounted(() => {
   &__content {
     position: relative;
     max-width: 25rem;
+    padding: 8px 8px 4px 8px;
+    border-radius: 14px;
+  }
+
+  &__reply-container {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 10px;
+    border-radius: 10px;
+    padding: 6px 10px 6px 10px;
+    overflow: hidden;
+    margin-bottom: 6px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background-color: #07cf9c;
+    }
   }
 
   &__info-container {
-    position: absolute;
-    bottom: 4px;
-    right: 8px;
     display: flex;
     align-items: center;
-    column-gap: 4px;
-    border-radius: 12px;
-    padding: 6px 10px;
-    background-color: rgb(0 0 0 / 39%);
-  }
-
-  &__download-button {
-    position: absolute;
-    left: 8px;
-    bottom: 4px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    border-radius: 12px;
-    padding: 6px 6px;
-    background-color: rgb(0 0 0 / 39%);
-    cursor: pointer;
-
-    span {
-      color: var(--neutral-200);
-      font-size: 12px;
-    }
+    justify-content: flex-end;
+    column-gap: 2px;
+    padding: 0 2px 0 8px;
   }
 
   &__views {
@@ -330,7 +286,6 @@ onUnmounted(() => {
   }
 
   &__time {
-    color: var(--neutral-200);
     font-size: var(--base-message-font-size-time);
   }
 
@@ -339,14 +294,14 @@ onUnmounted(() => {
 
     span {
       font-weight: 400;
-      color: var(--default-white);
+      color: var(--base-message-status-color-received);
       font-size: var(--base-message-status-font-size);
     }
   }
 
   .status--received {
     span {
-      color: var(--default-white);
+      color: var(--base-message-status-color-received);
 
       &:first-child {
         margin-right: -8px;
@@ -421,9 +376,10 @@ onUnmounted(() => {
   }
 
   &__video {
+    width: 60px;
+    height: 60px;
+    border-radius: 4px;
     object-fit: cover;
-    width: 100%;
-    max-height: 500px;
     cursor: zoom-in;
   }
 
@@ -478,14 +434,30 @@ onUnmounted(() => {
   }
 
   &__text-container {
-    padding: 6px 10px 6px 10px;
-    border-radius: 0 0 8px 8px;
     word-wrap: break-word;
+    align-content: center;
     max-width: 25rem;
 
     p {
-      white-space: pre-wrap;
-      font-size: var(--base-message-font-size-text);
+      font-size: 13px;
+      color: var(--replay-message-color);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      word-break: break-all;
+    }
+  }
+
+  &__reply-description {
+    display: flex;
+    align-items: center;
+    column-gap: 6px;
+    margin-bottom: 4px;
+
+    span {
+      color: var(--replay-message-color);
     }
   }
 
@@ -512,11 +484,11 @@ onUnmounted(() => {
 
     .video-message__content {
       grid-column: 2;
+      background-color: var(--base-message-left-bg);
     }
 
-    .video-message__text-container {
-      grid-column: 2;
-      background-color: var(--base-message-left-bg);
+    .video-message__reply-container {
+      background-color: var(--replay-message-left-bg);
     }
 
     .video-message__menu-button {
@@ -545,16 +517,14 @@ onUnmounted(() => {
       margin: 0 10px 2px auto;
     }
 
-
     .video-message__content {
       grid-column: 1;
       margin-left: auto;
+      background-color: var(--base-message-right-bg);
     }
 
-    .video-message__text-container {
-      grid-column: 1;
-      margin-left: auto;
-      background-color: var(--base-message-right-bg);
+    .video-message__reply-container {
+      background-color: var(--replay-message-right-bg);
     }
 
     .video-message__menu-button {

@@ -156,7 +156,7 @@ function getClass(element, type) {
     margin-left: auto;
     display: flex;
     align-items: center;
-    column-gap: 6px;
+    column-gap: 4px;
   }
 
   &__title {

@@ -269,12 +269,12 @@ const getUsers = () => {
 
 const loadMore = () => {
   // do load more messages to feed
-  console.log("load more");
+  // console.log("load more");
 };
 
 const messageVisible = (message) => {
   // processing message in feed visible area 
-  console.log('visible message',message.type)
+  // console.log('visible message', message.type)
 }
 
 const getFeedObjects = () => {
@@ -314,23 +314,23 @@ const addMessage = (message) => {
 const sendWabaValues = (obj) => {
   console.log('send waba values', obj);
   const messageObject = {
-      type: '',
-      text: '',
-      url: '',
-      filename: '',
-      size: '',
-    };
+    type: '',
+    text: '',
+    url: '',
+    filename: '',
+    size: '',
+  };
 
-    if (obj.file) {
-      messageObject.type = 'message.' + obj.file.filetype;
-      messageObject.url = obj.file.url;
-      messageObject.filename = obj.file.filename;
-      messageObject.size = obj.file.filesize.toString();
-      messageObject.text = obj.text.trim();
-    } else {
-      messageObject.type = 'message.text';
-      messageObject.text = obj.text.trim();
-    }
+  if (obj.file) {
+    messageObject.type = 'message.' + obj.file.filetype;
+    messageObject.url = obj.file.url;
+    messageObject.filename = obj.file.filename;
+    messageObject.size = obj.file.filesize.toString();
+    messageObject.text = obj.text.trim();
+  } else {
+    messageObject.type = 'message.text';
+    messageObject.text = obj.text.trim();
+  }
 
   addMessage(messageObject)
 }

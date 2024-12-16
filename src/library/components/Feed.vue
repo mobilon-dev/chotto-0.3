@@ -3,7 +3,7 @@
     ref="refFeed"
     class="message-feed"
     @scroll="scrollTopCheck()"
-    :id="'feed-container-'+chatAppId"
+    :id="'feed-container-' + chatAppId"
   >
     <div class="message-feed__container">
       <component
@@ -46,7 +46,6 @@
   lang="ts"
 >
 import { ref, unref, watch, nextTick, onUpdated, inject } from 'vue';
-
 import {
   FileMessage,
   ImageMessage,
@@ -56,7 +55,8 @@ import {
   VideoMessage,
   CallMessage,
   SystemMessage,
-  TypingMessage
+  TypingMessage,
+  BaseReplayMessage,
 } from "../messages";
 
 import { IFeedObject, IFeedTyping, IFeedUnreadButton } from '../../types';
@@ -147,7 +147,7 @@ const messageAction = (message) => {
   emit('messageAction', message);
 }
 
-const callback = (entries : Array<IntersectionObserverEntry>) => {
+const callback = (entries: Array<IntersectionObserverEntry>) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       emit('messageVisible', JSON.parse(entry.target.id))
@@ -156,7 +156,7 @@ const callback = (entries : Array<IntersectionObserverEntry>) => {
 }
 
 const options = {
-  root: document.getElementById('feed-container-'+chatAppId),
+  root: document.getElementById('feed-container-' + chatAppId),
   rootMargin: '5px',
   threshold: 0,
 }
@@ -164,7 +164,7 @@ const options = {
 const observer = new IntersectionObserver(callback, options)
 
 watch(
-  ()=>props.objects,
+  () => props.objects,
   () => {
     nextTick(() => {
       scrollTopCheck(false)
@@ -172,7 +172,7 @@ watch(
       trackingObjects.value.forEach((obj) => observer.observe(obj))
     })
   },
-  {immediate: true})
+  { immediate: true })
 
 </script>
 

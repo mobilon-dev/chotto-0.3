@@ -1,6 +1,5 @@
 <template>
   <div
-    v-if="!message.reply"
     class="text-message"
     :class="getClass(message)"
     :messageId="message.messageId"
@@ -26,11 +25,25 @@
       class="text-message__content"
       @mouseenter="showMenu"
     >
+
+      <div
+        class="text-message__reply-container"
+        @click="onReply"
+      >
+        <div class="text-message__text-container">
+          <p
+            v-html="linkedText"
+            @click="inNewWindow"
+          />
+        </div>
+      </div>
+
+
       <p
-        v-html="linkedText"
-        class="text-message__text"
-        @click="inNewWindow"
-      />
+        v-if="message.reply?.text"
+        class="text-message__reply-text"
+      >{{ message.reply.text }}</p>
+
       <div class="text-message__info-container">
         <div
           v-if="message.views"
@@ -75,11 +88,6 @@
       </transition>
     </div>
   </div>
-
-  <BaseReplayMessage
-    v-else
-    :textMessage="message"
-  />
 </template>
 
 <script
@@ -92,7 +100,6 @@ import linkifyStr from "linkify-string";
 import { ContextMenu } from '../components'
 import { getStatus, statuses } from "../../helpers";
 import { ITextMessage } from '../../types';
-import BaseReplayMessage from './BaseReplayMessage.vue'
 
 // Define props
 const props = defineProps({
@@ -102,7 +109,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['action']);
+const emit = defineEmits(['action', 'reply']);
 
 const isOpenMenu = ref(false)
 const buttonMenuVisible = ref(false);
@@ -138,6 +145,10 @@ const clickAction = (action) => {
   emit('action', { messageId: props.message.messageId, type: 'menu', ...action });
 }
 
+const onReply = () => {
+  emit('reply', props.message.messageId)
+}
+
 const viewsAction = () => {
   hideMenu();
   emit('action', { messageId: props.message.messageId, type: 'views' });
@@ -160,7 +171,25 @@ function getClass(message) {
     width: fit-content;
     max-width: 25rem;
     border-radius: 14px;
-    padding: 10px 10px 4px 16px;
+    padding: 8px 8px 4px 8px;
+  }
+
+  &__reply-container {
+    position: relative;
+    padding: 10px 6px 10px 12px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 6px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background-color: #07cf9c;
+    }
   }
 
   &__info-container {
@@ -168,6 +197,7 @@ function getClass(message) {
     align-items: center;
     justify-content: flex-end;
     column-gap: 4px;
+    padding: 0 2px 0 8px;
   }
 
   &__views {
@@ -221,9 +251,18 @@ function getClass(message) {
     }
   }
 
-  &__text {
-    font-size: var(--base-message-font-size-text);
-    white-space: pre-wrap;
+  &__text-container {
+
+    p {
+      font-size: 13px;
+      color: var(--replay-message-color);
+      white-space: pre-wrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
   }
 
   &__subtext {
@@ -289,6 +328,10 @@ function getClass(message) {
       background-color: var(--base-message-left-bg);
     }
 
+    .text-message__reply-container {
+      background-color: var(--replay-message-left-bg);
+    }
+
     .text-message__menu-button {
       top: 50%;
       right: -40px;
@@ -319,6 +362,10 @@ function getClass(message) {
       grid-column: 1;
       margin-left: auto;
       background-color: var(--base-message-right-bg);
+    }
+
+    .text-message__reply-container {
+      background-color: var(--replay-message-right-bg);
     }
 
     .text-message__menu-button {
