@@ -215,7 +215,7 @@ export const messages = [
   },
   {
     chatId: 1,url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
-    type: "message.video", text: "ответ на видео",
+    type: "message.file", text: "ответ на видео", filename: "video.mp4",
     direction: 'incoming', status: 'received', timestamp: '1727027959',    
     reply: {
       messageId: 'msg_3450349543',

@@ -484,6 +484,7 @@ onMounted(() => {
       text-overflow: ellipsis;
       display: -webkit-box;
       -webkit-line-clamp: 2;
+      line-clamp: 2;
       -webkit-box-orient: vertical;
     }
 
@@ -506,6 +507,7 @@ onMounted(() => {
       text-overflow: clip;
       display: block;
       -webkit-line-clamp: unsets;
+      line-clamp: unsets;
       -webkit-box-orient: initial;
     }
   }

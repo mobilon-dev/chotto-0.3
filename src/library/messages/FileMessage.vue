@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="!message.reply"
+    
     class="file-message"
     :class="getClass(message)"
     :messageId="message.messageId"
@@ -26,6 +26,11 @@
       class="file-message__content"
       @mouseenter="showMenu"
     >
+      <BaseReplayMessage
+        v-if="message.reply"
+        :message="message.reply"
+        :class="message.position"
+      />
       <a
         class="file-message__link"
         :href="message.url"
@@ -36,8 +41,21 @@
         <p class="file-message__filename-text">
           {{ message.filename }}
         </p>
-
+        <div
+          class="file-message__download-button"
+        >
+          <span class="pi pi-download" />
+        </div>
       </a>
+      <div
+        v-if="message.text"
+        class="file-message__text-container"
+      >
+        <p
+          v-html="linkedText"
+          @click="inNewWindow"
+        ></p>
+      </div>
       <div class="file-message__info-container">
 
         <div
@@ -73,15 +91,7 @@
         <span class="pi pi-ellipsis-h" />
       </button>
 
-      <a
-        class="file-message__download-button"
-        :href="message.url"
-        @click.stop="() => '//Предотвращаем всплытие события клика'"
-        download
-        target="_blank"
-      >
-        <span class="pi pi-download" />
-      </a>
+      
 
       <transition>
         <ContextMenu
@@ -92,23 +102,10 @@
         />
       </transition>
 
-      <div
-        v-if="message.text"
-        class="file-message__text-container"
-      >
-        <p
-          v-html="linkedText"
-          @click="inNewWindow"
-        ></p>
-      </div>
+      
 
     </div>
   </div>
-
-  <BaseReplayMessage
-    v-else
-    :fileMessage="message"
-  />
 </template>
 
 <script
@@ -234,6 +231,7 @@ function getClass(message) {
     overflow: hidden;
     text-overflow: ellipsis;
     -webkit-line-clamp: 1;
+    line-clamp: 1;
     -webkit-box-orient: vertical;
     margin-right: 40px;
     font-size: var(--base-message-font-size-text);
@@ -248,12 +246,7 @@ function getClass(message) {
   }
 
   &__download-button {
-    position: absolute;
-    right: 8px;
-    top: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-bottom: 5px;
     border: none;
     border-radius: 12px;
     background-color: transparent;

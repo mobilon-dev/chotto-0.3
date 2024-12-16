@@ -106,6 +106,7 @@ const onReply = () => {
     overflow: hidden;
     text-overflow: ellipsis;
     -webkit-line-clamp: 1;
+    line-clamp: 1;
     -webkit-box-orient: vertical;
     margin-right: 40px;
     font-size: 13px;
