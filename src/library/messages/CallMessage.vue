@@ -1,96 +1,94 @@
 <template>
-  <div class="call-message">
-    <div
-      :class="getClass(message, elementType.message)"
-      :messageId="message.messageId"
+  <div
+    :class="getClass(message, elementType.message)"
+    :messageId="message.messageId"
+  >
+    <img
+      v-if="message.avatar"
+      class="call-message__avatar"
+      :src="message.avatar"
+      height="32"
+      width="32"
+      :style="{ gridRow: message.subText ? '2' : '1' }"
     >
-      <img
-        v-if="message.avatar"
-        class="call-message__avatar"
-        :src="message.avatar"
-        height="32"
-        width="32"
-        :style="{ gridRow: message.subText ? '2' : '1' }"
-      >
 
-      <p
-        v-if="message.subText"
-        class="call-message__subtext"
-      >
-        {{ message.subText }}
-      </p>
+    <p
+      v-if="message.subText"
+      class="call-message__subtext"
+    >
+      {{ message.subText }}
+    </p>
 
-      <div class="call-message__content">
-        <span
-          class="call-message__icon pi pi-phone"
-          :style="{ color: message.isMissedCall ? 'var(--p-red-500)' : 'var(--neutral-100)' }"
-        />
+    <div class="call-message__content">
+      <span
+        class="call-message__icon pi pi-phone"
+        :style="{ color: message.isMissedCall ? 'var(--p-red-500)' : 'var(--neutral-100)' }"
+      />
 
-        <span
-          v-if="!message.isMissedCall"
-          class="call-message__title"
-        >Аудиозвонок</span>
-        <span
-          v-else
-          class="call-message__title"
-        >Пропущенный аудиозвонок</span>
+      <span
+        v-if="!message.isMissedCall"
+        class="call-message__title"
+      >Аудиозвонок</span>
+      <span
+        v-else
+        class="call-message__title"
+      >Пропущенный аудиозвонок</span>
 
-        <span
-          v-if="message.callDuration"
-          class="call-message__duration"
-        >{{ message.callDuration }}</span>
-        <span
-          v-else-if="!message.callDuration && message.isMissedCall"
-          class="call-message__duration"
-        >Нажмите, чтобы
-          перезвонить</span>
-        <span
-          v-else
-          class="call-message__duration"
-        >Нет ответа</span>
+      <span
+        v-if="message.callDuration"
+        class="call-message__duration"
+      >{{ message.callDuration }}</span>
+      <span
+        v-else-if="!message.callDuration && message.isMissedCall"
+        class="call-message__duration"
+      >Нажмите, чтобы
+        перезвонить</span>
+      <span
+        v-else
+        class="call-message__duration"
+      >Нет ответа</span>
 
-        <div class="call-message__info-container">
-          <span class="call-message__time">{{ message.time }}</span>
-        </div>
-
-        <button
-          v-if="message.transcript?.dialog"
-          class="call-message__download-button"
-          @click="isFullTranscript = !isFullTranscript"
-        >
-          <span class="pi pi-arrow-up-right" />
-        </button>
-
-        <Teleport to="body">
-          <transition name="modal-fade">
-            <div
-              v-if="isFullTranscript"
-              class="call-message__modal-overlay"
-            >
-              <div class="call-message__modal">
-                <button
-                  class="call-message__modal-close-button"
-                  @click="isFullTranscript = false"
-                >
-                  <span>
-                    <i class="pi pi-times" />
-                  </span>
-                </button>
-
-                <div
-                  :class="getClass(item, elementType.textDialog)"
-                  v-for="(item, index) in message.transcript?.dialog"
-                >
-                  <p>{{ item.text }}</p>
-                  <span>{{ item.time }}</span>
-                </div>
-
-              </div>
-            </div>
-          </transition>
-        </Teleport>
-
+      <div class="call-message__info-container">
+        <span class="call-message__time">{{ message.time }}</span>
       </div>
+
+      <button
+        v-if="message.transcript?.dialog"
+        class="call-message__download-button"
+        @click="isFullTranscript = !isFullTranscript"
+      >
+        <span class="pi pi-arrow-up-right" />
+      </button>
+
+      <Teleport to="body">
+        <transition name="modal-fade">
+          <div
+            v-if="isFullTranscript"
+            class="call-message__modal-overlay"
+          >
+            <div class="call-message__modal">
+              <button
+                class="call-message__modal-close-button"
+                @click="isFullTranscript = false"
+              >
+                <span>
+                  <i class="pi pi-times" />
+                </span>
+              </button>
+
+              <div
+                :class="getClass(item, elementType.textDialog)"
+                v-for="(item, index) in message.transcript?.dialog"
+              >
+                <p>{{ item.text }}</p>
+                <span>{{ item.time }}</span>
+              </div>
+
+            </div>
+          </div>
+        </transition>
+      </Teleport>
+
     </div>
   </div>
 </template>

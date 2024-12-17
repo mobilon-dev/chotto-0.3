@@ -1,56 +1,54 @@
 <template>
-  <div class="sidebar">
-    <div class="sidebar__container">
-      <ul class="sidebar__list">
-        <li
-          v-for="(item, index) in items.filter(i => !i.isFixedBottom)"
-          :key="index"
-          class="sidebar__item"
-          @click="selectItem(item.itemId)"
+  <div class="sidebar__container">
+    <ul class="sidebar__list">
+      <li
+        v-for="(item, index) in items.filter(i => !i.isFixedBottom)"
+        :key="index"
+        class="sidebar__item"
+        @click="selectItem(item.itemId)"
+      >
+        <img
+          :src="item.icon"
+          :alt="item.name"
+          class="sidebar__image"
+          :class="{ 'sidebar__image--active': item.selected === true }"
         >
-          <img
-            :src="item.icon"
-            :alt="item.name"
-            class="sidebar__image"
-            :class="{ 'sidebar__image--active': item.selected === true }"
-          >
-          <span
-            v-if="item.notificationCount"
-            :style="{ backgroundColor: item.notificationColor ? item.notificationColor : 'red' }"
-          >{{ item.notificationCount > 99 ? '99+' :
-            item.notificationCount }}</span>
+        <span
+          v-if="item.notificationCount"
+          :style="{ backgroundColor: item.notificationColor ? item.notificationColor : 'red' }"
+        >{{ item.notificationCount > 99 ? '99+' :
+          item.notificationCount }}</span>
 
-          <p v-if="item.name">
-            {{ getName(item.name) }}
-          </p>
-        </li>
-      </ul>
+        <p v-if="item.name">
+          {{ getName(item.name) }}
+        </p>
+      </li>
+    </ul>
 
-      <ul class="sidebar__list-fixed">
-        <li
-          v-for="(item, index) in items.filter(i => i.isFixedBottom)"
-          :key="index"
-          class="sidebar__item"
-          @click="selectItem(item.itemId)"
+    <ul class="sidebar__list-fixed">
+      <li
+        v-for="(item, index) in items.filter(i => i.isFixedBottom)"
+        :key="index"
+        class="sidebar__item"
+        @click="selectItem(item.itemId)"
+      >
+        <img
+          :src="item.icon"
+          :alt="item.name"
+          class="sidebar__image"
+          :class="{ 'sidebar__image--active': item.selected === true }"
         >
-          <img
-            :src="item.icon"
-            :alt="item.name"
-            class="sidebar__image"
-            :class="{ 'sidebar__image--active': item.selected === true }"
-          >
-          <span
-            v-if="item.notificationCount"
-            :style="{ backgroundColor: item.notificationColor ? item.notificationColor : 'red' }"
-          >{{ item.notificationCount > 99 ? '99+' :
-            item.notificationCount }}</span>
+        <span
+          v-if="item.notificationCount"
+          :style="{ backgroundColor: item.notificationColor ? item.notificationColor : 'red' }"
+        >{{ item.notificationCount > 99 ? '99+' :
+          item.notificationCount }}</span>
 
-          <p v-if="item.name">
-            {{ getName(item.name) }}
-          </p>
-        </li>
-      </ul>
-    </div>
+        <p v-if="item.name">
+          {{ getName(item.name) }}
+        </p>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -94,7 +92,6 @@ const getName = (name) => {
   lang="scss"
 >
 .sidebar {
-  height: 100%;
 
   &__container {
     display: flex;

@@ -1,41 +1,39 @@
 <template>
-  <div class="chat-input">
-    <div class="chat-input__container">
-      <div
-        :id="'chat-input-reply-line-' + chatAppId"
-        class="chat-input__reply-line"
+  <div class="chat-input__container">
+    <div
+      :id="'chat-input-reply-line-' + chatAppId"
+      class="chat-input__reply-line"
+    />
+    <div
+      :id="'chat-input-file-line-' + chatAppId"
+      class="chat-input__file-line"
+    />
+    <div class="chat-input__second-line">
+      <textarea
+        :disabled="state == 'disabled'"
+        ref="refInput"
+        v-model="getMessage().text"
+        class="chat-input__input"
+        :placeholder="t('component.ChatInput.InputPlaceholder')"
+        @keydown.enter="keyEnter"
+        @input="sendTyping"
       />
-      <div
-        :id="'chat-input-file-line-' + chatAppId"
-        class="chat-input__file-line"
-      />
-      <div class="chat-input__second-line">
-        <textarea
-          :disabled="state == 'disabled'"
-          ref="refInput"
-          v-model="getMessage().text"
-          class="chat-input__input"
-          :placeholder="t('component.ChatInput.InputPlaceholder')"
-          @keydown.enter="keyEnter"
-          @input="sendTyping"
-        />
-        <button
-          class="chat-input__button-send"
-          :class="{ 'chat-input__button-send-disabled': getMessage().text == '' && !getMessage().file }"
-          @click="sendMessage"
-        >
-          <span class="pi pi-send" />
-        </button>
-      </div>
-      <div class="chat-input__third-line">
-        <slot name="buttons" />
-      </div>
+      <button
+        class="chat-input__button-send"
+        :class="{ 'chat-input__button-send-disabled': getMessage().text == '' && !getMessage().file }"
+        @click="sendMessage"
+      >
+        <span class="pi pi-send" />
+      </button>
+    </div>
+    <div class="chat-input__third-line">
+      <slot name="buttons" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, unref, watch, nextTick, inject } from 'vue';
+import { ref, watch, nextTick, inject } from 'vue';
 import { useMessage } from '../../helpers/useMessage';
 import { t } from '../../locale/useLocale';
 import {IInputMessage} from '../../types';

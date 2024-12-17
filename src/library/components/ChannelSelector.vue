@@ -1,34 +1,34 @@
 <template>
-  <div class="channels">
-    <div 
-      class="channels__container"
-      :class="{'channels__container-disabled' : state == 'disabled'}"
+  <div 
+    class="channels__container"
+    :class="{'channels__container-disabled' : state == 'disabled'}"
+  >
+    <div
+      v-if="selectedChannel"
+      class="channels__selected"
     >
-      <div
-        v-if="selectedChannel"
-        class="channels__selected"
-      >
-        <span
-          v-if="selectedChannel.icon"
-          class="channels__icon"
-        >
-          <img :src="selectedChannel.icon">
-        </span>
-        <span class="channels__title">{{ selectedChannel.title }}</span>
-      </div>
       <span
-        v-else
-        class="channels__selected channels__title"
-      >Канал не выбран</span>
-      <ButtonContextMenu
-        :actions="channels"
-        :mode="mode"
-        :button-class="'pi pi-list'"
-        :menu-side="'top'"
-        :disabled="state == 'disabled'"
-        @click="selectChannel"
-      />
+        v-if="selectedChannel.icon"
+        class="channels__icon"
+      >
+        <img :src="selectedChannel.icon">
+      </span>
+      <span class="channels__title">{{ selectedChannel.title }}</span>
     </div>
+    <span
+      v-else
+      class="channels__selected channels__title"
+    >
+      Канал не выбран
+    </span>
+    <ButtonContextMenu
+      :actions="channels"
+      :mode="mode"
+      :button-class="'pi pi-list'"
+      :menu-side="'top'"
+      :disabled="state == 'disabled'"
+      @click="selectChannel"
+    />
   </div>
 </template>
 
@@ -119,40 +119,5 @@ const selectChannel = (channel) => {
       height: 16px;
     }
   }
-
-  &__popover {
-    position: absolute;
-    width: fit-content;
-    box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.11);
-    top: -54px;
-    right: 78px;
-    padding: 18px;
-    border-radius: 10px;
-    background-color: var(--channels-selector-popover-background-color);
-  }
-
-  &__popover-list {
-    display: flex;
-    flex-direction: column;
-    row-gap: 6px;
-  }
-
-  &__popover-item {
-    cursor: pointer;
-  }
-}
-
-.v-enter-active {
-  transition: all 0.2s ease-out;
-}
-
-.v-leave-active {
-  transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
-}
-
-.v-enter-from,
-.v-leave-to {
-  transform: translateY(20px);
-  opacity: 0;
 }
 </style>

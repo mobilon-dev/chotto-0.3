@@ -1,6 +1,14 @@
 import { IAction } from './components'
 import { IDialog } from './components'
 
+export interface Reply{
+    messageId: string
+    type: string
+    text?: string
+    url?: string
+    filename?: string
+}
+
 export interface IAudioMessage {
   messageId: string
   position: string
@@ -15,11 +23,7 @@ export interface IAudioMessage {
   transcript?: {
     text: string;
   };
-  reply?: {
-    messageId: string
-    type: string
-    text: string
-  }
+  reply?: Reply
 }
 
 export interface ICallMessage {
@@ -56,13 +60,9 @@ export interface IFileMessage {
   avatar?: string
   subText?: string
   actions?: IAction[]
-  views?: number,
-  text?: string,
-  reply?: {
-    messageId: string
-    type: string
-    text: string
-  }
+  views?: number
+  text?: string
+  reply?: Reply
 }
 
 export interface IImageMessage {
@@ -75,13 +75,9 @@ export interface IImageMessage {
   avatar?: string
   subText?: string
   actions?: IAction[]
-  views?: number,
-  text?: string,
-  reply?: {
-    messageId: string
-    type: string
-    text: string
-  }
+  views?: number
+  text?: string
+  reply?: Reply
 }
 
 export interface ISystemMessage {
@@ -98,12 +94,8 @@ export interface ITextMessage {
   avatar?: string
   subText?: string
   actions?: IAction[]
-  views?: number,
-  reply?: {
-    messageId: string
-    type: string
-    text: string
-  }
+  views?: number
+  reply?: Reply
 }
 
 export interface ITypingMessage {
@@ -121,11 +113,7 @@ export interface IVideoMessage {
   avatar?: string
   subText?: string
   actions?: IAction[]
-  views?: number,
-  text?: string,
-  reply?: {
-    messageId: string
-    type: string
-    text: string
-  }
+  views?: number
+  text?: string
+  reply?: Reply
 }
