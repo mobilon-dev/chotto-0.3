@@ -1,6 +1,5 @@
 <template>
   <div
-    
     class="file-message"
     :class="getClass(message)"
     :messageId="message.messageId"
@@ -91,8 +90,6 @@
         <span class="pi pi-ellipsis-h" />
       </button>
 
-      
-
       <transition>
         <ContextMenu
           v-if="isOpenMenu && message.actions"
@@ -101,8 +98,6 @@
           @click="clickAction"
         />
       </transition>
-
-      
 
     </div>
   </div>

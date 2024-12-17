@@ -1,12 +1,10 @@
 <template>
-  <div
-    :class="getClass()"
-    @click="selectChat"
-  >
     <div
       class="chat-item__container"
       @mouseenter="showMenu"
       @mouseleave="hideMenu"
+      :class="getClass()"
+      @click="selectChat"
     >
       <div class="chat-item__avatar-container">
         <span
@@ -92,7 +90,6 @@
         />
       </transition>
     </div>
-  </div>
 </template>
 
 <script setup>
@@ -114,7 +111,7 @@ const emit = defineEmits(['select', 'action']);
 const selectChat = () => { emit('select', props.chat); }
 
 const getClass = () => {
-  return props.chat.isSelected ? 'chat-item__selected' : 'chat-item';
+  return props.chat.isSelected ? 'chat-item__selected' : '';
 }
 
 const clickAction = (action) => {
@@ -258,6 +255,7 @@ watch(
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 1;
+    line-clamp: 1;
     -webkit-box-orient: vertical;
   }
 
@@ -269,6 +267,7 @@ watch(
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 1;
+    line-clamp: 1;
     -webkit-box-orient: vertical;
 
   }

@@ -1,11 +1,9 @@
 <template>
-  <div class="system-message">
     <div class="system-message__container">
       <p class="system-message__text">
         {{ message.text }}
       </p>
     </div>
-  </div>
 </template>
 
 <script setup lang="ts">

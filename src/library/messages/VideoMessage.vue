@@ -45,10 +45,6 @@
           autoplay
         />
 
-        <!-- <p class="video-message__remaining-time">
-        {{ `${remaningTime}` }}
-      </p> -->
-
         <transition name="modal-fade">
           <div
             v-if="buttonDownloadVisible"
@@ -124,9 +120,8 @@
         ></p>
       </div>
     </div>
-
-
-    <Teleport to="body">
+  </div>
+  <Teleport to="body">
       <transition name="modal-fade">
         <div
           v-if="isOpenModal"
@@ -154,9 +149,6 @@
         </div>
       </transition>
     </Teleport>
-  </div>
-
-  
 </template>
 
 <script
@@ -383,68 +375,11 @@ onUnmounted(() => {
     border-radius: var(--avatar-border-radius);
   }
 
-  &__controls {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-  }
-
-  &__play {
-    background-color: transparent;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-
-
-    span {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      background-color: rgba(0, 0, 0, 0.67);
-      width: 40px;
-      height: 40px;
-      font-size: var(--icon-font-size-medium);
-      color: var(--neutral-100);
-    }
-  }
-
-  &__pause {
-    background-color: transparent;
-    border: none;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    cursor: pointer;
-    padding: 0;
-  }
-
   &__video {
     object-fit: cover;
     width: 100%;
     max-height: 500px;
     cursor: zoom-in;
-  }
-
-  &__remaining-time {
-    position: absolute;
-    left: 8px;
-    bottom: 4px;
-    border-radius: 12px;
-    padding: 6px 10px;
-    background-color: rgb(0 0 0 / 39%);
-    color: var(--neutral-200);
-    font-size: var(--base-message-font-size-remaining-time);
   }
 
   &__time {

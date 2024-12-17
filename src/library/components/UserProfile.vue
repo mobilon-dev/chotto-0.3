@@ -1,33 +1,31 @@
 <template>
-  <div class="profile">
+  <div
+    v-if="user"
+    class="profile__container"
+  >
     <div
-      v-if="user"
-      class="profile__container"
+      v-if="user.avatar"
+      class="profile__avatar-container"
     >
-      <div
-        v-if="user.avatar"
-        class="profile__avatar-container"
+      <span
+        class="profile__status"
+        :style="{ backgroundColor: user.status }"
+      />
+      <img
+        :src="user.avatar"
+        height="48"
+        width="48"
       >
-        <span
-          class="profile__status"
-          :style="{ backgroundColor: user.status }"
-        />
-        <img
-          :src="user.avatar"
-          height="48"
-          width="48"
-        >
-      </div>
-      <h2 class="profile__name">
-        {{ user.name }}
-      </h2>
-      <p class="profile__email">
-        {{ user.email }}
-      </p>
-      <p class="profile__phone">
-        {{ user.phone }}
-      </p>
     </div>
+    <h2 class="profile__name">
+      {{ user.name }}
+    </h2>
+    <p class="profile__email">
+      {{ user.email }}
+    </p>
+    <p class="profile__phone">
+      {{ user.phone }}
+    </p>
   </div>
 </template>
 

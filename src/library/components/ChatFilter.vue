@@ -1,15 +1,11 @@
 <template>
-  <div class="chat-filter">
-    <div class="chat-filter__container">
-      <input
-        ref="refInput"
-        class="chat-filter__input"
-        type="text"
-        :placeholder="t('component.ChatFilter.InputPlaceholder')"
-        @input="update"
-      >
-    </div>
-  </div>
+  <input
+    ref="refInput"
+    class="chat-filter__input"
+    type="text"
+    :placeholder="t('component.ChatFilter.InputPlaceholder')"
+    @input="update"
+  >
 </template>
 
 <script setup>
@@ -36,7 +32,6 @@ const update = () => {
   &__input {
     background-color: transparent;
     font-weight: 400;
-    width: var(--input-width);
     color: var(--input-color);
     padding: var(--input-padding);
     border: var(--input-border);

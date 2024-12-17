@@ -1,27 +1,25 @@
 <template>
-  <div class="context-menu">
-    <div class="context-menu__container">
-      <ul class="context-menu__list">
-        <li
-          v-for="(action, index) in props.actions"
-          :key="index"
-          class="context-menu__item"
-          @click="click(index)"
+  <div class="context-menu__container">
+    <ul class="context-menu__list">
+      <li
+        v-for="(action, index) in props.actions"
+        :key="index"
+        class="context-menu__item"
+        @click="click(index)"
+      >
+        <img
+          v-if="action.icon"
+          :src="action.icon"
+          width="18"
+          height="18"
         >
-          <img
-            v-if="action.icon"
-            :src="action.icon"
-            width="18"
-            height="18"
-          >
-          <i 
-            v-else-if="action.prime"
-            :class="'pi pi-' + action.prime" 
-          />
-          <span>{{ action.title }}</span>
-        </li>
-      </ul>
-    </div>
+        <i 
+          v-else-if="action.prime"
+          :class="'pi pi-' + action.prime" 
+        />
+        <span>{{ action.title }}</span>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -49,9 +47,10 @@ const click = (index) => {
   lang="scss"
 >
 .context-menu {
-  z-index: 200;
-  position: absolute;
+  
   &__container {
+    z-index: 200;
+    position: absolute;
     width: max-content;
     max-width: 250px;
     box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.11);
