@@ -238,4 +238,25 @@ export const messages = [
       url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
     },
   },
+  {
+    chatId: 1, type: "message.text", text: "Привет! Сообщение с превью ссылки github.com",
+    direction: 'outgoing', status: 'received', timestamp: '1727027959',
+    linkPreview: {
+      title: 'GitHub · Build and ship software on a single, collaborative platform',
+      imageUrl: 'https://filebump2.services.mobilon.ru/file/eMWLDOFaV3htGOMJZUVFcdE6r29TPFnZHofq',
+      url: 'https://github.com',
+      description: 'Join the world\'s most widely adopted, AI-powered developer platform where millions of developers, '+
+        'businesses, and the largest open source community build software that advances humanity.',
+    },
+  },
+  {
+    chatId: 1, type: "message.text", text: "Привет! Сообщение с превью ссылки yandex.ru",
+    direction: 'incoming', status: 'received', timestamp: '1727028159',
+    linkPreview: {
+      title: 'Яндекс',
+      imageUrl: 'https://yastatic.net/s3/home-static/_/37/37a02b5dc7a51abac55d8a5b6c865f0e.png',
+      url: 'https://yandex.ru',
+      description: 'Найдётся всё',
+    },
+  },
 ];
