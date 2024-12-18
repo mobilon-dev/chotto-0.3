@@ -15,9 +15,9 @@ Vue3 UI components for chats, conversations, ai
 
 ## video
 
-[chotto 01: знакомство](https://youtu.be/LbtXeR_P9fs)
+[chotto 01: welcome](https://youtu.be/LbtXeR_P9fs)
 
-[chotto 02: WABA шаблоны](https://youtu.be/bwhcn6KAn28)
+[chotto 02: WABA templates](https://youtu.be/bwhcn6KAn28)
 
 
 ## examples
