@@ -255,7 +255,7 @@ onUnmounted(() => {
 
   &__content {
     position: relative;
-    max-width: 25rem;
+    max-width: 60%;
     border-radius: 14px;
   }
 

@@ -181,15 +181,15 @@ onUnmounted(() => {
   &__text-container {
     word-wrap: break-word;
     align-content: center;
-
+    word-break: break-all;
     p {
       font-size: 13px;
       color: var(--reply-message-color);
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
-      -webkit-line-clamp: 2;
-      line-clamp: 2;
+      -webkit-line-clamp: 5;
+      line-clamp: 5;
       -webkit-box-orient: vertical;
     }
   }
@@ -199,7 +199,7 @@ onUnmounted(() => {
     align-items: center;
     column-gap: 6px;
     margin-bottom: 4px;
-
+    white-space: nowrap;
     span {
       color: var(--reply-message-color);
     }

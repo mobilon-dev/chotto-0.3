@@ -209,7 +209,7 @@ export const messages = [
     reply: {
       messageId: 'msg_3450349542',
       type: 'message.image',
-      text: 'мои новые кроссовки',
+      text: 'Оченьдлинноесообщениебезпробеловзанимающеесразунесколькострокивызывающеестранноеповедениеокон',
       url: 'https://placehold.jp/30/336633/ffffff/320x160.png?text=кроссовки',
     },
   },
@@ -220,7 +220,7 @@ export const messages = [
     reply: {
       messageId: 'msg_3450349543',
       type: 'message.video',
-      text: 'видео',
+      text: 'Оченьдлинноесообщениебезпробеловзанимающеесразунесколькострокивызывающеестранноеповедениеокон',
       url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
     },
   },
@@ -234,7 +234,7 @@ export const messages = [
     reply: {
       messageId: 'msg_3450349543',
       type: 'message.audio',
-      text: 'голосовое сообщение',
+      text: 'Оченьдлинноесообщениебезпробеловзанимающеесразунесколькострокивызывающеестранноеповедениеокон',
       url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
     },
   },

@@ -30,31 +30,31 @@
         :message="message.reply"
         :class="message.position"
       />
-      <a
-        class="file-message__link"
-        :href="message.url"
-        download
-        target="_blank"
-      >
-        <span class="pi pi-file" />
-        <p class="file-message__filename-text">
-          {{ message.filename }}
-        </p>
-        <div
-          class="file-message__download-button"
+        <a
+          class="file-message__link"
+          :href="message.url"
+          download
+          target="_blank"
         >
-          <span class="pi pi-download" />
+          <span class="pi pi-file" />
+          <p class="file-message__filename-text">
+            {{ message.filename }}
+          </p>
+          <div
+            class="file-message__download-button"
+          >
+            <span class="pi pi-download" />
+          </div>
+        </a>
+        <div
+          v-if="message.text"
+          class="file-message__text-container"
+        >
+          <p
+            v-html="linkedText"
+            @click="inNewWindow"
+          ></p>
         </div>
-      </a>
-      <div
-        v-if="message.text"
-        class="file-message__text-container"
-      >
-        <p
-          v-html="linkedText"
-          @click="inNewWindow"
-        ></p>
-      </div>
       <div class="file-message__info-container">
 
         <div
@@ -351,7 +351,7 @@ function getClass(message) {
     }
 
     .file-message__content {
-      grid-column: 2;
+      /*grid-column: 2;*/
       background-color: var(--base-message-left-bg);
     }
 

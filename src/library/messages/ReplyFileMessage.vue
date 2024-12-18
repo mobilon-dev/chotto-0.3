@@ -60,6 +60,12 @@ watch(
     white-space: pre-wrap;
     font-size: 13px;
     color: var(--reply-message-color);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+    -webkit-box-orient: vertical;
   }
 
   &__link {

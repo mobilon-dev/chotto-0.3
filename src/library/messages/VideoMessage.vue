@@ -279,7 +279,7 @@ onUnmounted(() => {
 .video-message {
   &__content {
     position: relative;
-    max-width: 25rem;
+    max-width: 40%;
     border-radius: 14px;
   }
 
