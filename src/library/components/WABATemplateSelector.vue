@@ -339,6 +339,8 @@ const templateParts = computed(() => {
 const allFieldsUnFilled = computed(() => {
   if (!selectedTemplate.value)
     return true
+  if (!selectedTemplate.value?.template.match(/{{\d+}}/gi))
+    return false
   const containsVariables = Object.keys(wabaValues).length !== selectedTemplate.value?.template.match(/{{\d+}}/gi).length
   if (selectedTemplate.value.type === 'TEXT')
     return containsVariables
