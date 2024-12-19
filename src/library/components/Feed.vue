@@ -100,6 +100,10 @@ const props = defineProps({
   typing: {
     type: [Object as () => IFeedTyping, Boolean],
     default: false,
+  },
+  enableDoubleClickReply: {
+    type: Boolean,
+    default: false,
   }
 });
 
@@ -166,15 +170,18 @@ const messageAction = (message) => {
 }
 
 const feedObjectDoubleClick = (event: MouseEvent,object : IFeedObject) => {
-  event?.preventDefault()
-  if (object.type.indexOf('system') == -1 && object.type.indexOf('typing') == -1)
-    setReply({
-      messageId: object.messageId,
-      type: object.type,
-      text: object.text,
-      filename: object.filename,
-      url: object.url,
-    })
+  if (props.enableDoubleClickReply){
+    event?.preventDefault()
+    if (object.type.indexOf('system') == -1 && object.type.indexOf('typing') == -1)
+      setReply({
+        messageId: object.messageId,
+        type: object.type,
+        text: object.text,
+        filename: object.filename,
+        url: object.url,
+      })
+  }
+  
 }
 
 const callback = (entries: Array<IntersectionObserverEntry>) => {

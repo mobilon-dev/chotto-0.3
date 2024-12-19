@@ -56,6 +56,7 @@
                 :objects="messages"
                 :is-scroll-to-bottom-on-update-objects-enabled="isScrollToBottomOnUpdateObjectsEnabled"
                 :typing="selectedChat.typing ? { avatar: selectedChat.avatar, title: selectedChat.title } : false"
+                :enableDoubleClickReply="true"
                 @message-action="messageAction"
                 @load-more="loadMore"
                 @message-visible="messageVisible"
