@@ -287,3 +287,91 @@ export const RightMessageWithLink: Story = {
   },
 };
 
+export const LeftMessageWithReplyText: Story = {
+  args: {
+    message: {
+      ...messageLink,
+      position: 'left',
+      reply: {
+        messageId: '324324',
+        type: 'message.text',
+        text: 'previous message',
+      },
+    },
+  },
+};
+
+export const RightMessageWithReplyText: Story = {
+  args: {
+    message: {
+      ...messageLink,
+      position: 'right',
+      reply: {
+        messageId: '324324',
+        type: 'message.text',
+        text: 'previous message',
+      },
+    },
+  },
+};
+
+export const LeftMessageWithReplyImage: Story = {
+  args: {
+    message: {
+      ...messageLink,
+      position: 'left',
+      reply: {
+        messageId: '324324',
+        type: 'message.image',
+        text: 'previous message',
+        url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg",
+      },
+    },
+  },
+};
+
+export const RightMessageWithReplyImage: Story = {
+  args: {
+    message: {
+      ...messageLink,
+      position: 'right',
+      reply: {
+        messageId: '324324',
+        type: 'message.image',
+        text: 'previous message',
+        url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg",
+      },
+    },
+  },
+};
+
+export const LeftMessageWithReplyVideo: Story = {
+  args: {
+    message: {
+      ...messageLink,
+      position: 'left',
+      reply: {
+        messageId: '324324',
+        type: 'message.video',
+        text: 'previous message',
+        url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
+      },
+    },
+  },
+};
+
+export const RightMessageWithReplyVideo: Story = {
+  args: {
+    message: {
+      ...messageLink,
+      position: 'right',
+      reply: {
+        messageId: '324324',
+        type: 'message.video',
+        text: 'previous message',
+        url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
+      },
+    },
+  },
+};
+
