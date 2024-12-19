@@ -323,7 +323,7 @@ export const LeftMessageWithReplyImage: Story = {
       reply: {
         messageId: '324324',
         type: 'message.image',
-        text: 'previous message',
+        text: messageLongText.text,
         url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg",
       },
     },
@@ -338,7 +338,7 @@ export const RightMessageWithReplyImage: Story = {
       reply: {
         messageId: '324324',
         type: 'message.image',
-        text: 'previous message',
+        text: messageLongText.text,
         url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg",
       },
     },
@@ -353,7 +353,7 @@ export const LeftMessageWithReplyVideo: Story = {
       reply: {
         messageId: '324324',
         type: 'message.video',
-        text: 'previous message',
+        text: messageLongText.text,
         url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
       },
     },
@@ -368,10 +368,73 @@ export const RightMessageWithReplyVideo: Story = {
       reply: {
         messageId: '324324',
         type: 'message.video',
-        text: 'previous message',
+        text: messageLongText.text,
         url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
       },
     },
   },
 };
 
+
+export const LeftMessageWithReplyFile: Story = {
+  args: {
+    message: {
+      ...messageLink,
+      position: 'left',
+      reply: {
+        messageId: '324324',
+        type: 'message.file',
+        filename: 'video.mp4',
+        text: messageLongText.text,
+        url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
+      },
+    },
+  },
+};
+
+export const RightMessageWithReplyFile: Story = {
+  args: {
+    message: {
+      ...messageLink,
+      position: 'right',
+      reply: {
+        messageId: '324324',
+        type: 'message.file',
+        filename: 'video.mp4',
+        text: messageLongText.text,
+        url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
+      },
+    },
+  },
+};
+
+export const LeftMessageWithReplyAudio: Story = {
+  args: {
+    message: {
+      ...messageLink,
+      position: 'left',
+      reply: {
+        messageId: '324324',
+        type: 'message.audio',
+        filename: 'video.mp4',
+        text: messageLongText.text,
+        url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
+      },
+    },
+  },
+};
+
+export const RightMessageWithReplyAudio: Story = {
+  args: {
+    message: {
+      ...messageLink,
+      position: 'right',
+      reply: {
+        messageId: '324324',
+        type: 'message.audio',
+        text: messageLongText.text,
+        url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
+      },
+    },
+  },
+};

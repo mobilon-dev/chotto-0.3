@@ -384,7 +384,7 @@ function getClass(message) {
     }
 
     .file-message__content {
-      grid-column: 1;
+      grid-column: 2;
       margin-left: auto;
       background-color: var(--base-message-right-bg);
     }

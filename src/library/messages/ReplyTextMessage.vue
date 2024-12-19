@@ -45,6 +45,7 @@ function inNewWindow(event) {
   lang="scss"
 >
 p {
+  margin: 0;
   font-size: 13px;
   color: var(--reply-message-color);
   white-space: pre-wrap;

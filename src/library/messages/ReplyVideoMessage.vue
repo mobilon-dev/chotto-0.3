@@ -133,8 +133,9 @@ onUnmounted(() => {
   &__text-container {
     word-wrap: break-word;
     align-content: center;
-    word-break: break-all;
+    word-break: break-word;
     p {
+      margin: 0;
       font-size: 13px;
       color: var(--reply-message-color);
       overflow: hidden;
@@ -143,7 +144,6 @@ onUnmounted(() => {
       -webkit-line-clamp: 5;
       line-clamp: 5;
       -webkit-box-orient: vertical;
-      word-break: break-all;
     }
   }
 
