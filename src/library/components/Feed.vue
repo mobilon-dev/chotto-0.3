@@ -75,6 +75,7 @@ import {
 import { IFeedObject, IFeedTyping, IFeedUnreadButton } from '../../types';
 
 import { useMessage } from '../../helpers/useMessage';
+import { useReply } from '../../helpers/useReply';
 import BaseReplyMessage from '../messages/BaseReplyMessage.vue';
 
 const trackingObjects = ref();
@@ -109,8 +110,8 @@ const props = defineProps({
 
 const chatAppId = inject('chatAppId')
 const { setReply, getMessage } = useMessage(chatAppId as string)
-
-const emit = defineEmits(['messageAction', 'loadMore', 'messageVisible']);
+const { getReplyId, setReplyId } = useReply(chatAppId as string)
+const emit = defineEmits(['messageAction', 'loadMore', 'messageVisible', 'clickRepliedMessage']);
 
 const scrollTopCheck = (allowLoadMore: boolean = true) => {
   const element = unref(refFeed);
@@ -210,6 +211,16 @@ watch(
     })
   },
   { immediate: true })
+
+watch(
+  () => getReplyId(),
+  () => {
+    if (getReplyId() != ''){
+      emit('clickRepliedMessage', getReplyId())
+      setReplyId('')
+    }
+  }
+)
 
 </script>
 

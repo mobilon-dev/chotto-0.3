@@ -60,6 +60,7 @@
                 @message-action="messageAction"
                 @load-more="loadMore"
                 @message-visible="messageVisible"
+                @click-replied-message="handleClickReplied"
               />
               <ChatInput @send="addMessage">
                 <template #buttons>
@@ -342,6 +343,10 @@ const selectChat = (chat) => {
   chatsStore.setUnreadCounter(chat.chatId, 0);
   messages.value = getFeedObjects(); // Обновляем сообщения при выборе чата
 };
+
+const handleClickReplied = (messageId) => {
+  console.log('Clicked reply id ' + messageId)
+}
 
 const handleEvent = async (event) => {
   if (event.type === "message") {
