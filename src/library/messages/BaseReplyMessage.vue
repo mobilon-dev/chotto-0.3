@@ -131,6 +131,8 @@ const handleReset = () => {
   padding-right: 20px;
   border: 1px solid var(--neutral-300);
   border-radius: 0;
+  max-width: 300px;
+  word-break: break-word;
   .reply__reset{
     display: inherit;
   }

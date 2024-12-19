@@ -163,6 +163,10 @@ import { getStatus, statuses } from "../../helpers";
 import { IVideoMessage } from '../../types';
 import BaseReplyMessage from './BaseReplyMessage.vue'
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const props = defineProps({
   message: {
     type: Object as () => IVideoMessage,
@@ -279,7 +283,7 @@ onUnmounted(() => {
 .video-message {
   &__content {
     position: relative;
-    max-width: 25rem;
+    max-width: 40%;
     border-radius: 14px;
   }
 
