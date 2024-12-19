@@ -163,6 +163,10 @@ import { getStatus, statuses } from "../../helpers";
 import { IVideoMessage } from '../../types';
 import BaseReplyMessage from './BaseReplyMessage.vue'
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const props = defineProps({
   message: {
     type: Object as () => IVideoMessage,

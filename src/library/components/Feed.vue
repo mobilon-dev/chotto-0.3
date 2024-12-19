@@ -6,16 +6,20 @@
     :id="'feed-container-' + chatAppId"
   >
     <div class="message-feed__container">
-      <component
-        :is="componentsMap(object.type)"
+      <div
         v-for="object in objects"
-        :key="object.messageId"
+        @dblclick="feedObjectDoubleClick($event,object)"
         :id="JSON.stringify(object)"
-        class="message-feed__message"
-        :message="object"
-        @action="messageAction"
-        @dblclick="feedObjectDoubleClick(object)"
-      />
+        class="tracking-message"
+      >
+        <component
+          :is="componentsMap(object.type)"
+          :key="object.messageId"
+          class="message-feed__message"
+          :message="object"
+          @action="messageAction"
+        />
+      </div>
     </div>
     <typing-message
       v-if="typing"
@@ -161,7 +165,8 @@ const messageAction = (message) => {
   emit('messageAction', message);
 }
 
-const feedObjectDoubleClick = (object : IFeedObject) => {
+const feedObjectDoubleClick = (event: MouseEvent,object : IFeedObject) => {
+  event?.preventDefault()
   if (object.type.indexOf('system') == -1 && object.type.indexOf('typing') == -1)
     setReply({
       messageId: object.messageId,
@@ -193,7 +198,7 @@ watch(
   () => {
     nextTick(() => {
       scrollTopCheck(false)
-      trackingObjects.value = document.querySelectorAll('.message-feed__message')
+      trackingObjects.value = document.querySelectorAll('.tracking-message')
       trackingObjects.value.forEach((obj) => observer.observe(obj))
     })
   },
