@@ -55,6 +55,7 @@ watch(
 .file-message {
 
   &__text {
+    margin: 0;
     margin-top: 6px;
     word-wrap: break-word;
     white-space: pre-wrap;
@@ -81,6 +82,7 @@ watch(
   }
 
   &__filename-text {
+    margin: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     -webkit-line-clamp: 1;

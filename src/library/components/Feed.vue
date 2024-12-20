@@ -5,13 +5,12 @@
     @scroll="scrollTopCheck()"
     :id="'feed-container-' + chatAppId"
   >
-    <div class="message-feed__container">
-      <div
-        v-for="object in objects"
-        @dblclick="feedObjectDoubleClick($event,object)"
-        :id="JSON.stringify(object)"
-        class="tracking-message"
-      >
+    <div
+      v-for="object in objects"
+      @dblclick="feedObjectDoubleClick($event,object)"
+      :id="JSON.stringify(object)"
+      class="tracking-message"
+    >
         <component
           :is="componentsMap(object.type)"
           :key="object.messageId"
@@ -19,7 +18,6 @@
           :message="object"
           @action="messageAction"
         />
-      </div>
     </div>
     <typing-message
       v-if="typing"
@@ -75,6 +73,7 @@ import {
 import { IFeedObject, IFeedTyping, IFeedUnreadButton } from '../../types';
 
 import { useMessage } from '../../helpers/useMessage';
+import { useReply } from '../../helpers/useReply';
 import BaseReplyMessage from '../messages/BaseReplyMessage.vue';
 
 const trackingObjects = ref();
@@ -104,13 +103,17 @@ const props = defineProps({
   enableDoubleClickReply: {
     type: Boolean,
     default: false,
+  },
+  scrollTo:{
+    type: String,
+    default: null,
   }
 });
 
 const chatAppId = inject('chatAppId')
 const { setReply, getMessage } = useMessage(chatAppId as string)
-
-const emit = defineEmits(['messageAction', 'loadMore', 'messageVisible']);
+const { getReplyId, setReplyId } = useReply(chatAppId as string)
+const emit = defineEmits(['messageAction', 'loadMore', 'messageVisible', 'clickRepliedMessage']);
 
 const scrollTopCheck = (allowLoadMore: boolean = true) => {
   const element = unref(refFeed);
@@ -211,6 +214,34 @@ watch(
   },
   { immediate: true })
 
+watch(
+  () => getReplyId(),
+  () => {
+    if (getReplyId() != ''){
+      emit('clickRepliedMessage', getReplyId())
+      setReplyId('')
+    }
+  }
+)
+
+watch(
+  () => props.scrollTo,
+  () => {
+    if (props.scrollTo){
+      const elem = props.scrollTo
+      document.getElementById(elem)?.scrollIntoView({
+        block: 'center',
+        inline: 'center'
+      })
+      document.getElementById(elem)?.children[0].classList.add('focused-message')
+      setTimeout(() => {
+        document.getElementById(elem)?.children[0].classList.remove('focused-message')
+      }, 2000)
+      
+    }
+  }
+)
+
 </script>
 
 <style
@@ -225,14 +256,11 @@ watch(
   overflow-y: auto;
   background-image: url('../../../public/chat-background.svg');
   scroll-behavior: smooth;
-  padding: 0 30px 10px 30px;
-
-  &__container {
-    margin-top: auto;
-  }
+  padding: 10px 30px 10px 30px;
 
   &__message {
     position: relative;
+    transition: all 2s;
   }
 
   &__button-down {
@@ -287,6 +315,13 @@ watch(
     border-radius: 10px;
   }
 }
+
+.focused-message {
+    
+    background-color: rgba(168, 243, 134, 0.5);
+    box-shadow: 0px 0px 12px 2px rgba(168, 243, 134, 0.5);
+
+  }
 
 .v-enter-active {
   transition: all 0.1s ease-out;

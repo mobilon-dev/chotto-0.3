@@ -57,9 +57,11 @@
                 :is-scroll-to-bottom-on-update-objects-enabled="isScrollToBottomOnUpdateObjectsEnabled"
                 :typing="selectedChat.typing ? { avatar: selectedChat.avatar, title: selectedChat.title } : false"
                 :enableDoubleClickReply="true"
+                :scrollTo="clickedReply"
                 @message-action="messageAction"
                 @load-more="loadMore"
                 @message-visible="messageVisible"
+                @click-replied-message="handleClickReplied"
               />
               <ChatInput @send="addMessage">
                 <template #buttons>
@@ -245,6 +247,7 @@ const sidebarItems = ref([]);
 const isOpenChatPanel = ref(false);
 const isScrollToBottomOnUpdateObjectsEnabled = ref(false);
 const filebumpUrl = ref('https://filebump2.services.mobilon.ru');
+const clickedReply = ref('')
 
 const selectItem = (item) => {
   console.log("selected sidebar item", item);
@@ -342,6 +345,19 @@ const selectChat = (chat) => {
   chatsStore.setUnreadCounter(chat.chatId, 0);
   messages.value = getFeedObjects(); // Обновляем сообщения при выборе чата
 };
+
+let timer
+const handleClickReplied = (messageId) => {
+  console.log('Clicked reply id ' + messageId)
+  clearTimeout(timer)
+  const message = messages.value.find((m) => {
+    if (m.messageId == messageId) return m
+    })
+  clickedReply.value = JSON.stringify(message)
+  timer = setTimeout(() => {
+    clickedReply.value = ''
+  }, 100)
+}
 
 const handleEvent = async (event) => {
   if (event.type === "message") {

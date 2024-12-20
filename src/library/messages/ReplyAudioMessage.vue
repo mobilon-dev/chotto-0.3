@@ -84,10 +84,10 @@ function inNewWindow(event) {
   }
 
   &__text-container {
-    word-wrap: break-word;
     align-content: center;
-    word-break: break-all;
+    word-break: break-word;
     p {
+      margin: 0;
       font-size: 13px;
       color: var(--reply-message-color);
       overflow: hidden;
