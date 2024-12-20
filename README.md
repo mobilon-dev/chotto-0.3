@@ -6,7 +6,7 @@ Vue3 UI components for chats, conversations, ai
 
 ## docs
 
-- [storybook](https://mobilon-dev.github.io/chotto/)
+- [docs in storybook: 20+ components for chat UI](https://mobilon-dev.github.io/chotto/)
 
 ## screnshots
 
