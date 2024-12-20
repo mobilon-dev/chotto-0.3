@@ -11,7 +11,6 @@
       :id="JSON.stringify(object)"
       class="tracking-message"
     >
-      <Transition>
         <component
           :is="componentsMap(object.type)"
           :key="object.messageId"
@@ -19,7 +18,6 @@
           :message="object"
           @action="messageAction"
         />
-      </Transition>
     </div>
     <typing-message
       v-if="typing"
