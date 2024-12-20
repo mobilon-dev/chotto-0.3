@@ -5,13 +5,13 @@
     @scroll="scrollTopCheck()"
     :id="'feed-container-' + chatAppId"
   >
-    <div class="message-feed__container">
-      <div
-        v-for="object in objects"
-        @dblclick="feedObjectDoubleClick($event,object)"
-        :id="JSON.stringify(object)"
-        class="tracking-message"
-      >
+    <div
+      v-for="object in objects"
+      @dblclick="feedObjectDoubleClick($event,object)"
+      :id="JSON.stringify(object)"
+      class="tracking-message"
+    >
+      <Transition>
         <component
           :is="componentsMap(object.type)"
           :key="object.messageId"
@@ -19,7 +19,7 @@
           :message="object"
           @action="messageAction"
         />
-      </div>
+      </Transition>
     </div>
     <typing-message
       v-if="typing"
@@ -105,6 +105,10 @@ const props = defineProps({
   enableDoubleClickReply: {
     type: Boolean,
     default: false,
+  },
+  scrollTo:{
+    type: String,
+    default: null,
   }
 });
 
@@ -222,6 +226,24 @@ watch(
   }
 )
 
+watch(
+  () => props.scrollTo,
+  () => {
+    if (props.scrollTo){
+      const elem = props.scrollTo
+      document.getElementById(elem)?.scrollIntoView({
+        block: 'center',
+        inline: 'center'
+      })
+      document.getElementById(elem)?.children[0].classList.add('focused-message')
+      setTimeout(() => {
+        document.getElementById(elem)?.children[0].classList.remove('focused-message')
+      }, 2000)
+      
+    }
+  }
+)
+
 </script>
 
 <style
@@ -237,13 +259,14 @@ watch(
   background-image: url('../../../public/chat-background.svg');
   scroll-behavior: smooth;
   padding: 0 30px 10px 30px;
-
+  
   &__container {
     margin-top: auto;
   }
 
   &__message {
     position: relative;
+    transition: all 2s;
   }
 
   &__button-down {
@@ -298,6 +321,13 @@ watch(
     border-radius: 10px;
   }
 }
+
+.focused-message {
+    
+    background-color: rgba(168, 243, 134, 0.5);
+    box-shadow: 0px 0px 12px 2px rgba(168, 243, 134, 0.5);
+
+  }
 
 .v-enter-active {
   transition: all 0.1s ease-out;
