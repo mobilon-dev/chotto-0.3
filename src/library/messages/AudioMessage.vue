@@ -21,7 +21,7 @@
     >
       {{ message.subText }}
     </p>
-    
+
     <div
       class="audio-message__content"
       @mouseenter="showMenu"
@@ -32,8 +32,7 @@
         :message="message.reply"
         :class="message.position"
       />
-      <div
-      class="audio-message__audio-container">
+      <div class="audio-message__audio-container">
         <audio
           ref="player"
           :src="message.url"
@@ -62,16 +61,16 @@
           {{ `${formatCurrentTime} / ${formatDuration}` }}
         </p>
         <a
-        class="audio-message__download-button"
-        @click.stop="() => '//Предотвращаем всплытие события клика'"
-        :href="message.url"
-        download
-        target="_blank"
-      >
-        <span class="pi pi-download" />
-      </a>
+          class="audio-message__download-button"
+          @click.stop="() => '//Предотвращаем всплытие события клика'"
+          :href="message.url"
+          download
+          target="_blank"
+        >
+          <span class="pi pi-download" />
+        </a>
       </div>
-      
+
       <div
         v-if="message.transcript?.text"
         class="audio-message__transcript-container"
@@ -87,6 +86,13 @@
           @click="inNewWindow"
         ></p>
       </div>
+
+      <LinkPreview
+        class="audio-message__link-preview"
+        :class="message.position"
+        v-if="message.linkPreview"
+        :linkPreview="message.linkPreview"
+      />
 
       <div class="audio-message__info-container">
         <div
@@ -169,6 +175,7 @@ import { ContextMenu } from '../components'
 import { getStatus, statuses } from "../../helpers";
 import { IAudioMessage } from '../../types';
 import BaseReplyMessage from './BaseReplyMessage.vue'
+import LinkPreview from './LinkPreview.vue'
 
 // Define props
 const props = defineProps({
@@ -296,7 +303,7 @@ onMounted(() => {
     padding: 10px 26px 4px 16px;
   }
 
-  &__audio-container{
+  &__audio-container {
     position: relative;
     display: grid;
     grid-template-columns: min-content 1fr;
@@ -479,6 +486,10 @@ onMounted(() => {
       white-space: pre-wrap;
       font-size: var(--base-message-font-size-text);
     }
+  }
+
+  &__link-preview {
+    grid-column: 1 / 3;
   }
 
   &__transcript-container {

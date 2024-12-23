@@ -12,6 +12,10 @@
   --reply-message-left-bg: var(--neutral-600);
   --reply-message-color: var(--neutral-200);
 
+  /* Link Preview */
+  --link-preview-right-bg: var(--emerald-700);
+  --link-preview-left-bg: var(--neutral-600);
+
 
   /* File Message */
   --file-message-link-color: var(--neutral-200);

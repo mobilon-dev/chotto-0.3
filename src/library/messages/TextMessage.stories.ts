@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 
 import TextMessage from './TextMessage.vue';
+import { ITextMessage } from '../../types'
 
 const meta: Meta<typeof TextMessage> = {
   component: TextMessage,
@@ -10,7 +11,7 @@ export default meta;
 type Story = StoryObj<typeof TextMessage>;
 
 
-const message = {
+const message: ITextMessage = {
   text: 'test test test',
   position: 'left',
   messageId: 'testMessageId',
@@ -438,3 +439,35 @@ export const RightMessageWithReplyAudio: Story = {
     },
   },
 };
+
+export const LeftMessageWithPreviewLink: Story = {
+  args: {
+    message: {
+      ...messageLink,
+      position: 'left',
+      linkPreview: {
+        title: 'Яндекс',
+        imageUrl: 'https://yastatic.net/s3/home-static/_/37/37a02b5dc7a51abac55d8a5b6c865f0e.png',
+        url: 'https://yandex.ru',
+        description: 'Найдётся всё',
+      }
+    },
+  },
+};
+
+export const RightMessageWithPreviewLink: Story = {
+  args: {
+    message: {
+      ...messageLink,
+      position: 'right',
+      linkPreview: {
+        title: 'Яндекс',
+        imageUrl: 'https://yastatic.net/s3/home-static/_/37/37a02b5dc7a51abac55d8a5b6c865f0e.png',
+        url: 'https://yandex.ru',
+        description: 'Найдётся всё',
+      }
+    },
+  },
+};
+
+

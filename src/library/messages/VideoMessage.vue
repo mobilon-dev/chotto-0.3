@@ -1,6 +1,5 @@
 <template>
   <div
-    
     class="video-message"
     :class="getClass(message)"
     :messageId="message.messageId"
@@ -119,36 +118,43 @@
           @click="inNewWindow"
         ></p>
       </div>
+
+      <LinkPreview
+        class="video-message__link-preview"
+        :class="message.position"
+        v-if="message.linkPreview"
+        :linkPreview="message.linkPreview"
+      />
     </div>
   </div>
   <Teleport to="body">
-      <transition name="modal-fade">
-        <div
-          v-if="isOpenModal"
-          class="video-message__modal-overlay"
-          @click="closeModalOutside"
-        >
-          <div class="video-message__modal">
-            <button
-              class="video-message__modal-close-button"
-              @click="closeModal"
-            >
-              <span>
-                <i class="pi pi-times" />
-              </span>
-            </button>
-            <video
-              ref="player"
-              class="video-message__modal-video"
-              :src="message.url"
-              :alt="message.alt"
-              controls
-              autoplay
-            />
-          </div>
+    <transition name="modal-fade">
+      <div
+        v-if="isOpenModal"
+        class="video-message__modal-overlay"
+        @click="closeModalOutside"
+      >
+        <div class="video-message__modal">
+          <button
+            class="video-message__modal-close-button"
+            @click="closeModal"
+          >
+            <span>
+              <i class="pi pi-times" />
+            </span>
+          </button>
+          <video
+            ref="player"
+            class="video-message__modal-video"
+            :src="message.url"
+            :alt="message.alt"
+            controls
+            autoplay
+          />
         </div>
-      </transition>
-    </Teleport>
+      </div>
+    </transition>
+  </Teleport>
 </template>
 
 <script
@@ -162,6 +168,7 @@ import { ContextMenu } from '../components'
 import { getStatus, statuses } from "../../helpers";
 import { IVideoMessage } from '../../types';
 import BaseReplyMessage from './BaseReplyMessage.vue'
+import LinkPreview from './LinkPreview.vue'
 
 defineOptions({
   inheritAttrs: false,
@@ -247,9 +254,9 @@ watch([player, previewPlayer], ([playerVal, previewVal]) => {
 });
 
 const videoBorderRadius = computed(() => {
-  if(props.message.reply && props.message.text) return '0'
-  if(props.message.text) return '8px 8px 0 0'
-  if(props.message.reply) return '0 0 8px 8px'
+  if (props.message.reply && props.message.text) return '0'
+  if (props.message.text) return '8px 8px 0 0'
+  if (props.message.reply) return '0 0 8px 8px'
   return '8px'
 })
 
@@ -435,6 +442,10 @@ onUnmounted(() => {
       white-space: pre-wrap;
       font-size: var(--base-message-font-size-text);
     }
+  }
+
+  &__link-preview {
+    margin: 8px;
   }
 
   &__left,

@@ -30,31 +30,36 @@
         :message="message.reply"
         :class="message.position"
       />
-        <a
-          class="file-message__link"
-          :href="message.url"
-          download
-          target="_blank"
-        >
-          <span class="pi pi-file" />
-          <p class="file-message__filename-text">
-            {{ message.filename }}
-          </p>
-          <div
-            class="file-message__download-button"
-          >
-            <span class="pi pi-download" />
-          </div>
-        </a>
-        <div
-          v-if="message.text"
-          class="file-message__text-container"
-        >
-          <p
-            v-html="linkedText"
-            @click="inNewWindow"
-          ></p>
+      <a
+        class="file-message__link"
+        :href="message.url"
+        download
+        target="_blank"
+      >
+        <span class="pi pi-file" />
+        <p class="file-message__filename-text">
+          {{ message.filename }}
+        </p>
+        <div class="file-message__download-button">
+          <span class="pi pi-download" />
         </div>
+      </a>
+      <div
+        v-if="message.text"
+        class="file-message__text-container"
+      >
+        <p
+          v-html="linkedText"
+          @click="inNewWindow"
+        ></p>
+      </div>
+
+      <LinkPreview
+        :class="message.position"
+        v-if="message.linkPreview"
+        :linkPreview="message.linkPreview"
+      />
+
       <div class="file-message__info-container">
 
         <div
@@ -117,6 +122,7 @@ import { getStatus, statuses } from "../../helpers";
 
 import { IFileMessage } from '../../types'
 import BaseReplyMessage from './BaseReplyMessage.vue'
+import LinkPreview from './LinkPreview.vue'
 
 // Define props
 const props = defineProps({
