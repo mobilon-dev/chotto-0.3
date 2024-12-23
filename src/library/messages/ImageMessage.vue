@@ -24,10 +24,11 @@
 
     <div class="image-message__content">
       <BaseReplyMessage
+        v-if="message.reply"
         style="margin: 10px 10px 4px 16px;"
         :class="message.position"
-        v-if="message.reply"
         :message="message.reply"
+        @reply="handleClickReplied"
       />
       
       <div
@@ -170,7 +171,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['action']);
+const emit = defineEmits(['action', 'reply']);
 
 const isOpenModal = ref(false);
 
@@ -188,6 +189,10 @@ watch(
   },
   { immediate: true }
 )
+
+const handleClickReplied = (messageId) => {
+  emit('reply', messageId)
+}
 
 function inNewWindow(event) {
   event.preventDefault()

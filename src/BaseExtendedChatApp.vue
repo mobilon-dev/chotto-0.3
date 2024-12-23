@@ -60,8 +60,10 @@
                 :scrollTo="clickedReply"
                 @message-action="messageAction"
                 @load-more="loadMore"
+                @load-more-down="loadMoreDown"
                 @message-visible="messageVisible"
                 @click-replied-message="handleClickReplied"
+                @force-scroll-to-bottom="forceScrollToBottom"
               />
               <ChatInput @send="addMessage">
                 <template #buttons>
@@ -272,9 +274,43 @@ const getUsers = () => {
 };
 
 const loadMore = () => {
-  // do load more messages to feed
-  // console.log("load more");
+  // do load more messages to feed when scroll up
+  console.log("load more");
+  if (selectedChat.value && selectedChat.value.chatId == 5 ){
+    const firstMessage = messages.value.find((message) => {
+      if (message.type.indexOf('system') == -1) return message
+    })
+    const messages1 = props.dataProvider.getMoreFeedUp(selectedChat.value.chatId,firstMessage.messageId, 10);
+    if (messages1.length > 0){
+      const additionalMessages = transformToFeed(messages1);
+      if (additionalMessages[additionalMessages.length - 1].time == firstMessage.time && messages.value[0].type == 'system.date'){
+          messages.value.shift()
+      }
+      messages.value = additionalMessages.concat(messages.value)
+    }
+  }
 };
+
+const loadMoreDown = () => {
+  // do load more messages to feed when scroll down
+  console.log("load more down");
+  const currentLastMessage = messages.value[messages.value.length - 1]
+  const savedLastMessage = props.dataProvider.getLastMessage(selectedChat.value.chatId).messageId
+  if (selectedChat.value && selectedChat.value.chatId == 5 && currentLastMessage != savedLastMessage){
+    const newM = props.dataProvider.getMoreFeedDown(selectedChat.value.chatId, currentLastMessage.messageId, 10)
+    const additionalMessages = transformToFeed(newM, currentLastMessage.timestamp)
+    messages.value = messages.value.concat(additionalMessages)
+  }
+};
+
+const forceScrollToBottom = () => {
+  const currentLastMessage = messages.value[messages.value.length - 1].messageId
+  const savedLastMessage = props.dataProvider.getLastMessage(selectedChat.value.chatId).messageId
+  if (currentLastMessage != savedLastMessage){
+    const messages1 = props.dataProvider.getFeed(selectedChat.value.chatId);
+    messages.value = transformToFeed(messages1);
+  }
+}
 
 const messageVisible = (message) => {
   // processing message in feed visible area 
@@ -346,17 +382,32 @@ const selectChat = (chat) => {
   messages.value = getFeedObjects(); // Обновляем сообщения при выборе чата
 };
 
-let timer
 const handleClickReplied = (messageId) => {
   console.log('Clicked reply id ' + messageId)
-  clearTimeout(timer)
   const message = messages.value.find((m) => {
     if (m.messageId == messageId) return m
     })
-  clickedReply.value = JSON.stringify(message)
-  timer = setTimeout(() => {
-    clickedReply.value = ''
-  }, 100)
+  if (!message) {
+    const messages1 = props.dataProvider.getFeedByMessage(selectedChat.value.chatId, messageId)
+    messages.value = transformToFeed(messages1)
+  }
+  setTimeout(() => {
+      highlightMessage(messageId)
+  }, 50)
+}
+
+let timer
+const highlightMessage = (messageId) => {
+  clearTimeout(timer)
+  const message = messages.value.find((m) => {
+      if (m.messageId == messageId) return m
+    })
+  if (message) {
+    clickedReply.value = JSON.stringify(message)
+    timer = setTimeout(() => {
+      clickedReply.value = ''
+    }, 100)
+  }
 }
 
 const handleEvent = async (event) => {

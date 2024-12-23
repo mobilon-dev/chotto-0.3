@@ -27,10 +27,11 @@
       @mouseenter="showMenu"
     >
       <BaseReplyMessage
-        style="grid-column: 1/3;"
         v-if="message.reply"
+        style="grid-column: 1/3;"
         :message="message.reply"
         :class="message.position"
+        @reply="handleClickReplied"
       />
       <div
       class="audio-message__audio-container">
@@ -178,7 +179,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['action']);
+const emit = defineEmits(['action','reply']);
 
 const player = ref<HTMLAudioElement | null>();
 const isPlaying = ref(false);
@@ -201,6 +202,10 @@ watch(
   },
   { immediate: true }
 )
+
+const handleClickReplied = (messageId) => {
+  emit('reply', messageId)
+}
 
 function inNewWindow(event) {
   event.preventDefault()

@@ -27,9 +27,10 @@
       @mouseenter="showMenu"
     >
         <BaseReplyMessage
-        :class="message.position"
         v-if="message.reply"
+        :class="message.position"
         :message="message.reply"
+        @reply="handleClickReplied"
       />
       <p
         v-html="linkedText"
@@ -104,7 +105,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['action']);
+const emit = defineEmits(['action','reply']);
 
 const isOpenMenu = ref(false)
 const buttonMenuVisible = ref(false);
@@ -117,6 +118,10 @@ watch(
   },
   { immediate: true }
 )
+
+const handleClickReplied = (messageId) => {
+  emit('reply', messageId)
+}
 
 function inNewWindow(event) {
   event.preventDefault()

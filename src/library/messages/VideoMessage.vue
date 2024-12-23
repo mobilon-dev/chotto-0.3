@@ -24,10 +24,11 @@
 
     <div class="video-message__content">
       <BaseReplyMessage
+        v-if="message.reply"
         style="margin: 10px 10px 4px 16px;"
         :class="message.position"
-        v-if="message.reply"
         :message="message.reply"
+        @reply="handleClickReplied"
       />
       <div
         class="video-message__preview-button"
@@ -174,7 +175,11 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['action']);
+const emit = defineEmits(['action','reply']);
+
+const handleClickReplied = (messageId) => {
+  emit('reply', messageId)
+}
 
 function getClass(message) {
   return message.position === 'left' ? 'video-message__left' : 'video-message__right';

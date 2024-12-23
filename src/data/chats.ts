@@ -45,7 +45,7 @@ export const chats = [
     metadata: '',
   },
   {
-    chatId: 5, name: "Василий 33",
+    chatId: 5, name: "Много SMS",
     countUnread: 0, lastMessage: 'test',
     'lastActivity.time': 'час назад',
     'lastActivity.timestamp': '1727027259',

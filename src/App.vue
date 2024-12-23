@@ -51,7 +51,36 @@ const dataProvider = {
     console.log('auth', auth);
   },
   getFeed(chatId) {
-    return data3.messages.filter(m => m.chatId === chatId);
+    // начальная загрузка сообщений (все либо 20 в конце)
+    if (chatId != 5)
+      return data3.messages.filter(m => m.chatId === chatId);
+    else {
+      let m = data3.messages.filter(m => m.chatId === chatId);
+      return m.splice(-20)
+    }
+  },
+  getMoreFeedUp(chatId, messageId, length){
+    // догрузка сообщений при движении вверх
+    const messages = data3.messages.filter(m => m.chatId === chatId);
+    const index = messages.findIndex((message) => { return message.messageId == messageId})
+    const preindex = index - length < 0 ? 0 : index - length
+    return messages.slice(preindex, index)
+  },
+  getMoreFeedDown(chatId, messageId, length){
+    // догрузка сообщений при движении вниз
+    const messages = data3.messages.filter(m => m.chatId === chatId);
+    const index = messages.findIndex((message) => { return message.messageId == messageId})
+    return messages.slice(index + 1, index + length + 1)
+  },
+  getFeedByMessage(chatId, messageId){
+    // догрузка сообщений при переходе к сообщению вне текущей ленты
+    const messages = data3.messages.filter(m => m.chatId === chatId);
+    const index = messages.findIndex((message) => { return message.messageId == messageId})
+    return messages.slice(index - 8, index + 8)
+  },
+  getLastMessage(chatId){
+    const messages = data3.messages.filter(m => m.chatId === chatId)
+    return messages[messages.length - 1]
   },
   getChannels() {
     return data3.channels;
