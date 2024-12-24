@@ -165,7 +165,7 @@ onUnmounted(() => {
 .button span {
   display: block;
   cursor: pointer;
-  padding: 5px 14px;
+  padding: 14px;
   font-size: var(--icon-font-size-medium);
   color: var(--channels-selector-icon-color);
 }

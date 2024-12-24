@@ -22,7 +22,6 @@
       Канал не выбран
     </span>
     <ButtonContextMenu
-      style="margin-top: 9px;"
       :actions="channels"
       :mode="mode"
       :button-class="'pi pi-list'"
