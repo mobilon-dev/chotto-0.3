@@ -794,7 +794,12 @@ export const messages = [
     { messageId: 127,
     chatId: 5, type: "message.text", 
     text: "127!", 
-    direction: 'incoming', status: 'read', timestamp: '1727027959' },
+    direction: 'incoming', status: 'read', timestamp: '1727027959',
+    reply: {
+      messageId: 7,
+      type: 'message.text',
+      text: '7!',
+    }, },
     { messageId: 128,
     chatId: 5, type: "message.text", 
     text: "128!", 

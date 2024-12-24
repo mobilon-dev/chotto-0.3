@@ -63,8 +63,8 @@ const dataProvider = {
     // догрузка сообщений при движении вверх
     const messages = data3.messages.filter(m => m.chatId === chatId);
     const index = messages.findIndex((message) => { return message.messageId == messageId})
-    const preindex = index - length < 0 ? 0 : index - length
-    return messages.slice(preindex, index)
+    const firstIndex = index - length < 0 ? 0 : index - length
+    return messages.slice(firstIndex, index)
   },
   getMoreFeedDown(chatId, messageId, length){
     // догрузка сообщений при движении вниз
@@ -76,7 +76,8 @@ const dataProvider = {
     // догрузка сообщений при переходе к сообщению вне текущей ленты
     const messages = data3.messages.filter(m => m.chatId === chatId);
     const index = messages.findIndex((message) => { return message.messageId == messageId})
-    return messages.slice(index - 8, index + 8)
+    const firstIndex = index - 8 < 0 ? 0 : index - 8
+    return messages.slice(firstIndex, index + 8)
   },
   getLastMessage(chatId){
     const messages = data3.messages.filter(m => m.chatId === chatId)

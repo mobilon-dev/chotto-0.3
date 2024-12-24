@@ -296,7 +296,7 @@ const loadMoreDown = () => {
   console.log("load more down");
   const currentLastMessage = messages.value[messages.value.length - 1]
   const savedLastMessage = props.dataProvider.getLastMessage(selectedChat.value.chatId).messageId
-  if (selectedChat.value && selectedChat.value.chatId == 5 && currentLastMessage != savedLastMessage){
+  if (selectedChat.value && selectedChat.value.chatId == 5 && currentLastMessage.messageId != savedLastMessage){
     const newM = props.dataProvider.getMoreFeedDown(selectedChat.value.chatId, currentLastMessage.messageId, 10)
     const additionalMessages = transformToFeed(newM, currentLastMessage.timestamp)
     messages.value = messages.value.concat(additionalMessages)
