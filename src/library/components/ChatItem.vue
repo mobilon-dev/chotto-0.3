@@ -1,95 +1,95 @@
 <template>
-    <div
-      class="chat-item__container"
-      @mouseenter="showMenu"
-      @mouseleave="hideMenu"
-      :class="getClass()"
-      @click="selectChat"
-    >
-      <div class="chat-item__avatar-container">
-        <span
-          class="chat-item__status-user"
-          :style="{ backgroundColor: props.chat.status }"
-        />
-        <img
-          v-if="props.chat.avatar"
-          :src="props.chat.avatar"
-          height="48"
-          width="48"
-        >
-        <span
-          v-else
-          class="pi pi-user"
-        />
-      </div>
-
-      <div class="chat-item__info-container">
-        <div class="chat-item__name">
-          {{ chat.name }}
-        </div>
-
-        <div
-          v-if="chat.lastMessage || chat.typing"
-          class="chat-item__last-message"
-        >
-          {{ showText }}
-        </div>
-      </div>
-
-      <div class="chat-item__details-container">
-        <div
-          v-if="chat['lastActivity.time'] && !buttonMenuVisible"
-          class="chat-item__time"
-        >
-          {{ chat['lastActivity.time'] }}
-        </div>
-        <div
-          v-if="chat.countUnread > 0"
-          class="chat-item__unread"
-        >
-          {{ chat.countUnread > 99 ? '99+' : chat.countUnread }}
-        </div>
-
-        <button
-          v-if="buttonMenuVisible && chat.actions"
-          class="chat-item__menu-button"
-          @click="isOpenMenu = !isOpenMenu"
-        >
-          <span class="pi pi-ellipsis-h" />
-        </button>
-
-        <div
-          v-if="chat.countUnread < 1"
-          class="chat-item__status-chat-container"
-        >
-          <div
-            v-if="statuses.includes(chat['lastMessage.status'])"
-            class="chat-item__status-message"
-            :class="status"
-          >
-            <span
-              v-if="chat['lastMessage.status'] !== 'sent'"
-              class="pi pi-check"
-            />
-            <span class="pi pi-check" />
-          </div>
-
-          <span
-            v-if="(chat.isFixedTop || chat.isFixedBottom)"
-            class="chat-item__fixed pi pi-thumbtack"
-          />
-        </div>
-      </div>
-
-      <transition name="menu">
-        <ContextMenu
-          v-if="isOpenMenu && chat.actions"
-          class="chat-item__context-menu"
-          :actions="chat.actions"
-          @click="clickAction"
-        />
-      </transition>
+  <div
+    class="chat-item__container"
+    @mouseenter="showMenu"
+    @mouseleave="hideMenu"
+    :class="getClass()"
+    @click="selectChat"
+  >
+    <div class="chat-item__avatar-container">
+      <span
+        class="chat-item__status-user"
+        :style="{ backgroundColor: props.chat.status }"
+      />
+      <img
+        v-if="props.chat.avatar"
+        :src="props.chat.avatar"
+        height="48"
+        width="48"
+      >
+      <span
+        v-else
+        class="pi pi-user"
+      />
     </div>
+
+    <div class="chat-item__info-container">
+      <div class="chat-item__name">
+        {{ chat.name }}
+      </div>
+
+      <div
+        v-if="chat.lastMessage || chat.typing"
+        class="chat-item__last-message"
+      >
+        {{ showText }}
+      </div>
+    </div>
+
+    <div class="chat-item__details-container">
+      <div
+        v-if="chat['lastActivity.time'] && !buttonMenuVisible"
+        class="chat-item__time"
+      >
+        {{ chat['lastActivity.time'] }}
+      </div>
+      <div
+        v-if="chat.countUnread > 0"
+        class="chat-item__unread"
+      >
+        {{ chat.countUnread > 99 ? '99+' : chat.countUnread }}
+      </div>
+
+      <button
+        v-if="buttonMenuVisible && chat.actions"
+        class="chat-item__menu-button"
+        @click="isOpenMenu = !isOpenMenu"
+      >
+        <span class="pi pi-ellipsis-h" />
+      </button>
+
+      <div
+        v-if="chat.countUnread < 1"
+        class="chat-item__status-chat-container"
+      >
+        <div
+          v-if="statuses.includes(chat['lastMessage.status'])"
+          class="chat-item__status-message"
+          :class="status"
+        >
+          <span
+            v-if="chat['lastMessage.status'] !== 'sent'"
+            class="pi pi-check"
+          />
+          <span class="pi pi-check" />
+        </div>
+
+        <span
+          v-if="(chat.isFixedTop || chat.isFixedBottom)"
+          class="chat-item__fixed pi pi-thumbtack"
+        />
+      </div>
+    </div>
+
+    <transition name="menu">
+      <ContextMenu
+        v-if="isOpenMenu && chat.actions"
+        class="chat-item__context-menu"
+        :actions="chat.actions"
+        @click="clickAction"
+      />
+    </transition>
+  </div>
 </template>
 
 <script setup>

@@ -23,6 +23,12 @@
   --reply-message-right-bg: rgb(152 219 188 / 46%);
   --reply-message-left-bg: var(--neutral-300);
   --reply-message-color: var(--neutral-600);
+  --reply-message-before-bg: var(--emerald-400);
+
+  /* Link Preview */
+  --link-preview-right-bg: rgb(152 219 188 / 46%);
+  --link-preview-left-bg: var(--neutral-300);
+  --link-preview-before-bg: var(--emerald-400);
 
   /* Date Message */
   --date-message-color: var(--neutral-700);

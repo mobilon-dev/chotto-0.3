@@ -13,6 +13,7 @@ import ReplyAudioMessage from './ReplyAudioMessage.vue'
 import ReplyVideoMessage from './ReplyVideoMessage.vue'
 import ReplyFileMessage from './ReplyFileMessage.vue'
 import BaseReplyMessage from './BaseReplyMessage.vue'
+import LinkPreview from './LinkPreview.vue'
 
 export {
   AudioMessage,
@@ -29,5 +30,6 @@ export {
   ReplyAudioMessage,
   ReplyVideoMessage,
   ReplyFileMessage,
-  BaseReplyMessage
+  BaseReplyMessage,
+  LinkPreview
 }

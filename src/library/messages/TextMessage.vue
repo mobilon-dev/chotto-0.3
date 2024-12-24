@@ -1,6 +1,5 @@
 <template>
   <div
-    
     class="text-message"
     :class="getClass(message)"
     :messageId="message.messageId"
@@ -26,7 +25,8 @@
       class="text-message__content"
       @mouseenter="showMenu"
     >
-        <BaseReplyMessage
+
+      <BaseReplyMessage
         v-if="message.reply"
         :class="message.position"
         :message="message.reply"
@@ -37,6 +37,13 @@
         class="text-message__text"
         @click="inNewWindow"
       />
+
+      <LinkPreview
+        :class="message.position"
+        v-if="message.linkPreview"
+        :linkPreview="message.linkPreview"
+      />
+
       <div class="text-message__info-container">
         <div
           v-if="message.views"
@@ -82,7 +89,7 @@
     </div>
   </div>
 
-  
+
 </template>
 
 <script
@@ -96,6 +103,7 @@ import { ContextMenu } from '../components'
 import { getStatus, statuses } from "../../helpers";
 import { ITextMessage } from '../../types';
 import BaseReplyMessage from './BaseReplyMessage.vue'
+import LinkPreview from './LinkPreview.vue'
 
 // Define props
 const props = defineProps({

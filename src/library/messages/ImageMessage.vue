@@ -1,6 +1,5 @@
 <template>
   <div
-    
     class="image-message"
     :class="getClass(message)"
     :messageId="message.messageId"
@@ -30,7 +29,7 @@
         :message="message.reply"
         @reply="handleClickReplied"
       />
-      
+
       <div
         class="image-message__preview-button"
         @click="isOpenModal = true"
@@ -39,7 +38,7 @@
       >
         <img
           class="image-message__preview-image"
-          :style="{ borderRadius: imageBorderRadius}"
+          :style="{ borderRadius: imageBorderRadius }"
           :src="message.url"
           :alt="message.alt"
         >
@@ -108,7 +107,7 @@
           @click="clickAction"
         />
       </transition>
-      
+
       <div
         v-if="message.text"
         class="image-message__text-container"
@@ -118,6 +117,13 @@
           @click="inNewWindow"
         ></p>
       </div>
+
+      <LinkPreview
+        class="image-message__link-preview"
+        :class="message.position"
+        v-if="message.linkPreview"
+        :linkPreview="message.linkPreview"
+      />
     </div>
 
 
@@ -149,7 +155,7 @@
     </Teleport>
   </div>
 
-  
+
 </template>
 
 <script
@@ -163,6 +169,7 @@ import { ContextMenu } from '../components'
 import { getStatus, statuses } from "../../helpers";
 import { IImageMessage } from '../../types';
 import BaseReplyMessage from './BaseReplyMessage.vue'
+import LinkPreview from './LinkPreview.vue'
 
 const props = defineProps({
   message: {
@@ -217,9 +224,9 @@ const hideMenu = () => {
 };
 
 const imageBorderRadius = computed(() => {
-  if(props.message.reply && props.message.text) return '0'
-  if(props.message.text) return '8px 8px 0 0'
-  if(props.message.reply) return '0 0 8px 8px'
+  if (props.message.reply && props.message.text) return '0'
+  if (props.message.text) return '8px 8px 0 0'
+  if (props.message.reply) return '0 0 8px 8px'
   return '8px'
 })
 
@@ -454,6 +461,10 @@ onUnmounted(() => {
       font-size: var(--base-message-font-size-text);
       word-break: break-all;
     }
+  }
+
+  &__link-preview {
+    margin: 8px;
   }
 
   &__left,
