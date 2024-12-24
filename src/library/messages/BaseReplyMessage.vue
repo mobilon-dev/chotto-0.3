@@ -22,7 +22,6 @@
 >
 import { inject } from "vue";
 import { useMessage } from "../../helpers/useMessage";
-import { useReply } from "../../helpers/useReply";
 import {
   ReplyTextMessage,
   ReplyImageMessage,
@@ -45,10 +44,11 @@ const props = defineProps({
 
 const chatAppId = inject('chatAppId')
 const { resetReply } = useMessage(chatAppId as string)
-const { setReplyId } = useReply(chatAppId as string)
+
 const onReply = () => {
-  if (props.message)
-    setReplyId(props.message.messageId)
+  if (props.message){
+    emit('reply',props.message.messageId)
+  }
 }
 
 const componentsMap = (type) => {
