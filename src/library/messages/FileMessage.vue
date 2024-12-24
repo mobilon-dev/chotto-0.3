@@ -29,6 +29,7 @@
         v-if="message.reply"
         :message="message.reply"
         :class="message.position"
+        @reply="handleClickReplied"
       />
       <a
         class="file-message__link"
@@ -132,7 +133,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['action']);
+const emit = defineEmits(['action','reply']);
 
 const isOpenMenu = ref(false)
 const buttonMenuVisible = ref(false);
@@ -147,6 +148,10 @@ watch(
   },
   { immediate: true }
 )
+
+const handleClickReplied = (messageId) => {
+  emit('reply', messageId)
+}
 
 function inNewWindow(event) {
   event.preventDefault()

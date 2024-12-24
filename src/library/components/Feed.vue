@@ -17,6 +17,7 @@
           class="message-feed__message"
           :message="object"
           @action="messageAction"
+          @reply="handleClickReplied"
         />
     </div>
     <typing-message
@@ -73,7 +74,6 @@ import {
 import { IFeedObject, IFeedTyping, IFeedUnreadButton } from '../../types';
 
 import { useMessage } from '../../helpers/useMessage';
-import { useReply } from '../../helpers/useReply';
 import BaseReplyMessage from '../messages/BaseReplyMessage.vue';
 
 const trackingObjects = ref();
@@ -112,8 +112,14 @@ const props = defineProps({
 
 const chatAppId = inject('chatAppId')
 const { setReply, getMessage } = useMessage(chatAppId as string)
-const { getReplyId, setReplyId } = useReply(chatAppId as string)
-const emit = defineEmits(['messageAction', 'loadMore', 'messageVisible', 'clickRepliedMessage']);
+const emit = defineEmits([
+  'messageAction',
+  'loadMore', 
+  'loadMoreDown',
+  'messageVisible', 
+  'clickRepliedMessage',
+  'forceScrollToBottom',
+]);
 
 const scrollTopCheck = (allowLoadMore: boolean = true) => {
   const element = unref(refFeed);
@@ -129,6 +135,9 @@ const scrollTopCheck = (allowLoadMore: boolean = true) => {
 
   if (element.scrollTop === 0 && allowLoadMore) {
     emit('loadMore');
+  }
+  if (scrollBottom === 0 && allowLoadMore){
+    emit('loadMoreDown')
   }
 };
 
@@ -159,6 +168,7 @@ function scrollToBottom() {
 }
 
 function scrollToBottomForce() {
+  emit('forceScrollToBottom')
   nextTick(function () {
     const element = unref(refFeed);
     element.scrollTop = element.scrollHeight;
@@ -166,10 +176,14 @@ function scrollToBottomForce() {
 }
 
 onUpdated(() => scrollToBottom);
-watch(() => props.objects, scrollToBottom);
+//watch(() => props.objects, scrollToBottom);
 
 const messageAction = (message) => {
   emit('messageAction', message);
+}
+
+const handleClickReplied = (messageId) => {
+  emit('clickRepliedMessage', messageId)
 }
 
 const feedObjectDoubleClick = (event: MouseEvent,object : IFeedObject) => {
@@ -213,16 +227,6 @@ watch(
     })
   },
   { immediate: true })
-
-watch(
-  () => getReplyId(),
-  () => {
-    if (getReplyId() != ''){
-      emit('clickRepliedMessage', getReplyId())
-      setReplyId('')
-    }
-  }
-)
 
 watch(
   () => props.scrollTo,

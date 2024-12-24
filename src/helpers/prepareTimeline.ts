@@ -1,11 +1,11 @@
-export const insertDaySeparators = (messages: any) => {
+export const insertDaySeparators = (messages: any, outPreviousDay: any = null) => {
   const result: any = [];
-  let previousDay: any = null;
+  let previousDay: any = new Date(outPreviousDay * 1000).toLocaleDateString();
 
   for (let i = 0; i < messages.length; i++) {
     const message = messages[i];
     const currentDay = new Date(message.timestamp * 1000).toLocaleDateString();
-    console.log('message', message, currentDay);  
+    //console.log('message', message, currentDay);  
     // Если день сообщения отличается от предыдущего, добавляем разделитель
     if (currentDay !== previousDay) {
 
