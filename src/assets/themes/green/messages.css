@@ -17,6 +17,10 @@
   --reply-message-right-bg: #d1f4cc;
   --reply-message-left-bg: var(--neutral-100);
 
+  /* Link Preview */
+  --link-preview-right-bg: #d1f4cc;
+  --link-preview-left-bg: var(--neutral-100);
+
   /* _____________________________________________ */
 
   /* Call Message */

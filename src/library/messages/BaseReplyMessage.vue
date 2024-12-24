@@ -1,6 +1,6 @@
 <template>
   <div
-    class="reply__container" 
+    class="reply__container"
     :class="componentsClassMap(message?.type)"
     @click="onReply"
   >
@@ -52,14 +52,14 @@ const onReply = () => {
 }
 
 const componentsMap = (type) => {
-const r = {
-  'message.text': ReplyTextMessage,
-  'message.image': ReplyImageMessage,
-  'message.file': ReplyFileMessage,
-  'message.audio': ReplyAudioMessage,
-  'message.video': ReplyVideoMessage,
-};
-return r[type];
+  const r = {
+    'message.text': ReplyTextMessage,
+    'message.image': ReplyImageMessage,
+    'message.file': ReplyFileMessage,
+    'message.audio': ReplyAudioMessage,
+    'message.video': ReplyVideoMessage,
+  };
+  return r[type];
 }
 
 const componentsClassMap = (type) => {
@@ -80,8 +80,7 @@ const handleReset = () => {
 </script>
 
 <style lang="scss">
-
-.reply{
+.reply {
   &__container {
     position: relative;
     padding: 10px 6px 10px 12px;
@@ -96,21 +95,21 @@ const handleReset = () => {
       left: 0;
       width: 4px;
       height: 100%;
-      background-color: #07cf9c;
+      background-color: var(--reply-message-before-bg);
     }
   }
 
-  &__reset{
+  &__reset {
     display: none;
     position: absolute;
-    right:  0;
+    right: 0;
     top: 0;
   }
 
-  &__reset:hover{
+  &__reset:hover {
     cursor: pointer;
   }
-  
+
 }
 
 .grid {
@@ -128,13 +127,14 @@ const handleReset = () => {
   background-color: var(--reply-message-right-bg);
 }
 
-.chat-input-reply{
+.chat-input-reply {
   padding-right: 20px;
   border: 1px solid var(--neutral-300);
   border-radius: 0;
   max-width: 300px;
   word-break: break-word;
-  .reply__reset{
+
+  .reply__reset {
     display: inherit;
   }
 }
