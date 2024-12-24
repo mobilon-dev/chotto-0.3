@@ -1,28 +1,26 @@
 <template>
-  <div class="uploader-container">
-    <div v-if="uploadStatus === 'uploading'">
-      <p>Загрузка файла...</p>
-    </div>
-    <div v-else-if="uploadStatus === 'error'">
-      <p>Ошибка при загрузке файла.</p>
-    </div>
-    <ButtonContextMenu
-      v-else
-      :actions="actions"
-      :mode="'hover'"
-      :button-class="'pi pi-file-arrow-up'"
-      :menu-side="'top'"
-      :disabled="!canUploadFile || state == 'disabled'"
-      @click="triggerFileUpload"
-      @button-click="triggerFileUploadDefault"
-    />
-    <input
-      ref="fileInput"
-      style="display: none;"
-      type="file"
-      @change="onFileSelected"
-    >
+  <div v-if="uploadStatus === 'uploading'">
+    <p>Загрузка файла...</p>
   </div>
+  <div v-else-if="uploadStatus === 'error'">
+    <p>Ошибка при загрузке файла.</p>
+  </div>
+  <ButtonContextMenu
+    v-else
+    :actions="actions"
+    :mode="'hover'"
+    :button-class="'pi pi-file-arrow-up'"
+    :menu-side="'top'"
+    :disabled="!canUploadFile || state == 'disabled'"
+    @click="triggerFileUpload"
+    @button-click="triggerFileUploadDefault"
+  />
+  <input
+    ref="fileInput"
+    style="display: none;"
+    type="file"
+    @change="onFileSelected"
+  >
   <teleport
     v-if="getMessage().file"
     :to="'#chat-input-file-line-'+chatAppId"
@@ -202,8 +200,4 @@ const triggerFileUploadDefault = () => {
   scoped
   lang="scss"
 >
-.uploader-container {
-  margin-top: 9px;
-  display: flex;
-}
 </style>

@@ -75,24 +75,10 @@ const selectChannel = (channel) => {
 .channels {
   &__container {
     display: flex;
-    margin-top: 9px;
   }
 
   &__container-disabled{
     color: var(--chat-input-icon-color-disabled);
-  }
-
-  &__button {
-    background-color: transparent;
-    border: none;
-
-    span {
-      display: block;
-      cursor: pointer;
-      padding: 14px;
-      font-size: var(--icon-font-size-medium);
-      color: var(--channels-selector-icon-color);
-    }
   }
 
   &__title {

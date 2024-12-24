@@ -69,7 +69,7 @@
                 <template #buttons>
                   <FileUploader
                     :filebump-url="filebumpUrl"
-                    :state="'enabled'"
+                    :state="'active'"
                   />
                   <ButtonEmojiPicker
                     :mode="'hover'"
