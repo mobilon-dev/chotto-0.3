@@ -77,8 +77,8 @@
 
 
       <div
-        class="template-selector__preview-container"
         ref="previewContainer"
+        class="template-selector__preview-container"
       >
         <div
           v-if="templateParts.length > 0"
@@ -88,7 +88,7 @@
             <WABAAttachmentSection
               v-if="selectedTemplate.type != 'TEXT'"
               :type="selectedTemplate.type"
-              :templateId="selectedTemplate.templateId"
+              :template-id="selectedTemplate.templateId"
               @file-selected="handleFileSelected"
             />
             <div class="template-selector__preview-text-container">
@@ -123,13 +123,13 @@
           Предпросмотр шаблона
         </p>
         <div
-          class="template-selector__reply-buttons"
           v-if="allVariantsShow"
+          class="template-selector__reply-buttons"
         >
           <div
             class="template-selector__semitransparent-overlay"
             @click="selectAllVariants"
-          ></div>
+          />
           <WABASeparatedQuickButtons
             :buttons="selectedTemplate.buttons"
             @select-all-variants="selectAllVariants"

@@ -1,9 +1,9 @@
 <template>
   <div
     class="chat-item__container"
+    :class="getClass()"
     @mouseenter="showMenu"
     @mouseleave="hideMenu"
-    :class="getClass()"
     @click="selectChat"
   >
     <div class="chat-item__avatar-container">
