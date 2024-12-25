@@ -30,6 +30,7 @@
     <Transition>
       <MessageKeyboard
         v-if="showKeyboard"
+        ref="keyboardRef"
         class="message-feed__keyboard"
         :keyboard="objects[objects.length - 1].keyboard!"
       />
@@ -87,6 +88,7 @@ import MessageKeyboard from './MessageKeyboard.vue';
 
 const trackingObjects = ref();
 const refFeed = ref();
+const keyboardRef = ref();
 const isShowButton = ref(false)
 const isKeyboardPlace = ref(false)
 
@@ -139,11 +141,14 @@ const showKeyboard = computed(() => {
 
 const scrollTopCheck = (allowLoadMore: boolean = true) => {
   const element = unref(refFeed);
+  let keyboardHeight = 0
+  if (keyboardRef.value){
+    keyboardHeight = keyboardRef.value.$el.clientHeight
+  }
   const limit = 100;
   const scrollBottom = element.scrollHeight - element.scrollTop - element.clientHeight;
-
   // Проверяем, что scrollBottom меньше заданного порога
-  if (scrollBottom < limit) {
+  if (scrollBottom < limit + keyboardHeight) {
     isShowButton.value = false;
     isKeyboardPlace.value = true
   } else {
@@ -276,6 +281,7 @@ watch(
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  overflow-x: hidden;
   background-image: url('../../../public/chat-background.svg');
   scroll-behavior: smooth;
   padding: 10px 30px 10px 30px;
@@ -305,10 +311,10 @@ watch(
     position: sticky;
     z-index: 100;
     bottom: 0;
-    box-shadow: 0px 0px 10px 5px #EAEAEA;
-    background: #EAEAEA;
+    max-width: 25rem;
     width: fit-content;
     margin-left: auto;
+    flex-wrap: wrap;
   }
 
   &__icon-down {

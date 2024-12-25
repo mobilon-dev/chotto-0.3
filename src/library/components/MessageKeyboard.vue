@@ -30,8 +30,6 @@ const handleClickKey = (key : IKeyBoard) => {
   setForceSendMessage(true)
 }
 
-console.log(props.keyboard)
-
 </script>
 
 <style scoped lang="scss">
@@ -39,16 +37,21 @@ console.log(props.keyboard)
     &__container{
       display: flex;
       gap: 5px;
-      margin-bottom: 5px;
       justify-content: right;
     }
     &__key{
-      background: white;
-      border: 1px solid;
+      background: var(--chat-input-container-bg);
+      border: 1px solid var(--chat-input-border);
       border-radius: 3px;
-      
+      /*white-space: nowrap;*/
+      word-wrap: break-word;
+      box-shadow: 0px 0px 10px 5px #EAEAEA;
+      max-width: 100%;
       p{
+        font-size: var(--base-message-font-size-text);
         padding: 5px;
+        /*overflow: hidden;
+        text-overflow: ellipsis;*/
       }
       p:hover{
         cursor: pointer;
