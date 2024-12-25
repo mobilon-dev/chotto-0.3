@@ -154,7 +154,7 @@ const scrollTopCheck = (allowLoadMore: boolean = true) => {
   if (element.scrollTop === 0 && allowLoadMore) {
     emit('loadMore');
   }
-  if (scrollBottom === 0 && allowLoadMore){
+  if (scrollBottom <= 0 && allowLoadMore){
     emit('loadMoreDown')
   }
 };
