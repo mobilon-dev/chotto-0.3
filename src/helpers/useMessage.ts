@@ -6,6 +6,7 @@ interface Message {
     text: string
     file?: UploadedFile
     reply?: Reply
+    forceSend: boolean
 }
 
 interface UploadedFile{
@@ -30,6 +31,7 @@ export const useMessage = (outId : string) => {
             id: outId,
             text: '',
             file: undefined,
+            forceSend: false,
         })
         index.value = messages.value.length - 1
     }
@@ -42,6 +44,7 @@ export const useMessage = (outId : string) => {
             text: '',
             file: undefined,
             reply: undefined,
+            forceSend: false,
         }
     }
 
@@ -51,6 +54,7 @@ export const useMessage = (outId : string) => {
             text: text,
             file: getMessage().file,
             reply: getMessage().reply,
+            forceSend: false,
         }
     }
 
@@ -60,6 +64,7 @@ export const useMessage = (outId : string) => {
             text: getMessage().text,
             file: file,
             reply: getMessage().reply,
+            forceSend: false,
         }
     }
 
@@ -69,6 +74,7 @@ export const useMessage = (outId : string) => {
             text: getMessage().text,
             file: undefined,
             reply: getMessage().reply,
+            forceSend: false,
         }
     }
 
@@ -78,6 +84,7 @@ export const useMessage = (outId : string) => {
             text: getMessage().text,
             file: getMessage().file,
             reply: reply,
+            forceSend: false,
         }
     }
 
@@ -87,6 +94,7 @@ export const useMessage = (outId : string) => {
             text: getMessage().text,
             file: getMessage().file,
             reply: undefined,
+            forceSend: false,
         }
     }
 
@@ -94,13 +102,18 @@ export const useMessage = (outId : string) => {
         return messages.value[index.value]
     }
 
+    const setForceSendMessage = (val : boolean) => {
+        messages.value[index.value].forceSend = val
+    } 
+
     return {
-        getMessage, 
-        resetMessage, 
-        setMessageFile, 
-        resetMessageFile, 
-        setMessageText, 
-        setReply, 
-        resetReply 
+        getMessage,
+        resetMessage,
+        setMessageFile,
+        resetMessageFile,
+        setMessageText,
+        setReply,
+        resetReply,
+        setForceSendMessage
     }
 }

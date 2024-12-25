@@ -156,6 +156,17 @@ export const messages = [
     chatId: 4, type: "message.file", url: "https://axiomabio.com/pdf/test.pdf", filename: "Документ.pdf", direction: 'incoming',
     status: 'received', timestamp: '1727027959', actions: [{ action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' }],
     text: "Оченьдлинноесообщениебезпробеловзанимающеесразунесколькострокивызывающеестранноеповедениеокон!",
+    keyboard: [
+      {
+        key: 'key_1',
+        text: 'Длинная строка с пробелами и минимальными проблемами при отображении в узком пространстве',
+        order: 1,
+      },{
+        key: 'key_2',
+        text: 'Оченьдлинноесообщениебезпробеловзанимающеесразунесколькострокивызывающеестранноеповедениеокон',
+        order: 2,
+      },
+    ],
   },
   {
     chatId: 1, type: "message.text", text: "Привет! Извини, давно тебе не писал. Как дела?",
@@ -286,6 +297,22 @@ export const messages = [
       url: 'https://yandex.ru',
       description: 'Найдётся всё',
     },
+  },
+  {
+    chatId: 1, type: "message.text", text: "Привет! Сообщение с keyboard",
+    direction: 'incoming', status: 'received', timestamp: '1735029659',
+    messageId:'149',
+    keyboard: [
+      {
+        key: 'key_1',
+        text: 'Все ок',
+        order: 1,
+      },{
+        key: 'key_2',
+        text: 'Перезвоню позже',
+        order: 2,
+      },
+    ],
   },
   /**============================================================================================================ */
   { messageId: 1,
