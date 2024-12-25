@@ -28,7 +28,7 @@
     }"
     />
     <MessageKeyboard
-      v-if="objects[objects.length - 1].keyboard"
+      v-if="showKeyboard"
       :keyboard="objects[objects.length - 1].keyboard!"
     />
     <transition>
@@ -125,6 +125,12 @@ const emit = defineEmits([
   'clickRepliedMessage',
   'forceScrollToBottom',
 ]);
+
+const showKeyboard = computed(() => {
+  if (props.objects.length > 0 && props.objects[props.objects.length - 1].keyboard)
+    return true
+  else return false
+})
 
 const scrollTopCheck = (allowLoadMore: boolean = true) => {
   const element = unref(refFeed);
