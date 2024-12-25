@@ -43,7 +43,7 @@ import {IInputMessage} from '../../types';
 const emit = defineEmits(['send', 'typing']);
 
 const chatAppId = inject('chatAppId')
-const { resetMessage, getMessage, setMessageText } = useMessage(chatAppId as string)
+const { resetMessage, getMessage, setMessageText, setForceSendMessage } = useMessage(chatAppId as string)
 
 const refInput = ref<HTMLElement>();
 
@@ -68,6 +68,16 @@ watch(
     })
   }
 );
+
+watch(
+  () => getMessage().forceSend,
+  () => {
+    if (getMessage().forceSend){
+      sendMessage()
+      setForceSendMessage(false)
+    }
+  }
+)
 
 const sendTyping = (event) => {
   // console.log('typing', event.target.value);

@@ -11,14 +11,14 @@
       :id="JSON.stringify(object)"
       class="tracking-message"
     >
-        <component
-          :is="componentsMap(object.type)"
-          :key="object.messageId"
-          class="message-feed__message"
-          :message="object"
-          @action="messageAction"
-          @reply="handleClickReplied"
-        />
+      <component
+        :is="componentsMap(object.type)"
+        :key="object.messageId"
+        class="message-feed__message"
+        :message="object"
+        @action="messageAction"
+        @reply="handleClickReplied"
+      />
     </div>
     <typing-message
       v-if="typing"
@@ -26,6 +26,10 @@
       subText: (typing as IFeedTyping).title,
       avatar: (typing as IFeedTyping).avatar,
     }"
+    />
+    <MessageKeyboard
+      v-if="objects[objects.length - 1].keyboard"
+      :keyboard="objects[objects.length - 1].keyboard!"
     />
     <transition>
       <button
@@ -69,12 +73,13 @@ import {
   CallMessage,
   SystemMessage,
   TypingMessage,
+  BaseReplyMessage
 } from "../messages";
 
 import { IFeedObject, IFeedTyping, IFeedUnreadButton } from '../../types';
 
 import { useMessage } from '../../helpers/useMessage';
-import BaseReplyMessage from '../messages/BaseReplyMessage.vue';
+import MessageKeyboard from './MessageKeyboard.vue';
 
 const trackingObjects = ref();
 const refFeed = ref();
@@ -82,7 +87,7 @@ const isShowButton = ref(false)
 
 const props = defineProps({
   objects: {
-    type: Array as () => IFeedObject[],
+    type: Array <IFeedObject>,
     required: true,
   },
   buttonParams: {

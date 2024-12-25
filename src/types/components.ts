@@ -1,4 +1,4 @@
-import { IAudioMessage, ICallMessage, IDateMessage, IFileMessage, IImageMessage, ISystemMessage, ITextMessage, ITypingMessage, IVideoMessage } from "./messages"
+import { IAudioMessage, ICallMessage, IDateMessage, IFileMessage, IImageMessage, IKeyBoard, ILinkPreview, ISystemMessage, ITextMessage, ITypingMessage, IVideoMessage, Reply } from "./messages"
 
 export interface IFeedObject {
   messageId: string
@@ -16,6 +16,9 @@ export interface IFeedObject {
   views?: Number
   callDuration?: string
   isMissedCall?: Boolean
+  reply?: Reply
+  linkPreview?: ILinkPreview
+  keyboard?: IKeyBoard[]
 }
 
 export type TFeedObject =

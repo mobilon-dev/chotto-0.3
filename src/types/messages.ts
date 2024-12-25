@@ -16,6 +16,12 @@ export interface ILinkPreview {
   description: string
 }
 
+export interface IKeyBoard {
+  key: string,
+  text: string,
+  order: number,
+}
+
 export interface IAudioMessage {
   messageId: string
   position: string
@@ -32,6 +38,7 @@ export interface IAudioMessage {
   };
   reply?: Reply,
   linkPreview?: ILinkPreview,
+  keyboard?: IKeyBoard[]
 }
 
 export interface ICallMessage {
@@ -51,8 +58,6 @@ export interface ICallMessage {
   };
 }
 
-
-
 export interface IDateMessage {
   messageId?: string
   text: string
@@ -71,7 +76,8 @@ export interface IFileMessage {
   views?: number
   text?: string
   reply?: Reply,
-  linkPreview?: ILinkPreview,
+  linkPreview?: ILinkPreview
+  keyboard?: IKeyBoard[]
 }
 
 export interface IImageMessage {
@@ -87,7 +93,8 @@ export interface IImageMessage {
   views?: number
   text?: string
   reply?: Reply,
-  linkPreview?: ILinkPreview,
+  linkPreview?: ILinkPreview
+  keyboard?: IKeyBoard[]
 }
 
 export interface ISystemMessage {
@@ -105,8 +112,9 @@ export interface ITextMessage {
   subText?: string
   actions?: IAction[]
   views?: number
-  reply?: Reply,
-  linkPreview?: ILinkPreview,
+  reply?: Reply
+  linkPreview?: ILinkPreview
+  keyboard?: IKeyBoard[]
 }
 
 export interface ITypingMessage {
@@ -128,4 +136,5 @@ export interface IVideoMessage {
   text?: string
   reply?: Reply,
   linkPreview?: ILinkPreview,
+  keyboard?: IKeyBoard[]
 }
