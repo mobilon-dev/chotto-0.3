@@ -27,10 +27,14 @@
       avatar: (typing as IFeedTyping).avatar,
     }"
     />
-    <MessageKeyboard
-      v-if="showKeyboard"
-      :keyboard="objects[objects.length - 1].keyboard!"
-    />
+    <Transition>
+      <MessageKeyboard
+        v-if="showKeyboard"
+        class="message-feed__keyboard"
+        :keyboard="objects[objects.length - 1].keyboard!"
+      />
+    </Transition>
+    
     <transition>
       <button
         v-if="isShowButton"
@@ -84,6 +88,7 @@ import MessageKeyboard from './MessageKeyboard.vue';
 const trackingObjects = ref();
 const refFeed = ref();
 const isShowButton = ref(false)
+const isKeyboardPlace = ref(false)
 
 const props = defineProps({
   objects: {
@@ -127,7 +132,7 @@ const emit = defineEmits([
 ]);
 
 const showKeyboard = computed(() => {
-  if (props.objects.length > 0 && props.objects[props.objects.length - 1].keyboard)
+  if (isKeyboardPlace.value && props.objects.length > 0 && props.objects[props.objects.length - 1].keyboard)
     return true
   else return false
 })
@@ -140,8 +145,10 @@ const scrollTopCheck = (allowLoadMore: boolean = true) => {
   // Проверяем, что scrollBottom меньше заданного порога
   if (scrollBottom < limit) {
     isShowButton.value = false;
+    isKeyboardPlace.value = true
   } else {
     isShowButton.value = true;
+    isKeyboardPlace.value = false
   }
 
   if (element.scrollTop === 0 && allowLoadMore) {
@@ -292,6 +299,16 @@ watch(
     align-items: center;
     cursor: pointer;
     background-color: var(--feed-button-down-bg);
+  }
+
+  &__keyboard {
+    position: sticky;
+    z-index: 100;
+    bottom: 0;
+    box-shadow: 0px 0px 10px 5px #EAEAEA;
+    background: #EAEAEA;
+    width: fit-content;
+    margin-left: auto;
   }
 
   &__icon-down {
