@@ -19,10 +19,16 @@
         <template #second-col>
           <UserProfile :user="userProfile" />
           <ChatList
+            v-if="foundMessages.length == 0"
             :chats="chatsStore.chats"
             filter-enabled
             @select="selectChat"
             @action="chatAction"
+          />
+          <FeedFoundObjects
+            v-else-if="foundMessages.length > 0"
+            :objects="foundMessages"
+            @clicked-search="handleClickReplied"
           />
         </template>
 
@@ -48,6 +54,7 @@
                       :menu-side="'bottom'"
                       :context-menu-key="'top-actions'"
                     /-->
+                    <FeedSearch @search="searchMessages"/>
                   </div>
                 </template>
               </ChatInfo>
@@ -141,6 +148,7 @@ import {
   ButtonWabaTemplateSelector,
   ButtonEmojiPicker,
   FileUploader,
+  FeedSearch,
 } from "./library";
 
 import {
@@ -154,6 +162,7 @@ import { useChatsStore } from "./stores/useChatStore";
 import { transformToFeed } from "./transform/transformToFeed";
 import ChannelSelector from "./library/components/ChannelSelector.vue";
 import { useLocale } from "./locale/useLocale";
+import FeedFoundObjects from "./library/components/FeedFoundObjects.vue";
 
 const { locale, locales } = useLocale()
 
@@ -250,7 +259,7 @@ const isOpenChatPanel = ref(false);
 const isScrollToBottomOnUpdateObjectsEnabled = ref(false);
 const filebumpUrl = ref('https://filebump2.services.mobilon.ru');
 const clickedReply = ref('')
-
+const foundMessages = ref([])
 const selectItem = (item) => {
   console.log("selected sidebar item", item);
 };
@@ -315,6 +324,15 @@ const forceScrollToBottom = () => {
 const messageVisible = (message) => {
   // processing message in feed visible area 
   // console.log('visible message', message.type)
+}
+
+const searchMessages = (string) => {
+  if (string.length > 0){
+    foundMessages.value = props.dataProvider.getMessagesBySearch(selectedChat.value.chatId, string)
+    if (foundMessages.value.length == 0) foundMessages.value[0] = {type: 'notfound',text:  'Сообщения с ' + string + ' не найдены'}
+  }
+  else foundMessages.value = []
+  console.log(foundMessages.value)
 }
 
 const getFeedObjects = () => {

@@ -3,7 +3,8 @@
     v-if="chat"
     class="chat-info__container"
   >
-    <div class="chat-info__avatar-container">
+    <div class="chat-info__base-line">
+      <div class="chat-info__avatar-container">
       <img
         v-if="props.chat.avatar"
         :src="props.chat.avatar"
@@ -29,11 +30,20 @@
     <div class="chat-info__actions">
       <slot name="actions" />
     </div>
+    </div>
+    
+
+    <div 
+      class="chat-info__search-panel"
+      :id="'chat-info-search-panel-' + chatAppId"  
+    >
+    </div>
   </div>
+  
 </template>
 
 <script setup>
-
+import { inject } from 'vue';
 // Define props
 const props = defineProps({
   chat: {
@@ -43,6 +53,9 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['open-panel']);
+
+const chatAppId = inject('chatAppId')
+
 </script>
 
 <style
@@ -53,10 +66,13 @@ const emit = defineEmits(['open-panel']);
   &__container {
     border-radius: var(--chat-info-border-radius);
     padding: var(--chat-info-padding);
+    border-bottom: var(--chat-info-border);
+  }
+
+  &__base-line{
     display: flex;
     align-items: center;
     gap: 10px;
-    border-bottom: var(--chat-info-border);
   }
 
   &__avatar-container {

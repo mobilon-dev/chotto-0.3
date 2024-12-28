@@ -79,6 +79,16 @@ const dataProvider = {
     const firstIndex = index - 8 < 0 ? 0 : index - 8
     return messages.slice(firstIndex, index + 8)
   },
+  getMessagesBySearch(chatId, string){
+    const messages = data3.messages.filter(m => m.chatId === chatId);
+    const search = messages.filter(m => {
+      if (m.text) {
+        const index = m.text.indexOf(string)
+        if (index != -1) return m
+      }
+    })
+    return search
+  },
   getLastMessage(chatId){
     const messages = data3.messages.filter(m => m.chatId === chatId)
     return messages[messages.length - 1]
