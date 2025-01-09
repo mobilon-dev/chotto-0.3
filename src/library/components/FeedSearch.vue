@@ -1,49 +1,47 @@
 <template>
-  <button @click="openSearchPanel = !openSearchPanel">
-    <span class="pi pi-search" />
-  </button>
-  <teleport
-    v-if="openSearchPanel"
-    :to="'#chat-info-search-panel-'+chatAppId"
-  >
-    <transition>
-      <div class="feed-search__container">
-        <span>Поиск</span>
-        <input
-          ref="refInput"
-          class="feed-search__input"
-          type="text"
-          placeholder="Введите для поиска сообщения"
-          @input="update"
-        >
-      </div>
-    </transition>
-  </teleport> 
+  <transition>
+    <div class="feed-search__container">
+      <span style="line-height: 40px;">Поиск</span>
+      <input
+        ref="refInput"
+        class="feed-search__input"
+        type="text"
+        placeholder="Поиск сообщения"
+        @input="update"
+      >
+    </div>
+  </transition>
 </template>
 
-<script setup>
-import { ref, unref, inject, watch } from 'vue';
+<script setup lang="ts">
+import { ref, unref, onMounted, onUnmounted } from 'vue';
 import { t } from '../../locale/useLocale';
 
 const props = defineProps({
-
+  inputLocation: {
+    type: String,
+    default: 'feed'
+  }
 })
 
 const emit = defineEmits(['search'])
 
-const chatAppId = inject('chatAppId')
-const openSearchPanel = ref(false)
-const refInput = ref('');
+const refInput = ref<HTMLInputElement>();
 
 const update = () => {
   const el = unref(refInput);
-  emit('search', el.value);
+  emit('search', el?.value);
 }
 
-watch(() => openSearchPanel.value,
-  () => {
-    if (!openSearchPanel.value) emit('search','')
-  })
+onMounted(() => {
+  const el = unref(refInput);
+  el?.focus()
+  emit('search', el?.value);
+})
+
+onUnmounted(() => {
+  emit('search', null)
+})
 </script>
 
 <style
@@ -52,10 +50,14 @@ watch(() => openSearchPanel.value,
 >
 .feed-search {
   &__container{
-    
+    display: flex;
+    margin-top: 15px;
+    padding-left: 12px;
+    padding-right: 12px;
   }
 
   &__input {
+    width: 100%;
     background-color: transparent;
     font-weight: 400;
     color: var(--input-color);
@@ -64,7 +66,7 @@ watch(() => openSearchPanel.value,
     border-radius: var(--input-border-radius);
     font-size: var(--input-font-size);
     transition: border-color var(--input-transition-duration);
-
+    margin-left: 10px;
     &::placeholder {
       color: var(--input-placeholder-color);
     }

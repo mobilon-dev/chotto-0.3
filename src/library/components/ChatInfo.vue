@@ -37,6 +37,7 @@
       class="chat-info__search-panel"
       :id="'chat-info-search-panel-' + chatAppId"  
     >
+      <slot name="search"/>
     </div>
   </div>
   

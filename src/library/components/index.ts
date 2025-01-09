@@ -17,6 +17,7 @@ import ButtonWabaTemplateSelector from './ButtonWabaTemplateSelector.vue'
 import ButtonEmojiPicker from './ButtonEmojiPicker.vue';
 import ContextMenu from './ContextMenu.vue';
 import FeedSearch from './FeedSearch.vue';
+import FeedFoundObjects from './FeedFoundObjects.vue'
 export {
   ChatInfo,
   ChatInput,
@@ -36,5 +37,6 @@ export {
   ButtonWabaTemplateSelector,
   ButtonEmojiPicker,
   ContextMenu,
-  FeedSearch
+  FeedSearch,
+  FeedFoundObjects,
 }

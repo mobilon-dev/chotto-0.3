@@ -19,14 +19,18 @@
         <template #second-col>
           <UserProfile :user="userProfile" />
           <ChatList
-            v-if="foundMessages.length == 0"
+            v-if="!isOpenSearchPanel"
             :chats="chatsStore.chats"
             filter-enabled
             @select="selectChat"
             @action="chatAction"
           />
+          <FeedSearch v-if="isOpenSearchPanel"
+            @search="searchMessages"
+          />
           <FeedFoundObjects
-            v-else-if="foundMessages.length > 0"
+            v-if="isOpenSearchPanel"
+            :not-found="notFoundMessage"
             :objects="foundMessages"
             @clicked-search="handleClickReplied"
           />
@@ -54,8 +58,19 @@
                       :menu-side="'bottom'"
                       :context-menu-key="'top-actions'"
                     /-->
-                    <FeedSearch @search="searchMessages"/>
+                    <button
+                      class="chat-info__button-panel"
+                      @click="isOpenSearchPanel = !isOpenSearchPanel"
+                    >
+                      <span class="pi pi-search" />
+                    </button>
+                    
                   </div>
+                </template>
+                <template #search>
+                  <FeedSearch v-if="isOpenSearchPanel"
+                    @search="searchMessages"
+                  />
                 </template>
               </ChatInfo>
               <Feed
@@ -149,6 +164,8 @@ import {
   ButtonEmojiPicker,
   FileUploader,
   FeedSearch,
+  ChannelSelector,
+  FeedFoundObjects,
 } from "./library";
 
 import {
@@ -160,9 +177,7 @@ import {
 
 import { useChatsStore } from "./stores/useChatStore";
 import { transformToFeed } from "./transform/transformToFeed";
-import ChannelSelector from "./library/components/ChannelSelector.vue";
 import { useLocale } from "./locale/useLocale";
-import FeedFoundObjects from "./library/components/FeedFoundObjects.vue";
 
 const { locale, locales } = useLocale()
 
@@ -212,39 +227,6 @@ const themes = [
   },
 ];
 
-const actions = [
-  {
-    action: 'image/*',
-    title: 'Данные контакта',
-    prime: '',
-  },
-  {
-    action: 'video/*',
-    title: 'Выбрать сообшение',
-    prime: '',
-  },
-  {
-    action: '',
-    title: 'Закрыть чат',
-    prime: '',
-  },
-  {
-    action: '',
-    title: 'Без звука',
-    prime: '',
-  },
-  {
-    action: '',
-    title: 'Исчезающие сообщения',
-    prime: '',
-  },
-  {
-    action: '',
-    title: 'Очистить чат',
-    prime: '',
-  },
-]
-
 const chatsStore = useChatsStore();
 
 const selectedChat = ref(null);
@@ -256,6 +238,8 @@ const wabaTemplates = ref([])
 const groupTemplates = ref([])
 const sidebarItems = ref([]);
 const isOpenChatPanel = ref(false);
+const isOpenSearchPanel = ref(false)
+const notFoundMessage = ref('')
 const isScrollToBottomOnUpdateObjectsEnabled = ref(false);
 const filebumpUrl = ref('https://filebump2.services.mobilon.ru');
 const clickedReply = ref('')
@@ -327,11 +311,22 @@ const messageVisible = (message) => {
 }
 
 const searchMessages = (string) => {
-  if (string.length > 0){
-    foundMessages.value = props.dataProvider.getMessagesBySearch(selectedChat.value.chatId, string)
-    if (foundMessages.value.length == 0) foundMessages.value[0] = {type: 'notfound',text:  'Сообщения с ' + string + ' не найдены'}
+  if (string && string.length > 0){
+    foundMessages.value = transformToFeed(props.dataProvider.getMessagesBySearch(selectedChat.value.chatId, string))
+    notFoundMessage.value = null
+    if (foundMessages.value.length == 0) 
+      notFoundMessage.value = 'Сообщения не найдены'
+    if (foundMessages.value.length > 0){
+      for (let m of foundMessages.value){
+        if (m.direction == 'incoming') m.name = selectedChat.value.name
+        if (m.direction == 'outgoing') m.name = userProfile.value.name
+      }
+    }
   }
-  else foundMessages.value = []
+  else {
+    foundMessages.value = []
+    notFoundMessage.value = 'Поиск по сообщениям в чате'
+  }
   console.log(foundMessages.value)
 }
 
