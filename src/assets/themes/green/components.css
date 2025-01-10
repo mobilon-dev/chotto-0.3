@@ -1,9 +1,21 @@
 [data-theme="green"] {
 
-  /* Chat Input */
+  /* Inputs */
   --chat-input-container-bg: var(--default-white);
-  --chat-input-background: transparent;
-  --chat-input-border-radius: 0;
+  --chat-input-icon-color: var(--neutral-600);
+  --chat-input-icon-color-disabled: var(--neutral-200);
+  
+  --input-border: 1px solid var(--neutral-300);
+  --input-background: transparent;
+  --input-border-radius: 0;
+  --input-font-size: 16px;
+  --input-padding: 0.5rem 0.75rem;
+  --input-width: 100%;
+  --input-transition-duration: 0.2s;
+  --input-text-color: var(--neutral-700);
+  --input-placeholder-color: var(--neutral-500);
+  --input-hover-border-color: var(--neutral-500);
+  --input-focus-border-color: var(--neutral-700);
 
   /* Chat Panel */
   --chat-panel-bg: transparent;

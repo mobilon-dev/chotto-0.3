@@ -139,8 +139,7 @@ const sendMessage = () => {
     position: relative;
     display: grid;
     align-items: center;
-    border-radius: var(--chat-input-border-radius);
-    border-top: var(--chat-input-border);
+    border-top: var(--input-border);
     background-color: var(--chat-input-container-bg);
     padding: 5px;
     grid-gap: 5px;
@@ -186,16 +185,18 @@ const sendMessage = () => {
   &__input {
     border: 1px solid var(--neutral-300);
     font-weight: 400;
-    background-color: var(--chat-input-background);
+    background-color: var(--input-background);
     padding: var(--input-padding);
     width: var(--input-width);
-    color: var(--inputtext-color);
+    color: var(--input-text-color);
     font-size: var(--input-font-size);
     white-space: normal;
     overflow-y: hidden;
     resize: none;
     white-space: pre-wrap;
     max-height: 140px;
+    border-radius: var(--input-border-radius);
+    border: var(--input-border);
 
     &:focus-visible {
       outline: none;

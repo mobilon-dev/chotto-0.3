@@ -58,7 +58,7 @@ onUnmounted(() => {
 
   &__input {
     width: 100%;
-    background-color: transparent;
+    background-color: var(--input-background);
     font-weight: 400;
     color: var(--input-color);
     padding: var(--input-padding);

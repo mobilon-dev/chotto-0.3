@@ -32,12 +32,13 @@ const update = () => {
   &__input {
     background-color: transparent;
     font-weight: 400;
-    color: var(--input-color);
+    color: var(--input-text-color);
     padding: var(--input-padding);
     border: var(--input-border);
     border-radius: var(--input-border-radius);
     font-size: var(--input-font-size);
     transition: border-color var(--input-transition-duration);
+    background-color: var(--input-background);
 
     &::placeholder {
       color: var(--input-placeholder-color);
