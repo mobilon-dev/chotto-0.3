@@ -37,7 +37,7 @@ import { ref, watch, nextTick, inject } from 'vue';
 import { useMessage } from '../../helpers/useMessage';
 import { t } from '../../locale/useLocale';
 import {IInputMessage} from '../../types';
-import useDebouncedRef from '../../helpers/useDebouncedRef';
+import useImmediateDebouncedRef from '../../helpers/useImmediateDebouncedRef';
 
 const emit = defineEmits(['send', 'typing']);
 
@@ -45,7 +45,7 @@ const chatAppId = inject('chatAppId')
 const { resetMessage, getMessage, setMessageText, setForceSendMessage } = useMessage(chatAppId as string)
 
 const refInput = ref<HTMLElement>();
-const typing = useDebouncedRef('', 2000)
+const typing = useImmediateDebouncedRef('', 2000)
 
 const props = defineProps({
   state: {

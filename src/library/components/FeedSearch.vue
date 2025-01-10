@@ -7,7 +7,7 @@
         class="feed-search__input"
         type="text"
         placeholder="Поиск сообщения"
-        @input="update"
+        v-model="search"
       >
       <i class="pi pi-times" @click="clearInput"/>
     </div>
@@ -15,9 +15,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, unref, onMounted, onUnmounted, watch } from 'vue';
+import { ref, unref, onMounted, watch } from 'vue';
 import { t } from '../../locale/useLocale';
-import useDebouncedRef from '../../helpers/useDebouncedRef';
+import useDelayDebouncedRef from '../../helpers/useDelayDebouncedRef';
 
 const props = defineProps({
   inputLocation: {
@@ -29,18 +29,12 @@ const props = defineProps({
 const emit = defineEmits(['search', 'cancel'])
 
 const refInput = ref<HTMLInputElement>();
-const search = useDebouncedRef(false, 500)
-
-const update = () => {
-  const el = unref(refInput);
-  search.value = el?.value
-}
+const search = useDelayDebouncedRef('', 500)
 
 watch(
   () => search.value,
   () => {
-    const el = unref(refInput);
-    emit('search', el?.value);
+    emit('search', search.value);
   }
 )
 
@@ -48,19 +42,16 @@ const clearInput = () => {
   const el = unref(refInput);
   if (el)
     el.value = ''
-  update()
   emit('cancel')
 }
 
 onMounted(() => {
   const el = unref(refInput);
   el?.focus()
+  clearInput()
   emit('search', el?.value);
 })
 
-onUnmounted(() => {
-  emit('search', null)
-})
 </script>
 
 <style
