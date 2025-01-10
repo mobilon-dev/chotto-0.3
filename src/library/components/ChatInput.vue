@@ -37,8 +37,7 @@ import { ref, watch, nextTick, inject } from 'vue';
 import { useMessage } from '../../helpers/useMessage';
 import { t } from '../../locale/useLocale';
 import {IInputMessage} from '../../types';
-
-
+import useDebouncedRef from '../../helpers/useDebouncedRef';
 
 const emit = defineEmits(['send', 'typing']);
 
@@ -46,6 +45,7 @@ const chatAppId = inject('chatAppId')
 const { resetMessage, getMessage, setMessageText, setForceSendMessage } = useMessage(chatAppId as string)
 
 const refInput = ref<HTMLElement>();
+const typing = useDebouncedRef('', 2000)
 
 const props = defineProps({
   state: {
@@ -55,12 +55,19 @@ const props = defineProps({
   },
 })
 
+watch(
+  () => typing.value,
+  () => {
+    console.log('emit typing')
+    emit('typing')
+  }
+)
 
 watch(
   () => getMessage().text,
   () => {
     nextTick(function () {
-      emit('typing')
+      typing.value = getMessage().text
       if (refInput.value){
         refInput.value.style.height = 'auto'
         refInput.value.style.height = refInput.value.scrollHeight + 'px'

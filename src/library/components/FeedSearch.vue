@@ -15,8 +15,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, unref, onMounted, onUnmounted } from 'vue';
+import { ref, unref, onMounted, onUnmounted, watch } from 'vue';
 import { t } from '../../locale/useLocale';
+import useDebouncedRef from '../../helpers/useDebouncedRef';
 
 const props = defineProps({
   inputLocation: {
@@ -28,11 +29,20 @@ const props = defineProps({
 const emit = defineEmits(['search', 'cancel'])
 
 const refInput = ref<HTMLInputElement>();
+const search = useDebouncedRef(false, 500)
 
 const update = () => {
   const el = unref(refInput);
-  emit('search', el?.value);
+  search.value = el?.value
 }
+
+watch(
+  () => search.value,
+  () => {
+    const el = unref(refInput);
+    emit('search', el?.value);
+  }
+)
 
 const clearInput = () => {
   const el = unref(refInput);
