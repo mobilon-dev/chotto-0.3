@@ -27,6 +27,7 @@
           />
           <FeedSearch v-if="isOpenSearchPanel"
             @search="searchMessages"
+            @cancel="isOpenSearchPanel = !isOpenSearchPanel"
           />
           <FeedFoundObjects
             v-if="isOpenSearchPanel"
@@ -70,6 +71,7 @@
                 <template #search>
                   <FeedSearch v-if="isOpenSearchPanel"
                     @search="searchMessages"
+                    @cancel="isOpenSearchPanel = !isOpenSearchPanel"
                   />
                 </template>
               </ChatInfo>

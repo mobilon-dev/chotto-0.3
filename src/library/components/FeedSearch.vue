@@ -9,6 +9,7 @@
         placeholder="Поиск сообщения"
         @input="update"
       >
+      <i class="pi pi-times" @click="clearInput"/>
     </div>
   </transition>
 </template>
@@ -24,13 +25,21 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['search'])
+const emit = defineEmits(['search', 'cancel'])
 
 const refInput = ref<HTMLInputElement>();
 
 const update = () => {
   const el = unref(refInput);
   emit('search', el?.value);
+}
+
+const clearInput = () => {
+  const el = unref(refInput);
+  if (el)
+    el.value = ''
+  update()
+  emit('cancel')
 }
 
 onMounted(() => {
@@ -51,9 +60,20 @@ onUnmounted(() => {
 .feed-search {
   &__container{
     display: flex;
+    position: relative;
     margin-top: 15px;
     padding-left: 12px;
     padding-right: 12px;
+    
+    i{
+      position: absolute;
+      right: 20px;
+      top: 11px
+    }
+
+    i:hover{
+      cursor: pointer;
+    }
   }
 
   &__input {
