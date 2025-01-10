@@ -6,30 +6,8 @@
     ref="refItems"  
     @scroll="scrollTopCheck"
   >
-    <div v-for="object in objects" class="feed-found-objects__item" @click="clickObject(object)">
-      <div class="feed-found-objects__avatar-container">
-        <img
-          v-if="object.avatar"
-          :src="object.avatar"
-          width="48"
-          height="48"
-        >
-        <span
-          v-else
-          class="pi pi-user"
-        />
-      </div>
-      <div class="feed-found-objects__item-info">
-        <div class="feed-found-objects__item-first-line">
-          <p> {{ object.name }}</p>
-          <p> {{ object.time }} </p>
-        </div>
-        <div class="feed-found-objects__item-second-line">
-          <p>
-            {{ object.text }}
-          </p>
-        </div>
-      </div>      
+    <div v-for="object in objects" class="feed-found-objects__item"  @click="clickObject(object)">
+      <FeedFoundItem  :object="object"/>
     </div>
   </div>
   <div v-else-if="notFound" class="feed-found-objects__placeholder">
@@ -40,6 +18,7 @@
 <script setup>
 import { ref, unref } from 'vue';
 import { t } from '../../locale/useLocale';
+import FeedFoundItem from './FeedFoundItem.vue';
 
 const emit = defineEmits(['clickedSearch','loadMore']);
 
@@ -123,44 +102,10 @@ const scrollTopCheck = () => {
       width: inherit;
       line-height: 35px;
     }
-    
   }
 
   &__item:hover{
-      background-color: lightblue;
-    }
-
-  &__item-info{
-    width: 80%;
-  }  
-
-  &__item-first-line{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 3px;
-  }  
-
-  &__avatar-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--neutral-300);
-    width: var(--avatar-width-medium);
-    height: var(--avatar-height-medium);
-    border-radius: var(--avatar-border-radius);
-    background-size: cover;
-    margin-right: 10px;
-    span {
-      font-size: var(--avatar-icon-size-medium);
-      color: var(--neutral-500);
-      line-height: 24px;
-      width: 24px;
-    }
-
-    img {
-      border-radius: var(--avatar-border-radius);
-      object-fit: cover;
-    }
+    background-color: lightblue;
   }
 
 }
