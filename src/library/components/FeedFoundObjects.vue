@@ -6,7 +6,12 @@
     ref="refItems"  
     @scroll="scrollTopCheck"
   >
-    <div v-for="object in objects" class="feed-found-objects__item"  @click="clickObject(object)">
+    <div 
+      v-for="object in objects" 
+      class="feed-found-objects__item"
+      :class="{'feed-found-objects__selected-item' : object == selectedItem }"  
+      @click="clickObject(object)"
+    >
       <FeedFoundItem  :object="object"/>
     </div>
   </div>
@@ -15,16 +20,17 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, unref } from 'vue';
 import { t } from '../../locale/useLocale';
 import FeedFoundItem from './FeedFoundItem.vue';
+import { IFeedObject } from '../../types';
 
 const emit = defineEmits(['clickedSearch','loadMore']);
 
 const props = defineProps({
   objects: {
-    type: Array,
+    type: Array<IFeedObject>,
     required: true,
   },
   notFound: {
@@ -34,10 +40,13 @@ const props = defineProps({
 });
 
 const refItems = ref()
+const selectedItem = ref(null)
 
 const clickObject = (object) => {
-  if (object.messageId)
+  if (object.messageId){
     emit('clickedSearch', object.messageId)
+    selectedItem.value = object
+  }
 }
 
 const scrollTopCheck = () => {
@@ -62,10 +71,8 @@ const scrollTopCheck = () => {
     display: flex;
     flex-direction: column;
     scroll-behavior: smooth;
-    gap: 10px;
     overflow-y: auto;
     overflow-x: hidden;
-    padding-left: 12px;
 
     &::-webkit-scrollbar {
       width: 6px;
@@ -91,21 +98,24 @@ const scrollTopCheck = () => {
       text-align: center;
     }
   }
-
+   
   &__item{
+    padding: var(--feed-found-item-padding-container);
     display: flex;
     position: relative;
     cursor: pointer;
     width: 100%;
     word-wrap: anywhere;
-    span{
-      width: inherit;
-      line-height: 35px;
-    }
+    background-color: var(--feed-found-item-color);
+    border-radius: var(--feed-found-item-border-radius);
   }
 
   &__item:hover{
-    background-color: lightblue;
+    background-color: var(--feed-found-item-hovered-color);
+  }
+
+  &__selected-item{
+    background-color: var(--feed-found-item-selected-color);
   }
 
 }

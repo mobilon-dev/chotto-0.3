@@ -32,6 +32,25 @@
 
   /* _____________________________________________ */
 
+  /* Feed Found Item */
+
+  --feed-found-item-padding-container: 15px;
+  --feed-found-item-border-radius: 6px;
+  --feed-found-item-color: transparent;
+  --feed-found-item-selected-color: var(--neutral-800);
+  --feed-found-item-hovered-color: var(--neutral-700);
+
+  --feed-found-item-color-message: var(--neutral-400);
+  --feed-found-item-font-weight-message: 500;
+
+  --feed-found-item-font-weight-name: 600;
+
+  --feed-found-item-color-time: var(--neutral-400);
+  --feed-found-item-font-weight-time: 500;
+  --feed-found-item-font-size-time: 12px;
+
+  /* _____________________________________________ */
+  
   /* Feed */
   --feed-button-down-bg: var(--neutral-600);
   --feed-button-down-uread-color: var(--neutral-900);

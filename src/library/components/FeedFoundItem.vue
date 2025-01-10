@@ -13,8 +13,12 @@
   </div>
   <div class="feed-found-item__info">
     <div class="feed-found-item__first-line">
-      <p> {{ object.name }} </p>
-      <p> {{ object.time }} </p>
+      <p class="feed-found-item__name">
+        {{ object.subtext }}
+      </p>
+      <p class="feed-found-item__time">
+        {{ object.time }}
+      </p>
     </div>
     <div class="feed-found-item__second-line">
       <img
@@ -37,12 +41,12 @@
   </div>      
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue';
-
+import { IFeedObject } from '../../types';
 const props = defineProps({
   object: {
-    type: Object,
+    type: Object as () => IFeedObject,
     required: true,
   },
 });
@@ -78,6 +82,16 @@ const typePreview = computed(() => {
     margin-bottom: 3px;
   }  
 
+  &__name{
+    font-weight: var(--feed-found-item-font-weight-name);
+  }
+
+  &__time{
+    color: var(--feed-found-item-color-time);
+    font-weight: var(--feed-found-item-font-weight-time);
+    font-size: var(--feed-found-item-font-size-time);
+  }
+
   &__second-line{
     display: flex;
     word-break: break-word;
@@ -85,7 +99,8 @@ const typePreview = computed(() => {
       margin: 0;
       
       font-size: 14px;
-      color: var(--reply-message-color);
+      color: var(--feed-found-item-color-message);
+      font-weight: var(--feed-found-item-font-weight-message);
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;

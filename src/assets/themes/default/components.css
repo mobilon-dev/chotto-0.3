@@ -76,6 +76,25 @@
   --chat-item-font-size-time: 12px;
   /* _____________________________________________ */
 
+  /* Feed Found Item */
+
+  --feed-found-item-padding-container: 15px;
+  --feed-found-item-border-radius: 6px;
+  --feed-found-item-color: var(--default-white);
+  --feed-found-item-selected-color: var(--neutral-100);
+  --feed-found-item-hovered-color: var(--neutral-200);
+
+  --feed-found-item-color-message: var(--neutral-400);
+  --feed-found-item-font-weight-message: 500;
+
+  --feed-found-item-font-weight-name: 600;
+
+  --feed-found-item-color-time: var(--neutral-400);
+  --feed-found-item-font-weight-time: 500;
+  --feed-found-item-font-size-time: 12px;
+
+  /* _____________________________________________ */
+
   /* Chat Info */
   --chat-info-padding: 20px 20px 20px 20px;
   --chat-info-font-weight-time: 500;

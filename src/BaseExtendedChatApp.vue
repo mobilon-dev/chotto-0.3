@@ -315,14 +315,19 @@ const messageVisible = (message) => {
 const searchMessages = (string) => {
   if (string && string.length > 0){
     foundMessages.value = transformToFeed(props.dataProvider.getMessagesBySearch(selectedChat.value.chatId, string))
+    foundMessages.value = foundMessages.value.reverse()
     notFoundMessage.value = null
     if (foundMessages.value.length == 0) 
       notFoundMessage.value = 'Сообщения не найдены'
+
     if (foundMessages.value.length > 0){
+      let t = []
       for (let m of foundMessages.value){
-        if (m.direction == 'incoming') m.name = selectedChat.value.name
-        if (m.direction == 'outgoing') m.name = userProfile.value.name
+        if (m.direction == 'incoming') m.subtext = selectedChat.value.name
+        if (m.direction == 'outgoing') m.subtext = userProfile.value.name
+        if (m.type != 'system.date' && m.type != 'message.system') t.push(m)
       }
+      foundMessages.value = t
     }
   }
   else {
