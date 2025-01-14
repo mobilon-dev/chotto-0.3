@@ -32,6 +32,25 @@
 
   /* _____________________________________________ */
 
+  /* Feed Found Item */
+
+  --feed-found-item-padding-container: 15px;
+  --feed-found-item-border-radius: 6px;
+  --feed-found-item-color: transparent;
+  --feed-found-item-selected-color: var(--neutral-800);
+  --feed-found-item-hovered-color: var(--neutral-700);
+
+  --feed-found-item-color-message: var(--neutral-400);
+  --feed-found-item-font-weight-message: 500;
+
+  --feed-found-item-font-weight-name: 600;
+
+  --feed-found-item-color-time: var(--neutral-400);
+  --feed-found-item-font-weight-time: 500;
+  --feed-found-item-font-size-time: 12px;
+
+  /* _____________________________________________ */
+  
   /* Feed */
   --feed-button-down-bg: var(--neutral-600);
   --feed-button-down-uread-color: var(--neutral-900);
@@ -44,12 +63,23 @@
   /* Сontext Menu */
   --context-menu-background: var(--neutral-700);
 
-  /* Chat Input */
+  /* Inputs */
+
   --chat-input-container-bg: var(--neutral-800);
-  --chat-input-background: var(--neutral-700);
-  --chat-input-border: 1px solid var(--neutral-500);
   --chat-input-icon-color: var(--neutral-300);
   --chat-input-icon-color-disabled: var(--neutral-600);
+  
+  --input-background: var(--neutral-700);
+  --input-font-size: 16px;
+  --input-padding: 0.5rem 0.75rem;
+  --input-width: 100%;
+  --input-border-radius: 0 0 12px 12px;
+  --input-transition-duration: 0.2s;
+  --input-text-color: var(--neutral-200);
+  --input-border: 1px solid var(--neutral-500);
+  --input-placeholder-color: var(--neutral-400);
+  --input-hover-border-color: var(--neutral-500);
+  --input-focus-border-color: var(--neutral-600);
 
   /* Scroll Bar */
   --scrollbar-bg: var(--neutral-600);

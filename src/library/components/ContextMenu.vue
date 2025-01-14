@@ -61,6 +61,7 @@ const click = (index) => {
 
   &__list {
     padding: 12px 0;
+    margin: 0;
     display: grid;
     flex-direction: column;
     align-items: flex-start;

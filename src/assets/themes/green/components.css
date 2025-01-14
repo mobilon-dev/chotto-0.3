@@ -1,9 +1,21 @@
 [data-theme="green"] {
 
-  /* Chat Input */
+  /* Inputs */
   --chat-input-container-bg: var(--default-white);
-  --chat-input-background: transparent;
-  --chat-input-border-radius: 0;
+  --chat-input-icon-color: var(--neutral-600);
+  --chat-input-icon-color-disabled: var(--neutral-200);
+  
+  --input-border: 1px solid var(--neutral-300);
+  --input-background: transparent;
+  --input-border-radius: 0;
+  --input-font-size: 16px;
+  --input-padding: 0.5rem 0.75rem;
+  --input-width: 100%;
+  --input-transition-duration: 0.2s;
+  --input-text-color: var(--neutral-700);
+  --input-placeholder-color: var(--neutral-500);
+  --input-hover-border-color: var(--neutral-500);
+  --input-focus-border-color: var(--neutral-700);
 
   /* Chat Panel */
   --chat-panel-bg: transparent;
@@ -45,6 +57,25 @@
   --chat-item-bg-unread: var(--p-red-500);
   --chat-item-font-weight-time: 400;
   --chat-item-font-size-time: 14px;
+  /* _____________________________________________ */
+
+  /* Feed Found Item */
+
+  --feed-found-item-padding-container: 15px;
+  --feed-found-item-border-radius: 0;
+  --feed-found-item-color: var(--default-white);
+  --feed-found-item-selected-color: var(--neutral-100);
+  --feed-found-item-hovered-color: var(--neutral-200);
+
+  --feed-found-item-color-message: var(--neutral-400);
+  --feed-found-item-font-weight-message: 400;
+
+  --feed-found-item-font-weight-name: 600;
+
+  --feed-found-item-color-time: var(--neutral-400);
+  --feed-found-item-font-weight-time: 500;
+  --feed-found-item-font-size-time: 12px;
+
   /* _____________________________________________ */
 
   /* Feed */

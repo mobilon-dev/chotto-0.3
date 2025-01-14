@@ -19,10 +19,21 @@
         <template #second-col>
           <UserProfile :user="userProfile" />
           <ChatList
+            v-if="!isOpenSearchPanel"
             :chats="chatsStore.chats"
             filter-enabled
             @select="selectChat"
             @action="chatAction"
+          />
+          <FeedSearch v-if="isOpenSearchPanel"
+            @search="searchMessages"
+            @cancel="isOpenSearchPanel = !isOpenSearchPanel"
+          />
+          <FeedFoundObjects
+            v-if="isOpenSearchPanel"
+            :not-found="notFoundMessage"
+            :objects="foundMessages"
+            @clicked-search="handleClickReplied"
           />
         </template>
 
@@ -48,7 +59,20 @@
                       :menu-side="'bottom'"
                       :context-menu-key="'top-actions'"
                     /-->
+                    <button
+                      class="chat-info__button-panel"
+                      @click="isOpenSearchPanel = !isOpenSearchPanel"
+                    >
+                      <span class="pi pi-search" />
+                    </button>
+                    
                   </div>
+                </template>
+                <template #search>
+                  <FeedSearch v-if="isOpenSearchPanel"
+                    @search="searchMessages"
+                    @cancel="isOpenSearchPanel = !isOpenSearchPanel"
+                  />
                 </template>
               </ChatInfo>
               <Feed
@@ -141,6 +165,9 @@ import {
   ButtonWabaTemplateSelector,
   ButtonEmojiPicker,
   FileUploader,
+  FeedSearch,
+  ChannelSelector,
+  FeedFoundObjects,
 } from "./library";
 
 import {
@@ -152,7 +179,6 @@ import {
 
 import { useChatsStore } from "./stores/useChatStore";
 import { transformToFeed } from "./transform/transformToFeed";
-import ChannelSelector from "./library/components/ChannelSelector.vue";
 import { useLocale } from "./locale/useLocale";
 
 const { locale, locales } = useLocale()
@@ -203,39 +229,6 @@ const themes = [
   },
 ];
 
-const actions = [
-  {
-    action: 'image/*',
-    title: 'Данные контакта',
-    prime: '',
-  },
-  {
-    action: 'video/*',
-    title: 'Выбрать сообшение',
-    prime: '',
-  },
-  {
-    action: '',
-    title: 'Закрыть чат',
-    prime: '',
-  },
-  {
-    action: '',
-    title: 'Без звука',
-    prime: '',
-  },
-  {
-    action: '',
-    title: 'Исчезающие сообщения',
-    prime: '',
-  },
-  {
-    action: '',
-    title: 'Очистить чат',
-    prime: '',
-  },
-]
-
 const chatsStore = useChatsStore();
 
 const selectedChat = ref(null);
@@ -247,10 +240,12 @@ const wabaTemplates = ref([])
 const groupTemplates = ref([])
 const sidebarItems = ref([]);
 const isOpenChatPanel = ref(false);
+const isOpenSearchPanel = ref(false)
+const notFoundMessage = ref('')
 const isScrollToBottomOnUpdateObjectsEnabled = ref(false);
 const filebumpUrl = ref('https://filebump2.services.mobilon.ru');
 const clickedReply = ref('')
-
+const foundMessages = ref([])
 const selectItem = (item) => {
   console.log("selected sidebar item", item);
 };
@@ -315,6 +310,31 @@ const forceScrollToBottom = () => {
 const messageVisible = (message) => {
   // processing message in feed visible area 
   // console.log('visible message', message.type)
+}
+
+const searchMessages = (string) => {
+  if (string && string.length > 0){
+    foundMessages.value = transformToFeed(props.dataProvider.getMessagesBySearch(selectedChat.value.chatId, string))
+    foundMessages.value = foundMessages.value.reverse()
+    notFoundMessage.value = null
+    if (foundMessages.value.length == 0) 
+      notFoundMessage.value = 'Сообщения не найдены'
+
+    if (foundMessages.value.length > 0){
+      let t = []
+      for (let m of foundMessages.value){
+        if (m.direction == 'incoming') m.subtext = selectedChat.value.name
+        if (m.direction == 'outgoing') m.subtext = userProfile.value.name
+        if (m.type != 'system.date' && m.type != 'message.system') t.push(m)
+      }
+      foundMessages.value = t
+    }
+  }
+  else {
+    foundMessages.value = []
+    notFoundMessage.value = 'Поиск по сообщениям в чате'
+  }
+  console.log(foundMessages.value)
 }
 
 const getFeedObjects = () => {

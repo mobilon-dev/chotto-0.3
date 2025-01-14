@@ -40,14 +40,6 @@
 
   --default-white: #ffffff;
 
-  /* Inputs */
-
-  --input-font-size: 16px;
-  --input-padding: 0.5rem 0.75rem;
-  --input-width: 100%;
-  --input-border-radius: 6px;
-  --input-transition-duration: 0.2s;
-
   /* Titles */
 
   --h2-font-size: 20px;
