@@ -1,44 +1,49 @@
 <template>
-  <div class="feed-found-item__avatar-container">
-    <img
-      v-if="object.avatar"
-      :src="object.avatar"
-      width="48"
-      height="48"
-    >
-    <span
-      v-else
-      class="pi pi-user"
-    />
-  </div>
-  <div class="feed-found-item__info">
-    <div class="feed-found-item__first-line">
-      <p class="feed-found-item__name">
-        {{ object.subtext }}
-      </p>
-      <p class="feed-found-item__time">
-        {{ object.time }}
-      </p>
-    </div>
-    <div class="feed-found-item__second-line">
+  <div 
+    class="feed-found-item__container"
+    :class="{'feed-found-item__selected-container' : selected}"
+  >
+    <div class="feed-found-item__avatar-container">
       <img
-        v-if="object.type == 'message.image'"
-        :src="object.url"
-        style="margin-right: 3px;"
-        width="24"
-        height="24"
+        v-if="object.avatar"
+        :src="object.avatar"
+        width="48"
+        height="48"
       >
       <span
-        v-if="typePreview"
-        :class="typePreview"
-        style="
-          margin-right: 3px;
-          font-size: 20px;
-        "
+        v-else
+        class="pi pi-user"
       />
-      <p> {{ object.text }} </p>
     </div>
-  </div>      
+    <div class="feed-found-item__info">
+      <div class="feed-found-item__first-line">
+        <p class="feed-found-item__name">
+          {{ object.subtext }}
+        </p>
+        <p class="feed-found-item__time">
+          {{ object.time }}
+        </p>
+      </div>
+      <div class="feed-found-item__second-line">
+        <img
+          v-if="object.type == 'message.image'"
+          :src="object.url"
+          style="margin-right: 3px;"
+          width="24"
+          height="24"
+        >
+        <span
+          v-if="typePreview"
+          :class="typePreview"
+          style="
+            margin-right: 3px;
+            font-size: 20px;
+          "
+        />
+        <p> {{ object.text }} </p>
+      </div>
+    </div>   
+  </div>   
 </template>
 
 <script setup lang="ts">
@@ -49,6 +54,10 @@ const props = defineProps({
     type: Object as () => IFeedObject,
     required: true,
   },
+  selected: {
+    type: Boolean,
+    default: false,
+  }
 });
 
 const typePreview = computed(() => {
@@ -72,6 +81,25 @@ const typePreview = computed(() => {
 >
 .feed-found-item{
 
+  &__container{
+    padding: var(--feed-found-item-padding-container);
+    display: flex;
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    word-wrap: anywhere;
+    background-color: var(--feed-found-item-color);
+    border-radius: var(--feed-found-item-border-radius);
+  }
+  
+  &__container:hover{
+    background-color: var(--feed-found-item-hovered-color);
+  }
+
+  &__selected-container{
+    background-color: var(--feed-found-item-selected-color);
+  }
+
   &__info{
     width: 80%;
   }  
@@ -79,17 +107,21 @@ const typePreview = computed(() => {
   &__first-line{
     display: flex;
     justify-content: space-between;
-    margin-bottom: 3px;
+    margin-bottom: 10px;
   }  
 
   &__name{
     font-weight: var(--feed-found-item-font-weight-name);
+    margin: 0;
+      padding: 0;
   }
 
   &__time{
     color: var(--feed-found-item-color-time);
     font-weight: var(--feed-found-item-font-weight-time);
     font-size: var(--feed-found-item-font-size-time);
+    margin: 0;
+    padding: 0;
   }
 
   &__second-line{
@@ -97,7 +129,7 @@ const typePreview = computed(() => {
     word-break: break-word;
     p {
       margin: 0;
-      
+      padding: 0;
       font-size: 14px;
       color: var(--feed-found-item-color-message);
       font-weight: var(--feed-found-item-font-weight-message);

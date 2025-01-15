@@ -1,12 +1,12 @@
 <template>
   <transition>
     <div class="feed-search__container">
-      <span style="line-height: 40px;">Поиск</span>
+      <span style="line-height: 40px;">{{t('component.FeedSearch.SearchLabel')}}</span>
       <input
         ref="refInput"
         class="feed-search__input"
         type="text"
-        placeholder="Поиск сообщения"
+        :placeholder="t('component.FeedSearch.SearchPlaceholder')"
         v-model="search"
       >
       <i class="pi pi-times" @click="clearInput"/>
@@ -18,13 +18,6 @@
 import { ref, unref, onMounted, watch } from 'vue';
 import { t } from '../../locale/useLocale';
 import useDelayDebouncedRef from '../../helpers/useDelayDebouncedRef';
-
-const props = defineProps({
-  inputLocation: {
-    type: String,
-    default: 'feed'
-  }
-})
 
 const emit = defineEmits(['search', 'cancel'])
 

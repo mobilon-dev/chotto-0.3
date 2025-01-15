@@ -1,27 +1,27 @@
 <template>
-  <h3 style="padding-left: 12px;">Результаты поиска: {{ objects.length }}</h3>
+  <h3 style="padding-left: 12px;">{{ t('component.FeedFoundObjects.results') }}: {{ foundAmount }}</h3>
   <div 
-    v-if="!notFound" 
+    v-if="foundAmount > 0" 
     class="feed-found-objects__items"
     ref="refItems"  
     @scroll="scrollTopCheck"
   >
     <div 
       v-for="object in objects" 
-      class="feed-found-objects__item"
-      :class="{'feed-found-objects__selected-item' : object == selectedItem }"  
       @click="clickObject(object)"
     >
-      <FeedFoundItem  :object="object"/>
+      <FeedFoundItem  
+        :object="object"
+        :selected="object == selectedItem"/>
     </div>
   </div>
-  <div v-else-if="notFound" class="feed-found-objects__placeholder">
-    <p>{{ notFound }}</p>
+  <div v-else-if="foundAmount == 0" class="feed-found-objects__placeholder">
+    <p>{{ placeholder }}</p>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, unref } from 'vue';
+import { ref, unref, computed } from 'vue';
 import { t } from '../../locale/useLocale';
 import FeedFoundItem from './FeedFoundItem.vue';
 import { IFeedObject } from '../../types';
@@ -33,14 +33,24 @@ const props = defineProps({
     type: Array<IFeedObject>,
     required: true,
   },
+  foundAmount:{
+    type: Number,
+    default: 0,
+  },
   notFound: {
-    type: String,
+    type: Boolean,
     required: false,
+    default: false,
   }
 });
 
 const refItems = ref()
 const selectedItem = ref(null)
+
+const placeholder = computed(() => {
+  if (props.notFound) return t('component.FeedFoundObjects.notFound')
+  if (!props.notFound) return t('component.FeedFoundObjects.notSearched')
+})
 
 const clickObject = (object) => {
   if (object.messageId){
@@ -98,25 +108,5 @@ const scrollTopCheck = () => {
       text-align: center;
     }
   }
-   
-  &__item{
-    padding: var(--feed-found-item-padding-container);
-    display: flex;
-    position: relative;
-    cursor: pointer;
-    width: 100%;
-    word-wrap: anywhere;
-    background-color: var(--feed-found-item-color);
-    border-radius: var(--feed-found-item-border-radius);
-  }
-
-  &__item:hover{
-    background-color: var(--feed-found-item-hovered-color);
-  }
-
-  &__selected-item{
-    background-color: var(--feed-found-item-selected-color);
-  }
-
 }
 </style>

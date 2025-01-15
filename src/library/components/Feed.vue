@@ -314,7 +314,6 @@ watch(
     max-width: 25rem;
     width: fit-content;
     margin-left: auto;
-    flex-wrap: wrap;
   }
 
   &__icon-down {

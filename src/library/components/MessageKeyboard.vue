@@ -38,6 +38,7 @@ const handleClickKey = (key : IKeyBoard) => {
       display: flex;
       gap: 5px;
       justify-content: right;
+      flex-wrap: wrap;
     }
     &__key{
       background: var(--chat-input-container-bg);
@@ -50,6 +51,7 @@ const handleClickKey = (key : IKeyBoard) => {
       p{
         font-size: var(--base-message-font-size-text);
         padding: 5px;
+        margin: 0;
         /*overflow: hidden;
         text-overflow: ellipsis;*/
       }
