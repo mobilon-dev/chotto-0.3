@@ -61,7 +61,6 @@ const clickObject = (object) => {
 
 const scrollTopCheck = () => {
   const element = unref(refItems);
-  console.log(props.objects)
   const scrollBottom = element.scrollHeight - element.scrollTop - element.clientHeight;
 
   if (scrollBottom <= 0){

@@ -9,20 +9,42 @@
         :placeholder="t('component.FeedSearch.SearchPlaceholder')"
         v-model="search"
       >
-      <i class="pi pi-times" @click="clearInput"/>
+      <i 
+        class="pi pi-times" 
+        @click="clearInput"
+        :style="{right: resetLoc}"
+      />
+      <span 
+        v-if="isFeedLocation" 
+        class="pi pi-refresh"
+        style="margin-left: 5px; margin-top: 10px; cursor: pointer;"
+        @click="emit('switch')"
+      />
     </div>
   </transition>
 </template>
 
 <script setup lang="ts">
-import { ref, unref, onMounted, watch } from 'vue';
+import { ref, unref, onMounted, watch, computed } from 'vue';
 import { t } from '../../locale/useLocale';
 import useDelayDebouncedRef from '../../helpers/useDelayDebouncedRef';
 
-const emit = defineEmits(['search', 'cancel'])
+const emit = defineEmits(['search', 'cancel', 'switch'])
+
+const props = defineProps({
+  isFeedLocation: {
+    type: Boolean,
+    default: false
+  }
+})
 
 const refInput = ref<HTMLInputElement>();
 const search = useDelayDebouncedRef('', 500)
+
+const resetLoc = computed(() => {
+  if (props.isFeedLocation) return '40px'
+  if (!props.isFeedLocation) return '20px'
+})
 
 watch(
   () => search.value,
@@ -54,9 +76,10 @@ onMounted(() => {
   &__container{
     display: flex;
     position: relative;
-    margin-top: 15px;
+    margin-top: 10px;
     padding-left: 12px;
     padding-right: 12px;
+    margin-bottom: 10px;
     
     i{
       position: absolute;

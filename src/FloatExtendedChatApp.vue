@@ -7,61 +7,90 @@
       height="90vh"
       width="70vw"
     >
-      <ExtendedLayout>
-        <template #first-col>
-          <SideBar
-            :sidebar-items="sidebarItems"
-            @select-item="selectItem"
-          />
-          <ThemeMode :themes="themes" />
-        </template>
+      <template #controls>
+        <ButtonContextMenu
+          :actions="actions"
+          :button-class="'pi pi-list'"
+          :mode="'click'"
+          :menu-side="'bottom'"
+          :context-menu-key="'top-actions'"
+          @click="headerButtonClick"
+        />
+      </template>
+      <template #default>
+        <ExtendedLayout>
+          <template #first-col>
+            <SideBar
+              :sidebar-items="sidebarItems"
+              @select-item="selectItem"
+            />
+            <ThemeMode :themes="themes" />
+          </template>
 
-        <template #second-col>
-          <UserProfile :user="userProfile" />
-          <ChatList
-            :chats="chatsStore.chats"
-            filter-enabled
-            @select="selectChat"
-            @action="chatAction"
-          />
-        </template>
+          <template #second-col>
+            <UserProfile :user="userProfile" />
+            <ChatList
+              :chats="chatsStore.chats"
+              filter-enabled
+              @select="selectChat"
+              @action="chatAction"
+            />
+          </template>
 
-        <template #third-col>
-          <chat-wrapper
-            :is-open-chat-panel="isOpenChatPanel"
-            :is-selected-chat="!!selectedChat"
-          >
-            <template #default>
-              <ChatInfo
-                :chat="selectedChat"
-                @open-panel="isOpenChatPanel = !isOpenChatPanel"
-              />
-              <Feed
-                :objects="messages"
-                @message-action="messageAction"
-                @load-more="loadMore"
-              />
-              <ChatInput
-                :enable-emoji="true"
-                :channels="channels"
-                @send="addMessage"
-              />
-            </template>
+          <template #third-col>
+            <chat-wrapper
+              :is-open-chat-panel="isOpenChatPanel"
+              :is-selected-chat="!!selectedChat"
+            >
+              <template #default>
+                <ChatInfo
+                  :chat="selectedChat"
+                  @open-panel="isOpenChatPanel = !isOpenChatPanel"
+                />
+                <FeedSearch v-if="isOpenSearchPanel"
+                  :is-feed-location="true"
+                  @search="searchMessages"
+                  @cancel="isOpenSearchPanel = !isOpenSearchPanel"
+                  @switch="isShowFeedWhileSearch = !isShowFeedWhileSearch"
+                />
+                <FeedFoundObjects
+                  v-if="isOpenSearchPanel && !isShowFeedWhileSearch"
+                  :not-found="notFoundMessage"
+                  :objects="foundMessages"
+                  :foundAmount="foundMessages.length"
+                  @clicked-search="handleClickReplied"
+                />
+                <Feed
+                  v-if="!isOpenSearchPanel || isShowFeedWhileSearch"
+                  :objects="messages"
+                  :is-scroll-to-bottom-on-update-objects-enabled="isScrollToBottomOnUpdateObjectsEnabled"
+                  :scroll-to="clickedReply"
+                  @message-action="messageAction"
+                  @load-more="loadMore"
+                />
+                <ChatInput
+                  :enable-emoji="true"
+                  :channels="channels"
+                  @send="addMessage"
+                />
+              </template>
 
-            <template #chatpanel>
-              <ChatPanel
-                v-if="isOpenChatPanel"
-                :title="selectedChat.name"
-                @close-panel="isOpenChatPanel = !isOpenChatPanel"
-              >
-                <template #content>
-                  test
-                </template>
-              </ChatPanel>
-            </template>
-          </chat-wrapper>
-        </template>
-      </ExtendedLayout>
+              <template #chatpanel>
+                <ChatPanel
+                  v-if="isOpenChatPanel"
+                  :title="selectedChat.name"
+                  @close-panel="isOpenChatPanel = !isOpenChatPanel"
+                >
+                  <template #content>
+                    test
+                  </template>
+                </ChatPanel>
+              </template>
+            </chat-wrapper>
+          </template>
+        </ExtendedLayout>
+      </template>
+      
     </FloatContainer>
   </div>
 </template>
@@ -80,8 +109,10 @@ import {
   ChatPanel,
   FloatContainer,
   ExtendedLayout,
-  SelectUser,
   ChatWrapper,
+  ButtonContextMenu,
+  FeedFoundObjects,
+  FeedSearch,
 } from "./library";
 
 import {
@@ -145,6 +176,20 @@ const modalShow = ref(false);
 const modalTitle = ref("");
 const users = ref([]);
 
+const isOpenSearchPanel = ref(false)
+const isShowFeedWhileSearch = ref(false)
+const notFoundMessage = ref(false)
+const clickedReply = ref('')
+const foundMessages = ref([])
+const isScrollToBottomOnUpdateObjectsEnabled = ref(false);
+const actions = [
+  {action: 'search', title: 'Поиск'},
+];
+
+const headerButtonClick = (action) => {
+  console.log(action)
+  if (action.action == 'search' && selectedChat.value != null) isOpenSearchPanel.value = !isOpenSearchPanel.value
+}
 
 const selectItem = (item) => {
   console.log("selected sidebar item", item);
@@ -157,14 +202,6 @@ const chatAction = (data) => {
     users.value = getUsers();
     modalShow.value = true;
   }
-};
-
-const selectUsers = (users) => {
-  console.log("users selected", users);
-};
-
-const onCloseModal = () => {
-  modalShow.value = false;
 };
 
 const messageAction = (data) => {
@@ -224,6 +261,59 @@ const handleEvent = async (event) => {
     console.log("Системное уведомление:", event.data.text);
   }
 };
+
+const searchMessages = (string) => {
+  if (string && string.length > 0){
+    isShowFeedWhileSearch.value = false
+    foundMessages.value = transformToFeed(props.dataProvider.getMessagesBySearch(selectedChat.value.chatId, string))
+    foundMessages.value = foundMessages.value.reverse()
+    notFoundMessage.value = false
+    if (foundMessages.value.length == 0) 
+      notFoundMessage.value = true
+
+    if (foundMessages.value.length > 0){
+      let t = []
+      for (let m of foundMessages.value){
+        if (m.direction == 'incoming') m.subtext = selectedChat.value.name
+        if (m.direction == 'outgoing') m.subtext = userProfile.value.name
+        if (m.type != 'system.date' && m.type != 'message.system') t.push(m)
+      }
+      foundMessages.value = t
+    }
+  }
+  else {
+    foundMessages.value = []
+  }
+}
+
+const handleClickReplied = (messageId) => {
+  console.log('Clicked reply id ' + messageId)
+  isShowFeedWhileSearch.value = true
+  const message = messages.value.find((m) => {
+    if (m.messageId == messageId) return m
+    })
+  if (!message) {
+    const messages1 = props.dataProvider.getFeedByMessage(selectedChat.value.chatId, messageId)
+    messages.value = transformToFeed(messages1)
+  }
+  setTimeout(() => {
+    highlightMessage(messageId)
+  }, 150)
+}
+
+let timer
+const highlightMessage = (messageId) => {
+  clearTimeout(timer)
+  const message = messages.value.find((m) => {
+      if (m.messageId == messageId) return m
+    })
+  if (message) {
+    clickedReply.value = JSON.stringify(message)
+    timer = setTimeout(() => {
+      clickedReply.value = ''
+    }, 100)
+  }
+}
 
 onMounted(() => {
   // console.log('mounted')

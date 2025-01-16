@@ -109,6 +109,7 @@ const getName = (name) => {
     display: flex;
     flex-direction: column;
     row-gap: var(--sidebar-row-gap-list);
+    padding: 0;
   }
 
   &__list-fixed {
