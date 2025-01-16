@@ -41,7 +41,6 @@ const clearInput = () => {
 onMounted(() => {
   const el = unref(refInput);
   el?.focus()
-  clearInput()
   emit('search', el?.value);
 })
 

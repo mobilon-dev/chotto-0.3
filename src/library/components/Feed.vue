@@ -256,10 +256,10 @@ watch(
   () => {
     if (props.scrollTo){
       const elem = props.scrollTo
-      document.getElementById(elem)?.scrollIntoView({
-        block: 'center',
-        inline: 'center'
-      })
+      let target = document.getElementById(elem)
+      let list = document.getElementById('feed-container-' + chatAppId)
+      if (target instanceof HTMLElement && list instanceof HTMLElement)
+        list.scrollTop = target.offsetTop + target.clientHeight / 2 - list.clientHeight / 2
       document.getElementById(elem)?.children[0].classList.add('focused-message')
       setTimeout(() => {
         document.getElementById(elem)?.children[0].classList.remove('focused-message')
@@ -285,7 +285,8 @@ watch(
   background-image: url('../../../public/chat-background.svg');
   scroll-behavior: smooth;
   padding: 10px 30px 10px 30px;
-
+  position: relative;
+  
   &__message {
     position: relative;
     transition: all 2s;
