@@ -83,7 +83,7 @@ const scrollTopCheck = () => {
     scroll-behavior: smooth;
     overflow-y: auto;
     overflow-x: hidden;
-
+    height: 100%;
     &::-webkit-scrollbar {
       width: 6px;
       background-color: var(--scrollbar-bg);
