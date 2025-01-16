@@ -116,23 +116,25 @@ onMounted(() => {
   //окно монтируется в углу ближайшего блока с position отличным от static
   //позволяет более гибко позиционировать в пределах страницы
   document.addEventListener("mousemove", mouseMove);
-
+  
   // Срабатывает, когда изменяется размер окна брузера, не дает выйти за границы плавающему окну. Перерасчет границ.
   window.addEventListener("resize", () => {
-    floatWindowPosition.value.x = Math.max(
-      0,
-      Math.min(
-        floatWindowPosition.value.x,
-        window.innerWidth - element.value.offsetWidth
-      )
-    );
-    floatWindowPosition.value.y = Math.max(
-      0,
-      Math.min(
-        floatWindowPosition.value.y,
-        window.innerHeight - element.value.offsetHeight
-      )
-    );
+    if (element.value){
+      floatWindowPosition.value.x = Math.max(
+        0,
+        Math.min(
+          floatWindowPosition.value.x,
+          window.innerWidth - element.value.offsetWidth
+        )
+      );
+      floatWindowPosition.value.y = Math.max(
+        0,
+        Math.min(
+          floatWindowPosition.value.y,
+          window.innerHeight - element.value.offsetHeight
+        )
+      );
+    }
   });
 
   contentHeight.value =
