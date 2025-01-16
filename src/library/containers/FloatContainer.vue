@@ -30,12 +30,15 @@
         <p class="float-window__title">
           {{ props.title }}
         </p>
-        <button
-          class="float-window__close-button"
-          @click="$emit('close-window')"
-        >
-          <span class="pi pi-times" />
-        </button>
+        <div style="margin-left: auto; display: flex;">
+          <slot  name="controls" />
+          <button
+            class="float-window__close-button"
+            @click="$emit('close-window')"
+          >
+            <span class="pi pi-times" />
+          </button>
+        </div>
       </div>
       <div
         class="float-window__content"
