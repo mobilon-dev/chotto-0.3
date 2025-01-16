@@ -19,7 +19,7 @@
       v-else
       class="channels__selected channels__title"
     >
-      Канал не выбран
+      {{ t('component.ChannelSelector.Placeholder') }}
     </span>
     <ButtonContextMenu
       :actions="channels"
@@ -35,6 +35,7 @@
 <script setup>
 import { ref } from 'vue'
 import ButtonContextMenu from './ButtonContextMenu.vue';
+import { t } from '../../locale/useLocale';
 
 const props = defineProps({
   channels: {

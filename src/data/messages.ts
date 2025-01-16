@@ -311,6 +311,10 @@ export const messages = [
         key: 'key_2',
         text: 'Перезвоню позже',
         order: 2,
+      },{
+        key: 'key_3',
+        text: 'Перезвоню неизвестно когда',
+        order: 3,
       },
     ],
   },

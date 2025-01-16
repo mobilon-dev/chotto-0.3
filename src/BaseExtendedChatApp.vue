@@ -33,6 +33,7 @@
             v-if="isOpenSearchPanel"
             :not-found="notFoundMessage"
             :objects="foundMessages"
+            :foundAmount="foundMessages.length"
             @clicked-search="handleClickReplied"
           />
         </template>
@@ -241,7 +242,7 @@ const groupTemplates = ref([])
 const sidebarItems = ref([]);
 const isOpenChatPanel = ref(false);
 const isOpenSearchPanel = ref(false)
-const notFoundMessage = ref('')
+const notFoundMessage = ref(false)
 const isScrollToBottomOnUpdateObjectsEnabled = ref(false);
 const filebumpUrl = ref('https://filebump2.services.mobilon.ru');
 const clickedReply = ref('')
@@ -316,9 +317,9 @@ const searchMessages = (string) => {
   if (string && string.length > 0){
     foundMessages.value = transformToFeed(props.dataProvider.getMessagesBySearch(selectedChat.value.chatId, string))
     foundMessages.value = foundMessages.value.reverse()
-    notFoundMessage.value = null
+    notFoundMessage.value = false
     if (foundMessages.value.length == 0) 
-      notFoundMessage.value = 'Сообщения не найдены'
+      notFoundMessage.value = true
 
     if (foundMessages.value.length > 0){
       let t = []
@@ -332,9 +333,7 @@ const searchMessages = (string) => {
   }
   else {
     foundMessages.value = []
-    notFoundMessage.value = 'Поиск по сообщениям в чате'
   }
-  console.log(foundMessages.value)
 }
 
 const getFeedObjects = () => {
