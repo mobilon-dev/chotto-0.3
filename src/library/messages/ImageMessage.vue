@@ -290,7 +290,7 @@ onUnmounted(() => {
     column-gap: 4px;
     border-radius: 12px;
     padding: 6px 10px;
-    background-color: rgb(0 0 0 / 39%);
+    /* var*/background-color: rgb(0 0 0 / 39%);
   }
 
   &__download-button {
@@ -303,12 +303,12 @@ onUnmounted(() => {
     border: none;
     border-radius: 12px;
     padding: 6px 6px;
-    background-color: rgb(0 0 0 / 39%);
+    /* var*/background-color: rgb(0 0 0 / 39%);
     cursor: pointer;
 
     span {
-      color: var(--neutral-200);
-      font-size: 12px;
+      /* var*/color: var(--neutral-200);
+      /* var*/font-size: 12px;
     }
   }
 
@@ -320,17 +320,17 @@ onUnmounted(() => {
 
     span {
       font-size: var(--base-message-views-icon-font-size);
-      color: var(--neutral-200);
+      /* var*/color: var(--neutral-200);
     }
 
     p {
       font-size: var(--base-message-views-font-size);
-      color: var(--neutral-200);
+      /* var*/color: var(--neutral-200);
     }
   }
 
   &__time {
-    color: var(--neutral-200);
+    /* var*/color: var(--neutral-200);
     font-size: var(--base-message-font-size-time);
   }
 
@@ -338,15 +338,15 @@ onUnmounted(() => {
     display: flex;
 
     span {
-      font-weight: 400;
-      color: var(--default-white);
+      /* var*/font-weight: 400;
+      /* var*/color: var(--default-white);
       font-size: var(--base-message-status-font-size);
     }
   }
 
   .status--received {
     span {
-      color: var(--default-white);
+      /* var*/color: var(--default-white);
 
       &:first-child {
         margin-right: -8px;
@@ -365,8 +365,8 @@ onUnmounted(() => {
   }
 
   &__subtext {
-    font-weight: 500;
-    font-size: 12px;
+    /* var*/font-weight: 500;
+    /* var*/font-size: 12px;
     color: var(--base-message-subtext-color);
   }
 

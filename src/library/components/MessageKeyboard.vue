@@ -41,19 +41,16 @@ const handleClickKey = (key : IKeyBoard) => {
       flex-wrap: wrap;
     }
     &__key{
-      background: var(--chat-input-container-bg);
-      border: 1px solid var(--chat-input-border);
+      background: var(--keyboard-background-color);
+      border: var(--keyboard-border);
       border-radius: 3px;
-      /*white-space: nowrap;*/
       word-wrap: break-word;
-      box-shadow: 0px 0px 10px 5px #EAEAEA;
+      box-shadow: 0px 0px 10px 5px var(--keyboard-shadow-color);
       max-width: 100%;
       p{
-        font-size: var(--base-message-font-size-text);
+        font-size: var(--keyboard-font-size);
         padding: 5px;
         margin: 0;
-        /*overflow: hidden;
-        text-overflow: ellipsis;*/
       }
       p:hover{
         cursor: pointer;

@@ -1,25 +1,24 @@
 <template>
-  <div
-    class="preview-actions"
-    :class="{ 
-      'last-element': index === buttons.length - 1 || (index == 2 && buttons.length > 3), 
-      'middle-element' : (buttons.length - 1 > index  && index > 0)
-     }"
-    v-for="(button, index) in buttons.slice(0, 3)"
-    :key="index"
-    @click="handleQuickReplyClick(index)"
-  >
-  <hr class="separator">
-    <div 
-      class="preview-action" 
+  <div class="quick-reply-buttons">
+    <div
+      v-for="(button, index) in buttons.slice(0, 3)"
+      class="quick-reply-buttons__preview-action"
+      :key="index"
+      @click="handleQuickReplyClick(index)"
     >
-      
-      <span class="icon pi pi-arrow-up-left" 
-        :class="index == 2 && buttons.length > 3 ? 'pi-list' : icons[button.type]"
-      />
-      {{index == 2 && buttons.length > 3 ? 'Смотреть все варианты' : button.text }}
+      <hr class="quick-reply-buttons__separator">
+      <div class="quick-reply-buttons__line">
+        <span 
+          class="quick-reply-buttons__icon pi pi-arrow-up-left" 
+          :class="index == 2 && buttons.length > 3 ? 'pi-list' : icons[button.type]"
+        />
+        <p>
+          {{index == 2 && buttons.length > 3 ? 'Смотреть все варианты' : button.text }}
+        </p>
+      </div>
     </div>
   </div>
+  
 </template>
 
 <script setup lang="ts">
@@ -33,7 +32,7 @@ interface Button {
 
 const props = defineProps({
   buttons: {
-    type: Array as () => Button[], 
+    type: Array<Button>, 
     default: []
   },
 });
@@ -52,45 +51,35 @@ const handleQuickReplyClick = (index : Number) => {
 }
 </script>
 
-<style scoped>
-.preview-actions {
-  position: relative;
-  z-index: 0;
-  font-size: 14px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: var(--button-preview-action);
-  gap: 15px;
-}
-.middle-element {
-  padding-top: 15px;
-}
-.preview-action {
-  color: var(--action-color);
-  text-align: center;
-}
-.preview-action:hover {
-  cursor: pointer;
-}
+<style scoped lang="scss">
 
-.last-element {
-  padding-top: 15px;
+.quick-reply-buttons{
   padding-bottom: 15px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-}
 
-.icon {
-  width: 12px;
-  height: 12px;
-  fill: black;
-  margin-right: 5px;
-}
+  &__preview-action{
+    position: relative;
+    font-size: var(--quick-reply-buttons-font-size);
+    font-weight: var(--quick-reply-buttons-font-weight);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--quick-reply-buttons-color);
+  }
 
-.separator{
-  height: 1px;
-  width: 100%;
+  &__line{
+    display: flex;
+    cursor: pointer;
+  }
+
+  &__icon{
+    margin-right: 5px;
+    line-height: 19px;
+  }
+
+  &__separator{
+    height: 1px;
+    width: 100%;
+    margin: 15px;
+  }
 }
 </style>

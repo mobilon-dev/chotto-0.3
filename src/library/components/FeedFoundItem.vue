@@ -111,15 +111,15 @@ const typePreview = computed(() => {
   }  
 
   &__name{
-    font-weight: var(--feed-found-item-font-weight-name);
+    font-weight: var(--feed-found-item-name-font-weight);
     margin: 0;
       padding: 0;
   }
 
   &__time{
-    color: var(--feed-found-item-color-time);
-    font-weight: var(--feed-found-item-font-weight-time);
-    font-size: var(--feed-found-item-font-size-time);
+    color: var(--feed-found-item-time-color);
+    font-weight: var(--feed-found-item-time-font-weight);
+    font-size: var(--feed-found-item-time-font-size);
     margin: 0;
     padding: 0;
   }
@@ -130,9 +130,9 @@ const typePreview = computed(() => {
     p {
       margin: 0;
       padding: 0;
-      font-size: 14px;
-      color: var(--feed-found-item-color-message);
-      font-weight: var(--feed-found-item-font-weight-message);
+      font-size: var(--feed-found-item-message-font-size);
+      color: var(--feed-found-item-message-color);
+      font-weight: var(--feed-found-item-message-font-weight);
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
@@ -146,7 +146,7 @@ const typePreview = computed(() => {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--neutral-300);
+    background-color: var(--avatar-background-color);
     width: var(--avatar-width-medium);
     height: var(--avatar-height-medium);
     border-radius: var(--avatar-border-radius);
@@ -154,7 +154,7 @@ const typePreview = computed(() => {
     margin-right: 10px;
     span {
       font-size: var(--avatar-icon-size-medium);
-      color: var(--neutral-500);
+      color: var(--avatar-color);
       line-height: 24px;
       width: 24px;
     }

@@ -53,7 +53,7 @@ const click = (index) => {
     position: absolute;
     width: max-content;
     max-width: 250px;
-    box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.11);
+    box-shadow: 0px 2px 10px 1px var(--context-menu-box-shadow-color);
     border-radius: 8px;
     
     background-color: var(--context-menu-background);
@@ -81,7 +81,7 @@ const click = (index) => {
 
   &__item:not(:last-child) {
     padding-bottom: 6px;
-    border-bottom: 1px solid var(--neutral-300);
+    border-bottom: var(--context-menu-border);
   }
 }
 </style>

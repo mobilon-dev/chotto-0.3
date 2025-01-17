@@ -7,12 +7,11 @@
       v-if="selectedChannel"
       class="channels__selected"
     >
-      <span
+      <img 
         v-if="selectedChannel.icon"
+        :src="selectedChannel.icon"
         class="channels__icon"
       >
-        <img :src="selectedChannel.icon">
-      </span>
       <span class="channels__title">{{ selectedChannel.title }}</span>
     </div>
     <span
@@ -83,8 +82,8 @@ const selectChannel = (channel) => {
   }
 
   &__title {
-    font-weight: 500;
-    font-size: 14px;
+    font-weight: var(--channel-selector-title-font-weight);
+    font-size: var(--channel-selector-title-font-size);
   }
 
   &__selected {
@@ -98,13 +97,8 @@ const selectChannel = (channel) => {
   &__icon {
     display: block;
     height: fit-content;
-    width: 16px;
-    height: 16px;
-
-    img {
-      width: 16px;
-      height: 16px;
-    }
+    width: var(--channel-selector-img-resolution);
+    height: var(--channel-selector-img-resolution);
   }
 }
 </style>

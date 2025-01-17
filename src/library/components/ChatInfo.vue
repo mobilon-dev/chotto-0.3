@@ -80,7 +80,7 @@ const chatAppId = inject('chatAppId')
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--neutral-300);
+    background-color: var(--avatar-background-color);
     width: var(--avatar-width-medium);
     height: var(--avatar-height-medium);
     border-radius: var(--avatar-border-radius);
@@ -88,7 +88,7 @@ const chatAppId = inject('chatAppId')
 
     span {
       font-size: var(--avatar-icon-size-medium);
-      color: var(--neutral-500);
+      color: var(--avatar-color);
     }
 
     img {
@@ -110,9 +110,9 @@ const chatAppId = inject('chatAppId')
   }
 
   &__time {
-    font-size: 14px;
+    font-size: var(--chat-info-time-font-size);
     font-weight: var(--chat-info-font-weight-time);
-    color: var(--neutral-400);
+    color: var(--chat-info-time-color);
     grid-column: 2;
     margin: 0;
   }
@@ -126,8 +126,8 @@ const chatAppId = inject('chatAppId')
     cursor: pointer;
 
     span {
-      font-size: var(--icon-font-size-medium);
-      color: var(--neutral-600);
+      font-size: var(--chat-info-actions-font-size);
+      color: var(--chat-info-actions-color);
     }
   }
 }

@@ -136,7 +136,7 @@ onUnmounted(() => {
     word-break: break-word;
     p {
       margin: 0;
-      font-size: 13px;
+      /* var*/font-size: 13px;
       color: var(--reply-message-color);
       overflow: hidden;
       text-overflow: ellipsis;

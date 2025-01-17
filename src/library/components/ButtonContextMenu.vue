@@ -166,13 +166,12 @@ onUnmounted(() => {
   display: block;
   cursor: pointer;
   padding: 14px;
-  font-size: var(--icon-font-size-medium);
-  color: var(--channels-selector-icon-color);
+  font-size: var(--button-context-menu-icon-font-size);
+  color: var(--button-context-menu-color);
 }
 
-
 .disabled-button span {
-  color: lightgray;
+  color: var(--button-context-menu-disabled-color);
   cursor: auto;
 }
 </style>

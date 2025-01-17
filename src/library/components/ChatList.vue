@@ -203,8 +203,8 @@ const action = (data) => emit('action', data);
   }
 
   &__title {
-    font-size: var(--h2-font-size);
-    font-weight: var(--h2-font-weight);
+    /**var */font-size: var(--chat-list-title-font-size);
+    /**var */font-weight: var(--chat-list-title-font-weight);
   }
 
   &__title-container {
@@ -230,7 +230,7 @@ const action = (data) => emit('action', data);
 
     span {
       transition: all 0.2s;
-      font-size: var(--icon-font-size-small);
+      /**var */font-size: var(--icon-font-size-small);
       color: var(--chat-list-button-actions-color);
     }
   }

@@ -114,7 +114,7 @@ const getName = (name) => {
 
   &__list-fixed {
     padding-top: 10px;
-    border-top: 2px solid var(--neutral-300);
+    border-top: var(--sidebar-list-fixed-border-top);
   }
 
   &__item {
@@ -138,14 +138,14 @@ const getName = (name) => {
       width: 18px;
       height: 18px;
       border-radius: 50%;
-      font-size: 10px;
-      font-weight: 500;
-      color: var(--default-white);
+      font-size: var(--sidebar-unread-font-size);
+      font-weight: var(--sidebar-unread-font-weight);
+      color: var(--sidebar-unread-color);
     }
 
     p {
-      font-size: 10px;
-      font-weight: var(--sidebar-font-weight-name);
+      font-size: var(--sidebar-name-font-size);
+      font-weight: var(--sidebar-name-font-weight);
       text-align: center;
       line-height: 1;
     }
@@ -162,7 +162,7 @@ const getName = (name) => {
   }
 
   &__image--active {
-    border: 3px solid var(--emerald-500);
+    border: var(--sidebar-image-active-border);
     opacity: 1;
   }
 }

@@ -158,9 +158,9 @@ onMounted(() => {
     width: 100%;
     height: 100%;
     position: absolute;
-    font-weight: 400;
-    color: var(--container-color);
-    font-family: var(--container-font-family);
+    /* var*/font-weight: 400;
+    /* var*/color: var(--container-color);
+    /* var*/font-family: var(--container-font-family);
     border-radius: var(--float-container-border-radius);
     background-color: var(--float-container-bg);
     box-shadow: var(--float-container-box-shadow);
@@ -183,8 +183,8 @@ onMounted(() => {
   }
 
   &__title {
-    font-size: 18px;
-    font-weight: 600;
+    /* var*/font-size: 18px;
+    /* var*/font-weight: 600;
     margin-left: 10px;
   }
 
@@ -222,7 +222,7 @@ onMounted(() => {
 
   input,
   button {
-    font-family: var(--container-font-family);
+    /* var*/font-family: var(--container-font-family);
   }
 
   p,

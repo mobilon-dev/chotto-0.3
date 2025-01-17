@@ -1,32 +1,46 @@
 <template>
-  <section class="attachment-section" :class="{'attachment-section-error' : error}">
-    <div class="file-upload" @click="triggerFileUpload" v-if="uploadStatus !== 'success'">
-      <input type="file" id="file-upload" ref="fileInput"
-      style="display: none;" @change="handleFileChange" :accept="fileInfo[type].accept">
-      <span
-        class="pi pi-paperclip file-upload-icon" 
-      />
-      <div class="file-upload-text">
-        <h2 class="attachment-title open-sans-bold">
-          Прикрепить файл 
-        </h2>
-        <h2 class="file-info open-sans">
-          {{ fileInfo[type].text }}
-        </h2>
-      </div>
-    </div>
-    <FilePreview
-      v-else-if="uploadStatus === 'success'"
-      :preview-url="previewUrl"
-      :is-image="isImage"
-      :is-video="isVideo"
-      :is-audio="isAudio"
-      :file-name="selectedFile?.name"
-      :file-size="fileSize"
-      @reset="handleFileDecline"
+  <div 
+    v-if="uploadStatus !== 'success'"
+    class="attachment-section" 
+    :class="{'attachment-section__error' : error}"
+    @click="triggerFileUpload" 
+  >
+    <input 
+      type="file" 
+      id="file-upload" 
+      ref="fileInput"
+      style="display: none;" 
+      :accept="fileInfo[type].accept"
+      @change="handleFileChange" 
+    >
+    <span
+      class="pi pi-paperclip attachment-section__icon" 
     />
-  </section>
-  <div v-if="error" class="error-text">{{ error }}</div>
+    <div>
+      <p class="attachment-section__title open-sans-bold">
+        Прикрепить файл 
+      </p>
+      <p class="attachment-section__info open-sans">
+        {{ fileInfo[type].text }}
+      </p>
+    </div>
+  </div>
+  <FilePreview
+    v-else-if="uploadStatus === 'success'"
+    :preview-url="previewUrl"
+    :is-image="isImage"
+    :is-video="isVideo"
+    :is-audio="isAudio"
+    :file-name="selectedFile?.name"
+    :file-size="fileSize"
+    @reset="handleFileDecline"
+  />
+  <div 
+    v-if="error" 
+    class="attachment-section__error-text"
+  >
+    {{ error }}
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -210,71 +224,55 @@ watch(
 )
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 .attachment-section {
-  margin-bottom: 5px;
   position: relative;
-  z-index: 0;
-  background-color: var(--secondary-color);
-  text-align: center;
-  border-radius: 5px;
-}
-.attachment-section-error {
-  outline:1px solid var(--error-color);
-  outline-offset:-1px; 
-}
-.attachment-section:hover {
-  cursor: pointer;
-  .file-upload{
-    background-color: var(--not-filled-color-hover);
-  }
-}
-.file-upload {
-  border-radius: 5px;
-  background-color: var(--not-filled-color);
   display: flex;
-  gap: 8px;
 
+  text-align: center;
   align-items: center;
   justify-content: center;
+  gap: 8px;
+  border-radius: 5px;
+  background-color: var(--attachment-section-color);
+
   padding-top: 10px;
   padding-bottom: 10px;
+  margin-bottom: 5px;
+
+  &__error{
+    border: var(--attachment-section-error-border);
+  }
+
+  &__icon{
+    padding-left: 10px;
+  }
+
+  &__title{
+    font-size: var(--attachment-section-title-font-size);
+    color: var(--attachment-section-title-color);
+    font-weight: var(--attachment-section-title-font-weight);
+  }
+
+  &__info{
+    margin-top: 1px;
+    color: var(--attachment-section-info-color);
+    font-size: var(--attachment-section-info-font-size);
+    word-break: break-word;
+    font-weight: var(--attachment-section-info-font-weight);
+  }
+
+  &__error-text{
+    color: var(--attachment-section-error-color);
+    margin-left: 5px;
+    font-size: var(--attachment-section-error-font-size);
+  }
 }
-.file-upload-icon {
-  display: inline;
-  padding-left: 10px;
-}
-.file-upload-text {
-  flex-direction: column;
-  display: inline;
-}
-.attachment-title {
-  font-size: 12px;
-  color: #000;
-}
-.file-info {
-  margin-top: 1px;
-  color: #5f5f5f;
-  font-size: 12px;
-  word-break: break-word;
-}
-.loader-overlay {
-  position:absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(233, 225, 239, 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-.error-text {
-  color: var(--error-color);
-  margin-left: 5px;
-  font-size: 10px;
+
+.attachment-section:hover {
+  cursor: pointer;
+  background-color: var(--attachment-section-hover-color);
 }
 
 </style>

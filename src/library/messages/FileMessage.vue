@@ -206,9 +206,9 @@ function getClass(message) {
   }
 
   &__subtext {
-    font-size: 12px;
+    /* var*/font-size: 12px;
     color: var(--base-message-subtext-color);
-    font-weight: 500;
+    /* var*/font-weight: 500;
   }
 
   &__text-container {
@@ -260,9 +260,9 @@ function getClass(message) {
     cursor: pointer;
 
     span {
-      color: var(--audio-message-download-button);
-      font-weight: 600;
-      font-size: 12px;
+      /* var*/color: var(--audio-message-download-button);
+      /* var*/font-weight: 600;
+      /* var*/font-size: 12px;
     }
   }
 
@@ -326,12 +326,12 @@ function getClass(message) {
     transition: 0.2s;
 
     span {
-      color: var(--neutral-500);
+      /* var*/color: var(--neutral-500);
       font-size: 20px;
     }
 
     &:hover span {
-      color: var(--neutral-700);
+      /* var*/color: var(--neutral-700);
       transition: 0.2s;
     }
   }

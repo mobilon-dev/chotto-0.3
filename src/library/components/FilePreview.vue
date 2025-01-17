@@ -35,14 +35,14 @@
       <span
         class="pi pi-times preview__reset"
         style="font-size: 1rem"
-        @click="handleReset"
+        @click="emit('reset')"
       />
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, watch, nextTick } from "vue";
+
 const props = defineProps({
   previewUrl: {
     type: String,
@@ -70,20 +70,15 @@ const props = defineProps({
   }
 });
 
-
 const emit = defineEmits(["reset"]);
 
-function handleReset() {
-  emit("reset");
-}
 </script>
 
 <style scoped lang="scss">
 .preview {
   &__container{
-    /* margin-left: 10px; */
     display: flex;
-    border: 1px solid var(--neutral-300);
+    border:  var(--file-preview-container-border);
     max-width: 400px;
   }
   &__image,
@@ -119,17 +114,6 @@ function handleReset() {
     white-space: normal;
     word-break: break-word;
     text-overflow: ellipsis;
-  }
-  &__icon {
-    margin: auto;
-    position: absolute;
-    background-color: white;
-    opacity: 0.8;
-    min-width: 150px;
-    min-height: 100px;
-    border-radius: 5px;
-    align-items: center;
-    justify-content: center;
   }
   &__reset{
     margin: 10px;

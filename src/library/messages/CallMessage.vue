@@ -159,7 +159,7 @@ function getClass(element, type) {
 
   &__title {
     font-size: var(--call-message-font-size-title);
-    font-weight: 500;
+    /* var*/font-weight: 500;
     margin-bottom: 2px;
   }
 
@@ -173,14 +173,14 @@ function getClass(element, type) {
     border-radius: 50%;
     height: 38px;
     width: 38px;
-    background-color: var(--neutral-400);
-    color: var(--p-red-500);
-    font-size: var(--avatar-icon-size-small);
+    /* var*/background-color: var(--neutral-400);
+    /* var*/color: var(--p-red-500);
+    /* var*/font-size: var(--avatar-icon-size-small);
   }
 
   &__duration {
     color: var(--call-message-color-duration);
-    font-size: 14px;
+    /* var*/font-size: 14px;
   }
 
   &__time {
@@ -203,8 +203,8 @@ function getClass(element, type) {
 
     span {
       color: var(--audio-message-download-button);
-      font-weight: 600;
-      font-size: 12px;
+      /* var*/font-weight: 600;
+      /* var*/font-size: 12px;
     }
   }
 
@@ -212,7 +212,7 @@ function getClass(element, type) {
     display: flex;
 
     span {
-      font-weight: 400;
+      /* var*/font-weight: 400;
       color: var(--base-message-status-color-received);
       font-size: var(--base-message-status-font-size);
     }
@@ -239,8 +239,8 @@ function getClass(element, type) {
   }
 
   &__subtext {
-    font-weight: 500;
-    font-size: 12px;
+    /* var*/font-weight: 500;
+    /* var*/font-size: 12px;
     color: var(--base-message-subtext-color);
   }
 
@@ -289,16 +289,16 @@ function getClass(element, type) {
       left: 0;
       width: 16px;
       height: 2px;
-      background-color: var(--neutral-700);
+      /* var*/background-color: var(--neutral-700);
     }
 
     p {
-      font-size: 22px;
+      /* var*/font-size: 22px;
       margin: 0;
     }
 
     span {
-      color: var(--neutral-600);
+      /* var*/color: var(--neutral-600);
     }
   }
 
@@ -420,7 +420,7 @@ function getClass(element, type) {
 
     span {
       color: var(--modal-icon-color);
-      font-size: var(--icon-font-size-medium);
+      /* var*/font-size: var(--icon-font-size-medium);
     }
   }
 }

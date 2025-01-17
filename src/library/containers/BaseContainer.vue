@@ -31,10 +31,10 @@ provide('chatAppId', chatAppId)
 .base {
   &__container {
     transition: all 0.3s ease;
-    font-weight: 400;
+    /* var*/font-weight: 400;
     background-color: var(--base-container-bg, transparent);
-    color: var(--container-color);
-    font-family: var(--container-font-family);
+    /* var*/color: var(--container-color);
+    /* var*/font-family: var(--container-font-family);
   }
 
   *,
@@ -55,7 +55,7 @@ provide('chatAppId', chatAppId)
 
   input,
   button {
-    font-family: var(--container-font-family);
+    /* var*/font-family: var(--container-font-family);
   }
 
   p,

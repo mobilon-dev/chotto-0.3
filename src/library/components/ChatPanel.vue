@@ -27,7 +27,7 @@ const props = defineProps({
   title: {
     type: String,
     required: true,
-    default: () => ''
+    default: '',
   }
 })
 
@@ -44,29 +44,18 @@ const emit = defineEmits(['close-panel']);
   flex-direction: column;
   height: 100%;
 
-  &__container {
-    height: 100%;
-    background-color: var(--chat-panel-bg);
-    border-radius: 12px;
-    padding: 30px 20px 20px 20px;
-    display: flex;
-    flex-direction: column;
-    row-gap: 20px;
-    overflow: auto;
+  &::-webkit-scrollbar {
+    width: 6px;
+    background-color: var(--scrollbar-bg);
+  }
 
-    &::-webkit-scrollbar {
-      width: 6px;
-      background-color: var(--scrollbar-bg);
-    }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: var(--scrollbar-thumb-bg);
+  }
 
-    &::-webkit-scrollbar-thumb {
-      border-radius: 10px;
-      background-color: var(--scrollbar-thumb-bg);
-    }
-
-    &::-webkit-scrollbar-track {
-      border-radius: 10px;
-    }
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
   }
 
   &__title-container {
@@ -76,8 +65,8 @@ const emit = defineEmits(['close-panel']);
   }
 
   &__title {
-    font-size: 22px;
-    font-weight: 500;
+    font-size: var(--chat-panel-title-font-size);
+    font-weight: var(--chat-panel-title-font-weight);
   }
 
   &__button-close {
@@ -86,8 +75,8 @@ const emit = defineEmits(['close-panel']);
     cursor: pointer;
 
     span {
-      font-size: var(--icon-font-size-medium);
-      color: var(--neutral-600);
+      font-size: var(--chat-panel-button-close-font-size);
+      color: var(--chat-panel-button-close-color);
     }
   }
 }

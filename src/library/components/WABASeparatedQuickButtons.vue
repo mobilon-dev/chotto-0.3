@@ -1,25 +1,23 @@
 <template>
-    <div class="menu-container" >
-      <div class="settings-first-line">
-        <span class="settings-title">Все варианты</span>
-        <span
-          class="pi pi-times exit-button"
-          @click="emit('selectAllVariants')"
-        />
-      </div>
-      <div class="actions-container scrollbar">
-        <div
-        class="actions"
+  <div class="separated-quick-buttons" >
+    <div class="separated-quick-buttons__title">
+      <p>Все варианты</p>
+      <span
+        class="pi pi-times"
+        @click="emit('selectAllVariants')"
+      />
+    </div>
+    <div class="separated-quick-buttons__actions scrollbar">
+      <div
+        class="separated-quick-buttons__action"
         v-for="(button, index) in buttons"
         :key="index"
       >
-          <div class="action">
-            <span class="icon pi pi-arrow-up-left" :class="icons[button.type]"  />
-            {{ button.text }}
-          </div>
-      </div>
+        <span class="pi pi-arrow-up-left" :class="icons[button.type]"  />
+        <p>{{ button.text }}</p>
       </div>
     </div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -38,76 +36,60 @@ interface Button {
 
 defineProps({
   buttons: {
-    type: Array as () => Button[], 
+    type: Array<Button>, 
     default: []
   },
 });
 </script>
 
-<style scoped>
-.menu-container {
+<style scoped lang="scss">
+
+.separated-quick-buttons{
   width: 100%;
   position: absolute;
   left:0; right:0; bottom:0;
-  max-width: var(--quick-reply-max-width);
-  min-height: 100px;
-  max-height: fit-content;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  background:white;
+  background: var(--separated-quick-buttons-bg-color);
   white-space: pre-wrap;
-}
 
-.settings-first-line {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 15px;
-}
+  &__title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px;
+    
+    p{
+      font-size: var(--separated-quick-buttons-title-font-size);
+      font-weight: var(--separated-quick-buttons-title-font-weight);
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    span{
+      cursor: pointer;
+    }
+  }
 
-.settings-title {
-  font-family: "Roboto", sans-serif;  
-  font-size: var(--font-size-midX);
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-}
+  &__actions{
+    border-top: var(--separated-quick-buttons-border);
+    max-height: 200px;
+    overflow-y: auto;
+  }
 
-.exit-button {
-  display: flex;
+  &__action {
+    position: relative;
+    z-index: 0;
+    width: 90%;
+    font-size: var(--separated-quick-buttons-action-font-size);
+    font-weight: var(--separated-quick-buttons-action-font-weight);
+    margin-right: auto;
+    margin-left: 25px;
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    gap: 10px;
+  }
 }
-
-.exit-button:hover{
-  cursor: pointer;
-}
-
-.actions-container{
-  border-top: 1px solid var(--accent-color);
-  border-bottom: 1px solid var(--accent-color);
-  max-height: 180px;
-  overflow-y: auto;
-}
-
-.action {
-  font-size: var(--font-size-midX);
-  font-family: "Roboto", sans-serif;
-}
-
-.actions {
-  position: relative;
-  z-index: 0;
-  width: 90%;
-  margin-right: auto;
-  margin-left: 25px;
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.icon{
-  margin-right: 10px
-}
-
 
 </style>

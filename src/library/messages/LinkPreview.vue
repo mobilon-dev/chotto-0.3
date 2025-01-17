@@ -62,7 +62,7 @@ const props = defineProps({
   }
 
   &__title {
-    font-weight: 600;
+    /* var*/font-weight: 600;
     margin-bottom: 4px;
   }
 

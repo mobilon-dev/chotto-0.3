@@ -38,15 +38,28 @@
   --p-red-900: #7f1d1d;
   --p-red-950: #450a0a;
 
+  --blue-1: #3dc8f2;
+  --blue-2: #118ABF;
+
   --default-white: #ffffff;
 
   /* Titles */
 
   --h2-font-size: 28px;
+  --h3-font-size: 22px;
+  --font-large-size: 16px;
+  --font-midX-size: 14px;
+  --font-mid-size: 12px;
+  --font-small-size: 10px;
+
   --h2-font-weight: 600;
+  --h3-font-weight: 500; 
+  --regular-font-weight: 400;
 
   /* Avatars */
 
+  --avatar-background-color: var(--neutral-300);
+  --avatar-color: var(--neutral-500);
   --avatar-width-medium: 48px;
   --avatar-height-medium: 48px;
   --avatar-width-small: 42px;
@@ -70,14 +83,5 @@
   --modal-icon-color: var(--neutral-600);
   --modal-bg: var(--default-white);
 
-  /* WABA section */
 
-  --not-filled-color: #FEF3B8;
-  --not-filled-color-hover:  #fef3b890;
-  --filled-color: #dcfcd4;
-  --filled-color-hover: #e6fce1;
-  --error-color: #F84932;
-
-  --action-color: #3dc8f2;
-  --button-preview-action: #118ABF;
 }

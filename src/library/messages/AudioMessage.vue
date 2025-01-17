@@ -335,7 +335,7 @@ onMounted(() => {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: var(--icon-font-size-medium);
+      /* var*/font-size: var(--icon-font-size-medium);
     }
   }
 
@@ -374,9 +374,9 @@ onMounted(() => {
   }
 
   &__subtext {
-    font-size: 12px;
+    /* var*/font-size: 12px;
     color: var(--base-message-subtext-color);
-    font-weight: 500;
+    /* var*/font-weight: 500;
   }
 
   &__info-container {
@@ -402,8 +402,8 @@ onMounted(() => {
 
     span {
       color: var(--audio-message-download-button);
-      font-weight: 600;
-      font-size: 12px;
+      /* var*/font-weight: 600;
+      /* var*/font-size: 12px;
     }
   }
 
@@ -413,7 +413,7 @@ onMounted(() => {
     span {
       color: var(--base-message-status-color-received);
       font-size: var(--base-message-status-font-size);
-      font-weight: 400;
+      /* var*/font-weight: 400;
     }
   }
 
@@ -444,12 +444,12 @@ onMounted(() => {
 
     span {
       font-size: var(--base-message-views-icon-font-size);
-      color: var(--neutral-200);
+      /* var*/color: var(--neutral-200);
     }
 
     p {
       font-size: var(--base-message-views-font-size);
-      color: var(--neutral-200);
+      /* var*/color: var(--neutral-200);
     }
   }
 
@@ -467,12 +467,12 @@ onMounted(() => {
     transition: 0.2s;
 
     span {
-      color: var(--neutral-500);
+      /* var*/color: var(--neutral-500);
       font-size: 20px;
     }
 
     &:hover span {
-      color: var(--neutral-700);
+      /* var*/color: var(--neutral-700);
       transition: 0.2s;
     }
   }
@@ -540,7 +540,7 @@ onMounted(() => {
 
   &__play,
   &__pause {
-    background-color: var(--neutral-400);
+    /* var*/background-color: var(--neutral-400);
 
     span {
       color: var(--audio-message-button-icon-color);

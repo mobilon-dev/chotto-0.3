@@ -29,14 +29,14 @@ const props = defineProps({
     border-radius: 10px;
     padding: 10px;
     margin: 0 auto 18px auto;
-    background-color: #ffeecc;
+    /* var*/background-color: #ffeecc;
   }
 
   &__text {
-    font-size: 14px;
+    /* var*/font-size: 14px;
     line-height: 1.5;
     text-align: center;
-    color: var(--neutral-600)
+    /* var*/color: var(--neutral-600)
   }
 }
 </style>

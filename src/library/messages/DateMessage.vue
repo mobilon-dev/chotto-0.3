@@ -38,8 +38,8 @@ const props = defineProps({
   }
 
   &__text {
-    font-size: 12px;
-    font-weight: 500;
+    /* var*/font-size: 12px;
+    /* var*/font-weight: 500;
     color: var(--date-message-color);
   }
 }

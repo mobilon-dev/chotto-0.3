@@ -19,6 +19,17 @@
 
   --base-message-margin: 0 0 10px 0;
 
+  /* Focused message */
+  --focused-message-color: rgba(168, 243, 134, 0.5);
+  --focused-message-background-color: var(--focused-message-color);
+  --focused-message-box-shadow-color: var(--focused-message-color);
+
+  /* Message Keyboard*/
+  --keyboard-background-color: var(--neutral-100);
+  --keyboard-border: 1px solid var(--neutral-300);
+  --keyboard-shadow-color: var(--neutral-200);
+  --keyboard-font-size: var(--base-message-font-size-text);
+
   /* Reply Messages */
   --reply-message-right-bg: rgb(152 219 188 / 46%);
   --reply-message-left-bg: var(--neutral-300);

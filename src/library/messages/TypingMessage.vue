@@ -49,8 +49,8 @@ const props = defineProps({
     grid-column: 2;
     grid-row: 1;
     margin: 0 0 2px 10px;
-    font-size: 12px;
-    font-weight: 500;
+    /* var*/font-size: 12px;
+    /* var*/font-weight: 500;
     color: var(--base-message-subtext-color);
   }
 
@@ -107,11 +107,11 @@ const props = defineProps({
 
   @keyframes typing-message__loader {
     0% {
-      box-shadow: 0 15px 0 -15px var(--neutral-500);
+      /* var*/box-shadow: 0 15px 0 -15px var(--neutral-500);
     }
 
     100% {
-      box-shadow: 0 15px 0 var(--neutral-500);
+      /* var*/box-shadow: 0 15px 0 var(--neutral-500);
     }
   }
 }
