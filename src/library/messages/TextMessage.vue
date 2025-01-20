@@ -192,25 +192,25 @@ function getClass(message) {
 
     span {
       font-size: var(--base-message-views-icon-font-size);
-      color: var(--base-message-color-views);
+      color: var(--base-message-views-color);
     }
 
     p {
       font-size: var(--base-message-views-font-size);
-      color: var(--base-message-color-views);
+      color: var(--base-message-views-color);
     }
   }
 
   &__time {
-    font-size: var(--base-message-font-size-time);
-    color: var(--base-message-color-time);
+    font-size: var(--base-message-time-font-size);
+    color: var(--base-message-time-color);
   }
 
   &__status {
     display: flex;
 
     span {
-      /* var*/font-weight: 400;
+      font-weight: var(--base-message-status-font-weight);
       color: var(--base-message-status-color-received);
       font-size: var(--base-message-status-font-size);
     }
@@ -237,13 +237,13 @@ function getClass(message) {
   }
 
   &__text {
-    font-size: var(--base-message-font-size-text);
+    font-size: var(--base-message-text-font-size);
     white-space: pre-wrap;
   }
 
   &__subtext {
-    /* var*/font-size: 12px;
-    /* var*/font-weight: 500;
+    font-size: var(--base-message-subtext-font-size);
+    font-weight: var(--base-message-subtext-font-weight);
     color: var(--base-message-subtext-color);
   }
 
@@ -264,12 +264,12 @@ function getClass(message) {
     transition: 0.2s;
 
     span {
-      /* var*/color: var(--neutral-500);
-      /* var*/font-size: 20px;
+      color: var(--base-message-menu-button-color);
+      font-size: var(--base-message-menu-button-font-size);
     }
 
     &:hover span {
-      /* var*/color: var(--neutral-700);
+      color: var(--base-message-menu-button-hover-color);
       transition: 0.2s;
     }
   }

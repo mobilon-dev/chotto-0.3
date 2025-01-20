@@ -745,7 +745,7 @@ watch(isModalVisible, (newVal) => {
     padding: 6px 14px;
     border-radius: 5px;
     cursor: pointer;
-    /* var*/font-size: 16px;
+    font-size: var(--template-selector-button-add-font-size);
   }
 
   &__modal-button-cancel {
@@ -755,7 +755,7 @@ watch(isModalVisible, (newVal) => {
     padding: 6px 14px;
     border-radius: 5px;
     cursor: pointer;
-    /* var*/font-size: 16px;
+    font-size: var(--template-selector-button-cancel-font-size);
   }
 
 }

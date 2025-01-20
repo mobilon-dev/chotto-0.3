@@ -158,9 +158,9 @@ onMounted(() => {
     width: 100%;
     height: 100%;
     position: absolute;
-    /* var*/font-weight: 400;
-    /* var*/color: var(--container-color);
-    /* var*/font-family: var(--container-font-family);
+    font-weight: var(--container-font-weight);
+    color: var(--container-color);
+    font-family: var(--container-font-family);
     border-radius: var(--float-container-border-radius);
     background-color: var(--float-container-bg);
     box-shadow: var(--float-container-box-shadow);
@@ -183,8 +183,8 @@ onMounted(() => {
   }
 
   &__title {
-    /* var*/font-size: 18px;
-    /* var*/font-weight: 600;
+    /* var*/font-size: var(--float-container-title-font-size);
+    /* var*/font-weight: var(--float-container-title-font-weight);
     margin-left: 10px;
   }
 

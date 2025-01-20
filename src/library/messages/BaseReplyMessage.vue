@@ -129,7 +129,7 @@ const handleReset = () => {
 
 .chat-input-reply {
   padding-right: 20px;
-  /* var*/border: 1px solid var(--neutral-300);
+  border: var(--reply-message-border);
   border-radius: 0;
   max-width: 300px;
   word-break: break-word;

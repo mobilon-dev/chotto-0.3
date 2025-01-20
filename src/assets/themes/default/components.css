@@ -182,6 +182,13 @@
   --template-selector-button-paste-color: var(--neutral-800);
   --template-selector-button-paste-font-size: var(--font-large-size);
 
+  --template-selector-button-add-font-size: var(--font-large-size);
+  
+  --template-selector-button-cancel-font-size: var(--font-large-size);
+
+  --variable-placeholder-empty-color: var(--p-red-100);
+  --variable-placeholder-filled-color: var(--emerald-300);
+
   /* WABA Attachment section */
 
   --attachment-section-color:#FEF3B8;

@@ -51,7 +51,7 @@ export const messages = [
     chatId: 1, type: "message.image", url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg", timestamp: '1727027959',
     alt: "Example Image", direction: 'outgoing',
     views: 1667, messageId: '4',
-    status: 'received', actions: [
+    status: 'read', actions: [
       { action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=pin' },
       { action: 'delete', title: 'удалить' }]
   },
