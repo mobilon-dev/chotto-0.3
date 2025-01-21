@@ -28,6 +28,7 @@
     display: flex;
     flex-direction: column;
     height: inherit;
+    background-color: var(--layout-feed-bg);
   }
 }
 
