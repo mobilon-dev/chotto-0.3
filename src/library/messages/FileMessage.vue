@@ -206,9 +206,9 @@ function getClass(message) {
   }
 
   &__subtext {
-    font-size: 12px;
+    font-size: var(--base-message-subtext-font-size);
     color: var(--base-message-subtext-color);
-    font-weight: 500;
+    font-weight: var(--base-message-subtext-font-weight);
   }
 
   &__text-container {
@@ -217,7 +217,7 @@ function getClass(message) {
 
     p {
       white-space: pre-wrap;
-      font-size: var(--base-message-font-size-text);
+      font-size: var(--base-message-text-font-size);
     }
   }
 
@@ -240,7 +240,7 @@ function getClass(message) {
     line-clamp: 1;
     -webkit-box-orient: vertical;
     margin-right: 40px;
-    font-size: var(--base-message-font-size-text);
+    font-size: var(--base-message-text-font-size);
     color: var(--file-message-text-color);
   }
 
@@ -260,9 +260,9 @@ function getClass(message) {
     cursor: pointer;
 
     span {
-      color: var(--audio-message-download-button);
-      font-weight: 600;
-      font-size: 12px;
+      color: var(--file-message-download-button-color);
+      font-weight: var(--file-message-download-button-font-weight);
+      font-size: var(--file-message-download-button-font-size);
     }
   }
 
@@ -303,18 +303,18 @@ function getClass(message) {
 
     span {
       font-size: var(--base-message-views-icon-font-size);
-      color: var(--base-message-color-views);
+      color: var(--base-message-views-color);
     }
 
     p {
       font-size: var(--base-message-views-font-size);
-      color: var(--base-message-color-views);
+      color: var(--base-message-views-color);
     }
   }
 
   &__time {
-    font-size: var(--base-message-font-size-time);
-    color: var(--base-message-color-time);
+    font-size: var(--base-message-time-font-size);
+    color: var(--base-message-time-color);
   }
 
   &__menu-button {
@@ -326,12 +326,12 @@ function getClass(message) {
     transition: 0.2s;
 
     span {
-      color: var(--neutral-500);
+      color: var(--base-message-menu-button-color);
       font-size: 20px;
     }
 
     &:hover span {
-      color: var(--neutral-700);
+      color: var(--base-message-menu-button-hover-color);
       transition: 0.2s;
     }
   }

@@ -169,7 +169,7 @@
   setup
   lang="ts"
 >
-import { ref, onMounted, computed, watch } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import linkifyStr from "linkify-string";
 
 import { ContextMenu } from '../components'
@@ -196,19 +196,11 @@ const currentTime = ref(0)
 const isOpenMenu = ref(false)
 const buttonMenuVisible = ref(false);
 
-const linkedText = ref('')
-
 const isFullTranscript = ref(false)
 
-watch(
-  () => props.message.text,
-  () => {
-    if (props.message.text) {
-      linkedText.value = linkifyStr(props.message.text)
-    }
-  },
-  { immediate: true }
-)
+const linkedText = computed(() => {
+  if (props.message.text) return linkifyStr(props.message.text)
+})
 
 const handleClickReplied = (messageId) => {
   emit('reply', messageId)
@@ -328,6 +320,7 @@ onMounted(() => {
     width: 38px;
     height: 38px;
     border-radius: 50%;
+    background-color: var(--audio-message-button-icon-bg-color);
 
     span {
       display: flex;
@@ -335,7 +328,8 @@ onMounted(() => {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: var(--icon-font-size-medium);
+      font-size: var(--audio-message-button-icon-font-size);
+      color: var(--audio-message-button-icon-color);
     }
   }
 
@@ -361,7 +355,7 @@ onMounted(() => {
   &__remaining-time {
     grid-column: 2;
     margin-bottom: -10px;
-    font-size: var(--base-message-font-size-remaining-time);
+    font-size: var(--base-message-remaining-time-font-size);
     height: fit-content;
   }
 
@@ -374,9 +368,9 @@ onMounted(() => {
   }
 
   &__subtext {
-    font-size: 12px;
+    font-size: var(--base-message-subtext-font-size);
     color: var(--base-message-subtext-color);
-    font-weight: 500;
+    font-weight: var(--base-message-subtext-font-weight);
   }
 
   &__info-container {
@@ -401,9 +395,9 @@ onMounted(() => {
     cursor: pointer;
 
     span {
-      color: var(--audio-message-download-button);
-      font-weight: 600;
-      font-size: 12px;
+      color: var(--audio-message-download-button-color);
+      font-weight: var(--audio-message-download-button-font-weight);
+      font-size: var(--audio-message-download-button-font-size);
     }
   }
 
@@ -413,7 +407,7 @@ onMounted(() => {
     span {
       color: var(--base-message-status-color-received);
       font-size: var(--base-message-status-font-size);
-      font-weight: 400;
+      font-weight: var(--base-message-status-font-weight);
     }
   }
 
@@ -444,18 +438,18 @@ onMounted(() => {
 
     span {
       font-size: var(--base-message-views-icon-font-size);
-      color: var(--neutral-200);
+      color: var(--base-message-views-color);
     }
 
     p {
       font-size: var(--base-message-views-font-size);
-      color: var(--neutral-200);
+      color: var(--base-message-views-color);
     }
   }
 
   &__time {
-    font-size: var(--base-message-font-size-time);
-    color: var(--base-message-color-time);
+    font-size: var(--base-message-time-font-size);
+    color: var(--base-message-time-color);
   }
 
   &__menu-button {
@@ -467,12 +461,12 @@ onMounted(() => {
     transition: 0.2s;
 
     span {
-      color: var(--neutral-500);
-      font-size: 20px;
+      color: var(--base-message-menu-button-color);
+      font-size: var(--base-message-menu-button-font-size);
     }
 
     &:hover span {
-      color: var(--neutral-700);
+      color: var(--base-message-menu-button-hover-color);
       transition: 0.2s;
     }
   }
@@ -489,7 +483,7 @@ onMounted(() => {
 
     p {
       white-space: pre-wrap;
-      font-size: var(--base-message-font-size-text);
+      font-size: var(--base-message-text-font-size);
     }
   }
 
@@ -522,7 +516,7 @@ onMounted(() => {
       transform: translateY(-50%);
       width: 2px;
       height: 84%;
-      background-color: var(--neutral-400);
+      background-color: var(--audio-message-transcript-delimiter-color);
       border-radius: 6px;
     }
   }
@@ -535,15 +529,6 @@ onMounted(() => {
       -webkit-line-clamp: unsets;
       line-clamp: unsets;
       -webkit-box-orient: initial;
-    }
-  }
-
-  &__play,
-  &__pause {
-    background-color: var(--neutral-400);
-
-    span {
-      color: var(--audio-message-button-icon-color);
     }
   }
 
@@ -656,7 +641,7 @@ onMounted(() => {
 
     span {
       color: var(--modal-icon-color);
-      font-size: var(--icon-font-size-medium);
+      font-size: var(--modal-icon-font-size);
     }
   }
 }

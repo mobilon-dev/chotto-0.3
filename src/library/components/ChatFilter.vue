@@ -31,7 +31,7 @@ const update = () => {
 .chat-filter {
   &__input {
     background-color: transparent;
-    font-weight: 400;
+    font-weight: var(--input-font-weight);
     color: var(--input-text-color);
     padding: var(--input-padding);
     border: var(--input-border);

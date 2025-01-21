@@ -5,6 +5,14 @@
   /* Float Container */
   --float-container-bg: var(--neutral-700);
   --float-container-box-shadow: 0px 0px 20px -10px rgba(144, 144, 144, 0.2);
-  --float-container-bg-header: var(--neutral-800);
+  --float-container-bg-header: var(--neutral-700);
   --float-container-icon-color: var(--neutral-300);
+
+  --float-container-border-radius: 12px;
+  --float-container-border-radius-header: 12px 12px 0 0;
+
+  --float-container-title-font-size: var(--font-large-size);
+  --float-container-title-font-weight: 600;
+
+
 }

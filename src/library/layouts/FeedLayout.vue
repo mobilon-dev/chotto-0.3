@@ -27,7 +27,6 @@
     grid-column: 1;
     display: flex;
     flex-direction: column;
-    /* вычитаем маргины сверху и снизу */
     height: inherit;
   }
 }

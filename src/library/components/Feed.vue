@@ -318,7 +318,7 @@ watch(
   }
 
   &__icon-down {
-    font-size: var(--icon-font-size-medium);
+    font-size: var(--feed-button-down-icon-font-size);
     color: var(--feed-button-down-icon-color);
   }
 
@@ -355,11 +355,9 @@ watch(
 }
 
 .focused-message {
-    
-    background-color: rgba(168, 243, 134, 0.5);
-    box-shadow: 0px 0px 12px 2px rgba(168, 243, 134, 0.5);
-
-  }
+  background-color: var(--focused-message-background-color);
+  box-shadow: 0px 0px 12px 2px var(--focused-message-box-shadow-color);
+}
 
 .v-enter-active {
   transition: all 0.1s ease-out;

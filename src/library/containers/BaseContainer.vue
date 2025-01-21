@@ -31,7 +31,7 @@ provide('chatAppId', chatAppId)
 .base {
   &__container {
     transition: all 0.3s ease;
-    font-weight: 400;
+    font-weight: var(--container-font-weight);
     background-color: var(--base-container-bg, transparent);
     color: var(--container-color);
     font-family: var(--container-font-family);

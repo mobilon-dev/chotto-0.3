@@ -9,6 +9,8 @@
   --layout-base-second-col-bg: #fcfafa;
   --layout-base-bg: var(--default-white);
   --layout-base-column-border: 1px solid var(--neutral-200);
+  --layout-base-first-col-bg: var(--default-white);
+  
   /* Feed layout */
   --layout-feed-bg: var(--default-white)
 }

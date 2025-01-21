@@ -95,7 +95,7 @@ onMounted(() => {
   &__input {
     width: 100%;
     background-color: var(--input-background);
-    font-weight: 400;
+    font-weight: var(--input-font-weight);
     color: var(--input-color);
     padding: var(--input-padding);
     border: var(--input-border);

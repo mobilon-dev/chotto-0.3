@@ -190,17 +190,17 @@ watch(
       left: 0;
       right: 0;
       width: 100%;
-      background-color: var(--neutral-200);
+      background-color: var(--chat-item-background-color);
     }
   }
 
   &__selected {
     cursor: pointer;
     border-radius: var(--chat-item-border-radius);
-    background: var(--chat-item-selected);
+    background: var(--chat-item-selected-color);
 
     .chat-item__menu-button {
-      background: var(--chat-item-selected);
+      background: var(--chat-item-selected-color);
     }
   }
 
@@ -212,14 +212,14 @@ watch(
     align-self: center;
     object-fit: cover;
     margin-right: 15px;
-    background-color: var(--neutral-300);
+    background-color: var(--avatar-background-color);
     min-width: var(--avatar-width-medium);
     min-height: var(--avatar-height-medium);
     border-radius: var(--avatar-border-radius);
 
     span {
       font-size: var(--avatar-icon-size-medium);
-      color: var(--neutral-500);
+      color: var(--avatar-color);
     }
 
     img {
@@ -249,8 +249,8 @@ watch(
 
   &__name {
     margin-bottom: 8px;
-    font-size: 16px;
-    font-weight: var(--chat-item-font-weight-name);
+    font-size: var(--chat-item-name-font-size);
+    font-weight: var(--chat-item-name-font-weight);
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -260,9 +260,9 @@ watch(
   }
 
   &__last-message {
-    font-size: 14px;
-    font-weight: var(--chat-item-font-weight-last-message);
-    color: var(--chat-item-color-last-message);
+    font-size: var(--chat-item-last-message-font-size);
+    font-weight: var(--chat-item-last-message-font-weight);
+    color: var(--chat-item-last-message-color);
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -278,9 +278,9 @@ watch(
     flex-direction: column;
     justify-content: space-between;
     align-items: end;
-
+    
     span {
-      color: var(--neutral-500);
+      color: var(--chat-item-details-color);
     }
   }
 
@@ -288,7 +288,7 @@ watch(
     order: 0;
     width: 100%;
     border: none;
-    background-color: var(--chat-list-menu-button);
+    background-color: transparent;
     cursor: pointer;
     padding: 0;
 
@@ -301,7 +301,7 @@ watch(
     }
 
     &:hover span {
-      color: var(--chat-list-menu-button-color-hover);
+      color: var(--chat-item-menu-button-color-hover);
       transition: 0.2s;
     }
   }
@@ -312,20 +312,20 @@ watch(
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    font-weight: 400;
+    font-weight: var(--chat-item-unread-font-weight);
     margin-left: auto;
     margin-top: auto;
     min-width: 22px;
     min-height: 22px;
-    font-size: 12px;
-    color: var(--chat-item-color-unread);
-    background-color: var(--chat-item-bg-unread);
+    font-size: var(--chat-item-unread-font-size);
+    color: var(--chat-item-unread-color);
+    background-color: var(--chat-item-unread-bg);
   }
 
   &__time {
-    font-size: var(--chat-item-font-size-time);
-    color: var(--chat-item-color-time);
-    font-weight: var(--chat-item-font-weight-time);
+    font-size: var(--chat-item-time-font-size);
+    color: var(--chat-item-time-color);
+    font-weight: var(--chat-item-time-font-weight);
     white-space: nowrap;
   }
 
@@ -346,7 +346,7 @@ watch(
     display: flex;
 
     span {
-      font-weight: 400;
+      font-weight: var(--chat-item-message-status-font-weight);
       color: var(--chat-item-message-status-color-received);
       font-size: var(--chat-item-message-status-font-size);
     }

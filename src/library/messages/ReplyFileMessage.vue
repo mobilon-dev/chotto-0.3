@@ -59,7 +59,7 @@ watch(
     margin-top: 6px;
     word-wrap: break-word;
     white-space: pre-wrap;
-    font-size: 13px;
+    font-size: var(--reply-message-text-font-size);
     color: var(--reply-message-color);
     overflow: hidden;
     text-overflow: ellipsis;
@@ -89,7 +89,7 @@ watch(
     line-clamp: 1;
     -webkit-box-orient: vertical;
     margin-right: 40px;
-    font-size: 13px;
+    font-size: var(--reply-message-text-font-size);
     color: var(--reply-message-color);
   }
 }

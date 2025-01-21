@@ -158,8 +158,8 @@ function getClass(element, type) {
   }
 
   &__title {
-    font-size: var(--call-message-font-size-title);
-    font-weight: 500;
+    font-size: var(--call-message-title-font-size);
+    font-weight: var(--call-message-title-font-weight);
     margin-bottom: 2px;
   }
 
@@ -173,19 +173,19 @@ function getClass(element, type) {
     border-radius: 50%;
     height: 38px;
     width: 38px;
-    background-color: var(--neutral-400);
-    color: var(--p-red-500);
-    font-size: var(--avatar-icon-size-small);
+    background-color: var(--call-message-phone-icon-bg-color);
+    color: var(--call-message-phone-icon-color);
+    font-size: var(--call-message-phone-icon-font-size);
   }
 
   &__duration {
-    color: var(--call-message-color-duration);
-    font-size: 14px;
+    color: var(--call-message-duration-color);
+    font-size: var(--call-message-duration-font-size);
   }
 
   &__time {
-    font-size: var(--base-message-font-size-time);
-    color: var(--base-message-color-time);
+    font-size: var(--base-message-time-font-size);
+    color: var(--base-message-time-color);
   }
 
   &__download-button {
@@ -202,9 +202,9 @@ function getClass(element, type) {
     cursor: pointer;
 
     span {
-      color: var(--audio-message-download-button);
-      font-weight: 600;
-      font-size: 12px;
+      color: var(--call-message-download-button-color);
+      font-weight: var(--call-message-download-button-font-weight);
+      font-size: var(--call-message-download-button-font-size);
     }
   }
 
@@ -212,7 +212,7 @@ function getClass(element, type) {
     display: flex;
 
     span {
-      font-weight: 400;
+      font-weight: var(--base-message-status-font-weight);
       color: var(--base-message-status-color-received);
       font-size: var(--base-message-status-font-size);
     }
@@ -239,8 +239,8 @@ function getClass(element, type) {
   }
 
   &__subtext {
-    font-weight: 500;
-    font-size: 12px;
+    font-weight: var(--base-message-subtext-font-weight);
+    font-size: var(--base-message-subtext-font-size);
     color: var(--base-message-subtext-color);
   }
 
@@ -261,12 +261,12 @@ function getClass(element, type) {
     transition: 0.2s;
 
     span {
-      color: var(--neutral-500);
+      color: var(--base-message-menu-button-color);
       font-size: 20px;
     }
 
     &:hover span {
-      color: var(--neutral-700);
+      color: var(--base-message-menu-button-hover-color);
       transition: 0.2s;
     }
   }
@@ -289,16 +289,16 @@ function getClass(element, type) {
       left: 0;
       width: 16px;
       height: 2px;
-      background-color: var(--neutral-700);
+      background-color: var(--call-message-transcription-start-symbol-bg-color);
     }
 
     p {
-      font-size: 22px;
+      font-size: var(--call-message-transcription-text-font-size);
       margin: 0;
     }
 
     span {
-      color: var(--neutral-600);
+      color: var(--call-message-transcription-time-color);
     }
   }
 
@@ -420,7 +420,7 @@ function getClass(element, type) {
 
     span {
       color: var(--modal-icon-color);
-      font-size: var(--icon-font-size-medium);
+      font-size: var(--modal-icon-font-size);
     }
   }
 }

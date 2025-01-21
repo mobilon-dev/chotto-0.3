@@ -33,10 +33,10 @@ const props = defineProps({
 }
 
 .placeholder.filled {
-  background-color: #d4edda;
+  /*var*/background-color: var(--variable-placeholder-filled-color);
 }
 
 .placeholder.empty {
-  background-color: #ffc468;
+  /*var*/background-color: var(--variable-placeholder-empty-color);
 }
 </style>

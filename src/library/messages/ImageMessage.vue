@@ -290,7 +290,8 @@ onUnmounted(() => {
     column-gap: 4px;
     border-radius: 12px;
     padding: 6px 10px;
-    background-color: rgb(0 0 0 / 39%);
+    color: var(--image-message-info-color);
+    background-color: var(--image-message-info-bg-color);
   }
 
   &__download-button {
@@ -303,12 +304,12 @@ onUnmounted(() => {
     border: none;
     border-radius: 12px;
     padding: 6px 6px;
-    background-color: rgb(0 0 0 / 39%);
+    background-color: var(--image-message-info-bg-color);
     cursor: pointer;
 
     span {
-      color: var(--neutral-200);
-      font-size: 12px;
+      color: var(--image-message-info-color);
+      font-size: var(--image-message-download-button-font-size);
     }
   }
 
@@ -320,33 +321,27 @@ onUnmounted(() => {
 
     span {
       font-size: var(--base-message-views-icon-font-size);
-      color: var(--neutral-200);
     }
 
     p {
       font-size: var(--base-message-views-font-size);
-      color: var(--neutral-200);
     }
   }
 
   &__time {
-    color: var(--neutral-200);
-    font-size: var(--base-message-font-size-time);
+    font-size: var(--base-message-time-font-size);
   }
 
   &__status {
     display: flex;
 
     span {
-      font-weight: 400;
-      color: var(--default-white);
       font-size: var(--base-message-status-font-size);
     }
   }
 
   .status--received {
     span {
-      color: var(--default-white);
 
       &:first-child {
         margin-right: -8px;
@@ -365,8 +360,8 @@ onUnmounted(() => {
   }
 
   &__subtext {
-    font-weight: 500;
-    font-size: 12px;
+    font-weight: var(--base-message-subtext-font-weight);
+    font-size: var(--base-message-subtext-font-size);
     color: var(--base-message-subtext-color);
   }
 
@@ -425,7 +420,7 @@ onUnmounted(() => {
 
     span {
       color: var(--modal-icon-color);
-      font-size: var(--icon-font-size-medium);
+      font-size: var(--modal-icon-font-size);
     }
   }
 
@@ -458,7 +453,7 @@ onUnmounted(() => {
     word-wrap: break-word;
 
     p {
-      font-size: var(--base-message-font-size-text);
+      font-size: var(--base-message-text-font-size);
       word-break: break-all;
     }
   }

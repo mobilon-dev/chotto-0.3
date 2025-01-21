@@ -63,9 +63,9 @@ onMounted(() => {
     box-sizing: border-box;
     width: 56px;
     height: 28px;
-    border: 1px solid var(--neutral-400);
+    /* var*/border: 1px solid var(--neutral-400);
     border-radius: 25%/50%;
-    background: var(--neutral-50);
+    /* var*/background: var(--neutral-50);
     transition: .15s;
     cursor: pointer;
 
@@ -81,8 +81,8 @@ onMounted(() => {
     }
 
     span.pi-sun {
-      background-color: var(--neutral-400);
-      color: var(--neutral-700);
+      /* var*/background-color: var(--neutral-400);
+      /* var*/color: var(--neutral-700);
       left: 1px;
       width: 24px;
       height: 24px;
@@ -92,8 +92,8 @@ onMounted(() => {
 
     span.pi-moon {
       opacity: 0;
-      background-color: var(--neutral-400);
-      color: var(--neutral-700);
+      /* var*/background-color: var(--neutral-400);
+      /* var*/color: var(--neutral-700);
       width: 24px;
       height: 24px;
       border-radius: 50%;
@@ -112,7 +112,7 @@ onMounted(() => {
 }
 
 .theme-button input[type=checkbox]:checked+.theme-button__switch {
-  background: var(--neutral-700);
+  /* var*/background: var(--neutral-700);
   transition: .15s;
 }
 

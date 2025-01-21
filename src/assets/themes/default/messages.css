@@ -4,45 +4,88 @@
   --base-message-right-bg: var(--emerald-100);
   --base-message-left-bg: var(--neutral-200);
 
-  --base-message-font-size-text: 16px;
-  --base-message-font-size-time: 12px;
-  --base-message-font-size-remaining-time: 12px;
-  --base-message-status-font-size: 12px;
-  --base-message-views-font-size: 12px;
-  --base-message-views-icon-font-size: 13px;
+  --base-message-text-font-size: 16px;
 
-  --base-message-color-time: var(--neutral-700);
-  --base-message-color-views: var(--neutral-700);
-  --base-message-subtext-color: var(--neutral-500);
+  --base-message-time-font-size: 12px;
+  --base-message-time-color: var(--neutral-700);
+
+  --base-message-remaining-time-font-size: 12px;
+
+  --base-message-status-font-size: 12px;
   --base-message-status-color-received: var(--neutral-500);
   --base-message-status-color-read: #00c2ff;
+  --base-message-status-font-weight: var(--regular-font-weight);
+
+  --base-message-views-font-size: 12px;
+  --base-message-views-icon-font-size: 13px;
+  --base-message-views-color: var(--neutral-200);
+  
+  --base-message-subtext-color: var(--neutral-500);
+  --base-message-subtext-font-size: var(--font-mid-size);
+  --base-message-subtext-font-weight: 500;
+
+  --base-message-menu-button-font-size: 20px;
+  --base-message-menu-button-color: var(--neutral-500);
+  --base-message-menu-button-hover-color: var(--neutral-700);
 
   --base-message-margin: 0 0 10px 0;
 
+  /* Focused message */
+  --focused-message-color: rgba(168, 243, 134, 0.5);
+  --focused-message-background-color: var(--focused-message-color);
+  --focused-message-box-shadow-color: var(--focused-message-color);
+
+  /* Message Keyboard*/
+  --keyboard-background-color: var(--neutral-100);
+  --keyboard-border: 1px solid var(--neutral-300);
+  --keyboard-shadow-color: var(--neutral-200);
+  --keyboard-font-size: var(--base-message-font-size-text);
+
   /* Reply Messages */
+  --reply-message-text-font-size: var(--font-mid-size);
   --reply-message-right-bg: rgb(152 219 188 / 46%);
   --reply-message-left-bg: var(--neutral-300);
   --reply-message-color: var(--neutral-600);
   --reply-message-before-bg: var(--emerald-400);
+  --reply-message-border: 1px solid var(--neutral-300);
 
   /* Link Preview */
+
   --link-preview-right-bg: rgb(152 219 188 / 46%);
   --link-preview-left-bg: var(--neutral-300);
   --link-preview-before-bg: var(--emerald-400);
 
+  /* Typing Message */
+  --typing-message-shadow-color: var(--neutral-500);
+  /* _____________________________________________ */
   /* Date Message */
   --date-message-color: var(--neutral-700);
-
+  --date-message-bg: #fcfafa;
+  --date-message-font-size: var(--font-mid-size);
+  --date-message-font-weight: 500;
+  --date-message-border: 1px solid #d3d6db;
+  /* _____________________________________________ */
   /* File Message */
+
   --file-message-icon-color: var(--neutral-600);
   --file-message-text-color: var(--neutral-950);
 
+  --file-message-download-button-color: var(--neutral-500);
+  --file-message-download-button-font-weight: 600;
+  --file-message-download-button-font-size: var(--font-mid-size);
   /* _____________________________________________ */
 
   /* Audio Message */
   --audio-message-button-icon-color: var(--neutral-100);
-  --audio-message-download-button: var(--neutral-500);
+  --audio-message-button-icon-bg-color: var(--neutral-400);
+  --audio-message-button-icon-font-size: var(--icon-font-size-medium);
+
+  --audio-message-download-button-color: var(--neutral-500);
+  --audio-message-download-button-font-weight: 600;
+  --audio-message-download-button-font-size: var(--font-mid-size);
+  
   --audio-message-transcript-color: var(--neutral-700);
+  --audio-message-transcript-delimiter-color: var(--neutral-400);
 
   /* progress-bar-container -> pbc */
   --audio-message-pbc-background-color: var(--neutral-400);
@@ -53,6 +96,43 @@
   /* _____________________________________________ */
 
   /* Call Message */
-  --call-message-font-size-title: 16px;
-  --call-message-color-duration: var(--neutral-700);
+  --call-message-title-font-size: var(--font-large-size);
+  --call-message-title-font-weight: 500;
+
+  --call-message-phone-icon-bg-color: var(--neutral-400);
+  --call-message-phone-icon-color: var(--p-red-500);
+  --call-message-phone-icon-font-size: var(--avatar-icon-size-small);
+
+  --call-message-duration-font-size: var(--font-midX-size);
+  --call-message-duration-color: var(--neutral-700);
+
+  --call-message-download-button-color: var(--neutral-500);
+  --call-message-download-button-font-weight: 600;
+  --call-message-download-button-font-size: var(--font-mid-size);
+
+  --call-message-transcription-start-symbol-bg-color: var(--neutral-700);
+  --call-message-transcription-text-font-size: 22px;
+  --call-message-transcription-time-color: var(--neutral-600);
+
+  /* _____________________________________________ */
+
+  /* Image Message */
+  --image-message-info-color: var(--default-white);
+  --image-message-info-bg-color: rgb(0 0 0 / 39%);
+  --image-message-download-button-font-size: var(--font-mid-size);
+
+  /* _____________________________________________ */
+
+  /* Videp Message */
+  --video-message-info-color: var(--default-white);
+  --video-message-info-bg-color: rgb(0 0 0 / 39%);
+  --video-message-download-button-font-size: var(--font-mid-size);
+
+  /* _____________________________________________ */
+
+  /* System Message */
+
+  --system-message-bg-color: #ffeecc;
+  --system-message-font-size: var(--font-midX-size);
+  --system-message-color: var(--neutral-600);
 }

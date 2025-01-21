@@ -58,7 +58,7 @@ const props = defineProps({
     display: flex;
     flex-direction: column;
     color: var(--container-color);
-    font-size: var(--base-message-font-size-text);
+    font-size: var(--base-message-text-font-size);
   }
 
   &__title {

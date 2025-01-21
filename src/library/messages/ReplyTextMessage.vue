@@ -46,7 +46,7 @@ function inNewWindow(event) {
 >
 p {
   margin: 0;
-  font-size: 13px;
+  /* var*/font-size: var(--reply-message-text-font-size);
   color: var(--reply-message-color);
   white-space: pre-wrap;
   overflow: hidden;

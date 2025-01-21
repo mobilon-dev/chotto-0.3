@@ -3,6 +3,11 @@
   /* General */
   --container-color: var(--neutral-900);
   --container-font-family: 'Montserrat', sans-serif;
+  --container-font-weight: var(--regular-font-weight);
+
+  /* Base Container */
+
+  --base-container-bg: var(--default-white);
 
   /* Float Container */
   --float-container-bg: var(--default-white);
@@ -10,5 +15,10 @@
   --float-container-bg-header: var(--neutral-300);
   --float-container-border-radius: 12px;
   --float-container-border-radius-header: 12px 12px 0 0;
+
+  --float-container-title-font-size: var(--font-large-size);
+  --float-container-title-font-weight: 600;
+
+  --float-container-icon-color: var(--neutral-600);
 
 }

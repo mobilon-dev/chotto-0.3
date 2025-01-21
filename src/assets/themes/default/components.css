@@ -4,36 +4,52 @@
   --chat-panel-bg: var(--neutral-100);
   --chat-panel-margin: 0px 0px 0px 10px;
   --chat-panel-border-radius: 12px;
+  --chat-panel-border: 1px solid var(--neutral-200);
+
+  --chat-panel-title-font-size: var(--h3-font-size);
+  --chat-panel-title-font-weight: var(--h3-font-weight);
+  --chat-panel-button-close-font-size: var(--icon-font-size-medium);
+  --chat-panel-button-close-color: var(--neutral-600); 
 
   /* Side Bar */
   --sidebar-padding-container: 18px 8px 30px 8px;
+  --sidebar-bg-container: var(--neutral-100);
   --sidebar-border: 1px solid var(--neutral-200);
   --sidebar-box-shadow: -13px 0px 20px -21px rgba(0, 0, 0, 0.2);
   --sidebar-image-width: 49px;
   --sidebar-image-height: 49px;
-  --sidebar-font-weight-name: 500;
+  --sidebar-image-active-border: 3px solid var(--emerald-500);
+  
   --sidebar-row-gap-list: 10px;
+  --sidebar-list-fixed-border-top: 2px solid var(--neutral-300);
+  --sidebar-unread-font-size: var(--font-small-size);
+  --sidebar-unread-font-weight: 500;
+  --sidebar-unread-color: var(--default-white);
+
+  --sidebar-name-font-size: var(--font-small-size);
+  --sidebar-name-font-weight: 500;
 
   /* Chat List */
   --chat-list-fixed-background-color: var(--default-white);
-  --chat-list-menu-button: var(--default-white);
-  --chat-list-menu-button-color-hover: var(--neutral-700);
-  --chat-list-scrollbar-bg: var(--neutral-50);
-  --chat-list-scrollbar-thumb-bg: var(--neutral-300);
   --chat-list-button-actions-bg: var(--neutral-300);
   --chat-list-button-actions-width: 32px;
   --chat-list-button-actions-height: 32px;
+  --chat-list-button-actions-color: var(--neutral-500);
   --chat-list-items-padding: 0 12px 0 12px;
   --chat-list-filter-margin: 0 12px 30px 12px;
   --chat-list-title-container-padding: 0 12px 20px 12px;
+  --chat-list-title-font-size: var(--h2-font-size);
+  --chat-list-title-font-weight: var(--h2-font-weight);
 
   /* Inputs */
   --chat-input-container-bg: var(--neutral-100);
   --chat-input-icon-color: var(--neutral-600);
   --chat-input-icon-color-disabled: var(--neutral-200);
+  --chat-input-icon-font-size: var(--icon-font-size-medium);
 
   --input-background: var(--default-white);
-  --input-font-size: 16px;
+  --input-font-size: var(--font-large-size);
+  --input-font-weight: var(--regular-font-weight);
   --input-padding: 0.5rem 0.75rem;
   --input-width: 100%;
   --input-border-radius: 0 0 12px 12px;
@@ -47,33 +63,41 @@
   /* File Uploader */
   --file-uploader-icon-color: var(--neutral-600);
 
-  /* Float Container */
-  --float-container-icon-color: var(--neutral-600);
+  /* File Preview */
+  --file-preview-container-border: 1px solid var(--neutral-300);
 
   /* _____________________________________________ */
 
   /* Chat Item */
 
   --chat-item-padding-container: 15px;
+  --chat-item-background-color: var(--neutral-200);
 
   --chat-item-message-status-font-size: 12px;
   --chat-item-message-status-color-received: var(--neutral-500);
   --chat-item-message-status-color-read: #00c2ff;
+  --chat-item-message-status-font-weight: var(--regular-font-weight);
 
+  --chat-item-menu-button-color-hover: var(--neutral-700);
 
   /* Info Container */
   --chat-item-border-radius: 6px;
-  --chat-item-selected: var(--neutral-100);
-  --chat-item-color-last-message: var(--neutral-400);
-  --chat-item-font-weight-last-message: 500;
-  --chat-item-font-weight-name: 600;
+  --chat-item-selected-color: var(--neutral-100);
+  --chat-item-last-message-color: var(--neutral-400);
+  --chat-item-last-message-font-weight: 500;
+  --chat-item-last-message-font-size: var(--font-midX-size);
+  --chat-item-name-font-weight: 600;
+  --chat-item-name-font-size: var(--font-large-size);
 
   /* Details Container */
-  --chat-item-color-unread: var(--neutral-100);
-  --chat-item-bg-unread: var(--emerald-500);
-  --chat-item-color-time: var(--neutral-400);
-  --chat-item-font-weight-time: 500;
-  --chat-item-font-size-time: 12px;
+  --chat-item-details-color: var(--neutral-500);
+  --chat-item-unread-color: var(--neutral-100);
+  --chat-item-unread-bg: var(--emerald-500);
+  --chat-item-unread-font-size: var(--font-mid-size);
+  --chat-item-unread-font-weight: var(--regular-font-weight);
+  --chat-item-time-color: var(--neutral-400);
+  --chat-item-time-font-weight: 500;
+  --chat-item-time-font-size: 12px;
   /* _____________________________________________ */
 
   /* Feed Found Item */
@@ -84,14 +108,15 @@
   --feed-found-item-selected-color: var(--neutral-100);
   --feed-found-item-hovered-color: var(--neutral-200);
 
-  --feed-found-item-color-message: var(--neutral-400);
-  --feed-found-item-font-weight-message: 500;
+  --feed-found-item-message-color: var(--neutral-400);
+  --feed-found-item-message-font-weight: 500;
+  --feed-found-item-message-font-size: var(--font-midX-size);
 
-  --feed-found-item-font-weight-name: 600;
+  --feed-found-item-name-font-weight: 600;
 
-  --feed-found-item-color-time: var(--neutral-400);
-  --feed-found-item-font-weight-time: 500;
-  --feed-found-item-font-size-time: 12px;
+  --feed-found-item-time-color: var(--neutral-400);
+  --feed-found-item-time-font-weight: 500;
+  --feed-found-item-time-font-size: 12px;
 
   /* _____________________________________________ */
 
@@ -99,23 +124,33 @@
   --chat-info-padding: 20px 20px 20px 20px;
   --chat-info-font-weight-time: 500;
   --chat-info-font-weight-title: 600;
+  --chat-info-font-size-title: 16px;
   --chat-info-border-radius: 12px 12px 0 0;
   --chat-info-border: 1px solid var(--neutral-200);
+  --chat-info-time-color: var(--neutral-400);
+  --chat-info-time-font-size: var(--font-midX-size);
+  --chat-info-actions-font-size: var(--icon-font-size-medium);
+  --chat-info-actions-color: var(--neutral-600);
 
   /* Feed */
   --feed-button-down-bg: var(--default-white);
   --feed-button-down-uread-color: var(--neutral-100);
   --feed-button-down-uread-bg: var(--emerald-500);
   --feed-button-down-icon-color: var(--neutral-600);
+  --feed-button-down-icon-font-size: var(--icon-font-size-medium);
 
   /* Сontext Menu */
+  --button-context-menu-color: var(--neutral-600);
+  --button-context-menu-icon-font-size: var(--icon-font-size-medium);
+  --button-context-menu-disabled-color: var(--neutral-200);
   --context-menu-background: var(--default-white);
+  --context-menu-box-shadow-color: rgba(0, 0, 0, 0.11);
+  --context-menu-border: 1px solid var(--neutral-300);
 
   /* Channel Selector */
-  --channels-selector-icon-color: var(--neutral-600);
-
-  --channels-selector-popover-background-color: var(--default-white);
-  --channels-selector-popover-border-radius: 10px;
+  --channel-selector-title-font-weight: 500;
+  --channel-selector-title-font-size: var(--font-midX-size);
+  --channel-selector-img-resolution: 16px; 
 
   /* Scroll Bar */
   --scrollbar-bg: var(--neutral-50);
@@ -123,11 +158,65 @@
 
   /* Template Selector */
   --template-selector-bg: var(--default-white);
+  --template-selector-shadow-color: var(--neutral-950);
+  --template-selector-border: 1px solid var(--neutral-200);
+
   --template-selector-item-hover: var(--neutral-50);
   --template-selector-item-selected: var(--neutral-100);
-  --template-selector-border: 1px solid var(--neutral-200);
-  --template-selector-icon-color: var(--neutral-500);
+  --template-selector-item-text-font-size: var(--font-midX-size);
+  --template-selector-item-text-font-weight: var(--regular-font-weight);
+  --template-selector-item-title-font-size: var(--font-large-size);
+  --template-selector-item-title-font-weight: 600;
+
+  --template-selector-button-close-font-size: var(--icon-font-size-medium);
+  --template-selector-button-close-color: var(--neutral-500);
+
+  --template-selector-plug-font-size: var(--font-midX-size);
   --template-selector-preview-bg: var(--neutral-100);
+  --template-selector-preview-text-font-size: var(--font-midX-size);
+  --template-selector-preview-time-font-size: var(--font-small-size);
+
   --template-selector-button-paste-bg: var(--neutral-200);
   --template-selector-button-paste-color: var(--neutral-800);
+  --template-selector-button-paste-font-size: var(--font-large-size);
+
+  --template-selector-button-add-font-size: var(--font-large-size);
+  
+  --template-selector-button-cancel-font-size: var(--font-large-size);
+
+  --variable-placeholder-empty-color: var(--p-red-100);
+  --variable-placeholder-filled-color: var(--emerald-300);
+
+  /* WABA Attachment section */
+
+  --attachment-section-color:#FEF3B8;
+  --attachment-section-hover-color:#fef3b890;
+
+  --attachment-section-error-color: var(--p-red-600);
+  --attachment-section-error-border: 1px solid var(--p-red-600);
+  --attachment-section-error-font-size: var(--font-small-size);
+
+  --attachment-section-title-font-size: var(--font-mid-size);
+  --attachment-section-title-font-weight: 600;
+  --attachment-section-title-color: var(--neutral-950);
+
+  --attachment-section-info-font-size: var(--font-mid-size);
+  --attachment-section-info-font-weight: 600;
+  --attachment-section-info-color: var(--neutral-700);
+
+  /* WABA Quick Reply Buttons */
+  
+  --quick-reply-buttons-font-size: var(--font-midX-size);
+  --quick-reply-buttons-font-weight: var(--regular-font-weight);
+  --quick-reply-buttons-color: var(--blue-1);
+
+  /* WABA Separated Quick Buttons */
+
+  --separated-quick-buttons-bg-color: var(--default-white);
+  --separated-quick-buttons-border: 1px solid var(--neutral-200);
+  --separated-quick-buttons-title-font-size: var(--font-midX-size);
+  --separated-quick-buttons-title-font-weight: var(--regular-font-weight);
+  --separated-quick-buttons-action-font-size: var(--font-midX-size);
+  --separated-quick-buttons-action-font-weight: var(--regular-font-weight);
+  --semitransparent-overlay-bg-color: var(--neutral-950);
 }

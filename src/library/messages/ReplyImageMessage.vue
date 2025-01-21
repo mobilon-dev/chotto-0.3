@@ -173,7 +173,7 @@ onUnmounted(() => {
 
     span {
       color: var(--modal-icon-color);
-      font-size: var(--icon-font-size-medium);
+      font-size: var(--modal-icon-font-size);
     }
   }
 
@@ -184,7 +184,7 @@ onUnmounted(() => {
     word-break: break-word;
     p {
       margin: 0;
-      font-size: 13px;
+      font-size: var(--reply-message-text-font-size);
       color: var(--reply-message-color);
       overflow: hidden;
       text-overflow: ellipsis;

@@ -70,7 +70,7 @@ function inNewWindow(event) {
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background-color: var(--neutral-400);
+    background-color: var(--audio-message-button-icon-bg-color);
 
     span {
       display: flex;
@@ -78,7 +78,7 @@ function inNewWindow(event) {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: var(--icon-font-size-medium);
+      font-size: var(--audio-message-button-icon-font-size);
       color: var(--audio-message-button-icon-color);
     }
   }
@@ -88,7 +88,7 @@ function inNewWindow(event) {
     word-break: break-word;
     p {
       margin: 0;
-      font-size: 13px;
+      font-size: var(--reply-message-text-font-size);
       color: var(--reply-message-color);
       overflow: hidden;
       text-overflow: ellipsis;
@@ -148,7 +148,7 @@ function inNewWindow(event) {
 
     span {
       color: var(--modal-icon-color);
-      font-size: var(--icon-font-size-medium);
+      font-size: var(--modal-icon-font-size);
     }
   }
 }

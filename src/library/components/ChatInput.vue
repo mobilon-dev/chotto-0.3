@@ -169,29 +169,9 @@ const sendMessage = () => {
     display: flex;
   }
 
-  &__button-file {
-    input {
-      position: absolute;
-      z-index: -1;
-      opacity: 0;
-      display: block;
-      width: 0;
-      height: 0;
-
-    }
-
-    span {
-      display: block;
-      cursor: pointer;
-      padding: 14px;
-      font-size: var(--icon-font-size-medium);
-      color: var(--chat-input-icon-color);
-    }
-  }
-
   &__input {
-    border: 1px solid var(--neutral-300);
-    font-weight: 400;
+    border: var(--input-border);
+    font-weight: var(--input-font-weight);
     background-color: var(--input-background);
     padding: var(--input-padding);
     width: var(--input-width);
@@ -216,14 +196,13 @@ const sendMessage = () => {
 
   &__button-send {
     background-color: transparent;
-    border: 0px solid var(--neutral-300);
-    ;
+    border: 0px;
 
     span {
       display: block;
       cursor: pointer;
       padding: 14px;
-      font-size: var(--icon-font-size-medium);
+      font-size: var(--chat-input-icon-font-size);
       color: var(--chat-input-icon-color);
     }
   }

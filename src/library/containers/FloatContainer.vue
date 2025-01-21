@@ -16,7 +16,6 @@
       <div
         ref="container"
         class="float-window__controls"
-        :style="{ backgroundColor: props.colorTitle ? props.colorTitle : '' }"
         @mousedown="mouseDown"
         @mouseup="turnOffDragMode"
         @mouseleave="turnOffDragMode"
@@ -55,10 +54,6 @@ import { ref, onMounted, useId, provide } from "vue";
 
 const props = defineProps({
   title: {
-    type: String,
-    required: true,
-  },
-  colorTitle: {
     type: String,
     required: true,
   },
@@ -158,7 +153,7 @@ onMounted(() => {
     width: 100%;
     height: 100%;
     position: absolute;
-    font-weight: 400;
+    font-weight: var(--container-font-weight);
     color: var(--container-color);
     font-family: var(--container-font-family);
     border-radius: var(--float-container-border-radius);
@@ -183,8 +178,8 @@ onMounted(() => {
   }
 
   &__title {
-    font-size: 18px;
-    font-weight: 600;
+    /* var*/font-size: var(--float-container-title-font-size);
+    /* var*/font-weight: var(--float-container-title-font-weight);
     margin-left: 10px;
   }
 
@@ -222,7 +217,7 @@ onMounted(() => {
 
   input,
   button {
-    font-family: var(--container-font-family);
+    /* var*/font-family: var(--container-font-family);
   }
 
   p,

@@ -189,11 +189,11 @@ const searchedTemplate = computed(() => {
     height: 500px;
     padding: 16px 5px 5px 5px;
     background-color: var(--template-selector-bg);
-    border: 1px solid var(--neutral-200);
+    border: var(--template-selector-border);
     box-sizing: border-box;
     min-width: 750px;
     bottom: 20px; right: 20px;
-    box-shadow: 5px 5px 29px -15px #000000;
+    box-shadow: 5px 5px 29px -15px var(--template-selector-shadow-color);
   }
 
   &__button-close {
@@ -207,8 +207,8 @@ const searchedTemplate = computed(() => {
     margin: 0 16px 20px auto;
 
     span {
-      font-size: var(--icon-font-size-medium);
-      color: var(--template-selector-icon-color);
+      font-size: var(--template-selector-button-close-font-size);
+      color: var(--template-selector-button-close-color);
     }
   }
 
@@ -216,7 +216,7 @@ const searchedTemplate = computed(() => {
     grid-column: 1;
     grid-row: 2 / 5;
     overflow-y: auto;
-    border: 1px solid var(--neutral-200);
+    border: var(--template-selector-border);
     padding: 0;
     margin: 0;
 
@@ -243,7 +243,7 @@ const searchedTemplate = computed(() => {
   &__templates {
     grid-column: 2;
     grid-row: 3 / 5;
-    border: 1px solid var(--neutral-200);
+    border: var(--template-selector-border);
     overflow-y: auto;
     margin-left: -10px;
     margin-right: 10px;
@@ -319,11 +319,13 @@ const searchedTemplate = computed(() => {
 
   &__item-title {
     margin-bottom: 8px;
-    font-weight: 600;
+    font-weight: var(--template-selector-item-title-font-weight);
+    font-size: var(--template-selector-item-title-font-size);
   }
 
   &__item-text {
-    font-size: 15px;
+    font-size: var(--template-selector-item-text-font-size);
+    font-weight: var(--template-selector-item-text-font-weight);
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -369,7 +371,7 @@ const searchedTemplate = computed(() => {
   &__preview-container {
     grid-row: 2 / 5;
     grid-column: 3;
-    border: 1px solid var(--neutral-200);
+    border: var(--template-selector-border);
     max-height: 375px;
     overflow-y: auto;
     background-color: var(--template-selector-preview-bg);
@@ -408,7 +410,7 @@ const searchedTemplate = computed(() => {
   &__plug {
     width: 100%;
     height: 100%;
-    font-size: 15px;
+    font-size: var(--template-selector-plug-font-size);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -417,14 +419,14 @@ const searchedTemplate = computed(() => {
   }
 
   &__preview-text {
-    font-size: 14px;
+    font-size: var(--template-selector-preview-text-font-size);
     word-break: break-word;
     white-space: pre-line;
   }
 
   &__preview-time {
     width: fit-content;
-    font-size: 10px;
+    font-size: var(--template-selector-preview-time-font-size);
     color: var(--base-message-color-time);
     margin-left: auto;
   }
@@ -436,7 +438,7 @@ const searchedTemplate = computed(() => {
     width: fit-content;
     justify-self: flex-end;
     margin: 16px 0 0 0;
-    font-size: 17px;
+    font-size: var(--template-selector-button-paste-font-size);
     background-color: var(--template-selector-button-paste-bg);
     color: var(--template-selector-button-paste-color);
     border: none;

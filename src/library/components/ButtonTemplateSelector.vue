@@ -93,14 +93,13 @@ onMounted(() => {
 >
 .button-template {
   background-color: transparent;
-  border: 0px solid var(--neutral-300);
-  ;
+  border: 0px;
 
   span {
     display: block;
     cursor: pointer;
     padding: 14px;
-    font-size: var(--icon-font-size-medium);
+    font-size: var(--chat-input-icon-font-size);
     color: var(--chat-input-icon-color);
   }
 }

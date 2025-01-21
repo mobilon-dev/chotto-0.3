@@ -3,10 +3,19 @@
   /* General */
   --container-color: var(--neutral-950);
   --container-font-family: "Open Sans", sans-serif;
+  --container-font-weight: var(--regular-font-weight);
 
   /* Float Container */
   --float-container-border-radius: 0;
   --float-container-border-radius-header: 0;
+
+  --float-container-bg: var(--default-white);
+  --float-container-box-shadow: 0px 0px 20px -7px rgba(0, 0, 0, 0.2);
+  --float-container-bg-header: var(--neutral-300);
+  --float-container-title-font-size: var(--font-large-size);
+  --float-container-title-font-weight: 600;
+
+  --float-container-icon-color: var(--neutral-600);
 
   /* Base Container */
   --base-container-bg: var(--default-white)
