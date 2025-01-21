@@ -16,7 +16,6 @@
       <div
         ref="container"
         class="float-window__controls"
-        :style="{ backgroundColor: props.colorTitle ? props.colorTitle : '' }"
         @mousedown="mouseDown"
         @mouseup="turnOffDragMode"
         @mouseleave="turnOffDragMode"
@@ -55,10 +54,6 @@ import { ref, onMounted, useId, provide } from "vue";
 
 const props = defineProps({
   title: {
-    type: String,
-    required: true,
-  },
-  colorTitle: {
     type: String,
     required: true,
   },

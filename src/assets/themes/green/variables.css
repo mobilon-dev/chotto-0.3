@@ -44,9 +44,18 @@
 
   --h2-font-size: 20px;
   --h2-font-weight: 700;
+  --font-large-size: 16px;
+  --font-midX-size: 14px;
+  --font-mid-size: 12px;
+  --font-small-size: 10px;
 
+  --h2-font-weight: 600;
+  --h3-font-weight: 500; 
+  --regular-font-weight: 400;
   /* Avatars */
 
+  /**/--avatar-background-color: var(--neutral-300);
+  /**/--avatar-color: var(--neutral-500);
   --avatar-width-medium: 50px;
   --avatar-height-medium: 50px;
   --avatar-width-small: 40px;
@@ -69,4 +78,5 @@
   --modal-overlay-shadow: 0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 8px 10px -6px rgba(0, 0, 0, 0.1);
   --modal-icon-color: var(--neutral-600);
   --modal-bg: var(--default-white);
+  --modal-icon-font-size: var(--icon-font-size-medium);
 }

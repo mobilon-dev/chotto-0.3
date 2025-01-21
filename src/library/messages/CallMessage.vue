@@ -202,7 +202,7 @@ function getClass(element, type) {
     cursor: pointer;
 
     span {
-      color: var(--call-message-download-button);
+      color: var(--call-message-download-button-color);
       font-weight: var(--call-message-download-button-font-weight);
       font-size: var(--call-message-download-button-font-size);
     }

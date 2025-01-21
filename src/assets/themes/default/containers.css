@@ -19,4 +19,6 @@
   --float-container-title-font-size: var(--font-large-size);
   --float-container-title-font-weight: 600;
 
+  --float-container-icon-color: var(--neutral-600);
+
 }

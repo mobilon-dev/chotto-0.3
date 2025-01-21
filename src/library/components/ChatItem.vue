@@ -288,7 +288,7 @@ watch(
     order: 0;
     width: 100%;
     border: none;
-    background-color: var(--chat-item-menu-button);
+    background-color: transparent;
     cursor: pointer;
     padding: 0;
 

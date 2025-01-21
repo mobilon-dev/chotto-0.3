@@ -709,7 +709,7 @@ watch(isModalVisible, (newVal) => {
     display: grid;
     column-gap: 12px;
     box-shadow: 0px 9px 15px 3px rgba(0, 0, 0, 0.2);
-    background-color: var(--default-white);
+    background-color: var(--template-selector-bg);
     border-radius: 5px;
     grid-template-columns: repeat(2, 1fr);
 
@@ -722,7 +722,7 @@ watch(isModalVisible, (newVal) => {
       color: var(--input-color);
       border: var(--input-border);
       transition: border-color var(--input-transition-duration);
-
+      background-color: var(--input-background);
       &::placeholder {
         color: var(--input-placeholder-color);
       }

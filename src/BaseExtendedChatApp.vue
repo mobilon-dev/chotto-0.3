@@ -94,30 +94,30 @@
                 <template #buttons>
                   <FileUploader
                     :filebump-url="filebumpUrl"
-                    :state="'active'"
+                    :state="'disabled'"
                   />
                   <ButtonEmojiPicker
                     :mode="'hover'"
-                    :state="'active'"
+                    :state="'disabled'"
                   />
                   <ButtonTemplateSelector
                     :templates="templates"
                     :group-templates="groupTemplates"
                     :mode="'click'"
-                    :state="'active'"
+                    :state="'disabled'"
                   />
                   <ButtonWabaTemplateSelector
                     :waba-templates="wabaTemplates"
                     :group-templates="groupTemplates"
                     :mode="'click'"
-                    :state="'active'"
+                    :state="'disabled'"
                     :filebump-url="filebumpUrl"
                     @send-waba-values="sendWabaValues"
                   />
                   <ChannelSelector
                     :channels="channels"
                     :mode="'hover'"
-                    :state="'active'"
+                    :state="'disabled'"
                     @select-channel="onSelectChannel"
                   />
                 </template>

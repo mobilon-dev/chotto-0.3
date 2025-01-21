@@ -4,9 +4,16 @@
   --chat-panel-bg: var(--neutral-100);
   --chat-panel-margin: 0px 0px 0px 10px;
   --chat-panel-border-radius: 12px;
+  --chat-panel-border: 1px solid var(--neutral-200);
+
+  --chat-panel-title-font-size: var(--h3-font-size);
+  --chat-panel-title-font-weight: var(--h3-font-weight);
+  --chat-panel-button-close-font-size: var(--icon-font-size-medium);
+  --chat-panel-button-close-color: var(--neutral-600); 
 
   /* Side Bar */
   --sidebar-padding-container: 18px 8px 30px 8px;
+  --sidebar-bg-container: var(--neutral-100);
   --sidebar-border: 1px solid var(--neutral-200);
   --sidebar-box-shadow: -13px 0px 20px -21px rgba(0, 0, 0, 0.2);
   --sidebar-image-width: 49px;
@@ -24,11 +31,10 @@
 
   /* Chat List */
   --chat-list-fixed-background-color: var(--default-white);
-  --chat-list-scrollbar-bg: var(--neutral-50);
-  --chat-list-scrollbar-thumb-bg: var(--neutral-300);
   --chat-list-button-actions-bg: var(--neutral-300);
   --chat-list-button-actions-width: 32px;
   --chat-list-button-actions-height: 32px;
+  --chat-list-button-actions-color: var(--neutral-500);
   --chat-list-items-padding: 0 12px 0 12px;
   --chat-list-filter-margin: 0 12px 30px 12px;
   --chat-list-title-container-padding: 0 12px 20px 12px;
@@ -59,8 +65,6 @@
 
   /* File Preview */
   --file-preview-container-border: 1px solid var(--neutral-300);
-  /* Float Container */
-  --float-container-icon-color: var(--neutral-600);
 
   /* _____________________________________________ */
 
@@ -74,7 +78,6 @@
   --chat-item-message-status-color-read: #00c2ff;
   --chat-item-message-status-font-weight: var(--regular-font-weight);
 
-  --chat-item-menu-button: var(--default-white);
   --chat-item-menu-button-color-hover: var(--neutral-700);
 
   /* Info Container */
@@ -121,18 +124,13 @@
   --chat-info-padding: 20px 20px 20px 20px;
   --chat-info-font-weight-time: 500;
   --chat-info-font-weight-title: 600;
+  --chat-info-font-size-title: 16px;
   --chat-info-border-radius: 12px 12px 0 0;
   --chat-info-border: 1px solid var(--neutral-200);
   --chat-info-time-color: var(--neutral-400);
   --chat-info-time-font-size: var(--font-midX-size);
   --chat-info-actions-font-size: var(--icon-font-size-medium);
   --chat-info-actions-color: var(--neutral-600);
-
-  /* Chat Panel */
-  --chat-panel-title-font-size: var(--h3-font-size);
-  --chat-panel-title-font-weight: var(--h3-font-weight);
-  --chat-panel-button-close-font-size: var(--icon-font-size-medium);
-  --chat-panel-button-close-color: var(--neutral-600); 
 
   /* Feed */
   --feed-button-down-bg: var(--default-white);

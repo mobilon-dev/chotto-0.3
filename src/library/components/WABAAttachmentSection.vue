@@ -247,6 +247,8 @@ watch(
 
   &__icon{
     padding-left: 10px;
+    color: var(--attachment-section-title-color);
+
   }
 
   &__title{

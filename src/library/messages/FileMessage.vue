@@ -260,7 +260,7 @@ function getClass(message) {
     cursor: pointer;
 
     span {
-      color: var(--file-message-download-button);
+      color: var(--file-message-download-button-color);
       font-weight: var(--file-message-download-button-font-weight);
       font-size: var(--file-message-download-button-font-size);
     }

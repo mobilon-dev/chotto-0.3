@@ -9,7 +9,7 @@
       :auth-provider="authProvider"
       :data-provider="dataProvider"
       :eventor="eventor"
-    /-->
+    />
     <!--
       <ChatAppFloat />
     -->
