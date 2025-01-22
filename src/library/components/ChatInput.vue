@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, nextTick, inject } from 'vue';
+import { unref, ref, watch, nextTick, inject } from 'vue';
 import { useMessage } from '../../helpers/useMessage';
 import { t } from '../../locale/useLocale';
 import {IInputMessage} from '../../types';
@@ -53,6 +53,11 @@ const props = defineProps({
     required: false,
     default: 'active', 
   },
+  focusOnInputArea: {
+    type: Boolean,
+    required: false,
+    default: false,
+  }
 })
 
 watch(
@@ -61,6 +66,19 @@ watch(
     console.log('emit typing')
     emit('typing')
   }
+)
+
+watch(
+  ()=>props.focusOnInputArea,
+  () => {
+    console.log(props.focusOnInputArea)
+    if (props.focusOnInputArea)
+      nextTick(()=>{
+        const el = unref(refInput);
+        el?.focus()
+      })
+  },
+  {immediate: true}
 )
 
 watch(

@@ -79,10 +79,10 @@
               <Feed
                 :button-params="buttonParams"
                 :objects="messages"
-                :is-scroll-to-bottom-on-update-objects-enabled="isScrollToBottomOnUpdateObjectsEnabled"
                 :typing="selectedChat.typing ? { avatar: selectedChat.avatar, title: selectedChat.title } : false"
                 :enable-double-click-reply="true"
                 :scroll-to="clickedReply"
+                :scroll-to-bottom="scrollToBottomOnSelectChat || isScrollToBottomOnUpdateObjectsEnabled"
                 @message-action="messageAction"
                 @load-more="loadMore"
                 @load-more-down="loadMoreDown"
@@ -90,7 +90,9 @@
                 @click-replied-message="handleClickReplied"
                 @force-scroll-to-bottom="forceScrollToBottom"
               />
-              <ChatInput @send="addMessage">
+              <ChatInput 
+              :focus-on-input-area="inputFocus"
+              @send="addMessage">
                 <template #buttons>
                   <FileUploader
                     :filebump-url="filebumpUrl"
@@ -143,7 +145,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import moment from 'moment';
 
 import {
@@ -244,9 +246,12 @@ const isOpenChatPanel = ref(false);
 const isOpenSearchPanel = ref(false)
 const notFoundMessage = ref(false)
 const isScrollToBottomOnUpdateObjectsEnabled = ref(false);
+const scrollToBottomOnSelectChat = ref(false)
+const inputFocus = ref(false)
 const filebumpUrl = ref('https://filebump2.services.mobilon.ru');
 const clickedReply = ref('')
 const foundMessages = ref([])
+
 const selectItem = (item) => {
   console.log("selected sidebar item", item);
 };
@@ -340,7 +345,6 @@ const getFeedObjects = () => {
   // console.log('get feed')
   if (selectedChat.value) {
     // здесь обработка для передачи сообщений в feed
-    isScrollToBottomOnUpdateObjectsEnabled.value = true;
     const messages = props.dataProvider.getFeed(selectedChat.value.chatId);
     const messages3 = transformToFeed(messages);
     return messages3;
@@ -396,9 +400,15 @@ const sendWabaValues = (obj) => {
 }
 
 const selectChat = (chat) => {
+  scrollToBottomOnSelectChat.value = true
+  inputFocus.value = true
   selectedChat.value = chat;
   chatsStore.setUnreadCounter(chat.chatId, 0);
   messages.value = getFeedObjects(); // Обновляем сообщения при выборе чата
+  setTimeout(() => {
+    scrollToBottomOnSelectChat.value = false
+    inputFocus.value = false
+  }, 50)
 };
 
 const handleClickReplied = (messageId) => {
@@ -430,11 +440,17 @@ const highlightMessage = (messageId) => {
 }
 
 const handleEvent = async (event) => {
+  console.log(event)
   if (event.type === "message") {
     chatsStore.setUnreadCounter(event.data.chatId, 1);
-    if (selectedChat?.value?.chatId) {
+    if (event.data.chatId == selectedChat?.value?.chatId) {
       messages.value = getFeedObjects();
+      isScrollToBottomOnUpdateObjectsEnabled.value = true;
     }
+    
+    setTimeout(() => {
+      isScrollToBottomOnUpdateObjectsEnabled.value = false;
+    }, 50)
     await playNotificationAudio();
   } else if (event.type === "notification") {
     console.log("Системное уведомление:", event.data.text);
@@ -452,5 +468,6 @@ onMounted(() => {
   groupTemplates.value = props.dataProvider.getGroupTemplates()
   sidebarItems.value = props.dataProvider.getSidebarItems();
   console.log('eee', sidebarItems.value)
+  //selectChat(chatsStore.chats[0])
 });
 </script>
