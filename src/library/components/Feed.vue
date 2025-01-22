@@ -67,7 +67,7 @@
   setup
   lang="ts"
 >
-import { ref, unref, watch, nextTick, onUpdated, inject, computed } from 'vue';
+import { ref, unref, watch, nextTick, inject, computed } from 'vue';
 import {
   FileMessage,
   ImageMessage,
@@ -91,7 +91,6 @@ const refFeed = ref();
 const keyboardRef = ref();
 const isShowButton = ref(false)
 const isKeyboardPlace = ref(false)
-
 const props = defineProps({
   objects: {
     type: Array <IFeedObject>,
@@ -101,11 +100,9 @@ const props = defineProps({
     type: Object as () => IFeedUnreadButton,
     required: false,
   },
-  // при новом сообщении необходимо прокручивать ленту вниз,
-  // а при загрузке более ранних сообщений - нет
-  isScrollToBottomOnUpdateObjectsEnabled: {
+  // принудительный скролл вниз по событию извне (сообщение, смена чата)
+  scrollToBottom: {
     type: Boolean,
-    required: true,
     default: false,
   },
   typing: {
@@ -182,24 +179,25 @@ const componentsMap = (type) => {
 }
 
 function scrollToBottom() {
-  if (props.isScrollToBottomOnUpdateObjectsEnabled) {
-    nextTick(function () {
-      const element = unref(refFeed);
-      element.scrollTop = element.scrollHeight;
-    })
-  }
-}
-
-function scrollToBottomForce() {
-  emit('forceScrollToBottom')
   nextTick(function () {
     const element = unref(refFeed);
     element.scrollTop = element.scrollHeight;
   })
 }
 
-onUpdated(() => scrollToBottom);
-//watch(() => props.objects, scrollToBottom);
+function scrollToBottomForce() {
+  emit('forceScrollToBottom')
+  scrollToBottom()
+}
+
+watch(
+  ()=> props.scrollToBottom,
+  () => {
+    if (props.scrollToBottom)
+      scrollToBottom()
+  },
+  {immediate: true}
+)
 
 const messageAction = (message) => {
   emit('messageAction', message);
