@@ -122,7 +122,7 @@ onMounted(() => {
 @container all (width > 920px){
   .extend-layout{
     &__container{
-      grid-template-columns: min-content 2fr 70%;
+      grid-template-columns: min-content 30% calc(70% - var(--first-col-width));
     }
     &__second-col{
       max-width: 350px;
