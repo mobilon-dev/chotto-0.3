@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import { provide, inject, ref } from 'vue';
+import { provide, inject, ref, onMounted } from 'vue';
 
 const chatAppId = inject('chatAppId')
 
@@ -32,19 +32,33 @@ const refContainer = ref()
 
 const setThirdColVisible = () => {
   const container = document.getElementById('extern-layout-container-' + chatAppId)
+
   container.style.setProperty('--second-col-display','none')
   container.style.setProperty('--third-col-display','flex')
+  container.style.setProperty('--second-col-width','0%')
+  container.style.setProperty('--third-col-width','100%')
 }
 
 const setSecondColVisible = () => {
   const container = document.getElementById('extern-layout-container-' + chatAppId)
+
   container.style.setProperty('--second-col-display','flex')
   container.style.setProperty('--third-col-display','none')
+  container.style.setProperty('--second-col-width','100%')
+  container.style.setProperty('--third-col-width','0%')
 }
 
 provide("setFeedColVisible", setThirdColVisible)
 provide("setChatListColVisible", setSecondColVisible)
 provide("refContainer", refContainer)
+
+onMounted(() => {
+  const container = document.getElementById('extern-layout-container-' + chatAppId)
+  const firstCol = document.getElementById('extend-layout-first-col-' + chatAppId)
+  
+  container.style.setProperty('--first-col-width',firstCol.offsetWidth + 'px')
+
+})
 
 </script>
 
@@ -54,21 +68,21 @@ provide("refContainer", refContainer)
 >
 .extend-layout {
   &__container {
-
-
     --second-col-display: none;
-    --third-col-display: flex;
+    --second-col-width: 0%;
 
+    --third-col-display: flex;
+    --third-col-width: 100%;
+
+    --first-col-width: 0px;
+    
     height: inherit;
     display: grid;
-    grid-template-columns: min-content auto;
     transition: all 0.3s ease;
     background-color: var(--layout-extended-bg, transparent);
     position: relative;
     border-top: var(--layout-extended-column-border, none);
     border-left: var(--layout-extended-column-border, none);
-
-    container: extend / inline-size;
   }
 
   &__first-col {
@@ -101,13 +115,25 @@ provide("refContainer", refContainer)
     border-right: var(--layout-extended-column-border, none);
     border-bottom: var(--layout-extended-column-border, none);
     background-color: var(--layout-extended-third-col-bg);
+    width: auto;
   }
 }
 
-@container extend (width < 920px){
+@container all (width > 920px){
   .extend-layout{
     &__container{
-      grid-template-columns: min-content;
+      grid-template-columns: min-content 2fr 70%;
+    }
+    &__second-col{
+      max-width: 350px;
+    }
+  }
+}
+
+@container all (width < 920px){
+  .extend-layout{
+    &__container{
+      grid-template-columns: min-content calc(var(--second-col-width) - var(--first-col-width)) calc(var(--third-col-width) - var(--first-col-width));
     }
     &__second-col{
       display: var(--second-col-display);
@@ -118,10 +144,10 @@ provide("refContainer", refContainer)
   }
 }
 
-@container extend (width < 720px){
+@container all (width < 720px){
   .extend-layout{
     &__container{
-      grid-template-columns: min-content;
+      grid-template-columns: min-content var(--second-col-width) var(--third-col-width);
     }
     &__first-col{
       display: none;

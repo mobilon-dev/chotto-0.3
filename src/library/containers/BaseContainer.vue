@@ -36,6 +36,7 @@ provide('chatAppId', chatAppId)
     color: var(--container-color);
     font-family: var(--container-font-family);
     container: all / inline-size;
+    min-width: 480px;
   }
 
   *,
