@@ -56,13 +56,13 @@
 </template>
 
 <script setup>
-import { toRef, inject, onMounted, computed, unref, ref, watch } from 'vue'
+import { toRef, inject, onMounted, unref, ref } from 'vue'
 
 const props = defineProps({
   sidebarItems: {
     type: Array,
     required: true,
-    default: () => [],
+    default: [],
   },
 });
 
@@ -79,16 +79,16 @@ const emit = defineEmits(["selectItem"]);
 
 const resizeObserver = new ResizeObserver((entries) => {
   const containerWidth = entries[0].target.clientWidth
+
   const sc = unref(sidebarContainer)
   const ord = unref(onResizeDestination)
   const omd = unref(onMountDestination)
+
   if (containerWidth < 720){
-    ord.appendChild(sc)
-    omd.replaceChildren()
+    ord.prepend(sc)
   }
   if (containerWidth > 720){
-    omd.appendChild(sc)
-    ord.replaceChildren()
+    omd.prepend(sc)
   }
 });
 
@@ -214,11 +214,19 @@ onMounted(() => {
     }
     &__list{
       flex-direction: row;
+      gap: var(--sidebar-row-gap-list);
     }
     &__item{
       display: block;
+      max-width: 70px;
+      text-align: center;
       span{
-        left: 20px;
+        width: 24px;
+        height: 24px;
+        left: 45px;
+      }
+      p{
+        font-size: 14px;
       }
     }
     &__list-fixed{
@@ -226,10 +234,11 @@ onMounted(() => {
       border-left: var(--sidebar-list-fixed-border-top);
       padding-top: 0;
       border-top: 0px;
+      margin-right: 10px;
     }
     &__image{
-      width: calc(var(--sidebar-image-width) / 1.5);
-      height: calc(var(--sidebar-image-height) / 1.5);
+      width: calc(var(--sidebar-image-width) * 1.2);
+      height: calc(var(--sidebar-image-height) * 1.2);
     }
   }
 }

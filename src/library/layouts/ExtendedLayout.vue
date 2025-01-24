@@ -118,7 +118,7 @@ provide("refContainer", refContainer)
   }
 }
 
-@container extend (width < 700px){
+@container extend (width < 720px){
   .extend-layout{
     &__container{
       grid-template-columns: min-content;
