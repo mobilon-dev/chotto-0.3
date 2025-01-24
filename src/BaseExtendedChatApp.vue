@@ -468,6 +468,6 @@ onMounted(() => {
   groupTemplates.value = props.dataProvider.getGroupTemplates()
   sidebarItems.value = props.dataProvider.getSidebarItems();
   console.log('eee', sidebarItems.value)
-  //selectChat(chatsStore.chats[0])
+  selectChat(chatsStore.chats[0])
 });
 </script>

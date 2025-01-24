@@ -93,7 +93,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, inject } from 'vue'
 
 import { ContextMenu } from '.'
 import { getStatus, statuses } from "../../helpers";
@@ -106,9 +106,14 @@ const props = defineProps({
   },
 });
 
+const setFeedColVisible = inject('setFeedColVisible')
+
 const emit = defineEmits(['select', 'action']);
 
-const selectChat = () => { emit('select', props.chat); }
+const selectChat = () => { 
+  emit('select', props.chat);
+  if (setFeedColVisible) setFeedColVisible()
+}
 
 const getClass = () => {
   return props.chat.isSelected ? 'chat-item__selected' : '';

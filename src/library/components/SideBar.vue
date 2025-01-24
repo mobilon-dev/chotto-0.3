@@ -1,5 +1,8 @@
 <template>
-  <div class="sidebar__container">
+  <div 
+    class="sidebar__container" 
+    :id="'sidebar-container-' + chatAppId"
+  >
     <ul class="sidebar__list">
       <li
         v-for="(item, index) in items.filter(i => !i.isFixedBottom)"
@@ -53,7 +56,7 @@
 </template>
 
 <script setup>
-import { onMounted, reactive, ref, toRef } from 'vue'
+import { toRef, inject, onMounted, computed, unref, ref, watch } from 'vue'
 
 const props = defineProps({
   sidebarItems: {
@@ -63,9 +66,31 @@ const props = defineProps({
   },
 });
 
+const chatAppId = inject('chatAppId')
+const refContainer = inject('refContainer')
+
+const sidebarContainer = ref()
+const onResizeDestination = ref()
+const onMountDestination = ref()
+
 const items = toRef(props, 'sidebarItems');
 
 const emit = defineEmits(["selectItem"]);
+
+const resizeObserver = new ResizeObserver((entries) => {
+  const containerWidth = entries[0].target.clientWidth
+  const sc = unref(sidebarContainer)
+  const ord = unref(onResizeDestination)
+  const omd = unref(onMountDestination)
+  if (containerWidth < 720){
+    ord.appendChild(sc)
+    omd.replaceChildren()
+  }
+  if (containerWidth > 720){
+    omd.appendChild(sc)
+    ord.replaceChildren()
+  }
+});
 
 const selectItem = (itemId) => {
   /*
@@ -84,6 +109,15 @@ const getName = (name) => {
   const parts = name.split(' ');
   return parts.length > 2 ? parts.slice(0, 2).join(' ') : name;
 }
+
+onMounted(() => {
+  sidebarContainer.value = document.getElementById('sidebar-container-' + chatAppId)
+  onResizeDestination.value = document.getElementById('chat-list-sidebar-items-' + chatAppId)
+  onMountDestination.value = document.getElementById('sidebar-container-' + chatAppId).parentNode
+  if (unref(refContainer)){
+    resizeObserver.observe(unref(refContainer))
+  }
+})
 
 </script>
 
@@ -164,6 +198,39 @@ const getName = (name) => {
   &__image--active {
     border: var(--sidebar-image-active-border);
     opacity: 1;
+  }
+}
+
+@container all (width < 720px) {
+  .sidebar{
+    &__container{
+      display: flex;
+      flex-direction: row;
+      height: fit-content;
+      padding-top: 0px;
+      padding-bottom: 5px;
+      border-right: 0px;
+      background-color: transparent;
+    }
+    &__list{
+      flex-direction: row;
+    }
+    &__item{
+      display: block;
+      span{
+        left: 20px;
+      }
+    }
+    &__list-fixed{
+      padding-left: 10px;
+      border-left: var(--sidebar-list-fixed-border-top);
+      padding-top: 0;
+      border-top: 0px;
+    }
+    &__image{
+      width: calc(var(--sidebar-image-width) / 1.5);
+      height: calc(var(--sidebar-image-height) / 1.5);
+    }
   }
 }
 </style>

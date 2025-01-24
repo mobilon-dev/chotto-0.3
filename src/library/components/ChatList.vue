@@ -36,6 +36,7 @@
       </transition>
     </div>
 
+    <div :id="'chat-list-sidebar-items-' + chatAppId"></div>
 
     <ChatFilter
       v-if="filterEnabled"
@@ -81,9 +82,11 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, inject } from 'vue';
 import {ChatItem, ChatFilter, ContextMenu} from "./";
 import { t } from '../../locale/useLocale';
+
+const chatAppId = inject('chatAppId')
 
 const filter = ref('');
 const isOpenMenu = ref(false)

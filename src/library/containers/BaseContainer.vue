@@ -35,6 +35,7 @@ provide('chatAppId', chatAppId)
     background-color: var(--base-container-bg, transparent);
     color: var(--container-color);
     font-family: var(--container-font-family);
+    container: all / inline-size;
   }
 
   *,

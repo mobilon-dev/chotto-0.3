@@ -1,59 +1,51 @@
 <template>
-  <div class="extend-layout__container">
-    <div class="extend-layout__first-col">
+  <div class="extend-layout__container"
+  ref="refContainer"
+  :id="'extern-layout-container-' + chatAppId">
+    <div 
+      class="extend-layout__first-col" 
+      :id="'extend-layout-first-col-' + chatAppId"
+    >
       <slot name="first-col" />
     </div>
     <div
-      ref="resizableDiv"
-      class="extend-layout__second-col resizable-div"
-      :style="{ userSelect: isResizing ? 'none' : 'auto', }"
-      @mousedown="startResize"
-      @mouseup="stopResize"
+      class="extend-layout__second-col"
+      :id="'extend-layout-second-col-' + chatAppId"
     >
       <slot name="second-col" />
     </div>
-    <div class="extend-layout__third-col">
+    <div 
+      class="extend-layout__third-col"
+      :id="'extend-layout-third-col-' + chatAppId"
+    >
       <slot name="third-col" />
     </div>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { provide, inject, ref } from 'vue';
 
-const resizableDiv = ref(null);
-let isResizing = ref(false);
-let initialWidth = ref(0);
-let initialX = ref(0);
-let startX = ref(0);
+const chatAppId = inject('chatAppId')
 
-const startResize = (event) => {
-  if (event.offsetX >= resizableDiv.value.offsetWidth - 20) {
-    isResizing.value = true;
-    initialWidth.value = resizableDiv.value.offsetWidth;
-    initialX.value = event.clientX;
-    startX.value = event.clientX;
-    document.addEventListener('mousemove', resize);
-  }
-};
+const refContainer = ref()
 
-const resize = (event) => {
-  if (isResizing.value) {
-    const newWidth = initialWidth.value + (event.clientX - startX.value);
-    resizableDiv.value.style.width = `${Math.max(270, newWidth)}px`;
-  }
-};
+const setThirdColVisible = () => {
+  const container = document.getElementById('extern-layout-container-' + chatAppId)
+  container.style.setProperty('--second-col-display','none')
+  container.style.setProperty('--third-col-display','flex')
+}
 
-const stopResize = () => {
-  isResizing.value = false;
-  document.removeEventListener('mousemove', resize);
-};
+const setSecondColVisible = () => {
+  const container = document.getElementById('extern-layout-container-' + chatAppId)
+  container.style.setProperty('--second-col-display','flex')
+  container.style.setProperty('--third-col-display','none')
+}
 
-onMounted(() => {
-  if (resizableDiv.value) {
-    resizableDiv.value.style.width = '350px'
-  }
-})
+provide("setFeedColVisible", setThirdColVisible)
+provide("setChatListColVisible", setSecondColVisible)
+provide("refContainer", refContainer)
+
 </script>
 
 <style
@@ -62,15 +54,21 @@ onMounted(() => {
 >
 .extend-layout {
   &__container {
+
+
+    --second-col-display: none;
+    --third-col-display: flex;
+
     height: inherit;
     display: grid;
-    grid-template-columns: min-content min-content 3fr min-content;
+    grid-template-columns: min-content auto;
     transition: all 0.3s ease;
     background-color: var(--layout-extended-bg, transparent);
     position: relative;
-
     border-top: var(--layout-extended-column-border, none);
     border-left: var(--layout-extended-column-border, none);
+
+    container: extend / inline-size;
   }
 
   &__first-col {
@@ -106,21 +104,29 @@ onMounted(() => {
   }
 }
 
-.resizable-div {
-  position: relative;
+@container extend (width < 920px){
+  .extend-layout{
+    &__container{
+      grid-template-columns: min-content;
+    }
+    &__second-col{
+      display: var(--second-col-display);
+    }
+    &__third-col{
+      display: var(--third-col-display);
+    }
+  }
 }
 
-/* Область захвата */
-.resizable-div::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 6px;
-  bottom: 0;
-  width: 10px;
-  cursor: e-resize;
-  background-color: rgba(0, 0, 0, 0);
-  z-index: 100;
+@container extend (width < 700px){
+  .extend-layout{
+    &__container{
+      grid-template-columns: min-content;
+    }
+    &__first-col{
+      display: none;
+    }
+  }
 }
 
 .v-enter-active,

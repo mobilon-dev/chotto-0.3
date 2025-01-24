@@ -4,6 +4,12 @@
     class="chat-info__container"
   >
     <div class="chat-info__base-line">
+      <button
+        class="chat-info__return-button"
+        @click="setChatListColVisible"
+      >
+        <span class="pi pi-arrow-left" />
+      </button>
       <div class="chat-info__avatar-container">
       <img
         v-if="props.chat.avatar"
@@ -32,7 +38,7 @@
     </div>
     </div>
     
-
+    
     <div 
       class="chat-info__search-panel"
       :id="'chat-info-search-panel-' + chatAppId"  
@@ -56,6 +62,8 @@ const props = defineProps({
 const emit = defineEmits(['open-panel']);
 
 const chatAppId = inject('chatAppId')
+
+const setChatListColVisible = inject('setChatListColVisible')
 
 </script>
 
@@ -130,5 +138,18 @@ const chatAppId = inject('chatAppId')
       color: var(--chat-info-actions-color);
     }
   }
+
+  &__return-button{
+    /** */
+  }
 }
+
+@container all (width > 920px){
+  .chat-info{
+    &__return-button{
+      display: none;
+    }
+  }
+}
+
 </style>
