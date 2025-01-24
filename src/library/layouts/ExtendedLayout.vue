@@ -124,9 +124,6 @@ onMounted(() => {
     &__container{
       grid-template-columns: min-content 30% calc(70% - var(--first-col-width));
     }
-    &__second-col{
-      max-width: 350px;
-    }
   }
 }
 
