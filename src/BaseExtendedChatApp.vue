@@ -1,6 +1,7 @@
 <template>
   <div>
     <BaseContainer
+      ref="refContainer"
       height="90vh"
       width="70vw"
     >
@@ -19,22 +20,24 @@
         <template #second-col>
           <UserProfile :user="userProfile" />
           <ChatList
-            v-if="!isOpenSearchPanel"
+            v-if="!isOpenSearchPanel || (isOpenSearchPanel && feedSearchFeedCol)"
+            ref="refChatList"
             :chats="chatsStore.chats"
             filter-enabled
             @select="selectChat"
             @action="chatAction"
           />
-          <FeedSearch v-if="isOpenSearchPanel"
+          <FeedSearch 
+            v-if="isOpenSearchPanel && !feedSearchFeedCol"
             @search="searchMessages"
             @cancel="isOpenSearchPanel = !isOpenSearchPanel"
           />
           <FeedFoundObjects
-            v-if="isOpenSearchPanel"
+            v-if="isOpenSearchPanel && !feedSearchFeedCol"
             :not-found="notFoundMessage"
             :objects="foundMessages"
             :foundAmount="foundMessages.length"
-            @clicked-search="handleClickReplied"
+            @clicked-search="handleClickMessage"
           />
         </template>
 
@@ -44,7 +47,12 @@
             :is-selected-chat="!!selectedChat"
           >
             <template #default>
-              <ChatInfo :chat="selectedChat">
+              <div style="display: flex;
+                flex-direction: column;
+                height: 100%;"
+                :id="'feed-location'"
+              >
+                <ChatInfo :chat="selectedChat">
                 <template #actions>
                   <div style="display: flex;">
                     <button
@@ -62,21 +70,30 @@
                     /-->
                     <button
                       class="chat-info__button-panel"
-                      @click="isOpenSearchPanel = !isOpenSearchPanel"
+                      @click="handleOpenSearchPanel"
                     >
                       <span class="pi pi-search" />
                     </button>
                     
                   </div>
                 </template>
-                <template #search>
-                  <FeedSearch v-if="isOpenSearchPanel"
-                    @search="searchMessages"
-                    @cancel="isOpenSearchPanel = !isOpenSearchPanel"
-                  />
-                </template>
               </ChatInfo>
+              <FeedSearch 
+                v-if="isOpenSearchPanel && feedSearchFeedCol"
+                @search="searchMessages"
+                @cancel="handleOpenSearchPanel"
+                @switch="isShowFeedWhileSearch = !isShowFeedWhileSearch"
+                is-feed-location
+              />
+              <FeedFoundObjects
+                v-if="isOpenSearchPanel && feedSearchFeedCol && !isShowFeedWhileSearch"
+                :not-found="notFoundMessage"
+                :objects="foundMessages"
+                :foundAmount="foundMessages.length"
+                @clicked-search="handleClickMessage"
+              />
               <Feed
+                v-if="isShowFeedWhileSearch || !feedSearchFeedCol"
                 :button-params="buttonParams"
                 :objects="messages"
                 :typing="selectedChat.typing ? { avatar: selectedChat.avatar, title: selectedChat.title } : false"
@@ -124,6 +141,8 @@
                   />
                 </template>
               </ChatInput>
+              </div>
+              
             </template>
 
             <template #chatpanel>
@@ -142,10 +161,14 @@
       </ExtendedLayout>
     </BaseContainer>
   </div>
+
+
+    
+
 </template>
 
 <script setup>
-import { computed, onMounted, ref, watch } from "vue";
+import { computed, onMounted, ref, watch, unref, nextTick } from "vue";
 import moment from 'moment';
 
 import {
@@ -252,6 +275,17 @@ const filebumpUrl = ref('https://filebump2.services.mobilon.ru');
 const clickedReply = ref('')
 const foundMessages = ref([])
 
+const feedSearchFeedCol = ref(false)
+const isShowFeedWhileSearch = ref(true)
+
+const refContainer = ref()
+const refFeed = ref()
+
+const handleOpenSearchPanel = () => {
+  isOpenSearchPanel.value = !isOpenSearchPanel.value
+  isShowFeedWhileSearch.value = !isShowFeedWhileSearch.value
+}
+
 const selectItem = (item) => {
   console.log("selected sidebar item", item);
 };
@@ -320,6 +354,7 @@ const messageVisible = (message) => {
 
 const searchMessages = (string) => {
   if (string && string.length > 0){
+    isShowFeedWhileSearch.value = false
     foundMessages.value = transformToFeed(props.dataProvider.getMessagesBySearch(selectedChat.value.chatId, string))
     foundMessages.value = foundMessages.value.reverse()
     notFoundMessage.value = false
@@ -425,6 +460,21 @@ const handleClickReplied = (messageId) => {
   }, 50)
 }
 
+const handleClickMessage = (messageId) => {
+  isShowFeedWhileSearch.value = true
+  console.log('Clicked message id ' + messageId)
+  const message = messages.value.find((m) => {
+    if (m.messageId == messageId) return m
+    })
+  if (!message) {
+    const messages1 = props.dataProvider.getFeedByMessage(selectedChat.value.chatId, messageId)
+    messages.value = transformToFeed(messages1)
+  }
+  setTimeout(() => {
+      highlightMessage(messageId)
+  }, 50)
+}
+
 let timer
 const highlightMessage = (messageId) => {
   clearTimeout(timer)
@@ -457,6 +507,18 @@ const handleEvent = async (event) => {
   }
 };
 
+const resizeObserver = new ResizeObserver((entries) => {
+  const containerWidth = entries[0].target.clientWidth
+  if (unref(refFeed))
+  console.log(unref(refFeed).$el)
+  if (containerWidth < 920){
+    feedSearchFeedCol.value = true
+  }
+  if (containerWidth > 920){
+    feedSearchFeedCol.value = false
+  }
+});
+
 onMounted(() => {
   locale.value = locales.find((loc) => loc.code == props.locale)
   props.eventor.subscribe(handleEvent);
@@ -468,6 +530,8 @@ onMounted(() => {
   groupTemplates.value = props.dataProvider.getGroupTemplates()
   sidebarItems.value = props.dataProvider.getSidebarItems();
   console.log('eee', sidebarItems.value)
-  selectChat(chatsStore.chats[0])
+  if (unref(refContainer).$el){
+    resizeObserver.observe(unref(refContainer).$el)
+  }
 });
 </script>

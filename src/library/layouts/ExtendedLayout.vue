@@ -68,11 +68,11 @@ onMounted(() => {
 >
 .extend-layout {
   &__container {
-    --second-col-display: none;
-    --second-col-width: 0%;
+    --second-col-display: flex;
+    --second-col-width: 100%;
 
-    --third-col-display: flex;
-    --third-col-width: 100%;
+    --third-col-display: none;
+    --third-col-width: 0%;
 
     --first-col-width: 0px;
     
