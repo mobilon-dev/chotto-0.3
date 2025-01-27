@@ -8,6 +8,7 @@
       <ExtendedLayout>
         <template #first-col>
           <SideBar
+            v-if="sidebarFirstCol"
             :sidebar-items="sidebarItems"
             @select-item="selectItem"
           />
@@ -26,7 +27,16 @@
             filter-enabled
             @select="selectChat"
             @action="chatAction"
-          />
+          >
+            <template #sidebar>
+              <SideBar
+                v-if="!sidebarFirstCol"
+                horizontal
+                :sidebar-items="sidebarItems"
+                @select-item="selectItem"
+              />
+            </template>
+          </ChatList>
           <FeedSearch 
             v-if="isOpenSearchPanel && !feedSearchFeedCol"
             @search="searchMessages"
@@ -276,10 +286,10 @@ const clickedReply = ref('')
 const foundMessages = ref([])
 
 const feedSearchFeedCol = ref(false)
+const sidebarFirstCol = ref(true)
 const isShowFeedWhileSearch = ref(true)
 
 const refContainer = ref()
-const refFeed = ref()
 
 const handleOpenSearchPanel = () => {
   isOpenSearchPanel.value = !isOpenSearchPanel.value
@@ -509,13 +519,19 @@ const handleEvent = async (event) => {
 
 const resizeObserver = new ResizeObserver((entries) => {
   const containerWidth = entries[0].target.clientWidth
-  if (unref(refFeed))
-  console.log(unref(refFeed).$el)
+
   if (containerWidth < 920){
     feedSearchFeedCol.value = true
   }
   if (containerWidth > 920){
     feedSearchFeedCol.value = false
+  }
+
+  if (containerWidth < 720){
+    sidebarFirstCol.value = false
+  }
+  if (containerWidth > 720){
+    sidebarFirstCol.value = true
   }
 });
 

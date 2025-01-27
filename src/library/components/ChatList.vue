@@ -36,7 +36,7 @@
       </transition>
     </div>
 
-    <div :id="'chat-list-sidebar-items-' + chatAppId"></div>
+    <slot name="sidebar"/>
 
     <ChatFilter
       v-if="filterEnabled"
@@ -82,11 +82,9 @@
 </template>
 
 <script setup>
-import { ref, inject } from 'vue';
+import { ref } from 'vue';
 import {ChatItem, ChatFilter, ContextMenu} from "./";
 import { t } from '../../locale/useLocale';
-
-const chatAppId = inject('chatAppId')
 
 const filter = ref('');
 const isOpenMenu = ref(false)
@@ -94,7 +92,6 @@ const isOpenMenu = ref(false)
 const hideMenu = () => {
   isOpenMenu.value = false
 }
-
 
 // Define props
 const props = defineProps({
@@ -105,7 +102,7 @@ const props = defineProps({
   actions: {
     type: Array,
     required: false,
-    default: () => [],
+    default: [],
   },
   filterEnabled: {
     type: Boolean,
