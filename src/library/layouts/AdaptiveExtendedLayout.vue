@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import { provide, inject, watch, onMounted } from 'vue';
+import { inject, watch, onMounted } from 'vue';
 
 const props = defineProps({
   isSecondColVisible:{
@@ -66,15 +66,11 @@ const setSecondColVisible = () => {
   container.style.setProperty('--third-col-width','0%')
 }
 
-provide("setFeedColVisible", setThirdColVisible)
-provide("setChatListColVisible", setSecondColVisible)
-
 onMounted(() => {
   const container = document.getElementById('extern-layout-container-' + chatAppId)
   const firstCol = document.getElementById('extend-layout-first-col-' + chatAppId)
   
   container.style.setProperty('--first-col-width',firstCol.offsetWidth + 'px')
-
 })
 
 </script>
