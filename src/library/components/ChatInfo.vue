@@ -4,12 +4,11 @@
     class="chat-info__container"
   >
     <div class="chat-info__base-line">
-      <button
-        class="chat-info__return-button"
-        @click="setChatListColVisible"
-      >
-        <span class="pi pi-arrow-left" />
-      </button>
+      <span 
+        v-if="showReturnButton"
+        class="pi pi-arrow-left chat-info__return-button"
+        @click="emit('returnToChats')"
+      />
       <div class="chat-info__avatar-container">
       <img
         v-if="props.chat.avatar"
@@ -57,13 +56,16 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  showReturnButton: {
+    type: Boolean,
+    required: false,
+    default: false,
+  }
 });
 
-const emit = defineEmits(['open-panel']);
+const emit = defineEmits(['returnToChats']);
 
 const chatAppId = inject('chatAppId')
-
-const setChatListColVisible = inject('setChatListColVisible')
 
 </script>
 
@@ -140,15 +142,9 @@ const setChatListColVisible = inject('setChatListColVisible')
   }
 
   &__return-button{
-    /** */
-  }
-}
-
-@container all (width > 920px){
-  .chat-info{
-    &__return-button{
-      display: none;
-    }
+    border: 0px;
+    background-color: transparent;
+    cursor: pointer;
   }
 }
 
