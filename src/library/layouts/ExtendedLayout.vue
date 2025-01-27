@@ -52,6 +52,7 @@
     overflow: hidden;
     border-right: var(--layout-extended-column-border, none);
     border-bottom: var(--layout-extended-column-border, none);
+    width: 350px;
   }
 
   &__third-col {
