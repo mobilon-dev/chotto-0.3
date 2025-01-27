@@ -35,6 +35,48 @@ export const NoAnswerRight: Story = {
   },
 };
 
+export const NoAnswerLeftWithAvatar: Story = {
+  args: {
+    message: {
+      ...message,
+      position: 'left',
+      avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
+    },
+  },
+};
+
+export const NoAnswerRightWithAvatar: Story = {
+  args: {
+    message: {
+      ...message,
+      position: 'right',
+      avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
+    },
+  },
+};
+
+export const NoAnswerLeftWithAvatarAndSubtext: Story = {
+  args: {
+    message: {
+      ...message,
+      position: 'left',
+      subText: 'Это Коля',
+      avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
+    },
+  },
+};
+
+export const NoAnswerRightWithAvatarAndSubtext: Story = {
+  args: {
+    message: {
+      ...message,
+      position: 'right',
+      subText: 'Это Коля',
+      avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
+    },
+  },
+};
+
 export const CallHappenedLeft: Story = {
   args: {
     message: {

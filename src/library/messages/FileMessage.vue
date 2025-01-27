@@ -23,6 +23,7 @@
 
     <div
       class="file-message__content"
+      :style="{ gridRow: message.subText ? '2' : '1' }"
       @mouseenter="showMenu"
     >
       <BaseReplyMessage
@@ -351,7 +352,6 @@ function getClass(message) {
 
     .file-message__avatar {
       grid-column: 1;
-      grid-row: 2;
       margin-right: 12px;
     }
 
@@ -362,7 +362,7 @@ function getClass(message) {
     }
 
     .file-message__content {
-      /*grid-column: 2;*/
+      grid-column: 2;
       background-color: var(--base-message-left-bg);
     }
 
@@ -384,7 +384,6 @@ function getClass(message) {
 
     .file-message__avatar {
       grid-column: 2;
-      grid-row: 2;
       margin-left: 12px;
     }
 
@@ -395,7 +394,7 @@ function getClass(message) {
     }
 
     .file-message__content {
-      grid-column: 2;
+      grid-column: 1;
       margin-left: auto;
       background-color: var(--base-message-right-bg);
     }

@@ -45,6 +45,48 @@ export const RightMessage: Story = {
   },
 };
 
+export const LeftMessageWithAvatar: Story = {
+  args: {
+    message: {
+      ...videoMessage,
+      position: 'left',
+      avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
+    },
+  },
+};
+
+export const RightMessageWithAvatar: Story = {
+  args: {
+    message: {
+      ...videoMessage,
+      position: 'right',
+      avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
+    },
+  },
+};
+
+export const LeftMessageWithAvatarAndSubtext: Story = {
+  args: {
+    message: {
+      ...videoMessage,
+      position: 'left',
+      subText: 'Это Коля',
+      avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
+    },
+  },
+};
+
+export const RightMessageWithAvatarAndSubtext: Story = {
+  args: {
+    message: {
+      ...videoMessage,
+      position: 'right',
+      subText: 'Это Коля',
+      avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
+    },
+  },
+};
+
 export const LeftMessageWithText: Story = {
   args: {
     message: {
