@@ -70,6 +70,47 @@ export const LeftImageMessageWithViews: Story = {
     },
   },
 };
+export const LeftImageMessageWithAvatar: Story = {
+  args: {
+    message: {
+      ...imageMessage,
+      position: 'left',
+      avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
+    },
+  },
+};
+
+export const RightImageMessageWithAvatar: Story = {
+  args: {
+    message: {
+      ...imageMessage,
+      position: 'right',
+      avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
+    },
+  },
+};
+
+export const LeftImageMessageWithAvatarAndSubtext: Story = {
+  args: {
+    message: {
+      ...imageMessage,
+      position: 'left',
+      subText: 'Это Коля',
+      avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
+    },
+  },
+};
+
+export const RightImageMessageWithAvatarAndSubtext: Story = {
+  args: {
+    message: {
+      ...imageMessage,
+      position: 'right',
+      subText: 'Это Коля',
+      avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
+    },
+  },
+};
 
 export const LeftImageMessageWithSubtext: Story = {
   args: {

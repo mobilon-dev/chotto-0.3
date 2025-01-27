@@ -61,6 +61,47 @@ export const LeftFileMessageWithActions: Story = {
   },
 };
 
+export const LeftFileMessageWithAvatar: Story = {
+  args: {
+    message: {
+      ...fileMessage,
+      position: 'left',
+      avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
+    },
+  },
+};
+
+export const RightFileMessageWithAvatar: Story = {
+  args: {
+    message: {
+      ...fileMessage,
+      position: 'right',
+      avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
+    },
+  },
+};
+
+export const LeftFileMessageWithAvatarAndSubtext: Story = {
+  args: {
+    message: {
+      ...fileMessage,
+      position: 'left',
+      subText: 'Это Коля',
+      avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
+    },
+  },
+};
+
+export const RightFileMessageWithAvatarAndSubtext: Story = {
+  args: {
+    message: {
+      ...fileMessage,
+      position: 'right',
+      subText: 'Это Коля',
+      avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
+    },
+  },
+};
 
 export const RightFileMessage: Story = {
   args: {

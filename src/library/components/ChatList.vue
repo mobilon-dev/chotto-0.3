@@ -102,7 +102,7 @@ const props = defineProps({
   actions: {
     type: Array,
     required: false,
-    default: [],
+    default: () => [],
   },
   filterEnabled: {
     type: Boolean,
