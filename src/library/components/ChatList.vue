@@ -36,6 +36,7 @@
       </transition>
     </div>
 
+    <slot name="sidebar"/>
 
     <ChatFilter
       v-if="filterEnabled"
@@ -92,7 +93,6 @@ const hideMenu = () => {
   isOpenMenu.value = false
 }
 
-
 // Define props
 const props = defineProps({
   chats: {
@@ -102,7 +102,7 @@ const props = defineProps({
   actions: {
     type: Array,
     required: false,
-    default: () => [],
+    default: [],
   },
   filterEnabled: {
     type: Boolean,

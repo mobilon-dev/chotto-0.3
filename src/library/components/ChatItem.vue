@@ -108,7 +108,9 @@ const props = defineProps({
 
 const emit = defineEmits(['select', 'action']);
 
-const selectChat = () => { emit('select', props.chat); }
+const selectChat = () => { 
+  emit('select', props.chat);
+}
 
 const getClass = () => {
   return props.chat.isSelected ? 'chat-item__selected' : '';

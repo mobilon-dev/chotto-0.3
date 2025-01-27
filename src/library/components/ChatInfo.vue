@@ -4,6 +4,11 @@
     class="chat-info__container"
   >
     <div class="chat-info__base-line">
+      <span 
+        v-if="showReturnButton"
+        class="pi pi-arrow-left chat-info__return-button"
+        @click="emit('returnToChats')"
+      />
       <div class="chat-info__avatar-container">
       <img
         v-if="props.chat.avatar"
@@ -32,7 +37,7 @@
     </div>
     </div>
     
-
+    
     <div 
       class="chat-info__search-panel"
       :id="'chat-info-search-panel-' + chatAppId"  
@@ -51,9 +56,14 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  showReturnButton: {
+    type: Boolean,
+    required: false,
+    default: false,
+  }
 });
 
-const emit = defineEmits(['open-panel']);
+const emit = defineEmits(['returnToChats']);
 
 const chatAppId = inject('chatAppId')
 
@@ -130,5 +140,12 @@ const chatAppId = inject('chatAppId')
       color: var(--chat-info-actions-color);
     }
   }
+
+  &__return-button{
+    border: 0px;
+    background-color: transparent;
+    cursor: pointer;
+  }
 }
+
 </style>

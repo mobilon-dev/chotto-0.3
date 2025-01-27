@@ -3,13 +3,7 @@
     <div class="extend-layout__first-col">
       <slot name="first-col" />
     </div>
-    <div
-      ref="resizableDiv"
-      class="extend-layout__second-col resizable-div"
-      :style="{ userSelect: isResizing ? 'none' : 'auto', }"
-      @mousedown="startResize"
-      @mouseup="stopResize"
-    >
+    <div class="extend-layout__second-col">
       <slot name="second-col" />
     </div>
     <div class="extend-layout__third-col">
@@ -19,41 +13,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
 
-const resizableDiv = ref(null);
-let isResizing = ref(false);
-let initialWidth = ref(0);
-let initialX = ref(0);
-let startX = ref(0);
-
-const startResize = (event) => {
-  if (event.offsetX >= resizableDiv.value.offsetWidth - 20) {
-    isResizing.value = true;
-    initialWidth.value = resizableDiv.value.offsetWidth;
-    initialX.value = event.clientX;
-    startX.value = event.clientX;
-    document.addEventListener('mousemove', resize);
-  }
-};
-
-const resize = (event) => {
-  if (isResizing.value) {
-    const newWidth = initialWidth.value + (event.clientX - startX.value);
-    resizableDiv.value.style.width = `${Math.max(270, newWidth)}px`;
-  }
-};
-
-const stopResize = () => {
-  isResizing.value = false;
-  document.removeEventListener('mousemove', resize);
-};
-
-onMounted(() => {
-  if (resizableDiv.value) {
-    resizableDiv.value.style.width = '350px'
-  }
-})
 </script>
 
 <style
@@ -92,6 +52,7 @@ onMounted(() => {
     overflow: hidden;
     border-right: var(--layout-extended-column-border, none);
     border-bottom: var(--layout-extended-column-border, none);
+    width: 350px;
   }
 
   &__third-col {
@@ -104,23 +65,6 @@ onMounted(() => {
     border-bottom: var(--layout-extended-column-border, none);
     background-color: var(--layout-extended-third-col-bg);
   }
-}
-
-.resizable-div {
-  position: relative;
-}
-
-/* Область захвата */
-.resizable-div::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 6px;
-  bottom: 0;
-  width: 10px;
-  cursor: e-resize;
-  background-color: rgba(0, 0, 0, 0);
-  z-index: 100;
 }
 
 .v-enter-active,

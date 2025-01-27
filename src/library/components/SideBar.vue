@@ -1,17 +1,27 @@
 <template>
-  <div class="sidebar__container">
-    <ul class="sidebar__list">
+  <div 
+    class="sidebar__container"
+    :class="{'sidebar-horizontal__container' : horizontal}"
+  >
+    <ul 
+      class="sidebar__list"
+      :class="{'sidebar-horizontal__list' : horizontal}"
+    >
       <li
         v-for="(item, index) in items.filter(i => !i.isFixedBottom)"
         :key="index"
         class="sidebar__item"
+        :class="{'sidebar-horizontal__item' : horizontal}"
         @click="selectItem(item.itemId)"
       >
         <img
           :src="item.icon"
           :alt="item.name"
           class="sidebar__image"
-          :class="{ 'sidebar__image--active': item.selected === true }"
+          :class="{ 
+            'sidebar__image--active': item.selected === true,
+            'sidebar-horizontal__image' : horizontal 
+          }"
         >
         <span
           v-if="item.notificationCount"
@@ -25,18 +35,25 @@
       </li>
     </ul>
 
-    <ul class="sidebar__list-fixed">
+    <ul 
+      class="sidebar__list-fixed"
+      :class="{'sidebar-horizontal__list-fixed' : horizontal}"
+    >
       <li
         v-for="(item, index) in items.filter(i => i.isFixedBottom)"
         :key="index"
         class="sidebar__item"
+        :class="{'sidebar-horizontal__item' : horizontal}"
         @click="selectItem(item.itemId)"
       >
         <img
           :src="item.icon"
           :alt="item.name"
           class="sidebar__image"
-          :class="{ 'sidebar__image--active': item.selected === true }"
+          :class="{ 
+            'sidebar__image--active': item.selected === true,
+            'sidebar-horizontal__image' : horizontal 
+          }"
         >
         <span
           v-if="item.notificationCount"
@@ -53,14 +70,19 @@
 </template>
 
 <script setup>
-import { onMounted, reactive, ref, toRef } from 'vue'
+import { toRef } from 'vue'
 
 const props = defineProps({
   sidebarItems: {
     type: Array,
     required: true,
-    default: () => [],
+    default: [],
   },
+  horizontal: {
+    type: Boolean,
+    required: false,
+    default: false,
+  }
 });
 
 const items = toRef(props, 'sidebarItems');
@@ -166,4 +188,46 @@ const getName = (name) => {
     opacity: 1;
   }
 }
+
+
+.sidebar-horizontal{
+  &__container{
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    padding-top: 0px;
+    padding-bottom: 5px;
+    border-right: 0px;
+    background-color: transparent;
+  }
+  &__list{
+    flex-direction: row;
+    gap: var(--sidebar-row-gap-list);
+  }
+  &__item{
+    display: block;
+    max-width: 70px;
+    text-align: center;
+    span{
+      width: 24px;
+      height: 24px;
+      left: 45px;
+    }
+    p{
+      font-size: 14px;
+    }
+  }
+  &__list-fixed{
+    padding-left: 10px;
+    border-left: var(--sidebar-list-fixed-border-top);
+    padding-top: 0;
+    border-top: 0px;
+    margin-right: 10px;
+  }
+  &__image{
+    width: calc(var(--sidebar-image-width) * 1.2);
+    height: calc(var(--sidebar-image-height) * 1.2);
+  }
+}
+
 </style>

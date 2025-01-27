@@ -159,6 +159,7 @@ onMounted(() => {
     border-radius: var(--float-container-border-radius);
     background-color: var(--float-container-bg);
     box-shadow: var(--float-container-box-shadow);
+    container: all / inline-size;
   }
 
   &__controls {
