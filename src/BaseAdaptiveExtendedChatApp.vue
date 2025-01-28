@@ -373,6 +373,7 @@ const messageVisible = (message) => {
 }
 
 const searchMessages = (string) => {
+  foundMessages.value = []
   if (string && string.length > 0){
     isShowFeedWhileSearch.value = false
     foundMessages.value = transformToFeed(props.dataProvider.getMessagesBySearch(selectedChat.value.chatId, string))
@@ -390,9 +391,6 @@ const searchMessages = (string) => {
       }
       foundMessages.value = t
     }
-  }
-  else {
-    foundMessages.value = []
   }
 }
 
