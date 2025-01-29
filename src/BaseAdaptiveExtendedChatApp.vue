@@ -148,6 +148,7 @@
                     :mode="'click'"
                     :filebump-url="filebumpUrl"
                     @send-waba-values="sendWabaValues"
+                    :elevated-window="false"
                   />
                   <ChannelSelector
                     :channels="channels"

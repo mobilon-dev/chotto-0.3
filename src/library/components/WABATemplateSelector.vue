@@ -1,183 +1,219 @@
 <template>
   <div class="template-selector">
-    <div class="template-selector__container">
-      <button class="template-selector__button-close">
-        <span
-          class="pi pi-times"
-          @click="closeTemplateWindow"
-        />
-      </button>
-
-      <ul class="template-selector__list-groups">
-        <li
-          v-for="(item, index) in groupTemplates"
-          :key="index"
-          class="template-selector__item-group"
-          :class="{ 'template-selector__item-selected': selectedGroup === item }"
-          @click="clearSelectedTemplate"
-        >
-          <label class="template-selector__label-group">
-            <img
-              v-if="item.iconUrl"
-              class="template-selector__item-group-icon"
-              :src="item.iconUrl"
-              :alt="item.title"
-            >
-            <input
-              :id="index"
-              v-model="selectedGroup"
-              :value="item"
-              class="template-selector__input-group"
-              type="radio"
-            >
-            <span>{{ item.title }}</span>
-          </label>
-        </li>
-      </ul>
-
-      <div class="template-selector__searching-container">
-        <input
-          v-model="searchQuery"
-          class="template-selector__searching-input"
-          type="text"
-          placeholder="Поиск шаблона"
-        >
-      </div>
-
-      <div class="template-selector__templates">
-        <ul
-          v-if="searchedTemplate.length !== 0"
-          class="template-selector__list-templates"
-        >
-          <li
-            v-for="(item, index) in searchedTemplate"
-            :key="index"
-            class="template-selector__item-template"
-            :class="{ 'template-selector__item-selected': item.isSelected }"
-            @click="selectTemplate(item)"
+    <div 
+      :class="{
+        'template-selector__container-inline' : !elevatedWindow,
+        'template-selector__container-elevated' : elevatedWindow
+        }"
+      ref="refContainer"
+      :id="'waba-template-selector-container-' + chatAppId"
+    >
+      <div style="display: flex;">
+        <div style="display: flex;">
+          <button 
+            v-if="allowTurnLeft"
+            class="template-selector__button-close"
           >
-            <div class="template-selector__item-template-info">
-              <p class="template-selector__item-title">
-                {{ item.title }}
-              </p>
-              <p class="template-selector__item-text">
-                {{ item.template }}
-              </p>
-            </div>
-          </li>
-        </ul>
-
-        <p
-          v-else
-          class="template-selector__plug"
-        >
-          Шаблоны отсутствуют
-        </p>
+            <span 
+              class="pi pi-arrow-left"
+              @click="turnLeft"
+            />
+          </button>
+          <button 
+            v-if="allowTurnRight"
+            class="template-selector__button-close"
+          >
+            <span 
+              class="pi pi-arrow-right"
+              @click="turnRight"
+            />
+          </button>
+        </div>
+        
+        <button class="template-selector__button-close">
+          <span
+            class="pi pi-times"
+            @click="$emit('closeTemplateWindow')"
+          />
+        </button>
       </div>
 
+      <div class="template-selector__layout">
+        <div class="template-selector__first-col">
+          <ul class="template-selector__list-groups">
+            <li
+              v-for="(item, index) in groupTemplates"
+              :key="index"
+              class="template-selector__item-group"
+              :class="{ 'template-selector__item-selected': selectedGroup === item }"
+              @click="clearSelectedTemplate"
+            >
+              <label class="template-selector__label-group">
+                <img
+                  v-if="item.iconUrl"
+                  class="template-selector__item-group-icon"
+                  :src="item.iconUrl"
+                  :alt="item.title"
+                >
+                <input
+                  :id="index"
+                  v-model="selectedGroup"
+                  :value="item"
+                  class="template-selector__input-group"
+                  type="radio"
+                >
+                <span>{{ item.title }}</span>
+              </label>
+            </li>
+          </ul>
+        </div>
 
-      <div
-        ref="previewContainer"
-        class="template-selector__preview-container"
-      >
-        <div
-          v-if="templateParts.length > 0"
-          class="template-selector__preview"
-        >
-          <div class="template-selector__preview-wrapper">
-            <WABAAttachmentSection
-              v-if="selectedTemplate.type != 'TEXT'"
-              :type="selectedTemplate.type"
-              :template-id="selectedTemplate.templateId"
-              @file-selected="handleFileSelected"
-            />
-            <div class="template-selector__preview-text-container">
-              <template
-                v-for="(item, index) in templateParts"
+        <div class="template-selector__second-col">
+          <div class="template-selector__searching-container">
+            <input
+              v-model="searchQuery"
+              class="template-selector__searching-input"
+              type="text"
+              placeholder="Поиск шаблона"
+            >
+          </div>
+
+          <div class="template-selector__templates">
+            <ul
+              v-if="searchedTemplate.length !== 0"
+              class="template-selector__list-templates"
+            >
+              <li
+                v-for="(item, index) in searchedTemplate"
                 :key="index"
+                class="template-selector__item-template"
+                :class="{ 'template-selector__item-selected': item.isSelected }"
+                @click="selectTemplate(item)"
               >
-                <span v-if="typeof item === 'string'">{{ item }}</span>
-                <PlaceholderComponent
-                  v-else-if="typeof item === 'object'"
-                  :index="item.index"
-                  :value="wabaValues[item.index] || 'Заполнить'"
-                  :is-filled="!!wabaValues[item.index]"
-                  @click="openModal(item.index)"
-                />
-              </template>
-            </div>
-            <p class="template-selector__preview-time">
-              22:22
+                <div class="template-selector__item-template-info">
+                  <p class="template-selector__item-title">
+                    {{ item.title }}
+                  </p>
+                  <p class="template-selector__item-text">
+                    {{ item.template }}
+                  </p>
+                </div>
+              </li>
+            </ul>
+
+            <p
+              v-else
+              class="template-selector__plug"
+            >
+              Шаблоны отсутствуют
             </p>
-            <WABAQuickReplyButtons
-              v-if="selectedTemplate.buttons"
-              :buttons="selectedTemplate.buttons"
-              @select-all-variants="selectAllVariants"
-            />
           </div>
         </div>
-        <p
-          v-else
-          class="template-selector__plug"
-        >
-          Предпросмотр шаблона
-        </p>
-        <div
-          v-if="allVariantsShow"
-          class="template-selector__reply-buttons"
-        >
+        <div class="template-selector__third-col">
           <div
-            class="template-selector__semitransparent-overlay"
-            @click="selectAllVariants"
-          />
-          <WABASeparatedQuickButtons
-            :buttons="selectedTemplate.buttons"
-            @select-all-variants="selectAllVariants"
-          />
+            ref="previewContainer"
+            class="template-selector__preview-container"
+          >
+            <div
+              v-if="templateParts.length > 0"
+              class="template-selector__preview"
+            >
+              <div class="template-selector__preview-wrapper">
+                <WABAAttachmentSection
+                  v-if="selectedTemplate.type != 'TEXT'"
+                  :type="selectedTemplate.type"
+                  :template-id="selectedTemplate.templateId"
+                  @file-selected="handleFileSelected"
+                />
+                <div class="template-selector__preview-text-container">
+                  <template
+                    v-for="(item, index) in templateParts"
+                    :key="index"
+                  >
+                    <span v-if="typeof item === 'string'">{{ item }}</span>
+                    <PlaceholderComponent
+                      v-else-if="typeof item === 'object'"
+                      :index="item.index"
+                      :value="wabaValues[item.index] || 'Заполнить'"
+                      :is-filled="!!wabaValues[item.index]"
+                      @click="openModal(item.index)"
+                    />
+                  </template>
+                </div>
+                <p class="template-selector__preview-time">
+                  22:22
+                </p>
+                <WABAQuickReplyButtons
+                  v-if="selectedTemplate.buttons"
+                  :buttons="selectedTemplate.buttons"
+                  @select-all-variants="selectAllVariants"
+                />
+              </div>
+            </div>
+            <p
+              v-else
+              class="template-selector__plug"
+            >
+              Предпросмотр шаблона
+            </p>
+            <div
+              v-if="allVariantsShow"
+              class="template-selector__reply-buttons"
+            >
+              <div
+                class="template-selector__semitransparent-overlay"
+                @click="selectAllVariants"
+              />
+              <WABASeparatedQuickButtons
+                :buttons="selectedTemplate.buttons"
+                @select-all-variants="selectAllVariants"
+              />
+            </div>
+          </div>
+
+          <transition name="modal-fade">
+            <div
+              v-if="isModalVisible"
+              class="template-selector__modal"
+            >
+              <input
+                ref="inputRef"
+                v-model="newValue"
+                type="text"
+                placeholder="Введите значение"
+                :autofocus="isModalVisible"
+              >
+              <button
+                class="template-selector__modal-button-add"
+                @click="updateValue"
+              >
+                Добавить
+              </button>
+              <button
+                class="template-selector__modal-button-cancel"
+                @click="closeModal"
+              >
+                Отменить
+              </button>
+            </div>
+          </transition>
+
+
+          <button
+            class="template-selector__button-paste"
+            :disabled="allFieldsUnFilled"
+            @click="handlePutMessage"
+          >
+            Отправить
+          </button>
         </div>
       </div>
-
-      <transition name="modal-fade">
-        <div
-          v-if="isModalVisible"
-          class="template-selector__modal"
-        >
-          <input
-            ref="inputRef"
-            v-model="newValue"
-            type="text"
-            placeholder="Введите значение"
-            :autofocus="isModalVisible"
-          >
-          <button
-            class="template-selector__modal-button-add"
-            @click="updateValue"
-          >
-            Добавить
-          </button>
-          <button
-            class="template-selector__modal-button-cancel"
-            @click="closeModal"
-          >
-            Отменить
-          </button>
-        </div>
-      </transition>
-
-
-      <button
-        class="template-selector__button-paste"
-        :disabled="allFieldsUnFilled"
-        @click="handlePutMessage"
-      >
-        Отправить
-      </button>
     </div>
   </div>
 </template>
 
 <script setup>
-import { computed, ref, reactive, watch, nextTick } from 'vue'
+import { computed, ref, reactive, watch, nextTick, onMounted, inject, unref } from 'vue'
 
 import PlaceholderComponent from './PlaceholderComponent.vue'
 import WABAAttachmentSection from './WABAAttachmentSection.vue';
@@ -189,15 +225,19 @@ const props = defineProps({
     required: false,
     default: () => { return [] }
   },
-
   groupTemplates: {
     type: Array,
     required: false,
     default: () => { return [] }
+  },
+  elevatedWindow: {
+    type: Boolean,
+    required: false,
+    default: false,
   }
 })
 
-
+const chatAppId = inject('chatAppId')
 
 const emit = defineEmits(['closeTemplateWindow', 'sendWabaValues'])
 
@@ -260,9 +300,11 @@ const selectTemplate = (item) => {
   item.isSelected = true;
   selectedTemplate.value = item;
   allVariantsShow.value = false;
+  setThirdColVisible()
 };
 
 const clearSelectedTemplate = () => {
+  setSecondColVisible()
   props.wabaTemplates.forEach(template => template.isSelected = false);
 };
 
@@ -288,6 +330,77 @@ const isModalVisible = ref(false);
 const inputRef = ref(null);
 const selectedIndex = ref(null);
 const newValue = ref('');
+
+const refContainer = ref()
+const showFirstCol = ref('')
+const showSecondCol = ref('')
+const showThirdCol = ref('')
+
+const isOneCol = ref(false)
+
+const allowTurnLeft = computed(() => {
+  if (isOneCol.value){
+    if ( showThirdCol.value == 'grid' && showSecondCol.value == 'none') return true
+    if (showSecondCol.value == 'grid' && showFirstCol.value == 'none') return true
+  }
+  return false
+})
+
+const allowTurnRight = computed(() => {
+  if (isOneCol.value){
+    if (showFirstCol.value == 'grid' && showSecondCol.value == 'none') return true
+    if (showSecondCol.value == 'grid' && showThirdCol.value == 'none') return true
+  }
+  return false
+})
+
+const turnLeft = () => {
+  if (isOneCol.value) {
+    if (showSecondCol.value == 'grid') setFirstColVisible()
+    else if (showThirdCol.value == 'grid') setSecondColVisible()
+  }
+}
+
+const turnRight = () => {
+  if (isOneCol.value) {
+    if (showSecondCol.value == 'grid') setThirdColVisible()
+    else if (showFirstCol.value == 'grid') setSecondColVisible()
+  }
+}
+
+const setFirstColVisible = () => {
+  
+  const container = document.getElementById('waba-template-selector-container-' + chatAppId)
+  container.style.setProperty('--waba-template-first-col-display','grid')
+  container.style.setProperty('--waba-template-second-col-display','none')
+  console.log(container, window.getComputedStyle(container).getPropertyValue('--waba-template-first-col-display'))
+  updateShowValues()
+}
+
+const setThirdColVisible = () => {
+  const container = document.getElementById('waba-template-selector-container-' + chatAppId)
+  container.style.setProperty('--waba-template-third-col-display','grid')
+  container.style.setProperty('--waba-template-second-col-display','none')
+  updateShowValues()
+}
+
+const setSecondColVisible = () => {
+  const container = document.getElementById('waba-template-selector-container-' + chatAppId)
+  container.style.setProperty('--waba-template-second-col-display','grid')
+  container.style.setProperty('--waba-template-first-col-display','none')
+  container.style.setProperty('--waba-template-third-col-display','none')
+  updateShowValues()
+}
+
+const updateShowValues = () => {
+  const container = document.getElementById('waba-template-selector-container-' + chatAppId)
+  const style = window.getComputedStyle(container)
+  console.log(container, style.getPropertyValue('--waba-template-first-col-display'))
+  showFirstCol.value =  style.getPropertyValue('--waba-template-first-col-display')
+  showSecondCol.value =  style.getPropertyValue('--waba-template-second-col-display')
+  showThirdCol.value =  style.getPropertyValue('--waba-template-third-col-display')
+
+}
 
 const openModal = (index) => {
   selectedIndex.value = index;
@@ -355,7 +468,7 @@ const resetValues = () => {
   });
   selectedFile.value = null
   selectedTemplate.value = null
-  clearSelectedTemplate()
+  props.wabaTemplates.forEach(template => template.isSelected = false);
 }
 
 // Свойство получения всего текста
@@ -396,6 +509,23 @@ watch(isModalVisible, (newVal) => {
     });
   }
 });
+
+const resizeObserver = new ResizeObserver((entries) => {
+  const containerWidth = entries[0].target.clientWidth
+  if (containerWidth > 700){
+    isOneCol.value = false
+  }
+  if (containerWidth < 700){
+    isOneCol.value = true
+  }
+});
+
+onMounted(() => {
+  updateShowValues()
+  if (unref(refContainer)){
+    resizeObserver.observe(unref(refContainer))
+  }
+})
 </script>
 
 <style
@@ -403,30 +533,73 @@ watch(isModalVisible, (newVal) => {
   lang="scss"
 >
 .template-selector {
+
+  --waba-template-first-col-display: none;
+  
+  --waba-template-second-col-display: grid;
+
+  --waba-template-third-col-display: none;
+
   position: absolute;
   bottom: 100%;
   left: 0;
   right: 0;
   z-index: 100;
+  container: templates / inline-size;
 
 
-  &__container {
+  &__container-inline {
+    
+    max-height: 500px;
+    padding: 16px 5px 5px 5px;
+    background-color: var(--template-selector-bg);
+    border-top: var(--template-selector-border);
+    border-bottom: var(--template-selector-border);
+    box-sizing: border-box;
+    min-width: 478px;
+  }
+
+  &__container-elevated{
     position: absolute;
-    display: grid;
-    grid-template-columns: 0.5fr 1.3fr 1fr;
-    grid-template-rows: min-content auto 1fr min-content;
-    column-gap: 14px;
-    width: 110%;
-    height: 500px;
+    max-height: 500px;
     padding: 16px 5px 5px 5px;
     background-color: var(--template-selector-bg);
     border: var(--template-selector-border);
-    box-sizing: border-box;
-    min-width: 750px;
-    bottom: 20px;
-    right: 20px;
+    min-width: 478px;
     box-shadow: 5px 5px 29px -15px var(--template-selector-shadow-color);
+    bottom: 20px; right: 20px;
   }
+
+  &__layout{
+    max-height: 400px;
+    display: grid;
+    box-sizing: border-box;
+    grid-template-columns: 0.5fr 1.3fr 1fr;
+    grid-template-rows: min-content min-content 1fr min-content;
+    column-gap: 5px;
+  }
+
+  &__first-col{
+    display: grid;
+    grid-column: 1;
+    grid-row: 2 / 5;
+    grid-template-rows: min-content auto;
+  }
+
+  &__second-col{
+    display: grid;
+    grid-column: 2;
+    grid-row: 2 / 5;
+    grid-template-rows: min-content min-content auto;
+  }
+
+  &__third-col{
+    display: grid;
+    grid-column: 3;
+    grid-row: 2 / 5;
+    grid-template-rows: min-content auto min-content;
+  }
+
 
   &__button-close {
     grid-column: 3;
@@ -473,12 +646,9 @@ watch(isModalVisible, (newVal) => {
   }
 
   &__templates {
-    grid-column: 2;
     grid-row: 3 / 5;
     border: var(--template-selector-border);
     overflow-y: auto;
-    margin-left: -10px;
-    margin-right: 10px;
 
     &::-webkit-scrollbar {
       width: 6px;
@@ -567,12 +737,9 @@ watch(isModalVisible, (newVal) => {
   }
 
   &__searching-container {
-    grid-column: 2;
     grid-row: 2;
     width: 100%;
     margin-bottom: 16px;
-    margin-right: 10px;
-    margin-left: -10px;
   }
 
   &__searching-input {
@@ -601,8 +768,7 @@ watch(isModalVisible, (newVal) => {
   }
 
   &__preview-container {
-    grid-row: 2 / 5;
-    grid-column: 3;
+    grid-row: 2;
     border: var(--template-selector-border);
     max-height: 375px;
     overflow-y: auto;
@@ -610,7 +776,6 @@ watch(isModalVisible, (newVal) => {
     background-color: var(--template-selector-preview-bg);
     background-image: url('../../../public/chat-background.svg');
     position: relative;
-    margin-left: -20px;
 
     &::-webkit-scrollbar {
       width: 6px;
@@ -663,6 +828,7 @@ watch(isModalVisible, (newVal) => {
     align-items: center;
     padding: 0;
     margin: 0;
+    line-height: 20;
   }
 
   &__preview-text-container {
@@ -679,8 +845,7 @@ watch(isModalVisible, (newVal) => {
   }
 
   &__button-paste {
-    grid-column: 3;
-    grid-row: 4;
+    grid-row: 3;
     display: block;
     width: fit-content;
     justify-self: flex-end;
@@ -758,6 +923,26 @@ watch(isModalVisible, (newVal) => {
     font-size: var(--template-selector-button-cancel-font-size);
   }
 
+}
+
+@container templates (width < 700px) {
+  .template-selector {
+    &__layout{
+      grid-template-columns: 1fr;
+    }
+    &__first-col{
+      display: var(--waba-template-first-col-display);
+      grid-column: 1;
+    }
+    &__second-col{
+      display: var(--waba-template-second-col-display);
+      grid-column: 1;
+    }
+    &__third-col{
+      display: var(--waba-template-third-col-display);
+      grid-column: 1;
+    }
+  }
 }
 
 .modal-fade-enter-active,

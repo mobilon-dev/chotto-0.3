@@ -18,6 +18,7 @@
     <WABATemplateSelector
       :waba-templates="wabaTemplates"
       :group-templates="groupTemplates"
+      :elevated-window="elevatedWindow"
       @close-template-window="close"
       @send-waba-values="sendWabaValues"
     />
@@ -50,6 +51,10 @@ const props = defineProps({
   filebumpUrl: {
     type: String,
   },
+  elevatedWindow: {
+    type: Boolean,
+    required: false,
+  }
 })
 
 provide('filebumpUrl', props.filebumpUrl)
