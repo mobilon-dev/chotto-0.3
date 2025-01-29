@@ -30,6 +30,7 @@
             filter-enabled
             @select="selectChat"
             @action="chatAction"
+            @load-more-chats="loadMoreChats"
           >
             <template #sidebar>
               <SideBar
@@ -124,8 +125,9 @@
                 @force-scroll-to-bottom="forceScrollToBottom"
               />
               <ChatInput 
-              :focus-on-input-area="inputFocus"
-              @send="addMessage">
+                :focus-on-input-area="inputFocus"
+                @send="addMessage"
+              >
                 <template #buttons>
                   <FileUploader
                     :filebump-url="filebumpUrl"
@@ -305,6 +307,10 @@ const handleReturnToChats = () => {
 const selectItem = (item) => {
   console.log("selected sidebar item", item);
 };
+
+const loadMoreChats = () => {
+  console.log('load more chats')
+}
 
 const chatAction = async (data) => {
   console.log("chat action", data);

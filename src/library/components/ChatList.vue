@@ -44,7 +44,11 @@
       @update="getFilter"
     />
 
-    <div class="chat-list__items">
+    <div 
+      class="chat-list__items"
+      ref="refChatList"
+      @scroll="scrollCheck"
+    >
       <div class="chat-list__fixed-items-top">
         <ChatItem
           v-for="chat in getSortedAndFilteredChats().filter(c => c.isFixedTop)"
@@ -82,16 +86,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import {ChatItem, ChatFilter, ContextMenu} from "./";
+import { ref, unref } from 'vue';
+import { ChatItem, ChatFilter, ContextMenu } from "./";
 import { t } from '../../locale/useLocale';
-
-const filter = ref('');
-const isOpenMenu = ref(false)
-
-const hideMenu = () => {
-  isOpenMenu.value = false
-}
 
 // Define props
 const props = defineProps({
@@ -111,7 +108,24 @@ const props = defineProps({
 });
 
 // Define emits
-const emit = defineEmits(['select', 'action']);
+const emit = defineEmits(['select', 'action', 'loadMoreChats']);
+
+const filter = ref('');
+const isOpenMenu = ref(false)
+const refChatList = ref()
+
+const hideMenu = () => {
+  isOpenMenu.value = false
+}
+
+const scrollCheck = () => {
+  const element = unref(refChatList);
+  const scrollBottom = element.scrollHeight - element.scrollTop - element.clientHeight;
+
+  if (scrollBottom <= 0){
+    emit('loadMoreChats')
+  }
+};
 
 // Define method
 const selectChat = (chat) => {

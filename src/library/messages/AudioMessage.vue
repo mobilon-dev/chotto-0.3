@@ -297,7 +297,7 @@ onMounted(() => {
     max-width: 25rem;
     min-width: 13rem;
     border-radius: 14px;
-    padding: 10px 26px 4px 16px;
+    padding: 10px 10px 4px 16px;;
   }
 
   &__audio-container {
