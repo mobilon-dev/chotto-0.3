@@ -18,6 +18,7 @@ import ButtonEmojiPicker from './ButtonEmojiPicker.vue';
 import ContextMenu from './ContextMenu.vue';
 import FeedSearch from './FeedSearch.vue';
 import FeedFoundObjects from './FeedFoundObjects.vue'
+import Tooltip from './Tooltip.vue';
 export {
   ChatInfo,
   ChatInput,
@@ -39,4 +40,5 @@ export {
   ContextMenu,
   FeedSearch,
   FeedFoundObjects,
+  Tooltip
 }

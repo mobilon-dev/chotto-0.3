@@ -1,116 +1,168 @@
 <template>
   <div class="template-selector">
-    <div class="template-selector__container">
-      <button class="template-selector__button-close">
-        <span
-          class="pi pi-times"
-          @click="$emit('closeTemplateWindow')"
-        />
-      </button>
-
-      <ul class="template-selector__list-groups">
-        <li
-          v-for="(item, index) in groupTemplates"
-          :key="index"
-          class="template-selector__item-group"
-          :class="{ 'template-selector__item-selected': selectedGroup === item }"
-          @click="clearSelectedTemplate"
-        >
-          <label class="template-selector__label-group">
-            <img
-              v-if="item.iconUrl"
-              class="template-selector__item-group-icon"
-              :src="item.iconUrl"
-              :alt="item.title"
-            >
-            <input
-              :id="index"
-              v-model="selectedGroup"
-              :value="item"
-              class="template-selector__input-group"
-              type="radio"
-            >
-            <span>{{ item.title }}</span>
-          </label>
-        </li>
-      </ul>
-
-      <div class="template-selector__searching-container">
-        <input
-          v-model="searchQuery"
-          class="template-selector__searching-input"
-          type="text"
-          placeholder="Поиск шаблона"
-        >
-      </div>
-
-      <div class="template-selector__templates">
-        <ul
-          v-if="searchedTemplate.length !== 0"
-          class="template-selector__list-templates"
-        >
-          <li
-            v-for="(item, index) in searchedTemplate"
-            :key="index"
-            class="template-selector__item-template"
-            :class="{ 'template-selector__item-selected': item.isSelected }"
-            @click="selectTemplate(item)"
+    <div 
+      :class="{
+        'template-selector__container-inline' : !elevatedWindow,
+        'template-selector__container-elevated' : elevatedWindow
+        }"
+      ref="refContainer"
+      :id="'template-selector-container-' + chatAppId"
+    >
+      <div style="display: flex;">
+        <div style="display: flex;">
+          <button 
+            v-if="allowTurnLeft"
+            class="template-selector__button-close"
           >
-            <div class="template-selector__item-template-info">
-              <p class="template-selector__item-title">
-                {{ item.title }}
-              </p>
-              <p class="template-selector__item-text">
-                {{ item.template }}
-              </p>
-            </div>
+            <span 
+              class="pi pi-arrow-left"
+              @click="turnLeft"
+            />
+          </button>
+          <button 
+            v-if="allowTurnRight"
+            class="template-selector__button-close"
+          >
+            <span 
+              class="pi pi-arrow-right"
+              @click="turnRight"
+            />
+          </button>
+        </div>
+        
+        <button class="template-selector__button-close">
+          <span
+            class="pi pi-times"
+            @click="$emit('closeTemplateWindow')"
+          />
+        </button>
+      </div>
+      
+      <div class="template-selector__layout">
+
+        <div 
+          class="template-selector__first-col"
+          :id="'template-selector-first-col-' + chatAppId"
+        >
+          <ul class="template-selector__list-groups">
+          <li
+            v-for="(item, index) in groupTemplates"
+            :key="index"
+            class="template-selector__item-group"
+            :class="{ 'template-selector__item-selected': selectedGroup === item }"
+            @click="clearSelectedTemplate"
+          >
+            <label class="template-selector__label-group">
+              <img
+                v-if="item.iconUrl"
+                class="template-selector__item-group-icon"
+                :src="item.iconUrl"
+                :alt="item.title"
+              >
+              <input
+                :id="index"
+                v-model="selectedGroup"
+                :value="item"
+                class="template-selector__input-group"
+                type="radio"
+              >
+              <span>{{ item.title }}</span>
+            </label>
           </li>
         </ul>
-
-        <p
-          v-else
-          class="template-selector__plug"
-        >
-          Шаблоны отсутствуют
-        </p>
-      </div>
-
-
-      <div class="template-selector__preview-container">
+        </div>
+        
         <div
-          v-if="selectedTemplate"
-          class="template-selector__preview"
+          class="template-selector__second-col"
+          :id="'template-selector-second-col-' + chatAppId"
         >
-          <div class="template-selector__preview-wrapper">
-            <p class="template-selector__preview-text">
-              {{ selectedTemplate.template }}
-            </p>
-            <p class="template-selector__preview-time">
-              22:22
-            </p>
-          </div>
+          <div class="template-selector__searching-container">
+          <input
+            v-model="searchQuery"
+            class="template-selector__searching-input"
+            type="text"
+            placeholder="Поиск шаблона"
+          >
         </div>
 
-        <p
-          v-else
-          class="template-selector__plug"
-        >
-          Предпросмотр шаблона
-        </p>
-      </div>
+        <div class="template-selector__templates">
+          <ul
+            v-if="searchedTemplate.length !== 0"
+            class="template-selector__list-templates"
+          >
+            <li
+              v-for="(item, index) in searchedTemplate"
+              :key="index"
+              class="template-selector__item-template"
+              :class="{ 'template-selector__item-selected': item.isSelected }"
+              @click="selectTemplate(item)"
+            >
+              <div class="template-selector__item-template-info">
+                <p class="template-selector__item-title">
+                  {{ item.title }}
+                </p>
+                <p class="template-selector__item-text">
+                  {{ item.template }}
+                </p>
+              </div>
+            </li>
+          </ul>
 
-      <button
-        class="template-selector__button-paste"
-        @click="handlePutMessage"
-      >
-        Вставить
-      </button>
+          <p
+            v-else
+            class="template-selector__plug"
+          >
+            Шаблоны отсутствуют
+          </p>
+        </div>
+        </div>
+        
+
+        <div 
+          class="template-selector__third-col"
+          :id="'template-selector-third-col-' + chatAppId"
+        >
+         
+          <div class="template-selector__preview-container">
+          <div
+            v-if="selectedTemplate"
+            class="template-selector__preview"
+          >
+            <div class="template-selector__preview-wrapper">
+              <p class="template-selector__preview-text">
+                {{ selectedTemplate.template }}
+              </p>
+              <p class="template-selector__preview-time">
+                22:22
+              </p>
+            </div>
+          </div>
+
+          <p
+            v-else
+            class="template-selector__plug"
+          >
+            Предпросмотр шаблона
+          </p>
+        </div>
+
+        <button
+          class="template-selector__button-paste"
+          @click="handlePutMessage"
+        >
+          Вставить
+        </button>
+        </div>
+      </div>
+      
+      
     </div>
   </div>
 </template>
 
 <script setup>
-import { computed, ref, onMounted, inject } from 'vue'
+
+import { computed, ref, onMounted, inject, unref } from 'vue'
 import { useMessage } from '../../helpers/useMessage';
 const props = defineProps({
   templates: {
@@ -118,11 +170,16 @@ const props = defineProps({
     required: false,
     default: () => { return [] }
   },
-
   groupTemplates: {
     type: Array,
     required: false,
     default: () => { return [] }
+  },
+  elevatedWindow: {
+    type: Boolean,
+    required: false,
+    default: true,
+
   }
 })
 
@@ -140,13 +197,83 @@ const selectedGroup = ref(null)
 const selectedTemplate = ref(null);
 const searchQuery = ref('');
 
+const refContainer = ref()
+const showFirstCol = ref('')
+const showSecondCol = ref('')
+const showThirdCol = ref('')
+
+const isOneCol = ref(false)
+
+const allowTurnLeft = computed(() => {
+  if (isOneCol.value){
+    if ( showThirdCol.value == 'grid' && showSecondCol.value == 'none') return true
+    if (showSecondCol.value == 'grid' && showFirstCol.value == 'none') return true
+  }
+  return false
+})
+
+const allowTurnRight = computed(() => {
+  if (isOneCol.value){
+    if (showFirstCol.value == 'grid' && showSecondCol.value == 'none') return true
+    if (showSecondCol.value == 'grid' && showThirdCol.value == 'none') return true
+  }
+  return false
+})
+
+const turnLeft = () => {
+  if (isOneCol.value) {
+    if (showSecondCol.value == 'grid') setFirstColVisible()
+    else if (showThirdCol.value == 'grid') setSecondColVisible()
+  }
+}
+
+const turnRight = () => {
+  if (isOneCol.value) {
+    if (showSecondCol.value == 'grid') setThirdColVisible()
+    else if (showFirstCol.value == 'grid') setSecondColVisible()
+  }
+}
+
+const setFirstColVisible = () => {
+  const container = document.getElementById('template-selector-container-' + chatAppId)
+  container.style.setProperty('--template-first-col-display','grid')
+  container.style.setProperty('--template-second-col-display','none')
+  updateShowValues()
+}
+
+const setThirdColVisible = () => {
+  const container = document.getElementById('template-selector-container-' + chatAppId)
+  container.style.setProperty('--template-third-col-display','grid')
+  container.style.setProperty('--template-second-col-display','none')
+  updateShowValues()
+}
+
+const setSecondColVisible = () => {
+  const container = document.getElementById('template-selector-container-' + chatAppId)
+  container.style.setProperty('--template-second-col-display','grid')
+  container.style.setProperty('--template-first-col-display','none')
+  container.style.setProperty('--template-third-col-display','none')
+  updateShowValues()
+}
+
+const updateShowValues = () => {
+  const container = document.getElementById('template-selector-container-' + chatAppId)
+  const style = window.getComputedStyle(container)
+  showFirstCol.value =  style.getPropertyValue('--template-first-col-display')
+  showSecondCol.value =  style.getPropertyValue('--template-second-col-display')
+  showThirdCol.value =  style.getPropertyValue('--template-third-col-display')
+
+}
+
 const selectTemplate = (item) => {
   props.templates.forEach(с => с.isSelected = false);
   item.isSelected = true;
   selectedTemplate.value = item;
+  setThirdColVisible()
 };
 
 const clearSelectedTemplate = () => {
+  setSecondColVisible()
   props.templates.forEach(template => template.isSelected = false);
 };
 
@@ -164,6 +291,22 @@ const searchedTemplate = computed(() => {
   });
 });
 
+const resizeObserver = new ResizeObserver((entries) => {
+  const containerWidth = entries[0].target.clientWidth
+  if (containerWidth > 700){
+    isOneCol.value = false
+  }
+  if (containerWidth < 700){
+    isOneCol.value = true
+  }
+});
+
+onMounted(() => {
+  updateShowValues()
+  if (unref(refContainer)){
+    resizeObserver.observe(unref(refContainer))
+  }
+})
 
 </script>
 
@@ -172,32 +315,73 @@ const searchedTemplate = computed(() => {
   lang="scss"
 >
 .template-selector {
+  --template-first-col-display: none;
+  
+  --template-second-col-display: grid;
+
+  --template-third-col-display: none;
+
   position: absolute;
   bottom: 100%;
   left: 0;
   right: 0;
   z-index: 100;
+  container: templates / inline-size;
 
+  &__container-inline {
+    
+    max-height: 500px;
+    padding: 16px 5px 5px 5px;
+    background-color: var(--template-selector-bg);
+    border-top: var(--template-selector-border);
+    border-bottom: var(--template-selector-border);
+    box-sizing: border-box;
+    min-width: 478px;
+  }
 
-  &__container {
+  &__container-elevated{
     position: absolute;
-    display: grid;
-    grid-template-columns: 0.5fr 1.3fr 1fr;
-    grid-template-rows: min-content auto 1fr min-content;
-    column-gap: 14px;
-    width: 110%;
-    height: 500px;
+    max-height: 500px;
     padding: 16px 5px 5px 5px;
     background-color: var(--template-selector-bg);
     border: var(--template-selector-border);
-    box-sizing: border-box;
-    min-width: 750px;
-    bottom: 20px; right: 20px;
+    min-width: 478px;
     box-shadow: 5px 5px 29px -15px var(--template-selector-shadow-color);
+    bottom: 20px; right: 20px;
+  }
+
+  &__layout{
+    max-height: 400px;
+    display: grid;
+    box-sizing: border-box;
+    grid-template-columns: 0.5fr 1.3fr 1fr;
+    grid-template-rows: min-content min-content 1fr min-content;
+    column-gap: 5px;
+  }
+
+  &__first-col{
+    display: grid;
+    grid-column: 1;
+    grid-row: 2 / 5;
+    grid-template-rows: min-content auto;
+  }
+
+  &__second-col{
+    display: grid;
+    grid-column: 2;
+    grid-row: 2 / 5;
+    grid-template-rows: min-content min-content auto;
+  }
+
+  &__third-col{
+    display: grid;
+    grid-column: 3;
+    grid-row: 2 / 5;
+    grid-template-rows: min-content auto min-content;
   }
 
   &__button-close {
-    grid-column: 3;
+    grid-row: 1;
     align-self: flex-start;
     display: block;
     background-color: transparent;
@@ -212,9 +396,10 @@ const searchedTemplate = computed(() => {
     }
   }
 
+  
   &__list-groups {
-    grid-column: 1;
-    grid-row: 2 / 5;
+    
+    grid-row: 2;
     overflow-y: auto;
     border: var(--template-selector-border);
     padding: 0;
@@ -241,12 +426,9 @@ const searchedTemplate = computed(() => {
   }
 
   &__templates {
-    grid-column: 2;
-    grid-row: 3 / 5;
+    grid-row: 3;
     border: var(--template-selector-border);
     overflow-y: auto;
-    margin-left: -10px;
-    margin-right: 10px;
 
     &::-webkit-scrollbar {
       width: 6px;
@@ -335,12 +517,10 @@ const searchedTemplate = computed(() => {
   }
 
   &__searching-container {
-    grid-column: 2;
     grid-row: 2;
     width: 100%;
     margin-bottom: 16px;
     margin-right: 10px;
-    margin-left: -10px;
   }
 
   &__searching-input {
@@ -369,14 +549,12 @@ const searchedTemplate = computed(() => {
   }
 
   &__preview-container {
-    grid-row: 2 / 5;
-    grid-column: 3;
+    grid-row: 2;
     border: var(--template-selector-border);
     max-height: 375px;
     overflow-y: auto;
     background-color: var(--template-selector-preview-bg);
     background-image: url('../../../public/chat-background.svg');
-    margin-left: -20px;
 
     &::-webkit-scrollbar {
       width: 6px;
@@ -416,6 +594,7 @@ const searchedTemplate = computed(() => {
     align-items: center;
     padding: 0;
     margin: 0;
+    line-height: 20;
   }
 
   &__preview-text {
@@ -432,8 +611,7 @@ const searchedTemplate = computed(() => {
   }
 
   &__button-paste {
-    grid-column: 3;
-    grid-row: 4;
+    grid-row: 3;
     display: block;
     width: fit-content;
     justify-self: flex-end;
@@ -446,5 +624,33 @@ const searchedTemplate = computed(() => {
     border-radius: 10px;
     cursor: pointer;
   }
+
+  
 }
+
+
+@container templates (width < 700px) {
+  .template-selector {
+    &__layout{
+      grid-template-columns: 1fr;
+    }
+    &__first-col{
+      display: var(--template-first-col-display);
+      grid-column: 1;
+    }
+    &__second-col{
+      display: var(--template-second-col-display);
+      grid-column: 1;
+    }
+    &__third-col{
+      display: var(--template-third-col-display);
+      grid-column: 1;
+    }
+  }
+}
+
+.not-visible{
+    display: none;
+  }
+
 </style>

@@ -3,7 +3,7 @@ export const chats = [
     chatId: 1, name: "Василий ВасилийВасилийВасилий Василий",
     avatar: 'https://img.freepik.com/free-photo/smiley-man-relaxing-outdoors_23-2148739334.jpg',
     countUnread: 102,
-    lastMessage: 'test',
+    lastMessage: 'Длинное сообщение сомнительного характера в контексте размещения на малой строке',
     'lastActivity.time': 'час назад',         // читаемый формат - для пользователей
     'lastActivity.timestamp': '1727001759',   // для сортировки
     isFixedBottom: false,
@@ -19,6 +19,9 @@ export const chats = [
   },
   {
     chatId: 2, name: "Мария",
+    colorUnread: 'green',
+    lastMessage: 'Длинное сообщение сомнительного характера в контексте размещения на малой строке',
+
     countUnread: 0, isFixedTop: true,
     'lastActivity.time': 'час назад',
     'lastActivity.timestamp': '1727027359',

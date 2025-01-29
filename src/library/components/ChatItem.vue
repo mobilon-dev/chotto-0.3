@@ -24,16 +24,21 @@
     </div>
 
     <div class="chat-item__info-container">
-      <div class="chat-item__name">
+      <Tooltip :text="chat.name" position="bottom">
+        <div class="chat-item__name">
         {{ chat.name }}
       </div>
-
-      <div
+      </Tooltip>
+      
+      <Tooltip :text="chat.lastMessage" position="bottom">
+        <div
         v-if="chat.lastMessage || chat.typing"
         class="chat-item__last-message"
       >
         {{ showText }}
       </div>
+      </Tooltip>
+      
     </div>
 
     <div class="chat-item__details-container">
@@ -46,6 +51,7 @@
       <div
         v-if="chat.countUnread > 0"
         class="chat-item__unread"
+        :style="{backgroundColor: chat.colorUnread ? chat.colorUnread : null}"
       >
         {{ chat.countUnread > 99 ? '99+' : chat.countUnread }}
       </div>
@@ -98,6 +104,7 @@ import { ref, computed, watch } from 'vue'
 import { ContextMenu } from '.'
 import { getStatus, statuses } from "../../helpers";
 import { t } from '../../locale/useLocale'
+import Tooltip from './Tooltip.vue';
 
 const props = defineProps({
   chat: {
@@ -246,7 +253,7 @@ watch(
     flex-grow: 1;
     align-self: flex-start;
     margin-right: 15px;
-    overflow-x: hidden;
+    overflow: hidden;
   }
 
   &__name {

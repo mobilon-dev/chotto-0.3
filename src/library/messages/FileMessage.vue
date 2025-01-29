@@ -194,7 +194,7 @@ function getClass(message) {
     width: fit-content;
     border-radius: 14px;
     background-color: var(--file-message-background-color);
-    padding: 10px 30px 4px 16px;
+    padding: 10px 10px 4px 16px;;
     max-width: 25rem;
   }
 

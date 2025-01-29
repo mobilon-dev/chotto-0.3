@@ -18,6 +18,7 @@
       <TemplateSelector
         :templates="templates"
         :group-templates="groupTemplates"
+        :elevated-window="elevatedWindow"
         @close-template-window="close"
       />
     </div>
@@ -47,6 +48,10 @@ const props = defineProps({
     type: String,
     default: 'active',
   },
+  elevatedWindow: {
+    type: Boolean,
+    required: false,
+  }
 })
 
 const templateButton = ref(null)

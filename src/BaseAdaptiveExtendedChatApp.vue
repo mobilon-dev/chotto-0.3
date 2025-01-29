@@ -30,6 +30,7 @@
             filter-enabled
             @select="selectChat"
             @action="chatAction"
+            @load-more-chats="loadMoreChats"
           >
             <template #sidebar>
               <SideBar
@@ -124,35 +125,32 @@
                 @force-scroll-to-bottom="forceScrollToBottom"
               />
               <ChatInput 
-              :focus-on-input-area="inputFocus"
-              @send="addMessage">
+                :focus-on-input-area="inputFocus"
+                @send="addMessage"
+              >
                 <template #buttons>
                   <FileUploader
                     :filebump-url="filebumpUrl"
-                    :state="'disabled'"
                   />
                   <ButtonEmojiPicker
                     :mode="'hover'"
-                    :state="'disabled'"
                   />
                   <ButtonTemplateSelector
                     :templates="templates"
                     :group-templates="groupTemplates"
                     :mode="'click'"
-                    :state="'disabled'"
+                    :elevated-window="false"
                   />
                   <ButtonWabaTemplateSelector
                     :waba-templates="wabaTemplates"
                     :group-templates="groupTemplates"
                     :mode="'click'"
-                    :state="'disabled'"
                     :filebump-url="filebumpUrl"
                     @send-waba-values="sendWabaValues"
                   />
                   <ChannelSelector
                     :channels="channels"
                     :mode="'hover'"
-                    :state="'disabled'"
                     @select-channel="onSelectChannel"
                   />
                 </template>
@@ -310,6 +308,10 @@ const selectItem = (item) => {
   console.log("selected sidebar item", item);
 };
 
+const loadMoreChats = () => {
+  console.log('load more chats')
+}
+
 const chatAction = async (data) => {
   console.log("chat action", data);
   if (data.action === "add") {
@@ -373,6 +375,7 @@ const messageVisible = (message) => {
 }
 
 const searchMessages = (string) => {
+  foundMessages.value = []
   if (string && string.length > 0){
     isShowFeedWhileSearch.value = false
     foundMessages.value = transformToFeed(props.dataProvider.getMessagesBySearch(selectedChat.value.chatId, string))
@@ -390,9 +393,6 @@ const searchMessages = (string) => {
       }
       foundMessages.value = t
     }
-  }
-  else {
-    foundMessages.value = []
   }
 }
 

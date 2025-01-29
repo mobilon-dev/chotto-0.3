@@ -7,7 +7,7 @@
         class="feed-search__input"
         type="text"
         :placeholder="t('component.FeedSearch.SearchPlaceholder')"
-        v-model="search"
+        v-model="getModel().text"
       >
       <i 
         class="pi pi-times" 
@@ -25,9 +25,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, unref, onMounted, watch, computed } from 'vue';
+import { ref, unref, onMounted, watch, computed, inject } from 'vue';
 import { t } from '../../locale/useLocale';
+import { useSearchModel } from '../../helpers/useSearchModel';
 import useDelayDebouncedRef from '../../helpers/useDelayDebouncedRef';
+
+const chatAppId = inject('chatAppId')
+const { getModel } = useSearchModel(chatAppId as string)
 
 const emit = defineEmits(['search', 'cancel', 'switch'])
 
@@ -47,9 +51,12 @@ const resetLoc = computed(() => {
 })
 
 watch(
-  () => search.value,
+  () => [getModel().text, search.value],
   () => {
-    emit('search', search.value);
+    if (search.value == getModel().text)
+      emit('search', getModel().text);
+    else
+      search.value = getModel().text
   }
 )
 
@@ -57,13 +64,13 @@ const clearInput = () => {
   const el = unref(refInput);
   if (el)
     el.value = ''
+  getModel().text = ''
   emit('cancel')
 }
 
 onMounted(() => {
   const el = unref(refInput);
   el?.focus()
-  emit('search', el?.value);
 })
 
 </script>
