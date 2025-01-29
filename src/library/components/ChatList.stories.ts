@@ -26,6 +26,7 @@ const chats = [{
   name: "John Doe 2",
   lastMessage: "Привет 2!",
   countUnread: "677",
+  colorUnread: 'green',
   'lastActivity.time': "12:11",
   'lastActivity.timestamp': 1732779306,
   metadata: 'Petr',
