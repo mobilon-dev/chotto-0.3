@@ -33,7 +33,7 @@
         <button class="template-selector__button-close">
           <span
             class="pi pi-times"
-            @click="$emit('closeTemplateWindow')"
+            @click="closeTemplateWindow"
           />
         </button>
       </div>
@@ -136,7 +136,8 @@
                       :index="item.index"
                       :value="wabaValues[item.index] || 'Заполнить'"
                       :is-filled="!!wabaValues[item.index]"
-                      @click="openModal(item.index)"
+                      @click="selectedIndex = item.index"
+                      @edit="updateWabaValue"
                     />
                   </template>
                 </div>
@@ -170,34 +171,6 @@
               />
             </div>
           </div>
-
-          <transition name="modal-fade">
-            <div
-              v-if="isModalVisible"
-              class="template-selector__modal"
-            >
-              <input
-                ref="inputRef"
-                v-model="newValue"
-                type="text"
-                placeholder="Введите значение"
-                :autofocus="isModalVisible"
-              >
-              <button
-                class="template-selector__modal-button-add"
-                @click="updateValue"
-              >
-                Добавить
-              </button>
-              <button
-                class="template-selector__modal-button-cancel"
-                @click="closeModal"
-              >
-                Отменить
-              </button>
-            </div>
-          </transition>
-
 
           <button
             class="template-selector__button-paste"
@@ -326,10 +299,7 @@ const searchedTemplate = computed(() => {
 // код для подмены переменных
 
 const wabaValues = reactive({});
-const isModalVisible = ref(false);
-const inputRef = ref(null);
 const selectedIndex = ref(null);
-const newValue = ref('');
 
 const refContainer = ref()
 const showFirstCol = ref('')
@@ -395,32 +365,15 @@ const setSecondColVisible = () => {
 const updateShowValues = () => {
   const container = document.getElementById('waba-template-selector-container-' + chatAppId)
   const style = window.getComputedStyle(container)
-  console.log(container, style.getPropertyValue('--waba-template-first-col-display'))
   showFirstCol.value =  style.getPropertyValue('--waba-template-first-col-display')
   showSecondCol.value =  style.getPropertyValue('--waba-template-second-col-display')
   showThirdCol.value =  style.getPropertyValue('--waba-template-third-col-display')
 
 }
 
-const openModal = (index) => {
-  selectedIndex.value = index;
-  newValue.value = wabaValues[index] || '';
-  isModalVisible.value = true;
-};
-
-const closeModal = () => {
-  isModalVisible.value = false;
-  selectedIndex.value = null;
-  newValue.value = '';
-};
-
-const updateValue = () => {
-  updateWabaValue(selectedIndex.value, newValue.value);
-  closeModal();
-};
-
-const updateWabaValue = (index, value) => {
-  wabaValues[index] = value;
+const updateWabaValue = (value) => {
+  console.log(value)
+  wabaValues[selectedIndex.value] = value;
 };
 
 
@@ -499,15 +452,6 @@ const enteredValues = computed(() => {
     }
   }
   return values;
-});
-
-// Фокус при открывании модалки
-watch(isModalVisible, (newVal) => {
-  if (newVal) {
-    nextTick(() => {
-      inputRef.value.focus();
-    });
-  }
 });
 
 const resizeObserver = new ResizeObserver((entries) => {
@@ -863,66 +807,6 @@ onMounted(() => {
       cursor: default;
     }
   }
-
-  &__modal {
-    position: absolute;
-    top: 50%;
-    left: 40%;
-    transform: translate(-50%, -50%);
-    width: 34%;
-    padding: 20px 30px;
-    display: grid;
-    column-gap: 12px;
-    box-shadow: 0px 9px 15px 3px rgba(0, 0, 0, 0.2);
-    background-color: var(--template-selector-bg);
-    border-radius: 5px;
-    grid-template-columns: repeat(2, 1fr);
-
-    input {
-      grid-column: 1 / 3;
-      margin-bottom: 10px;
-      padding: var(--input-padding);
-      border-radius: var(--input-border-radius);
-      font-size: var(--input-font-size);
-      color: var(--input-color);
-      border: var(--input-border);
-      transition: border-color var(--input-transition-duration);
-      background-color: var(--input-background);
-      &::placeholder {
-        color: var(--input-placeholder-color);
-      }
-
-      &:hover {
-        border-color: var(--input-hover-border-color);
-      }
-
-      &:focus-visible {
-        border-color: var(--input-focus-border-color);
-        outline: none;
-      }
-    }
-  }
-
-  &__modal-button-add {
-    grid-column: 1;
-    border: none;
-    background-color: var(--p-red-200);
-    padding: 6px 14px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: var(--template-selector-button-add-font-size);
-  }
-
-  &__modal-button-cancel {
-    grid-column: 2;
-    border: none;
-    background-color: var(--neutral-200);
-    padding: 6px 14px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: var(--template-selector-button-cancel-font-size);
-  }
-
 }
 
 @container templates (width < 700px) {
@@ -943,20 +827,5 @@ onMounted(() => {
       grid-column: 1;
     }
   }
-}
-
-.modal-fade-enter-active,
-.modal-fade-leave-active {
-  transition: opacity 0.2s ease;
-}
-
-.modal-fade-enter-from,
-.modal-fade-leave-to {
-  opacity: 0;
-}
-
-.modal-fade-enter-to,
-.modal-fade-leave-from {
-  opacity: 1;
 }
 </style>
