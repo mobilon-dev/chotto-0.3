@@ -2,7 +2,7 @@
 
   /* Chat Panel */
   --chat-panel-bg: var(--neutral-800);
-  --chat-panel-margin: 0px 0px 0px 10px;
+  --chat-panel-margin: 0;
   --chat-panel-border-radius: 12px;
   --chat-panel-border: 1px solid var(--neutral-500);
   

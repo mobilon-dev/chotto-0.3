@@ -59,6 +59,7 @@
           <chat-wrapper
             :is-open-chat-panel="isOpenChatPanel"
             :is-selected-chat="!!selectedChat"
+            :mobile-sized="mobileSized"
           >
             <template #default>
               <div style="display: flex;
@@ -291,6 +292,7 @@ const isShowFeedWhileSearch = ref(true)
 const isSecondColVisible = ref(false)
 const isThirdColVisible = ref(false)
 const isShowReturnButton = ref(false)
+const mobileSized = ref(false)
 
 const refContainer = ref()
 
@@ -535,10 +537,12 @@ const resizeObserver = new ResizeObserver((entries) => {
   if (containerWidth < 920){
     feedSearchFeedCol.value = true
     isShowReturnButton.value = true
+    mobileSized.value = true
   }
   if (containerWidth > 920){
     feedSearchFeedCol.value = false
     isShowReturnButton.value = false
+    mobileSized.value = false
   }
 
   if (containerWidth < 720){
