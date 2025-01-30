@@ -178,8 +178,7 @@ const props = defineProps({
   elevatedWindow: {
     type: Boolean,
     required: false,
-    default: true,
-
+    default: false,
   }
 })
 
@@ -648,9 +647,5 @@ onMounted(() => {
     }
   }
 }
-
-.not-visible{
-    display: none;
-  }
 
 </style>

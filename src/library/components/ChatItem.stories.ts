@@ -47,6 +47,16 @@ export const ChatItemBasic500px: Story = {
   },
   decorators: [() => ({ template: '<div style="max-width: 500px;"><story/></div>' })]
 };
+
+export const ChatItemColoredUnread: Story = {
+  args: {
+    chat: {
+      ...chat,
+      colorUnread: 'red'
+    },
+  },
+};
+
 export const ChatItemWithoutLastMessage: Story = {
   args: {
     chat: {

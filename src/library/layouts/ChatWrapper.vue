@@ -20,6 +20,7 @@
       v-if="isOpenChatPanel"
       class="chat-wrapper__chat-panel"
       :style="{ 'flex-basis': isOpenChatPanel ? '40%' : '0%' }"
+      :class="{'chat-wrapper__chat-panel-mobile' : mobileSized}"
     >
       <slot name="chatpanel" />
     </div>
@@ -41,6 +42,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  mobileSized: {
+    type: Boolean,
+    default: false
+  }
 })
 </script>
 
@@ -69,6 +74,16 @@ const props = defineProps({
     background-color: var(--chat-panel-bg);
     border-left: var(--chat-panel-border, none);
     border-radius: var(--chat-panel-border-radius);
+    position: absolute;
+    height: 100%;
+    z-index: 100;
+    width: 40%;
+    left: 60%;
+  }
+
+  &__chat-panel-mobile{
+    left: 0%;
+    width: 100%;
   }
 }
 </style>
