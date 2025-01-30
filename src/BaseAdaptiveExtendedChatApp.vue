@@ -57,9 +57,10 @@
 
         <template #third-col>
           <chat-wrapper
+            ref="refChatWrapper"
             :is-open-chat-panel="isOpenChatPanel"
             :is-selected-chat="!!selectedChat"
-            :mobile-sized="mobileSized"
+            :chat-panel-width="chatPanelWidth"
           >
             <template #default>
               <div style="display: flex;
@@ -293,9 +294,10 @@ const isShowFeedWhileSearch = ref(true)
 const isSecondColVisible = ref(false)
 const isThirdColVisible = ref(false)
 const isShowReturnButton = ref(false)
-const mobileSized = ref(false)
+const chatPanelWidth = ref(50)
 
 const refContainer = ref()
+const refChatWrapper = ref()
 
 const handleOpenSearchPanel = () => {
   isOpenSearchPanel.value = !isOpenSearchPanel.value
@@ -533,24 +535,26 @@ const handleEvent = async (event) => {
 };
 
 const resizeObserver = new ResizeObserver((entries) => {
-  const containerWidth = entries[0].target.clientWidth
+  if (entries[0] && entries[1]){
+    const containerWidth = entries[0].target.clientWidth
+    const chatwrapperWidth = entries[1].target.clientWidth
+    if (chatwrapperWidth < 700) chatPanelWidth.value = 80
+    if (chatwrapperWidth > 700) chatPanelWidth.value = 60
 
-  if (containerWidth < 920){
-    feedSearchFeedCol.value = true
-    isShowReturnButton.value = true
-    mobileSized.value = true
-  }
-  if (containerWidth > 920){
-    feedSearchFeedCol.value = false
-    isShowReturnButton.value = false
-    mobileSized.value = false
-  }
-
-  if (containerWidth < 720){
-    sidebarFirstCol.value = false
-  }
-  if (containerWidth > 720){
-    sidebarFirstCol.value = true
+    if (containerWidth < 920){
+      feedSearchFeedCol.value = true
+      isShowReturnButton.value = true
+    }
+    if (containerWidth > 920){
+      feedSearchFeedCol.value = false
+      isShowReturnButton.value = false
+    }
+    if (containerWidth < 720){
+      sidebarFirstCol.value = false
+    }
+    if (containerWidth > 720){
+      sidebarFirstCol.value = true
+    }
   }
 });
 
@@ -567,6 +571,9 @@ onMounted(() => {
   console.log('eee', sidebarItems.value)
   if (unref(refContainer).$el){
     resizeObserver.observe(unref(refContainer).$el)
+  }
+  if (unref(refChatWrapper).$el){
+    resizeObserver.observe(unref(refChatWrapper).$el)
   }
 });
 </script>

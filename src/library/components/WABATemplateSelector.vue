@@ -273,6 +273,10 @@ const selectTemplate = (item) => {
   item.isSelected = true;
   selectedTemplate.value = item;
   allVariantsShow.value = false;
+  Object.keys(wabaValues).forEach(key => {
+    wabaValues[key] = '';
+  });
+  selectedFile.value = null
   setThirdColVisible()
 };
 
@@ -372,8 +376,7 @@ const updateShowValues = () => {
 }
 
 const updateWabaValue = (value) => {
-  console.log(value)
-  wabaValues[selectedIndex.value] = value;
+  wabaValues[value[1]] = value[0];
 };
 
 
