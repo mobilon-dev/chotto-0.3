@@ -269,14 +269,15 @@ const selectAllVariants = () => {
 }
 
 const selectTemplate = (item) => {
-  props.wabaTemplates.forEach(с => с.isSelected = false);
-  item.isSelected = true;
-  selectedTemplate.value = item;
-  allVariantsShow.value = false;
   Object.keys(wabaValues).forEach(key => {
     wabaValues[key] = '';
   });
   selectedFile.value = null
+  props.wabaTemplates.forEach(с => с.isSelected = false);
+  item.isSelected = true;
+  selectedTemplate.value = item;
+  allVariantsShow.value = false;
+  
   setThirdColVisible()
 };
 
