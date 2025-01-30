@@ -1,5 +1,5 @@
 <template>
-  <div class="chat-wrapper">
+  <div class="chat-wrapper" :id="'chat-wrapper-' + chatAppId">
     <div
       v-if="isSelectedChat"
       class="chat-wrapper__selected-chat"
@@ -20,7 +20,6 @@
       v-if="isOpenChatPanel"
       class="chat-wrapper__chat-panel"
       :style="{ 'flex-basis': isOpenChatPanel ? '40%' : '0%' }"
-      :class="{'chat-wrapper__chat-panel-mobile' : mobileSized}"
     >
       <slot name="chatpanel" />
     </div>
@@ -31,6 +30,7 @@
   lang="ts"
   setup
 >
+import { watch, inject } from 'vue';
 import { t } from '../../locale/useLocale';
 
 const props = defineProps({
@@ -42,11 +42,26 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  mobileSized: {
-    type: Boolean,
-    default: false
+  chatPanelWidth: {
+    type: Number,
+    required: false,
+    default: 50,
   }
 })
+
+const chatAppId = inject('chatAppId')
+
+watch(
+  () => props.chatPanelWidth,
+  () => {
+    const container = document.getElementById('chat-wrapper-' + chatAppId)
+    if (container){
+      container.style.setProperty('--chat-panel-width', props.chatPanelWidth + '%')
+      container.style.setProperty('--chat-panel-left', (100 - props.chatPanelWidth) + '%')
+    }
+  },
+  {immediate: true}
+)
 </script>
 
 
@@ -55,6 +70,10 @@ const props = defineProps({
   lang="scss"
 >
 .chat-wrapper {
+
+  --chat-panel-width: 50%;
+  --chat-panel-left: 50%;
+
   display: flex;
   height: 100%;
   width: 100%;
@@ -77,13 +96,8 @@ const props = defineProps({
     position: absolute;
     height: 100%;
     z-index: 100;
-    width: 40%;
-    left: 60%;
-  }
-
-  &__chat-panel-mobile{
-    left: 0%;
-    width: 100%;
+    width: var(--chat-panel-width);
+    left: var(--chat-panel-left);
   }
 }
 </style>

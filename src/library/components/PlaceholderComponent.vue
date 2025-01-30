@@ -6,14 +6,15 @@
     :class="{ 'filled': isFilled, 'empty': !isFilled }"
     class="placeholder"
     @keydown.enter="handleEnter"
-    @click="prepare"
+    @focus="prepare"
+    @blur="validate"
   >
     {{ v }}
   </span>
 </template>
 
 <script setup>
-import { onMounted, onUnmounted, ref } from 'vue';
+import {  onMounted, onUnmounted, ref } from 'vue';
 
 
 const props = defineProps({
@@ -43,12 +44,15 @@ const prepare = () => {
 }
 
 function validate() {
-  v.value = refPlaceholder.value.innerText.trim()
-  if (v.value != ''){
-    emit('edit', v.value)
-  }
-  else {
-    v.value = 'Заполнить'
+  if (props.value != v.value){
+    v.value = refPlaceholder.value.innerText.trim()
+    if (v.value != ''){
+      emit('edit',[v.value, props.index])
+    }
+    else {
+      if (!props.isFilled) v.value = 'Заполнить'
+      else v.value = props.value
+    }
   }
 }
 
@@ -58,28 +62,21 @@ function handleEnter(event) {
 }
 
 function handleKey(event) {
-    if (event.key === "Escape") {
-      if (props.value != v.value)validate()
-      event.target.blur()
-    }
-    if (event.key == 'Tab'){
-      event.preventDefault()
-    }
-}
-
-function handleClickOutside(event) {
-  if (event.target.id != 'placeholder' && refPlaceholder.value && !refPlaceholder.value.contains(event.target)) {
-    if (props.value != v.value)validate()
+  if (event.key === "Escape") {
+    event.target.blur()
+    validate()
+  }
+  if (event.key == 'Tab'){
+    validate()
+    event.target.blur()
   }
 }
 
 onMounted(() => {
-  window.addEventListener("click", handleClickOutside);
   window.addEventListener("keydown", handleKey);
 })
 
 onUnmounted(() => {
-  window.removeEventListener("click", handleClickOutside);
   window.removeEventListener("keydown", handleKey);
 })
 </script>
