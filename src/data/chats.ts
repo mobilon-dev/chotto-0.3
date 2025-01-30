@@ -21,6 +21,7 @@ export const chats = [
     chatId: 25, name: "Василий ВасилийВасилийВасилий Василий",
     avatar: 'https://img.freepik.com/free-photo/smiley-man-relaxing-outdoors_23-2148739334.jpg',
     countUnread: 102,
+    dialogsExpanded: true,
     dialogs: [
       {
         dialogId: 'dlg_43543555',
@@ -29,6 +30,7 @@ export const chats = [
         fullname: 'диалог1 номер 79135292926 канал whatsapp 73912000000 (основной)',   // для tooltip'а
         countUnread: 10,
         'lastActivity.timestamp': 1727001759456,   // для сортировки
+        isSelected: true,
       },
       {
         dialogId: 'dlg_89789879',
@@ -37,6 +39,7 @@ export const chats = [
         fullname: 'диалог2 номер 7913529XX27 канал whatsapp 73912000000 (основной)',
         countUnread: 90,
         'lastActivity.timestamp': 1727001759111,   // для сортировки
+        isSelected: false,
       },
     ],
   },
