@@ -83,6 +83,7 @@
   /* Info Container */
   --chat-item-border-radius: 6px;
   --chat-item-selected-color: var(--neutral-100);
+  --dialog-item-selected-color: var(--neutral-200);
   --chat-item-last-message-color: var(--neutral-400);
   --chat-item-last-message-font-weight: 500;
   --chat-item-last-message-font-size: var(--font-midX-size);

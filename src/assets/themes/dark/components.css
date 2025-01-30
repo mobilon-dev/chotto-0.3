@@ -87,6 +87,7 @@
 
   /* Info Container */
   --chat-item-selected-color: var(--neutral-800);
+  --dialog-item-selected-color: var(--neutral-700);
   --chat-item-last-message-color: var(--neutral-400);
 
   --chat-item-border-radius: 6px;
