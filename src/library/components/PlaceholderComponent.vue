@@ -1,12 +1,12 @@
 <template>
   <span
     ref="refPlaceholder"
-    :id="'placeholder'"
     contenteditable
     :class="{ 'filled': isFilled, 'empty': !isFilled }"
     class="placeholder"
     @keydown.enter="handleEnter"
     @focus="prepare"
+    @click="prepare"
     @blur="validate"
   >
     {{ v }}
@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import {  onMounted, onUnmounted, ref } from 'vue';
+import {  onMounted, onUnmounted, ref, nextTick, watch } from 'vue';
 
 
 const props = defineProps({
@@ -37,21 +37,36 @@ const emit = defineEmits(['edit'])
 const v = ref(props.value)
 const refPlaceholder = ref()
 
-const prepare = () => {
+watch(
+  () => props.isFilled,
+  () => { if (!props.isFilled) v.value = 'Заполнить'},
+  {immediate: true}
+)
+
+const prepare = (event) => {
   if (!props.isFilled) {
     v.value = ''
+    const sel = window.getSelection();
+      if (sel.getRangeAt && sel.rangeCount) {
+        const range = sel.getRangeAt(0);
+        range.selectNodeContents(event.target);     
+      }
   }
 }
 
 function validate() {
+  v.value = refPlaceholder.value.innerText.trim()
   if (props.value != v.value){
-    v.value = refPlaceholder.value.innerText.trim()
     if (v.value != ''){
       emit('edit',[v.value, props.index])
     }
     else {
       if (!props.isFilled) v.value = 'Заполнить'
-      else v.value = props.value
+      else {
+        nextTick(() => {
+          v.value = props.value
+        }) 
+      }
     }
   }
 }
