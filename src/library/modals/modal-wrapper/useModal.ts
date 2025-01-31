@@ -7,9 +7,7 @@ import {
     defineAsyncComponent,
 } from 'vue'
 
-import Modal from './Modal.vue'
-
-export function useModal<T>({component, attrs}): Promise<void> {
+export function useModal<T>({component, attrs, Modal, modalAttrs}): Promise<void> {
     return new Promise((resolve) => {
         const modalDiv = document.createElement('div')
         document.body.appendChild(modalDiv)
@@ -27,8 +25,9 @@ export function useModal<T>({component, attrs}): Promise<void> {
         }
 
         const changeDataHandler = (data: Object) => {
-            const key = Object.keys(data)[0]
-            Data.value[key] = data[key]
+            Object.keys(data).forEach(key => {
+                Data.value[key] = data[key]
+            })
         }
 
         const ModalWrapper = defineComponent({
@@ -36,8 +35,9 @@ export function useModal<T>({component, attrs}): Promise<void> {
                 return h(
                     Modal as any,
                     {
-                        onSubmit: submitHandler,
+                        ...modalAttrs,
                         onClose: closeHandler,
+                        onSubmit: submitHandler,
                     },
                     {
                         default: () =>
@@ -46,6 +46,8 @@ export function useModal<T>({component, attrs}): Promise<void> {
                                 {
                                     ...attrs,
                                     onChange: changeDataHandler,
+                                    onSubmit: submitHandler,
+                                    onClose: closeHandler,
                                 }
                             ),
                     }

@@ -158,7 +158,7 @@ import { getStatus, statuses } from "../../helpers";
 import { IImageMessage } from '../../types';
 import BaseReplyMessage from './BaseReplyMessage.vue'
 import LinkPreview from './LinkPreview.vue'
-import ModalFullscreen from '../modals/ModalFullscreen.vue';
+import ModalFullscreen from '../modals/modal-wrapper/ModalFullscreen.vue';
 
 const props = defineProps({
   message: {

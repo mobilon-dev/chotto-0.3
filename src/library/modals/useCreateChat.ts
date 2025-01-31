@@ -1,4 +1,5 @@
 import { useModal } from './modal-wrapper/useModal';
+import Modal from './modal-wrapper/Modal.vue';
 
 export const useModalCreateChat = async (title: string) => {
   const data = await useModal({
@@ -6,6 +7,10 @@ export const useModalCreateChat = async (title: string) => {
     component: import('./CreateChat.vue'),
     attrs: {
       title, 
+    },
+    Modal,
+    modalAttrs: {
+
     },
   });
   console.log('data', data);

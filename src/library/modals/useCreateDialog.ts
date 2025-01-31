@@ -1,6 +1,7 @@
-import { useModal } from './modal-wrapper/useModalNoFooter';
+import { useModal } from './modal-wrapper/useModal';
+import Modal from './modal-wrapper/ModalNoFooter.vue';
 
-export const useModalCreateDialog = async (title: string, name: string, contacts, channels) => {
+export const useModalCreateDialog = async (title: string, name: string, contacts, channels, theme?: string) => {
   const data = await useModal({
     //в component должен быть встроен emit change(key: value)
     component: import('./CreateDialog.vue'),
@@ -9,6 +10,10 @@ export const useModalCreateDialog = async (title: string, name: string, contacts
       name,
       contacts,
       channels,
+    },
+    Modal,
+    modalAttrs: {
+      theme,
     },
   });
   // console.log('data', data);
