@@ -129,28 +129,16 @@
 
     <Teleport to="body">
       <transition name="modal-fade">
-        <div
+        <ModalFullscreen
           v-if="isOpenModal"
-          class="image-message__modal-overlay"
-          @click="closeModalOutside"
-          @keyup.esc="isOpenModal = false"
+          @close="closeModal"
         >
-          <div class="image-message__modal">
-            <button
-              class="image-message__modal-close-button"
-              @click="closeModal"
-            >
-              <span>
-                <i class="pi pi-times" />
-              </span>
-            </button>
-            <img
-              class="image-message__modal-image"
-              :src="message.url"
-              :alt="message.alt"
-            >
-          </div>
-        </div>
+          <img
+            class="image-message__modal-image"
+            :src="message.url"
+            :alt="message.alt"
+          >
+        </ModalFullscreen>
       </transition>
     </Teleport>
   </div>
@@ -170,6 +158,7 @@ import { getStatus, statuses } from "../../helpers";
 import { IImageMessage } from '../../types';
 import BaseReplyMessage from './BaseReplyMessage.vue'
 import LinkPreview from './LinkPreview.vue'
+import ModalFullscreen from '../modals/ModalFullscreen.vue';
 
 const props = defineProps({
   message: {
@@ -380,48 +369,12 @@ onUnmounted(() => {
   }
 
   &__modal-image {
-    width: 100%;
+    /*width: 100%;*/
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 5px;
-    max-height: 80vh;
-  }
-
-  &__modal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 101;
-    background-color: var(--modal-bg);
-    border-radius: var(--modal-border-radius);
-    padding: var(--modal-padding);
-    max-width: 45%;
-    box-shadow: var(--modal-overlay-shadow);
-  }
-
-  &__modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--modal-mask-background);
-    z-index: 1000;
-  }
-
-  &__modal-close-button {
-    display: block;
-    background-color: transparent;
-    border: none;
-    padding: 4px;
-    margin: 0 0 14px auto;
-    cursor: pointer;
-
-    span {
-      color: var(--modal-icon-color);
-      font-size: var(--modal-icon-font-size);
-    }
+    max-height: 90vh;
+    max-width: 95vw;
   }
 
   &__menu-button {
