@@ -19,7 +19,7 @@ export const chats = [
     dialogsExpanded: true,
     dialogs: [
       {
-        dialogId: 'dlg_43543555',
+        dialogId: 'dlg_43543551',
         icon: 'https://img.freepik.com/free-photo/smiley-man-relaxing-outdoors_23-2148739334.jpg',
         name: 'диалог1 79135292926',
         fullname: 'диалог1 номер 79135292926 канал whatsapp 73912000000 (основной)',   // для tooltip'а
@@ -29,7 +29,7 @@ export const chats = [
         isSelected: false,
       },
       {
-        dialogId: 'dlg_89789879',
+        dialogId: 'dlg_89789872',
         icon: 'https://img.freepik.com/free-photo/smiley-man-relaxing-outdoors_23-2148739334.jpg',
         name: 'диалог2 7913529XXXX',
         fullname: 'диалог2 номер 7913529XX27 канал whatsapp 73912000000 (основной)',
