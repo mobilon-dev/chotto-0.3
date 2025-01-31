@@ -1,5 +1,6 @@
 <template>
-  <div
+  <div>
+    <div
     class="chat-item__container"
     :class="getClass()"
     @mouseenter="showMenu"
@@ -59,9 +60,10 @@
       <button
         v-if="buttonMenuVisible && chat.actions"
         class="chat-item__menu-button"
-        @click="isOpenMenu = !isOpenMenu"
+        @click="handleOpenMenu"
+        id="noSelectButton"
       >
-        <span class="pi pi-ellipsis-h" />
+        <span id="noSelectButton" class="pi pi-ellipsis-h" />
       </button>
 
       <div
@@ -87,6 +89,28 @@
       </div>
     </div>
 
+    <div
+      v-if="chat.dialogs" 
+      class="chat-item__dialog-buttons"
+    >
+      <button
+        v-if="!chat.dialogsExpanded"
+        class="chat-item__menu-button"
+        @click="chat.dialogsExpanded = !chat.dialogsExpanded"
+        id="noSelectButton"
+      >
+        <span id="noSelectButton" class="pi pi-angle-down" />
+      </button>
+      <button
+        v-if="chat.dialogsExpanded"
+        class="chat-item__menu-button"
+        @click="chat.dialogsExpanded = !chat.dialogsExpanded"
+        id="noSelectButton"
+      >
+        <span id="noSelectButton" class="pi pi-angle-up" />
+      </button>
+    </div>
+
     <transition name="menu">
       <ContextMenu
         v-if="isOpenMenu && chat.actions"
@@ -96,6 +120,40 @@
       />
     </transition>
   </div>
+
+  <div 
+    v-if="chat.dialogsExpanded"
+    class="chat-item__dialog-container"
+  >
+    <div
+      v-for="dialog in getSortedDialogs()"
+      class="chat-item__dialog-item"
+      :class="getDialogClass(dialog)"
+      @click="selectDialog(dialog)"
+    >
+      <img
+        v-if="dialog.icon"
+        :src="dialog.icon"
+        height="16"
+        width="16"
+      >
+      <span
+        v-else
+        class="pi pi-user"
+      />
+      <div>{{ dialog.name }}</div>
+      <div>{{ dialog['lastActivity.time'] }}</div>
+      <div
+        v-if="dialog.countUnread > 0"
+        class="chat-item__unread"
+        :style="{backgroundColor: dialog.colorUnread ? dialog.colorUnread : null}"
+      >
+        {{ dialog.countUnread > 99 ? '99+' : dialog.countUnread }}
+      </div>
+    </div>
+  </div>
+  </div>
+  
 </template>
 
 <script setup>
@@ -113,14 +171,25 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['select', 'action']);
+const emit = defineEmits(['select', 'action', 'selectDialog']);
 
-const selectChat = () => { 
-  emit('select', props.chat);
+const selectChat = (event) => { 
+  if (event.target.id != 'noSelectButton' && !props.chat.dialogs)
+    emit('select', props.chat);
+  if (props.chat.dialogs)
+  props.chat.dialogsExpanded = !props.chat.dialogsExpanded
+}
+
+const selectDialog = (dialog) => {
+    emit('selectDialog', {chat: props.chat, dialog: dialog});
 }
 
 const getClass = () => {
   return props.chat.isSelected ? 'chat-item__selected' : '';
+}
+
+const getDialogClass = (dialog) => {
+  return dialog.isSelected ? 'chat-item__dialog-selected' : ''
 }
 
 const clickAction = (action) => {
@@ -131,6 +200,19 @@ const clickAction = (action) => {
 
 const isOpenMenu = ref(false)
 const buttonMenuVisible = ref(false);
+
+const getSortedDialogs = () => {
+  return props.chat.dialogs
+    .toSorted((a, b) => {
+      if (Number(a['lastActivity.timestamp']) > Number(b['lastActivity.timestamp'])) return -1;
+      if (Number(a['lastActivity.timestamp']) < Number(b['lastActivity.timestamp'])) return 1;
+      if (Number(a['lastActivity.timestamp']) == Number(b['lastActivity.timestamp'])) return 0;
+    })
+}
+
+const handleOpenMenu = (event) => {
+  isOpenMenu.value = !isOpenMenu.value
+}
 
 const showMenu = () => {
   buttonMenuVisible.value = true;
@@ -201,6 +283,36 @@ watch(
       width: 100%;
       background-color: var(--chat-item-background-color);
     }
+  }
+
+  &__dialog-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: var(--chat-item-padding-container);
+    cursor: pointer;
+    gap: 5px;
+    padding-left: 80px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      background-color: var(--chat-item-background-color);
+    }
+  }
+
+  &__dialog-item{
+    display: flex;
+  }
+
+  &__dialog-selected {
+    cursor: pointer;
+    border-radius: var(--chat-item-border-radius);
+    background: var(--dialog-item-selected-color);
   }
 
   &__selected {

@@ -29,6 +29,7 @@
             :chats="chatsStore.chats"
             filter-enabled
             @select="selectChat"
+            @select-dialog="selectDialog"
             @action="chatAction"
             @load-more-chats="loadMoreChats"
           >
@@ -466,6 +467,21 @@ const selectChat = (chat) => {
   inputFocus.value = true
   selectedChat.value = chat;
   chatsStore.setUnreadCounter(chat.chatId, 0);
+  messages.value = getFeedObjects(); // Обновляем сообщения при выборе чата
+  setTimeout(() => {
+    scrollToBottomOnSelectChat.value = false
+    inputFocus.value = false
+  }, 50)
+};
+
+const selectDialog = (args) => {
+  console.log(args.chat, args.dialog)
+  isThirdColVisible.value = true
+  isSecondColVisible.value = false
+  scrollToBottomOnSelectChat.value = true
+  inputFocus.value = true
+  selectedChat.value = args.chat;
+
   messages.value = getFeedObjects(); // Обновляем сообщения при выборе чата
   setTimeout(() => {
     scrollToBottomOnSelectChat.value = false

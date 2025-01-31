@@ -16,6 +16,29 @@ export const chats = [
     ],
     typing: true,
     metadata: '',    // фильтр работает по name и данным в metadata
+    dialogsExpanded: true,
+    dialogs: [
+      {
+        dialogId: 'dlg_43543555',
+        icon: 'https://img.freepik.com/free-photo/smiley-man-relaxing-outdoors_23-2148739334.jpg',
+        name: 'диалог1 79135292926',
+        fullname: 'диалог1 номер 79135292926 канал whatsapp 73912000000 (основной)',   // для tooltip'а
+        countUnread: 10,
+        'lastActivity.time': 'час назад',  
+        'lastActivity.timestamp': 1727001759456,   // для сортировки
+        isSelected: false,
+      },
+      {
+        dialogId: 'dlg_89789879',
+        icon: 'https://img.freepik.com/free-photo/smiley-man-relaxing-outdoors_23-2148739334.jpg',
+        name: 'диалог2 7913529XXXX',
+        fullname: 'диалог2 номер 7913529XX27 канал whatsapp 73912000000 (основной)',
+        countUnread: 90,
+        'lastActivity.time': '2 часа назад',
+        'lastActivity.timestamp': 1727001759111,   // для сортировки
+        isSelected: false,
+      },
+    ],
   },
   {
     chatId: 25, name: "Василий ВасилийВасилийВасилий Василий",
@@ -59,6 +82,7 @@ export const chats = [
   {
     chatId: 3, name: "Анна",
     countUnread: 0, isFixedBottom: true,
+    lastMessage: 'text',
     'lastMessage.status': 'se',
     'lastActivity.timestamp': '1727027359',
     actions: [
