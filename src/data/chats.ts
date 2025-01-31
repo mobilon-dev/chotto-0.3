@@ -78,6 +78,22 @@ export const chats = [
       { action: 'edit', title: 'изменить' }, { action: 'unpin', title: 'открепить' },
     ],
     metadata: '',
+    contact: {
+      attributes: [
+        {
+          id: 'phone:79135292926',
+          value: 'whatsapp 79135292926',
+        },
+        {
+          id: 'phone:7913529XXXX',
+          value: 'whatsapp 7913529XXXX',
+        },
+        {
+          id: 'tgNickName:@antirek',
+          value: 'telegram @antirek',
+        },
+      ],
+    },
   },
   {
     chatId: 3, name: "Анна",
