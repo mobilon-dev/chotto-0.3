@@ -56,6 +56,21 @@ export const messages = [
       { action: 'delete', title: 'удалить' }]
   },
   {
+    chatId: 2, type: "message.image", url: "https://filebump2.services.mobilon.ru/file/Oao1XkPt8LKLVdFA8pMcXAQeClMehtdrJVsJ", timestamp: '1727027959',
+    alt: "Example Image", direction: 'outgoing',
+    views: 1667, messageId: '4',
+    status: 'read', actions: [
+      { action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=pin' },
+      { action: 'delete', title: 'удалить' }]
+  },
+  {
+    chatId: 2, type: "message.video", url: "https://filebump2.services.mobilon.ru/file/XgYPv3t1VT1RxoUVPpWvQuyOkpdSCayNgpv1",
+    text: "Привет!", direction: 'outgoing', status: 'read', timestamp: '1727027959',
+    actions: [
+      { action: 'edit', title: 'изменить', icon: 'fa-edit' },
+      { action: 'delete', title: 'удалить' }]
+  },
+  {
     chatId: 2, type: "message.video", url: "https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3",
     text: "Привет!", direction: 'outgoing', status: 'read', timestamp: '1727027959',
     actions: [

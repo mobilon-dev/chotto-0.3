@@ -74,15 +74,4 @@
   --icon-font-size-medium: 1.3rem;
   --icon-font-size-large: 1.6rem;
 
-  /* Modals */
-
-  --modal-padding: 20px;
-  --modal-border-radius: 12px;
-  --modal-mask-background: rgba(0, 0, 0, 0.4);
-  --modal-overlay-shadow: 0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 8px 10px -6px rgba(0, 0, 0, 0.1);
-  --modal-icon-color: var(--neutral-600);
-  --modal-icon-font-size: var(--icon-font-size-medium);
-  --modal-bg: var(--default-white);
-
-
 }

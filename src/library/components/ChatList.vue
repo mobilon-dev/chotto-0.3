@@ -68,7 +68,6 @@
           :chat="chat"
           @select="selectChat"
           @action="action"
-          @select-dialog="selectDialog"
         />
       </div>
 
@@ -109,7 +108,7 @@ const props = defineProps({
 });
 
 // Define emits
-const emit = defineEmits(['select', 'action', 'loadMoreChats', 'selectDialog']);
+const emit = defineEmits(['select', 'action', 'loadMoreChats']);
 
 const filter = ref('');
 const isOpenMenu = ref(false)
@@ -129,7 +128,7 @@ const scrollCheck = () => {
 };
 
 // Define method
-const selectChat = (chat) => {
+const selectChat = (args) => {
   props.chats.forEach(c => {
     c.isSelected = false
     if (c.dialogs) 
@@ -137,25 +136,24 @@ const selectChat = (chat) => {
         d.isSelected = false
       })
   });
-  const c = props.chats.find(c => c.chatId === chat.chatId);
+  if (args.dialog) {
+    selectDialog(args.dialog)
+  }
+  const c = props.chats.find(c => c.chatId === args.chat.chatId);
   c.isSelected = true;
-  emit('select', chat);
+  emit('select', args);
 };
 
-const selectDialog = (args) => {
-  emit('selectDialog', args)
+const selectDialog = (dialog) => {
   props.chats.forEach(c => {
     c.isSelected = false
     if (c.dialogs) 
       c.dialogs.forEach(d => {
         d.isSelected = false
-        if (d.dialogId == args.dialog.dialogId)
+        if (d.dialogId == dialog.dialogId)
         d.isSelected = true
       })
   });
-  
-  const c = props.chats.find(c => c.chatId === args.chat.chatId);
-  c.isSelected = true;
 }
 
 const getSortedAndFilteredChats = () => {

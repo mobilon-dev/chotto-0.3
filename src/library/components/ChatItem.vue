@@ -171,17 +171,17 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['select', 'action', 'selectDialog']);
+const emit = defineEmits(['select', 'action']);
 
 const selectChat = (event) => { 
   if (event.target.id != 'noSelectButton' && !props.chat.dialogs)
-    emit('select', props.chat);
+    emit('select', {chat: props.chat, dialog: null});
   if (props.chat.dialogs)
   props.chat.dialogsExpanded = !props.chat.dialogsExpanded
 }
 
 const selectDialog = (dialog) => {
-    emit('selectDialog', {chat: props.chat, dialog: dialog});
+    emit('select', {chat: props.chat, dialog: dialog});
 }
 
 const getClass = () => {
