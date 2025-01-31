@@ -200,6 +200,7 @@ import {
   useModalCreateChat,
   useModalCreateChat2,
   ButtonContextMenu,
+  useModalCreateDialog,
   ButtonTemplateSelector,
   ButtonWabaTemplateSelector,
   ButtonEmojiPicker,
@@ -323,6 +324,11 @@ const chatAction = async (data) => {
     const data = await useModalSelectUser2('Укажите новых участников чата', getUsers());
     // const data = await useModalCreateChat2('Добавьте контакт');
     console.log('users:', data.contact);
+  }
+
+  if (data.action === 'addDialog'){
+    const data1 = await useModalCreateDialog('Новый диалог', data.chat.name, data.chat.contact.attributes, channels.value)
+    console.log('info', data1);
   }
 };
 

@@ -195,7 +195,7 @@ const getDialogClass = (dialog) => {
 const clickAction = (action) => {
   // console.log('action', props.chat.chatId, action);
   hideMenu();
-  emit('action', { chatId: props.chat.chatId, ...action });
+  emit('action', { chat: props.chat, ...action });
 }
 
 const isOpenMenu = ref(false)
