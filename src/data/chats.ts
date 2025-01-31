@@ -19,7 +19,7 @@ export const chats = [
     dialogsExpanded: true,
     dialogs: [
       {
-        dialogId: 'dlg_43543551',
+        dialogId: 'dlg_43543555',
         icon: 'https://img.freepik.com/free-photo/smiley-man-relaxing-outdoors_23-2148739334.jpg',
         name: 'диалог1 79135292926',
         fullname: 'диалог1 номер 79135292926 канал whatsapp 73912000000 (основной)',   // для tooltip'а
@@ -29,12 +29,38 @@ export const chats = [
         isSelected: false,
       },
       {
-        dialogId: 'dlg_89789872',
+        dialogId: 'dlg_89789879',
         icon: 'https://img.freepik.com/free-photo/smiley-man-relaxing-outdoors_23-2148739334.jpg',
         name: 'диалог2 7913529XXXX',
         fullname: 'диалог2 номер 7913529XX27 канал whatsapp 73912000000 (основной)',
         countUnread: 90,
         'lastActivity.time': '2 часа назад',
+        'lastActivity.timestamp': 1727001759111,   // для сортировки
+        isSelected: false,
+      },
+    ],
+  },
+  {
+    chatId: 25, name: "Василий ВасилийВасилийВасилий Василий",
+    avatar: 'https://img.freepik.com/free-photo/smiley-man-relaxing-outdoors_23-2148739334.jpg',
+    countUnread: 102,
+    dialogsExpanded: true,
+    dialogs: [
+      {
+        dialogId: 'dlg_43543551',
+        icon: 'https://img.freepik.com/free-photo/smiley-man-relaxing-outdoors_23-2148739334.jpg',
+        name: 'диалог1 79135292926',
+        fullname: 'диалог1 номер 79135292926 канал whatsapp 73912000000 (основной)',   // для tooltip'а
+        countUnread: 10,
+        'lastActivity.timestamp': 1727001759456,   // для сортировки
+        isSelected: true,
+      },
+      {
+        dialogId: 'dlg_89789872',
+        icon: 'https://img.freepik.com/free-photo/smiley-man-relaxing-outdoors_23-2148739334.jpg',
+        name: 'диалог2 7913529XXXX',
+        fullname: 'диалог2 номер 7913529XX27 канал whatsapp 73912000000 (основной)',
+        countUnread: 90,
         'lastActivity.timestamp': 1727001759111,   // для сортировки
         isSelected: false,
       },
