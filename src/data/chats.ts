@@ -10,7 +10,7 @@ export const chats = [
     status: "#767676",
     'lastMessage.status': 'read',
     actions: [
-      { action: 'add', title: 'добавить', icon: 'https://placehold.jp/30/dd6699/ffffff/64x64.png?text=add' },
+      { action: 'addDialog', title: 'новый диалог', icon: 'https://placehold.jp/30/dd6699/ffffff/64x64.png?text=add' },
       { action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/dd6699/ffffff/64x64.png?text=pin' },
       { action: 'delete', title: 'удалить', icon: 'https://placehold.jp/30/dd6699/ffffff/64x64.png?text=del' },
     ],
@@ -39,12 +39,35 @@ export const chats = [
         isSelected: false,
       },
     ],
+    contact: {
+      attributes: [
+        {
+          id: 'phone:79135292926',
+          value: 'whatsapp 79135292926',
+        },
+        {
+          id: 'phone:7913529XXXX',
+          value: 'whatsapp 7913529XXXX',
+        },
+        {
+          id: 'tgNickName:@antirek',
+          value: 'telegram @antirek',
+        },
+      ],
+    },
   },
   {
     chatId: 25, name: "Василий ВасилийВасилийВасилий Василий",
     avatar: 'https://img.freepik.com/free-photo/smiley-man-relaxing-outdoors_23-2148739334.jpg',
     countUnread: 102,
+    lastMessage: 'Длинное сообщение сомнительного характера в контексте размещения на малой строке',
     dialogsExpanded: true,
+    actions: [
+      { action: 'addDialog', title: 'Новый диалог', icon: 'https://placehold.jp/30/dd6699/ffffff/64x64.png?text=add' },
+      { action: 'add', title: 'добавить', icon: 'https://placehold.jp/30/dd6699/ffffff/64x64.png?text=add' },
+      { action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/dd6699/ffffff/64x64.png?text=pin' },
+      { action: 'delete', title: 'удалить', icon: 'https://placehold.jp/30/dd6699/ffffff/64x64.png?text=del' },
+    ],
     dialogs: [
       {
         dialogId: 'dlg_43543551',
@@ -65,6 +88,22 @@ export const chats = [
         isSelected: false,
       },
     ],
+    contact: {
+      attributes: [
+        {
+          id: 'phone:79135292926',
+          value: 'whatsapp 79135292926',
+        },
+        {
+          id: 'phone:7913529XXXX',
+          value: 'whatsapp 7913529XXXX',
+        },
+        {
+          id: 'tgNickName:@antirek',
+          value: 'telegram @antirek',
+        },
+      ],
+    },
   },
   {
     chatId: 2, name: "Мария",
