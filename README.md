@@ -2,6 +2,10 @@
 
 Vue3 UI components for chats, conversations, ai
 
+### developer news
+
+[telegram developer chat](https://t.me/chottodev)
+
 # usage
 
 ## docs
