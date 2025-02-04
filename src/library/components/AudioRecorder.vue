@@ -72,7 +72,7 @@ const elapsedTime = computed(() => {
 
 const uploadStatus = ref("");
 const audioRecording = ref(false)
-const mediaRecorder = ref()
+const mediaRecorder = ref<MediaRecorder>()
 const chunks = ref<any[]>([])
 const audio = ref<string>()
 const audioPreview = ref<IFilePreview>()
@@ -103,8 +103,10 @@ const startAudioRecording = async () => {
   setRecordingMessage(true)
   audioRecording.value = true
   const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
-  mediaRecorder.value = new MediaRecorder(stream);
+  mediaRecorder.value = new MediaRecorder(stream)
+  console.log('init ',mediaRecorder.value)
   mediaRecorder.value.start();
+  console.log('start ',mediaRecorder.value)
   mediaRecorder.value.ondataavailable = (event: any) => {
     chunks.value.push(event.data);
   }
@@ -116,33 +118,37 @@ const cancelAudioRecording = () => {
 }
 
 const stopAudioRecording = () => {
-  mediaRecorder.value.stop();
-  mediaRecorder.value.onstop = async () => {
-    const file = new File(chunks.value,'voicemessage.mp3',{type: 'audio/*'});
-    const url = URL.createObjectURL(file);
-    audio.value = url;
-    uploadStatus.value = 'uploading'
-    await uploadFile(props.filebumpUrl, file)
-    .then((data) => {
-      uploadStatus.value = data.status
-      if (data.status == 'success'){
-        setMessageFile({
-          url: data.url,
-          name: data.name,
-          size: data.size,
-          type: data.type,
-        })
-        if (data.preview)
-          audioPreview.value = ({
-            previewUrl: data.preview.previewUrl,
-            isImage: data.preview.isImage,
-            isVideo: data.preview.isVideo,
-            isAudio: data.preview.isAudio,
-            fileName: data.name,
-            fileSize: data.preview.fileSize,
+  if (mediaRecorder.value){
+    console.log('pre stop ',mediaRecorder.value)
+    mediaRecorder.value.stop();
+    console.log('stop ',mediaRecorder.value)
+    mediaRecorder.value.onstop = async () => {
+      const file = new File(chunks.value,'voicemessage.mp3',{type: 'audio/*'});
+      const url = URL.createObjectURL(file);
+      audio.value = url;
+      uploadStatus.value = 'uploading'
+      await uploadFile(props.filebumpUrl, file)
+      .then((data) => {
+        uploadStatus.value = data.status
+        if (data.status == 'success'){
+          setMessageFile({
+            url: data.url,
+            name: data.name,
+            size: data.size,
+            type: data.type,
           })
-      }
-    }) 
+          if (data.preview)
+            audioPreview.value = ({
+              previewUrl: data.preview.previewUrl,
+              isImage: data.preview.isImage,
+              isVideo: data.preview.isVideo,
+              isAudio: data.preview.isAudio,
+              fileName: data.name,
+              fileSize: data.preview.fileSize,
+            })
+        }
+      }) 
+    }
   }
   clearTemp()
 }
@@ -155,7 +161,7 @@ const clearTemp = () => {
   h.value = 0
   setRecordingMessage(false)
   audioRecording.value = false
-  mediaRecorder.value = null
+  mediaRecorder.value = undefined
   chunks.value = []
 }
 
