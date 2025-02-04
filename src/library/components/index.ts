@@ -19,6 +19,7 @@ import ContextMenu from './ContextMenu.vue';
 import FeedSearch from './FeedSearch.vue';
 import FeedFoundObjects from './FeedFoundObjects.vue'
 import Tooltip from './Tooltip.vue';
+import AudioRecorder from './AudioRecorder.vue';
 export {
   ChatInfo,
   ChatInput,
@@ -40,5 +41,6 @@ export {
   ContextMenu,
   FeedSearch,
   FeedFoundObjects,
-  Tooltip
+  Tooltip,
+  AudioRecorder,
 }

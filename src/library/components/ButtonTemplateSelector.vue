@@ -1,5 +1,6 @@
 <template>
   <button
+    v-if="!getMessage().isRecording"
     ref="templateButton"
     class="button-template"
     :class="{'button-template-disabled' : state == 'disabled'}"
@@ -26,8 +27,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, inject } from 'vue';
 import TemplateSelector from './TemplateSelector.vue';
+import { useMessage } from '../../helpers/useMessage';
+
 const props = defineProps({
   templates: {
     type: Array,
@@ -53,6 +56,9 @@ const props = defineProps({
     required: false,
   }
 })
+
+const chatAppId = inject('chatAppId')
+const { getMessage } = useMessage(chatAppId)
 
 const templateButton = ref(null)
 const template = ref(null)

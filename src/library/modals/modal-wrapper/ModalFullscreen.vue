@@ -21,7 +21,7 @@
 
 <script setup>
 import { inject } from 'vue';
-import { useTheme } from '../../helpers/useTheme';
+import { useTheme } from '../../../helpers/useTheme';
 
 const emit = defineEmits(['close']);
 

@@ -26,13 +26,8 @@
     </div>
   </div>
   <FilePreview
-    v-else-if="uploadStatus === 'success'"
-    :preview-url="previewUrl"
-    :is-image="isImage"
-    :is-video="isVideo"
-    :is-audio="isAudio"
-    :file-name="selectedFile?.name"
-    :file-size="fileSize"
+    v-else-if="uploadStatus === 'success' && preview"
+    :file-info="preview"
     @reset="handleFileDecline"
   />
   <div 
@@ -44,9 +39,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, inject } from "vue";
+import { unref, ref, watch, inject } from "vue";
 import FilePreview from "./FilePreview.vue";
-import { getTypeFileByMime } from "../../helpers";
+import { uploadFile } from "../../helpers/uploadFile";
+import { IFilePreview } from "../../types";
 const props = defineProps({
   type: {
     type: String,
@@ -63,11 +59,7 @@ const selectedFile = ref<File | null>(null);
 const fileInput = ref<HTMLInputElement>();
 const error = ref('')
 const uploadStatus = ref('')
-const isImage = ref(false)
-const isVideo = ref(false)
-const isAudio = ref(false)
-const previewUrl = ref<string>("")
-const fileSize = ref('')
+const preview = ref<IFilePreview>()
 
 const emit = defineEmits(['fileSelected']);
 
@@ -118,81 +110,30 @@ const handleFileChange = (event) => {
     }
     else if (!error.value){
       selectedFile.value = file
-      uploadFile()
-      generatePreview()
+      uploadStatus.value = "uploading";
+      const f = unref(filebumpUrl.value)
+      uploadFile(typeof f == 'string' ? f : null, file)
+      .then((data) => {
+        uploadStatus.value = data.status
+        if (data.status == 'success'){
+          emit('fileSelected',{
+            url: data.url,
+            filename: data.name,
+            filesize: data.size,
+            filetype: data.type,
+          })
+          if (data.preview)
+          preview.value = ({
+            previewUrl: data.preview.previewUrl,
+            isImage: data.preview.isImage,
+            isVideo: data.preview.isVideo,
+            isAudio: data.preview.isAudio,
+            fileName: data.name,
+            fileSize: data.preview.fileSize,
+          })
+        }
+      })
     }
-  }
-};
-
-const uploadFile = async () => {
-  if (selectedFile.value){
-    uploadStatus.value = "uploading";
-
-const formData = new FormData();
-formData.append("file", selectedFile.value);
-
-const oldFilebumpUrl = 'https://filebump2.services.mobilon.ru';
-const url = (filebumpUrl.value ?
-  filebumpUrl.value : oldFilebumpUrl) + "/upload";
-
-try {
-  const response = await fetch(
-    url,
-    {
-      method: "POST",
-      body: formData,
-    }
-  );
-  const result = await response.json();
-  uploadStatus.value = "success";
-
-  emit('fileSelected',{
-    url: result.url,
-    filename: selectedFile.value.name,
-    filesize: selectedFile.value.size,
-    filetype: getTypeFileByMime(selectedFile.value.type),
-  })
-} catch (error) {
-  console.error("Ошибка при загрузке файла:", error);
-  uploadStatus.value = "error";
-}
-  }
-};
-
-const generatePreview = () => {
-  const file = selectedFile.value;
-  if (file){
-    const fileType = getTypeFileByMime(file.type);
-    isImage.value = false;
-    isVideo.value = false;
-    isAudio.value = false
-
-    if (fileType === 'image') {
-      isImage.value = true;
-    } else if (fileType === "video") {
-      isVideo.value = true;
-    }
-    else if (fileType === 'audio') {
-      isAudio.value = true
-    }
-    if (isImage.value || isVideo.value) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        if (e.target?.result)
-          previewUrl.value = String(e.target.result)
-      };
-      reader.readAsDataURL(file);
-    } else {
-      previewUrl.value = ""; // No preview available
-    }
-    const sizeMeasurement = ['б', 'Кб', "Мб", "Гб"]
-    let size = file.size
-    let index = 0
-    while (size > 1024) {
-      size = size / 1024
-      index++
-    }
-    fileSize.value = size.toFixed(2) + sizeMeasurement[index]
   }
 };
 

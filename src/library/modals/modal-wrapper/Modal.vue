@@ -1,17 +1,30 @@
 <script setup>
-import {ref} from 'vue'
+
 const emit = defineEmits(['close', 'submit'])
 
-const handleConfirm = (data) => {
-    emit('submit', data)
+const props = defineProps({
+  theme: {
+    type: String,
+    required: false,
+    default: 'green'
+  }
+})
+
+const closeModalOutside = (evt) => {
+  if (evt.target.classList.contains('modal-backdrop')) {
+    emit('close')
+  }
 }
 
-const data = ref(null)
 </script>
 
 <template>
   <transition name="modal-fade">
-    <div class="modal-backdrop">
+    <div 
+      class="modal-backdrop"
+      :data-theme="theme"
+      @click="closeModalOutside"
+    >
       <div
         class="modal"
         role="dialog"
@@ -29,7 +42,7 @@ const data = ref(null)
             type="button"
             class="btn-green"
             aria-label="Close modal"
-            @click="handleConfirm(data)"
+            @click="emit('submit')"
           >
             OK
           </button>
@@ -37,7 +50,7 @@ const data = ref(null)
             type="button"
             class="btn-green"
             aria-label="Close modal"
-            @click="$emit('close')"
+            @click="emit('close')"
           >
             Cancel
           </button>

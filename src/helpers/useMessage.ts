@@ -7,13 +7,14 @@ interface Message {
     file?: UploadedFile
     reply?: Reply
     forceSend: boolean
+    isRecording: boolean
 }
 
 interface UploadedFile{
     url: string
-    name: string
-    size: Number
-    type: string
+    name?: string
+    size?: Number
+    type?: string
 }
 
 const messages = ref<Message[]>([])
@@ -32,6 +33,7 @@ export const useMessage = (outId : string) => {
             text: '',
             file: undefined,
             forceSend: false,
+            isRecording: false
         })
         index.value = messages.value.length - 1
     }
@@ -45,6 +47,7 @@ export const useMessage = (outId : string) => {
             file: undefined,
             reply: undefined,
             forceSend: false,
+            isRecording: getMessage().isRecording,
         }
     }
 
@@ -55,6 +58,7 @@ export const useMessage = (outId : string) => {
             file: getMessage().file,
             reply: getMessage().reply,
             forceSend: false,
+            isRecording: getMessage().isRecording,
         }
     }
 
@@ -65,6 +69,7 @@ export const useMessage = (outId : string) => {
             file: file,
             reply: getMessage().reply,
             forceSend: false,
+            isRecording: getMessage().isRecording,
         }
     }
 
@@ -75,6 +80,7 @@ export const useMessage = (outId : string) => {
             file: undefined,
             reply: getMessage().reply,
             forceSend: false,
+            isRecording: getMessage().isRecording,
         }
     }
 
@@ -85,6 +91,7 @@ export const useMessage = (outId : string) => {
             file: getMessage().file,
             reply: reply,
             forceSend: false,
+            isRecording: getMessage().isRecording,
         }
     }
 
@@ -95,6 +102,7 @@ export const useMessage = (outId : string) => {
             file: getMessage().file,
             reply: undefined,
             forceSend: false,
+            isRecording: getMessage().isRecording,
         }
     }
 
@@ -106,6 +114,10 @@ export const useMessage = (outId : string) => {
         messages.value[index.value].forceSend = val
     } 
 
+    const setRecordingMessage = (val : boolean) => {
+        messages.value[index.value].isRecording = val
+    } 
+
     return {
         getMessage,
         resetMessage,
@@ -114,6 +126,7 @@ export const useMessage = (outId : string) => {
         setMessageText,
         setReply,
         resetReply,
-        setForceSendMessage
+        setForceSendMessage,
+        setRecordingMessage,
     }
 }

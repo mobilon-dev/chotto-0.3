@@ -1,20 +1,20 @@
 <template>
   <div class="preview__container">
     <div class="preview__block">
-      <div v-if="props.isImage">
+      <div v-if="fileInfo.isImage">
         <img
-          :src="previewUrl"
+          :src="fileInfo.previewUrl"
           alt="Image Preview"
           class="preview__image"
         >
       </div>
-      <div v-else-if="props.isVideo">
+      <div v-else-if="fileInfo.isVideo">
         <video
-          :src="previewUrl"
+          :src="fileInfo.previewUrl"
           class="preview__video"
         />
       </div>
-      <div v-else-if="props.isAudio">
+      <div v-else-if="fileInfo.isAudio">
         <span
           class="pi pi-headphones"
           style="font-size: 2.5rem"
@@ -29,8 +29,8 @@
     </div>
     <div class="preview__control-block">
       <div class="preview__information">
-        <span class="preview__name">{{ fileName }}</span>
-        <span class="preview__size">{{ fileSize }}</span>
+        <span class="preview__name">{{ fileInfo.fileName }}</span>
+        <span class="preview__size">{{ fileInfo.fileSize }}</span>
       </div>
       <span
         class="pi pi-times preview__reset"
@@ -41,32 +41,14 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+
+import { IFilePreview } from '../../types'
 
 const props = defineProps({
-  previewUrl: {
-    type: String,
+  fileInfo: {
+    type: Object as () => IFilePreview,
     required: true,
-  },
-  isImage: {
-    type: Boolean,
-    default: false,
-  },
-  isVideo: {
-    type: Boolean,
-    default: false,
-  },
-  isAudio: {
-    type: Boolean,
-    default: false,
-  },
-  fileName: {
-    type: String,
-    default: '',
-  },
-  fileSize: {
-    type: String,
-    default: '',
   }
 });
 

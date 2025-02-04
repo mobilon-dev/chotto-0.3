@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="!getMessage().isRecording"
     ref="emojiButton"
     class="button"
     :class="{'button-disabled' : state == 'disabled'}"

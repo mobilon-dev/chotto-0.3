@@ -156,6 +156,7 @@
                     :mode="'hover'"
                     @select-channel="onSelectChannel"
                   />
+                  <AudioRecorder :filebump-url="filebumpUrl"/>
                 </template>
               </ChatInput>
               </div>
@@ -208,6 +209,7 @@ import {
   FeedSearch,
   ChannelSelector,
   FeedFoundObjects,
+  AudioRecorder,
 } from "./library";
 
 import {
@@ -323,7 +325,7 @@ const chatAction = async (data) => {
   if (data.action === "add") {
     const data = await useModalSelectUser2('Укажите новых участников чата', getUsers());
     // const data = await useModalCreateChat2('Добавьте контакт');
-    console.log('users:', data.contact);
+    console.log('users:', data);
   }
 
   if (data.action === 'addDialog'){

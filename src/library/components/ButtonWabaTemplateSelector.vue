@@ -1,5 +1,6 @@
 <template>
   <button
+    v-if="!getMessage().isRecording"
     ref="templateButton"
     class="button-template"
     :class="{ 'button-template-disabled': state == 'disabled' }"
@@ -26,8 +27,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted, provide } from 'vue';
+import { ref, onMounted, provide, inject } from 'vue';
 import WABATemplateSelector from './WABATemplateSelector.vue';
+import { useMessage } from '../../helpers/useMessage';
+
 const props = defineProps({
   wabaTemplates: {
     type: Array,
@@ -58,6 +61,9 @@ const props = defineProps({
 })
 
 provide('filebumpUrl', props.filebumpUrl)
+
+const chatAppId = inject('chatAppId')
+const { getMessage } = useMessage(chatAppId)
 
 const templateButton = ref(null)
 const template = ref(null)

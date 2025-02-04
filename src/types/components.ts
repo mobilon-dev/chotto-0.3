@@ -55,3 +55,12 @@ export interface IDialog {
   text: string,
   position: string
 } 
+
+export interface IFilePreview {
+  previewUrl?: any
+  isImage: boolean  
+  isVideo: boolean
+  isAudio: boolean
+  fileName?: string
+  fileSize: string
+}

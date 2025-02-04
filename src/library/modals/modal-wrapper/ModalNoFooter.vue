@@ -1,12 +1,6 @@
 <script setup>
-import {ref} from 'vue'
-const emit = defineEmits(['close'])
 
-const closeModalOutside = (evt) => {
-  if (evt.target.classList.contains('modal-backdrop')) {
-    emit('close')
-  }
-}
+const emit = defineEmits(['close'])
 
 const props = defineProps({
   theme: {
@@ -16,7 +10,12 @@ const props = defineProps({
   }
 })
 
-const data = ref(null)
+const closeModalOutside = (evt) => {
+  if (evt.target.classList.contains('modal-backdrop')) {
+    emit('close')
+  }
+}
+
 </script>
 
 <template>
