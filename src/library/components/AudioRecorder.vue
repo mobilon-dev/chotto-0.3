@@ -85,6 +85,7 @@ const props = defineProps({
 })
 
 const startAudioRecording = async () => {
+  const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
   timer.value = setInterval(() => {
     ms.value += 10;
     if(ms.value == 1000){
@@ -102,7 +103,6 @@ const startAudioRecording = async () => {
   }, 10)
   setRecordingMessage(true)
   audioRecording.value = true
-  const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
   mediaRecorder.value = new MediaRecorder(stream)
   console.log('init ',mediaRecorder.value)
   mediaRecorder.value.start();
