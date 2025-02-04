@@ -37,6 +37,7 @@
         <audio
           ref="player"
           :src="message.url"
+          type="audio/webm"
         />
         <button
           v-show="!isPlaying"
@@ -274,6 +275,17 @@ function getClass(message) {
 onMounted(() => {
   if (player.value != null) {
     player.value.addEventListener('loadedmetadata', () => {
+      if (player.value != null) {
+        if (player.value.duration == Infinity || Number.isNaN(player.value.duration)){
+          player.value.currentTime = 1e101;
+          player.value.addEventListener("timeupdate", () => {
+            if (player.value){
+              player.value.currentTime = 0;
+              audioDuration.value = player.value.duration
+            }
+          }, { once: true });
+        }
+      }
       audioDuration.value = player.value != null ? player.value.duration : 0;
     });
     player.value.addEventListener('timeupdate', () => {
