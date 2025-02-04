@@ -11,9 +11,9 @@ interface Message {
 
 interface UploadedFile{
     url: string
-    name: string
-    size: Number
-    type: string
+    name?: string
+    size?: Number
+    type?: string
 }
 
 const messages = ref<Message[]>([])
