@@ -1,5 +1,6 @@
 <template>
   <div 
+    v-if="!getMessage().isRecording"
     class="channels__container"
     :class="{'channels__container-disabled' : state == 'disabled'}"
   >
@@ -32,9 +33,10 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, inject } from 'vue'
 import ButtonContextMenu from './ButtonContextMenu.vue';
 import { t } from '../../locale/useLocale';
+import { useMessage } from '../../helpers/useMessage';
 
 const props = defineProps({
   channels: {
@@ -52,6 +54,9 @@ const props = defineProps({
     default: 'active',
   },
 })
+
+const chatAppId = inject('chatAppId')
+const { getMessage } = useMessage(chatAppId)
 
 const emit = defineEmits(['selectChannel']);
 

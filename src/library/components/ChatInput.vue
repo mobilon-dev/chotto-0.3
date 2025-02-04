@@ -9,8 +9,9 @@
       class="chat-input__file-line"
     />
     <div class="chat-input__second-line">
+      
       <textarea
-        :disabled="state == 'disabled'"
+        :disabled="state == 'disabled' || getMessage().isRecording"
         ref="refInput"
         v-model="getMessage().text"
         class="chat-input__input"
@@ -18,9 +19,11 @@
         @keydown.enter="keyEnter"
         @input="sendTyping"
       />
+      
       <button
-        class="chat-input__button-send"
-        :class="{ 'chat-input__button-send-disabled': getMessage().text == '' && !getMessage().file }"
+        class="chat-input__button"
+        :disabled="getMessage().isRecording"
+        :class="{ 'chat-input__button-disabled': disabledSendButton }"
         @click="sendMessage"
       >
         <span class="pi pi-send" />
@@ -33,18 +36,18 @@
 </template>
 
 <script setup lang="ts">
-import { unref, ref, watch, nextTick, inject } from 'vue';
+import { unref, ref, watch, nextTick, inject, computed } from 'vue';
 import { useMessage } from '../../helpers/useMessage';
 import { t } from '../../locale/useLocale';
-import {IInputMessage} from '../../types';
+import { IInputMessage } from '../../types';
 import useImmediateDebouncedRef from '../../helpers/useImmediateDebouncedRef';
 
 const emit = defineEmits(['send', 'typing']);
 
 const chatAppId = inject('chatAppId')
-const { resetMessage, getMessage, setMessageText, setForceSendMessage } = useMessage(chatAppId as string)
+const { resetMessage, getMessage, setMessageText, setForceSendMessage, setMessageFile, resetMessageFile } = useMessage(chatAppId as string)
 
-const refInput = ref<HTMLElement>();
+const refInput = ref<HTMLTextAreaElement>();
 const typing = useImmediateDebouncedRef('', 2000)
 
 const props = defineProps({
@@ -60,18 +63,22 @@ const props = defineProps({
   }
 })
 
+const disabledSendButton = computed(() => {
+  if (props.state == 'disabled') return true
+  if (getMessage().text == '' && !getMessage().file) return true
+  if (getMessage().isRecording) return true
+})
+
 watch(
   () => typing.value,
   () => {
-    console.log('emit typing')
     emit('typing')
   }
 )
 
 watch(
-  ()=>props.focusOnInputArea,
+  () => props.focusOnInputArea,
   () => {
-    console.log(props.focusOnInputArea)
     if (props.focusOnInputArea)
       nextTick(()=>{
         const el = unref(refInput);
@@ -104,16 +111,20 @@ watch(
   }
 )
 
-const sendTyping = (event) => {
+const sendTyping = (event: any) => {
   // console.log('typing', event.target.value);
   emit('typing', event.target.value);
 }
 
-const keyEnter = (event) => {
+const keyEnter = (event: KeyboardEvent) => {
   if (event.ctrlKey) {
-    let caret = event.target.selectionStart;
-    event.target.setRangeText("\n", caret, caret, "end");
-    setMessageText(event.target.value)
+    if (refInput.value instanceof HTMLTextAreaElement){
+      let caret = refInput.value.selectionStart;
+      if (caret){
+        refInput.value.setRangeText("\n", caret, caret, "end");
+        setMessageText(refInput.value.value)
+      }
+    }
   }
   else {
     event.preventDefault()
@@ -138,7 +149,7 @@ const sendMessage = () => {
       messageObject.type = 'message.' + Message.value.file.type;
       messageObject.url = Message.value.file.url;
       messageObject.filename = Message.value.file.name;
-      messageObject.size = Message.value.file.size.toString();
+      messageObject.size = Message.value.file.size?.toString();
       messageObject.text = Message?.value?.text.trim();
     } else {
       messageObject.type = 'message.text';
@@ -212,7 +223,7 @@ const sendMessage = () => {
     }
   }
 
-  &__button-send {
+  &__button {
     background-color: transparent;
     border: 0px;
 
@@ -225,7 +236,7 @@ const sendMessage = () => {
     }
   }
 
-  &__button-send-disabled {
+  &__button-disabled {
     span {
       cursor: auto;
       color: var(--chat-input-icon-color-disabled);

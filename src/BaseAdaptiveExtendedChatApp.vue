@@ -156,6 +156,7 @@
                     :mode="'hover'"
                     @select-channel="onSelectChannel"
                   />
+                  <AudioRecorder :filebump-url="filebumpUrl"/>
                 </template>
               </ChatInput>
               </div>
@@ -208,6 +209,7 @@ import {
   FeedSearch,
   ChannelSelector,
   FeedFoundObjects,
+  AudioRecorder,
 } from "./library";
 
 import {

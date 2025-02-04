@@ -6,7 +6,7 @@
     <p>Ошибка при загрузке файла.</p>
   </div>
   <ButtonContextMenu
-    v-else
+    v-else-if="!getMessage().isRecording"
     :actions="actions"
     :mode="'hover'"
     :button-class="'pi pi-file-arrow-up'"
