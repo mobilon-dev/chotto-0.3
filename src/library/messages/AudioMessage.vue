@@ -53,15 +53,30 @@
         >
           <span class="pi pi-pause" />
         </button>
-        <div class="audio-message__progress-bar-container">
-          <div
-            class="audio-message__progress-bar"
-            :style="{ width: progressPercent + '%' }"
-          />
+        <input 
+          class="audio-message__progress-bar-container"
+          type="range" 
+          :min="0" 
+          :max="audioDuration" 
+          step="0.1" 
+          v-model="currentTime"
+        />
+        <div class="audio-message__player-controls">
+          <p class="audio-message__remaining-time">
+            {{ `${formatCurrentTime} / ${formatDuration}` }}
+          </p>
+          <div class="audio-message__speed-btn-container">
+            <p
+              v-for="(s, index) in speed"
+              @click="setPlayerSpeed(index)"
+              class="audio-message__speed-btn"
+              :class="{'audio-message__speed-btn-selected' : s.selected}"
+            >
+              {{ s.text }}
+            </p>
+          </div>
         </div>
-        <p class="audio-message__remaining-time">
-          {{ `${formatCurrentTime} / ${formatDuration}` }}
-        </p>
+        
         <a
           class="audio-message__download-button"
           @click.stop="() => '//Предотвращаем всплытие события клика'"
@@ -170,7 +185,7 @@
   setup
   lang="ts"
 >
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 import linkifyStr from "linkify-string";
 
 import { ContextMenu } from '../components'
@@ -186,6 +201,38 @@ const props = defineProps({
     required: true,
   },
 });
+
+const speed = ref([
+  {
+    text: '1.0x',
+    speed: 1,
+    selected: true,
+  },
+  {
+    text: '1.2x',
+    speed: 1.2,
+    selected: false,
+  },
+  {
+    text: '1.5x',
+    speed: 1.5,
+    selected: false,
+  },
+  {
+    text: '2.0x',
+    speed: 2,
+    selected: false,
+  },
+]) 
+
+const setPlayerSpeed = (index: number) => {
+  
+  for(let s of speed.value){
+    s.selected = false
+  }
+  speed.value[index].selected = true
+  if (player.value) player.value.playbackRate = speed.value[index].speed
+}
 
 const emit = defineEmits(['action','reply']);
 
@@ -254,18 +301,24 @@ const formatCurrentTime = computed(() => {
   return '0:00';
 });
 
+watch(
+  () => currentTime.value,
+  () => {
+    if (player.value) {
+      if (player.value.duration != Infinity && !Number.isNaN(player.value.duration))
+        player.value.currentTime = currentTime.value;
+
+      if (currentTime.value == audioDuration.value)
+        isPlaying.value = false
+    }
+  }
+)
+
 const formatDuration = computed(() => {
   if (player.value) {
     return formatTime(audioDuration.value)
   }
   return '0:00';
-});
-
-const progressPercent = computed(() => {
-  if (audioDuration.value > 0) {
-    return (currentTime.value / audioDuration.value) * 100;
-  }
-  return 0;
 });
 
 function getClass(message) {
@@ -307,7 +360,7 @@ onMounted(() => {
     column-gap: 12px;
     width: 50%;
     max-width: 25rem;
-    min-width: 13rem;
+    min-width: 25rem;
     border-radius: 14px;
     padding: 10px 10px 4px 16px;;
   }
@@ -319,7 +372,7 @@ onMounted(() => {
     column-gap: 12px;
     max-width: 25rem;
     border-radius: 14px;
-    padding: 10px 26px 4px 16px;
+    padding: 10px 30px 10px 0px;
     grid-column: 1/3;
   }
 
@@ -346,22 +399,60 @@ onMounted(() => {
   }
 
   &__progress-bar-container {
-    position: relative;
-    width: 100%;
-    align-self: center;
-    border-radius: 10px;
-    height: 8px;
-    background-color: var(--audio-message-pbc-background-color);
+    -webkit-appearance: none;
+    appearance: none;
+    background: var(--audio-message-pbc-background-color);
+    cursor: pointer;
+    height: 10px;
+    overflow: hidden;
+    border-radius: 3px;
+    margin-top: 5px;
+    margin-left: -1px;
+  }
+  &__progress-bar-container::-webkit-slider-thumb {
+    width: 10px;
+    height: 10px;
+    background-color: var(--audio-message-pb-background-color);
+    appearance: none;
+    box-shadow: -10000px 0 0 10000px var(--audio-message-pb-background-color);;
   }
 
-  &__progress-bar {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    transition: width 0.2s ease-in-out;
-    border-radius: 10px;
+  &__progress-bar-container::-moz-range-thumb {
+    width: 10px;
+    height: 10px;
     background-color: var(--audio-message-pb-background-color);
+    appearance: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: -10000px 0 0 10000px var(--audio-message-pb-background-color);;
+  }
+
+  &__player-controls{
+    display: flex; 
+    justify-content: space-between;
+  }
+
+  &__speed-btn-container{
+    display: flex; 
+    gap: 2px; 
+    margin-right: 5px;
+  }
+
+  &__speed-btn{
+    background-color: transparent;
+    border: 0;
+    width: 25px;
+    font-size: var(--audio-message-speed-button-font-size);
+    font-weight: var(--audio-message-speed-button-font-weight);
+  }
+
+  &__speed-btn:hover{
+    cursor: pointer;
+    font-weight: var(--audio-message-speed-button-selected-font-weight);
+  }
+
+  &__speed-btn-selected{
+    font-weight: var(--audio-message-speed-button-selected-font-weight);
   }
 
   &__remaining-time {
@@ -395,8 +486,8 @@ onMounted(() => {
 
   &__download-button {
     position: absolute;
-    right: 0;
-    top: 13px;
+    right: 3px;
+    top: 16px;
     display: flex;
     justify-content: center;
     align-items: center;

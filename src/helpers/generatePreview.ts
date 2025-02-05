@@ -16,7 +16,7 @@ export const generatePreview = (file: File) => {
   else if (fileType === 'audio') {
     isAudio.value = true
   }
-  if (isImage.value || isVideo.value) {
+  if (isImage.value || isVideo.value || isAudio.value) {
     previewUrl.value = URL.createObjectURL(file)
   } else {
     previewUrl.value = ""; // No preview available
