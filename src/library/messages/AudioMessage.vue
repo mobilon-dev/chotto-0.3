@@ -61,21 +61,20 @@
           step="0.1" 
           v-model="currentTime"
         />
-        <div style="display: flex; justify-content: space-between;">
+        <div class="audio-message__player-controls">
           <p class="audio-message__remaining-time">
             {{ `${formatCurrentTime} / ${formatDuration}` }}
           </p>
-          <div style="display: flex;">
-            <button
+          <div class="audio-message__speed-btn-container">
+            <p
               v-for="(s, index) in speed"
               @click="setPlayerSpeed(index)"
               class="audio-message__speed-btn"
               :class="{'audio-message__speed-btn-selected' : s.selected}"
             >
               {{ s.text }}
-            </button>
+            </p>
           </div>
-          
         </div>
         
         <a
@@ -373,7 +372,7 @@ onMounted(() => {
     column-gap: 12px;
     max-width: 25rem;
     border-radius: 14px;
-    padding: 10px 26px 4px 16px;
+    padding: 10px 30px 10px 0px;
     grid-column: 1/3;
   }
 
@@ -428,12 +427,32 @@ onMounted(() => {
     box-shadow: -10000px 0 0 10000px var(--audio-message-pb-background-color);;
   }
 
-  &__speed-btn{
+  &__player-controls{
+    display: flex; 
+    justify-content: space-between;
+  }
 
+  &__speed-btn-container{
+    display: flex; 
+    gap: 2px; 
+    margin-right: 5px;
+  }
+
+  &__speed-btn{
+    background-color: transparent;
+    border: 0;
+    width: 25px;
+    font-size: var(--audio-message-speed-button-font-size);
+    font-weight: var(--audio-message-speed-button-font-weight);
+  }
+
+  &__speed-btn:hover{
+    cursor: pointer;
+    font-weight: var(--audio-message-speed-button-selected-font-weight);
   }
 
   &__speed-btn-selected{
-    background-color: gray;
+    font-weight: var(--audio-message-speed-button-selected-font-weight);
   }
 
   &__remaining-time {
@@ -467,8 +486,8 @@ onMounted(() => {
 
   &__download-button {
     position: absolute;
-    right: 0;
-    top: 13px;
+    right: 3px;
+    top: 16px;
     display: flex;
     justify-content: center;
     align-items: center;

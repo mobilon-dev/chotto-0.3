@@ -75,7 +75,11 @@
 
   --audio-message-download-button-color: var(--neutral-500);
   --audio-message-download-button-font-weight: 600;
-  --audio-message-download-button-font-size: var(--font-mid-size);
+  --audio-message-download-button-font-size: var(--font-large-size);
+
+  --audio-message-speed-button-font-size: var(--font-mid-size);
+  --audio-message-speed-button-font-weight: 400;
+  --audio-message-speed-button-selected-font-weight: 600;
   
   --audio-message-transcript-color: var(--neutral-700);
   --audio-message-transcript-delimiter-color: var(--neutral-400);
