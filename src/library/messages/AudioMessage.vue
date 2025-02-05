@@ -186,7 +186,7 @@
   setup
   lang="ts"
 >
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 import linkifyStr from "linkify-string";
 
 import { ContextMenu } from '../components'
@@ -297,13 +297,23 @@ const formatTime = (time) => {
 
 const formatCurrentTime = computed(() => {
   if (player.value) {
-    player.value.currentTime = currentTime.value;
-    if (currentTime.value == audioDuration.value)
-      isPlaying.value = false
     return formatTime(currentTime.value)
   }
   return '0:00';
 });
+
+watch(
+  () => currentTime.value,
+  () => {
+    if (player.value) {
+      if (player.value.duration != Infinity && !Number.isNaN(player.value.duration))
+        player.value.currentTime = currentTime.value;
+
+      if (currentTime.value == audioDuration.value)
+        isPlaying.value = false
+    }
+  }
+)
 
 const formatDuration = computed(() => {
   if (player.value) {
@@ -405,7 +415,7 @@ onMounted(() => {
     height: 10px;
     background-color: var(--audio-message-pb-background-color);
     appearance: none;
-    box-shadow: -100px 0 0 100px var(--audio-message-pb-background-color);;
+    box-shadow: -10000px 0 0 10000px var(--audio-message-pb-background-color);;
   }
 
   &__progress-bar-container::-moz-range-thumb {
