@@ -104,9 +104,9 @@ const startAudioRecording = async () => {
   setRecordingMessage(true)
   audioRecording.value = true
   mediaRecorder.value = new MediaRecorder(stream)
-  console.log('init ',mediaRecorder.value)
+  //console.log('init ',mediaRecorder.value)
   mediaRecorder.value.start();
-  console.log('start ',mediaRecorder.value)
+  //console.log('start ',mediaRecorder.value)
   mediaRecorder.value.ondataavailable = (event: any) => {
     chunks.value.push(event.data);
   }
@@ -119,9 +119,9 @@ const cancelAudioRecording = () => {
 
 const stopAudioRecording = () => {
   if (mediaRecorder.value){
-    console.log('pre stop ',mediaRecorder.value)
+    //console.log('pre stop ',mediaRecorder.value)
     mediaRecorder.value.stop();
-    console.log('stop ',mediaRecorder.value)
+    //console.log('stop ',mediaRecorder.value)
     mediaRecorder.value.onstop = async () => {
       const file = new File(chunks.value,'voicemessage.mp3',{type: 'audio/*'});
       const url = URL.createObjectURL(file);

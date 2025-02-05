@@ -14,11 +14,22 @@
           class="preview__video"
         />
       </div>
-      <div v-else-if="fileInfo.isAudio">
+      <div style="display: flex; gap: 5px" v-else-if="fileInfo.isAudio">
         <span
           class="pi pi-headphones"
-          style="font-size: 2.5rem"
+          style="font-size: 1rem; margin: auto;"
         />
+        <audio
+          ref="audio"
+          :src="fileInfo.previewUrl"
+        />
+        <button
+          class="preview__audio-control"
+          @click="togglePlayPause"
+        >
+          <span v-show="!isPlaying" class="pi pi-play" />
+          <span v-show="isPlaying" class="pi pi-pause" />
+        </button>
       </div>
       <div v-else>
         <span
@@ -30,7 +41,10 @@
     <div class="preview__control-block">
       <div class="preview__information">
         <span class="preview__name">{{ fileInfo.fileName }}</span>
-        <span class="preview__size">{{ fileInfo.fileSize }}</span>
+        <span v-if="!fileInfo.isAudio" class="preview__size">{{ fileInfo.fileSize }}</span>
+        <span v-if="fileInfo.isAudio" class="preview__audio-time">
+          {{ `${formatCurrentTime} / ${formatDuration}` }}
+        </span>
       </div>
       <span
         class="pi pi-times preview__reset"
@@ -42,10 +56,10 @@
 </template>
 
 <script setup lang="ts">
-
+import { onMounted, ref, computed } from 'vue';
 import { IFilePreview } from '../../types'
 
-const props = defineProps({
+defineProps({
   fileInfo: {
     type: Object as () => IFilePreview,
     required: true,
@@ -53,6 +67,64 @@ const props = defineProps({
 });
 
 const emit = defineEmits(["reset"]);
+
+const audio = ref<HTMLAudioElement>()
+const isPlaying = ref(false)
+const audioDuration = ref(0);
+const currentTime = ref(0)
+
+function togglePlayPause() {
+  if (audio.value) {
+    if (isPlaying.value) {
+      audio.value.pause();
+    } else {
+      audio.value.play();
+    }
+    isPlaying.value = !isPlaying.value;
+  }
+}
+
+const formatTime = (time) => {
+  const minutes = Math.floor(time / 60);
+  const seconds = Math.floor(time % 60);
+  return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}
+
+const formatCurrentTime = computed(() => {
+  if (audio.value) {
+    return formatTime(currentTime.value)
+  }
+  return '0:00';
+});
+
+const formatDuration = computed(() => {
+  if (audio.value) {
+    return formatTime(audioDuration.value)
+  }
+  return '0:00';
+});
+
+onMounted(() => {
+  if (audio.value != null) {
+    audio.value.addEventListener('loadedmetadata', () => {
+      if (audio.value != null) {
+        if (audio.value.duration == Infinity || Number.isNaN(audio.value.duration)){
+          audio.value.currentTime = 1e101;
+          audio.value.addEventListener("timeupdate", () => {
+            if (audio.value){
+              audio.value.currentTime = 0;
+              audioDuration.value = audio.value.duration
+            }
+          }, { once: true });
+        }
+      }
+      audioDuration.value = audio.value != null ? audio.value.duration : 0;
+    });
+    audio.value.addEventListener('timeupdate', () => {
+      currentTime.value = audio.value != null ? audio.value.currentTime : 0;
+    });
+  }
+});
 
 </script>
 
@@ -68,6 +140,26 @@ const emit = defineEmits(["reset"]);
     max-width: 200px;
     max-height: 200px;
     border-radius: 5px;  
+  }
+  &__audio-control{
+    border: none;
+    cursor: pointer;
+    position: relative;
+    grid-row: 1 / 3;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: var(--audio-message-button-icon-bg-color);
+
+    span {
+      display: flex;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: var(--audio-message-button-icon-font-size);
+      color: var(--audio-message-button-icon-color);
+    }
   }
   &__block {
     --resolution: 60px;
@@ -85,10 +177,10 @@ const emit = defineEmits(["reset"]);
   &__information {
     margin-left: 5px;
     display: grid;
-  }
-  &__information span{
-    display: flex;
-    font-size: small;
+    span{
+      display: flex;
+      font-size: small;
+    }
   }
   &__name {
     align-items:end;
