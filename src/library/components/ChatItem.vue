@@ -123,15 +123,16 @@
 
   <div 
     v-if="chat.dialogsExpanded"
-    class="chat-item__dialog-container"
+    class="dialog__container"
   >
     <div
       v-for="dialog in getSortedDialogs()"
-      class="chat-item__dialog-item"
+      class="dialog__item"
       :class="getDialogClass(dialog)"
       @click="selectDialog(dialog)"
     >
       <img
+        class="dialog__icon"
         v-if="dialog.icon"
         :src="dialog.icon"
         height="16"
@@ -139,10 +140,12 @@
       >
       <span
         v-else
-        class="pi pi-user"
+        class="dialog__icon pi pi-user"
       />
-      <div>{{ dialog.name }}</div>
-      <div>{{ dialog['lastActivity.time'] }}</div>
+      <div class="dialog__text-container">
+        <div class="dialog__name">{{ dialog.name }}</div>
+        <div class="dialog__time">{{ dialog['lastActivity.time'] }}</div>
+      </div>
       <div
         v-if="dialog.countUnread > 0"
         class="chat-item__unread"
@@ -189,7 +192,7 @@ const getClass = () => {
 }
 
 const getDialogClass = (dialog) => {
-  return dialog.isSelected ? 'chat-item__dialog-selected' : ''
+  return dialog.isSelected ? 'dialog__selected' : ''
 }
 
 const clickAction = (action) => {
@@ -283,36 +286,6 @@ watch(
       width: 100%;
       background-color: var(--chat-item-background-color);
     }
-  }
-
-  &__dialog-container {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    padding: var(--chat-item-padding-container);
-    cursor: pointer;
-    gap: 5px;
-    padding-left: 80px;
-
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-      background-color: var(--chat-item-background-color);
-    }
-  }
-
-  &__dialog-item{
-    display: flex;
-  }
-
-  &__dialog-selected {
-    cursor: pointer;
-    border-radius: var(--chat-item-border-radius);
-    background: var(--dialog-item-selected-color);
   }
 
   &__selected {
@@ -471,6 +444,69 @@ watch(
       color: var(--chat-item-message-status-color-received);
       font-size: var(--chat-item-message-status-font-size);
     }
+  }
+}
+
+.dialog{
+  &__container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    cursor: pointer;
+    gap: 5px;
+    padding-left: 30px;
+    padding-top: 5px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      background-color: var(--chat-item-background-color);
+    }
+  }
+
+  &__icon{
+    margin: auto;
+  }
+
+  &__item{
+    display: flex;
+    padding: 3px;
+  }
+
+  &__selected {
+    cursor: pointer;
+    border-radius: var(--chat-item-border-radius);
+    background: var(--dialog-item-selected-color);
+  }
+
+  &__text-container {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--chat-item-last-message-font-size);
+    font-weight: var(--chat-item-last-message-font-weight);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    padding: 0 5px;
+  }
+
+  &__name{
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+
+  &__time{
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    color: var(--chat-item-last-message-color);
   }
 }
 
