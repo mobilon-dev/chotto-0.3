@@ -53,15 +53,31 @@
         >
           <span class="pi pi-pause" />
         </button>
-        <div class="audio-message__progress-bar-container">
-          <div
-            class="audio-message__progress-bar"
-            :style="{ width: progressPercent + '%' }"
-          />
+        <input 
+          class="audio-message__progress-bar-container"
+          type="range" 
+          :min="0" 
+          :max="audioDuration" 
+          step="0.1" 
+          v-model="currentTime"
+        />
+        <div style="display: flex; justify-content: space-between;">
+          <p class="audio-message__remaining-time">
+            {{ `${formatCurrentTime} / ${formatDuration}` }}
+          </p>
+          <div style="display: flex;">
+            <button
+              v-for="(s, index) in speed"
+              @click="setPlayerSpeed(index)"
+              class="audio-message__speed-btn"
+              :class="{'audio-message__speed-btn-selected' : s.selected}"
+            >
+              {{ s.text }}
+            </button>
+          </div>
+          
         </div>
-        <p class="audio-message__remaining-time">
-          {{ `${formatCurrentTime} / ${formatDuration}` }}
-        </p>
+        
         <a
           class="audio-message__download-button"
           @click.stop="() => '//Предотвращаем всплытие события клика'"
@@ -187,6 +203,38 @@ const props = defineProps({
   },
 });
 
+const speed = ref([
+  {
+    text: '1.0x',
+    speed: 1,
+    selected: true,
+  },
+  {
+    text: '1.2x',
+    speed: 1.2,
+    selected: false,
+  },
+  {
+    text: '1.5x',
+    speed: 1.5,
+    selected: false,
+  },
+  {
+    text: '2.0x',
+    speed: 2,
+    selected: false,
+  },
+]) 
+
+const setPlayerSpeed = (index: number) => {
+  
+  for(let s of speed.value){
+    s.selected = false
+  }
+  speed.value[index].selected = true
+  if (player.value) player.value.playbackRate = speed.value[index].speed
+}
+
 const emit = defineEmits(['action','reply']);
 
 const player = ref<HTMLAudioElement | null>();
@@ -249,6 +297,9 @@ const formatTime = (time) => {
 
 const formatCurrentTime = computed(() => {
   if (player.value) {
+    player.value.currentTime = currentTime.value;
+    if (currentTime.value == audioDuration.value)
+      isPlaying.value = false
     return formatTime(currentTime.value)
   }
   return '0:00';
@@ -259,13 +310,6 @@ const formatDuration = computed(() => {
     return formatTime(audioDuration.value)
   }
   return '0:00';
-});
-
-const progressPercent = computed(() => {
-  if (audioDuration.value > 0) {
-    return (currentTime.value / audioDuration.value) * 100;
-  }
-  return 0;
 });
 
 function getClass(message) {
@@ -307,7 +351,7 @@ onMounted(() => {
     column-gap: 12px;
     width: 50%;
     max-width: 25rem;
-    min-width: 13rem;
+    min-width: 25rem;
     border-radius: 14px;
     padding: 10px 10px 4px 16px;;
   }
@@ -346,22 +390,40 @@ onMounted(() => {
   }
 
   &__progress-bar-container {
-    position: relative;
-    width: 100%;
-    align-self: center;
-    border-radius: 10px;
-    height: 8px;
-    background-color: var(--audio-message-pbc-background-color);
+    -webkit-appearance: none;
+    appearance: none;
+    background: var(--audio-message-pbc-background-color);
+    cursor: pointer;
+    height: 10px;
+    overflow: hidden;
+    border-radius: 3px;
+    margin-top: 5px;
+    margin-left: -1px;
+  }
+  &__progress-bar-container::-webkit-slider-thumb {
+    width: 10px;
+    height: 10px;
+    background-color: var(--audio-message-pb-background-color);
+    appearance: none;
+    box-shadow: -100px 0 0 100px var(--audio-message-pb-background-color);;
   }
 
-  &__progress-bar {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    transition: width 0.2s ease-in-out;
-    border-radius: 10px;
+  &__progress-bar-container::-moz-range-thumb {
+    width: 10px;
+    height: 10px;
     background-color: var(--audio-message-pb-background-color);
+    appearance: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: -10000px 0 0 10000px var(--audio-message-pb-background-color);;
+  }
+
+  &__speed-btn{
+
+  }
+
+  &__speed-btn-selected{
+    background-color: gray;
   }
 
   &__remaining-time {
