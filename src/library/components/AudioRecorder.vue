@@ -1,5 +1,8 @@
 <template>
-  <div class="audio-recorder__container">
+  <div
+    v-if="!getMessage().isRecording" 
+    class="audio-recorder__container"
+  >
     <div v-if="uploadStatus === 'uploading'">
       <p>Загрузка файла...</p>
     </div>
@@ -28,6 +31,7 @@
     <button
       v-if="!audioRecording && uploadStatus != 'uploading'"
       class="audio-recorder__button"
+      :class="{'audio-recorder__button-disabled' : state == 'disabled'}"
       @click="startAudioRecording"
     >
       <span class="pi pi-microphone" />
@@ -78,6 +82,10 @@ const audio = ref<string>()
 const audioPreview = ref<IFilePreview>()
 
 const props = defineProps({
+  state:{
+    type: String,
+    default: 'active',
+  },
   filebumpUrl: {
     type: String,
     default: null,
@@ -104,9 +112,7 @@ const startAudioRecording = async () => {
   setRecordingMessage(true)
   audioRecording.value = true
   mediaRecorder.value = new MediaRecorder(stream)
-  //console.log('init ',mediaRecorder.value)
   mediaRecorder.value.start();
-  //console.log('start ',mediaRecorder.value)
   mediaRecorder.value.ondataavailable = (event: any) => {
     chunks.value.push(event.data);
   }
@@ -119,9 +125,7 @@ const cancelAudioRecording = () => {
 
 const stopAudioRecording = () => {
   if (mediaRecorder.value){
-    //console.log('pre stop ',mediaRecorder.value)
     mediaRecorder.value.stop();
-    //console.log('stop ',mediaRecorder.value)
     mediaRecorder.value.onstop = async () => {
       const file = new File(chunks.value,'voicemessage.mp3',{type: 'audio/*'});
       const url = URL.createObjectURL(file);

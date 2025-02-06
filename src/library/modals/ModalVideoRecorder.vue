@@ -1,0 +1,252 @@
+<template>
+  <div>
+    <video 
+      v-show="!videoURL" 
+      ref="refVideo"
+    />
+    <video 
+      v-show="videoURL" 
+      ref="refRecord"
+      controls
+    />
+    <div class="video-recorder__controls">
+      <div 
+        class="video-recorder__recording-container"
+      >
+        <button
+          v-if="!videoURL"
+          class="video-recorder__button video-recorder__button-record"
+          @click="startVideoRecording"
+        >
+          <span 
+            class="pi pi-circle-fill"
+            :class="{'video-recorder__recording-icon': videoRecording }"
+          />
+        </button>
+        
+        <button
+          v-if="videoRecording || videoURL"
+          class="video-recorder__button video-recorder__button-record"
+          @click="cancelVideoRecording"
+        >
+          <span class="pi pi-trash" />
+        </button>
+        <button
+        v-if="videoRecording"
+          class="video-recorder__button video-recorder__button-record"
+          @click="stopVideoRecording"
+        >
+          <span class="pi pi-stop" />
+        </button>
+        <span class="video-recorder__recording-time">
+          {{elapsedTime}}
+        </span>
+      </div>
+      <button
+        class="video-recorder__button video-recorder__button-record"
+        :class="{'video-recorder__button-disabled' : !videoURL}"
+        @click="saveRecordedVideo"
+      >
+        <span 
+          class="video-recorder__save-button"
+          
+        >
+          Отправить видео
+        </span>
+      </button>
+      
+    </div>
+    
+  </div>
+</template>
+
+<script setup lang="ts">
+
+import { ref, computed, onMounted, unref, nextTick } from 'vue';
+
+const timer = ref()
+const ms = ref(0)
+const s = ref(0)
+const m = ref(0)
+const h = ref(0)
+
+const elapsedTime = computed(() => {
+  let hours = h.value < 10 ? "0" + h.value : h.value;
+  let minutes = m.value < 10 ? "0" + m.value : m.value;
+  let seconds = s.value < 10 ? "0" + s.value : s.value;
+  let milliseconds = ms.value < 10 ? "00" + ms.value : ms.value < 100 ? "0" + ms.value : ms.value;
+  if (videoRecording.value) return hours + ':' + minutes + ':' + seconds + ':' + milliseconds
+  else return ' '
+})
+
+const refVideo = ref<HTMLVideoElement>()
+const refRecord = ref<HTMLVideoElement>()
+const videoRecording = ref(false)
+const mediaRecorder = ref<MediaRecorder>()
+const stream = ref<MediaStream>()
+const chunks = ref<any[]>([])
+const videoURL = ref<string>()
+const videoFile = ref<File>()
+
+const startVideoRecording = async () => {
+  if (!videoRecording.value){
+    timer.value = setInterval(() => {
+      ms.value += 10;
+      if(ms.value == 1000){
+        ms.value = 0;
+        s.value++;
+        if(s.value == 60){
+          s.value = 0;
+          m.value++;
+          if(m.value == 60){
+            m.value = 0;
+            h.value++;
+          }
+        }
+      }
+    }, 10)
+    
+    videoRecording.value = true
+    if (stream.value instanceof MediaStream){
+      mediaRecorder.value = new MediaRecorder(stream.value)
+      mediaRecorder.value.start();
+      mediaRecorder.value.ondataavailable = (event: any) => {
+        chunks.value.push(event.data);
+      }
+    }
+  }
+}
+
+const cancelVideoRecording = async () => {
+  clearTemp()
+  if (videoURL.value){
+    videoURL.value = undefined
+    await runIdleVideo()
+  }
+}
+
+const stopVideoRecording = () => {
+  if (mediaRecorder.value){
+    mediaRecorder.value.stop();
+    mediaRecorder.value.onstop = async () => {
+      videoFile.value = new File(chunks.value,'videomessage.mp4',{type: 'video/*'});
+      const url = URL.createObjectURL(videoFile.value);
+      videoURL.value = url
+      nextTick(() => {
+        if (refRecord.value) refRecord.value.src = url
+      })
+      
+    }
+  }
+  clearTemp()
+}
+
+const clearTemp = () => {
+  clearInterval(timer.value)
+  ms.value = 0
+  s.value = 0
+  m.value = 0
+  h.value = 0
+  videoRecording.value = false
+  mediaRecorder.value = undefined
+  chunks.value = []
+}
+
+const emit = defineEmits(['change', 'submit']);
+
+const saveRecordedVideo = () => {
+  emit('change', {videoFile: videoFile.value});
+  emit('submit')
+}
+const runIdleVideo = async () => {
+  await navigator.mediaDevices
+    .getUserMedia({ audio: true, video: true })
+    .then((s) => {
+      const v = unref(refVideo.value) as HTMLVideoElement
+      stream.value = s;
+      v.srcObject = s;
+      v.addEventListener("loadedmetadata", () => {
+        unref(refVideo.value)?.play()
+      });
+      v.muted = true;
+    })
+}
+
+onMounted(async () => {
+  await runIdleVideo()
+})
+
+</script>
+
+<style scoped lang="scss">
+
+.video-recorder {
+  &__container {
+    position: relative;
+    display: grid;
+    align-items: center;
+    background-color: var(--chat-input-container-bg);
+  }
+
+  &__controls{ 
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__recording-container{
+    display: flex;
+    gap: 3px;
+  }
+
+  &__recording-icon {
+    font-size: 10px;
+    -webkit-animation: blink 3s linear infinite;
+    animation: blink 3s linear infinite;
+  }
+
+  &__recording-time {
+    margin: auto;
+  }
+
+  @-webkit-keyframes blink {
+    0% { color: red; }
+    50% { color: transparent; }
+    100% { color: red; }
+  }
+  @keyframes blink {
+    0% { color: red; }
+    50% { color: transparent; }
+    100% { color: red; }
+  }
+
+  &__button {
+    background-color: transparent;
+    border: 0px;
+
+    span {
+      display: block;
+      cursor: pointer;
+      padding: 14px;
+      font-size: var(--chat-input-icon-font-size);
+      color: var(--chat-input-icon-color);
+    }
+  }
+
+  &__button-record {
+    span {
+      display: block;
+      cursor: pointer;
+      padding: 0;
+      font-size: var(--chat-input-icon-font-size);
+      color: var(--chat-input-icon-color);
+    }
+  }
+
+  &__button-disabled {
+    span {
+      cursor: auto;
+      color: var(--chat-input-icon-color-disabled);
+    }
+  }
+}
+</style>

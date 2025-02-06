@@ -157,6 +157,7 @@
                     @select-channel="onSelectChannel"
                   />
                   <AudioRecorder :filebump-url="filebumpUrl"/>
+                  <VideoRecorder :filebump-url="filebumpUrl"/>
                 </template>
               </ChatInput>
               </div>
@@ -222,6 +223,7 @@ import {
 import { useChatsStore } from "./stores/useChatStore";
 import { transformToFeed } from "./transform/transformToFeed";
 import { useLocale } from "./locale/useLocale";
+import VideoRecorder from "./library/components/VideoRecorder.vue";
 
 const { locale, locales } = useLocale()
 
