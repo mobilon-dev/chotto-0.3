@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="!getMessage().isRecording" 
+    
     class="audio-recorder__container"
   >
     <div v-if="uploadStatus === 'uploading'">
@@ -29,7 +29,7 @@
       </button>
     </div>
     <button
-      v-if="!audioRecording && uploadStatus != 'uploading'"
+      v-if="!audioRecording && uploadStatus != 'uploading' && !getMessage().isRecording"
       class="audio-recorder__button"
       :class="{'audio-recorder__button-disabled' : state == 'disabled'}"
       @click="startAudioRecording"
