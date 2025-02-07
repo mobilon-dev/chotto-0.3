@@ -20,6 +20,7 @@ import FeedSearch from './FeedSearch.vue';
 import FeedFoundObjects from './FeedFoundObjects.vue'
 import Tooltip from './Tooltip.vue';
 import AudioRecorder from './AudioRecorder.vue';
+import VideoRecorder from './VideoRecorder.vue';
 export {
   ChatInfo,
   ChatInput,
@@ -43,4 +44,5 @@ export {
   FeedFoundObjects,
   Tooltip,
   AudioRecorder,
+  VideoRecorder,
 }

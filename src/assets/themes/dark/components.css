@@ -168,6 +168,10 @@
   --scrollbar-bg: var(--neutral-600);
   --scrollbar-thumb-bg: var(--neutral-400);
 
+  /* Tooltip */
+  --tooltip-text-color: var(--neutral-100);
+  --tooltip-bg-color: var(--neutral-800);
+
   /* Template Selector */
   --template-selector-bg: var(--neutral-800);
   --template-selector-border: 1px solid var(--neutral-400);

@@ -157,6 +157,10 @@
   --scrollbar-bg: var(--neutral-50);
   --scrollbar-thumb-bg: var(--neutral-300);
 
+  /* Tooltip */
+  --tooltip-text-color: var(--neutral-100);
+  --tooltip-bg-color: var(--neutral-500);
+
   /* Template Selector */
   --template-selector-bg: var(--default-white);
   --template-selector-shadow-color: var(--neutral-950);

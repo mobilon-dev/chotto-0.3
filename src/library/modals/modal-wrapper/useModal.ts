@@ -7,7 +7,7 @@ import {
     defineAsyncComponent,
 } from 'vue'
 
-export function useModal<T>({component, attrs, Modal, modalAttrs}): Promise<void> {
+export function useModal<T>({component, attrs, Modal, modalAttrs}): Promise<any> {
     return new Promise((resolve) => {
         const modalDiv = document.createElement('div')
         document.body.appendChild(modalDiv)

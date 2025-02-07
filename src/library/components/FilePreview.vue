@@ -1,20 +1,38 @@
 <template>
   <div class="preview__container">
     <div class="preview__block">
-      <div v-if="fileInfo.isImage">
+      <div 
+        v-if="fileInfo.isImage" 
+        style="position: relative;"
+        @click="isOpenModal = true"
+      >
         <img
           :src="fileInfo.previewUrl"
           alt="Image Preview"
           class="preview__image"
         >
+        <div class="preview__shadow">
+          <span class="pi pi-plus-circle"/>
+        </div>
       </div>
-      <div v-else-if="fileInfo.isVideo">
+      <div 
+        v-else-if="fileInfo.isVideo"
+        @click="isOpenModal = true"
+        style="position: relative;"
+      >
         <video
+          ref="video"
           :src="fileInfo.previewUrl"
           class="preview__video"
         />
+        <div class="preview__shadow">
+          <span class="pi pi-play"/>
+        </div>
       </div>
-      <div style="display: flex; gap: 5px" v-else-if="fileInfo.isAudio">
+      <div 
+        v-else-if="fileInfo.isAudio" 
+        style="display: flex; gap: 5px"
+      >
         <span
           class="pi pi-headphones"
           style="font-size: 1rem; margin: auto;"
@@ -41,9 +59,12 @@
     <div class="preview__control-block">
       <div class="preview__information">
         <span class="preview__name">{{ fileInfo.fileName }}</span>
-        <span v-if="!fileInfo.isAudio" class="preview__size">{{ fileInfo.fileSize }}</span>
+        <span v-if="!fileInfo.isAudio && !fileInfo.isVideo" class="preview__size">{{ fileInfo.fileSize }}</span>
         <span v-if="fileInfo.isAudio" class="preview__audio-time">
           {{ `${formatCurrentTime} / ${formatDuration}` }}
+        </span>
+        <span v-if="fileInfo.isVideo" class="preview__audio-time">
+          {{ formatDuration }}
         </span>
       </div>
       <span
@@ -52,13 +73,36 @@
         @click="emit('reset')"
       />
     </div>
+    <Teleport to="body">
+      <transition name="modal-fade">
+        <ModalFullscreen
+          v-if="isOpenModal"
+          @close="closeModal"
+        >
+          <video
+            v-if="fileInfo.isVideo"
+            class="preview__modal-video"
+            
+            :src="fileInfo.previewUrl"
+            controls
+            autoplay
+          />
+            <img
+            v-if="fileInfo.isImage"
+            class="preview__modal-image"
+            :src="fileInfo.previewUrl"
+            alt="Image Preview"
+          >
+        </ModalFullscreen>
+      </transition>
+    </Teleport>
   </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref, computed } from 'vue';
 import { IFilePreview } from '../../types'
-
+import ModalFullscreen from '../modals/modal-wrapper/ModalFullscreen.vue';
 defineProps({
   fileInfo: {
     type: Object as () => IFilePreview,
@@ -69,9 +113,13 @@ defineProps({
 const emit = defineEmits(["reset"]);
 
 const audio = ref<HTMLAudioElement>()
+const video = ref<HTMLVideoElement>()
 const isPlaying = ref(false)
-const audioDuration = ref(0);
+const duration = ref(0);
 const currentTime = ref(0)
+const isOpenModal = ref(false);
+
+const closeModal = () => isOpenModal.value = false
 
 function togglePlayPause() {
   if (audio.value) {
@@ -98,8 +146,8 @@ const formatCurrentTime = computed(() => {
 });
 
 const formatDuration = computed(() => {
-  if (audio.value) {
-    return formatTime(audioDuration.value)
+  if (audio.value || video.value) {
+    return formatTime(duration.value)
   }
   return '0:00';
 });
@@ -113,16 +161,33 @@ onMounted(() => {
           audio.value.addEventListener("timeupdate", () => {
             if (audio.value){
               audio.value.currentTime = 0;
-              audioDuration.value = audio.value.duration
+              duration.value = audio.value.duration
             }
           }, { once: true });
         }
       }
-      audioDuration.value = audio.value != null ? audio.value.duration : 0;
+      duration.value = audio.value != null ? audio.value.duration : 0;
     });
     audio.value.addEventListener('timeupdate', () => {
       currentTime.value = audio.value != null ? audio.value.currentTime : 0;
     });
+  }
+  if (video.value){
+    video.value.addEventListener('loadedmetadata', () => {
+      if (video.value){
+        duration.value = video.value.duration
+        if (video.value.duration == Infinity || Number.isNaN(video.value.duration)){
+          console.log('www2')
+          video.value.currentTime = 1e101;
+          video.value.addEventListener("timeupdate", () => {
+            if (video.value){
+              video.value.currentTime = 0;
+              duration.value = video.value.duration
+            }
+          }, { once: true });
+        }
+      }
+    })
   }
 });
 
@@ -131,16 +196,50 @@ onMounted(() => {
 <style scoped lang="scss">
 .preview {
   &__container{
+    position: relative;
     display: flex;
     border:  var(--file-preview-container-border);
     max-width: 400px;
   }
+
   &__image,
   &__video{
-    max-width: 200px;
-    max-height: 200px;
-    border-radius: 5px;  
+    max-width: 130px;
+    max-height: 130px;
   }
+  &__modal-video, &__modal-image {
+    /*width: 100%;*/
+    height: 100%;
+    object-fit: contain;
+    border-radius: 5px;
+    max-height: 90vh;
+    max-width: 90vw;
+  }
+
+  &__shadow{
+    display: none;
+  }
+
+  &__block:hover &__shadow{
+    display: inherit;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0.3;
+    span{
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      position: relative;
+      color: white;
+    }
+  }
+
   &__audio-control{
     border: none;
     cursor: pointer;
@@ -161,6 +260,7 @@ onMounted(() => {
       color: var(--audio-message-button-icon-color);
     }
   }
+
   &__block {
     --resolution: 60px;
     max-width: var(--resolution);
@@ -174,6 +274,7 @@ onMounted(() => {
     align-items: center;
     justify-content: center;
   }
+
   &__information {
     margin-left: 5px;
     display: grid;
@@ -182,6 +283,7 @@ onMounted(() => {
       font-size: small;
     }
   }
+
   &__name {
     align-items:end;
     overflow: hidden;
@@ -189,12 +291,15 @@ onMounted(() => {
     word-break: break-word;
     text-overflow: ellipsis;
   }
+
   &__reset{
     margin: 10px;
   }
+
   &__reset:hover {
     cursor: pointer;
   }
+
   &__control-block{
     display: flex;
     justify-content: space-between;
