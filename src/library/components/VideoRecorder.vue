@@ -19,6 +19,16 @@
   >
     <p>Загрузка файла...</p>
   </div>
+  <teleport
+    v-if="getMessage().file"
+    :to="'#chat-input-file-line-'+chatAppId"
+  >
+    <FilePreview
+      v-if="videoPreview"
+      :file-info="videoPreview"
+      @reset="resetRecordedAudio"
+    />
+  </teleport>
 </template>
 
 <script setup lang="ts">
@@ -26,11 +36,14 @@ import { ref, inject } from 'vue';
 import { useMessage } from '../../helpers/useMessage';
 import { uploadFile } from '../../helpers/uploadFile';
 import { useModalVideoRecorder } from '../modals';
+import FilePreview from './FilePreview.vue';
+import { IFilePreview } from '../../types';
 
 const chatAppId = inject('chatAppId')
-const { getMessage, setMessageFile, setForceSendMessage, setRecordingMessage } = useMessage(chatAppId as string)
+const { getMessage, setMessageFile, setRecordingMessage, resetMessageFile } = useMessage(chatAppId as string)
 
 const uploadStatus = ref("");
+const videoPreview = ref<IFilePreview>()
 
 const props = defineProps({
   state:{
@@ -60,11 +73,25 @@ const openVideoRecorder = async () => {
                 size: u.size,
                 type: u.type,
               })
-              setForceSendMessage(true)
+              if (u.preview)
+                videoPreview.value = ({
+                  previewUrl: u.preview.previewUrl,
+                  isImage: u.preview.isImage,
+                  isVideo: u.preview.isVideo,
+                  isAudio: u.preview.isAudio,
+                  fileName: u.name,
+                  fileSize: u.preview.fileSize,
+                })
+              
             }
           })
       }
     })
+}
+
+const resetRecordedAudio = () => {
+  resetMessageFile()
+  videoPreview.value = undefined
 }
 
 </script>

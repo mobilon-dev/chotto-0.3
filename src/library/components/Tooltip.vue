@@ -9,7 +9,7 @@
   </div>
   <Teleport to="body">
     <span 
-      :data-theme="getTheme().theme"
+      :data-theme="getTheme().theme ? getTheme().theme : null"
       ref="tooltip"
       :class="tooltipClasses" 
     >
