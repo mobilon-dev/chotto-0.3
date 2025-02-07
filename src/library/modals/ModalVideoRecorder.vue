@@ -1,4 +1,13 @@
 <template>
+  <div class="video-recorder__header">
+    <button
+      class="video-recorder__button video-recorder__button-close"
+      @click="emit('close')"
+    >
+      <span class="pi pi-times"/>
+    </button>
+  </div>
+  
   <div>
     <video 
       v-show="!videoURL" 
@@ -15,35 +24,40 @@
       >
         <button
           v-if="!videoURL"
-          class="video-recorder__button video-recorder__button-record"
+          class="video-recorder__button"
+          :class="{'video-recorder__recording-button' : videoRecording}"
           @click="startVideoRecording"
         >
           <span 
-            class="pi pi-circle-fill"
-            :class="{'video-recorder__recording-icon': videoRecording }"
+            class="pi"
+            :class="{
+              'pi-circle-fill video-recorder__recording-icon': videoRecording,
+              'pi-video': !videoRecording
+            }"
           />
         </button>
         
         <button
-          v-if="videoRecording || videoURL"
-          class="video-recorder__button video-recorder__button-record"
+          v-if="!videoRecording && videoURL"
+          class="video-recorder__button"
           @click="cancelVideoRecording"
         >
           <span class="pi pi-trash" />
         </button>
         <button
         v-if="videoRecording"
-          class="video-recorder__button video-recorder__button-record"
+          class="video-recorder__button"
           @click="stopVideoRecording"
         >
-          <span class="pi pi-stop" />
+          <!--span class="pi pi-stop" /-->
+          <div class="video-recorder__stop"></div>
         </button>
         <span class="video-recorder__recording-time">
           {{elapsedTime}}
         </span>
       </div>
       <button
-        class="video-recorder__button video-recorder__button-record"
+        class="video-recorder__button"
         :class="{'video-recorder__button-disabled' : !videoURL}"
         @click="saveRecordedVideo"
       >
@@ -51,7 +65,7 @@
           class="video-recorder__save-button"
           
         >
-          Отправить видео
+          Прикрепить видео
         </span>
       </button>
       
@@ -135,7 +149,6 @@ const stopVideoRecording = () => {
       nextTick(() => {
         if (refRecord.value) refRecord.value.src = url
       })
-      
     }
   }
   clearTemp()
@@ -152,7 +165,7 @@ const clearTemp = () => {
   chunks.value = []
 }
 
-const emit = defineEmits(['change', 'submit']);
+const emit = defineEmits(['change', 'submit', 'close']);
 
 const saveRecordedVideo = () => {
   emit('change', {videoFile: videoFile.value});
@@ -204,6 +217,14 @@ onMounted(async () => {
     animation: blink 3s linear infinite;
   }
 
+  &__stop {
+    width: 20px;
+    height: 20px;
+    background-color: black;
+    cursor: pointer;
+    border-radius: 2px;
+  }
+
   &__recording-time {
     margin: auto;
   }
@@ -222,30 +243,34 @@ onMounted(async () => {
   &__button {
     background-color: transparent;
     border: 0px;
-
     span {
-      display: block;
       cursor: pointer;
-      padding: 14px;
+      display: block;
       font-size: var(--chat-input-icon-font-size);
       color: var(--chat-input-icon-color);
     }
   }
 
-  &__button-record {
-    span {
-      display: block;
-      cursor: pointer;
-      padding: 0;
-      font-size: var(--chat-input-icon-font-size);
-      color: var(--chat-input-icon-color);
-    }
+  &__header{
+    text-align: right;
+    width: 100%;
+  }
+
+  &__button-close span{
+    padding-bottom: 5px;
   }
 
   &__button-disabled {
+    cursor: auto;
     span {
-      cursor: auto;
       color: var(--chat-input-icon-color-disabled);
+    }
+  }
+
+  &__recording-button {
+    cursor: auto;
+    span{
+      cursor: auto;
     }
   }
 }
