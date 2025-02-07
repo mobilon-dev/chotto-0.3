@@ -26,10 +26,10 @@
         {{ chat.name }}
       </h2>
       <p
-        v-if="chat['lastActivity.time']"
+        v-if="chatDescription"
         class="chat-info__time"
       >
-        {{ chat['lastActivity.time'] }}
+        {{ chatDescription }}
       </p>
     </div>
     <div class="chat-info__actions">
@@ -49,7 +49,7 @@
 </template>
 
 <script setup>
-import { inject } from 'vue';
+import { inject, computed } from 'vue';
 // Define props
 const props = defineProps({
   chat: {
@@ -60,12 +60,27 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: false,
+  },
+  description: {
+    type: String,
+    required: false,
+  },
+  defaultLastActivityTime: {
+    type: Boolean,
+    required: false,
+    default: false,
   }
 });
 
 const emit = defineEmits(['returnToChats']);
 
 const chatAppId = inject('chatAppId')
+
+const chatDescription = computed(() => {
+  if (props.description) return props.description
+  if (!props.description && props.defaultLastActivityTime) return props.chat['lastActivity.time']
+  return undefined
+})
 
 </script>
 

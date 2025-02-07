@@ -71,96 +71,99 @@
                 <ChatInfo 
                   :chat="selectedChat"
                   :show-return-button="isShowReturnButton"
-                  @return-to-chats="handleReturnToChats">
-                <template #actions>
-                  <div style="display: flex;">
-                    <button
-                      class="chat-info__button-panel"
-                      @click="isOpenChatPanel = !isOpenChatPanel"
-                    >
-                      <span class="pi pi-info-circle" />
-                    </button>
-                    <!--ButtonContextMenu
-                      :actions="actions"
-                      :button-class="'pi pi-list'"
+                  :defaultLastActivityTime="true"
+                  :description="description"
+                  @return-to-chats="handleReturnToChats"
+                >
+                  <template #actions>
+                    <div style="display: flex;">
+                      <button
+                        class="chat-info__button-panel"
+                        @click="isOpenChatPanel = !isOpenChatPanel"
+                      >
+                        <span class="pi pi-info-circle" />
+                      </button>
+                      <!--ButtonContextMenu
+                        :actions="actions"
+                        :button-class="'pi pi-list'"
+                        :mode="'click'"
+                        :menu-side="'bottom'"
+                        :context-menu-key="'top-actions'"
+                      /-->
+                      <button
+                        class="chat-info__button-panel"
+                        @click="handleOpenSearchPanel"
+                      >
+                        <span class="pi pi-search" />
+                      </button>
+                      
+                    </div>
+                  </template>
+                </ChatInfo>
+                <FeedSearch 
+                  v-if="isOpenSearchPanel && feedSearchFeedCol"
+                  @search="searchMessages"
+                  @cancel="handleOpenSearchPanel"
+                  @switch="isShowFeedWhileSearch = !isShowFeedWhileSearch"
+                  is-feed-location
+                />
+                <FeedFoundObjects
+                  v-if="isOpenSearchPanel && feedSearchFeedCol && !isShowFeedWhileSearch"
+                  :not-found="notFoundMessage"
+                  :objects="foundMessages"
+                  :foundAmount="foundMessages.length"
+                  @clicked-search="handleClickMessage"
+                />
+                <Feed
+                  v-if="isShowFeedWhileSearch || !feedSearchFeedCol"
+                  :button-params="buttonParams"
+                  :objects="messages"
+                  :typing="selectedChat.typing ? { avatar: selectedChat.avatar, title: selectedChat.title } : false"
+                  :enable-double-click-reply="true"
+                  :scroll-to="clickedReply"
+                  :scroll-to-bottom="scrollToBottomOnSelectChat || isScrollToBottomOnUpdateObjectsEnabled"
+                  @message-action="messageAction"
+                  @load-more="loadMore"
+                  @load-more-down="loadMoreDown"
+                  @message-visible="messageVisible"
+                  @click-replied-message="handleClickReplied"
+                  @force-scroll-to-bottom="forceScrollToBottom"
+                  @keyboard-action="keyboardAction"
+                />
+                <ChatInput 
+                  :focus-on-input-area="inputFocus"
+                  @send="addMessage"
+                >
+                  <template #buttons>
+                    <FileUploader
+                      :filebump-url="filebumpUrl"
+                    />
+                    <ButtonEmojiPicker
+                      :mode="'hover'"
+                    />
+                    <ButtonTemplateSelector
+                      :templates="templates"
+                      :group-templates="groupTemplates"
                       :mode="'click'"
-                      :menu-side="'bottom'"
-                      :context-menu-key="'top-actions'"
-                    /-->
-                    <button
-                      class="chat-info__button-panel"
-                      @click="handleOpenSearchPanel"
-                    >
-                      <span class="pi pi-search" />
-                    </button>
-                    
-                  </div>
-                </template>
-              </ChatInfo>
-              <FeedSearch 
-                v-if="isOpenSearchPanel && feedSearchFeedCol"
-                @search="searchMessages"
-                @cancel="handleOpenSearchPanel"
-                @switch="isShowFeedWhileSearch = !isShowFeedWhileSearch"
-                is-feed-location
-              />
-              <FeedFoundObjects
-                v-if="isOpenSearchPanel && feedSearchFeedCol && !isShowFeedWhileSearch"
-                :not-found="notFoundMessage"
-                :objects="foundMessages"
-                :foundAmount="foundMessages.length"
-                @clicked-search="handleClickMessage"
-              />
-              <Feed
-                v-if="isShowFeedWhileSearch || !feedSearchFeedCol"
-                :button-params="buttonParams"
-                :objects="messages"
-                :typing="selectedChat.typing ? { avatar: selectedChat.avatar, title: selectedChat.title } : false"
-                :enable-double-click-reply="true"
-                :scroll-to="clickedReply"
-                :scroll-to-bottom="scrollToBottomOnSelectChat || isScrollToBottomOnUpdateObjectsEnabled"
-                @message-action="messageAction"
-                @load-more="loadMore"
-                @load-more-down="loadMoreDown"
-                @message-visible="messageVisible"
-                @click-replied-message="handleClickReplied"
-                @force-scroll-to-bottom="forceScrollToBottom"
-                @keyboard-action="keyboardAction"
-              />
-              <ChatInput 
-                :focus-on-input-area="inputFocus"
-                @send="addMessage"
-              >
-                <template #buttons>
-                  <FileUploader
-                    :filebump-url="filebumpUrl"
-                  />
-                  <ButtonEmojiPicker
-                    :mode="'hover'"
-                  />
-                  <ButtonTemplateSelector
-                    :templates="templates"
-                    :group-templates="groupTemplates"
-                    :mode="'click'"
-                    :elevated-window="false"
-                  />
-                  <ButtonWabaTemplateSelector
-                    :waba-templates="wabaTemplates"
-                    :group-templates="groupTemplates"
-                    :mode="'click'"
-                    :filebump-url="filebumpUrl"
-                    @send-waba-values="sendWabaValues"
-                    :elevated-window="false"
-                  />
-                  <ChannelSelector
-                    :channels="channels"
-                    :mode="'hover'"
-                    @select-channel="onSelectChannel"
-                  />
-                  <AudioRecorder :filebump-url="filebumpUrl"/>
-                  <VideoRecorder :filebump-url="filebumpUrl"/>
-                </template>
-              </ChatInput>
+                      :elevated-window="false"
+                    />
+                    <ButtonWabaTemplateSelector
+                      :waba-templates="wabaTemplates"
+                      :group-templates="groupTemplates"
+                      :mode="'click'"
+                      :filebump-url="filebumpUrl"
+                      @send-waba-values="sendWabaValues"
+                      :elevated-window="false"
+                    />
+                    <ChannelSelector
+                      :channels="channels"
+                      :mode="'hover'"
+                      @select-channel="onSelectChannel"
+                    />
+                    <AudioRecorder :filebump-url="filebumpUrl"/>
+                    <VideoRecorder :filebump-url="filebumpUrl"/>
+                  </template>
+                </ChatInput>
               </div>
               
             </template>
@@ -301,6 +304,8 @@ const isSecondColVisible = ref(false)
 const isThirdColVisible = ref(false)
 const isShowReturnButton = ref(false)
 const chatPanelWidth = ref(50)
+
+const description = ref()
 
 const refContainer = ref()
 const refChatWrapper = ref()
@@ -476,6 +481,9 @@ const sendWabaValues = (obj) => {
 
 const selectChat = (args) => {
   console.log(args.chat, args.dialog)
+  if(args.dialog)
+    description.value = args.dialog.name
+  else description.value = null
   isThirdColVisible.value = true
   isSecondColVisible.value = false
   scrollToBottomOnSelectChat.value = true
