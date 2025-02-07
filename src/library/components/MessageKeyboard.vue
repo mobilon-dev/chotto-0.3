@@ -3,6 +3,7 @@
     <div 
       v-for="key in keyboard"
       class="keyboard__key"
+      :style="{'box-shadow': '0px 0px 10px 5px ' + key.color}"
       @click="handleClickKey(key)"
     >
       <p>{{ key.text }}</p>
@@ -22,12 +23,17 @@ const props = defineProps({
   }
 });
 
+const emit = defineEmits(['action'])
+
 const chatAppId = inject('chatAppId')
 const { setMessageText, setForceSendMessage } = useMessage(chatAppId as string)
 
 const handleClickKey = (key : IKeyBoard) => {
-  setMessageText(key.text)
-  setForceSendMessage(true)
+  if (key.action == null){
+    setMessageText(key.text)
+    setForceSendMessage(true)
+  }
+  else emit('action', key.action)
 }
 
 </script>

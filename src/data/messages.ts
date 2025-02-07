@@ -320,15 +320,21 @@ export const messages = [
     keyboard: [
       {
         key: 'key_1',
+        action: null,
+        color: null,
         text: 'Все ок',
         order: 1,
       },{
         key: 'key_2',
         text: 'Перезвоню позже',
+        action: null,
+        color: null,
         order: 2,
       },{
         key: 'key_3',
-        text: 'Перезвоню неизвестно когда',
+        text: 'Игнорировать',
+        action: 'ignore',
+        color: 'rgba(255, 0, 0, 0.15)',
         order: 3,
       },
     ],

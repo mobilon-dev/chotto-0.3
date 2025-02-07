@@ -33,6 +33,7 @@
         ref="keyboardRef"
         class="message-feed__keyboard"
         :keyboard="objects[objects.length - 1].keyboard!"
+        @action="keyboardAction"
       />
     </Transition>
     
@@ -128,6 +129,7 @@ const emit = defineEmits([
   'messageVisible', 
   'clickRepliedMessage',
   'forceScrollToBottom',
+  'keyboardAction'
 ]);
 
 const showKeyboard = computed(() => {
@@ -135,6 +137,10 @@ const showKeyboard = computed(() => {
     return true
   else return false
 })
+
+const keyboardAction = (action) => {
+  emit('keyboardAction', action)
+}
 
 const scrollTopCheck = (allowLoadMore: boolean = true) => {
   const element = unref(refFeed);

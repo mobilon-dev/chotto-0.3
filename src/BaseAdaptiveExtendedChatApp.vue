@@ -125,6 +125,7 @@
                 @message-visible="messageVisible"
                 @click-replied-message="handleClickReplied"
                 @force-scroll-to-bottom="forceScrollToBottom"
+                @keyboard-action="keyboardAction"
               />
               <ChatInput 
                 :focus-on-input-area="inputFocus"
@@ -382,6 +383,10 @@ const forceScrollToBottom = () => {
     const messages1 = props.dataProvider.getFeed(selectedChat.value.chatId);
     messages.value = transformToFeed(messages1);
   }
+}
+
+const keyboardAction = (action) => {
+  console.log(action)
 }
 
 const messageVisible = (message) => {
