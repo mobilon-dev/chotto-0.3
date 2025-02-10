@@ -59,6 +59,7 @@
 
       <button
         v-if="buttonMenuVisible && chat.actions"
+        ref="refMenuButton"
         class="chat-item__menu-button"
         @click="handleOpenMenu"
         id="noSelectButton"
@@ -112,12 +113,15 @@
     </div>
 
     <transition name="menu">
-      <ContextMenu
-        v-if="isOpenMenu && chat.actions"
-        class="chat-item__context-menu"
-        :actions="chat.actions"
-        @click="clickAction"
-      />
+      <Teleport :to="'#' + chatAppId">
+        <ContextMenu
+          v-if="isOpenMenu && chat.actions"
+          ref="refContextMenu"
+          class="chat-item__context-menu"
+          :actions="chat.actions"
+          @click="clickAction"
+        />
+      </Teleport>
     </transition>
   </div>
 
@@ -160,12 +164,14 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, inject, nextTick } from 'vue'
 
 import { ContextMenu } from '.'
 import { getStatus, statuses } from "../../helpers";
 import { t } from '../../locale/useLocale'
 import Tooltip from './Tooltip.vue';
+
+const chatAppId = inject('chatAppId')
 
 const props = defineProps({
   chat: {
@@ -173,6 +179,9 @@ const props = defineProps({
     required: true,
   },
 });
+
+const refMenuButton = ref()
+const refContextMenu = ref()
 
 const emit = defineEmits(['select', 'action']);
 
@@ -215,6 +224,18 @@ const getSortedDialogs = () => {
 
 const handleOpenMenu = (event) => {
   isOpenMenu.value = !isOpenMenu.value
+  nextTick(() => {
+    updatePosition()
+  })
+}
+
+const updatePosition = () => {
+  if (refMenuButton.value && refContextMenu.value){
+    const bounds = refMenuButton.value.getBoundingClientRect()
+    const t = refContextMenu.value.$el
+    t.style.top = bounds?.bottom + 5 + 'px'
+    t.style.left = bounds?.left - t.getBoundingClientRect().width / 1.5 + 'px'
+  }
 }
 
 const showMenu = () => {
@@ -531,10 +552,6 @@ watch(
 .text-enter-from,
 .text-leave-to {
   opacity: 0;
-}
-
-.menu-enter-active {
-  transition: all 0.2s ease-out;
 }
 
 .menu-leave-active {

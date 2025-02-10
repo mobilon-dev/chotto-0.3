@@ -200,7 +200,7 @@ const action = (data) => emit('action', data);
   &__items {
     display: block;
     scroll-behavior: smooth;
-
+    height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
     padding: var(--chat-list-items-padding);
@@ -238,8 +238,8 @@ const action = (data) => emit('action', data);
   }
 
   &__title {
-    /**var */font-size: var(--chat-list-title-font-size);
-    /**var */font-weight: var(--chat-list-title-font-weight);
+    font-size: var(--chat-list-title-font-size);
+    font-weight: var(--chat-list-title-font-weight);
   }
 
   &__title-container {
@@ -265,7 +265,7 @@ const action = (data) => emit('action', data);
 
     span {
       transition: all 0.2s;
-      /**var */font-size: var(--icon-font-size-small);
+      font-size: var(--icon-font-size-small);
       color: var(--chat-list-button-actions-color);
     }
   }
