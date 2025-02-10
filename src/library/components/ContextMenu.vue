@@ -55,7 +55,9 @@ const click = (index) => {
     max-width: 250px;
     box-shadow: 0px 2px 10px 1px var(--context-menu-box-shadow-color);
     border-radius: 8px;
-    
+    font-family: var(--container-font-family);
+    color: var(--container-color);
+    font-weight: var(--container-font-weight);
     background-color: var(--context-menu-background);
   }
 
