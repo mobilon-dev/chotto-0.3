@@ -176,6 +176,7 @@ const sendMessage = () => {
     }
     emit('send', messageObject);
     resetMessage()
+    fileInfo.value = undefined
     if (refInput.value) refInput.value.focus()
   }
 };

@@ -112,14 +112,16 @@
       </button>
     </div>
 
-    <transition name="menu">
-      <Teleport :to="'#' + chatAppId">
+    <transition name="menu" >
+      <Teleport to="body">
         <ContextMenu
           v-if="isOpenMenu && chat.actions"
           ref="refContextMenu"
           class="chat-item__context-menu"
           :actions="chat.actions"
           @click="clickAction"
+          @mouseenter="isOpenMenu = true"
+          @mouseleave="hideMenu"
         />
       </Teleport>
     </transition>
@@ -233,7 +235,7 @@ const updatePosition = () => {
   if (refMenuButton.value && refContextMenu.value){
     const bounds = refMenuButton.value.getBoundingClientRect()
     const t = refContextMenu.value.$el
-    t.style.top = bounds?.bottom + 5 + 'px'
+    t.style.top = bounds?.bottom  + 'px'
     t.style.left = bounds?.left - t.getBoundingClientRect().width / 1.5 + 'px'
   }
 }

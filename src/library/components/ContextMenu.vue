@@ -49,7 +49,7 @@ const click = (index) => {
 .context-menu {
   
   &__container {
-    z-index: 200;
+    z-index: 1000;
     position: absolute;
     width: max-content;
     max-width: 250px;
