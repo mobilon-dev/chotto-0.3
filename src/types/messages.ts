@@ -20,6 +20,8 @@ export interface IKeyBoard {
   key: string,
   text: string,
   order: number,
+  action?: string,
+  color?: string,
 }
 
 export interface IAudioMessage {
