@@ -32,23 +32,36 @@
     <div class="chat-input__third-line">
       <slot name="buttons" />
     </div>
+    <teleport
+      v-if="getMessage().file"
+      :to="'#chat-input-file-line-'+chatAppId"
+    >
+      <FilePreview
+        v-if="fileInfo"
+        :file-info="fileInfo"
+        @reset="resetSelectedFile"
+      />
+    </teleport>
   </div>
 </template>
 
 <script setup lang="ts">
-import { unref, ref, watch, nextTick, inject, computed } from 'vue';
+import { unref, ref, watch, nextTick, inject, computed, onMounted } from 'vue';
 import { useMessage } from '../../helpers/useMessage';
 import { t } from '../../locale/useLocale';
-import { IInputMessage } from '../../types';
+import { IFilePreview, IInputMessage } from '../../types';
 import useImmediateDebouncedRef from '../../helpers/useImmediateDebouncedRef';
+import { uploadFile } from '../../helpers/uploadFile';
+import FilePreview from './FilePreview.vue';
 
 const emit = defineEmits(['send', 'typing']);
 
 const chatAppId = inject('chatAppId')
-const { resetMessage, getMessage, setMessageText, setForceSendMessage, setMessageFile, resetMessageFile } = useMessage(chatAppId as string)
+const { resetMessage, getMessage, setMessageText, setForceSendMessage, setMessageFile, resetMessageFile, setRecordingMessage } = useMessage(chatAppId as string)
 
 const refInput = ref<HTMLTextAreaElement>();
 const typing = useImmediateDebouncedRef('', 2000)
+const fileInfo = ref<IFilePreview>()
 
 const props = defineProps({
   state: {
@@ -60,7 +73,10 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: false,
-  }
+  },
+  filebumpUrl: {
+    type: String,
+  },
 })
 
 const disabledSendButton = computed(() => {
@@ -163,6 +179,52 @@ const sendMessage = () => {
     if (refInput.value) refInput.value.focus()
   }
 };
+
+const pasteFromClipboard = async (event: ClipboardEvent) => {
+  const items = event.clipboardData?.items
+  if (items) {
+    for(let item of items){
+      if (item.type.indexOf('image')!==-1){
+        event.preventDefault()
+        const file = item.getAsFile()
+        if (file){
+          setRecordingMessage(true)
+          const f = typeof props.filebumpUrl == 'string' ? props.filebumpUrl : null 
+          await uploadFile(f, file)
+          .then((data) => {
+            setRecordingMessage(false)
+            if (data.status == 'success'){
+              setMessageFile({
+                url: data.url,
+                name: data.name,
+                size: data.size,
+                type: data.type,
+              })
+              if (data.preview)
+                fileInfo.value = ({
+                  previewUrl: data.preview.previewUrl,
+                  isImage: data.preview.isImage,
+                  isVideo: data.preview.isVideo,
+                  isAudio: data.preview.isAudio,
+                  fileName: data.name,
+                  fileSize: data.preview.fileSize,
+                })
+            }
+          }) 
+        }
+      }
+    }
+  }
+}
+
+const resetSelectedFile = () => {
+  resetMessageFile()
+  fileInfo.value = undefined
+};
+
+onMounted(() => {
+  window.addEventListener('paste', pasteFromClipboard)
+})
 
 </script>
 
