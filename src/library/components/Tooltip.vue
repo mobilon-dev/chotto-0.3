@@ -7,7 +7,7 @@
   >
     <slot/>
   </div>
-  <Teleport to="body">
+  <Teleport :to="'#float-windows-' + chatAppId">
     <span 
       :data-theme="getTheme().theme ? getTheme().theme : null"
       ref="tooltip"

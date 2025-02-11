@@ -113,7 +113,7 @@
     </div>
 
     <transition name="menu" >
-      <Teleport to="body">
+      <Teleport :to="'#float-windows-' + chatAppId">
         <ContextMenu
           v-if="isOpenMenu && chat.actions"
           ref="refContextMenu"
@@ -121,7 +121,7 @@
           :actions="chat.actions"
           @click="clickAction"
           @mouseenter="isOpenMenu = true"
-          @mouseleave="hideMenu"
+          @mouseleave="isOpenMenu = false"
         />
       </Teleport>
     </transition>
@@ -165,7 +165,7 @@
   
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, computed, watch, inject, nextTick } from 'vue'
 
 import { ContextMenu } from '.'
@@ -187,8 +187,8 @@ const refContextMenu = ref()
 
 const emit = defineEmits(['select', 'action']);
 
-const selectChat = (event) => { 
-  if (event.target.id != 'noSelectButton' && !props.chat.dialogs)
+const selectChat = (event: MouseEvent) => { 
+  if (event.target instanceof HTMLElement && event.target.id != 'noSelectButton' && !props.chat.dialogs)
     emit('select', {chat: props.chat, dialog: null});
   if (props.chat.dialogs)
   props.chat.dialogsExpanded = !props.chat.dialogsExpanded
@@ -208,7 +208,8 @@ const getDialogClass = (dialog) => {
 
 const clickAction = (action) => {
   // console.log('action', props.chat.chatId, action);
-  hideMenu();
+  buttonMenuVisible.value = false;
+  isOpenMenu.value = false
   emit('action', { chat: props.chat, ...action });
 }
 
@@ -224,7 +225,7 @@ const getSortedDialogs = () => {
     })
 }
 
-const handleOpenMenu = (event) => {
+const handleOpenMenu = () => {
   isOpenMenu.value = !isOpenMenu.value
   nextTick(() => {
     updatePosition()
@@ -244,9 +245,11 @@ const showMenu = () => {
   buttonMenuVisible.value = true;
 };
 
-const hideMenu = () => {
+const hideMenu = (event : MouseEvent) => {
+  const target = event.relatedTarget as HTMLElement
   buttonMenuVisible.value = false;
-  isOpenMenu.value = false
+  if (!target || target.className !== 'context-menu__list')
+    isOpenMenu.value = false
 };
 
 const status = computed(() => getStatus(props.chat['lastMessage.status']))

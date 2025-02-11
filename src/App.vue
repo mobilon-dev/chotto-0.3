@@ -5,14 +5,6 @@
       :data-provider="dataProvider"
       :eventor="eventor"
     />
-    <!--chat-app2
-      :auth-provider="authProvider"
-      :data-provider="dataProvider"
-      :eventor="eventor"
-    />
-    <!--
-      <ChatAppFloat />
-    -->
   </div>
 </template>
 
@@ -25,7 +17,7 @@ import moment from 'moment';
 import ChatApp from './BaseAdaptiveExtendedChatApp.vue';
 // import ChatApp from './BaseFeedChatApp.vue';
 
-import ChatApp2 from './FloatExtendedChatApp.vue';
+// import ChatApp from './FloatExtendedChatApp.vue';
 
 import {
   messages, chats, channels,
