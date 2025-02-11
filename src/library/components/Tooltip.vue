@@ -7,7 +7,7 @@
   >
     <slot/>
   </div>
-  <Teleport :to="'#float-windows-' + chatAppId">
+  <Teleport v-if="allowTooltip" :to="'#float-windows-' + chatAppId">
     <span 
       :data-theme="getTheme().theme ? getTheme().theme : null"
       ref="tooltip"
@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, unref, inject } from 'vue';
+import { computed, ref, unref, inject, onMounted } from 'vue';
 import { useTheme } from '../../helpers/useTheme';
 
 const chatAppId = inject('chatAppId')
@@ -27,6 +27,7 @@ const { getTheme } = useTheme(chatAppId as string)
 
 const container = ref<HTMLElement>() 
 const tooltip = ref<HTMLElement>()
+const allowTooltip = ref(false)
 
 const props = defineProps({
   text: {
@@ -70,6 +71,11 @@ const hideTooltip = () => {
     t.style.visibility = 'hidden'
   }
 }
+
+onMounted(() => {
+  const container = document.getElementById('float-windows-' + chatAppId)
+  if (container) allowTooltip.value = true
+})
 
 </script>
 

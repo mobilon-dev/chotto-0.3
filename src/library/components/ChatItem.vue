@@ -113,7 +113,7 @@
     </div>
 
     <transition name="menu" >
-      <Teleport :to="'#float-windows-' + chatAppId">
+      <Teleport v-if="allowTooltip" :to="'#float-windows-' + chatAppId">
         <ContextMenu
           v-if="isOpenMenu && chat.actions"
           ref="refContextMenu"
@@ -166,7 +166,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch, inject, nextTick } from 'vue'
+import { ref, computed, watch, inject, nextTick, onMounted } from 'vue'
 
 import { ContextMenu } from '.'
 import { getStatus, statuses } from "../../helpers";
@@ -184,6 +184,7 @@ const props = defineProps({
 
 const refMenuButton = ref()
 const refContextMenu = ref()
+const allowTooltip = ref(false)
 
 const emit = defineEmits(['select', 'action']);
 
@@ -243,6 +244,7 @@ const updatePosition = () => {
 
 const showMenu = () => {
   buttonMenuVisible.value = true;
+  isOpenMenu.value = false
 };
 
 const hideMenu = (event : MouseEvent) => {
@@ -287,6 +289,10 @@ watch(
   { immediate: true }
 )
 
+onMounted(() => {
+  const container = document.getElementById('float-windows-' + chatAppId)
+  if (container) allowTooltip.value = true
+})
 
 </script>
 
