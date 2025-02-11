@@ -8,6 +8,7 @@
       :style="{ height, width }"
     >
       <slot name="default" />
+      <div :id="'float-windows-' + chatAppId"></div>
     </div>
   </div>
 </template>

@@ -50,7 +50,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, inject, computed } from 'vue';
+import { watch, ref, inject, computed } from 'vue';
 import { useMessage } from '../../helpers/useMessage';
 import { IFilePreview } from '../../types';
 import { uploadFile } from '../../helpers/uploadFile';
@@ -173,6 +173,13 @@ const resetRecordedAudio = () => {
   resetMessageFile()
   audioPreview.value = undefined
 }
+
+watch(
+  () => getMessage().file,
+  () => {
+    if (!getMessage().file) audioPreview.value = undefined
+  }
+);
 
 </script>
 

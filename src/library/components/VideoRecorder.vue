@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, inject } from 'vue';
+import { watch, ref, inject } from 'vue';
 import { useMessage } from '../../helpers/useMessage';
 import { uploadFile } from '../../helpers/uploadFile';
 import { useModalVideoRecorder } from '../modals';
@@ -93,6 +93,13 @@ const resetRecordedAudio = () => {
   resetMessageFile()
   videoPreview.value = undefined
 }
+
+watch(
+  () => getMessage().file,
+  () => {
+    if (!getMessage().file) videoPreview.value = undefined
+  }
+);
 
 </script>
 

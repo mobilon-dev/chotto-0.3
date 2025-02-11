@@ -44,6 +44,7 @@
         :style="{ height: contentHeight + 'px' }"
       >
         <slot name="default" />
+        <div :id="'float-windows-' + chatAppId"></div>
       </div>
     </div>
   </div>
