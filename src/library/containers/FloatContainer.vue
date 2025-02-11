@@ -44,7 +44,9 @@
         :style="{ height: contentHeight + 'px' }"
       >
         <slot name="default" />
-        <div :id="'float-windows-' + chatAppId"></div>
+        <Teleport to="body">
+          <div :id="'float-windows-' + chatAppId"></div>
+        </Teleport>
       </div>
     </div>
   </div>
