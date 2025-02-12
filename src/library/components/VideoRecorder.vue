@@ -7,7 +7,7 @@
     <button
       v-if="uploadStatus != 'uploading'"
       class="video-recorder__button"
-      :class="{'video-recorder__button-disabled' : state == 'disabled'}"
+      :class="{'video-recorder__button-disabled' : state == 'disabled' || getMessage().file}"
       @click="openVideoRecorder"
     >
       <span class="pi pi-video" />
@@ -57,7 +57,8 @@ const props = defineProps({
 })
 
 const openVideoRecorder = async () => {
-  await useModalVideoRecorder()
+  if (!getMessage().file && props.state == 'active'){
+    await useModalVideoRecorder()
     .then(async (data) => {
       if (data.videoFile){
         uploadStatus.value = 'uploading'
@@ -87,6 +88,7 @@ const openVideoRecorder = async () => {
           })
       }
     })
+  }
 }
 
 const resetRecordedAudio = () => {
