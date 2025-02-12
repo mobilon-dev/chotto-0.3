@@ -11,10 +11,6 @@
       class="audio-recorder__recording-container"
     >
       <span class="audio-recorder__recording-icon pi pi-circle-fill"/>
-      <span class="audio-recorder__recording-time">
-        {{elapsedTime}}
-      </span>
-
       <button
         class="audio-recorder__button audio-recorder__button-record"
         @click="cancelAudioRecording"
@@ -25,13 +21,16 @@
         class="audio-recorder__button audio-recorder__button-record"
         @click="stopAudioRecording"
       >
-        <span class="pi pi-stop" />
+        <div class="audio-recorder__stop"></div>
       </button>
+      <span class="audio-recorder__recording-time">
+        {{elapsedTime}}
+      </span>
     </div>
     <button
       v-if="!audioRecording && uploadStatus != 'uploading' && !getMessage().isRecording"
       class="audio-recorder__button"
-      :class="{'audio-recorder__button-disabled' : state == 'disabled'}"
+      :class="{'audio-recorder__button-disabled' : state == 'disabled' || getMessage().file}"
       @click="startAudioRecording"
     >
       <span class="pi pi-microphone" />
@@ -93,28 +92,30 @@ const props = defineProps({
 })
 
 const startAudioRecording = async () => {
-  const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
-  timer.value = setInterval(() => {
-    ms.value += 10;
-    if(ms.value == 1000){
-      ms.value = 0;
-      s.value++;
-      if(s.value == 60){
-        s.value = 0;
-        m.value++;
-        if(m.value == 60){
-          m.value = 0;
-          h.value++;
+  if (!getMessage().file && props.state == 'active'){
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+    timer.value = setInterval(() => {
+      ms.value += 10;
+      if(ms.value == 1000){
+        ms.value = 0;
+        s.value++;
+        if(s.value == 60){
+          s.value = 0;
+          m.value++;
+          if(m.value == 60){
+            m.value = 0;
+            h.value++;
+          }
         }
       }
+    }, 10)
+    setRecordingMessage(true)
+    audioRecording.value = true
+    mediaRecorder.value = new MediaRecorder(stream)
+    mediaRecorder.value.start();
+    mediaRecorder.value.ondataavailable = (event: any) => {
+      chunks.value.push(event.data);
     }
-  }, 10)
-  setRecordingMessage(true)
-  audioRecording.value = true
-  mediaRecorder.value = new MediaRecorder(stream)
-  mediaRecorder.value.start();
-  mediaRecorder.value.ondataavailable = (event: any) => {
-    chunks.value.push(event.data);
   }
 }
 
@@ -207,6 +208,15 @@ watch(
     -webkit-animation: blink 3s linear infinite;
     animation: blink 3s linear infinite;
   }
+
+  &__stop {
+    width: 20px;
+    height: 20px;
+    background-color: black;
+    cursor: pointer;
+    border-radius: 2px;
+  }
+
   @-webkit-keyframes blink {
     0% { color: red; }
     50% { color: transparent; }

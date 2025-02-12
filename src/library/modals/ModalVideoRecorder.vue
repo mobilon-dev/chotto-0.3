@@ -10,10 +10,12 @@
   
   <div>
     <video 
+      class='video-recorder__view-area'
       v-show="!videoURL" 
       ref="refVideo"
     />
     <video 
+      class='video-recorder__view-area'
       v-show="videoURL" 
       ref="refRecord"
       controls
@@ -22,6 +24,18 @@
       <div 
         class="video-recorder__recording-container"
       >
+        <button
+          v-if="!videoRecording && !videoURL"
+          class="video-recorder__button"
+          @click="changeRecordSource"
+        >
+          <span 
+            :class="{
+              'pi pi-desktop': recordSource == 'camera',
+              'pi pi-camera' : recordSource == 'screen'
+            }"
+          />
+        </button>
         <button
           v-if="!videoURL"
           class="video-recorder__button"
@@ -102,8 +116,29 @@ const chunks = ref<any[]>([])
 const videoURL = ref<string>()
 const videoFile = ref<File>()
 
+const recordSource = ref('camera') //camera | screen
+
+const changeRecordSource = () => {
+  if (recordSource.value == 'camera'){
+    recordSource.value = 'screen'
+    runIdleScreenVideo()
+  }
+  else if (recordSource.value == 'screen'){
+    stopCapture()
+    recordSource.value = 'camera'
+    runIdleVideo()
+  }
+}
+
 const startVideoRecording = async () => {
-  if (!videoRecording.value){
+  if (!videoRecording.value && stream.value instanceof MediaStream){
+    mediaRecorder.value = new MediaRecorder(stream.value)
+    mediaRecorder.value.start();
+    mediaRecorder.value.ondataavailable = (event: any) => {
+      chunks.value.push(event.data);
+    }
+    videoRecording.value = true
+
     timer.value = setInterval(() => {
       ms.value += 10;
       if(ms.value == 1000){
@@ -119,20 +154,12 @@ const startVideoRecording = async () => {
         }
       }
     }, 10)
-    
-    videoRecording.value = true
-    if (stream.value instanceof MediaStream){
-      mediaRecorder.value = new MediaRecorder(stream.value)
-      mediaRecorder.value.start();
-      mediaRecorder.value.ondataavailable = (event: any) => {
-        chunks.value.push(event.data);
-      }
-    }
   }
 }
 
 const cancelVideoRecording = async () => {
   clearTemp()
+  stopCapture()
   if (videoURL.value){
     videoURL.value = undefined
     await runIdleVideo()
@@ -152,7 +179,14 @@ const stopVideoRecording = () => {
     }
   }
   clearTemp()
+  stopCapture()
 }
+
+function stopCapture() {
+  let tracks = stream.value?.getTracks()
+  tracks?.forEach((track) => track.stop());
+}
+
 
 const clearTemp = () => {
   clearInterval(timer.value)
@@ -171,6 +205,7 @@ const saveRecordedVideo = () => {
   emit('change', {videoFile: videoFile.value});
   emit('submit')
 }
+
 const runIdleVideo = async () => {
   await navigator.mediaDevices
     .getUserMedia({ audio: true, video: true })
@@ -183,6 +218,26 @@ const runIdleVideo = async () => {
       });
       v.muted = true;
     })
+}
+
+const runIdleScreenVideo = async () => {
+  const displayMediaOptions = {
+    video: {
+      cursor: 'always',
+    },
+    audio: false,
+  } as DisplayMediaStreamOptions;
+
+  await navigator.mediaDevices.getDisplayMedia(displayMediaOptions)
+  .then((s) => {
+    const v = unref(refVideo.value) as HTMLVideoElement
+    stream.value = s;
+    v.srcObject = s;
+    v.addEventListener("loadedmetadata", () => {
+      unref(refVideo.value)?.play()
+    });
+    v.muted = true;
+  })
 }
 
 onMounted(async () => {
@@ -199,6 +254,11 @@ onMounted(async () => {
     display: grid;
     align-items: center;
     background-color: var(--chat-input-container-bg);
+  }
+
+  &__view-area{
+    width: 640px;
+    height: 480px;
   }
 
   &__controls{ 
