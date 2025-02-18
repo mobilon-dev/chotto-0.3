@@ -14,8 +14,8 @@
     </div>
     <div class="modal__channel-line">
       <h3 style="margin: 0;">Через какой канал</h3>
-      <select v-model="selectedChannel" id="folder" >
-        <option v-for="channel in channels" :value="channel">
+      <select v-model="selectedChannel" id="folder" :disabled="!allowChangeChannel" >
+        <option v-for="channel in filteredChannels" :value="channel">
           {{ channel.title }}
         </option>
       </select>
@@ -55,8 +55,12 @@ const props = defineProps({
     type: Array,
     required: true,
   },
-
+  filter:{
+    type: Function,
+    required: false,
+  }
 });
+
 
 const selectedChannel = ref()
 const selectedContact = ref()
@@ -64,6 +68,18 @@ const selectedContact = ref()
 const allowStartDialog = computed(() => {
   if (selectedChannel.value && selectedContact.value) return true
   return false
+})
+
+const allowChangeChannel = computed(() => {
+  if ((props.filter && selectedContact.value) || !props.filter) return true
+  else return false
+})
+
+const filteredChannels = computed(() => {
+  if (props.filter && selectedContact.value){
+    return props.filter(selectedContact.value, props.channels)
+  }
+  else return props.channels
 })
 
 const emit = defineEmits(['change', 'submit']);
