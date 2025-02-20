@@ -328,6 +328,17 @@ const loadMoreChats = () => {
   console.log('load more chats')
 }
 
+function channelFilter(contact, channels){
+  //Изменить в зависимости от имеющихся объектов контакта и каналов
+  if (contact.id.indexOf('phone') != -1){
+    return [channels[0]]
+  }
+  if (contact.id.indexOf('tg') != -1){
+    return [channels[1]]
+  }
+  else return null
+}
+
 const chatAction = async (data) => {
   console.log("chat action", data);
   if (data.action === "add") {
@@ -337,7 +348,13 @@ const chatAction = async (data) => {
   }
 
   if (data.action === 'addDialog'){
-    const data1 = await useModalCreateDialog('Новый диалог', data.chat.name, data.chat.contact.attributes, channels.value)
+    const data1 = await useModalCreateDialog(
+      'Новый диалог',
+      data.chat.name, 
+      data.chat.contact.attributes, 
+      channels.value,
+      channelFilter
+    )
     console.log('info', data1);
   }
 };
