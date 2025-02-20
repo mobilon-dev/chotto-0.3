@@ -10,42 +10,41 @@
         @click="emit('returnToChats')"
       />
       <div class="chat-info__avatar-container">
-      <img
-        v-if="props.chat.avatar"
-        :src="props.chat.avatar"
-        width="48"
-        height="48"
-      >
-      <span
-        v-else
-        class="pi pi-user"
-      />
-    </div>
-    <div class="chat-info__info-container">
-      <h2 class="chat-info__title">
-        {{ chat.name }}
-      </h2>
-      <p
-        v-if="chatDescription"
-        class="chat-info__time"
-      >
-        {{ chatDescription }}
-      </p>
-    </div>
-    <div class="chat-info__actions">
-      <slot name="actions" />
-    </div>
+        <img
+          v-if="props.chat.avatar"
+          :src="props.chat.avatar"
+          width="48"
+          height="48"
+        >
+        <span
+          v-else
+          class="pi pi-user"
+        />
+      </div>
+      <div class="chat-info__info-container">
+        <h2 class="chat-info__title">
+          {{ chat.name }}
+        </h2>
+        <p
+          v-if="chatDescription"
+          class="chat-info__time"
+        >
+          {{ chatDescription }}
+        </p>
+      </div>
+      <div class="chat-info__actions">
+        <slot name="actions" />
+      </div>
     </div>
     
     
     <div 
-      class="chat-info__search-panel"
-      :id="'chat-info-search-panel-' + chatAppId"  
+      :id="'chat-info-search-panel-' + chatAppId"
+      class="chat-info__search-panel"  
     >
-      <slot name="search"/>
+      <slot name="search" />
     </div>
   </div>
-  
 </template>
 
 <script setup>

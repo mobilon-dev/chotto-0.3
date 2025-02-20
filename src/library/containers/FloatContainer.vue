@@ -30,7 +30,7 @@
           {{ props.title }}
         </p>
         <div style="margin-left: auto; display: flex;">
-          <slot  name="controls" />
+          <slot name="controls" />
           <button
             class="float-window__close-button"
             @click="$emit('close-window')"
@@ -45,7 +45,7 @@
       >
         <slot name="default" />
         <Teleport to="body">
-          <div :id="'float-windows-' + chatAppId"></div>
+          <div :id="'float-windows-' + chatAppId" />
         </Teleport>
       </div>
     </div>

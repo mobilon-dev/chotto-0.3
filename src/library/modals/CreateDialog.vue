@@ -4,18 +4,35 @@
     <div>
       Контакт: {{ name }}
     </div>
-      <div class="modal__contact-line">
-      <h3 style="margin: 0;">Куда пишем</h3>
-      <select v-model="selectedContact" id="folder">
-        <option v-for="contact in contacts" :value="contact">
+    <div class="modal__contact-line">
+      <h3 style="margin: 0;">
+        Куда пишем
+      </h3>
+      <select
+        id="folder"
+        v-model="selectedContact"
+      >
+        <option
+          v-for="contact in contacts"
+          :value="contact"
+        >
           {{ contact.value }}
         </option>
       </select>
     </div>
     <div class="modal__channel-line">
-      <h3 style="margin: 0;">Через какой канал</h3>
-      <select v-model="selectedChannel" id="folder" :disabled="!allowChangeChannel" >
-        <option v-for="channel in filteredChannels" :value="channel">
+      <h3 style="margin: 0;">
+        Через какой канал
+      </h3>
+      <select
+        id="folder"
+        v-model="selectedChannel"
+        :disabled="!allowChangeChannel"
+      >
+        <option
+          v-for="channel in filteredChannels"
+          :value="channel"
+        >
           {{ channel.title }}
         </option>
       </select>

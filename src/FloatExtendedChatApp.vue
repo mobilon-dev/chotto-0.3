@@ -49,7 +49,8 @@
                   :chat="selectedChat"
                   @open-panel="isOpenChatPanel = !isOpenChatPanel"
                 />
-                <FeedSearch v-if="isOpenSearchPanel"
+                <FeedSearch
+                  v-if="isOpenSearchPanel"
                   :is-feed-location="true"
                   @search="searchMessages"
                   @cancel="isOpenSearchPanel = !isOpenSearchPanel"
@@ -59,7 +60,7 @@
                   v-if="isOpenSearchPanel && !isShowFeedWhileSearch"
                   :not-found="notFoundMessage"
                   :objects="foundMessages"
-                  :foundAmount="foundMessages.length"
+                  :found-amount="foundMessages.length"
                   @clicked-search="handleClickReplied"
                 />
                 <Feed
@@ -92,7 +93,6 @@
           </template>
         </ExtendedLayout>
       </template>
-      
     </FloatContainer>
   </div>
 </template>

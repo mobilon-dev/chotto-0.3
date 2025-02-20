@@ -1,9 +1,9 @@
 <template>
   <div
     class="modal__overlay"
+    :data-theme="getTheme().theme"
     @click="closeModalOutside"
     @keyup.esc="emit('close')"
-    :data-theme="getTheme().theme"
   >
     <div class="modal__container">
       <button

@@ -1,7 +1,7 @@
 <template>
   <span
-    ref="refPlaceholder"
     :id="'placeholder' + chatAppId + index"
+    ref="refPlaceholder"
     contenteditable
     :class="{ 'filled': isFilled, 'empty': !isFilled }"
     class="placeholder"

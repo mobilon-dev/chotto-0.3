@@ -30,7 +30,6 @@ const closeModalOutside = (evt) => {
         role="dialog"
         aria-labelledby="modalTitle"
         aria-describedby="modalDescription"
-        
       >
         <div
           id="modalDescription"

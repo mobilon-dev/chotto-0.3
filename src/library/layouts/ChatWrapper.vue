@@ -1,5 +1,8 @@
 <template>
-  <div class="chat-wrapper" :id="'chat-wrapper-' + chatAppId">
+  <div
+    :id="'chat-wrapper-' + chatAppId"
+    class="chat-wrapper"
+  >
     <div
       v-if="isSelectedChat"
       class="chat-wrapper__selected-chat"

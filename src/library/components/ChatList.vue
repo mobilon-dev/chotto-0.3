@@ -36,7 +36,7 @@
       </transition>
     </div>
 
-    <slot name="sidebar"/>
+    <slot name="sidebar" />
 
     <ChatFilter
       v-if="filterEnabled"
@@ -45,8 +45,8 @@
     />
 
     <div 
-      class="chat-list__items"
       ref="refChatList"
+      class="chat-list__items"
       @scroll="scrollCheck"
     >
       <div class="chat-list__fixed-items-top">

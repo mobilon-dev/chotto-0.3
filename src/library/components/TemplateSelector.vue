@@ -1,12 +1,12 @@
 <template>
   <div class="template-selector">
     <div 
+      :id="'template-selector-container-' + chatAppId"
+      ref="refContainer"
       :class="{
         'template-selector__container-inline' : !elevatedWindow,
         'template-selector__container-elevated' : elevatedWindow
-        }"
-      ref="refContainer"
-      :id="'template-selector-container-' + chatAppId"
+      }"
     >
       <div style="display: flex;">
         <div style="display: flex;">
@@ -39,123 +39,119 @@
       </div>
       
       <div class="template-selector__layout">
-
         <div 
-          class="template-selector__first-col"
           :id="'template-selector-first-col-' + chatAppId"
+          class="template-selector__first-col"
         >
           <ul class="template-selector__list-groups">
-          <li
-            v-for="(item, index) in groupTemplates"
-            :key="index"
-            class="template-selector__item-group"
-            :class="{ 'template-selector__item-selected': selectedGroup === item }"
-            @click="clearSelectedTemplate"
-          >
-            <label class="template-selector__label-group">
-              <img
-                v-if="item.iconUrl"
-                class="template-selector__item-group-icon"
-                :src="item.iconUrl"
-                :alt="item.title"
-              >
-              <input
-                :id="index"
-                v-model="selectedGroup"
-                :value="item"
-                class="template-selector__input-group"
-                type="radio"
-              >
-              <span>{{ item.title }}</span>
-            </label>
-          </li>
-        </ul>
+            <li
+              v-for="(item, index) in groupTemplates"
+              :key="index"
+              class="template-selector__item-group"
+              :class="{ 'template-selector__item-selected': selectedGroup === item }"
+              @click="clearSelectedTemplate"
+            >
+              <label class="template-selector__label-group">
+                <img
+                  v-if="item.iconUrl"
+                  class="template-selector__item-group-icon"
+                  :src="item.iconUrl"
+                  :alt="item.title"
+                >
+                <input
+                  :id="index"
+                  v-model="selectedGroup"
+                  :value="item"
+                  class="template-selector__input-group"
+                  type="radio"
+                >
+                <span>{{ item.title }}</span>
+              </label>
+            </li>
+          </ul>
         </div>
         
         <div
-          class="template-selector__second-col"
           :id="'template-selector-second-col-' + chatAppId"
+          class="template-selector__second-col"
         >
           <div class="template-selector__searching-container">
-          <input
-            v-model="searchQuery"
-            class="template-selector__searching-input"
-            type="text"
-            placeholder="Поиск шаблона"
-          >
-        </div>
-
-        <div class="template-selector__templates">
-          <ul
-            v-if="searchedTemplate.length !== 0"
-            class="template-selector__list-templates"
-          >
-            <li
-              v-for="(item, index) in searchedTemplate"
-              :key="index"
-              class="template-selector__item-template"
-              :class="{ 'template-selector__item-selected': item.isSelected }"
-              @click="selectTemplate(item)"
+            <input
+              v-model="searchQuery"
+              class="template-selector__searching-input"
+              type="text"
+              placeholder="Поиск шаблона"
             >
-              <div class="template-selector__item-template-info">
-                <p class="template-selector__item-title">
-                  {{ item.title }}
-                </p>
-                <p class="template-selector__item-text">
-                  {{ item.template }}
-                </p>
-              </div>
-            </li>
-          </ul>
+          </div>
 
-          <p
-            v-else
-            class="template-selector__plug"
-          >
-            Шаблоны отсутствуют
-          </p>
-        </div>
+          <div class="template-selector__templates">
+            <ul
+              v-if="searchedTemplate.length !== 0"
+              class="template-selector__list-templates"
+            >
+              <li
+                v-for="(item, index) in searchedTemplate"
+                :key="index"
+                class="template-selector__item-template"
+                :class="{ 'template-selector__item-selected': item.isSelected }"
+                @click="selectTemplate(item)"
+              >
+                <div class="template-selector__item-template-info">
+                  <p class="template-selector__item-title">
+                    {{ item.title }}
+                  </p>
+                  <p class="template-selector__item-text">
+                    {{ item.template }}
+                  </p>
+                </div>
+              </li>
+            </ul>
+
+            <p
+              v-else
+              class="template-selector__plug"
+            >
+              Шаблоны отсутствуют
+            </p>
+          </div>
         </div>
         
 
         <div 
-          class="template-selector__third-col"
           :id="'template-selector-third-col-' + chatAppId"
+          class="template-selector__third-col"
         >
-         
           <div class="template-selector__preview-container">
-          <div
-            v-if="selectedTemplate"
-            class="template-selector__preview"
-          >
-            <div class="template-selector__preview-wrapper">
-              <p class="template-selector__preview-text">
-                {{ selectedTemplate.template }}
-              </p>
-              <p class="template-selector__preview-time">
-                22:22
-              </p>
+            <div
+              v-if="selectedTemplate"
+              class="template-selector__preview"
+            >
+              <div class="template-selector__preview-wrapper">
+                <p class="template-selector__preview-text">
+                  {{ selectedTemplate.template }}
+                </p>
+                <p class="template-selector__preview-time">
+                  22:22
+                </p>
+              </div>
             </div>
+
+            <p
+              v-else
+              class="template-selector__plug"
+            >
+              Предпросмотр шаблона
+            </p>
           </div>
 
-          <p
-            v-else
-            class="template-selector__plug"
+          <button
+            class="template-selector__button-paste"
+            @click="handlePutMessage"
           >
-            Предпросмотр шаблона
-          </p>
-        </div>
-
-        <button
-          class="template-selector__button-paste"
-          @click="handlePutMessage"
-        >
-          Вставить
-        </button>
+            Вставить
+          </button>
         </div>
       </div>
-      
-      
     </div>
   </div>
 </template>

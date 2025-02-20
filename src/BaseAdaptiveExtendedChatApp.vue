@@ -50,7 +50,7 @@
             v-if="isOpenSearchPanel && !feedSearchFeedCol"
             :not-found="notFoundMessage"
             :objects="foundMessages"
-            :foundAmount="foundMessages.length"
+            :found-amount="foundMessages.length"
             @clicked-search="handleClickMessage"
           />
         </template>
@@ -63,15 +63,16 @@
             :chat-panel-width="chatPanelWidth"
           >
             <template #default>
-              <div style="display: flex;
+              <div
+                :id="'feed-location'"
+                style="display: flex;
                 flex-direction: column;
                 height: 100%;"
-                :id="'feed-location'"
               >
                 <ChatInfo 
                   :chat="selectedChat"
                   :show-return-button="isShowReturnButton"
-                  :defaultLastActivityTime="true"
+                  :default-last-activity-time="true"
                   :description="description"
                   @return-to-chats="handleReturnToChats"
                 >
@@ -96,22 +97,21 @@
                       >
                         <span class="pi pi-search" />
                       </button>
-                      
                     </div>
                   </template>
                 </ChatInfo>
                 <FeedSearch 
                   v-if="isOpenSearchPanel && feedSearchFeedCol"
+                  is-feed-location
                   @search="searchMessages"
                   @cancel="handleOpenSearchPanel"
                   @switch="isShowFeedWhileSearch = !isShowFeedWhileSearch"
-                  is-feed-location
                 />
                 <FeedFoundObjects
                   v-if="isOpenSearchPanel && feedSearchFeedCol && !isShowFeedWhileSearch"
                   :not-found="notFoundMessage"
                   :objects="foundMessages"
-                  :foundAmount="foundMessages.length"
+                  :found-amount="foundMessages.length"
                   @clicked-search="handleClickMessage"
                 />
                 <Feed
@@ -152,20 +152,19 @@
                       :group-templates="groupTemplates"
                       :mode="'click'"
                       :filebump-url="filebumpUrl"
-                      @send-waba-values="sendWabaValues"
                       :elevated-window="false"
+                      @send-waba-values="sendWabaValues"
                     />
                     <ChannelSelector
                       :channels="channels"
                       :mode="'hover'"
                       @select-channel="onSelectChannel"
                     />
-                    <AudioRecorder :filebump-url="filebumpUrl"/>
-                    <VideoRecorder :filebump-url="filebumpUrl"/>
+                    <AudioRecorder :filebump-url="filebumpUrl" />
+                    <VideoRecorder :filebump-url="filebumpUrl" />
                   </template>
                 </ChatInput>
               </div>
-              
             </template>
 
             <template #chatpanel>

@@ -25,7 +25,8 @@
             @select="selectChat"
             @action="chatAction"
           />
-          <FeedSearch v-if="isOpenSearchPanel"
+          <FeedSearch
+            v-if="isOpenSearchPanel"
             @search="searchMessages"
             @cancel="isOpenSearchPanel = !isOpenSearchPanel"
           />
@@ -33,7 +34,7 @@
             v-if="isOpenSearchPanel"
             :not-found="notFoundMessage"
             :objects="foundMessages"
-            :foundAmount="foundMessages.length"
+            :found-amount="foundMessages.length"
             @clicked-search="handleClickReplied"
           />
         </template>
@@ -66,11 +67,11 @@
                     >
                       <span class="pi pi-search" />
                     </button>
-                    
                   </div>
                 </template>
                 <template #search>
-                  <FeedSearch v-if="isOpenSearchPanel"
+                  <FeedSearch
+                    v-if="isOpenSearchPanel"
                     @search="searchMessages"
                     @cancel="isOpenSearchPanel = !isOpenSearchPanel"
                   />
@@ -91,8 +92,9 @@
                 @force-scroll-to-bottom="forceScrollToBottom"
               />
               <ChatInput 
-              :focus-on-input-area="inputFocus"
-              @send="addMessage">
+                :focus-on-input-area="inputFocus"
+                @send="addMessage"
+              >
                 <template #buttons>
                   <FileUploader
                     :filebump-url="filebumpUrl"

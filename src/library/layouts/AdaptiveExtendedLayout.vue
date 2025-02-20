@@ -1,22 +1,24 @@
 <template>
-  <div class="extend-layout__container"
-  ref="refContainer"
-  :id="'extern-layout-container-' + chatAppId">
+  <div
+    :id="'extern-layout-container-' + chatAppId"
+    ref="refContainer"
+    class="extend-layout__container"
+  >
     <div 
-      class="extend-layout__first-col" 
-      :id="'extend-layout-first-col-' + chatAppId"
+      :id="'extend-layout-first-col-' + chatAppId" 
+      class="extend-layout__first-col"
     >
       <slot name="first-col" />
     </div>
     <div
-      class="extend-layout__second-col"
       :id="'extend-layout-second-col-' + chatAppId"
+      class="extend-layout__second-col"
     >
       <slot name="second-col" />
     </div>
     <div 
-      class="extend-layout__third-col"
       :id="'extend-layout-third-col-' + chatAppId"
+      class="extend-layout__third-col"
     >
       <slot name="third-col" />
     </div>

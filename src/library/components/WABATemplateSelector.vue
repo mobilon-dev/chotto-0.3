@@ -1,12 +1,12 @@
 <template>
   <div class="template-selector">
     <div 
+      :id="'waba-template-selector-container-' + chatAppId"
+      ref="refContainer"
       :class="{
         'template-selector__container-inline' : !elevatedWindow,
         'template-selector__container-elevated' : elevatedWindow
-        }"
-      ref="refContainer"
-      :id="'waba-template-selector-container-' + chatAppId"
+      }"
     >
       <div style="display: flex;">
         <div style="display: flex;">

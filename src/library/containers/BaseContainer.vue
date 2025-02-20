@@ -9,7 +9,7 @@
     >
       <slot name="default" />
       <Teleport to="body">
-        <div :id="'float-windows-' + chatAppId"></div>
+        <div :id="'float-windows-' + chatAppId" />
       </Teleport>
     </div>
   </div>
