@@ -132,6 +132,7 @@
                 />
                 <ChatInput 
                   :focus-on-input-area="inputFocus"
+                  :commands="commands"
                   @send="addMessage"
                 >
                   <template #buttons>
@@ -186,7 +187,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch, unref, nextTick } from "vue";
+import { onMounted, ref, computed, unref, nextTick } from "vue";
 import moment from 'moment';
 
 import {
@@ -308,6 +309,11 @@ const description = ref()
 
 const refContainer = ref()
 const refChatWrapper = ref()
+
+const commands = computed(() => {
+  if (selectedChat.value && selectedChat.value.commands) return selectedChat.value.commands
+  else return null
+})
 
 const handleOpenSearchPanel = () => {
   isOpenSearchPanel.value = !isOpenSearchPanel.value
@@ -456,19 +462,24 @@ const onSelectChannel = (channel) => {
 const addMessage = (message) => {
   console.log(message);
   // Добавление сообщения в хранилище
-
-  props.dataProvider.addMessage({
-    text: message.text,
-    type: message.type,
-    chatId: selectedChat.value.chatId,
-    url: message.url || null,
-    filename: message.filename || null,
-    status: 'sent',
-    direction: "outgoing",
-    timestamp: moment().unix(),
-    reply: message.reply || null,
-  });
-  messages.value = getFeedObjects(); // Обновление сообщений
+  if (message.type != 'message.command'){
+    props.dataProvider.addMessage({
+      text: message.text,
+      type: message.type,
+      chatId: selectedChat.value.chatId,
+      url: message.url || null,
+      filename: message.filename || null,
+      status: 'sent',
+      direction: "outgoing",
+      timestamp: moment().unix(),
+      reply: message.reply || null,
+    });
+    messages.value = getFeedObjects(); // Обновление сообщений
+  }
+  else {
+    //обработка команды 
+  }
+  
 };
 
 const sendWabaValues = (obj) => {

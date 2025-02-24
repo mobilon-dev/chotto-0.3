@@ -131,6 +131,18 @@ export const chats = [
         },
       ],
     },
+    commands: [
+      {
+        action: 'start',
+        title: '/start',
+        description: 'начать работу с чатботом'
+      },
+      {
+        action: 'info',
+        title: '/info',
+        description: 'информация о чатботе'
+      }
+    ]
   },
   {
     chatId: 3, name: "Анна",

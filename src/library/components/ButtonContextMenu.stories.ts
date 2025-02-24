@@ -31,8 +31,8 @@ const actionsFileDropDown = [
 ]
 
 const actionsLA = [
-  {action: 'edit', title: 'слишком длинное-длинное поле в слишком коротком-коротком меню'},
-  {action: 'delete', title: 'слишком длинное-длинное поле в слишком коротком-коротком меню'},
+  {action: 'edit', description: 'слишком длинное-длинное поле в слишком коротком-коротком меню'},
+  {action: 'delete', description: 'слишком длинное-длинное поле в слишком коротком-коротком меню'},
 ];
   
 export const StandardRight: Story = {

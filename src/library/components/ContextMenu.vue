@@ -17,7 +17,13 @@
           v-else-if="action.prime"
           :class="'pi pi-' + action.prime" 
         />
-        <span>{{ action.title }}</span>
+        <span 
+          v-if="action.title" 
+          style="white-space: nowrap;"
+        >
+          {{ action.title }}
+        </span>
+        <span v-if="action.description">{{ action.description }}</span>
       </li>
     </ul>
   </div>
