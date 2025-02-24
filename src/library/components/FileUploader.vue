@@ -34,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, inject } from "vue";
+import { ref, computed, inject, onMounted } from "vue";
 import ButtonContextMenu from "./ButtonContextMenu.vue";
 import FilePreview from "./FilePreview.vue";
 import { useMessage } from "../../helpers/useMessage";
@@ -57,7 +57,7 @@ const fileInput = ref<HTMLInputElement>();
 const fileInfo = ref<IFilePreview>()
 
 const chatAppId = inject('chatAppId')
-const { setMessageFile, resetMessageFile, getMessage } = useMessage(chatAppId as string)
+const { setMessageFile, resetMessageFile, getMessage, setRecordingMessage } = useMessage(chatAppId as string)
 
 const actions = [
   {
@@ -96,12 +96,46 @@ const resetSelectedFile = () => {
 
 const onFileSelected = async () => {
   resetSelectedFile()
-  //console.log("onFileSelected", event.target.files[0]);
   if (fileInput.value?.files) {
-    uploadStatus.value = "uploading";
-    const f = typeof props.filebumpUrl == 'string' ? props.filebumpUrl : null 
-    await uploadFile(f, fileInput.value?.files[0])
+    handleFileUpload(fileInput.value?.files[0])
+  }
+};
+
+const triggerFileUpload = (action) => {
+  if (fileInput.value && canUploadFile) {
+    fileInput.value.accept = action.action
+    fileInput.value.click();
+  }
+};
+
+const triggerFileUploadDefault = () => {
+  if (fileInput.value && canUploadFile  && props.state == 'active') {
+    fileInput.value.click();
+  }
+};
+
+const pasteFromClipboard = async (event: ClipboardEvent) => {
+  const items = event.clipboardData?.items
+  if (items) {
+    for(let item of items){
+      if (item.type.indexOf('image')!==-1){
+        event.preventDefault()
+        const file = item.getAsFile()
+        if (file){
+          handleFileUpload(file)
+        }
+      }
+    }
+  }
+}
+
+const handleFileUpload = async (file: File) => {
+  uploadStatus.value = "uploading";
+  setRecordingMessage(true)
+  const f = typeof props.filebumpUrl == 'string' ? props.filebumpUrl : null 
+  await uploadFile(f, file)
     .then((data) => {
+      setRecordingMessage(false)
       uploadStatus.value = data.status
       if (data.status == 'success'){
         setMessageFile({
@@ -121,21 +155,12 @@ const onFileSelected = async () => {
           })
       }
     }) 
-  }
-};
+}
 
-const triggerFileUpload = (action) => {
-  if (fileInput.value && canUploadFile) {
-    fileInput.value.accept = action.action
-    fileInput.value.click();
-  }
-};
+onMounted(() => {
+  window.addEventListener('paste', pasteFromClipboard)
+})
 
-const triggerFileUploadDefault = () => {
-  if (fileInput.value && canUploadFile  && props.state == 'active') {
-    fileInput.value.click();
-  }
-};
 
 </script>
 
