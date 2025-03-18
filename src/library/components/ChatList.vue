@@ -48,6 +48,8 @@
       ref="refChatList"
       class="chat-list__items"
       @scroll="scrollCheck"
+      @mousedown="startScrollWatch"
+      @mouseup="stopScrollWatch"
     >
       <div class="chat-list__fixed-items-top">
         <ChatItem
@@ -82,11 +84,20 @@
         />
       </div>
     </div>
+    <transition>
+      <button
+        v-if="isShowButton"
+        class="chat-list__button-up"
+        @click="scrollToTopForce"
+      >
+        <span class="pi pi-angle-up chat-list__icon-down" />
+      </button>
+    </transition>
   </div>
 </template>
 
 <script setup>
-import { ref, unref } from 'vue';
+import { ref, unref, watch, nextTick } from 'vue';
 import { ChatItem, ChatFilter, ContextMenu } from "./";
 import { t } from '../../locale/useLocale';
 
@@ -114,18 +125,75 @@ const filter = ref('');
 const isOpenMenu = ref(false)
 const refChatList = ref()
 
+const allowLoadMore = ref(false)
+const isShowButton = ref(false)
+const isScrollByMouseButton = ref(false)
+
 const hideMenu = () => {
   isOpenMenu.value = false
+}
+
+function scrollToTopForce() {
+  nextTick(function () {
+    const element = unref(refChatList);
+    element.scrollTop = 0;
+  })
 }
 
 const scrollCheck = () => {
   const element = unref(refChatList);
   const scrollBottom = element.scrollHeight - element.scrollTop - element.clientHeight;
+  if (element.scrollTop > 300){
+    isShowButton.value = true
+  }
+  if (element.scrollTop <= 300){
+    isShowButton.value = false
+  }
 
-  if (scrollBottom <= 0){
-    emit('loadMoreChats')
+  if (isScrollByMouseButton.value){
+    if (scrollBottom < 200){    
+      allowLoadMore.value = true  
+    }
+  }
+  else{
+    if (scrollBottom < 200){
+      allowLoadMore.value = true
+    }
+    if (scrollBottom >= 200){
+      allowLoadMore.value = false
+    }
   }
 };
+
+watch(
+  () => allowLoadMore.value,
+  () => {
+    if (allowLoadMore.value)
+      emit('loadMoreChats')
+  }
+)
+
+watch(
+  () => props.chats,
+  () => {
+    allowLoadMore.value = false
+    if (isScrollByMouseButton.value){
+      element.scrollTop = 200
+    }
+  }
+)
+
+const startScrollWatch = (event) => {
+  const element = unref(refChatList);
+  const isScrollbar = event.offsetX > element.clientWidth || event.offsetY > element.clientHeight;
+  if (isScrollbar) {
+    isScrollByMouseButton.value = true
+  }
+}
+
+const stopScrollWatch = () => {
+  isScrollByMouseButton.value = false
+}
 
 // Define method
 const selectChat = (args) => {
@@ -274,6 +342,28 @@ const action = (data) => emit('action', data);
     position: absolute;
     top: 46px;
     right: 20px;
+  }
+
+  &__button-up {
+    position: absolute;
+    z-index: 100;
+    bottom: 15px;
+    right: 25px;
+    margin-left: auto;
+    border: none;
+    min-width: 46px;
+    min-height: 46px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: var(--feed-button-down-bg);
+  }
+
+  &__icon-up {
+    font-size: var(--feed-button-down-icon-font-size);
+    color: var(--feed-button-down-icon-color);
   }
 }
 

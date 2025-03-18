@@ -2,7 +2,9 @@
   <div
     ref="refFeed"
     class="message-feed"
-    @scroll="scrollTopCheck()"
+    @scroll="throttledScrollTopCheck()"
+    @mousedown="startScrollWatch"
+    @mouseup="stopScrollWatch"
     :id="'feed-container-' + chatAppId"
   >
     <div
@@ -83,7 +85,7 @@ import {
 } from "../messages";
 
 import { IFeedObject, IFeedTyping, IFeedUnreadButton } from '../../types';
-
+import { throttle } from '../../helpers/throttle';
 import { useMessage } from '../../helpers/useMessage';
 import MessageKeyboard from './MessageKeyboard.vue';
 
@@ -92,6 +94,11 @@ const refFeed = ref();
 const keyboardRef = ref();
 const isShowButton = ref(false)
 const isKeyboardPlace = ref(false)
+const allowLoadMoreTop = ref(false)
+const allowLoadMoreBottom = ref(false)
+const movingDown = ref(false)
+const isScrollByMouseButton = ref(false)
+
 const props = defineProps({
   objects: {
     type: Array <IFeedObject>,
@@ -142,7 +149,7 @@ const keyboardAction = (action) => {
   emit('keyboardAction', action)
 }
 
-const scrollTopCheck = (allowLoadMore: boolean = true) => {
+function scrollTopCheck (allowLoadMore: boolean = true) {
   const element = unref(refFeed);
   let keyboardHeight = 0
   if (keyboardRef.value){
@@ -159,13 +166,50 @@ const scrollTopCheck = (allowLoadMore: boolean = true) => {
     isKeyboardPlace.value = false
   }
 
-  if (element.scrollTop === 0 && allowLoadMore) {
-    emit('loadMore');
+  if (isScrollByMouseButton.value){
+    if (element.scrollTop < 200){      
+      movingDown.value = false
+      element.scrollTop = 200
+      allowLoadMoreTop.value = false
+    }
+    if (scrollBottom < 100){
+      allowLoadMoreBottom.value = false
+      movingDown.value = true
+    }
   }
-  if (scrollBottom <= 0 && allowLoadMore){
-    emit('loadMoreDown')
+
+  else if (allowLoadMore){
+    if (element.scrollTop < 200) {
+      allowLoadMoreTop.value = false
+    }
+    if (scrollBottom < 200){
+      allowLoadMoreBottom.value = false
+    }
   }
+  
 };
+
+watch(
+  () => [allowLoadMoreBottom.value, allowLoadMoreTop.value],
+  () => {
+    if (!allowLoadMoreBottom.value) emit('loadMoreDown')
+    if (!allowLoadMoreTop.value) emit('loadMore')
+  }
+)
+
+const startScrollWatch = (event) => {
+  const element = unref(refFeed);
+  const isScrollbar = event.offsetX > element.clientWidth || event.offsetY > element.clientHeight;
+  if (isScrollbar) {
+    isScrollByMouseButton.value = true
+  }
+}
+
+const stopScrollWatch = () => {
+  isScrollByMouseButton.value = false
+}
+
+const throttledScrollTopCheck = throttle(scrollTopCheck, 250)
 
 // Register components
 const componentsMap = (type) => {
@@ -199,6 +243,7 @@ function scrollToBottomForce() {
 watch(
   ()=> props.scrollToBottom,
   () => {
+    console.log('force scroll to bottom')
     if (props.scrollToBottom)
       scrollToBottom()
   },
@@ -248,7 +293,14 @@ watch(
   () => props.objects,
   () => {
     nextTick(() => {
+      allowLoadMoreTop.value = true
+      allowLoadMoreBottom.value = true
       scrollTopCheck(false)
+      if (isScrollByMouseButton.value && movingDown.value)
+        nextTick(() => {
+          const element = unref(refFeed);
+          element.scrollTop = element.scrollHeight - element.clientHeight 
+        })
       trackingObjects.value = document.querySelectorAll('.tracking-message')
       trackingObjects.value.forEach((obj) => observer.observe(obj))
     })
