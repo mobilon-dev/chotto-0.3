@@ -380,14 +380,16 @@ const loadMore = () => {
     const firstMessage = messages.value.find((message) => {
       if (message.type.indexOf('system') == -1) return message
     })
-    const messages1 = props.dataProvider.getMoreFeedUp(selectedChat.value.chatId,firstMessage.messageId, 10);
-    if (messages1.length > 0){
-      const additionalMessages = transformToFeed(messages1);
-      if (additionalMessages[additionalMessages.length - 1].time == firstMessage.time && messages.value[0].type == 'system.date'){
-          messages.value.shift()
+    setTimeout(() => {
+      const messages1 = props.dataProvider.getMoreFeedUp(selectedChat.value.chatId,firstMessage.messageId, 10);
+      if (messages1.length > 0){
+        const additionalMessages = transformToFeed(messages1);
+        if (additionalMessages[additionalMessages.length - 1].time == firstMessage.time && messages.value[0].type == 'system.date'){
+            messages.value.shift()
+        }
+        messages.value = additionalMessages.concat(messages.value)
       }
-      messages.value = additionalMessages.concat(messages.value)
-    }
+    }, 500)
   }
 };
 
@@ -397,9 +399,11 @@ const loadMoreDown = () => {
   const currentLastMessage = messages.value[messages.value.length - 1]
   const savedLastMessage = props.dataProvider.getLastMessage(selectedChat.value.chatId)
   if (savedLastMessage && selectedChat.value && selectedChat.value.chatId == 5 && currentLastMessage.messageId != savedLastMessage.messageId){
-    const newM = props.dataProvider.getMoreFeedDown(selectedChat.value.chatId, currentLastMessage.messageId, 10)
-    const additionalMessages = transformToFeed(newM, currentLastMessage.timestamp)
-    messages.value = messages.value.concat(additionalMessages)
+    setTimeout(() => {
+      const newM = props.dataProvider.getMoreFeedDown(selectedChat.value.chatId, currentLastMessage.messageId, 10)
+      const additionalMessages = transformToFeed(newM, currentLastMessage.timestamp)
+      messages.value = messages.value.concat(additionalMessages)
+    }, 500)
   }
 };
 
