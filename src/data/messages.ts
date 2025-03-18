@@ -30,6 +30,22 @@ export const messages = [
     },
   },
   {
+    chatId: 1, type: "message.text", text: "зачетный обзор", direction: 'incoming', status: 'read', timestamp: '1727027959', subText: 'test test',
+    messageId: '265765',
+    embed: {
+      type: 'youtube',
+      url: 'https://www.youtube.com/watch?v=M7lc1UVf-VE',
+    },
+  },
+  {
+    chatId: 1, type: "message.text", text: "новая реклама", direction: 'incoming', status: 'read', timestamp: '1727027959', subText: 'test test',
+    messageId: '265766',
+    embed: {
+      type: 'vkvideo',
+      url: 'https://vk.com/video_ext.php?oid=-22822305&id=456241864',
+    },
+  },
+  {
     chatId: 1, type: "message.text", text: "Привет!", direction: 'incoming', status: 'read', timestamp: '1727027959', subText: 'test test',
     messageId: '2',
     actions: [
