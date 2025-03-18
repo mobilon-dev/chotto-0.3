@@ -31,6 +31,14 @@ export const messages = [
   },
   {
     chatId: 1, type: "message.text", text: "Привет!", direction: 'incoming', status: 'read', timestamp: '1727027959', subText: 'test test',
+    messageId: '265765',
+    embed: {
+      type: 'youtube',
+      url: 'https://www.youtube.com/watch?v=M7lc1UVf-VE',
+    },
+  },
+  {
+    chatId: 1, type: "message.text", text: "Привет!", direction: 'incoming', status: 'read', timestamp: '1727027959', subText: 'test test',
     messageId: '2',
     actions: [
       { action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=pin' },
