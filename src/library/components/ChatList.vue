@@ -178,6 +178,7 @@ watch(
   () => {
     allowLoadMore.value = false
     if (isScrollByMouseButton.value){
+      const element = unref(refChatList);
       element.scrollTop = 200
     }
   }
