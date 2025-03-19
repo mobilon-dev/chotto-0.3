@@ -167,22 +167,20 @@ function scrollTopCheck (allowLoadMore: boolean = true) {
   }
 
   if (isScrollByMouseButton.value){
-    if (element.scrollTop < 200){      
+    if (element.scrollTop < 300){      
       movingDown.value = false
-      element.scrollTop = 200
       allowLoadMoreTop.value = false
     }
-    if (scrollBottom < 100){
+    if (scrollBottom < 300){
       allowLoadMoreBottom.value = false
       movingDown.value = true
     }
   }
-
   else if (allowLoadMore){
-    if (element.scrollTop < 200) {
+    if (element.scrollTop < 300) {
       allowLoadMoreTop.value = false
     }
-    if (scrollBottom < 200){
+    if (scrollBottom < 300){
       allowLoadMoreBottom.value = false
     }
   }
@@ -296,11 +294,13 @@ watch(
       allowLoadMoreTop.value = true
       allowLoadMoreBottom.value = true
       scrollTopCheck(false)
-      if (isScrollByMouseButton.value && movingDown.value)
-        nextTick(() => {
-          const element = unref(refFeed);
-          element.scrollTop = element.scrollHeight - element.clientHeight 
-        })
+      if (isScrollByMouseButton.value){
+        const element = unref(refFeed);
+        if (movingDown.value)
+          element.scrollTop = element.scrollHeight - 400
+        if (!movingDown.value)
+          element.scrollTop = 200
+      }
       trackingObjects.value = document.querySelectorAll('.tracking-message')
       trackingObjects.value.forEach((obj) => observer.observe(obj))
     })
