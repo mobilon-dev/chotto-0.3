@@ -143,23 +143,23 @@ function scrollToTopForce() {
 const scrollCheck = () => {
   const element = unref(refChatList);
   const scrollBottom = element.scrollHeight - element.scrollTop - element.clientHeight;
-  if (element.scrollTop > 300){
+  if (element.scrollTop > 500){
     isShowButton.value = true
   }
-  if (element.scrollTop <= 300){
+  if (element.scrollTop <= 500){
     isShowButton.value = false
   }
 
   if (isScrollByMouseButton.value){
-    if (scrollBottom < 200){    
+    if (scrollBottom < 300){    
       allowLoadMore.value = true  
     }
   }
   else{
-    if (scrollBottom < 200){
+    if (scrollBottom < 300){
       allowLoadMore.value = true
     }
-    if (scrollBottom >= 200){
+    if (scrollBottom >= 300){
       allowLoadMore.value = false
     }
   }
@@ -179,7 +179,7 @@ watch(
     allowLoadMore.value = false
     if (isScrollByMouseButton.value){
       const element = unref(refChatList);
-      element.scrollTop = 200
+      element.scrollTop = element.scrollHeight
     }
   }
 )
