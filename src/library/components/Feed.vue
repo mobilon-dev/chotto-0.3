@@ -299,7 +299,7 @@ watch(
         if (movingDown.value)
           element.scrollTop = element.scrollHeight - 400
         if (!movingDown.value)
-          element.scrollTop = 200
+          element.scrollTop = 400
       }
       trackingObjects.value = document.querySelectorAll('.tracking-message')
       trackingObjects.value.forEach((obj) => observer.observe(obj))
