@@ -44,6 +44,12 @@
         :linkPreview="message.linkPreview"
       />
 
+      <EmbedPreview
+        :class="message.position"
+        v-if="message.embed"
+        :embed="message.embed"
+      />
+
       <div class="text-message__info-container">
         <div
           v-if="message.views"
@@ -104,6 +110,7 @@ import { getStatus, statuses } from "../../helpers";
 import { ITextMessage } from '../../types';
 import BaseReplyMessage from './BaseReplyMessage.vue'
 import LinkPreview from './LinkPreview.vue'
+import EmbedPreview from './EmbedPreview.vue';
 
 // Define props
 const props = defineProps({

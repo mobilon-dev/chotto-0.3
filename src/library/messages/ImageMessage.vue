@@ -124,6 +124,12 @@
         v-if="message.linkPreview"
         :linkPreview="message.linkPreview"
       />
+
+      <EmbedPreview
+        :class="message.position"
+        v-if="message.embed"
+        :embed="message.embed"
+      />
     </div>
 
 
@@ -158,6 +164,7 @@ import { getStatus, statuses } from "../../helpers";
 import { IImageMessage } from '../../types';
 import BaseReplyMessage from './BaseReplyMessage.vue'
 import LinkPreview from './LinkPreview.vue'
+import EmbedPreview from './EmbedPreview.vue';
 import ModalFullscreen from '../modals/modal-wrapper/ModalFullscreen.vue';
 
 const props = defineProps({

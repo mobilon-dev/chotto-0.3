@@ -27,6 +27,11 @@ const messageLink = {
   status: 'read',
 };
 
+const embed = {
+  type: 'youtube',
+  url: 'https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1',
+}
+
 const actions = [
   {
     action: 'edit',
@@ -470,4 +475,22 @@ export const RightMessageWithPreviewLink: Story = {
   },
 };
 
+export const LeftMessageWithEmbed: Story = {
+  args: {
+    message: {
+      ...message,
+      position: 'left',
+      embed
+    },
+  },
+};
 
+export const RightMessageWithEmbed: Story = {
+  args: {
+    message: {
+      ...message,
+      position: 'right',
+      embed
+    },
+  },
+};
