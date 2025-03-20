@@ -34,11 +34,11 @@ export const messages = [
     messageId: '265765',
     embed: {
       type: 'youtube',
-      url: 'https://www.youtube.com/watch?v=M7lc1UVf-VE',
+      url: 'https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1',
     },
   },
   {
-    chatId: 1, type: "message.text", text: "новая реклама", direction: 'incoming', status: 'read', timestamp: '1727027959', subText: 'test test',
+    chatId: 1, type: "message.text", text: "новая реклама", direction: 'outgoing', status: 'read', timestamp: '1727027959', subText: 'test test',
     messageId: '265766',
     embed: {
       type: 'vkvideo',

@@ -40,6 +40,7 @@ export interface IAudioMessage {
   };
   reply?: Reply,
   linkPreview?: ILinkPreview,
+  embed?: object
   keyboard?: IKeyBoard[]
 }
 
@@ -79,6 +80,7 @@ export interface IFileMessage {
   text?: string
   reply?: Reply,
   linkPreview?: ILinkPreview
+  embed?: object
   keyboard?: IKeyBoard[]
 }
 
@@ -96,6 +98,7 @@ export interface IImageMessage {
   text?: string
   reply?: Reply,
   linkPreview?: ILinkPreview
+  embed?: object
   keyboard?: IKeyBoard[]
 }
 
@@ -116,6 +119,7 @@ export interface ITextMessage {
   views?: number
   reply?: Reply
   linkPreview?: ILinkPreview
+  embed?: object
   keyboard?: IKeyBoard[]
 }
 
@@ -138,5 +142,6 @@ export interface IVideoMessage {
   text?: string
   reply?: Reply,
   linkPreview?: ILinkPreview,
+  embed?: object
   keyboard?: IKeyBoard[]
 }
