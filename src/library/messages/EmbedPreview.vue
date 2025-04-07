@@ -7,6 +7,13 @@
       title="YouTube video player"
       frameborder="0" allowfullscreen
     />
+    <iframe
+      v-else-if="embed.type == 'rutube'"
+      class="embed-preview__player"
+      :src="embed.url"
+      title="YouTube video player"
+      frameborder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen
+    />
     <iframe 
       v-else
       class="embed-preview__player"
@@ -44,6 +51,7 @@ const props = defineProps({
     width: 100%;
     max-height: 300px;
     border-radius: 8px;
+    border: none;
   }
 
   .left {
