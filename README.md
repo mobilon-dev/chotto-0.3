@@ -1,16 +1,15 @@
-# chotto
+# chotto UI
 
-Vue3 UI components for chats, conversations, ai
+Vue3 UI components for chats, conversations & AI
 
-### developer news
+### start development your chat now
 
-[telegram developer chat](https://t.me/chottodev)
-
-# usage
-
-## docs
+- [chotto UI docs](https://mobilon-dev.github.io/chotto-docs/)
 
 - [docs in storybook: 20+ components for chat UI](https://mobilon-dev.github.io/chotto/)
+
+- [telegram developer chat](https://t.me/chottodev)
+
 
 ## screnshots
 
@@ -58,6 +57,8 @@ Vue3 UI components for chats, conversations, ai
 
 
 # Links
+
+imagine!
 
 ### screenshots
 
