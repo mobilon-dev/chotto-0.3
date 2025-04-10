@@ -38,6 +38,22 @@ export const messages = [
     },
   },
   {
+    chatId: 1, type: "message.text", text: "зачетный обзор", direction: 'incoming', status: 'read', timestamp: '1727027959', subText: 'test test',
+    messageId: '265765',
+    embed: {
+      type: 'yamusic',
+      url: 'https://music.yandex.ru/iframe/track/36812773/4773768',
+    },
+  },
+  {
+    chatId: 1, type: "message.text", text: "зачетный обзор", direction: 'incoming', status: 'read', timestamp: '1727027959', subText: 'test test',
+    messageId: '265765',
+    embed: {
+      type: 'rutube',
+      url: 'https://rutube.ru/play/embed/6eb0c597c11c89ad5a5fafa3030d0e53/',
+    },
+  },
+  {
     chatId: 1, type: "message.text", text: "новая реклама", direction: 'outgoing', status: 'read', timestamp: '1727027959', subText: 'test test',
     messageId: '265766',
     embed: {
