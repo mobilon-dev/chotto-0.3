@@ -8,6 +8,8 @@ Vue3 UI components for chats, conversations & AI
 
 - [docs in storybook: 20+ components for chat UI](https://mobilon-dev.github.io/chotto/)
 
+- [cool 7 demos](https://mobilon-dev.github.io/chotto-demo/)
+
 - [telegram developer chat](https://t.me/chottodev)
 
 
@@ -21,15 +23,6 @@ Vue3 UI components for chats, conversations & AI
 [chotto 01: welcome](https://youtu.be/LbtXeR_P9fs)
 
 [chotto 02: WABA templates](https://youtu.be/bwhcn6KAn28)
-
-
-## examples
-
-[demo1: 1 manager + 3 site users](https://determaer.github.io/chat-demo/) ([source](https://github.com/determaer/chat-demo))
-
-[demo2: waba templates](https://determaer.github.io/waba-chat-demo/) ([source](https://github.com/determaer/waba-chat-demo))
-
-[all demos](https://determaer.github.io/chotto-demo/) ([source](https://github.com/determaer/chotto-demo))
 
 
 # development
