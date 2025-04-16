@@ -22,7 +22,6 @@
     <div
       v-if="isOpenChatPanel"
       class="chat-wrapper__chat-panel"
-      :style="{ 'flex-basis': isOpenChatPanel ? '40%' : '0%' }"
     >
       <slot name="chatpanel" />
     </div>
@@ -59,8 +58,8 @@ watch(
   () => {
     const container = document.getElementById('chat-wrapper-' + chatAppId)
     if (container){
-      container.style.setProperty('--chat-panel-width', props.chatPanelWidth + '%')
-      container.style.setProperty('--chat-panel-left', (100 - props.chatPanelWidth) + '%')
+      container.style.setProperty('--chotto-chat-panel-width', props.chatPanelWidth + '%')
+      container.style.setProperty('--chotto-chat-panel-left', (100 - props.chatPanelWidth) + '%')
     }
   },
   {immediate: true}
@@ -74,8 +73,8 @@ watch(
 >
 .chat-wrapper {
 
-  --chat-panel-width: 50%;
-  --chat-panel-left: 50%;
+  --chotto-chat-panel-width: 50%;
+  --chotto-chat-panel-left: 50%;
 
   display: flex;
   height: 100%;
@@ -91,16 +90,14 @@ watch(
   }
 
   &__chat-panel {
-    padding: 10px 10px 10px 10px;
-    margin: var(--chat-panel-margin);
-    background-color: var(--chat-panel-bg);
-    border-left: var(--chat-panel-border, none);
-    border-radius: var(--chat-panel-border-radius);
+    background-color: var(--chotto-chat-panel-bg);
+    border-left: 1px solid var(--chotto-item-border-color, none);
+    border-radius: var(--chotto-chat-panel-border-radius);
     position: absolute;
     height: 100%;
     z-index: 100;
-    width: var(--chat-panel-width);
-    left: var(--chat-panel-left);
+    width: var(--chotto-chat-panel-width);
+    left: var(--chotto-chat-panel-left);
   }
 }
 </style>

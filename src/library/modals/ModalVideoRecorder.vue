@@ -253,7 +253,7 @@ onMounted(async () => {
     position: relative;
     display: grid;
     align-items: center;
-    background-color: var(--chat-input-container-bg);
+    background-color: var(--chotto-chat-input-container-bg);
   }
 
   &__view-area{

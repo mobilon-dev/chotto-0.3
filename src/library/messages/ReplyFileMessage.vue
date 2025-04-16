@@ -59,8 +59,8 @@ watch(
     margin-top: 6px;
     word-wrap: break-word;
     white-space: pre-wrap;
-    font-size: var(--reply-message-text-font-size);
-    color: var(--reply-message-color);
+    font-size: var(--chotto-additional-text-font-size);
+    color: var(--chotto-secondary-text-color);
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -76,8 +76,8 @@ watch(
     column-gap: 13px;
 
     span {
-      font-size: var(--icon-font-size-medium);
-      color: var(--file-message-icon-color);
+      color: var(--chotto-secondary-text-color);
+      font-size: var(--chotto-button-icon-size);
     }
   }
 
@@ -89,8 +89,8 @@ watch(
     line-clamp: 1;
     -webkit-box-orient: vertical;
     margin-right: 40px;
-    font-size: var(--reply-message-text-font-size);
-    color: var(--reply-message-color);
+    font-size: var(--chotto-additional-text-font-size);
+    color: var(--chotto-secondary-text-color);
   }
 }
 

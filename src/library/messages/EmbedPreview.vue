@@ -55,11 +55,11 @@ const props = defineProps({
   }
 
   .left {
-    background-color: var(--link-preview-left-bg);
+    background-color: var(--chotto-message-left-secondary-bg);
   }
 
   .right {
-    background-color: var(--link-preview-right-bg);
+    background-color: var(--chotto-message-right-secondary-bg);
   }
 }
 </style>

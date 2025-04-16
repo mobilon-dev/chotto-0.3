@@ -58,17 +58,17 @@ const handleQuickReplyClick = (index : Number) => {
 
   &__preview-action{
     position: relative;
-    font-size: var(--quick-reply-buttons-font-size);
-    font-weight: var(--quick-reply-buttons-font-weight);
+    font-size: var(--chotto-text-font-size);
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: var(--quick-reply-buttons-color);
+    color: var(--chotto-quick-reply-buttons-color);
   }
 
   &__line{
     display: flex;
     cursor: pointer;
+    text-align: center;
   }
 
   &__icon{

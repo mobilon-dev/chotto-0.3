@@ -166,12 +166,16 @@ onUnmounted(() => {
   display: block;
   cursor: pointer;
   padding: 14px;
-  font-size: var(--button-context-menu-icon-font-size);
-  color: var(--button-context-menu-color);
+  font-size: var(--chotto-button-icon-size);
+  color: var(--chotto-button-color-active);
+}
+
+.button:hover span {
+  color: var(--chotto-button-color-hover);
 }
 
 .disabled-button span {
-  color: var(--button-context-menu-disabled-color);
+  color: var(--chotto-button-color-disabled);
   cursor: auto;
 }
 </style>

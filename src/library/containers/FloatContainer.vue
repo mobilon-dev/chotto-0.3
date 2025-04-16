@@ -45,7 +45,7 @@
       >
         <slot name="default" />
         <Teleport to="body">
-          <div :id="'float-windows-' + chatAppId" />
+          <div class="float-window__float-windows" :id="'float-windows-' + chatAppId" />
         </Teleport>
       </div>
     </div>
@@ -156,13 +156,17 @@ onMounted(() => {
     width: 100%;
     height: 100%;
     position: absolute;
-    font-weight: var(--container-font-weight);
-    color: var(--container-color);
-    font-family: var(--container-font-family);
-    border-radius: var(--float-container-border-radius);
-    background-color: var(--float-container-bg);
-    box-shadow: var(--float-container-box-shadow);
+    font-weight: var(--chotto-container-font-weight);
+    color: var(--chotto-container-color);
+    font-family: var(--chotto-container-font-family);
+    box-shadow: var(--chotto-float-container-box-shadow);
     container: all / inline-size;
+  }
+
+  &__float-windows{
+    font-weight: var(--chotto-container-font-weight);
+    color: var(--chotto-container-color);
+    font-family: var(--chotto-container-font-family);
   }
 
   &__controls {
@@ -171,8 +175,9 @@ onMounted(() => {
     align-items: center;
     cursor: grab;
     padding: 18px 20px;
-    background-color: var(--float-container-bg-header);
-    border-radius: var(--float-container-border-radius-header);
+    background-color: var(--chotto-float-container-bg-header);
+    border-top-left-radius: var(--chotto-float-container-border-radius-header);
+    border-top-right-radius: var(--chotto-float-container-border-radius-header);
   }
 
   &__avatar {
@@ -182,8 +187,8 @@ onMounted(() => {
   }
 
   &__title {
-    /* var*/font-size: var(--float-container-title-font-size);
-    /* var*/font-weight: var(--float-container-title-font-weight);
+    font-size: var(--chotto-title-font-size);
+    font-weight: var(--chotto-title-font-weight);
     margin-left: 10px;
   }
 
@@ -191,17 +196,13 @@ onMounted(() => {
     display: block;
     background-color: transparent;
     border: none;
-    font-size: var(--icon-font-size-large);
-    color: var(--float-container-icon-color);
+    font-size: var(--chotto-button-icon-size);
+    color: var(--chotto-secondary-text-color);
     width: fit-content;
     margin-left: auto;
     cursor: pointer;
   }
 
-  &__content {
-    margin: var(--float-container-content-margin, 0);
-    background-color: var(--float-container-content-bg, transparent);
-  }
 
   *,
   *::before,
@@ -221,7 +222,7 @@ onMounted(() => {
 
   input,
   button {
-    /* var*/font-family: var(--container-font-family);
+    font-family: var(--chotto-container-font-family);
   }
 
   p,

@@ -198,34 +198,33 @@ function getClass(message) {
     column-gap: 4px;
 
     span {
-      font-size: var(--base-message-views-icon-font-size);
-      color: var(--base-message-views-color);
+      font-size: var(--chotto-small-text-icon-size);
+      color: var(--chotto-secondary-text-color);
     }
 
     p {
-      font-size: var(--base-message-views-font-size);
-      color: var(--base-message-views-color);
+      font-size: var(--chotto-small-text-font-size);
+      color: var(--chotto-secondary-text-color);
     }
   }
 
   &__time {
-    font-size: var(--base-message-time-font-size);
-    color: var(--base-message-time-color);
+    font-size: var(--chotto-small-text-font-size);
+    color: var(--chotto-secondary-text-color);
   }
 
   &__status {
     display: flex;
 
     span {
-      font-weight: var(--base-message-status-font-weight);
-      color: var(--base-message-status-color-received);
-      font-size: var(--base-message-status-font-size);
+      color: var(--chotto-status-color-received);
+      font-size: var(--chotto-small-text-icon-size);
     }
   }
 
   .status--received {
     span {
-      color: var(--base-message-status-color-received);
+      color: var(--chotto-status-color-received);
 
       &:first-child {
         margin-right: -8px;
@@ -235,7 +234,7 @@ function getClass(message) {
 
   .status--read {
     span {
-      color: var(--base-message-status-color-read);
+      color: var(--chotto-status-color-read);
 
       &:first-child {
         margin-right: -8px;
@@ -244,22 +243,21 @@ function getClass(message) {
   }
 
   &__text {
-    font-size: var(--base-message-text-font-size);
+    font-size: var(--chotto-text-font-size);
     white-space: pre-wrap;
   }
 
   &__subtext {
-    font-size: var(--base-message-subtext-font-size);
-    font-weight: var(--base-message-subtext-font-weight);
-    color: var(--base-message-subtext-color);
+    font-size: var(--chotto-additional-text-font-size);
+    color: var(--chotto-secondary-text-color);
   }
 
   &__avatar {
     align-self: center;
     object-fit: cover;
-    min-width: var(--avatar-width-small);
-    min-height: var(--avatar-height-small);
-    border-radius: var(--avatar-border-radius);
+    min-width: var(--chotto-avatar-small);
+    min-height: var(--chotto-avatar-small);
+    border-radius: var(--chotto-avatar-border-radius);
   }
 
   &__menu-button {
@@ -271,12 +269,12 @@ function getClass(message) {
     transition: 0.2s;
 
     span {
-      color: var(--base-message-menu-button-color);
-      font-size: var(--base-message-menu-button-font-size);
+      color: var(--chotto-button-color-active);
+      font-size: var(--chotto-button-icon-size);
     }
 
     &:hover span {
-      color: var(--base-message-menu-button-hover-color);
+      color: var(--chotto-button-color-hover);
       transition: 0.2s;
     }
   }
@@ -288,7 +286,7 @@ function getClass(message) {
   &__left,
   &__right {
     display: grid;
-    margin: var(--base-message-margin);
+    margin: var(--chotto-message-margin);
   }
 
   &__left {
@@ -308,7 +306,7 @@ function getClass(message) {
 
     .text-message__content {
       grid-column: 2;
-      background-color: var(--base-message-left-bg);
+      background-color: var(--chotto-message-left-bg);
     }
 
     .text-message__menu-button {
@@ -340,7 +338,7 @@ function getClass(message) {
     .text-message__content {
       grid-column: 1;
       margin-left: auto;
-      background-color: var(--base-message-right-bg);
+      background-color: var(--chotto-message-right-bg);
     }
 
     .text-message__menu-button {

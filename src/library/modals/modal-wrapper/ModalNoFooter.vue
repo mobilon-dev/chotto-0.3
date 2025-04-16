@@ -58,7 +58,7 @@ const closeModalOutside = (evt) => {
 
 .modal {
     background: #fff;
-    font-family: var(--container-font-family);
+    font-family: var(--chotto-container-font-family);
     box-shadow: 2px 2px 10px 1px;
     overflow-x: auto;
     display: flex; 

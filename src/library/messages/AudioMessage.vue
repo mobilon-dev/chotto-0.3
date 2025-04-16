@@ -163,6 +163,7 @@
           <div
             v-if="isFullTranscript"
             class="audio-message__modal-overlay"
+            :data-theme="getTheme().theme ? getTheme().theme : null"
           >
             <div class="audio-message__modal">
               <button
@@ -191,7 +192,7 @@
   setup
   lang="ts"
 >
-import { ref, onMounted, computed, watch } from 'vue'
+import { ref, onMounted, computed, watch, inject } from 'vue'
 import linkifyStr from "linkify-string";
 
 import { ContextMenu } from '../components'
@@ -200,6 +201,10 @@ import { IAudioMessage } from '../../types';
 import BaseReplyMessage from './BaseReplyMessage.vue'
 import LinkPreview from './LinkPreview.vue'
 import EmbedPreview from './EmbedPreview.vue';
+import { useTheme } from '../../helpers/useTheme';
+
+const chatAppId = inject('chatAppId')
+const { getTheme } = useTheme(chatAppId as string)
 
 // Define props
 const props = defineProps({
@@ -392,7 +397,7 @@ onMounted(() => {
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background-color: var(--audio-message-button-icon-bg-color);
+    background-color: var(--chotto-message-type-icon-bg-color);
 
     span {
       display: flex;
@@ -400,15 +405,15 @@ onMounted(() => {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: var(--audio-message-button-icon-font-size);
-      color: var(--audio-message-button-icon-color);
+      font-size: var(--chotto-button-icon-size);
+      color: var(--chotto-message-type-icon-color);
     }
   }
 
   &__progress-bar-container {
     -webkit-appearance: none;
     appearance: none;
-    background: var(--audio-message-pbc-background-color);
+    background: var(--chotto-audio-message-pbc-background-color);
     cursor: pointer;
     height: 10px;
     overflow: hidden;
@@ -419,19 +424,19 @@ onMounted(() => {
   &__progress-bar-container::-webkit-slider-thumb {
     width: 10px;
     height: 10px;
-    background-color: var(--audio-message-pb-background-color);
+    background-color: var(--chotto-audio-message-pb-background-color);
     appearance: none;
-    box-shadow: -10000px 0 0 10000px var(--audio-message-pb-background-color);;
+    box-shadow: -10000px 0 0 10000px var(--chotto-audio-message-pb-background-color);;
   }
 
   &__progress-bar-container::-moz-range-thumb {
     width: 10px;
     height: 10px;
-    background-color: var(--audio-message-pb-background-color);
+    background-color: var(--chotto-audio-message-pb-background-color);
     appearance: none;
     border: 0;
     border-radius: 0;
-    box-shadow: -10000px 0 0 10000px var(--audio-message-pb-background-color);;
+    box-shadow: -10000px 0 0 10000px var(--chotto-audio-message-pb-background-color);;
   }
 
   &__player-controls{
@@ -449,38 +454,37 @@ onMounted(() => {
     background-color: transparent;
     border: 0;
     width: 25px;
-    font-size: var(--audio-message-speed-button-font-size);
-    font-weight: var(--audio-message-speed-button-font-weight);
+    font-size: var(--chotto-additional-text-font-size);
+    font-weight: 400;
   }
 
   &__speed-btn:hover{
     cursor: pointer;
-    font-weight: var(--audio-message-speed-button-selected-font-weight);
+    font-weight: 600;
   }
 
   &__speed-btn-selected{
-    font-weight: var(--audio-message-speed-button-selected-font-weight);
+    font-weight: 600;
   }
 
   &__remaining-time {
     grid-column: 2;
     margin-bottom: -10px;
-    font-size: var(--base-message-remaining-time-font-size);
+    font-size: var(--chotto-small-text-font-size);
     height: fit-content;
   }
 
   &__avatar {
     align-self: center;
     object-fit: cover;
-    min-width: var(--avatar-width-small);
-    min-height: var(--avatar-height-small);
-    border-radius: var(--avatar-border-radius);
+    min-width: var(--chotto-avatar-small);
+    min-height: var(--chotto-avatar-small);
+    border-radius: var(--chotto-avatar-border-radius);
   }
 
   &__subtext {
-    font-size: var(--base-message-subtext-font-size);
-    color: var(--base-message-subtext-color);
-    font-weight: var(--base-message-subtext-font-weight);
+    font-size: var(--chotto-additional-text-font-size);
+    color: var(--chotto-secondary-text-color);
   }
 
   &__info-container {
@@ -505,9 +509,8 @@ onMounted(() => {
     cursor: pointer;
 
     span {
-      color: var(--audio-message-download-button-color);
-      font-weight: var(--audio-message-download-button-font-weight);
-      font-size: var(--audio-message-download-button-font-size);
+      color: var(--chotto-secondary-text-color);
+      font-size: var(--chotto-text-icon-size);
     }
   }
 
@@ -515,15 +518,14 @@ onMounted(() => {
     display: flex;
 
     span {
-      color: var(--base-message-status-color-received);
-      font-size: var(--base-message-status-font-size);
-      font-weight: var(--base-message-status-font-weight);
+      color: var(--chotto-status-color-received);
+      font-size: var(--chotto-small-text-icon-size);
     }
   }
 
   .status--received {
     span {
-      color: var(--base-message-status-color-received);
+      color: var(--chotto-status-color-received);
 
       &:first-child {
         margin-right: -8px;
@@ -533,7 +535,7 @@ onMounted(() => {
 
   .status--read {
     span {
-      color: var(--base-message-status-color-read);
+      color: var(--chotto-status-color-read);
 
       &:first-child {
         margin-right: -8px;
@@ -547,19 +549,19 @@ onMounted(() => {
     column-gap: 4px;
 
     span {
-      font-size: var(--base-message-views-icon-font-size);
-      color: var(--base-message-views-color);
+      font-size: var(--chotto-small-text-icon-size);
+      color: var(--chotto-secondary-text-color);
     }
 
     p {
-      font-size: var(--base-message-views-font-size);
-      color: var(--base-message-views-color);
+      font-size: var(--chotto-small-text-font-size);
+      color: var(--chotto-secondary-text-color);
     }
   }
 
   &__time {
-    font-size: var(--base-message-time-font-size);
-    color: var(--base-message-time-color);
+    font-size: var(--chotto-small-text-font-size);
+    color: var(--chotto-secondary-text-color);
   }
 
   &__menu-button {
@@ -571,12 +573,12 @@ onMounted(() => {
     transition: 0.2s;
 
     span {
-      color: var(--base-message-menu-button-color);
-      font-size: var(--base-message-menu-button-font-size);
+      color: var(--chotto-button-color-active);
+      font-size: var(--chotto-button-icon-size);
     }
 
     &:hover span {
-      color: var(--base-message-menu-button-hover-color);
+      color: var(--chotto-button-color-hover);
       transition: 0.2s;
     }
   }
@@ -593,7 +595,7 @@ onMounted(() => {
 
     p {
       white-space: pre-wrap;
-      font-size: var(--base-message-text-font-size);
+      font-size: var(--chotto-text-font-size);
     }
   }
 
@@ -609,7 +611,7 @@ onMounted(() => {
     user-select: none;
 
     p {
-      color: var(--audio-message-transcript-color);
+      color: var(--chotto-secondary-text-color);
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
@@ -626,7 +628,7 @@ onMounted(() => {
       transform: translateY(-50%);
       width: 2px;
       height: 84%;
-      background-color: var(--audio-message-transcript-delimiter-color);
+      background-color: var(--chotto-audio-message-transcript-delimiter-color);
       border-radius: 6px;
     }
   }
@@ -645,7 +647,7 @@ onMounted(() => {
   &__left,
   &__right {
     display: grid;
-    margin: var(--base-message-margin);
+    margin: var(--chotto-message-margin);
   }
 
   &__left {
@@ -665,7 +667,7 @@ onMounted(() => {
 
     .audio-message__content {
       grid-column: 2;
-      background-color: var(--base-message-left-bg);
+      background-color: var(--chotto-message-left-bg);
     }
 
     .audio-message__menu-button {
@@ -698,7 +700,7 @@ onMounted(() => {
     .audio-message__content {
       grid-column: 1;
       margin-left: auto;
-      background-color: var(--base-message-right-bg);
+      background-color: var(--chotto-message-right-bg);
     }
 
     .audio-message__menu-button {
@@ -714,20 +716,23 @@ onMounted(() => {
   }
 
   &__modal {
+    font-family: var(--chotto-container-font-family);
+    font-weight: var(--chotto-container-font-weight);
+    font-size: var(--chotto-text-font-size);
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 101;
-    background-color: var(--modal-bg);
-    border-radius: var(--modal-border-radius);
-    padding: var(--modal-padding);
+    background-color: var(--chotto-modal-bg);
+    border-radius: var(--chotto-modal-border-radius);
+    padding: var(--chotto-modal-padding);
     max-width: 30%;
-    box-shadow: var(--modal-overlay-shadow);
+    box-shadow: var(--chotto-modal-overlay-shadow);
 
     p {
       margin: 0;
-      font-size: 20px;
+      font-size: var(--chotto-title-font-size);
     }
   }
 
@@ -737,7 +742,7 @@ onMounted(() => {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--modal-mask-background);
+    background-color: var(--chotto-modal-mask-background);
     z-index: 1000;
   }
 
@@ -750,8 +755,8 @@ onMounted(() => {
     cursor: pointer;
 
     span {
-      color: var(--modal-icon-color);
-      font-size: var(--modal-icon-font-size);
+      color: var(--chotto-secondary-text-color);
+      font-size: var(--chotto-button-icon-size);
     }
   }
 }

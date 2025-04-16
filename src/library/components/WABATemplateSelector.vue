@@ -346,33 +346,33 @@ const turnRight = () => {
 const setFirstColVisible = () => {
   
   const container = document.getElementById('waba-template-selector-container-' + chatAppId)
-  container.style.setProperty('--waba-template-first-col-display','grid')
-  container.style.setProperty('--waba-template-second-col-display','none')
+  container.style.setProperty('--chotto-waba-template-first-col-display','grid')
+  container.style.setProperty('--chotto-waba-template-second-col-display','none')
   console.log(container, window.getComputedStyle(container).getPropertyValue('--waba-template-first-col-display'))
   updateShowValues()
 }
 
 const setThirdColVisible = () => {
   const container = document.getElementById('waba-template-selector-container-' + chatAppId)
-  container.style.setProperty('--waba-template-third-col-display','grid')
-  container.style.setProperty('--waba-template-second-col-display','none')
+  container.style.setProperty('--chotto-waba-template-third-col-display','grid')
+  container.style.setProperty('--chotto-waba-template-second-col-display','none')
   updateShowValues()
 }
 
 const setSecondColVisible = () => {
   const container = document.getElementById('waba-template-selector-container-' + chatAppId)
-  container.style.setProperty('--waba-template-second-col-display','grid')
-  container.style.setProperty('--waba-template-first-col-display','none')
-  container.style.setProperty('--waba-template-third-col-display','none')
+  container.style.setProperty('--chotto-waba-template-second-col-display','grid')
+  container.style.setProperty('--chotto-waba-template-first-col-display','none')
+  container.style.setProperty('--chotto-waba-template-third-col-display','none')
   updateShowValues()
 }
 
 const updateShowValues = () => {
   const container = document.getElementById('waba-template-selector-container-' + chatAppId)
   const style = window.getComputedStyle(container)
-  showFirstCol.value =  style.getPropertyValue('--waba-template-first-col-display')
-  showSecondCol.value =  style.getPropertyValue('--waba-template-second-col-display')
-  showThirdCol.value =  style.getPropertyValue('--waba-template-third-col-display')
+  showFirstCol.value =  style.getPropertyValue('--chotto-waba-template-first-col-display')
+  showSecondCol.value =  style.getPropertyValue('--chotto-waba-template-second-col-display')
+  showThirdCol.value =  style.getPropertyValue('--chotto-waba-template-third-col-display')
 
 }
 
@@ -482,11 +482,11 @@ onMounted(() => {
 >
 .template-selector {
 
-  --waba-template-first-col-display: none;
+  --chotto-waba-template-first-col-display: none;
   
-  --waba-template-second-col-display: grid;
+  --chotto-waba-template-second-col-display: grid;
 
-  --waba-template-third-col-display: none;
+  --chotto-waba-template-third-col-display: none;
 
   position: absolute;
   bottom: 100%;
@@ -500,9 +500,9 @@ onMounted(() => {
     
     max-height: 500px;
     padding: 16px 5px 5px 5px;
-    background-color: var(--template-selector-bg);
-    border-top: var(--template-selector-border);
-    border-bottom: var(--template-selector-border);
+    background-color: var(--chotto-primary-color);
+    border-top: 1px solid var(--chotto-item-border-color);
+    border-bottom: 1px solid var(--chotto-item-border-color);
     box-sizing: border-box;
     min-width: 478px;
   }
@@ -511,10 +511,10 @@ onMounted(() => {
     position: absolute;
     max-height: 500px;
     padding: 16px 5px 5px 5px;
-    background-color: var(--template-selector-bg);
-    border: var(--template-selector-border);
+    background-color: var(--chotto-primary-color);
+    border: 1px solid var(--chotto-item-border-color);
     min-width: 478px;
-    box-shadow: 5px 5px 29px -15px var(--template-selector-shadow-color);
+    box-shadow: 5px 5px 29px -15px var(--chotto-shadow-color);
     bottom: 20px; right: 20px;
   }
 
@@ -560,8 +560,8 @@ onMounted(() => {
     margin: 0 16px 20px auto;
 
     span {
-      font-size: var(--template-selector-button-close-font-size);
-      color: var(--template-selector-button-close-color);
+      font-size: var(--chotto-button-icon-size);
+      color: var(--chotto-button-color-active);
     }
   }
 
@@ -569,18 +569,18 @@ onMounted(() => {
     grid-column: 1;
     grid-row: 2 / 5;
     overflow-y: auto;
-    border: var(--template-selector-border);
+    border: 1px solid var(--chotto-item-border-color);
     padding: 0;
     margin: 0;
 
     &::-webkit-scrollbar {
       width: 6px;
-      background-color: var(--scrollbar-bg);
+      background-color: var(--chotto-scrollbar-bg);
     }
 
     &::-webkit-scrollbar-thumb {
       border-radius: 10px;
-      background-color: var(--scrollbar-thumb-bg);
+      background-color: var(--chotto-scrollbar-thumb-bg);
     }
 
     &::-webkit-scrollbar-track {
@@ -595,17 +595,17 @@ onMounted(() => {
 
   &__templates {
     grid-row: 3 / 5;
-    border: var(--template-selector-border);
+    border: 1px solid var(--chotto-item-border-color);
     overflow-y: auto;
 
     &::-webkit-scrollbar {
       width: 6px;
-      background-color: var(--scrollbar-bg);
+      background-color: var(--chotto-scrollbar-bg);
     }
 
     &::-webkit-scrollbar-thumb {
       border-radius: 10px;
-      background-color: var(--scrollbar-thumb-bg);
+      background-color: var(--chotto-scrollbar-thumb-bg);
     }
 
     &::-webkit-scrollbar-track {
@@ -618,11 +618,11 @@ onMounted(() => {
     transition: 0.2s;
 
     &:hover {
-      background-color: var(--template-selector-item-hover);
+      background-color: var(--chotto-item-background-color-hover);
     }
 
     &:not(:last-child) {
-      border-bottom: var(--template-selector-border);
+      border-bottom: 1px solid var(--chotto-item-border-color);
     }
   }
 
@@ -632,10 +632,10 @@ onMounted(() => {
   }
 
   &__item-selected {
-    background-color: var(--template-selector-item-selected);
+    background-color: var(--chotto-item-background-color-focus);
 
     &:hover {
-      background-color: var(--template-selector-item-selected);
+      background-color: var(--chotto-item-background-color-hover);
     }
   }
 
@@ -669,13 +669,12 @@ onMounted(() => {
 
   &__item-title {
     margin-bottom: 8px;
-    font-weight: var(--template-selector-item-title-font-weight);
-    font-size: var(--template-selector-item-title-font-size);
+    font-weight: var(--chotto-title-font-weight);
+    font-size: var(--chotto-title-font-size);
   }
 
   &__item-text {
-    font-size: var(--template-selector-item-text-font-size);
-    font-weight: var(--template-selector-item-text-font-weight);
+    font-size: var(--chotto-text-font-size);
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -692,47 +691,47 @@ onMounted(() => {
 
   &__searching-input {
     background-color: transparent;
-    width: var(--input-width);
-    padding: var(--input-padding);
-    border-radius: var(--input-border-radius);
-    font-size: var(--input-font-size);
-    color: var(--input-color);
-    border: var(--input-border);
-    transition: border-color var(--input-transition-duration);
+    width: var(--chotto-input-width);
+    padding: var(--chotto-input-padding);
+    border-radius: var(--chotto-input-border-radius);
+    font-size: var(--chotto-input-font-size);
+    color: var(--chotto-input-color);
+    border: var(--chotto-input-border);
+    transition: border-color var(--chotto-input-transition-duration);
     box-sizing: border-box;
 
     &::placeholder {
-      color: var(--input-placeholder-color);
+      color: var(--chotto-input-placeholder-color);
     }
 
     &:hover {
-      border-color: var(--input-hover-border-color);
+      border-color: var(--chotto-input-hover-border-color);
     }
 
     &:focus-visible {
-      border-color: var(--input-focus-border-color);
+      border-color: var(--chotto-input-focus-border-color);
       outline: none;
     }
   }
 
   &__preview-container {
     grid-row: 2;
-    border: var(--template-selector-border);
+    border: 1px solid var(--chotto-item-border-color);
     max-height: 375px;
     overflow-y: auto;
     overflow-x: hidden;
-    background-color: var(--template-selector-preview-bg);
+    background-color: var(--chotto-secondary-color);
     background-image: url('../../../public/chat-background.svg');
     position: relative;
 
     &::-webkit-scrollbar {
       width: 6px;
-      background-color: var(--scrollbar-bg);
+      background-color: var(--chotto-scrollbar-bg);
     }
 
     &::-webkit-scrollbar-thumb {
       border-radius: 10px;
-      background-color: var(--scrollbar-thumb-bg);
+      background-color: var(--chotto-scrollbar-thumb-bg);
     }
 
     &::-webkit-scrollbar-track {
@@ -748,7 +747,7 @@ onMounted(() => {
 
   &__preview-wrapper {
     padding: 10px 10px 4px 16px;
-    background-color: var(--base-message-left-bg);
+    background-color: var(--chotto-message-left-bg);
     border-radius: 14px;
     max-width: 90%;
     margin-bottom: 15px;
@@ -756,7 +755,7 @@ onMounted(() => {
 
   &__semitransparent-overlay {
     height: 100%;
-    background: var(--semitransparent-overlay-bg-color);
+    background: var(--chotto-shadow-color);
     opacity: 0.5;
   }
 
@@ -770,7 +769,7 @@ onMounted(() => {
   &__plug {
     width: 100%;
     height: 100%;
-    font-size: var(--template-selector-plug-font-size);
+    font-size: var(--chotto-text-font-size);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -780,15 +779,15 @@ onMounted(() => {
   }
 
   &__preview-text-container {
-    font-size: var(--template-selector-preview-text-font-size);
+    font-size: var(--chotto-text-font-size);
     word-break: break-word;
     white-space: pre-line;
   }
 
   &__preview-time {
     width: fit-content;
-    font-size: var(--template-selector-preview-time-font-size);
-    color: var(--base-message-color-time);
+    font-size: var(--chotto-additional-text-font-size);
+    color: var(--chotto-secondary-text-color);
     margin-left: auto;
   }
 
@@ -798,16 +797,15 @@ onMounted(() => {
     width: fit-content;
     justify-self: flex-end;
     margin: 16px 0 0 0;
-    font-size: var(--template-selector-button-paste-font-size);
-    background-color: var(--template-selector-button-paste-bg);
-    color: var(--template-selector-button-paste-color);
+    font-size: var(--chotto-title-font-size);
+    background-color: var(--chotto-button-color-active);
     border: none;
     padding: 8px 16px;
     border-radius: 10px;
     cursor: pointer;
 
     &:disabled {
-      opacity: 0.6;
+      background-color: var(--chotto-button-color-disabled);
       cursor: default;
     }
   }
@@ -819,15 +817,15 @@ onMounted(() => {
       grid-template-columns: 1fr;
     }
     &__first-col{
-      display: var(--waba-template-first-col-display);
+      display: var(--chotto-waba-template-first-col-display);
       grid-column: 1;
     }
     &__second-col{
-      display: var(--waba-template-second-col-display);
+      display: var(--chotto-waba-template-second-col-display);
       grid-column: 1;
     }
     &__third-col{
-      display: var(--waba-template-third-col-display);
+      display: var(--chotto-waba-template-third-col-display);
       grid-column: 1;
     }
   }

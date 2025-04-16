@@ -272,9 +272,9 @@ onUnmounted(() => {
     align-self: end;
     object-fit: cover;
     margin-bottom: 6px;
-    min-width: var(--avatar-width-small);
-    min-height: var(--avatar-height-small);
-    border-radius: var(--avatar-border-radius);
+    min-width: var(--chotto-avatar-small);
+    min-height: var(--chotto-avatar-small);
+    border-radius: var(--chotto-avatar-border-radius);
   }
 
   &__info-container {
@@ -286,8 +286,8 @@ onUnmounted(() => {
     column-gap: 4px;
     border-radius: 12px;
     padding: 6px 10px;
-    color: var(--image-message-info-color);
-    background-color: var(--image-message-info-bg-color);
+    color: var(--chotto-message-popup-info-color);
+    background-color: var(--chotto-message-popup-info-bg-color);
   }
 
   &__download-button {
@@ -300,12 +300,12 @@ onUnmounted(() => {
     border: none;
     border-radius: 12px;
     padding: 6px 6px;
-    background-color: var(--image-message-info-bg-color);
+    background-color: var(--chotto-message-popup-info-bg-color);
     cursor: pointer;
 
     span {
-      color: var(--image-message-info-color);
-      font-size: var(--image-message-download-button-font-size);
+      color: var(--chotto-message-popup-info-color);
+      font-size: var(--chotto-small-text-icon-size);
     }
   }
 
@@ -316,23 +316,23 @@ onUnmounted(() => {
     cursor: pointer;
 
     span {
-      font-size: var(--base-message-views-icon-font-size);
+      font-size: var(--chotto-small-text-icon-size);
     }
 
     p {
-      font-size: var(--base-message-views-font-size);
+      font-size: var(--chotto-small-text-font-size);
     }
   }
 
   &__time {
-    font-size: var(--base-message-time-font-size);
+    font-size: var(--chotto-small-text-font-size);
   }
 
   &__status {
     display: flex;
 
     span {
-      font-size: var(--base-message-status-font-size);
+      font-size: var(--chotto-small-text-icon-size);
     }
   }
 
@@ -347,7 +347,7 @@ onUnmounted(() => {
 
   .status--read {
     span {
-      color: var(--base-message-status-color-read);
+      color: var(--chotto-status-color-read);
 
       &:first-child {
         margin-right: -8px;
@@ -356,9 +356,8 @@ onUnmounted(() => {
   }
 
   &__subtext {
-    font-weight: var(--base-message-subtext-font-weight);
-    font-size: var(--base-message-subtext-font-size);
-    color: var(--base-message-subtext-color);
+    font-size: var(--chotto-additional-text-font-size);
+    color: var(--chotto-secondary-text-color);
   }
 
   &__preview-button {
@@ -393,12 +392,12 @@ onUnmounted(() => {
     transition: 0.2s;
 
     span {
-      color: var(--neutral-500);
-      font-size: 20px;
+      color: var(--chotto-button-color-active);
+      font-size: var(--chotto-button-icon-size);
     }
 
     &:hover span {
-      color: var(--neutral-700);
+      color: var(--chotto-button-color-hover);
       transition: 0.2s;
     }
   }
@@ -413,7 +412,7 @@ onUnmounted(() => {
     word-wrap: break-word;
 
     p {
-      font-size: var(--base-message-text-font-size);
+      font-size: var(--chotto-text-font-size);
       word-break: break-all;
     }
   }
@@ -426,7 +425,7 @@ onUnmounted(() => {
   &__right {
     display: grid;
     grid-template-rows: min-content 1fr min-content;
-    margin: var(--base-message-margin);
+    margin: var(--chotto-message-margin);
   }
 
   &__left {
@@ -445,7 +444,7 @@ onUnmounted(() => {
 
     .image-message__content {
       grid-column: 2;
-      background-color: var(--base-message-left-bg);
+      background-color: var(--chotto-message-left-bg);
     }
 
     .image-message__menu-button {
@@ -477,7 +476,7 @@ onUnmounted(() => {
     .image-message__content {
       grid-column: 1;
       margin-left: auto;
-      background-color: var(--base-message-right-bg);
+      background-color: var(--chotto-message-right-bg);
     }
 
     .image-message__text-container {

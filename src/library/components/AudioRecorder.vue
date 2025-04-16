@@ -193,7 +193,7 @@ watch(
     position: relative;
     display: grid;
     align-items: center;
-    background-color: var(--chat-input-container-bg);
+    background-color: transparent;
   }
 
   &__recording-container{
@@ -236,8 +236,8 @@ watch(
       display: block;
       cursor: pointer;
       padding: 14px;
-      font-size: var(--chat-input-icon-font-size);
-      color: var(--chat-input-icon-color);
+      font-size: var(--chotto-button-icon-size);
+      color: var(--chotto-button-color-active);
     }
   }
 
@@ -246,15 +246,23 @@ watch(
       display: block;
       cursor: pointer;
       padding: 0;
-      font-size: var(--chat-input-icon-font-size);
-      color: var(--chat-input-icon-color);
+      font-size: var(--chotto-button-icon-size);
+      color: var(--chotto-button-color-active);
     }
+  }
+
+  &__button:hover span{
+    color: var(--chotto-button-color-hover);
+  }
+
+  &__button-record:hover span{
+    color: var(--chotto-button-color-hover);
   }
 
   &__button-disabled {
     span {
       cursor: auto;
-      color: var(--chat-input-icon-color-disabled);
+      color: var(--chotto-button-color-disabled);
     }
   }
 }

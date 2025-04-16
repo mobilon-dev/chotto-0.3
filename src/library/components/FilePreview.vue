@@ -177,7 +177,6 @@ onMounted(() => {
       if (video.value){
         duration.value = video.value.duration
         if (video.value.duration == Infinity || Number.isNaN(video.value.duration)){
-          console.log('www2')
           video.value.currentTime = 1e101;
           video.value.addEventListener("timeupdate", () => {
             if (video.value){
@@ -198,7 +197,7 @@ onMounted(() => {
   &__container{
     position: relative;
     display: flex;
-    border:  var(--file-preview-container-border);
+    border:  1px solid var(--chotto-item-border-color);
     max-width: 400px;
   }
 
@@ -248,7 +247,7 @@ onMounted(() => {
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background-color: var(--audio-message-button-icon-bg-color);
+    background-color: var(--chotto-message-type-icon-bg-color);
 
     span {
       display: flex;
@@ -256,17 +255,17 @@ onMounted(() => {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: var(--audio-message-button-icon-font-size);
-      color: var(--audio-message-button-icon-color);
+      font-size: var(--chotto-button-icon-size);
+      color: var(--chotto-message-type-icon-color);
     }
   }
 
   &__block {
-    --resolution: 60px;
-    max-width: var(--resolution);
-    max-height: var(--resolution);
-    min-width: var(--resolution);
-    min-height: var(--resolution);
+    --chotto-file-preview-resolution: 60px;
+    max-width: var(--chotto-file-preview-resolution);
+    max-height: var(--chotto-file-preview-resolution);
+    min-width: var(--chotto-file-preview-resolution);
+    min-height: var(--chotto-file-preview-resolution);
     margin: 5px;
     overflow: hidden;
     border-radius: 5px;

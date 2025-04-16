@@ -14,7 +14,8 @@ import moment from 'moment';
 
 // import ChatApp from './BaseBaseChatApp.vue';
 // import ChatApp from './BaseExtendedChatApp.vue';
-import ChatApp from './BaseAdaptiveExtendedChatApp.vue';
+//import ChatApp from './BaseAdaptiveExtendedChatApp.vue';
+import ChatApp from './MobilonExtendedChatApp.vue'
 // import ChatApp from './BaseFeedChatApp.vue';
 
 // import ChatApp from './FloatExtendedChatApp.vue';
@@ -169,7 +170,7 @@ onMounted(() => {
 
 <style scoped>
 .container {
-  width: 70vw;
+  width: 90vw;
   margin: 30px auto;
 }
 </style>

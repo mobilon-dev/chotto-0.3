@@ -33,14 +33,13 @@ const props = defineProps({
     padding: 6px 18px;
     margin-bottom: 18px;
     width: fit-content;
-    background-color: var(--date-message-bg, transparent);
-    border: var(--date-message-border);
+    background-color: var(--chotto-date-message-bg, transparent);
+    border: 1px solid var(--chotto-item-border-color);
   }
 
   &__text {
-    font-size: var(--date-message-font-size);
-    font-weight: var(--date-message-font-weight);
-    color: var(--date-message-color);
+    font-size: var(--chotto-additional-text-font-size);
+    color: var(--chotto-secondary-text-color);
   }
 }
 </style>

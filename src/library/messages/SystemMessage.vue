@@ -29,14 +29,14 @@ const props = defineProps({
     border-radius: 10px;
     padding: 10px;
     margin: 0 auto 18px auto;
-    background-color: var(--system-message-bg-color);
+    background-color: var(--chotto-system-message-bg-color);
   }
 
   &__text {
-    font-size: var(--system-message-font-size);
+    font-size: var(--chotto-text-font-size);
     line-height: 1.5;
     text-align: center;
-    color: var(--system-message-color);
+    color: var(--chotto-secondary-text-color);
   }
 }
 </style>

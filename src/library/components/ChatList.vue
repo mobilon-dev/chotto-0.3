@@ -2,38 +2,15 @@
   <div class="chat-list">
     <div
       class="chat-list__title-container"
-      @mouseleave="hideMenu"
     >
       <h2
-        
+        v-if="titleEnabled"
         class="chat-list__title"
       >
         {{ t('component.ChatList.Title') }}
       </h2>
 
-      <button
-        v-if="actions.length"
-        class="chat-list__button-actions"
-        @click="isOpenMenu = !isOpenMenu"
-      >
-        <span
-          v-if="isOpenMenu"
-          class="pi pi-minus"
-        />
-        <span
-          v-else
-          class="pi pi-plus"
-        />
-      </button>
-
-      <transition>
-        <ContextMenu
-          v-if="isOpenMenu && actions"
-          :actions="actions"
-          class="chat-list__context-menu"
-          @click="action"
-        />
-      </transition>
+      <slot name="actions"></slot>
     </div>
 
     <slot name="sidebar" />
@@ -107,31 +84,30 @@ const props = defineProps({
     type: Array,
     required: true,
   },
-  actions: {
-    type: Array,
-    required: false,
-    default: () => [],
-  },
   filterEnabled: {
     type: Boolean,
     required: true,
   },
+  titleEnabled: {
+    type: Boolean,
+    default: true,
+  },
+  filterQuery: {
+    type: String,
+    default: null
+  }
 });
 
 // Define emits
 const emit = defineEmits(['select', 'action', 'loadMoreChats']);
 
 const filter = ref('');
-const isOpenMenu = ref(false)
 const refChatList = ref()
 
 const allowLoadMore = ref(false)
 const isShowButton = ref(false)
 const isScrollByMouseButton = ref(false)
 
-const hideMenu = () => {
-  isOpenMenu.value = false
-}
 
 function scrollToTopForce() {
   nextTick(function () {
@@ -238,8 +214,12 @@ const getSortedAndFilteredChats = () => {
       if (a.countUnread == b.countUnread) return 0;
     })
     .filter(c => {
-      return c.name.includes(filter.value) ||
-        c.metadata.includes(filter.value);
+      if (!props.filterQuery)
+        return c.name.includes(filter.value) ||
+          c.metadata.includes(filter.value);
+      else 
+        return c.name.includes(props.filterQuery) ||
+          c.metadata.includes(props.filterQuery);
     });
 }
 
@@ -263,7 +243,7 @@ const action = (data) => emit('action', data);
   height: 70%;
 
   &__filter {
-    margin: var(--chat-list-filter-margin);
+    margin: var(--chotto-chat-list-filter-margin);
   }
 
   &__items {
@@ -272,16 +252,16 @@ const action = (data) => emit('action', data);
     height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: var(--chat-list-items-padding);
+    padding: var(--chotto-chat-list-items-padding);
 
     &::-webkit-scrollbar {
       width: 6px;
-      background-color: var(--scrollbar-bg);
+      background-color: var(--chotto-scrollbar-bg);
     }
 
     &::-webkit-scrollbar-thumb {
       border-radius: 10px;
-      background-color: var(--scrollbar-thumb-bg);
+      background-color: var(--chotto-scrollbar-thumb-bg);
     }
 
     &::-webkit-scrollbar-track {
@@ -294,7 +274,7 @@ const action = (data) => emit('action', data);
     z-index: 100;
     display: block;
     position: sticky;
-    background-color: var(--chat-list-fixed-background-color);
+    background-color: var(--chotto-chat-list-fixed-background-color);
   }
 
   &__fixed-items-top {
@@ -307,8 +287,8 @@ const action = (data) => emit('action', data);
   }
 
   &__title {
-    font-size: var(--chat-list-title-font-size);
-    font-weight: var(--chat-list-title-font-weight);
+    font-size: var(--chotto-header-font-size);
+    font-weight: var(--chotto-header-font-weight);
   }
 
   &__title-container {
@@ -317,26 +297,7 @@ const action = (data) => emit('action', data);
     justify-content: space-between;
     align-items: center;
     column-gap: 50px;
-    padding: var(--chat-list-title-container-padding);
-  }
-
-  &__button-actions {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    border-radius: 50%;
-    opacity: 0.8;
-    cursor: pointer;
-    width: var(--chat-list-button-actions-width);
-    height: var(--chat-list-button-actions-height);
-    background-color: var(--chat-list-button-actions-bg);
-
-    span {
-      transition: all 0.2s;
-      font-size: var(--icon-font-size-small);
-      color: var(--chat-list-button-actions-color);
-    }
+    padding: var(--chotto-chat-list-title-container-padding);
   }
 
   &__context-menu {
@@ -352,19 +313,19 @@ const action = (data) => emit('action', data);
     right: 25px;
     margin-left: auto;
     border: none;
-    min-width: 46px;
-    min-height: 46px;
+    min-width: 40px;
+    min-height: 40px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    background-color: var(--feed-button-down-bg);
+    background-color: var(--chotto-button-color-disabled);
   }
 
   &__icon-up {
-    font-size: var(--feed-button-down-icon-font-size);
-    color: var(--feed-button-down-icon-color);
+    font-size: var(--chotto-button-icon-size);
+    color: var(--chotto-button-color-active);
   }
 }
 

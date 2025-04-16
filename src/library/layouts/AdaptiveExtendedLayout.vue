@@ -53,26 +53,26 @@ const chatAppId = inject('chatAppId')
 const setThirdColVisible = () => {
   const container = document.getElementById('extern-layout-container-' + chatAppId)
 
-  container.style.setProperty('--second-col-display','none')
-  container.style.setProperty('--third-col-display','flex')
-  container.style.setProperty('--second-col-width','0%')
-  container.style.setProperty('--third-col-width','100%')
+  container.style.setProperty('--chotto-adaptive-extended-layout-second-col-display','none')
+  container.style.setProperty('--chotto-adaptive-extended-layout-third-col-display','flex')
+  container.style.setProperty('--chotto-adaptive-extended-layout-second-col-width','0%')
+  container.style.setProperty('--chotto-adaptive-extended-layout-third-col-width','100%')
 }
 
 const setSecondColVisible = () => {
   const container = document.getElementById('extern-layout-container-' + chatAppId)
 
-  container.style.setProperty('--second-col-display','flex')
-  container.style.setProperty('--third-col-display','none')
-  container.style.setProperty('--second-col-width','100%')
-  container.style.setProperty('--third-col-width','0%')
+  container.style.setProperty('--chotto-adaptive-extended-layout-second-col-display','flex')
+  container.style.setProperty('--chotto-adaptive-extended-layout-third-col-display','none')
+  container.style.setProperty('--chotto-adaptive-extended-layout-second-col-width','100%')
+  container.style.setProperty('--chotto-adaptive-extended-layout-third-col-width','0%')
 }
 
 onMounted(() => {
   const container = document.getElementById('extern-layout-container-' + chatAppId)
   const firstCol = document.getElementById('extend-layout-first-col-' + chatAppId)
   
-  container.style.setProperty('--first-col-width',firstCol.offsetWidth + 'px')
+  container.style.setProperty('--chotto-adaptive-extended-layout-first-col-width',firstCol.offsetWidth + 'px')
 })
 
 </script>
@@ -83,21 +83,20 @@ onMounted(() => {
 >
 .extend-layout {
   &__container {
-    --second-col-display: flex;
-    --second-col-width: 100%;
+    --chotto-adaptive-extended-layout-second-col-display: flex;
+    --chotto-adaptive-extended-layout-second-col-width: 100%;
 
-    --third-col-display: none;
-    --third-col-width: 0%;
+    --chotto-adaptive-extended-layout-third-col-display: none;
+    --chotto-adaptive-extended-layout-third-col-width: 0%;
 
-    --first-col-width: 0px;
+    --chotto-adaptive-extended-layout-first-col-width: 0px;
     
     height: inherit;
     display: grid;
     transition: all 0.3s ease;
-    background-color: var(--layout-extended-bg, transparent);
     position: relative;
-    border-top: var(--layout-extended-column-border, none);
-    border-left: var(--layout-extended-column-border, none);
+    border-top: var(--chotto-container-borders, none);
+    border-left: var(--chotto-container-borders, none);
   }
 
   &__first-col {
@@ -106,8 +105,9 @@ onMounted(() => {
     display: flex;
     flex-direction: column;
     height: inherit;
-    border-right: var(--layout-extended-column-border, none);
-    border-bottom: var(--layout-extended-column-border, none);
+    border-right: var(--chotto-container-borders, none);
+    border-bottom: var(--chotto-container-borders, none);
+    background-color: var(--chotto-layout-extended-first-col-bg, transparent);
   }
 
   &__second-col {
@@ -117,8 +117,9 @@ onMounted(() => {
     flex-direction: column;
     height: inherit;
     overflow: hidden;
-    border-right: var(--layout-extended-column-border, none);
-    border-bottom: var(--layout-extended-column-border, none);
+    border-right: var(--chotto-container-borders, none);
+    border-bottom: var(--chotto-container-borders, none);
+    background-color: var(--chotto-layout-extended-second-col-bg, transparent);
   }
 
   &__third-col {
@@ -127,9 +128,9 @@ onMounted(() => {
     flex-direction: column;
     grid-column: 3;
     height: inherit;
-    border-right: var(--layout-extended-column-border, none);
-    border-bottom: var(--layout-extended-column-border, none);
-    background-color: var(--layout-extended-third-col-bg);
+    border-right: var(--chotto-container-borders, none);
+    border-bottom: var(--chotto-container-borders, none);
+    background-color: var(--chotto-layout-extended-third-col-bg, transparent);
     width: auto;
   }
 }
@@ -137,7 +138,7 @@ onMounted(() => {
 @container all (width > 920px){
   .extend-layout{
     &__container{
-      grid-template-columns: min-content 30% calc(70% - var(--first-col-width));
+      grid-template-columns: min-content 30% calc(70% - var(--chotto-adaptive-extended-layout-first-col-width));
     }
   }
 }
@@ -145,13 +146,13 @@ onMounted(() => {
 @container all (width < 920px){
   .extend-layout{
     &__container{
-      grid-template-columns: min-content calc(var(--second-col-width) - var(--first-col-width)) calc(var(--third-col-width) - var(--first-col-width));
+      grid-template-columns: min-content calc(var(--chotto-adaptive-extended-layout-second-col-width) - var(--chotto-adaptive-extended-layout-first-col-width)) calc(var(--chotto-adaptive-extended-layout-third-col-width) - var(--chotto-adaptive-extended-layout-first-col-width));
     }
     &__second-col{
-      display: var(--second-col-display);
+      display: var(--chotto-adaptive-extended-layout-second-col-display);
     }
     &__third-col{
-      display: var(--third-col-display);
+      display: var(--chotto-adaptive-extended-layout-third-col-display);
     }
   }
 }
@@ -159,7 +160,7 @@ onMounted(() => {
 @container all (width < 720px){
   .extend-layout{
     &__container{
-      grid-template-columns: min-content var(--second-col-width) var(--third-col-width);
+      grid-template-columns: min-content var(--chotto-adaptive-extended-layout-second-col-width) var(--chotto-adaptive-extended-layout-third-col-width);
     }
     &__first-col{
       display: none;

@@ -46,8 +46,8 @@ function inNewWindow(event) {
 >
 p {
   margin: 0;
-  /* var*/font-size: var(--reply-message-text-font-size);
-  color: var(--reply-message-color);
+  font-size: var(--chotto-additional-text-font-size);
+  color: var(--chotto-secondary-text-color);
   white-space: pre-wrap;
   overflow: hidden;
   text-overflow: ellipsis;

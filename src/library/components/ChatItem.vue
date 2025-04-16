@@ -306,27 +306,17 @@ onMounted(() => {
   &__container {
     display: flex;
     position: relative;
-    padding: var(--chat-item-padding-container);
+    padding: var(--chotto-chat-item-padding-container);
     cursor: pointer;
-
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-      background-color: var(--chat-item-background-color);
-    }
   }
 
   &__selected {
     cursor: pointer;
-    border-radius: var(--chat-item-border-radius);
-    background: var(--chat-item-selected-color);
+    border-radius: var(--chotto-chat-item-border-radius);
+    background: var(--chotto-item-background-color-focus);
 
     .chat-item__menu-button {
-      background: var(--chat-item-selected-color);
+      background: var(--chotto-item-background-color-focus);
     }
   }
 
@@ -338,18 +328,18 @@ onMounted(() => {
     align-self: center;
     object-fit: cover;
     margin-right: 15px;
-    background-color: var(--avatar-background-color);
-    min-width: var(--avatar-width-medium);
-    min-height: var(--avatar-height-medium);
-    border-radius: var(--avatar-border-radius);
+    background-color: var(--chotto-avatar-background-color);
+    min-width: var(--chotto-avatar-medium);
+    min-height: var(--chotto-avatar-medium);
+    border-radius: var(--chotto-avatar-border-radius);
 
     span {
-      font-size: var(--avatar-icon-size-medium);
-      color: var(--avatar-color);
+      font-size: var(--chotto-avatar-medium-icon-size);
+      color: var(--chotto-avatar-color);
     }
 
     img {
-      border-radius: var(--avatar-border-radius);
+      border-radius: var(--chotto-avatar-border-radius);
       object-fit: cover;
     }
   }
@@ -375,8 +365,7 @@ onMounted(() => {
 
   &__name {
     margin-bottom: 8px;
-    font-size: var(--chat-item-name-font-size);
-    font-weight: var(--chat-item-name-font-weight);
+    font-size: var(--chotto-title-font-size);
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -386,9 +375,8 @@ onMounted(() => {
   }
 
   &__last-message {
-    font-size: var(--chat-item-last-message-font-size);
-    font-weight: var(--chat-item-last-message-font-weight);
-    color: var(--chat-item-last-message-color);
+    font-size: var(--chotto-text-font-size);
+    color: var(--chotto-secondary-text-color);
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -406,7 +394,7 @@ onMounted(() => {
     align-items: end;
     
     span {
-      color: var(--chat-item-details-color);
+      color: var(--chotto-button-color-active);
     }
   }
 
@@ -427,7 +415,7 @@ onMounted(() => {
     }
 
     &:hover span {
-      color: var(--chat-item-menu-button-color-hover);
+      color: var(--chotto-button-color-hover);
       transition: 0.2s;
     }
   }
@@ -438,20 +426,18 @@ onMounted(() => {
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    font-weight: var(--chat-item-unread-font-weight);
     margin-left: auto;
     margin-top: auto;
     min-width: 22px;
     min-height: 22px;
-    font-size: var(--chat-item-unread-font-size);
-    color: var(--chat-item-unread-color);
-    background-color: var(--chat-item-unread-bg);
+    font-size: var(--chotto-additional-text-font-size);
+    color: var(--chotto-unread-text-color);
+    background-color: var(--chotto-unread-background-color);
   }
 
   &__time {
-    font-size: var(--chat-item-time-font-size);
-    color: var(--chat-item-time-color);
-    font-weight: var(--chat-item-time-font-weight);
+    font-size: var(--chotto-additional-text-font-size);
+    color: var(--chotto-secondary-text-color);
     white-space: nowrap;
   }
 
@@ -472,9 +458,8 @@ onMounted(() => {
     display: flex;
 
     span {
-      font-weight: var(--chat-item-message-status-font-weight);
-      color: var(--chat-item-message-status-color-received);
-      font-size: var(--chat-item-message-status-font-size);
+      color: var(--chotto-status-color-received);
+      font-size: var(--chotto-text-font-size);
     }
   }
 }
@@ -488,16 +473,6 @@ onMounted(() => {
     gap: 5px;
     padding-left: 30px;
     padding-top: 5px;
-
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-      background-color: var(--chat-item-background-color);
-    }
   }
 
   &__icon{
@@ -511,15 +486,15 @@ onMounted(() => {
 
   &__selected {
     cursor: pointer;
-    border-radius: var(--chat-item-border-radius);
-    background: var(--dialog-item-selected-color);
+    border-radius: var(--chotto-chat-item-border-radius);
+    background: var(--chotto-item-background-color-focus);
   }
 
   &__text-container {
     display: flex;
     justify-content: space-between;
-    font-size: var(--chat-item-last-message-font-size);
-    font-weight: var(--chat-item-last-message-font-weight);
+    font-size: var(--chotto-text-font-size);
+    color: var(--chotto-primary-text-color);
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
@@ -538,16 +513,17 @@ onMounted(() => {
     -webkit-line-clamp: 1;
     line-clamp: 1;
     -webkit-box-orient: vertical;
-    color: var(--chat-item-last-message-color);
+    color: var(--chotto-secondary-text-color);
+    font-size: var(--chotto-additional-text-font-size)
   }
 }
 
 .status--received span {
-  color: var(--chat-item-message-status-color-received);
+  color: var(--chotto-status-color-received);
 }
 
 .status--read span {
-  color: var(--chat-item-message-status-color-read);
+  color: var(--chotto-status-color-read);
 }
 
 .status--received span:first-child,

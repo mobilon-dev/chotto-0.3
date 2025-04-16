@@ -83,12 +83,11 @@ const selectChannel = (channel) => {
   }
 
   &__container-disabled{
-    color: var(--chat-input-icon-color-disabled);
+    color: var(--chotto-button-color-disabled);
   }
 
   &__title {
-    font-weight: var(--channel-selector-title-font-weight);
-    font-size: var(--channel-selector-title-font-size);
+    font-size: var(--chotto-text-font-size);
   }
 
   &__selected {
@@ -102,8 +101,8 @@ const selectChannel = (channel) => {
   &__icon {
     display: block;
     height: fit-content;
-    width: var(--channel-selector-img-resolution);
-    height: var(--channel-selector-img-resolution);
+    width: var(--chotto-text-font-size);
+    height: var(--chotto-text-font-size);
   }
 }
 </style>

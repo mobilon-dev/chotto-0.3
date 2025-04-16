@@ -22,9 +22,9 @@
         />
       </div>
       <div class="chat-info__info-container">
-        <h2 class="chat-info__title">
+        <span class="chat-info__title">
           {{ chat.name }}
-        </h2>
+        </span>
         <p
           v-if="chatDescription"
           class="chat-info__time"
@@ -89,9 +89,9 @@ const chatDescription = computed(() => {
 >
 .chat-info {
   &__container {
-    border-radius: var(--chat-info-border-radius);
-    padding: var(--chat-info-padding);
-    border-bottom: var(--chat-info-border);
+    border-radius: var(--chotto-chat-info-border-radius);
+    padding: var(--chotto-chat-info-padding);
+    border-bottom: 1px solid  var(--chotto-item-border-color);
   }
 
   &__base-line{
@@ -104,19 +104,21 @@ const chatDescription = computed(() => {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--avatar-background-color);
-    width: var(--avatar-width-medium);
-    height: var(--avatar-height-medium);
-    border-radius: var(--avatar-border-radius);
+    background-color: var(--chotto-avatar-background-color);
+    width: var(--chotto-avatar-small);
+    height: var(--chotto-avatar-small);
+    border-radius: var(--chotto-avatar-border-radius);
     background-size: cover;
 
     span {
-      font-size: var(--avatar-icon-size-medium);
-      color: var(--avatar-color);
+      font-size: var(--chotto-avatar-small-icon-size);
+      color: var(--chotto-avatar-color);
     }
 
     img {
-      border-radius: var(--avatar-border-radius);
+      width: var(--chotto-avatar-small);
+      height: var(--chotto-avatar-small);
+      border-radius: var(--chotto-avatar-border-radius);
       object-fit: cover;
     }
   }
@@ -128,37 +130,27 @@ const chatDescription = computed(() => {
 
   &__title {
     grid-column: 2;
-    font-weight: var(--chat-info-font-weight-title);
-    font-size: var(--chat-info-font-size-title);
+    color: var(--chotto-primary-text-color);
+    font-size: var(--chotto-title-font-size);
     margin: 0;
   }
 
   &__time {
-    font-size: var(--chat-info-time-font-size);
-    font-weight: var(--chat-info-font-weight-time);
-    color: var(--chat-info-time-color);
+    font-size: var(--chotto-text-font-size);
+    color: var(--chotto-secondary-text-color);
     grid-column: 2;
     margin: 0;
   }
 
   &__actions {
     margin-left: auto;
-    background-color: transparent;
-    border: none;
-    grid-column: 3;
-    grid-row: 1 / 3;
-    cursor: pointer;
-
-    span {
-      font-size: var(--chat-info-actions-font-size);
-      color: var(--chat-info-actions-color);
-    }
   }
 
   &__return-button{
     border: 0px;
     background-color: transparent;
     cursor: pointer;
+    color: var(--chotto-button-color-active);
   }
 }
 

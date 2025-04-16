@@ -26,11 +26,9 @@
     display: grid;
     grid-template-columns: min-content min-content 3fr min-content;
     transition: all 0.3s ease;
-    background-color: var(--layout-extended-bg, transparent);
     position: relative;
-
-    border-top: var(--layout-extended-column-border, none);
-    border-left: var(--layout-extended-column-border, none);
+    border-top: var(--chotto-container-borders, none);
+    border-left: var(--chotto-container-borders, none);
   }
 
   &__first-col {
@@ -39,8 +37,9 @@
     display: flex;
     flex-direction: column;
     height: inherit;
-    border-right: var(--layout-extended-column-border, none);
-    border-bottom: var(--layout-extended-column-border, none);
+    border-right: var(--chotto-container-borders, none);
+    border-bottom: var(--chotto-container-borders, none);
+    background-color: var(--chotto-layout-extended-first-col-bg, transparent);
   }
 
   &__second-col {
@@ -50,8 +49,9 @@
     flex-direction: column;
     height: inherit;
     overflow: hidden;
-    border-right: var(--layout-extended-column-border, none);
-    border-bottom: var(--layout-extended-column-border, none);
+    border-right: var(--chotto-container-borders, none);
+    border-bottom: var(--chotto-container-borders, none);
+    background-color: var(--chotto-layout-extended-second-col-bg, transparent);
     width: 350px;
   }
 
@@ -61,9 +61,9 @@
     flex-direction: column;
     grid-column: 3;
     height: inherit;
-    border-right: var(--layout-extended-column-border, none);
-    border-bottom: var(--layout-extended-column-border, none);
-    background-color: var(--layout-extended-third-col-bg);
+    border-right: var(--chotto-container-borders, none);
+    border-bottom: var(--chotto-container-borders, none);
+    background-color: var(--chotto-layout-extended-third-col-bg, transparent);
   }
 }
 

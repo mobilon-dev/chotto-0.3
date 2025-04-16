@@ -18,7 +18,6 @@
     display: grid;
     grid-template-columns: 1fr;
     transition: all 0.3s ease;
-    background-color: var(--layout-feed-bg, transparent);
     position: relative;
   }
 
@@ -28,7 +27,7 @@
     display: flex;
     flex-direction: column;
     height: inherit;
-    background-color: var(--layout-feed-bg);
+    background-color: var(--chotto-layout-feed-bg, transparent);
   }
 }
 

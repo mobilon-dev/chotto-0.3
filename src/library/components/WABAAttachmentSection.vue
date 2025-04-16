@@ -17,10 +17,10 @@
       class="pi pi-paperclip attachment-section__icon" 
     />
     <div>
-      <p class="attachment-section__title open-sans-bold">
+      <p class="attachment-section__title">
         Прикрепить файл 
       </p>
-      <p class="attachment-section__info open-sans">
+      <p class="attachment-section__info">
         {{ fileInfo[type].text }}
       </p>
     </div>
@@ -176,46 +176,46 @@ watch(
   justify-content: center;
   gap: 8px;
   border-radius: 5px;
-  background-color: var(--attachment-section-color);
+  background-color: var(--chotto-attachment-section-color);
 
   padding-top: 10px;
   padding-bottom: 10px;
   margin-bottom: 5px;
 
   &__error{
-    border: var(--attachment-section-error-border);
+    border: 1px solid var(--chotto-attachment-section-error-color);
   }
 
   &__icon{
     padding-left: 10px;
-    color: var(--attachment-section-title-color);
+    color: var(--chotto-primary-text-color);
 
   }
 
   &__title{
-    font-size: var(--attachment-section-title-font-size);
-    color: var(--attachment-section-title-color);
-    font-weight: var(--attachment-section-title-font-weight);
+    font-size: var(--chotto-additional-text-font-size);
+    color: var(--chotto-primary-text-color);
+    font-weight: 600;
   }
 
   &__info{
     margin-top: 1px;
-    color: var(--attachment-section-info-color);
-    font-size: var(--attachment-section-info-font-size);
+    color: var(--chotto-secondary-text-color);
+    font-size: var(--chotto-additional-text-font-size);
     word-break: break-word;
-    font-weight: var(--attachment-section-info-font-weight);
+    font-weight: 600;
   }
 
   &__error-text{
-    color: var(--attachment-section-error-color);
+    color: var(--chotto-attachment-section-error-color);
     margin-left: 5px;
-    font-size: var(--attachment-section-error-font-size);
+    font-size: var(--chotto-small-text-font-size);
   }
 }
 
 .attachment-section:hover {
   cursor: pointer;
-  background-color: var(--attachment-section-hover-color);
+  background-color: var(--chotto-attachment-section-hover-color);
 }
 
 </style>
