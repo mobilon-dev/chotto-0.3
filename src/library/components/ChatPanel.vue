@@ -1,6 +1,8 @@
 <template>
   <div class="chat-panel">
-    <div class="chat-panel__title-container">
+    <div
+      v-if="titleEnabled" 
+      class="chat-panel__title-container">
       <p
         v-if="title"
         class="chat-panel__title"
@@ -26,8 +28,11 @@
 const props = defineProps({
   title: {
     type: String,
-    required: true,
     default: '',
+  }, 
+  titleEnabled: {
+    type: Boolean,
+    default: true
   }
 })
 
@@ -46,12 +51,12 @@ const emit = defineEmits(['close-panel']);
 
   &::-webkit-scrollbar {
     width: 6px;
-    background-color: var(--scrollbar-bg);
+    background-color: var(--chotto-scrollbar-bg);
   }
 
   &::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background-color: var(--scrollbar-thumb-bg);
+    background-color: var(--chotto-scrollbar-thumb-bg);
   }
 
   &::-webkit-scrollbar-track {
@@ -65,8 +70,8 @@ const emit = defineEmits(['close-panel']);
   }
 
   &__title {
-    font-size: var(--chat-panel-title-font-size);
-    font-weight: var(--chat-panel-title-font-weight);
+    font-size: var(--chotto-header-font-size);
+    font-weight: var(--chotto-header-font-weight);
   }
 
   &__button-close {
@@ -75,8 +80,8 @@ const emit = defineEmits(['close-panel']);
     cursor: pointer;
 
     span {
-      font-size: var(--chat-panel-button-close-font-size);
-      color: var(--chat-panel-button-close-color);
+      font-size: var(--chotto-button-icon-size);
+      color: var(--chotto-button-color-active);
     }
   }
 }

@@ -211,8 +211,8 @@ const sendMessage = () => {
     position: relative;
     display: grid;
     align-items: center;
-    border-top: var(--input-border);
-    background-color: var(--chat-input-container-bg);
+    border-top: var(--chotto-input-border);
+    background-color: var(--chotto-chat-input-container-bg);
     padding: 5px;
     grid-gap: 5px;
   }
@@ -235,27 +235,26 @@ const sendMessage = () => {
   }
 
   &__input {
-    border: var(--input-border);
-    font-weight: var(--input-font-weight);
-    background-color: var(--input-background);
-    padding: var(--input-padding);
-    width: var(--input-width);
-    color: var(--input-text-color);
-    font-size: var(--input-font-size);
+    border: var(--chotto-input-border);
+    background-color: var(--chotto-input-background);
+    padding: var(--chotto-input-padding);
+    width: 100%;
+    color: var(--chotto-primary-text-color);
+    font-size: var(--chotto-input-font-size);
     white-space: normal;
     overflow-y: hidden;
     resize: none;
     white-space: pre-wrap;
     max-height: 140px;
-    border-radius: var(--input-border-radius);
-    border: var(--input-border);
+    border-radius: var(--chotto-input-border-radius);
+    border: var(--chotto-input-border);
 
     &:focus-visible {
       outline: none;
     }
 
     &::placeholder {
-      color: var(--input-placeholder-color);
+      color: var(--chotto-secondary-text-color);
     }
   }
 
@@ -267,15 +266,15 @@ const sendMessage = () => {
       display: block;
       cursor: pointer;
       padding: 14px;
-      font-size: var(--chat-input-icon-font-size);
-      color: var(--chat-input-icon-color);
+      font-size: var(--chotto-button-icon-size);
+      color: var(--chotto-chat-input-icon-color);
     }
   }
 
   &__button-disabled {
     span {
       cursor: auto;
-      color: var(--chat-input-icon-color-disabled);
+      color: var(--chotto-chat-input-icon-color-disabled);
     }
   }
 }

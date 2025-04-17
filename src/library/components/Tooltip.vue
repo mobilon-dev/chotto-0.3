@@ -7,7 +7,7 @@
   >
     <slot/>
   </div>
-  <Teleport v-if="allowTooltip" :to="'#float-windows-' + chatAppId">
+  <Teleport v-if="allowTooltip" :to="'#float-windows-' + chatAppId" >
     <span 
       :data-theme="getTheme().theme ? getTheme().theme : null"
       ref="tooltip"
@@ -86,17 +86,17 @@ onMounted(() => {
   opacity: 0;
   transition: opacity 1s;
   max-width: 300px;
-  color: var(--tooltip-text-color);
+  color: var(--chotto-tooltip-text-color);
   text-align: center;
   padding: 7px;
   border-radius: 2px;
-  background: var(--tooltip-bg-color);
+  background: var(--chotto-tooltip-bg-color);
   top: 0;
   left: 0;
   position: absolute;
   z-index: 99999;
-  font-family: var(--container-font-family);
-  font-weight: var(--container-font-weight);
+  font-family: var(--chotto-container-font-family);
+  font-weight: var(--chotto-container-font-weight);
 }
 
 .tooltip-wrapper {
@@ -116,31 +116,31 @@ onMounted(() => {
   position: absolute;
   border-width: 5px;
   border-style: solid;
-  border-color: var(--tooltip-bg-color) transparent transparent transparent;
+  border-color: var(--chotto-tooltip-bg-color) transparent transparent transparent;
 }
 
 .tooltip--left::after {
   inset-block-start: 50%;
   inset-inline-start: 100%;
-  border-color: transparent transparent transparent var(--tooltip-bg-color);
+  border-color: transparent transparent transparent var(--chotto-tooltip-bg-color);
 }
 
 .tooltip--right::after {
   inset-block-start: 50%;
   inset-inline-end: 100%;
-  border-color: transparent var(--tooltip-bg-color) transparent transparent;
+  border-color: transparent var(--chotto-tooltip-bg-color) transparent transparent;
 }
 
 .tooltip--top::after {
   inset-block-start: 100%;
   inset-inline-start: 50%;
-  border-color: var(--tooltip-bg-color) transparent transparent  transparent;
+  border-color: var(--chotto-tooltip-bg-color) transparent transparent  transparent;
 }
 
 .tooltip--bottom::after {
   inset-block-end: 100%;
   inset-inline-start: 50%;
-  border-color: transparent transparent var(--tooltip-bg-color) transparent;
+  border-color: transparent transparent var(--chotto-tooltip-bg-color) transparent;
 }
 
 </style>

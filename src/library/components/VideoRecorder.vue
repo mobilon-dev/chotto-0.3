@@ -38,9 +38,11 @@ import { uploadFile } from '../../helpers/uploadFile';
 import { useModalVideoRecorder } from '../modals';
 import FilePreview from './FilePreview.vue';
 import { IFilePreview } from '../../types';
+import { useTheme } from '../../helpers/useTheme';
 
 const chatAppId = inject('chatAppId')
 const { getMessage, setMessageFile, setRecordingMessage, resetMessageFile } = useMessage(chatAppId as string)
+const { getTheme } = useTheme(chatAppId as string)
 
 const uploadStatus = ref("");
 const videoPreview = ref<IFilePreview>()
@@ -58,7 +60,7 @@ const props = defineProps({
 
 const openVideoRecorder = async () => {
   if (!getMessage().file && props.state == 'active'){
-    await useModalVideoRecorder()
+    await useModalVideoRecorder(getTheme().theme)
     .then(async (data) => {
       if (data.videoFile){
         uploadStatus.value = 'uploading'
@@ -114,7 +116,7 @@ watch(
     position: relative;
     display: grid;
     align-items: center;
-    background-color: var(--chat-input-container-bg);
+    background-color: transparent;
   }
 
   &__button {
@@ -125,15 +127,19 @@ watch(
       display: block;
       cursor: pointer;
       padding: 14px;
-      font-size: var(--chat-input-icon-font-size);
-      color: var(--chat-input-icon-color);
+      font-size: var(--chotto-button-icon-size);
+      color: var(--chotto-button-color-active);
     }
+  }
+
+  &__button:hover span{
+    color: var(--chotto-button-color-hover);
   }
 
   &__button-disabled {
     span {
       cursor: auto;
-      color: var(--chat-input-icon-color-disabled);
+      color: var(--chotto-button-color-disabled);
     }
   }
 }

@@ -361,7 +361,7 @@ watch(
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    background-color: var(--feed-button-down-bg);
+    background-color: var(--chotto-button-color-disabled);
   }
 
   &__keyboard {
@@ -374,8 +374,8 @@ watch(
   }
 
   &__icon-down {
-    font-size: var(--feed-button-down-icon-font-size);
-    color: var(--feed-button-down-icon-color);
+    font-size: var(--chotto-button-icon-size);
+    color: var(--chotto-button-color-active);
   }
 
   &__unread-amount {
@@ -387,22 +387,22 @@ watch(
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 12px;
+    font-size: var(--chotto-additional-text-font-size);
     width: 22px;
     height: 22px;
-    color: var(--feed-button-down-uread-color);
-    background-color: var(--feed-button-down-uread-bg);
+    color: var(--chotto-unread-text-color);
+    background-color: var(--chotto-unread-background-color);
     border-radius: 50%;
   }
 
   &::-webkit-scrollbar {
     width: 6px;
-    background-color: var(--scrollbar-bg);
+    background-color: var(--chotto-scrollbar-bg);
   }
 
   &::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background-color: var(--scrollbar-thumb-bg);
+    background-color: var(--chotto-scrollbar-thumb-bg);
   }
 
   &::-webkit-scrollbar-track {
@@ -411,8 +411,8 @@ watch(
 }
 
 .focused-message {
-  background-color: var(--focused-message-background-color);
-  box-shadow: 0px 0px 12px 2px var(--focused-message-box-shadow-color);
+  background-color: color-mix(in srgb, var(--chotto-message-focused-color) 30%, transparent);
+  box-shadow: 0px 0px 12px 2px color-mix(in srgb, var(--chotto-message-focused-color) 30%, transparent);
 }
 
 .v-enter-active {

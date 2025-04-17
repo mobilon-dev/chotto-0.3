@@ -1,227 +1,70 @@
-:root {
-
+[data-theme="light"] {
   /* Chat Panel */
-  --chat-panel-bg: var(--neutral-100);
-  --chat-panel-margin: 0;
-  --chat-panel-border-radius: 12px;
-  --chat-panel-border: 1px solid var(--neutral-200);
-
-  --chat-panel-title-font-size: var(--h3-font-size);
-  --chat-panel-title-font-weight: var(--h3-font-weight);
-  --chat-panel-button-close-font-size: var(--icon-font-size-medium);
-  --chat-panel-button-close-color: var(--neutral-600); 
+  --chotto-chat-panel-border-radius: 0px;
 
   /* Side Bar */
-  --sidebar-padding-container: 18px 8px 30px 8px;
-  --sidebar-bg-container: var(--neutral-100);
-  --sidebar-border: 1px solid var(--neutral-200);
-  --sidebar-box-shadow: -13px 0px 20px -21px rgba(0, 0, 0, 0.2);
-  --sidebar-image-width: 49px;
-  --sidebar-image-height: 49px;
-  --sidebar-image-active-border: 3px solid var(--emerald-500);
-  
-  --sidebar-row-gap-list: 10px;
-  --sidebar-list-fixed-border-top: 2px solid var(--neutral-300);
-  --sidebar-unread-font-size: var(--font-small-size);
-  --sidebar-unread-font-weight: 500;
-  --sidebar-unread-color: var(--default-white);
-
-  --sidebar-name-font-size: var(--font-small-size);
-  --sidebar-name-font-weight: 500;
+  --chotto-sidebar-padding-container: 10px 8px 22px 8px;
+  --chotto-sidebar-row-gap-list: 14px;
+  --chotto-sidebar-image-active-border: 3px solid var(--emerald-500);
+  --chotto-sidebar-list-fixed-border-top: 1px solid var(--neutral-300);
 
   /* Chat List */
-  --chat-list-fixed-background-color: var(--default-white);
-  --chat-list-button-actions-bg: var(--neutral-300);
-  --chat-list-button-actions-width: 32px;
-  --chat-list-button-actions-height: 32px;
-  --chat-list-button-actions-color: var(--neutral-500);
-  --chat-list-items-padding: 0 12px 0 12px;
-  --chat-list-filter-margin: 0 12px 30px 12px;
-  --chat-list-title-container-padding: 0 12px 20px 12px;
-  --chat-list-title-font-size: var(--h2-font-size);
-  --chat-list-title-font-weight: var(--h2-font-weight);
+  --chotto-chat-list-filter-margin: 0 15px 10px 15px;
+  --chotto-chat-list-items-padding: 0;
+  --chotto-chat-list-title-container-padding: 16px 0 16px 15px;
+  --chotto-chat-list-fixed-background-color: var(--default-white);
 
-  /* Inputs */
-  --chat-input-container-bg: var(--neutral-100);
-  --chat-input-icon-color: var(--neutral-600);
-  --chat-input-icon-color-disabled: var(--neutral-200);
-  --chat-input-icon-font-size: var(--icon-font-size-medium);
-
-  --input-background: var(--default-white);
-  --input-font-size: var(--font-large-size);
-  --input-font-weight: var(--regular-font-weight);
-  --input-padding: 0.5rem 0.75rem;
-  --input-width: 100%;
-  --input-border-radius: 0 0 12px 12px;
-  --input-transition-duration: 0.2s;
-  --input-text-color: var(--neutral-700);
-  --input-border: 1px solid var(--neutral-300);
-  --input-placeholder-color: var(--neutral-500);
-  --input-hover-border-color: var(--neutral-500);
-  --input-focus-border-color: var(--neutral-700);
-
-  /* File Uploader */
-  --file-uploader-icon-color: var(--neutral-600);
-
-  /* File Preview */
-  --file-preview-container-border: 1px solid var(--neutral-300);
-
-  /* _____________________________________________ */
+  /* Chat Input */
+  --chotto-chat-input-container-bg: var(--default-white);
+  --chotto-chat-input-icon-color: var(--neutral-600);
+  --chotto-chat-input-icon-color-disabled: var(--neutral-200);
 
   /* Chat Item */
-
-  --chat-item-padding-container: 15px;
-  --chat-item-background-color: var(--neutral-200);
-
-  --chat-item-message-status-font-size: 12px;
-  --chat-item-message-status-color-received: var(--neutral-500);
-  --chat-item-message-status-color-read: #00c2ff;
-  --chat-item-message-status-font-weight: var(--regular-font-weight);
-
-  --chat-item-menu-button-color-hover: var(--neutral-700);
-
-  /* Info Container */
-  --chat-item-border-radius: 6px;
-  --chat-item-selected-color: var(--neutral-100);
-  --dialog-item-selected-color: var(--neutral-200);
-  --chat-item-last-message-color: var(--neutral-400);
-  --chat-item-last-message-font-weight: 500;
-  --chat-item-last-message-font-size: var(--font-midX-size);
-  --chat-item-name-font-weight: 600;
-  --chat-item-name-font-size: var(--font-large-size);
-
-  /* Details Container */
-  --chat-item-details-color: var(--neutral-500);
-  --chat-item-unread-color: var(--neutral-100);
-  --chat-item-unread-bg: var(--emerald-500);
-  --chat-item-unread-font-size: var(--font-mid-size);
-  --chat-item-unread-font-weight: var(--regular-font-weight);
-  --chat-item-time-color: var(--neutral-400);
-  --chat-item-time-font-weight: 500;
-  --chat-item-time-font-size: 12px;
-  /* _____________________________________________ */
-
-  /* Feed Found Item */
-
-  --feed-found-item-padding-container: 15px;
-  --feed-found-item-border-radius: 6px;
-  --feed-found-item-color: var(--default-white);
-  --feed-found-item-selected-color: var(--neutral-100);
-  --feed-found-item-hovered-color: var(--neutral-200);
-
-  --feed-found-item-message-color: var(--neutral-400);
-  --feed-found-item-message-font-weight: 500;
-  --feed-found-item-message-font-size: var(--font-midX-size);
-
-  --feed-found-item-name-font-weight: 600;
-
-  --feed-found-item-time-color: var(--neutral-400);
-  --feed-found-item-time-font-weight: 500;
-  --feed-found-item-time-font-size: 12px;
-
-  /* _____________________________________________ */
+  --chotto-chat-item-padding-container: 10px 20px 10px 15px;
+  --chotto-chat-item-border-radius: 0;
 
   /* Chat Info */
-  --chat-info-padding: 20px 20px 20px 20px;
-  --chat-info-font-weight-time: 500;
-  --chat-info-font-weight-title: 600;
-  --chat-info-font-size-title: 16px;
-  --chat-info-border-radius: 12px 12px 0 0;
-  --chat-info-border: 1px solid var(--neutral-200);
-  --chat-info-time-color: var(--neutral-400);
-  --chat-info-time-font-size: var(--font-midX-size);
-  --chat-info-actions-font-size: var(--icon-font-size-medium);
-  --chat-info-actions-color: var(--neutral-600);
-
-  /* Feed */
-  --feed-button-down-bg: var(--default-white);
-  --feed-button-down-uread-color: var(--neutral-100);
-  --feed-button-down-uread-bg: var(--emerald-500);
-  --feed-button-down-icon-color: var(--neutral-600);
-  --feed-button-down-icon-font-size: var(--icon-font-size-medium);
-
-  /* Сontext Menu */
-  --button-context-menu-color: var(--neutral-600);
-  --button-context-menu-icon-font-size: var(--icon-font-size-medium);
-  --button-context-menu-disabled-color: var(--neutral-200);
-  --context-menu-background: var(--default-white);
-  --context-menu-box-shadow-color: rgba(0, 0, 0, 0.11);
-  --context-menu-border: 1px solid var(--neutral-300);
-
-  /* Channel Selector */
-  --channel-selector-title-font-weight: 500;
-  --channel-selector-title-font-size: var(--font-midX-size);
-  --channel-selector-img-resolution: 16px; 
-
+  --chotto-chat-info-padding: 10px 15px 10px 15px;
+  --chotto-chat-info-border-radius: 0;
+  
   /* Scroll Bar */
-  --scrollbar-bg: var(--neutral-50);
-  --scrollbar-thumb-bg: var(--neutral-300);
+  --chotto-scrollbar-bg: var(--neutral-50);
+  --chotto-scrollbar-thumb-bg: var(--neutral-300);
 
   /* Tooltip */
-  --tooltip-text-color: var(--neutral-100);
-  --tooltip-bg-color: var(--neutral-500);
+  --chotto-tooltip-text-color: var(--neutral-100);
+  --chotto-tooltip-bg-color: var(--neutral-500);
 
   /* Template Selector */
-  --template-selector-bg: var(--default-white);
-  --template-selector-shadow-color: var(--neutral-950);
-  --template-selector-border: 1px solid var(--neutral-200);
-
-  --template-selector-item-hover: var(--neutral-50);
-  --template-selector-item-selected: var(--neutral-100);
-  --template-selector-item-text-font-size: var(--font-midX-size);
-  --template-selector-item-text-font-weight: var(--regular-font-weight);
-  --template-selector-item-title-font-size: var(--font-large-size);
-  --template-selector-item-title-font-weight: 600;
-
-  --template-selector-button-close-font-size: var(--icon-font-size-medium);
-  --template-selector-button-close-color: var(--neutral-500);
-
-  --template-selector-plug-font-size: var(--font-midX-size);
-  --template-selector-preview-bg: var(--neutral-100);
-  --template-selector-preview-text-font-size: var(--font-midX-size);
-  --template-selector-preview-time-font-size: var(--font-small-size);
-
-  --template-selector-button-paste-bg: var(--neutral-200);
-  --template-selector-button-paste-color: var(--neutral-800);
-  --template-selector-button-paste-font-size: var(--font-large-size);
-
-  --template-selector-button-add-font-size: var(--font-large-size);
-  
-  --template-selector-button-cancel-font-size: var(--font-large-size);
-
-  --variable-placeholder-empty-color: var(--p-red-100);
-  --variable-placeholder-filled-color: var(--emerald-300);
+  --chotto-variable-placeholder-empty-color: var(--p-red-100);
+  --chotto-variable-placeholder-filled-color: var(--emerald-300);
 
   /* WABA Attachment section */
-
-  --attachment-section-color:#FEF3B8;
-  --attachment-section-hover-color:#fef3b890;
-
-  --attachment-section-error-color: var(--p-red-600);
-  --attachment-section-error-border: 1px solid var(--p-red-600);
-  --attachment-section-error-font-size: var(--font-small-size);
-
-  --attachment-section-title-font-size: var(--font-mid-size);
-  --attachment-section-title-font-weight: 600;
-  --attachment-section-title-color: var(--neutral-950);
-
-  --attachment-section-info-font-size: var(--font-mid-size);
-  --attachment-section-info-font-weight: 600;
-  --attachment-section-info-color: var(--neutral-700);
+  --chotto-attachment-section-color:#FEF3B8;
+  --chotto-attachment-section-hover-color:#fef3b890;
+  --chotto-attachment-section-error-color: var(--p-red-600);
 
   /* WABA Quick Reply Buttons */
-  
-  --quick-reply-buttons-font-size: var(--font-midX-size);
-  --quick-reply-buttons-font-weight: var(--regular-font-weight);
-  --quick-reply-buttons-color: var(--blue-1);
+  --chotto-quick-reply-buttons-color: var(--blue-1);
 
-  /* WABA Separated Quick Buttons */
+  /*Input*/
+  --chotto-input-border: 1px solid var(--neutral-300);
+  --chotto-input-hover-border-color: var(--neutral-500);
+  --chotto-input-focus-border-color: var(--neutral-700);
+  --chotto-input-border-radius: 5px;
 
-  --separated-quick-buttons-bg-color: var(--default-white);
-  --separated-quick-buttons-border: 1px solid var(--neutral-200);
-  --separated-quick-buttons-title-font-size: var(--font-midX-size);
-  --separated-quick-buttons-title-font-weight: var(--regular-font-weight);
-  --separated-quick-buttons-action-font-size: var(--font-midX-size);
-  --separated-quick-buttons-action-font-weight: var(--regular-font-weight);
-  --semitransparent-overlay-bg-color: var(--neutral-950);
+  --chotto-input-background: transparent;
+  --chotto-input-padding: 0.5rem 0.75rem;
+  --chotto-input-transition-duration: 0.2s;
+  --chotto-input-font-size: 16px;
+
+  /*Avatar*/
+
+  --chotto-avatar-small: 40px;
+  --chotto-avatar-medium: 50px;
+  --chotto-avatar-smalll-icon-size: 24px;
+  --chotto-avatar-medium-icon-size: 21px;
+  --chotto-avatar-border-radius: 50%;
+  --chotto-avatar-background-color: var(--neutral-300);
+  --chotto-avatar-color: var(--neutral-500);
 }

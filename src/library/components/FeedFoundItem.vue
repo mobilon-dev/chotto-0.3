@@ -82,22 +82,22 @@ const typePreview = computed(() => {
 .feed-found-item{
 
   &__container{
-    padding: var(--feed-found-item-padding-container);
+    padding: var(--chotto-chat-item-padding-container);
     display: flex;
     position: relative;
     cursor: pointer;
     width: 100%;
     word-wrap: anywhere;
-    background-color: var(--feed-found-item-color);
-    border-radius: var(--feed-found-item-border-radius);
+    background-color:  transparent;
+    border-radius: var(--chotto-chat-item-border-radius);
   }
   
   &__container:hover{
-    background-color: var(--feed-found-item-hovered-color);
+    background-color: var(--chotto-item-background-color-hover);
   }
 
   &__selected-container{
-    background-color: var(--feed-found-item-selected-color);
+    background-color: var(--chotto-item-background-color-focus);
   }
 
   &__info{
@@ -111,15 +111,13 @@ const typePreview = computed(() => {
   }  
 
   &__name{
-    font-weight: var(--feed-found-item-name-font-weight);
     margin: 0;
-      padding: 0;
+    padding: 0;
   }
 
   &__time{
-    color: var(--feed-found-item-time-color);
-    font-weight: var(--feed-found-item-time-font-weight);
-    font-size: var(--feed-found-item-time-font-size);
+    color: var(--chotto-secondary-text-color);
+    font-size: var(--chotto-additional-text-font-size);
     margin: 0;
     padding: 0;
   }
@@ -130,9 +128,8 @@ const typePreview = computed(() => {
     p {
       margin: 0;
       padding: 0;
-      font-size: var(--feed-found-item-message-font-size);
-      color: var(--feed-found-item-message-color);
-      font-weight: var(--feed-found-item-message-font-weight);
+      font-size: var(--chotto-text-font-size);
+      color: var(--chotto-secondary-text-color);
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
@@ -146,21 +143,21 @@ const typePreview = computed(() => {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--avatar-background-color);
-    width: var(--avatar-width-medium);
-    height: var(--avatar-height-medium);
-    border-radius: var(--avatar-border-radius);
+    background-color: var(--chotto-avatar-background-color);
+    width: var(--chotto-avatar-medium);
+    height: var(--chotto-avatar-medium);
+    border-radius: var(--chotto-avatar-border-radius);
     background-size: cover;
     margin-right: 10px;
     span {
-      font-size: var(--avatar-icon-size-medium);
-      color: var(--avatar-color);
+      font-size: var(--chotto-avatar-medium-icon-size);
+      color: var(--chotto-avatar-color);
       line-height: 24px;
       width: 24px;
     }
 
     img {
-      border-radius: var(--avatar-border-radius);
+      border-radius: var(--chotto-avatar-border-radius);
       object-fit: cover;
     }
   }

@@ -85,12 +85,12 @@ const scrollTopCheck = () => {
     height: 100%;
     &::-webkit-scrollbar {
       width: 6px;
-      background-color: var(--scrollbar-bg);
+      background-color: var(--chotto-scrollbar-bg);
     }
 
     &::-webkit-scrollbar-thumb {
       border-radius: 10px;
-      background-color: var(--scrollbar-thumb-bg);
+      background-color: var(--chotto-scrollbar-thumb-bg);
     }
 
     &::-webkit-scrollbar-track {

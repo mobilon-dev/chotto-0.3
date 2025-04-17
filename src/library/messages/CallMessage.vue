@@ -22,7 +22,7 @@
     <div class="call-message__content">
       <span
         class="call-message__icon pi pi-phone"
-        :style="{ color: message.isMissedCall ? 'var(--p-red-500)' : 'var(--neutral-100)' }"
+        :class="{'call-message__icon-missed': message.isMissedCall}"
       />
 
       <span
@@ -65,6 +65,7 @@
           <div
             v-if="isFullTranscript"
             class="call-message__modal-overlay"
+            :data-theme="getTheme().theme ? getTheme().theme : null"
           >
             <div class="call-message__modal">
               <button
@@ -97,9 +98,12 @@
   setup
   lang="ts"
 >
-import { ref } from 'vue'
+import { ref, inject} from 'vue'
 import { ICallMessage } from '../../types'
+import { useTheme } from '../../helpers/useTheme';
 
+const chatAppId = inject('chatAppId')
+const { getTheme } = useTheme(chatAppId as string)
 // Define props
 const props = defineProps({
   message: {
@@ -158,8 +162,7 @@ function getClass(element, type) {
   }
 
   &__title {
-    font-size: var(--call-message-title-font-size);
-    font-weight: var(--call-message-title-font-weight);
+    font-size: var(--chotto-title-font-size);
     margin-bottom: 2px;
   }
 
@@ -173,19 +176,23 @@ function getClass(element, type) {
     border-radius: 50%;
     height: 38px;
     width: 38px;
-    background-color: var(--call-message-phone-icon-bg-color);
-    color: var(--call-message-phone-icon-color);
-    font-size: var(--call-message-phone-icon-font-size);
+    background-color: var(--chotto-message-type-icon-bg-color);
+    color: var(--chotto-message-type-icon-color);
+    font-size: var(--chotto-button-icon-size);
+  }
+
+  &__icon-missed{
+    color: var(--chotto-call-message-phone-icon-missed-color);
   }
 
   &__duration {
-    color: var(--call-message-duration-color);
-    font-size: var(--call-message-duration-font-size);
+    color: var(--chotto-secondary-text-color);
+    font-size: var(--chotto-text-font-size);
   }
 
   &__time {
-    font-size: var(--base-message-time-font-size);
-    color: var(--base-message-time-color);
+    font-size: var(--chotto-small-text-font-size);
+    color: var(--chotto-secondary-text-color);
   }
 
   &__download-button {
@@ -202,9 +209,8 @@ function getClass(element, type) {
     cursor: pointer;
 
     span {
-      color: var(--call-message-download-button-color);
-      font-weight: var(--call-message-download-button-font-weight);
-      font-size: var(--call-message-download-button-font-size);
+      color: var(--chotto-button-color-active);
+      font-size: var(--chotto-text-icon-size);
     }
   }
 
@@ -212,15 +218,14 @@ function getClass(element, type) {
     display: flex;
 
     span {
-      font-weight: var(--base-message-status-font-weight);
-      color: var(--base-message-status-color-received);
-      font-size: var(--base-message-status-font-size);
+      color: var(--chotto-status-color-received);
+      font-size: var(--chotto-small-text-icon-size);
     }
   }
 
   &__status--received {
     span {
-      color: var(--base-message-status-color-received);
+      color: var(--chotto-status-color-received);
 
       &:first-child {
         margin-right: -8px;
@@ -230,7 +235,7 @@ function getClass(element, type) {
 
   &__status--read {
     span {
-      color: var(--base-message-status-color-read);
+      color: var(--chotto-status-color-read);
 
       &:first-child {
         margin-right: -8px;
@@ -239,17 +244,16 @@ function getClass(element, type) {
   }
 
   &__subtext {
-    font-weight: var(--base-message-subtext-font-weight);
-    font-size: var(--base-message-subtext-font-size);
-    color: var(--base-message-subtext-color);
+    font-size: var(--chotto-additional-text-font-size);
+    color: var(--chotto-secondary-text-color);
   }
 
   &__avatar {
     align-self: center;
     object-fit: cover;
-    min-width: var(--avatar-width-small);
-    min-height: var(--avatar-height-small);
-    border-radius: var(--avatar-border-radius);
+    min-width: var(--chotto-avatar-small);
+    min-height: var(--chotto-avatar-small);
+    border-radius: var(--chotto-avatar-border-radius);
   }
 
   &__menu-button {
@@ -261,12 +265,12 @@ function getClass(element, type) {
     transition: 0.2s;
 
     span {
-      color: var(--base-message-menu-button-color);
-      font-size: 20px;
+      color: var(--chotto-button-color-active);
+      font-size: var(--chotto-button-icon-size);
     }
 
     &:hover span {
-      color: var(--base-message-menu-button-hover-color);
+      color: var(--chotto-button-color-hover);
       transition: 0.2s;
     }
   }
@@ -289,16 +293,17 @@ function getClass(element, type) {
       left: 0;
       width: 16px;
       height: 2px;
-      background-color: var(--call-message-transcription-start-symbol-bg-color);
+      background-color: var(--chotto-secondary-text-color);
     }
 
     p {
-      font-size: var(--call-message-transcription-text-font-size);
+      font-size: var(--chotto-title-font-size);
       margin: 0;
     }
 
     span {
-      color: var(--call-message-transcription-time-color);
+      color: var(--chotto-secondary-text-color);
+      font-size: var(--chotto-additional-text-font-size);
     }
   }
 
@@ -322,7 +327,7 @@ function getClass(element, type) {
   &__left,
   &__right {
     display: grid;
-    margin: var(--base-message-margin);
+    margin: var(--chotto-message-margin);
   }
 
   &__left {
@@ -342,7 +347,7 @@ function getClass(element, type) {
 
     .call-message__content {
       grid-column: 2;
-      background-color: var(--base-message-left-bg);
+      background-color: var(--chotto-message-left-bg);
     }
   }
 
@@ -364,35 +369,39 @@ function getClass(element, type) {
     .call-message__content {
       grid-column: 1;
       margin-left: auto;
-      background-color: var(--base-message-right-bg);
+      background-color: var(--chotto-message-right-bg);
     }
   }
 
   &__modal {
     position: absolute;
+    font-family: var(--chotto-container-font-family);
+    font-weight: var(--chotto-container-font-weight);
+    font-size: var(--chotto-text-font-size);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 101;
-    background-color: var(--modal-bg);
-    border-radius: var(--modal-border-radius);
-    padding: var(--modal-padding);
+    color: var(--chotto-primary-text-color);
+    background-color: var(--chotto-modal-bg);
+    border-radius: var(--chotto-modal-border-radius);
+    padding: var(--chotto-modal-padding);
     width: 32%;
     max-height: 80vh;
     overflow-y: auto;
-    box-shadow: var(--modal-overlay-shadow);
+    box-shadow: var(--chotto-modal-overlay-shadow);
     display: flex;
     flex-direction: column;
     row-gap: 10px;
 
     &::-webkit-scrollbar {
       width: 8px;
-      background-color: var(--scrollbar-bg);
+      background-color: var(--chotto-scrollbar-bg);
     }
 
     &::-webkit-scrollbar-thumb {
       border-radius: 10px;
-      background-color: var(--scrollbar-thumb-bg);
+      background-color: var(--chotto-scrollbar-thumb-bg);
     }
 
     &::-webkit-scrollbar-track {
@@ -406,7 +415,7 @@ function getClass(element, type) {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--modal-mask-background);
+    background-color: var(--chotto-modal-mask-background);
     z-index: 1000;
   }
 
@@ -419,8 +428,8 @@ function getClass(element, type) {
     cursor: pointer;
 
     span {
-      color: var(--modal-icon-color);
-      font-size: var(--modal-icon-font-size);
+      color: var(--chotto-secondary-text-color);
+      font-size: var(--chotto-button-icon-size);
     }
   }
 }

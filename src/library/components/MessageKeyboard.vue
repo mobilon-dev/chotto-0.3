@@ -47,14 +47,14 @@ const handleClickKey = (key : IKeyBoard) => {
       flex-wrap: wrap;
     }
     &__key{
-      background: var(--keyboard-background-color);
-      border: var(--keyboard-border);
+      background: var(--chotto-secondary-color);
+      border: 1px solid var(--chotto-item-border-color);
       border-radius: 3px;
       word-wrap: break-word;
-      box-shadow: 0px 0px 10px 5px var(--keyboard-shadow-color);
+      box-shadow: 0px 0px 10px 5px var(--chotto-shadow-light-color);
       max-width: 100%;
       p{
-        font-size: var(--keyboard-font-size);
+        font-size: var(--chotto-title-font-size);
         padding: 5px;
         margin: 0;
       }

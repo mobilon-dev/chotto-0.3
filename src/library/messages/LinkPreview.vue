@@ -50,15 +50,15 @@ const props = defineProps({
     left: 0;
     width: 4px;
     height: 100%;
-    background-color: var(--link-preview-before-bg);
+    background-color: var(--chotto-message-accent-line-color);
   }
 
 
   &__link-container {
     display: flex;
     flex-direction: column;
-    color: var(--container-color);
-    font-size: var(--base-message-text-font-size);
+    color: var(--chotto-primary-text-color);
+    font-size: var(--chotto-text-font-size);
   }
 
   &__title {
@@ -78,11 +78,11 @@ const props = defineProps({
   }
 
   .left {
-    background-color: var(--link-preview-left-bg);
+    background-color: var(--chotto-message-left-secondary-bg);
   }
 
   .right {
-    background-color: var(--link-preview-right-bg);
+    background-color: var(--chotto-message-right-secondary-bg);
   }
 }
 </style>

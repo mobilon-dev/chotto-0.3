@@ -9,7 +9,7 @@
     >
       <slot name="default" />
       <Teleport to="body">
-        <div :id="'float-windows-' + chatAppId" />
+        <div class="base__float-windows" :id="'float-windows-' + chatAppId" />
       </Teleport>
     </div>
   </div>
@@ -28,18 +28,25 @@ provide('chatAppId', chatAppId)
 
 
 
+
+
 </script>
 
 <style lang="scss">
 .base {
   &__container {
     transition: all 0.3s ease;
-    font-weight: var(--container-font-weight);
-    background-color: var(--base-container-bg, transparent);
-    color: var(--container-color);
-    font-family: var(--container-font-family);
+    font-weight: var(--chotto-container-font-weight);
+    color: var(--chotto-primary-text-color);
+    font-family: var(--chotto-container-font-family);
     container: all / inline-size;
     min-width: 480px;
+  }
+
+  &__float-windows{
+    font-weight: var(--chotto-container-font-weight);
+    color: var(--chotto-primary-text-color);
+    font-family: var(--chotto-container-font-family);
   }
 
   *,
@@ -60,7 +67,7 @@ provide('chatAppId', chatAppId)
 
   input,
   button {
-    font-family: var(--container-font-family);
+    font-family: var(--chotto-container-font-family);
   }
 
   p,

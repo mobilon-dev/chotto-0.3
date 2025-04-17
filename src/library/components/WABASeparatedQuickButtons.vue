@@ -50,7 +50,7 @@ defineProps({
   left:0; right:0; bottom:0;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  background: var(--separated-quick-buttons-bg-color);
+  background: var(--chotto-primary-color);
   white-space: pre-wrap;
 
   &__title{
@@ -60,8 +60,7 @@ defineProps({
     margin: 15px;
     
     p{
-      font-size: var(--separated-quick-buttons-title-font-size);
-      font-weight: var(--separated-quick-buttons-title-font-weight);
+      font-size: var(--chotto-text-font-size);
       margin-left: auto;
       margin-right: auto;
     }
@@ -72,7 +71,7 @@ defineProps({
   }
 
   &__actions{
-    border-top: var(--separated-quick-buttons-border);
+    border-top: 1px solid var(--chotto-item-border-color);
     max-height: 200px;
     overflow-y: auto;
   }
@@ -81,8 +80,7 @@ defineProps({
     position: relative;
     z-index: 0;
     width: 90%;
-    font-size: var(--separated-quick-buttons-action-font-size);
-    font-weight: var(--separated-quick-buttons-action-font-weight);
+    font-size: var(--chotto-text-font-size);
     margin-right: auto;
     margin-left: 25px;
     display: flex;

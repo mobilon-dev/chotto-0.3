@@ -57,7 +57,7 @@
         >
         <span
           v-if="item.notificationCount"
-          :style="{ backgroundColor: item.notificationColor ? item.notificationColor : 'red' }"
+          :style="{ backgroundColor: item.notificationColor ? item.notificationColor : null }"
         >{{ item.notificationCount > 99 ? '99+' :
           item.notificationCount }}</span>
 
@@ -120,23 +120,21 @@ const getName = (name) => {
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-    padding: var(--sidebar-padding-container);
-    box-shadow: var(--sidebar-box-shadow);
-    background-color: var(--sidebar-bg-container, transparent);
-    border-right: var(--sidebar-border);
+    padding: var(--chotto-sidebar-padding-container);
+    background-color: transparent;
   }
 
   &__list,
   &__list-fixed {
     display: flex;
     flex-direction: column;
-    row-gap: var(--sidebar-row-gap-list);
+    row-gap: var(--chotto-sidebar-row-gap-list);
     padding: 0;
   }
 
   &__list-fixed {
     padding-top: 10px;
-    border-top: var(--sidebar-list-fixed-border-top);
+    border-top: var(--chotto-sidebar-list-fixed-border-top);
   }
 
   &__item {
@@ -160,14 +158,13 @@ const getName = (name) => {
       width: 18px;
       height: 18px;
       border-radius: 50%;
-      font-size: var(--sidebar-unread-font-size);
-      font-weight: var(--sidebar-unread-font-weight);
-      color: var(--sidebar-unread-color);
+      font-size: var(--chotto-small-text-font-size);
+      color: var(--chotto-unread-text-color);
+      background-color: var(--chotto-unread-background-color);
     }
 
     p {
-      font-size: var(--sidebar-name-font-size);
-      font-weight: var(--sidebar-name-font-weight);
+      font-size: var(--chotto-small-text-font-size);
       text-align: center;
       line-height: 1;
     }
@@ -179,12 +176,12 @@ const getName = (name) => {
     border: 3px solid transparent;
     opacity: 0.8;
     transition: all 0.2s;
-    width: var(--sidebar-image-width);
-    height: var(--sidebar-image-height);
+    width: var(--chotto-avatar-small);
+    height: var(--chotto-avatar-small);
   }
 
   &__image--active {
-    border: var(--sidebar-image-active-border);
+    border: var(--chotto-sidebar-image-active-border);
     opacity: 1;
   }
 }
@@ -202,7 +199,7 @@ const getName = (name) => {
   }
   &__list{
     flex-direction: row;
-    gap: var(--sidebar-row-gap-list);
+    gap: var(--chotto-sidebar-row-gap-list);
   }
   &__item{
     display: block;
@@ -219,14 +216,14 @@ const getName = (name) => {
   }
   &__list-fixed{
     padding-left: 10px;
-    border-left: var(--sidebar-list-fixed-border-top);
+    border-left: var(--chotto-sidebar-list-fixed-border-top);
     padding-top: 0;
     border-top: 0px;
     margin-right: 10px;
   }
   &__image{
-    width: calc(var(--sidebar-image-width) * 1.2);
-    height: calc(var(--sidebar-image-height) * 1.2);
+    width: calc(var(--chotto-avatar-small) * 1.2);
+    height: calc(var(--chotto-avatar-small) * 1.2);
   }
 }
 

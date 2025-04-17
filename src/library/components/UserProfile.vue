@@ -76,10 +76,10 @@ const props = defineProps({
     display: flex;
     margin: auto 15px auto 0;
     position: relative;
-    border-radius: var(--avatar-border-radius);
+    border-radius: var(--chotto-avatar-border-radius);
 
     img {
-      border-radius: var(--avatar-border-radius);
+      border-radius: var(--chotto-avatar-border-radius);
       object-fit: cover;
     }
   }

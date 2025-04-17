@@ -101,25 +101,24 @@ onMounted(() => {
 
   &__input {
     width: 100%;
-    background-color: var(--input-background);
-    font-weight: var(--input-font-weight);
-    color: var(--input-color);
-    padding: var(--input-padding);
-    border: var(--input-border);
-    border-radius: var(--input-border-radius);
-    font-size: var(--input-font-size);
-    transition: border-color var(--input-transition-duration);
+    background-color: var(--chotto-input-background);
+    color: var(--chotto-primary-text-color);
+    padding: var(--chotto-input-padding);
+    border: var(--chotto-input-border);
+    border-radius: var(--chotto-input-border-radius);
+    font-size: var(--chotto-input-font-size);
+    transition: border-color var(--chotto-input-transition-duration);
     margin-left: 10px;
     &::placeholder {
-      color: var(--input-placeholder-color);
+      color: var(--chotto-secondary-text-color);
     }
 
     &:hover {
-      border-color: var(--input-hover-border-color);
+      border-color: var(--chotto-input-hover-border-color);
     }
 
     &:focus-visible {
-      border-color: var(--input-focus-border-color);
+      border-color: var(--chotto-input-focus-border-color);
       outline: none;
     }
   }

@@ -5,8 +5,8 @@
     class="button"
     :class="{'button-disabled' : state == 'disabled'}"
     @click="toggle"
-    @mouseover="hover"
-    @mouseout="hoverout"
+    @mouseenter="hover"
+    @mouseleave="hoverout"
   >
     <span class="pi pi-face-smile" />
   </div>
@@ -14,12 +14,12 @@
     <div 
       ref="emoji" 
       class="emoji"
-      @mouseover="hover"
-      @mouseout="hoverout"
+      @mouseenter="hover"
+      @mouseleave="hoverout"
     >
       <EmojiPicker
         :native="true"
-        :theme="changeThemeDialogEmoji"
+        :theme="emojiTheme"
         picker-type=""
         @select="onSelectEmoji"
       />
@@ -48,15 +48,17 @@ const props = defineProps({
 })
 
 const emoji = ref(null)
+const emojiTheme = ref('light')
 const emojiButton = ref(null)
 const chatAppId = inject('chatAppId')
 const { setMessageText, getMessage } = useMessage(chatAppId)
 
-const changeThemeDialogEmoji = computed(() => {
-  if (document.documentElement.classList.contains('dark')) {
+const changeThemeDialogEmoji = () => {
+  if (document.getElementById(chatAppId).attributes['data-theme'].nodeValue.indexOf('dark') != -1) {
     return 'dark'
   }
-})
+  return 'light'
+}
 
 const onSelectEmoji = (emoji) => {
   setMessageText(getMessage().text + emoji.i);
@@ -66,12 +68,14 @@ const onSelectEmoji = (emoji) => {
 const toggle = () => {
   if (props.mode == 'click' && props.state == 'active'){
     emoji.value.style.display = 'inherit'
+    emojiTheme.value = changeThemeDialogEmoji()
   }
 }
 
 const hover = () => {
   if (props.mode == 'hover' && props.state == 'active'){
     emoji.value.style.display = 'inherit'
+    emojiTheme.value = changeThemeDialogEmoji()
   }
 }
 
@@ -109,15 +113,19 @@ onUnmounted(() => {
       display: block;
       cursor: pointer;
       padding: 14px;
-      font-size: var(--chat-input-icon-font-size);
-      color: var(--chat-input-icon-color);
+      font-size: var(--chotto-button-icon-size);
+      color: var(--chotto-button-color-active);
     }
+  }
+
+  .button:hover span{
+    color: var(--chotto-button-color-hover);
   }
 
   .button-disabled{
     span{
       cursor: auto;
-      color: var(--chat-input-icon-color-disabled);
+      color: var(--chotto-button-color-disabled);
     }
   }
   .emoji {

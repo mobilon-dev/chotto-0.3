@@ -42,24 +42,23 @@ const props = defineProps({
     display: grid;
     grid-template-columns: min-content 1fr;
     position: relative;
-    margin: var(--base-message-margin);
+    margin: var(--chotto-message-margin);
   }
 
   &__subtext {
     grid-column: 2;
     grid-row: 1;
     margin: 0 0 2px 10px;
-    font-size: var(--base-message-subtext-font-size);
-    font-weight: var(--base-message-subtext-font-weight);
-    color: var(--base-message-subtext-color);
+    font-size: var(--chotto-additional-text-font-size);
+    color: var(--chotto-secondary-text-color);
   }
 
   &__avatar {
     align-self: center;
     object-fit: cover;
-    min-width: var(--avatar-width-small);
-    min-height: var(--avatar-height-small);
-    border-radius: var(--avatar-border-radius);
+    min-width: var(--chotto-avatar-small);
+    min-height: var(--chotto-avatar-small);
+    border-radius: var(--chotto-avatar-border-radius);
     grid-column: 1;
     grid-row: 2;
     margin-right: 12px;
@@ -70,8 +69,8 @@ const props = defineProps({
     grid-column: 2;
     border-radius: 10px;
     padding: 6px 6px 6px 6px;
-    max-width: 10%;
-    background-color: var(--base-message-left-bg);
+    max-width: 80px;
+    background-color: var(--chotto-message-left-bg);
   }
 
   &__loader {
@@ -107,11 +106,11 @@ const props = defineProps({
 
   @keyframes typing-message__loader {
     0% {
-      box-shadow: 0 15px 0 -15px var(--typing-message-shadow-color);
+      box-shadow: 0 15px 0 -15px var(--chotto-secondary-text-color);
     }
 
     100% {
-      box-shadow: 0 15px 0 var(--typing-message-shadow-color);
+      box-shadow: 0 15px 0 var(--chotto-secondary-text-color);
     }
   }
 }

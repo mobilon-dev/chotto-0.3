@@ -146,11 +146,12 @@ onUnmounted(() => {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 101;
-    background-color: var(--modal-bg);
-    border-radius: var(--modal-border-radius);
-    padding: var(--modal-padding);
+    color: var(--chotto-primary-text-color);
+    background-color: var(--chotto-modal-bg);
+    border-radius: var(--chotto-modal-border-radius);
+    padding: var(--chotto-modal-padding);
     max-width: 45%;
-    box-shadow: var(--modal-overlay-shadow);
+    box-shadow: var(--chotto-modal-overlay-shadow);
   }
 
   &__modal-overlay {
@@ -159,7 +160,7 @@ onUnmounted(() => {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--modal-mask-background);
+    background-color: var(--chotto-modal-mask-background);
     z-index: 1000;
   }
 
@@ -172,8 +173,8 @@ onUnmounted(() => {
     cursor: pointer;
 
     span {
-      color: var(--modal-icon-color);
-      font-size: var(--modal-icon-font-size);
+      color: var(--chotto-secondary-text-color);
+      font-size: var(--chotto-button-icon-size);
     }
   }
 
@@ -184,8 +185,8 @@ onUnmounted(() => {
     word-break: break-word;
     p {
       margin: 0;
-      font-size: var(--reply-message-text-font-size);
-      color: var(--reply-message-color);
+      font-size: var(--chotto-additional-text-font-size);
+      color: var(--chotto-secondary-text-color);
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
@@ -202,7 +203,7 @@ onUnmounted(() => {
     margin-bottom: 4px;
     white-space: nowrap;
     span {
-      color: var(--reply-message-color);
+      color: var(--chotto-secondary-text-color);
     }
   }
 }

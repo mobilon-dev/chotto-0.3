@@ -45,12 +45,13 @@ const closeModalOutside = (evt) => {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 101;
-    background-color: var(--modal-bg);
-    border-radius: var(--modal-border-radius);
-    padding: var(--modal-padding);
+    color: var(--chotto-primary-text-color);
+    background-color: var(--chotto-modal-bg);
+    border-radius: var(--chotto-modal-border-radius);
+    padding: var(--chotto-modal-padding);
     max-width: 95%;
     width: fit-content;
-    box-shadow: var(--modal-overlay-shadow);
+    box-shadow: var(--chotto-modal-overlay-shadow);
   }
     
   &__overlay {
@@ -59,7 +60,7 @@ const closeModalOutside = (evt) => {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--modal-mask-background);
+    background-color: var(--chotto-modal-mask-background);
     z-index: 1000;
   }
 
@@ -72,8 +73,8 @@ const closeModalOutside = (evt) => {
     cursor: pointer;
 
     span {
-      color: var(--modal-icon-color);
-      font-size: var(--modal-icon-font-size);
+      color: var(--chotto-secondary-text-color);
+      font-size: var(--chotto-button-icon-size);
     }
   }
 }

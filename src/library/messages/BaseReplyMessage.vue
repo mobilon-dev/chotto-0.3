@@ -95,7 +95,7 @@ const handleReset = () => {
       left: 0;
       width: 4px;
       height: 100%;
-      background-color: var(--reply-message-before-bg);
+      background-color: var(--chotto-message-accent-line-color);
     }
   }
 
@@ -120,16 +120,16 @@ const handleReset = () => {
 }
 
 .left {
-  background-color: var(--reply-message-left-bg);
+  background-color: var(--chotto-message-left-secondary-bg);
 }
 
 .right {
-  background-color: var(--reply-message-right-bg);
+  background-color: var(--chotto-message-right-secondary-bg);
 }
 
 .chat-input-reply {
   padding-right: 20px;
-  border: var(--reply-message-border);
+  border: 1px solid var(--chotto-item-border-color);
   border-radius: 0;
   max-width: 300px;
   word-break: break-word;
