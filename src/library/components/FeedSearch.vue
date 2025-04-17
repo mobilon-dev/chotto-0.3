@@ -102,8 +102,7 @@ onMounted(() => {
   &__input {
     width: 100%;
     background-color: var(--chotto-input-background);
-    font-weight: var(--chotto-input-font-weight);
-    color: var(--chotto-input-color);
+    color: var(--chotto-primary-text-color);
     padding: var(--chotto-input-padding);
     border: var(--chotto-input-border);
     border-radius: var(--chotto-input-border-radius);
@@ -111,7 +110,7 @@ onMounted(() => {
     transition: border-color var(--chotto-input-transition-duration);
     margin-left: 10px;
     &::placeholder {
-      color: var(--chotto-input-placeholder-color);
+      color: var(--chotto-secondary-text-color);
     }
 
     &:hover {

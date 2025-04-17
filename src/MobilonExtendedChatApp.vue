@@ -263,12 +263,7 @@ const themes = [
     code: "dark",
     name: "Dark",
   },
-  {
-    code: "green",
-    name: "Green",
-    
-  },
-];
+]
 
 const chatsStore = useChatsStore();
 

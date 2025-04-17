@@ -173,6 +173,7 @@ onUnmounted(() => {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 101;
+    color: var(--chotto-primary-text-color);
     background-color: var(--chotto-modal-bg);
     border-radius: var(--chotto-modal-border-radius);
     padding: var(--chotto-modal-padding);

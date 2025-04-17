@@ -37,7 +37,7 @@ provide('chatAppId', chatAppId)
   &__container {
     transition: all 0.3s ease;
     font-weight: var(--chotto-container-font-weight);
-    color: var(--chotto-container-color);
+    color: var(--chotto-primary-text-color);
     font-family: var(--chotto-container-font-family);
     container: all / inline-size;
     min-width: 480px;
@@ -45,7 +45,7 @@ provide('chatAppId', chatAppId)
 
   &__float-windows{
     font-weight: var(--chotto-container-font-weight);
-    color: var(--chotto-container-color);
+    color: var(--chotto-primary-text-color);
     font-family: var(--chotto-container-font-family);
   }
 

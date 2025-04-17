@@ -38,9 +38,11 @@ import { uploadFile } from '../../helpers/uploadFile';
 import { useModalVideoRecorder } from '../modals';
 import FilePreview from './FilePreview.vue';
 import { IFilePreview } from '../../types';
+import { useTheme } from '../../helpers/useTheme';
 
 const chatAppId = inject('chatAppId')
 const { getMessage, setMessageFile, setRecordingMessage, resetMessageFile } = useMessage(chatAppId as string)
+const { getTheme } = useTheme(chatAppId as string)
 
 const uploadStatus = ref("");
 const videoPreview = ref<IFilePreview>()
@@ -58,7 +60,7 @@ const props = defineProps({
 
 const openVideoRecorder = async () => {
   if (!getMessage().file && props.state == 'active'){
-    await useModalVideoRecorder()
+    await useModalVideoRecorder(getTheme().theme)
     .then(async (data) => {
       if (data.videoFile){
         uploadStatus.value = 'uploading'

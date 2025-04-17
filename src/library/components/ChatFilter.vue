@@ -31,8 +31,7 @@ const update = () => {
 .chat-filter {
   &__input {
     background-color: transparent;
-    font-weight: var(--chotto-input-font-weight);
-    color: var(--chotto-input-text-color);
+    color: var(--chotto-primary-text-color);
     padding: var(--chotto-input-padding);
     border: var(--chotto-input-border);
     border-radius: var(--chotto-input-border-radius);
@@ -41,7 +40,7 @@ const update = () => {
     background-color: var(--chotto-input-background);
 
     &::placeholder {
-      color: var(--chotto-input-placeholder-color);
+      color: var(--chotto-secondary-text-color);
     }
 
     &:hover {

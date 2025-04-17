@@ -1,7 +1,5 @@
 [data-theme="light"] {
   /* Chat Panel */
-  --chotto-chat-panel-bg: var(--default-white);
-  --chotto-chat-panel-border: 1px solid var(--neutral-200);
   --chotto-chat-panel-border-radius: 0px;
 
   /* Side Bar */
@@ -15,6 +13,7 @@
   --chotto-chat-list-items-padding: 0;
   --chotto-chat-list-title-container-padding: 16px 0 16px 15px;
   --chotto-chat-list-fixed-background-color: var(--default-white);
+
   /* Chat Input */
   --chotto-chat-input-container-bg: var(--default-white);
   --chotto-chat-input-icon-color: var(--neutral-600);
@@ -57,12 +56,7 @@
   --chotto-input-background: transparent;
   --chotto-input-padding: 0.5rem 0.75rem;
   --chotto-input-transition-duration: 0.2s;
-
   --chotto-input-font-size: 16px;
-  --chotto-input-font-weight: 400;
-  --chotto-input-text-color: var(--neutral-700);
-  --chotto-input-placeholder-color: var(--neutral-500);
-  --chotto-input-width: 100%;
 
   /*Avatar*/
 

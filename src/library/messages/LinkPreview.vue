@@ -57,7 +57,7 @@ const props = defineProps({
   &__link-container {
     display: flex;
     flex-direction: column;
-    color: var(--chotto-container-color);
+    color: var(--chotto-primary-text-color);
     font-size: var(--chotto-text-font-size);
   }
 

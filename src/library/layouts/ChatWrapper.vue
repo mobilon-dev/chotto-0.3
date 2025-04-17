@@ -90,7 +90,7 @@ watch(
   }
 
   &__chat-panel {
-    background-color: var(--chotto-chat-panel-bg);
+    background-color: var(--chotto-primary-color);
     border-left: 1px solid var(--chotto-item-border-color, none);
     border-radius: var(--chotto-chat-panel-border-radius);
     position: absolute;

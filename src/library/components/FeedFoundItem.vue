@@ -88,7 +88,7 @@ const typePreview = computed(() => {
     cursor: pointer;
     width: 100%;
     word-wrap: anywhere;
-    background-color: var(--chotto-item-background-color, transparent);
+    background-color:  transparent;
     border-radius: var(--chotto-chat-item-border-radius);
   }
   

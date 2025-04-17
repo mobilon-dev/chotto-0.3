@@ -5,8 +5,7 @@ const emit = defineEmits(['close'])
 const props = defineProps({
   theme: {
     type: String,
-    required: false,
-    default: 'green'
+    required: true,
   }
 })
 
@@ -31,12 +30,7 @@ const closeModalOutside = (evt) => {
         aria-labelledby="modalTitle"
         aria-describedby="modalDescription"
       >
-        <div
-          id="modalDescription"
-          class="modal-body"
-        >
-          <slot name="default" />
-        </div>
+        <slot name="default" />
       </div>
     </div>
   </transition>
@@ -57,25 +51,20 @@ const closeModalOutside = (evt) => {
 }
 
 .modal {
-    background: #fff;
+    background: var(--chotto-modal-bg);
+    color: var(--chotto-primary-text-color);
     font-family: var(--chotto-container-font-family);
-    box-shadow: 2px 2px 10px 1px;
     overflow-x: auto;
     display: flex; 
     flex-direction: column;
+    position: relative;
+    padding: 20px 10px;
 }
 
 .buttons {
   display: block;
   margin: 10px 10px 10px 10px;
 }
-
-.modal-body {
-    position: relative;
-    padding: 20px 10px;
-    flex-grow: 1;
-}
-
 
 .modal-fade-enter,
 .modal-fade-leave-to {

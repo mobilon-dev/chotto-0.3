@@ -253,7 +253,6 @@ onMounted(async () => {
     position: relative;
     display: grid;
     align-items: center;
-    background-color: var(--chotto-chat-input-container-bg);
   }
 
   &__view-area{
@@ -306,8 +305,8 @@ onMounted(async () => {
     span {
       cursor: pointer;
       display: block;
-      font-size: var(--chat-input-icon-font-size);
-      color: var(--chat-input-icon-color);
+      font-size: var(--chotto-button-icon-size);
+      color: var(--chotto-button-color-active);
     }
   }
 
@@ -323,7 +322,7 @@ onMounted(async () => {
   &__button-disabled {
     cursor: auto;
     span {
-      color: var(--chat-input-icon-color-disabled);
+      color: var(--chotto-button-color-disabled);
     }
   }
 

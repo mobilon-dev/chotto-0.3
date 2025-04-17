@@ -691,17 +691,18 @@ onMounted(() => {
 
   &__searching-input {
     background-color: transparent;
-    width: var(--chotto-input-width);
+    width: 100%;
     padding: var(--chotto-input-padding);
     border-radius: var(--chotto-input-border-radius);
+    background-color: var(--chotto-input-background);
     font-size: var(--chotto-input-font-size);
-    color: var(--chotto-input-color);
+    color: var(--chotto-primary-text-color);
     border: var(--chotto-input-border);
     transition: border-color var(--chotto-input-transition-duration);
     box-sizing: border-box;
 
     &::placeholder {
-      color: var(--chotto-input-placeholder-color);
+      color: var(--chotto-secondary-text-color);
     }
 
     &:hover {

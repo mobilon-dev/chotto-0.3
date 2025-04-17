@@ -236,11 +236,10 @@ const sendMessage = () => {
 
   &__input {
     border: var(--chotto-input-border);
-    font-weight: var(--chotto-input-font-weight);
     background-color: var(--chotto-input-background);
     padding: var(--chotto-input-padding);
-    width: var(--chotto-input-width);
-    color: var(--chotto-input-text-color);
+    width: 100%;
+    color: var(--chotto-primary-text-color);
     font-size: var(--chotto-input-font-size);
     white-space: normal;
     overflow-y: hidden;
@@ -255,7 +254,7 @@ const sendMessage = () => {
     }
 
     &::placeholder {
-      color: var(--chotto-input-placeholder-color);
+      color: var(--chotto-secondary-text-color);
     }
   }
 

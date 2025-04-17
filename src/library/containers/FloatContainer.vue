@@ -157,7 +157,7 @@ onMounted(() => {
     height: 100%;
     position: absolute;
     font-weight: var(--chotto-container-font-weight);
-    color: var(--chotto-container-color);
+    color: var(--chotto-primary-text-color);
     font-family: var(--chotto-container-font-family);
     box-shadow: var(--chotto-float-container-box-shadow);
     container: all / inline-size;
@@ -165,7 +165,7 @@ onMounted(() => {
 
   &__float-windows{
     font-weight: var(--chotto-container-font-weight);
-    color: var(--chotto-container-color);
+    color: var(--chotto-primary-text-color);
     font-family: var(--chotto-container-font-family);
   }
 

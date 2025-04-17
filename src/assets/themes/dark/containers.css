@@ -1,27 +1,17 @@
 [data-theme="dark"] {
+
   /* General */
-  --container-color: var(--neutral-100);
 
   /* Float Container */
-  --float-container-bg: var(--neutral-700);
-  --float-container-box-shadow: 0px 0px 20px -10px rgba(144, 144, 144, 0.2);
-  --float-container-bg-header: var(--neutral-700);
-  --float-container-icon-color: var(--neutral-300);
-
-  --float-container-border-radius: 12px;
-  --float-container-border-radius-header: 12px 12px 0 0;
-
-  --float-container-title-font-size: var(--font-large-size);
-  --float-container-title-font-weight: 600;
-
+  --chotto-float-container-border-radius-header: 15px;
+  --chotto-float-container-box-shadow: 0px 0px 20px -7px rgba(0, 0, 0, 0.2);
+  --chotto-float-container-bg-header: var(--neutral-300);
+  
   /* Modal Container */
 
-  --modal-padding: 20px;
-  --modal-border-radius: 12px;
-  --modal-mask-background: rgba(0, 0, 0, 0.4);
-  --modal-overlay-shadow: 0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 8px 10px -6px rgba(0, 0, 0, 0.1);
-  --modal-icon-color: var(--neutral-300);
-  --modal-bg: var(--neutral-800);
-  --modal-icon-font-size: var(--icon-font-size-medium);
-
+  --chotto-modal-padding: 20px;
+  --chotto-modal-border-radius: 12px;
+  --chotto-modal-mask-background: rgba(0, 0, 0, 0.4);
+  --chotto-modal-overlay-shadow: 0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --chotto-modal-bg: var(--neutral-700);
 }
