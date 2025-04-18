@@ -34,7 +34,7 @@
     display: flex;
     flex-direction: column;
     height: inherit;
-    background-color: var(--layout-base-first-col-bg, transparent);
+    background-color: var(--chotto-layout-base-first-col-bg, transparent);
     border-right: var(--chotto-container-borders, none);
     border-bottom: var(--chotto-container-borders, none);
     width: 100%;
@@ -48,7 +48,7 @@
     grid-column: 2;
     height: inherit;
     width: 100%;
-    background-color: var(--layout-base-second-col-bg, transparent);
+    background-color: var( --chotto-layout-base-second-col-bg, transparent);
     border-right: var(--chotto-container-borders, none);
     border-bottom: var(--chotto-container-borders, none);
   }
