@@ -13,27 +13,32 @@
         'disabled-button': disabled,
       }"
       @click="toggle"
-      @mouseover="hover"
-      @mouseout="hoverout"
+      @mouseenter="updatePosition"
+      @mouseleave="hideMenu"
     >
       <span :class="buttonClass">
         {{ buttonTitle }}
       </span>
     </div>
-    <ContextMenu
-      :id="'context-menu-' + buttonContextMenuId"
-      ref="contextMenu"
-      :actions="actions"
-      @mouseover="hover"
-      @mouseout="hoverout"
-      @click="click"
-    />
+    <Teleport :to="'#float-windows-' + chatAppId">
+      <ContextMenu
+        :id="'context-menu-' + buttonContextMenuId"
+        ref="contextMenu"
+        :actions="actions"
+        @mouseenter="updatePosition"
+        @mouseleave="hideMenu"
+        @click="click"
+      />
+    </Teleport>
+    
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, useId } from 'vue';
+import { ref, onMounted, onUnmounted, useId, inject} from 'vue';
 import { ContextMenu } from '.';
+
+const chatAppId = inject('chatAppId')
 
 const props = defineProps({
   actions: {
@@ -72,6 +77,7 @@ const buttonContextMenuId = useId()
 const emit = defineEmits(['click', 'buttonClick']);
 const contextMenu = ref(null)
 const actionScope = ref(null)
+const cmBounds = ref()
 
 const click = (action) => {
   contextMenu.value.$el.style.display = 'none'
@@ -87,15 +93,32 @@ const toggle = () => {
   }
 }
 
-const hover = () => {
-  if (props.mode == 'hover' && !props.disabled) {
-    contextMenu.value.$el.style.display = 'inherit'
+const updatePosition = () => {
+  if (actionScope.value && contextMenu.value){
+    const bounds = actionScope.value.getBoundingClientRect()
+    
+    const r = {
+      'left'  : {top: bounds.top - ((cmBounds.value.height - bounds.height) / 2), left: bounds.left - cmBounds.value.width},
+      'right' : {top: bounds.top - ((cmBounds.value.height - bounds.height) / 2), left: bounds.left + bounds.width},
+      'bottom': {top: bounds?.bottom, left: bounds?.left - ((cmBounds.value.width - bounds.width) / 2)},
+      'top'   : {top: bounds.top - cmBounds.value.height, left: bounds?.left - ((cmBounds.value.width - bounds.width) / 2)},
+    }
+    const t = contextMenu.value.$el
+    //console.log(bounds, cmBounds.value, 'top: ', r[props.menuSide].top + 'px', ' left: ', r[props.menuSide].left + 'px')
+    t.style.top = r[props.menuSide].top + 'px'
+    t.style.left = r[props.menuSide].left + 'px'
+    t.style.opacity = '1'
+    t.style.display = 'inherit'
   }
 }
 
-const hoverout = () => {
-  if (props.mode == 'hover') {
-    contextMenu.value.$el.style.display = 'none'
+const hideMenu = () => {
+  const t = contextMenu.value.$el
+  if (t){
+    t.style.top = '0'
+    t.style.left = '0'
+    t.style.opacity = '0'
+    t.style.display = 'none'
   }
 }
 
@@ -106,50 +129,15 @@ const handleClickOutside = (event) => {
 }
 
 onMounted(() => {
-  const side = {
-    'top': {
-      h: -1,
-      w: -0.25,
-    },
-    'bottom': {
-      h: 1,
-      w: -0.25,
-    },
-    'left': {
-      h: -0.25,
-      w: 1,
-    },
-    'right': {
-      h: -0.25,
-      w: 1,
-    },
+  const container = document.getElementById('float-windows-' + chatAppId)
+  if (container) {
+    const t = contextMenu.value.$el
+    cmBounds.value = t.getBoundingClientRect()
+    t.style.top = '0'
+    t.style.left = '0'
+    t.style.display = 'none'
+    document.addEventListener("click", handleClickOutside)
   }
-
-  let width, height
-  if (props.menuSide == 'top') {
-    width = document.getElementById('container-' + buttonContextMenuId)?.offsetWidth
-    height = document.getElementById('context-menu-' + buttonContextMenuId)?.offsetHeight
-    contextMenu.value.$el.style.left = side[props.menuSide].w * width + 'px'
-  }
-  if (props.menuSide == 'bottom') {
-    width = document.getElementById('context-menu-' + buttonContextMenuId).offsetWidth
-    height = document.getElementById('container-' + buttonContextMenuId).offsetHeight
-    contextMenu.value.$el.style.right = side[props.menuSide].w * width + 'px'
-  }
-  if (props.menuSide == 'left') {
-    width = document.getElementById('container-' + buttonContextMenuId).offsetWidth
-    height = document.getElementById('context-menu-' + buttonContextMenuId).offsetHeight
-    contextMenu.value.$el.style.right = side[props.menuSide].w * width + 'px'
-  }
-  if (props.menuSide == 'right') {
-    width = document.getElementById('container-' + buttonContextMenuId).offsetWidth
-    height = document.getElementById('context-menu-' + buttonContextMenuId).offsetHeight
-    contextMenu.value.$el.style.left = side[props.menuSide].w * width + 'px'
-
-  }
-  contextMenu.value.$el.style.top = side[props.menuSide].h * height + 'px'
-  contextMenu.value.$el.style.display = 'none'
-  document.addEventListener("click", handleClickOutside)
 })
 
 onUnmounted(() => {

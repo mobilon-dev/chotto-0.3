@@ -111,10 +111,10 @@ onUnmounted(() => {
 }
 
 .placeholder.filled {
-  background-color: var(--variable-placeholder-filled-color);
+  background-color: var(--chotto-variable-placeholder-filled-color);
 }
 
 .placeholder.empty {
-  background-color: var(--variable-placeholder-empty-color);
+  background-color: var(--chotto-variable-placeholder-empty-color);
 }
 </style>
