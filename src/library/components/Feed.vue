@@ -153,7 +153,7 @@ function scrollTopCheck (allowLoadMore: boolean = true) {
   const element = unref(refFeed);
   let keyboardHeight = 0
   if (keyboardRef.value){
-    keyboardHeight = keyboardRef.value.$el.clientHeight
+    keyboardHeight = keyboardRef.value.refKeyboard.clientHeight
   }
   const limit = 100;
   const scrollBottom = element.scrollHeight - element.scrollTop - element.clientHeight;

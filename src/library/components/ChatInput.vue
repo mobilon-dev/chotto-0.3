@@ -44,7 +44,7 @@
 </template>
 
 <script setup lang="ts">
-import { unref, ref, watch, nextTick, inject, computed } from 'vue';
+import { unref, ref, watch, nextTick, inject, computed, useTemplateRef } from 'vue';
 import { useMessage } from '../../helpers/useMessage';
 import { t } from '../../locale/useLocale';
 import { IFilePreview, IInputMessage } from '../../types';
@@ -56,7 +56,8 @@ const emit = defineEmits(['send', 'typing']);
 const chatAppId = inject('chatAppId')
 const { resetMessage, getMessage, setMessageText, setForceSendMessage } = useMessage(chatAppId as string)
 
-const refBCM = ref<typeof ButtonContextMenu>()
+const refBCM = useTemplateRef('refBCM')
+
 const refInput = ref<HTMLTextAreaElement>();
 const typing = useImmediateDebouncedRef('', 2000)
 const fileInfo = ref<IFilePreview>()
@@ -116,12 +117,10 @@ watch(
     })
     if (props.commands) {
       if (getMessage().text.startsWith('/')){
-        const element = refBCM.value?.$el.lastChild
-        element.style.display = 'inherit'
+        refBCM.value?.updatePosition()
       }
       else {
-        const element = refBCM.value?.$el.lastChild
-        element.style.display = 'none'
+        refBCM.value?.hideMenu()
       }
     }
   }

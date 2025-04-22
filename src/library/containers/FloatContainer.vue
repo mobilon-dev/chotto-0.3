@@ -181,7 +181,7 @@ onMounted(() => {
   }
 
   &__avatar {
-    width: var(---chotto-avatar-small);
+    width: var(--chotto-avatar-small);
     height: var(--chotto-avatar-small);
     border-radius: 50%;
   }

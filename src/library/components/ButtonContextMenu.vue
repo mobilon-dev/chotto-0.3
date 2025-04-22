@@ -6,6 +6,8 @@
       position: relative;
       width: fit-content;
     "
+    @mouseenter="hover"
+    @mouseleave="hoverOut"
   >
     <div
       class="button"
@@ -13,8 +15,7 @@
         'disabled-button': disabled,
       }"
       @click="toggle"
-      @mouseenter="updatePosition"
-      @mouseleave="hideMenu"
+      
     >
       <span :class="buttonClass">
         {{ buttonTitle }}
@@ -25,8 +26,8 @@
         :id="'context-menu-' + buttonContextMenuId"
         ref="contextMenu"
         :actions="actions"
-        @mouseenter="updatePosition"
-        @mouseleave="hideMenu"
+        @mouseenter="hoverCM"
+        @mouseleave="hoverOutCM"
         @click="click"
       />
     </Teleport>
@@ -35,7 +36,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, useId, inject} from 'vue';
+import { useTemplateRef, ref, onMounted, onUnmounted, useId, inject} from 'vue';
 import { ContextMenu } from '.';
 
 const chatAppId = inject('chatAppId')
@@ -74,22 +75,56 @@ const props = defineProps({
 
 const buttonContextMenuId = useId()
 
-const emit = defineEmits(['click', 'buttonClick']);
-const contextMenu = ref(null)
-const actionScope = ref(null)
+const emit = defineEmits(['click', 'buttonClick', 'menuMouseEnter', 'menuMouseLeave']);
+const contextMenu = useTemplateRef('contextMenu')
+const actionScope = useTemplateRef('actionScope')
 const cmBounds = ref()
 
 const click = (action) => {
-  contextMenu.value.$el.style.display = 'none'
+  hideMenu()
   emit('click', action);
 }
 
 const toggle = () => {
   if (!props.disabled) {
     if (props.mode == 'click') {
-      contextMenu.value.$el.style.display = 'inherit'
+      updatePosition()
     }
     emit('buttonClick')
+  }
+}
+
+const hover = () => {
+  if (!props.disabled) {
+    if (props.mode == 'hover') {
+      updatePosition()
+    }
+  }
+}
+
+const hoverOut = () => {
+  if (!props.disabled) {
+    if (props.mode == 'hover') {
+      hideMenu()
+    }
+  }
+}
+
+const hoverCM = () => {
+  emit('menuMouseEnter')
+  if (!props.disabled) {
+    if (props.mode == 'hover') {
+      updatePosition()
+    }
+  }
+}
+
+const hoverOutCM = () => {
+  emit('menuMouseLeave')
+  if (!props.disabled) {
+    if (props.mode == 'hover') {
+      hideMenu()
+    }
   }
 }
 
@@ -103,7 +138,7 @@ const updatePosition = () => {
       'bottom': {top: bounds?.bottom, left: bounds?.left - ((cmBounds.value.width - bounds.width) / 2)},
       'top'   : {top: bounds.top - cmBounds.value.height, left: bounds?.left - ((cmBounds.value.width - bounds.width) / 2)},
     }
-    const t = contextMenu.value.$el
+    const t = contextMenu.value.contextMenu
     //console.log(bounds, cmBounds.value, 'top: ', r[props.menuSide].top + 'px', ' left: ', r[props.menuSide].left + 'px')
     t.style.top = r[props.menuSide].top + 'px'
     t.style.left = r[props.menuSide].left + 'px'
@@ -113,25 +148,28 @@ const updatePosition = () => {
 }
 
 const hideMenu = () => {
-  const t = contextMenu.value.$el
-  if (t){
-    t.style.top = '0'
-    t.style.left = '0'
-    t.style.opacity = '0'
-    t.style.display = 'none'
+  if (contextMenu.value){
+    const t = contextMenu.value.contextMenu
+    if (t){
+      t.style.top = '0'
+      t.style.left = '0'
+      t.style.opacity = '0'
+      t.style.display = 'none'
+    }
   }
 }
 
 const handleClickOutside = (event) => {
   if (props.mode == 'click' && actionScope.value && !actionScope.value.contains(event.target)) {
-    contextMenu.value.$el.style.display = 'none'
+    contextMenu.value.contextMenu.style.display = 'none'
   }
 }
 
 onMounted(() => {
   const container = document.getElementById('float-windows-' + chatAppId)
-  if (container) {
-    const t = contextMenu.value.$el
+  console.log(container, contextMenu.value.contextMenu)
+  if (container && contextMenu.value) {
+    const t = contextMenu.value.contextMenu
     cmBounds.value = t.getBoundingClientRect()
     t.style.top = '0'
     t.style.left = '0'
@@ -144,6 +182,11 @@ onUnmounted(() => {
   document.removeEventListener("click", handleClickOutside)
 })
 
+defineExpose({
+  updatePosition,
+  hideMenu,
+})
+
 </script>
 
 <style
@@ -153,7 +196,6 @@ onUnmounted(() => {
 .button span {
   display: block;
   cursor: pointer;
-  padding: 14px;
   font-size: var(--chotto-button-icon-size);
   color: var(--chotto-button-color-active);
 }

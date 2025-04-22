@@ -7,6 +7,7 @@
   </div>
   <ButtonContextMenu
     v-else-if="!getMessage().isRecording"
+    class="file-uploader__trigger"
     :actions="actions"
     :mode="'hover'"
     :button-class="'pi pi-file-arrow-up'"
@@ -168,4 +169,10 @@ onMounted(() => {
   scoped
   lang="scss"
 >
+.file-uploader{
+  &__trigger{
+    padding: 14px;
+  }
+}
+
 </style>

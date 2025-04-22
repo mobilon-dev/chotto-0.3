@@ -3,8 +3,8 @@
     <div
     class="chat-item__container"
     :class="getClass()"
-    @mouseenter="showMenu"
-    @mouseleave="hideMenu"
+    @mouseenter="buttonMenuVisible = true"
+    @mouseleave="onMouseLeave"
     @click="selectChat"
   >
     <div class="chat-item__avatar-container">
@@ -57,15 +57,16 @@
         {{ chat.countUnread > 99 ? '99+' : chat.countUnread }}
       </div>
 
-      <button
-        v-if="buttonMenuVisible && chat.actions"
-        ref="refMenuButton"
-        class="chat-item__menu-button"
-        @click="handleOpenMenu"
+      <ButtonContextMenu
+        v-if="(buttonMenuVisible) && chat.actions"
         id="noSelectButton"
-      >
-        <span id="noSelectButton" class="pi pi-ellipsis-h" />
-      </button>
+        :actions="chat.actions"
+        mode="click"
+        buttonClass='pi pi-ellipsis-h'
+        menuSide="bottom"
+        @click="clickAction"
+        @menu-mouse-leave="buttonMenuVisible = false"
+      />
 
       <div
         v-if="chat.countUnread < 1"
@@ -112,19 +113,6 @@
       </button>
     </div>
 
-    <transition name="menu" >
-      <Teleport v-if="allowTooltip" :to="'#float-windows-' + chatAppId">
-        <ContextMenu
-          v-if="isOpenMenu && chat.actions"
-          ref="refContextMenu"
-          class="chat-item__context-menu"
-          :actions="chat.actions"
-          @click="clickAction"
-          @mouseenter="isOpenMenu = true"
-          @mouseleave="isOpenMenu = false"
-        />
-      </Teleport>
-    </transition>
   </div>
 
   <div 
@@ -166,14 +154,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch, inject, nextTick, onMounted } from 'vue'
+import { ref, computed, watch} from 'vue'
 
-import { ContextMenu } from '.'
 import { getStatus, statuses } from "../../helpers";
 import { t } from '../../locale/useLocale'
 import Tooltip from './Tooltip.vue';
-
-const chatAppId = inject('chatAppId')
+import ButtonContextMenu from './ButtonContextMenu.vue';
 
 const props = defineProps({
   chat: {
@@ -182,13 +168,12 @@ const props = defineProps({
   },
 });
 
-const refMenuButton = ref()
-const refContextMenu = ref()
-const allowTooltip = ref(false)
-
 const emit = defineEmits(['select', 'action']);
 
+const buttonMenuVisible = ref(false);
+
 const selectChat = (event: MouseEvent) => { 
+  
   if (event.target instanceof HTMLElement && event.target.id != 'noSelectButton' && !props.chat.dialogs)
     emit('select', {chat: props.chat, dialog: null});
   if (props.chat.dialogs)
@@ -209,13 +194,9 @@ const getDialogClass = (dialog) => {
 
 const clickAction = (action) => {
   // console.log('action', props.chat.chatId, action);
-  buttonMenuVisible.value = false;
-  isOpenMenu.value = false
   emit('action', { chat: props.chat, ...action });
 }
 
-const isOpenMenu = ref(false)
-const buttonMenuVisible = ref(false);
 
 const getSortedDialogs = () => {
   return props.chat.dialogs
@@ -225,34 +206,6 @@ const getSortedDialogs = () => {
       if (Number(a['lastActivity.timestamp']) == Number(b['lastActivity.timestamp'])) return 0;
     })
 }
-
-const handleOpenMenu = () => {
-  isOpenMenu.value = !isOpenMenu.value
-  nextTick(() => {
-    updatePosition()
-  })
-}
-
-const updatePosition = () => {
-  if (refMenuButton.value && refContextMenu.value){
-    const bounds = refMenuButton.value.getBoundingClientRect()
-    const t = refContextMenu.value.$el
-    t.style.top = bounds?.bottom  + 'px'
-    t.style.left = bounds?.left - t.getBoundingClientRect().width / 1.5 + 'px'
-  }
-}
-
-const showMenu = () => {
-  buttonMenuVisible.value = true;
-  isOpenMenu.value = false
-};
-
-const hideMenu = (event : MouseEvent) => {
-  const target = event.relatedTarget as HTMLElement
-  buttonMenuVisible.value = false;
-  if (!target || target.className !== 'context-menu__list')
-    isOpenMenu.value = false
-};
 
 const status = computed(() => getStatus(props.chat['lastMessage.status']))
 
@@ -289,10 +242,12 @@ watch(
   { immediate: true }
 )
 
-onMounted(() => {
-  const container = document.getElementById('float-windows-' + chatAppId)
-  if (container) allowTooltip.value = true
-})
+const onMouseLeave = (event) => {
+  if (event.relatedTarget?.className == 'context-menu__list')
+    buttonMenuVisible.value = true
+  else 
+    buttonMenuVisible.value = false
+}
 
 </script>
 

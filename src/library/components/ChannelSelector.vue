@@ -22,6 +22,7 @@
       {{ t('component.ChannelSelector.Placeholder') }}
     </span>
     <ButtonContextMenu
+      class="channels__trigger"
       :actions="channels"
       :mode="mode"
       :button-class="'pi pi-list'"
@@ -103,6 +104,10 @@ const selectChannel = (channel) => {
     height: fit-content;
     width: var(--chotto-text-font-size);
     height: var(--chotto-text-font-size);
+  }
+
+  &__trigger{
+    padding: 14px;
   }
 }
 </style>
