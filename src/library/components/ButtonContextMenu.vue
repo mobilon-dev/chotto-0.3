@@ -21,7 +21,7 @@
         {{ buttonTitle }}
       </span>
     </div>
-    <Teleport :to="'#float-windows-' + chatAppId">
+    <Teleport v-if="allowTeleport" :to="'#float-windows-' + chatAppId">
       <ContextMenu
         :id="'context-menu-' + buttonContextMenuId"
         ref="contextMenu"
@@ -36,7 +36,7 @@
 </template>
 
 <script setup>
-import { useTemplateRef, ref, onMounted, onUnmounted, useId, inject} from 'vue';
+import { useTemplateRef, ref, onMounted, onUnmounted, useId, inject, nextTick} from 'vue';
 import { ContextMenu } from '.';
 
 const chatAppId = inject('chatAppId')
@@ -76,7 +76,9 @@ const props = defineProps({
 const buttonContextMenuId = useId()
 
 const emit = defineEmits(['click', 'buttonClick', 'menuMouseEnter', 'menuMouseLeave']);
-const contextMenu = useTemplateRef('contextMenu')
+
+const allowTeleport = ref(false)
+const contextMenu = ref()
 const actionScope = useTemplateRef('actionScope')
 const cmBounds = ref()
 
@@ -138,7 +140,7 @@ const updatePosition = () => {
       'bottom': {top: bounds?.bottom, left: bounds?.left - ((cmBounds.value.width - bounds.width) / 2)},
       'top'   : {top: bounds.top - cmBounds.value.height, left: bounds?.left - ((cmBounds.value.width - bounds.width) / 2)},
     }
-    const t = contextMenu.value.contextMenu
+    const t = contextMenu.value
     //console.log(bounds, cmBounds.value, 'top: ', r[props.menuSide].top + 'px', ' left: ', r[props.menuSide].left + 'px')
     t.style.top = r[props.menuSide].top + 'px'
     t.style.left = r[props.menuSide].left + 'px'
@@ -149,7 +151,7 @@ const updatePosition = () => {
 
 const hideMenu = () => {
   if (contextMenu.value){
-    const t = contextMenu.value.contextMenu
+    const t = contextMenu.value
     if (t){
       t.style.top = '0'
       t.style.left = '0'
@@ -161,20 +163,26 @@ const hideMenu = () => {
 
 const handleClickOutside = (event) => {
   if (props.mode == 'click' && actionScope.value && !actionScope.value.contains(event.target)) {
-    contextMenu.value.contextMenu.style.display = 'none'
+    hideMenu()
   }
 }
 
 onMounted(() => {
-  const container = document.getElementById('float-windows-' + chatAppId)
-  console.log(container, contextMenu.value.contextMenu)
-  if (container && contextMenu.value) {
-    const t = contextMenu.value.contextMenu
-    cmBounds.value = t.getBoundingClientRect()
-    t.style.top = '0'
-    t.style.left = '0'
-    t.style.display = 'none'
-    document.addEventListener("click", handleClickOutside)
+  let container
+  while(container == undefined || container == null){
+    container = document.getElementById('float-windows-' + chatAppId)
+    if (container){
+      allowTeleport.value = true
+      nextTick(() => {
+        contextMenu.value = document.getElementById('context-menu-' + buttonContextMenuId)
+        console.log(container, contextMenu.value)
+        if (contextMenu.value) {
+          cmBounds.value = contextMenu.value.getBoundingClientRect()
+          hideMenu()
+          document.addEventListener("click", handleClickOutside)
+        }
+      })
+    }
   }
 })
 
