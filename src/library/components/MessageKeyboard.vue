@@ -1,5 +1,5 @@
 <template>
-  <div class="keyboard__container">
+  <div ref="keyboard" class="keyboard__container">
     <div 
       v-for="key in keyboard"
       class="keyboard__key"
@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { inject } from "vue";
+import { inject, useTemplateRef } from "vue";
 import { useMessage } from "../../helpers/useMessage";
 import { IKeyBoard } from "../../types";
 
@@ -22,6 +22,8 @@ const props = defineProps({
     required: true,
   }
 });
+
+const refKeyboard = useTemplateRef('keyboard')
 
 const emit = defineEmits(['action'])
 
@@ -35,6 +37,10 @@ const handleClickKey = (key : IKeyBoard) => {
   }
   else emit('action', key.action)
 }
+
+defineExpose({
+  refKeyboard
+})
 
 </script>
 

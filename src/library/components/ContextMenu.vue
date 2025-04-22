@@ -1,5 +1,5 @@
 <template>
-  <div class="context-menu__container">
+  <div ref="contextMenu" class="context-menu__container">
     <ul class="context-menu__list">
       <li
         v-for="(action, index) in props.actions"
@@ -31,12 +31,20 @@
 
 <script setup>
 
+import { useTemplateRef } from 'vue';
+
 const props = defineProps({
   actions: {
     type: Array,
     required: true,
   },
 });
+
+const contextMenu = useTemplateRef('contextMenu')
+
+defineExpose({
+  contextMenu
+})
 
 const emit = defineEmits(['click']);
 

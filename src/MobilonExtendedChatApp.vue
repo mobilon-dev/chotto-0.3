@@ -146,7 +146,7 @@
                     />
                     <ChannelSelector
                       :channels="channels"
-                      :mode="'hover'"
+                      :mode="'click'"
                       @select-channel="onSelectChannel"
                     />
                     <AudioRecorder :filebump-url="filebumpUrl" />
@@ -606,6 +606,8 @@ onMounted(() => {
   props.eventor.subscribe(handleEvent);
   userProfile.value = props.authProvider.getUserProfile();
   chatsStore.chats = props.dataProvider.getChats();
+  selectedChat.value = chatsStore.chats[5]
+  selectChat({chat: chatsStore.chats[5]})
   channels.value = props.dataProvider.getChannels();
   templates.value = props.dataProvider.getTemplates()
   wabaTemplates.value = props.dataProvider.getWABATemplates()
