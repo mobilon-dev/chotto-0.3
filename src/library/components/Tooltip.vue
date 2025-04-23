@@ -36,8 +36,12 @@ const props = defineProps({
   },
   position: {
     type: String,
-    default: 'bottom'
+    default: 'top',
   },
+  offset: {
+    type: Number,
+    default: 8,
+  }
 })
 
 const tooltipClasses = computed(() => ({
@@ -47,14 +51,18 @@ const tooltipClasses = computed(() => ({
 
 const updatePosition = () => {
   if (container.value && tooltip.value){
-    const bounds = container.value.getBoundingClientRect()
-    const r = {
-      'left'  : {top: bounds.top, left: bounds?.left - 10},
-      'right' : {top: bounds.top, left: bounds?.left + 10},
-      'bottom': {top: bounds?.bottom + 5, left: bounds?.left},
-      'top'   : {top: bounds.top - (bounds.bottom - bounds.top) - 10, left: bounds?.left},
-    }
     const t = tooltip.value
+    const bounds = container.value.getBoundingClientRect()
+    const tBounds = tooltip.value.getBoundingClientRect()
+    const correctLeft = tBounds.left < 0 ? tBounds.left : 0
+    const correctTop = tBounds.top < 0 ? tBounds.top : 0
+    const r = {
+      'left'  : {top: bounds.top - ((tBounds.height - bounds.height) / 2) - correctTop, left: bounds?.left - tBounds.width - correctLeft - props.offset},
+      'right' : {top: bounds.top - ((tBounds.height - bounds.height) / 2) - correctTop, left: bounds?.left + bounds.width - correctLeft + props.offset},
+      'bottom': {top: bounds?.bottom - correctTop + props.offset, left: bounds?.left - correctLeft},
+      'top'   : {top: bounds.top - tBounds.height - props.offset - correctTop, left: bounds?.left - correctLeft},
+    }
+    //console.log(bounds, tBounds)
     t.style.top = r[props.position].top + 'px'
     t.style.left = r[props.position].left + 'px'
     t.style.opacity = '1'
@@ -101,14 +109,7 @@ onMounted(() => {
 
 .tooltip-wrapper {
   position: relative;
-}
-
-.tooltip--left {
-  transform: translateX(-100%) translateY(-25%);
-}
-
-.tooltip--right {
-  transform: translateX(100%) translateY(-25%);
+  width: fit-content;
 }
 
 .tooltip__text::after {

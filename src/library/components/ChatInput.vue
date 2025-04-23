@@ -10,6 +10,7 @@
     />
     <div class="chat-input__second-line">
       <ButtonContextMenu
+        style="padding: 14px;"
         ref="refBCM"
         v-if="commands"
         :disabled="getMessage().isRecording"

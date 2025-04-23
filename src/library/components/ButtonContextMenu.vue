@@ -69,7 +69,7 @@ const props = defineProps({
   menuSide: {
     type: String,
     required: false,
-    default: 'top'
+    default: 'left'
   },
 });
 
@@ -80,7 +80,7 @@ const emit = defineEmits(['click', 'buttonClick', 'menuMouseEnter', 'menuMouseLe
 const allowTeleport = ref(false)
 const contextMenu = ref()
 const actionScope = useTemplateRef('actionScope')
-const cmBounds = ref()
+const isOpened = ref(false)
 
 const click = (action) => {
   hideMenu()
@@ -89,8 +89,11 @@ const click = (action) => {
 
 const toggle = () => {
   if (!props.disabled) {
-    if (props.mode == 'click') {
+    if (props.mode == 'click' && !isOpened.value) {
       updatePosition()
+    }
+    else if (props.mode == 'click' && isOpened.value) {
+      hideMenu()
     }
     emit('buttonClick')
   }
@@ -132,20 +135,25 @@ const hoverOutCM = () => {
 
 const updatePosition = () => {
   if (actionScope.value && contextMenu.value){
-    const bounds = actionScope.value.getBoundingClientRect()
-    
-    const r = {
-      'left'  : {top: bounds.top - ((cmBounds.value.height - bounds.height) / 2), left: bounds.left - cmBounds.value.width},
-      'right' : {top: bounds.top - ((cmBounds.value.height - bounds.height) / 2), left: bounds.left + bounds.width},
-      'bottom': {top: bounds?.bottom, left: bounds?.left - ((cmBounds.value.width - bounds.width) / 2)},
-      'top'   : {top: bounds.top - cmBounds.value.height, left: bounds?.left - ((cmBounds.value.width - bounds.width) / 2)},
-    }
     const t = contextMenu.value
-    //console.log(bounds, cmBounds.value, 'top: ', r[props.menuSide].top + 'px', ' left: ', r[props.menuSide].left + 'px')
-    t.style.top = r[props.menuSide].top + 'px'
-    t.style.left = r[props.menuSide].left + 'px'
-    t.style.opacity = '1'
+    const bounds = actionScope.value.getBoundingClientRect()
     t.style.display = 'inherit'
+    const cmBounds = contextMenu.value.getBoundingClientRect()
+    t.style.display = 'none'
+    nextTick(() => {
+      const r = {
+        'left'  : {top: bounds.top - ((cmBounds.height - bounds.height) / 2) - cmBounds.top, left: bounds.left - cmBounds.width - cmBounds.left},
+        'right' : {top: bounds.top - ((cmBounds.height - bounds.height) / 2) - cmBounds.top, left: bounds.left + bounds.width - cmBounds.left},
+        'bottom': {top: bounds?.bottom - cmBounds.top, left: bounds?.left - ((cmBounds.width - bounds.width) / 2) - cmBounds.left},
+        'top'   : {top: bounds.top - cmBounds.height - cmBounds.top, left: bounds?.left - ((cmBounds.width - bounds.width) / 2) - cmBounds.left},
+      }
+      //console.log(bounds, cmBounds, 'top: ', r[props.menuSide].top + 'px', ' left: ', r[props.menuSide].left + 'px')
+      t.style.top = r[props.menuSide].top + 'px'
+      t.style.left = r[props.menuSide].left + 'px'
+      t.style.opacity = '1'
+      t.style.display = 'inherit'
+      isOpened.value = true
+    })
   }
 }
 
@@ -157,6 +165,7 @@ const hideMenu = () => {
       t.style.left = '0'
       t.style.opacity = '0'
       t.style.display = 'none'
+      isOpened.value = false
     }
   }
 }
@@ -175,9 +184,8 @@ onMounted(() => {
       allowTeleport.value = true
       nextTick(() => {
         contextMenu.value = document.getElementById('context-menu-' + buttonContextMenuId)
-        console.log(container, contextMenu.value)
+        //console.log(container, contextMenu.value)
         if (contextMenu.value) {
-          cmBounds.value = contextMenu.value.getBoundingClientRect()
           hideMenu()
           document.addEventListener("click", handleClickOutside)
         }
