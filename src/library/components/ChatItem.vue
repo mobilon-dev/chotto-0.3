@@ -58,13 +58,14 @@
       </div>
 
       <ButtonContextMenu
-        v-if="(buttonMenuVisible) && chat.actions"
+        v-if="buttonMenuVisible && chat.actions"
         id="noSelectButton"
         :actions="chat.actions"
         mode="click"
         buttonClass='pi pi-ellipsis-h'
         menuSide="bottom"
         @click="clickAction"
+        @button-click="BCMclick"
         @menu-mouse-leave="buttonMenuVisible = false"
       />
 
@@ -171,13 +172,20 @@ const props = defineProps({
 const emit = defineEmits(['select', 'action']);
 
 const buttonMenuVisible = ref(false);
+const preventEmit = ref(false)
+
+const BCMclick = () => {
+  preventEmit.value = true
+}
 
 const selectChat = (event: MouseEvent) => { 
-  
-  if (event.target instanceof HTMLElement && event.target.id != 'noSelectButton' && !props.chat.dialogs)
-    emit('select', {chat: props.chat, dialog: null});
-  if (props.chat.dialogs)
-  props.chat.dialogsExpanded = !props.chat.dialogsExpanded
+  if (!preventEmit.value){
+    if (event.target instanceof HTMLElement && event.target.id != 'noSelectButton' && !props.chat.dialogs)
+      emit('select', {chat: props.chat, dialog: null});
+    if (props.chat.dialogs)
+      props.chat.dialogsExpanded = !props.chat.dialogsExpanded
+  }
+  preventEmit.value = false
 }
 
 const selectDialog = (dialog) => {
