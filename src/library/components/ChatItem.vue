@@ -59,15 +59,15 @@
 
       <ButtonContextMenu
         v-if="buttonMenuVisible && chat.actions"
-        id="noSelectButton"
-        :actions="chat.actions"
         mode="click"
-        buttonClass='pi pi-ellipsis-h'
-        menuSide="bottom"
+        menu-side="bottom"
+        :actions="chat.actions"
         @click="clickAction"
         @button-click="BCMclick"
         @menu-mouse-leave="buttonMenuVisible = false"
-      />
+      >
+        <span class='pi pi-ellipsis-h chat-item__actions-trigger'></span>
+      </ButtonContextMenu>
 
       <div
         v-if="chat.countUnread < 1"
@@ -359,6 +359,17 @@ const onMouseLeave = (event) => {
     span {
       color: var(--chotto-button-color-active);
     }
+  }
+
+  &__actions-trigger{
+    display: block;
+    cursor: pointer;
+    font-size: var(--chotto-button-icon-size);
+    color: var(--chotto-button-color-active);
+  }
+
+  &__actions-trigger:hover{
+    color: var(--chotto-button-color-hover);
   }
 
   &__menu-button {

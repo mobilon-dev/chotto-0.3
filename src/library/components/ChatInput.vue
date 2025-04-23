@@ -10,14 +10,20 @@
     />
     <div class="chat-input__second-line">
       <ButtonContextMenu
-        style="padding: 14px;"
-        ref="refBCM"
         v-if="commands"
+        ref="refBCM"
+        menu-side="top"
         :disabled="getMessage().isRecording"
         :actions="commands"
-        button-title="/"
         @click="sendCommand"
-      />
+      >
+        <span 
+          class='chat-input__commands-trigger'
+          :class="{'chat-input__commands-disabled' : getMessage().isRecording}"
+        >
+          /
+        </span>
+      </ButtonContextMenu>
 
       <textarea
         :disabled="state == 'disabled' || getMessage().isRecording"
@@ -276,6 +282,24 @@ const sendMessage = () => {
       cursor: auto;
       color: var(--chotto-chat-input-icon-color-disabled);
     }
+  }
+
+  &__commands-trigger{
+    padding: 14px;
+    display: block;
+    cursor: pointer;
+    font-size: var(--chotto-button-icon-size);
+    color: var(--chotto-button-color-active);
+  }
+
+  &__commands-trigger:hover{
+    color: var(--chotto-button-color-hover);
+  }
+
+  &__commands-disabled {
+    color: var(--chotto-button-color-disabled);
+    cursor: auto;
+    pointer-events: none;
   }
 }
 

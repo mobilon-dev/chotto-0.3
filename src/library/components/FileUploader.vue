@@ -7,15 +7,19 @@
   </div>
   <ButtonContextMenu
     v-else-if="!getMessage().isRecording"
-    class="file-uploader__trigger"
     :actions="actions"
     :mode="'hover'"
-    :button-class="'pi pi-file-arrow-up'"
     :menu-side="'top'"
     :disabled="!canUploadFile || state == 'disabled'"
     @click="triggerFileUpload"
     @button-click="triggerFileUploadDefault"
-  />
+  >
+    <span 
+      class='pi pi-file-arrow-up file-uploader__trigger'
+      :class="{'file-uploader__disabled' : !canUploadFile || state == 'disabled'}"
+    >
+    </span>
+  </ButtonContextMenu>
   <input
     ref="fileInput"
     style="display: none;"
@@ -172,7 +176,22 @@ onMounted(() => {
 .file-uploader{
   &__trigger{
     padding: 14px;
+    display: block;
+    cursor: pointer;
+    font-size: var(--chotto-button-icon-size);
+    color: var(--chotto-button-color-active);
   }
+
+  &__trigger:hover{
+    color: var(--chotto-button-color-hover);
+  }
+
+  &__disabled {
+    color: var(--chotto-button-color-disabled);
+    cursor: auto;
+    pointer-events: none;
+  }
+
 }
 
 </style>
