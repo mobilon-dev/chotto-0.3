@@ -9,17 +9,8 @@
     @mouseenter="hover"
     @mouseleave="hoverOut"
   >
-    <div
-      class="button"
-      :class="{
-        'disabled-button': disabled,
-      }"
-      @click="toggle"
-      
-    >
-      <span :class="buttonClass">
-        {{ buttonTitle }}
-      </span>
+    <div @click="toggle">
+      <slot></slot>
     </div>
     <Teleport v-if="allowTeleport" :to="'#float-windows-' + chatAppId">
       <ContextMenu
@@ -36,7 +27,7 @@
 </template>
 
 <script setup>
-import { useTemplateRef, ref, onMounted, onUnmounted, useId, inject, nextTick} from 'vue';
+import { ref, onMounted, onUnmounted, useId, inject, nextTick} from 'vue';
 import { ContextMenu } from '.';
 
 const chatAppId = inject('chatAppId')
@@ -51,16 +42,6 @@ const props = defineProps({
     required: false,
     default: 'hover',
   },
-  buttonClass: {
-    type: String,
-    required: false,
-    default: '',
-  },
-  buttonTitle: {
-    type: String,
-    required: false,
-    default: '',
-  },
   disabled: {
     type: Boolean,
     default: false,
@@ -69,7 +50,7 @@ const props = defineProps({
   menuSide: {
     type: String,
     required: false,
-    default: 'left'
+    default: 'top'
   },
 });
 
@@ -79,7 +60,7 @@ const emit = defineEmits(['click', 'buttonClick', 'menuMouseEnter', 'menuMouseLe
 
 const allowTeleport = ref(false)
 const contextMenu = ref()
-const actionScope = useTemplateRef('actionScope')
+const actionScope = ref()
 const isOpened = ref(false)
 
 const click = (action) => {
@@ -209,19 +190,4 @@ defineExpose({
   scoped
   lang="scss"
 >
-.button span {
-  display: block;
-  cursor: pointer;
-  font-size: var(--chotto-button-icon-size);
-  color: var(--chotto-button-color-active);
-}
-
-.button:hover span {
-  color: var(--chotto-button-color-hover);
-}
-
-.disabled-button span {
-  color: var(--chotto-button-color-disabled);
-  cursor: auto;
-}
 </style>

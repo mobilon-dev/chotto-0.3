@@ -22,14 +22,18 @@
       {{ t('component.ChannelSelector.Placeholder') }}
     </span>
     <ButtonContextMenu
-      class="channels__trigger"
       :actions="channels"
       :mode="mode"
-      :button-class="'pi pi-list'"
       :menu-side="'top'"
       :disabled="state == 'disabled'"
       @click="selectChannel"
-    />
+    >
+      <span 
+        class='pi pi-list channels__trigger'
+        :class="{'channels__disabled' : state == 'disabled'}"
+      >
+      </span>
+    </ButtonContextMenu>
   </div>
 </template>
 
@@ -108,6 +112,20 @@ const selectChannel = (channel) => {
 
   &__trigger{
     padding: 14px;
+    display: block;
+    cursor: pointer;
+    font-size: var(--chotto-button-icon-size);
+    color: var(--chotto-button-color-active);
+  }
+
+  &__trigger:hover{
+    color: var(--chotto-button-color-hover);
+  }
+
+  &__disabled {
+    color: var(--chotto-button-color-disabled);
+    cursor: auto;
+    pointer-events: none;
   }
 }
 </style>
