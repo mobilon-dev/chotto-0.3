@@ -4,6 +4,8 @@ import TypingMessage from './TypingMessage.vue';
  
 const meta: Meta<typeof TypingMessage> = {
   component: TypingMessage,
+  decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
+
 };
  
 export default meta;

@@ -5,6 +5,8 @@ import { ITextMessage } from '../../types'
 
 const meta: Meta<typeof TextMessage> = {
   component: TextMessage,
+  decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
+
 };
 
 export default meta;

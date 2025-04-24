@@ -4,6 +4,8 @@ import UserProfile from './UserProfile.vue';
 
 const meta: Meta<typeof UserProfile> = {
   component: UserProfile,
+  decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
+
 };
  
 export default meta;

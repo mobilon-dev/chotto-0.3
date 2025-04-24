@@ -66,6 +66,7 @@ const props = defineProps({
   },
   height: String,
   width: String,
+  extChatAppId: String,
 });
 const emit = defineEmits(["close-window", "get-size"]);
 
@@ -79,6 +80,7 @@ const contentHeight = ref(0);
 
 const chatAppId = useId()
 provide('chatAppId', chatAppId)
+provide('extChatAppId', props.extChatAppId ? props.extChatAppId : '')
 
 const centerWindow = () => {
   if (element.value) {

@@ -4,6 +4,7 @@ import Feed from './Feed.vue';
 
 const meta: Meta<typeof Feed> = {
   component: Feed,
+  decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
 };
  
 export default meta;

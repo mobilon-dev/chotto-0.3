@@ -5,6 +5,8 @@ import { IAudioMessage } from '../../types';
 
 const meta: Meta<typeof AudioMessage> = {
   component: AudioMessage,
+  decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
+
 };
 
 export default meta;

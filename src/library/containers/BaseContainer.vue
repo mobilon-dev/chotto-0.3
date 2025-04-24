@@ -16,19 +16,17 @@
 </template>
 
 <script setup>
-import { useId, provide } from 'vue'
+import { useId, provide, onMounted } from 'vue'
 
 const props = defineProps({
   height: String,
   width: String,
+  extChatAppId: String
 })
 
 const chatAppId = useId()
 provide('chatAppId', chatAppId)
-
-
-
-
+provide('extChatAppId', props.extChatAppId ? props.extChatAppId : '')
 
 </script>
 

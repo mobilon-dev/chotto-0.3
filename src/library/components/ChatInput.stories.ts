@@ -4,6 +4,7 @@ import ChatInput from './ChatInput.vue';
 
 const meta: Meta<typeof ChatInput> = {
   component: ChatInput,
+  decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
 };
  
 export default meta;

@@ -4,6 +4,8 @@ import ChatItem from './ChatItem.vue';
 
 const meta: Meta<typeof ChatItem> = {
   component: ChatItem,
+  decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
+
 };
 
 export default meta;

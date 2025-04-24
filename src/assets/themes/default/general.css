@@ -1,7 +1,5 @@
 [data-theme="light"] {
 
-  --chotto-container-color: #1e1e1e;
-  --chotto-container-bg-color: var(--default-white);
   --chotto-container-font-family: "Open Sans", sans-serif;
   --chotto-container-font-weight: var(--regular-font-weight);
   --chotto-container-borders: 1px solid var(--neutral-200);

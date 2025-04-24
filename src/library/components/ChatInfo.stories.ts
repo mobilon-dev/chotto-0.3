@@ -4,6 +4,8 @@ import ChatInfo from './ChatInfo.vue';
 
 const meta: Meta<typeof ChatInfo> = {
   component: ChatInfo,
+  decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
+
 };
  
 export default meta;

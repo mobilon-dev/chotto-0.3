@@ -5,6 +5,8 @@ import {IDateMessage} from '../../types';
 
 const meta: Meta<typeof DateMessage> = {
   component: DateMessage,
+  decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
+
 };
  
 export default meta;

@@ -8,7 +8,7 @@ const meta: Meta<typeof TemplateSelector> = {
   parameters: {
     layout: 'centered',
   },
-  decorators: [() => ({ template: '<div style="min-height: 50px; min-width: 850px; margin-top: 550px; padding: 0px 0px; position: relative"><story/></div>' })]
+  decorators: [() => ({ template: '<div data-theme="light" style="min-height: 50px; min-width: 850px; margin-top: 550px; padding: 0px 0px; position: relative"><story/></div>' })]
 };
  
 export default meta;

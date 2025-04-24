@@ -7,6 +7,8 @@ const meta: Meta<typeof MessageKeyboard> = {
   parameters: {
     layout: 'centered',
   },
+  decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
+
 };
  
 export default meta;

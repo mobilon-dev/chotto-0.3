@@ -9,7 +9,7 @@ const meta: Meta<typeof ChatList> = {
 export default meta;
 type Story = StoryObj<typeof ChatList>;
 
-const template = '<div style="max-width: 350px; max-height:700px;"><story/></div>';
+const template = '<div data-theme="light" style="max-width: 350px; max-height:700px;"><story/></div>';
 
 const chats = [{
   chatId: '1',
