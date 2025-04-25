@@ -42,9 +42,11 @@ const changeTheme = (event) => {
 };
 
 const setTheme = (themeCode) => {
-  document.getElementById(chatAppId).dataset.theme = themeCode;
-  document.getElementById('float-windows-' + chatAppId).dataset.theme = themeCode
-  getTheme().theme = themeCode
+  if (chatAppId){
+    document.getElementById(chatAppId).dataset.theme = themeCode;
+    document.getElementById('float-windows-' + chatAppId).dataset.theme = themeCode
+    getTheme().theme = themeCode
+  }
 }
 
 onMounted(() => {

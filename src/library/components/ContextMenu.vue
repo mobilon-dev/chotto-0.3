@@ -1,5 +1,5 @@
 <template>
-  <div ref="contextMenu" class="context-menu__container">
+  <div class="context-menu__container">
     <ul class="context-menu__list">
       <li
         v-for="(action, index) in props.actions"
@@ -39,12 +39,6 @@ const props = defineProps({
     required: true,
   },
 });
-
-const contextMenu = useTemplateRef('contextMenu')
-
-defineExpose({
-  contextMenu
-})
 
 const emit = defineEmits(['click']);
 

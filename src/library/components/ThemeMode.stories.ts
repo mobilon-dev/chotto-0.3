@@ -28,7 +28,8 @@ const ThemeModeItems = [
 
 export const Standard: Story = {
   args: {
-    themes: ThemeModeItems
+    themes: ThemeModeItems,
+    show: true
   },
 };
 
