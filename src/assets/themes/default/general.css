@@ -1,6 +1,6 @@
 [data-theme="light"] {
 
-  --chotto-container-font-family: "Open Sans", sans-serif;
+  --chotto-container-font-family: 'Montserrat', sans-serif;
   --chotto-container-font-weight: var(--regular-font-weight);
   --chotto-container-borders: 1px solid var(--neutral-200);
 
@@ -12,9 +12,9 @@
 
   --chotto-header-font-size: 20px;
   --chotto-title-font-size: 16px;
-  --chotto-text-font-size: 14px;
-  --chotto-additional-text-font-size: 12px;
-  --chotto-small-text-font-size: 10px;
+  --chotto-text-font-size: 15px;
+  --chotto-additional-text-font-size: 13px;
+  --chotto-small-text-font-size: 11px;
 
   --chotto-header-font-weight: 700;
   --chotto-title-font-weight: 600;
@@ -41,11 +41,10 @@
   --chotto-unread-background-color: var(--p-red-500);
   --chotto-unread-text-color: var(--neutral-50); 
 
-  /* не применяется*/
-  --chotto-action-button-color-active: '';
-  --chotto-action-button-color-hover: '';
-  --chotto-action-button-color-disabled: '';
-
+  --chotto-action-button-color-active: #00cbfa;
+  --chotto-action-button-color-hover: #3fddff;
+  --chotto-action-button-color-disabled: #b4e8f9;
+/* не применяется*/
   --chotto-danger-button-color-active: '';
   --chotto-danger-button-color-hover: '';
   --chotto-danger-button-color-disabled: '';

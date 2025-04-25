@@ -132,6 +132,7 @@ const chatDescription = computed(() => {
     grid-column: 2;
     color: var(--chotto-primary-text-color);
     font-size: var(--chotto-title-font-size);
+    font-weight: var(--chotto-title-font-weight);
     margin: 0;
   }
 

@@ -1,4 +1,4 @@
-[data-theme="light"] {
+[data-theme="green"] {
   /* Chat Panel */
   --chotto-chat-panel-border-radius: 0px;
 
@@ -10,12 +10,12 @@
 
   /* Chat List */
   --chotto-chat-list-filter-margin: 0 15px 10px 15px;
-  --chotto-chat-list-items-padding: 0 5px 0 5px;
+  --chotto-chat-list-items-padding: 0;
   --chotto-chat-list-title-container-padding: 16px 0 16px 15px;
   --chotto-chat-list-fixed-background-color: var(--default-white);
 
   /* Chat Input */
-  --chotto-chat-input-container-bg: var(--neutral-100);
+  --chotto-chat-input-container-bg: var(--default-white);
   --chotto-chat-input-icon-color: var(--neutral-600);
   --chotto-chat-input-icon-color-disabled: var(--neutral-200);
 
@@ -51,7 +51,7 @@
   --chotto-input-border: 1px solid var(--neutral-300);
   --chotto-input-hover-border-color: var(--neutral-500);
   --chotto-input-focus-border-color: var(--neutral-700);
-  --chotto-input-border-radius: 0px 0px 10px 10px;
+  --chotto-input-border-radius: 5px;
 
   --chotto-input-background: transparent;
   --chotto-input-padding: 0.5rem 0.75rem;
@@ -60,7 +60,7 @@
 
   /*Avatar*/
 
-  --chotto-avatar-small: 45px;
+  --chotto-avatar-small: 40px;
   --chotto-avatar-medium: 50px;
   --chotto-avatar-small-icon-size: 24px;
   --chotto-avatar-medium-icon-size: 21px;
