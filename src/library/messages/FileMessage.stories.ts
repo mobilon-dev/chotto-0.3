@@ -5,6 +5,8 @@ import { IFileMessage } from '../../types'
 
 const meta: Meta<typeof FileMessage> = {
   component: FileMessage,
+  decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
+
 };
 
 export default meta;

@@ -1,13 +1,33 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
  
 import ButtonContextMenu from './ButtonContextMenu.vue';
-
+import BaseContainer from '../containers/BaseContainer.vue'
+import ThemeMode from './ThemeMode.vue';
 const meta: Meta<typeof ButtonContextMenu> = {
   component: ButtonContextMenu,
+  render: (args) => ({
+   components: {BaseContainer, ButtonContextMenu, ThemeMode},
+   setup() {return {args}},
+   template: `
+    <BaseContainer :extChatAppId="args.extChatAppId">
+      <div style="margin: 100px;">
+        <ThemeMode :themes="args.theme"
+        />
+        <ButtonContextMenu 
+          :actions = "args.actions" 
+          :menuSide = "args.menuSide"
+          :disabled = "args.disabled"
+          :mode = "args.mode"
+        >
+          <div v-html="args.default"></div>
+        </ButtonContextMenu>
+      </div>
+    </BaseContainer>
+   ` 
+  }),
   parameters: {
     layout: 'centered',
   },
-  decorators: [() => ({ template: '<div style="margin: 100px;"><story/></div>' })]
 };
  
 export default meta;
@@ -17,6 +37,12 @@ const actions = [
   {action: 'edit', title: 'изменить'},
   {action: 'delete', title: 'удалить'},
 ];
+
+const theme = [{
+  code: "light",
+  name: "Light",
+  default: true,
+}]
 
 const actionsWithIcons = [
   {action: 'pin', title: 'прикрепить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=pin'},
@@ -38,65 +64,88 @@ const actionsLA = [
 export const StandardRight: Story = {
   args: {
     actions: actions,
-    buttonClass: 'pi pi-list',
     menuSide: 'right',
+    default: '<span class="pi pi-list"></span>',
+    //@ts-ignore
+    theme,
+    extChatAppId: '1'
   },
-  
 };
 
 export const WithIcons: Story = {
   args: {
     actions: actionsWithIcons,
-    buttonClass: 'pi pi-list',
     menuSide: 'left',
+    default: '<span class="pi pi-list"></span>',
+    //@ts-ignore
+    theme: theme,
+    extChatAppId: '2'
   },
 };
 
 export const FileDropDownMenu: Story = {
   args: {
     actions: actionsFileDropDown,
-    buttonClass: 'pi pi-file-arrow-up',
     menuSide: 'right',
+    default: '<span class="pi pi-list"></span>',
+    //@ts-ignore
+    theme: theme,
+    extChatAppId: '3'
   },
 };
 
 export const WithoutIcon: Story = {
   args: {
     actions: actions,
-    buttonClass: '',
-    buttonTitle: 'Нажми сюда',
     menuSide: 'right',
+    default: '<span>Нажми сюда</span>',
+    mode: 'click',
+    //@ts-ignore
+    theme: theme,
+    extChatAppId: '4'
   },
 };
 
 export const StandardTop: Story = {
   args: {
     actions: actions,
-    buttonClass: 'pi pi-list',
     menuSide: 'top',
+    default: '<span class="pi pi-list"></span>',
+    //@ts-ignore
+    theme: theme,
+    extChatAppId: '5'
   },
 };
 
 export const StandardLeft: Story = {
   args: {
     actions: actions,
-    buttonClass: 'pi pi-list',
     menuSide: 'left',
+    default: '<span class="pi pi-list"></span>',
+    //@ts-ignore
+    theme: theme,
+    extChatAppId: '6'
   },
 };
 
 export const StandardBottom: Story = {
   args: {
     actions: actions,
-    buttonClass: 'pi pi-list',
     menuSide: 'bottom',
+    default: '<span class="pi pi-list"></span>',
+    //@ts-ignore
+    theme: theme,
+    extChatAppId: '7'
   },
 };
 
 export const LongActions: Story = {
   args: {
     actions: actionsLA,
-    buttonClass: 'pi pi-list',
     menuSide: 'right',
+    default: '<span class="pi pi-list"></span>',
+    //@ts-ignore
+    theme: theme,
+    extChatAppId: '8'
   },
 };

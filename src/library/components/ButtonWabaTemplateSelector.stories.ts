@@ -19,7 +19,7 @@ export const Standard: Story = {
     wabaTemplates,
     groupTemplates,
   },
-  decorators: [() => ({ template: '<div style="min-height: 100px; min-width: 800px; margin-top: 550px; padding: 0px 0px; position: relative"><story/></div>' })]
+  decorators: [() => ({ template: '<div data-theme="light" style="min-height: 100px; min-width: 800px; margin-top: 550px; padding: 0px 0px; position: relative"><story/></div>' })]
 };
 
 export const InactiveButton: Story = {

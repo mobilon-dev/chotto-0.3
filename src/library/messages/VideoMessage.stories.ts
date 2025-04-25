@@ -4,6 +4,8 @@ import VideoMessage from './VideoMessage.vue';
 
 const meta: Meta<typeof VideoMessage> = {
   component: VideoMessage,
+  decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
+
 };
 
 export default meta;

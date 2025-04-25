@@ -4,6 +4,8 @@ import SystemMessage from './SystemMessage.vue';
  
 const meta: Meta<typeof SystemMessage> = {
   component: SystemMessage,
+  decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
+
 };
  
 export default meta;

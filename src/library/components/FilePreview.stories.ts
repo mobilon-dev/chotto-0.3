@@ -4,6 +4,8 @@ import FilePreview from './FilePreview.vue';
 
 const meta: Meta<typeof FilePreview> = {
   component: FilePreview,
+  decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
+
 };
  
 export default meta;

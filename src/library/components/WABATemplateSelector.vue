@@ -799,16 +799,21 @@ onMounted(() => {
     justify-self: flex-end;
     margin: 16px 0 0 0;
     font-size: var(--chotto-title-font-size);
-    background-color: var(--chotto-button-color-active);
+    background-color: var(--chotto-action-button-color-active);
     border: none;
     padding: 8px 16px;
     border-radius: 10px;
     cursor: pointer;
 
     &:disabled {
-      background-color: var(--chotto-button-color-disabled);
+      background-color: var(--chotto-action-button-color-disabled);
       cursor: default;
+      pointer-events: none;
     }
+    &:hover{
+    background-color: var(--chotto-action-button-color-hover);
+  }
+    
   }
 }
 

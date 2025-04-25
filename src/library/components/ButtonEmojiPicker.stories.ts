@@ -1,14 +1,28 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
  
 import {ButtonEmojiPicker} from '.';
+import BaseContainer from '../containers/BaseContainer.vue';
   
 const meta: Meta<typeof ButtonEmojiPicker> = {
   component: ButtonEmojiPicker,
   parameters: {
     layout: 'centered',
   },
+  render: (args) => ({
+    components: {BaseContainer, ButtonEmojiPicker},
+    setup() {return {args}},
+    template: `
+     <BaseContainer data-theme='light'>
+       <div style="margin: 100px;">
+         <ButtonEmojiPicker v-bind=args />
+       </div>
+     </BaseContainer>
+    ` 
+   }),
 };
- 
+
+
+  
 export default meta;
 type Story = StoryObj<typeof ButtonEmojiPicker>;
  

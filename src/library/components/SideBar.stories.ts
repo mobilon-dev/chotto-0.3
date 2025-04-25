@@ -4,6 +4,8 @@ import SideBar from './SideBar.vue';
 
 const meta: Meta<typeof SideBar> = {
   component: SideBar,
+  decorators: [() => ({template: '<div data-theme="light" style="max-width: 100px"><story /></div>'})]
+
 };
  
 export default meta;

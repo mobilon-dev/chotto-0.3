@@ -4,6 +4,8 @@ import FeedFoundItem from './FeedFoundItem.vue';
 
 const meta: Meta<typeof FeedFoundItem> = {
   component: FeedFoundItem,
+  decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
+
 };
 
 export default meta;

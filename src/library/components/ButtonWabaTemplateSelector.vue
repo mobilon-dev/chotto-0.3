@@ -128,6 +128,7 @@ const sendWabaValues = (obj) => {
 }
 
 .button-template-disabled {
+  pointer-events: none;
   span {
     cursor: auto;
     color: var(--chotto-button-color-disabled);

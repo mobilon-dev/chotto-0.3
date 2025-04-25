@@ -7,6 +7,10 @@ const meta: Meta<typeof AudioRecorder> = {
   parameters: {
     layout: 'centered',
   },
+  decorators: [() => 
+    ({ template: 
+      '<div data-theme="light" id="chat-input-file-line-undefined"></div><div style="min-height: 100px; padding: 0px 0px; position: relative" data-theme="light"><story/></div>'
+    })]
 };
  
 export default meta;
@@ -17,9 +21,7 @@ export const Standard: Story = {
   args:{
     state: 'active'
   },
-  decorators: [() => 
-    ({ template: 
-      '<div id="chat-input-file-line-undefined"></div><div style="min-height: 100px; padding: 0px 0px; position: relative"><story/></div>' })]
+  
 };
 
 export const InactiveButton: Story = {

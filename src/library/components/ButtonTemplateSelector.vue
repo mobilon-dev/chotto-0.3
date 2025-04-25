@@ -120,6 +120,7 @@ onMounted(() => {
 }
 
 .button-template-disabled{
+  pointer-events: none;
   span{
     cursor: auto;
     color: var(--chotto-button-color-disabled);

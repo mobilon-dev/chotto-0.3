@@ -4,6 +4,7 @@ import ChatPanel from './ChatPanel.vue';
 
 const meta: Meta<typeof ChatPanel> = {
   component: ChatPanel,
+  decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
 
 };
  

@@ -2,14 +2,30 @@ import type { Meta, StoryObj } from '@storybook/vue3';
  
 // import Channels from './Channels.vue';
 import Channels from './ChannelSelector.vue';
-
+import BaseContainer from '../containers/BaseContainer.vue';
+import ThemeMode from './ThemeMode.vue';
 const meta: Meta<typeof Channels> = {
   component: Channels,
+  render: (args) => ({
+    components: {BaseContainer, Channels, ThemeMode},
+    setup() {return {args}},
+    template: `
+      <BaseContainer :extChatAppId=args.extChatAppId>
+        <ThemeMode :themes="args.theme" />
+        <Channels v-bind=args />
+      </BaseContainer>
+    ` 
+   }),
 };
  
 export default meta;
 type Story = StoryObj<typeof Channels>;
- 
+
+const theme = [{
+  code: "light",
+  name: "Light",
+  default: true,
+}]
 
 const testChannelsList = [
   {
@@ -51,11 +67,14 @@ const testChannelsList2 = [
   },
 ];
 
-const template = '<div style="min-height: 100px; min-width: 600px; margin-top: 150px; padding: 0px 0px"><story/></div>';
+const template = '<div data-theme="light" style="min-height: 100px; min-width: 600px; margin-top: 150px; padding: 0px 0px"><story/></div>';
 
 export const HaveSelectedChannel: Story = {
   args: {
     channels: testChannelsList,
+    //@ts-ignore
+    extChatAppId: '1',
+    theme,
   },
   decorators: [() => ({ template })]
 };
@@ -63,6 +82,9 @@ export const HaveSelectedChannel: Story = {
 export const HaveNotSelectedChannel: Story = {
   args: {
     channels: testChannelsList2,
+    //@ts-ignore
+    extChatAppId: '2',
+    theme,
   },
   decorators: [() => ({ template })]
 };
@@ -70,6 +92,9 @@ export const HaveNotSelectedChannel: Story = {
 export const ChannelsEmptyArray: Story = {
   args: {
     channels: [],
+    //@ts-ignore
+    extChatAppId: '3',
+    theme,
   },
   decorators: [() => ({ template })]
 };
@@ -78,6 +103,9 @@ export const InactiveChannels: Story = {
   args: {
     channels: [],
     state: 'disabled',
+    //@ts-ignore
+    extChatAppId: '4',
+    theme,
   },
   decorators: [() => ({ template })]
 };

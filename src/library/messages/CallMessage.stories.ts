@@ -5,6 +5,8 @@ import { ICallMessage } from '../../types';
 
 const meta: Meta<typeof CallMessage> = {
   component: CallMessage,
+  decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
+
 };
  
 export default meta;

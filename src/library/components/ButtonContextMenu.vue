@@ -1,6 +1,6 @@
 <template>
   <div
-    :id="'container-' + buttonContextMenuId"
+    :id="'container-' + buttonContextMenuId + extChatAppId"
     ref="actionScope"
     style="
       position: relative;
@@ -14,7 +14,7 @@
     </div>
     <Teleport v-if="allowTeleport" :to="'#float-windows-' + chatAppId">
       <ContextMenu
-        :id="'context-menu-' + buttonContextMenuId"
+        :id="'context-menu-' + buttonContextMenuId + extChatAppId"
         ref="contextMenu"
         :actions="actions"
         @mouseenter="hoverCM"
@@ -27,10 +27,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, useId, inject, nextTick} from 'vue';
+import { ref, onMounted, onUnmounted, useId, inject, nextTick, computed} from 'vue';
 import { ContextMenu } from '.';
 
 const chatAppId = inject('chatAppId')
+const extChatAppId = inject('extChatAppId')
 
 const props = defineProps({
   actions: {
@@ -164,7 +165,7 @@ onMounted(() => {
     if (container){
       allowTeleport.value = true
       nextTick(() => {
-        contextMenu.value = document.getElementById('context-menu-' + buttonContextMenuId)
+        contextMenu.value = document.getElementById('context-menu-' + buttonContextMenuId + extChatAppId)
         //console.log(container, contextMenu.value)
         if (contextMenu.value) {
           hideMenu()

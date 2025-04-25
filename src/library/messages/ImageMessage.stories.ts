@@ -5,6 +5,8 @@ import { IImageMessage } from '../../types'
 
 const meta: Meta<typeof ImageMessage> = {
   component: ImageMessage,
+  decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
+
 };
 
 export default meta;
