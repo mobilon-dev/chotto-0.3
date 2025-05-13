@@ -24,6 +24,8 @@ const props = defineProps({
   show: Boolean,
 });
 
+const emit = defineEmits(['selectedTheme'])
+
 const chatAppId = inject('chatAppId')
 
 const {getTheme} = useTheme(chatAppId)
@@ -46,6 +48,7 @@ const setTheme = (themeCode) => {
     document.getElementById(chatAppId).dataset.theme = themeCode;
     document.getElementById('float-windows-' + chatAppId).dataset.theme = themeCode
     getTheme().theme = themeCode
+    emit('selectedTheme', themeCode)
   }
 }
 

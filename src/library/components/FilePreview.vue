@@ -77,6 +77,7 @@
       <transition name="modal-fade">
         <ModalFullscreen
           v-if="isOpenModal"
+          :theme="getTheme().theme ? getTheme().theme : ''"
           @close="closeModal"
         >
           <video
@@ -100,9 +101,15 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, computed } from 'vue';
+import { onMounted, ref, computed, inject } from 'vue';
 import { IFilePreview } from '../../types'
 import ModalFullscreen from '../modals/modal-wrapper/ModalFullscreen.vue';
+import { useTheme } from '../../helpers/useTheme';
+
+const chatAppId = inject('chatAppId')
+
+const { getTheme } = useTheme(chatAppId as string)
+
 defineProps({
   fileInfo: {
     type: Object as () => IFilePreview,

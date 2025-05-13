@@ -138,6 +138,7 @@
     <transition name="modal-fade">
       <ModalFullscreen
         v-if="isOpenModal"
+        :data-theme="getTheme().theme ? getTheme().theme : null"
         @close="closeModal"
       >
         <video
@@ -157,7 +158,7 @@
   setup
   lang="ts"
 >
-import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch, inject } from 'vue'
 import linkifyStr from "linkify-string";
 
 import { ContextMenu } from '../components'
@@ -167,6 +168,11 @@ import BaseReplyMessage from './BaseReplyMessage.vue'
 import LinkPreview from './LinkPreview.vue'
 import EmbedPreview from './EmbedPreview.vue';
 import ModalFullscreen from '../modals/modal-wrapper/ModalFullscreen.vue';
+import { useTheme } from '../../helpers/useTheme';
+
+const chatAppId = inject('chatAppId')
+
+const { getTheme } = useTheme(chatAppId as string)
 
 defineOptions({
   inheritAttrs: false,

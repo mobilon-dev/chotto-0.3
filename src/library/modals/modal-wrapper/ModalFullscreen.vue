@@ -1,7 +1,7 @@
 <template>
   <div
     class="modal__overlay"
-    :data-theme="getTheme().theme"
+    :data-theme="theme"
     @click="closeModalOutside"
     @keyup.esc="emit('close')"
   >
@@ -20,14 +20,17 @@
 </template>
 
 <script setup>
-import { inject } from 'vue';
-import { useTheme } from '../../../helpers/useTheme';
+
+const props = defineProps({
+  theme: {
+    type: String,
+    required: false,
+    default: 'light'
+  }
+})
 
 const emit = defineEmits(['close']);
 
-const chatAppId = inject('chatAppId')
-
-const { getTheme } = useTheme(chatAppId)
 
 const closeModalOutside = (evt) => {
   if (evt.target.classList.contains('modal__overlay')) {
