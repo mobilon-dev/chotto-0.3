@@ -1,17 +1,28 @@
 <template>
-  <input
-    ref="refInput"
-    class="chat-filter__input"
-    type="text"
-    :placeholder="t('component.ChatFilter.InputPlaceholder')"
-    @input="update"
-  >
+  <div class="chat-filter__container">
+    <span class="pi pi-search chat-filter__icon"></span>
+    <input
+      ref="refInput"
+      class="chat-filter__input"
+      type="text"
+      :placeholder="placeholder ? placeholder : t('component.ChatFilter.InputPlaceholder')"
+      @input="update"
+    >
+  </div>
 </template>
 
 <script setup>
 import { ref, unref } from 'vue';
 import { t } from '../../locale/useLocale';
 const refInput = ref('');
+
+const props = defineProps({
+  placeholder: {
+    type: String,
+    required: false,
+    default: null
+  }
+})
 
 // Define emits
 const emit = defineEmits(['update']);
@@ -29,10 +40,23 @@ const update = () => {
   lang="scss"
 >
 .chat-filter {
+  &__container{
+    position: relative;
+  }
+
+  &__icon{
+    position: absolute;
+    left: 15px;
+    top: 25%;
+    color: var(--chotto-secondary-text-color);
+  }
+
   &__input {
+    width: 100%;
     background-color: transparent;
     color: var(--chotto-primary-text-color);
     padding: var(--chotto-input-padding);
+    padding-left: 40px;
     border: var(--chotto-input-border);
     border-radius: var(--chotto-input-border-radius);
     font-size: var(--chotto-input-font-size);

@@ -14,6 +14,7 @@
           <ThemeMode
             :themes="themes"
             :show="true"
+            @selected-theme="setTheme"
           />
         </template>
 
@@ -23,11 +24,14 @@
             ref="refChatList"
             :chats="chatsStore.chats"
             filter-enabled
+            :title-enabled="false"
             @select="selectChat"
             @action="chatAction"
             @load-more-chats="loadMoreChats"
-            :actions="['www','www']"
           >
+            <template #actions>
+              <h2>Чаты</h2>
+            </template>
           </ChatList>
           <FeedSearch 
             v-if="isOpenSearchPanel && !feedSearchFeedCol"
@@ -159,14 +163,13 @@
             <template #chatpanel>
               <ChatPanel
                 v-if="isOpenChatPanel"
-                :title="'Мария'"
-                :titleEnabled='true'
+                :title-enabled="false"
               >
                 <template #content>
                   <div>
                     {{ selectedChat.name }} 
                     <button
-                      class="chat-panel__button-close"
+                      class="button-close"
                       @click="isOpenChatPanel = !isOpenChatPanel"
                     >
                       <span class="pi pi-times" />
@@ -296,6 +299,7 @@ const isSecondColVisible = ref(false)
 const isThirdColVisible = ref(false)
 const isShowReturnButton = ref(false)
 const chatPanelWidth = ref(50)
+const theme = ref('')
 
 const description = ref()
 
@@ -306,6 +310,10 @@ const commands = computed(() => {
   if (selectedChat.value && selectedChat.value.commands) return selectedChat.value.commands
   else return null
 })
+
+const setTheme = (themeCode) => {
+  theme.value = themeCode
+}
 
 const handleOpenSearchPanel = () => {
   isOpenSearchPanel.value = !isOpenSearchPanel.value
@@ -350,7 +358,8 @@ const chatAction = async (data) => {
       data.chat.name, 
       data.chat.contact.attributes, 
       channels.value,
-      channelFilter
+      channelFilter,
+      theme.value
     )
     console.log('info', data1);
   }
@@ -626,3 +635,18 @@ onMounted(() => {
   }
 });
 </script>
+
+<style scoped lang="scss">
+
+.button-close {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  span {
+    font-size: var(--chotto-button-icon-size);
+    color: var(--chotto-button-color-active);
+  }
+}
+
+</style>

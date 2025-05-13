@@ -6,7 +6,7 @@ const props = defineProps({
   theme: {
     type: String,
     required: false,
-    default: 'green'
+    default: 'light'
   }
 })
 

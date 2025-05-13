@@ -1,11 +1,11 @@
 <script setup>
-
 const emit = defineEmits(['close'])
 
 const props = defineProps({
   theme: {
     type: String,
-    required: true,
+    required: false,
+    default: 'light'
   }
 })
 

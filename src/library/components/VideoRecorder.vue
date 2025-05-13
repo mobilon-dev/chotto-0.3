@@ -60,7 +60,8 @@ const props = defineProps({
 
 const openVideoRecorder = async () => {
   if (!getMessage().file && props.state == 'active'){
-    await useModalVideoRecorder(getTheme().theme)
+    const theme = getTheme().theme ? getTheme().theme : ''
+    await useModalVideoRecorder(theme)
     .then(async (data) => {
       if (data.videoFile){
         uploadStatus.value = 'uploading'
