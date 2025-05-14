@@ -1,10 +1,13 @@
 <template>
-  <div
+  <button
     :id="'container-' + buttonContextMenuId + extChatAppId"
     ref="actionScope"
     style="
       position: relative;
       width: fit-content;
+      border: none;
+      background: transparent;
+      height: fit-content;
     "
     @mouseenter="hover"
     @mouseleave="hoverOut"
@@ -12,26 +15,29 @@
     <div @click="toggle">
       <slot></slot>
     </div>
-    <Teleport v-if="allowTeleport" :to="'#float-windows-' + chatAppId">
+    <Teleport to="body">
       <ContextMenu
         :id="'context-menu-' + buttonContextMenuId + extChatAppId"
-        ref="contextMenu"
         :actions="actions"
+        :data-theme="getTheme().theme ? getTheme().theme : 'light'"
         @mouseenter="hoverCM"
         @mouseleave="hoverOutCM"
         @click="click"
       />
     </Teleport>
     
-  </div>
+  </button>
 </template>
 
-<script setup>
-import { ref, onMounted, onUnmounted, useId, inject, nextTick, computed} from 'vue';
+<script setup lang="ts">
+import { ref, onMounted, onUnmounted, useId, inject, nextTick} from 'vue';
 import { ContextMenu } from '.';
+import { useTheme } from '../../helpers/useTheme';
 
 const chatAppId = inject('chatAppId')
 const extChatAppId = inject('extChatAppId')
+
+const { getTheme } = useTheme(chatAppId as string)
 
 const props = defineProps({
   actions: {
@@ -59,7 +65,6 @@ const buttonContextMenuId = useId()
 
 const emit = defineEmits(['click', 'buttonClick', 'menuMouseEnter', 'menuMouseLeave']);
 
-const allowTeleport = ref(false)
 const contextMenu = ref()
 const actionScope = ref()
 const isOpened = ref(false)
@@ -159,21 +164,13 @@ const handleClickOutside = (event) => {
 }
 
 onMounted(() => {
-  let container
-  while(container == undefined || container == null){
-    container = document.getElementById('float-windows-' + chatAppId)
-    if (container){
-      allowTeleport.value = true
-      nextTick(() => {
-        contextMenu.value = document.getElementById('context-menu-' + buttonContextMenuId + extChatAppId)
-        //console.log(container, contextMenu.value)
-        if (contextMenu.value) {
-          hideMenu()
-          document.addEventListener("click", handleClickOutside)
-        }
-      })
+  nextTick(() => {
+    contextMenu.value = document.getElementById('context-menu-' + buttonContextMenuId + extChatAppId)
+    if (contextMenu.value) {
+      hideMenu()
+      document.addEventListener("click", handleClickOutside)
     }
-  }
+  })
 })
 
 onUnmounted(() => {

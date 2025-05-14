@@ -124,10 +124,14 @@
                 />
                 <ChatInput 
                   :focus-on-input-area="inputFocus"
-                  :commands="commands"
-                  @send="addMessage"
                 >
-                  <template #buttons>
+                  <template #inline-buttons>
+                    <ButtonCommandsSelector
+                      :mode="'hover'"
+                      :state="'disabled'"
+                      :commands="commands"
+                      @send="addMessage"
+                    />
                     <FileUploader
                       :filebump-url="filebumpUrl"
                     />
@@ -140,6 +144,9 @@
                       :mode="'click'"
                       :elevated-window="false"
                     />
+                  </template>
+                  <template #buttons>
+                    
                     <ButtonWabaTemplateSelector
                       :waba-templates="wabaTemplates"
                       :group-templates="groupTemplates"
@@ -227,6 +234,7 @@ import { useChatsStore } from "./stores/useChatStore";
 import { transformToFeed } from "./transform/transformToFeed";
 import { useLocale } from "./locale/useLocale";
 import VideoRecorder from "./library/components/VideoRecorder.vue";
+import ButtonCommandsSelector from "./library/components/ButtonCommandsSelector.vue";
 
 const { locale, locales } = useLocale()
 

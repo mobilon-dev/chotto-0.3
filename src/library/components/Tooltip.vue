@@ -7,19 +7,22 @@
   >
     <slot/>
   </div>
-  <Teleport v-if="allowTooltip" :to="'#float-windows-' + chatAppId" >
-    <span 
-      :data-theme="getTheme().theme ? getTheme().theme : null"
-      ref="tooltip"
-      :class="tooltipClasses" 
-    >
-      {{ text }}
-    </span>
+  <Teleport to="body" >
+    <Transition>
+      <span 
+        v-if="show"
+        :data-theme="getTheme().theme ? getTheme().theme : 'light'"
+        ref="tooltip"
+        :class="tooltipClasses" 
+      >
+        {{ text }}
+      </span>
+    </Transition>
   </Teleport>
 </template>
 
 <script setup lang="ts">
-import { computed, ref, unref, inject, onMounted } from 'vue';
+import { computed, ref, unref, inject, onMounted, nextTick } from 'vue';
 import { useTheme } from '../../helpers/useTheme';
 
 const chatAppId = inject('chatAppId')
@@ -27,7 +30,7 @@ const { getTheme } = useTheme(chatAppId as string)
 
 const container = ref<HTMLElement>() 
 const tooltip = ref<HTMLElement>()
-const allowTooltip = ref(false)
+const show = ref(false)
 
 const props = defineProps({
   text: {
@@ -50,49 +53,43 @@ const tooltipClasses = computed(() => ({
 }))
 
 const updatePosition = () => {
-  if (container.value && tooltip.value){
-    const t = tooltip.value
-    const bounds = container.value.getBoundingClientRect()
-    const tBounds = tooltip.value.getBoundingClientRect()
-    const correctLeft = tBounds.left < 0 ? tBounds.left : 0
-    const correctTop = tBounds.top < 0 ? tBounds.top : 0
-    const r = {
-      'left'  : {top: bounds.top - ((tBounds.height - bounds.height) / 2) - correctTop, left: bounds?.left - tBounds.width - correctLeft - props.offset},
-      'right' : {top: bounds.top - ((tBounds.height - bounds.height) / 2) - correctTop, left: bounds?.left + bounds.width - correctLeft + props.offset},
-      'bottom': {top: bounds?.bottom - correctTop + props.offset, left: bounds?.left - correctLeft},
-      'top'   : {top: bounds.top - tBounds.height - props.offset - correctTop, left: bounds?.left - correctLeft},
+  show.value = true
+  nextTick(() => {
+    if (container.value && tooltip.value){
+      const t = tooltip.value
+      const bounds = container.value.getBoundingClientRect()
+      const tBounds = tooltip.value.getBoundingClientRect()
+      const correctLeft = tBounds.left < 0 ? tBounds.left : 0
+      const correctTop = tBounds.top < 0 ? tBounds.top : 0
+      const r = {
+        'left'  : {top: bounds.top - ((tBounds.height - bounds.height) / 2) - correctTop, left: bounds?.left - tBounds.width - correctLeft - props.offset},
+        'right' : {top: bounds.top - ((tBounds.height - bounds.height) / 2) - correctTop, left: bounds?.left + bounds.width - correctLeft + props.offset},
+        'bottom': {top: bounds?.bottom - correctTop + props.offset, left: bounds?.left - correctLeft},
+        'top'   : {top: bounds.top - tBounds.height - props.offset - correctTop, left: bounds?.left - correctLeft},
+      }
+      t.style.top = r[props.position].top + 'px'
+      t.style.left = r[props.position].left + 'px'
     }
-    //console.log(bounds, tBounds)
-    t.style.top = r[props.position].top + 'px'
-    t.style.left = r[props.position].left + 'px'
-    t.style.opacity = '1'
-    t.style.visibility = 'visible'
-  }
+  })
 }
 
 const hideTooltip = () => {
-  const t = unref(tooltip)
-  if (t){
-    t.style.top = '0'
-    t.style.left = '0'
-    t.style.opacity = '0'
-    t.style.visibility = 'hidden'
-  }
+  show.value = false
+  nextTick(() => {
+    const t = unref(tooltip)
+    if (t){
+      t.style.top = '0'
+      t.style.left = '0'
+    }
+  })
+  
 }
-
-onMounted(() => {
-  const container = document.getElementById('float-windows-' + chatAppId)
-  if (container) allowTooltip.value = true
-})
 
 </script>
 
 <style scoped lang="scss">
 
 .tooltip__text {
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 1s;
   max-width: 300px;
   color: var(--chotto-tooltip-text-color);
   text-align: center;
@@ -142,6 +139,16 @@ onMounted(() => {
   inset-block-end: 100%;
   inset-inline-start: 50%;
   border-color: transparent transparent var(--chotto-tooltip-bg-color) transparent;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 
 </style>

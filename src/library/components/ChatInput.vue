@@ -9,22 +9,10 @@
       class="chat-input__file-line"
     />
     <div class="chat-input__second-line">
-      <ButtonContextMenu
-        v-if="commands"
-        ref="refBCM"
-        menu-side="top"
-        :disabled="getMessage().isRecording"
-        :actions="commands"
-        @click="sendCommand"
-      >
-        <span 
-          class='chat-input__commands-trigger'
-          :class="{'chat-input__commands-disabled' : getMessage().isRecording}"
-        >
-          /
-        </span>
-      </ButtonContextMenu>
-
+      <div class="chat-input__inline-buttons">
+        <slot name="inline-buttons"/>
+      </div>
+      
       <textarea
         :disabled="state == 'disabled' || getMessage().isRecording"
         ref="refInput"
@@ -34,7 +22,6 @@
         @keydown.enter="keyEnter"
         @input="sendTyping"
       />
-      
       <button
         class="chat-input__button"
         :disabled="getMessage().isRecording"
@@ -51,19 +38,16 @@
 </template>
 
 <script setup lang="ts">
-import { unref, ref, watch, nextTick, inject, computed, useTemplateRef } from 'vue';
+import { unref, ref, watch, nextTick, inject, computed } from 'vue';
 import { useMessage } from '../../helpers/useMessage';
 import { t } from '../../locale/useLocale';
 import { IFilePreview, IInputMessage } from '../../types';
 import useImmediateDebouncedRef from '../../helpers/useImmediateDebouncedRef';
-import ButtonContextMenu from './ButtonContextMenu.vue';
 
-const emit = defineEmits(['send', 'typing']);
+const emit = defineEmits(['send','typing']);
 
 const chatAppId = inject('chatAppId')
 const { resetMessage, getMessage, setMessageText, setForceSendMessage } = useMessage(chatAppId as string)
-
-const refBCM = useTemplateRef('refBCM')
 
 const refInput = ref<HTMLTextAreaElement>();
 const typing = useImmediateDebouncedRef('', 2000)
@@ -80,11 +64,6 @@ const props = defineProps({
     required: false,
     default: false,
   },
-  commands: {
-    type: Array,
-    required: false,
-    default: null
-  }
 })
 
 const disabledSendButton = computed(() => {
@@ -122,14 +101,6 @@ watch(
         refInput.value.style.height = refInput.value.scrollHeight + 'px'
       }
     })
-    if (props.commands) {
-      if (getMessage().text.startsWith('/')){
-        refBCM.value?.updatePosition()
-      }
-      else {
-        refBCM.value?.hideMenu()
-      }
-    }
   }
 );
 
@@ -162,15 +133,6 @@ const keyEnter = (event: KeyboardEvent) => {
     event.preventDefault()
     sendMessage()
   }
-}
-
-const sendCommand = (command) => {
-  console.log(command)
-  const messageObject: IInputMessage = {
-      type: 'message.command',
-      text: command.action,
-    };
-  emit('send', messageObject)
 }
 
 // Define the method to send the message
@@ -247,13 +209,11 @@ const sendMessage = () => {
     width: 100%;
     color: var(--chotto-primary-text-color);
     font-size: var(--chotto-input-font-size);
-    white-space: normal;
     overflow-y: hidden;
     resize: none;
     white-space: pre-wrap;
     max-height: 140px;
     border-radius: var(--chotto-input-border-radius);
-    border: var(--chotto-input-border);
 
     &:focus-visible {
       outline: none;
@@ -267,11 +227,12 @@ const sendMessage = () => {
   &__button {
     background-color: transparent;
     border: 0px;
-
+    height: fit-content;
+    margin: auto;
     span {
       display: block;
       cursor: pointer;
-      padding: 14px;
+      padding: var(--chotto-chat-input-button-padding);
       font-size: var(--chotto-button-icon-size);
       color: var(--chotto-chat-input-icon-color);
     }
@@ -284,22 +245,9 @@ const sendMessage = () => {
     }
   }
 
-  &__commands-trigger{
-    padding: 14px;
-    display: block;
-    cursor: pointer;
-    font-size: var(--chotto-button-icon-size);
-    color: var(--chotto-button-color-active);
-  }
-
-  &__commands-trigger:hover{
-    color: var(--chotto-button-color-hover);
-  }
-
-  &__commands-disabled {
-    color: var(--chotto-button-color-disabled);
-    cursor: auto;
-    pointer-events: none;
+  &__inline-buttons{
+    display: flex;
+    margin: auto;
   }
 }
 
