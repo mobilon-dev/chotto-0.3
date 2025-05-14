@@ -96,6 +96,8 @@ const selectChannel = (channel) => {
   }
 
   &__selected {
+    height: fit-content;
+    margin: auto;
     display: flex;
     justify-content: flex-start;
     column-gap: 6px;
@@ -111,7 +113,7 @@ const selectChannel = (channel) => {
   }
 
   &__trigger{
-    padding: 14px;
+    padding: var(--chotto-chat-input-button-padding)var(--chotto-chat-input-button-padding);
     display: block;
     cursor: pointer;
     font-size: var(--chotto-button-icon-size);

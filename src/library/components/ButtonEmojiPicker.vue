@@ -1,5 +1,5 @@
 <template>
-  <div
+  <button
     v-if="!getMessage().isRecording"
     ref="emojiButton"
     class="button"
@@ -9,7 +9,7 @@
     @mouseleave="hoverout"
   >
     <span class="pi pi-face-smile" />
-  </div>
+</button>
   <Transition>
     <div 
       ref="emoji" 
@@ -108,11 +108,12 @@ onUnmounted(() => {
 >
   .button {
     background-color: transparent;
-
+    border: none;
+    height: fit-content;
     span {
       display: block;
       cursor: pointer;
-      padding: 14px;
+      padding: var(--chotto-chat-input-button-padding);
       font-size: var(--chotto-button-icon-size);
       color: var(--chotto-button-color-active);
     }

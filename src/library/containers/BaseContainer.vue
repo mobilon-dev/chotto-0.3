@@ -8,9 +8,6 @@
       :style="{ height, width }"
     >
       <slot name="default" />
-      <Teleport to="body">
-        <div class="base__float-windows" :id="'float-windows-' + chatAppId" />
-      </Teleport>
     </div>
   </div>
 </template>
@@ -39,12 +36,6 @@ provide('extChatAppId', props.extChatAppId ? props.extChatAppId : '')
     font-family: var(--chotto-container-font-family);
     container: all / inline-size;
     min-width: 480px;
-  }
-
-  &__float-windows{
-    font-weight: var(--chotto-container-font-weight);
-    color: var(--chotto-primary-text-color);
-    font-family: var(--chotto-container-font-family);
   }
 
   *,

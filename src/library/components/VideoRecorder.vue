@@ -118,6 +118,7 @@ watch(
     display: grid;
     align-items: center;
     background-color: transparent;
+    height: fit-content;
   }
 
   &__button {
@@ -127,7 +128,7 @@ watch(
     span {
       display: block;
       cursor: pointer;
-      padding: 14px;
+      padding: var(--chotto-chat-input-button-padding);
       font-size: var(--chotto-button-icon-size);
       color: var(--chotto-button-color-active);
     }

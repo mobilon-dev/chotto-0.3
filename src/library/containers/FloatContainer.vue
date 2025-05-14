@@ -44,9 +44,6 @@
         :style="{ height: contentHeight + 'px' }"
       >
         <slot name="default" />
-        <Teleport to="body">
-          <div class="float-window__float-windows" :id="'float-windows-' + chatAppId" />
-        </Teleport>
       </div>
     </div>
   </div>
@@ -163,12 +160,6 @@ onMounted(() => {
     font-family: var(--chotto-container-font-family);
     box-shadow: var(--chotto-float-container-box-shadow);
     container: all / inline-size;
-  }
-
-  &__float-windows{
-    font-weight: var(--chotto-container-font-weight);
-    color: var(--chotto-primary-text-color);
-    font-family: var(--chotto-container-font-family);
   }
 
   &__controls {

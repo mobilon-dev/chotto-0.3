@@ -21,6 +21,7 @@ import FeedFoundObjects from './FeedFoundObjects.vue'
 import Tooltip from './Tooltip.vue';
 import AudioRecorder from './AudioRecorder.vue';
 import VideoRecorder from './VideoRecorder.vue';
+import ButtonCommandsSelector from './ButtonCommandsSelector.vue';
 export {
   ChatInfo,
   ChatInput,
@@ -45,4 +46,5 @@ export {
   Tooltip,
   AudioRecorder,
   VideoRecorder,
+  ButtonCommandsSelector,
 }

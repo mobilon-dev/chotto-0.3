@@ -175,7 +175,7 @@ onMounted(() => {
 >
 .file-uploader{
   &__trigger{
-    padding: 14px;
+    padding: var(--chotto-chat-input-button-padding);
     display: block;
     cursor: pointer;
     font-size: var(--chotto-button-icon-size);

@@ -30,9 +30,6 @@
 </template>
 
 <script setup>
-
-import { useTemplateRef } from 'vue';
-
 const props = defineProps({
   actions: {
     type: Array,
@@ -57,6 +54,10 @@ const click = (index) => {
 .context-menu {
   
   &__container {
+    display: none;
+    font-weight: var(--chotto-container-font-weight);
+    color: var(--chotto-primary-text-color);
+    font-family: var(--chotto-container-font-family);
     z-index: 1000;
     position: absolute;
     width: max-content;
