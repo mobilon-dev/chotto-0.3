@@ -3,6 +3,7 @@ import { IAudioMessage, ICallMessage, IDateMessage, IFileMessage, IImageMessage,
 export interface IFeedObject {
   messageId: string
   type: string
+  header?: string
   text?: string
   position?: string
   status?: string

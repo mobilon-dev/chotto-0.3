@@ -136,6 +136,10 @@ const stopAudioRecording = () => {
       .then((data) => {
         uploadStatus.value = data.status
         if (data.status == 'success'){
+          const previewContainer = document.getElementById('chat-input-file-line-'+chatAppId)
+          if (previewContainer){
+            previewContainer.style.display = 'inherit'
+          }
           setMessageFile({
             url: data.url,
             name: data.name,
@@ -171,6 +175,10 @@ const clearTemp = () => {
 }
 
 const resetRecordedAudio = () => {
+  const previewContainer = document.getElementById('chat-input-file-line-'+chatAppId)
+  if (previewContainer){
+    previewContainer.style.display = 'none'
+  }
   resetMessageFile()
   audioPreview.value = undefined
 }

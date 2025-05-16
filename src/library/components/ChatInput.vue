@@ -8,7 +8,7 @@
       :id="'chat-input-file-line-' + chatAppId"
       class="chat-input__file-line"
     />
-    <div class="chat-input__second-line">
+
       <div class="chat-input__inline-buttons">
         <slot name="inline-buttons"/>
       </div>
@@ -30,7 +30,7 @@
       >
         <span class="pi pi-send" />
       </button>
-    </div>
+
     <div class="chat-input__third-line">
       <slot name="buttons" />
     </div>
@@ -183,26 +183,32 @@ const sendMessage = () => {
     background-color: var(--chotto-chat-input-container-bg);
     padding: 5px;
     grid-gap: 5px;
+    grid-template-columns: min-content auto min-content;
+    grid-template-rows: auto auto auto auto;
   }
 
   &__reply-line {
-    display: flex;
+    grid-column: 2;
+    grid-row: 1;
+    display: none;
   }
 
   &__file-line {
-    display: flex;
-  }
-
-  &__second-line {
-    display: flex;
-    grid-gap: 5px;
+    grid-column: 2;
+    grid-row: 2;
+    display: none;
   }
 
   &__third-line {
     display: flex;
+    grid-row: 4;
+    grid-column-start: 1;
+    grid-column-end: 3;
   }
 
   &__input {
+    grid-row: 3;
+    grid-column: 2;
     border: var(--chotto-input-border);
     background-color: var(--chotto-input-background);
     padding: var(--chotto-input-padding);
@@ -225,10 +231,13 @@ const sendMessage = () => {
   }
 
   &__button {
+    grid-row: 3;
+    grid-column: 3;
     background-color: transparent;
     border: 0px;
     height: fit-content;
-    margin: auto;
+    width: fit-content;
+    margin: auto 0;
     span {
       display: block;
       cursor: pointer;
@@ -247,7 +256,9 @@ const sendMessage = () => {
 
   &__inline-buttons{
     display: flex;
-    margin: auto;
+    margin: auto 0;
+    grid-row: 3;
+    grid-column: 1;
   }
 }
 

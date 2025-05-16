@@ -77,6 +77,10 @@ const openVideoRecorder = async () => {
                 size: u.size,
                 type: u.type,
               })
+              const previewContainer = document.getElementById('chat-input-file-line-'+chatAppId)
+              if (previewContainer){
+                previewContainer.style.display = 'inherit'
+              }
               if (u.preview)
                 videoPreview.value = ({
                   previewUrl: u.preview.previewUrl,
@@ -96,6 +100,10 @@ const openVideoRecorder = async () => {
 
 const resetRecordedAudio = () => {
   resetMessageFile()
+  const previewContainer = document.getElementById('chat-input-file-line-'+chatAppId)
+  if (previewContainer){
+    previewContainer.style.display = 'none'
+  }
   videoPreview.value = undefined
 }
 

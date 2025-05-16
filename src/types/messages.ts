@@ -7,6 +7,8 @@ export interface Reply {
   text?: string
   url?: string
   filename?: string
+  header?: string
+  callDuration?: string
 }
 
 export interface ILinkPreview {
@@ -31,6 +33,7 @@ export interface IAudioMessage {
   url: string
   status: string
   avatar?: string
+  header?: string
   subText?: string
   actions?: IAction[]
   views?: number,
@@ -53,6 +56,7 @@ export interface ICallMessage {
   isMissedCall?: Boolean
   callDuration?: string
   avatar?: string
+  header?: string
   subText?: string
   actions?: IAction[]
   views?: number
@@ -74,6 +78,7 @@ export interface IFileMessage {
   url: string
   status: string
   avatar?: string
+  header?: string
   subText?: string
   actions?: IAction[]
   views?: number
@@ -92,6 +97,7 @@ export interface IImageMessage {
   alt?: string
   status: string
   avatar?: string
+  header?: string
   subText?: string
   actions?: IAction[]
   views?: number
@@ -114,6 +120,7 @@ export interface ITextMessage {
   status: string
   time: string
   avatar?: string
+  header?: string
   subText?: string
   actions?: IAction[]
   views?: number
@@ -136,6 +143,7 @@ export interface IVideoMessage {
   url: string
   alt?: string
   avatar?: string
+  header?: string
   subText?: string
   actions?: IAction[]
   views?: number

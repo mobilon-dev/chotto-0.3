@@ -94,6 +94,10 @@ const canUploadFile = computed(() => {
 })
 
 const resetSelectedFile = () => {
+  const previewContainer = document.getElementById('chat-input-file-line-'+chatAppId)
+  if (previewContainer){
+    previewContainer.style.display = 'none'
+  }
   resetMessageFile()
   fileInfo.value = undefined
   uploadStatus.value = ""
@@ -149,6 +153,10 @@ const handleFileUpload = async (file: File) => {
           size: data.size,
           type: data.type,
         })
+        const previewContainer = document.getElementById('chat-input-file-line-'+chatAppId)
+        if (previewContainer){
+          previewContainer.style.display = 'inherit'
+        }
         if (data.preview)
           fileInfo.value = ({
             previewUrl: data.preview.previewUrl,

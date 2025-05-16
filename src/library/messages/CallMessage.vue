@@ -28,11 +28,15 @@
       <span
         v-if="!message.isMissedCall"
         class="call-message__title"
-      >Аудиозвонок</span>
+      >
+        Аудиозвонок
+      </span>
       <span
         v-else
         class="call-message__title"
-      >Пропущенный аудиозвонок</span>
+      >
+        Пропущенный аудиозвонок
+      </span>
 
       <span
         v-if="message.callDuration"
@@ -65,7 +69,7 @@
           <div
             v-if="isFullTranscript"
             class="call-message__modal-overlay"
-            :data-theme="getTheme().theme ? getTheme().theme : null"
+            :data-theme="getTheme().theme ? getTheme().theme : 'light'"
           >
             <div class="call-message__modal">
               <button

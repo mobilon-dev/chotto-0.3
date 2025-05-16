@@ -11,12 +11,14 @@
   </div>
 
   <div class="image-message__text-container">
+    <p v-if="message.header">{{ message.header }}</p>
     <div class="image-message__reply-description">
       <span class="pi pi-camera"></span>
       <p>Фотография</p>
     </div>
     <p
       v-if="message.text"
+      class="image-message__text"
       v-html="linkedText"
       @click="inNewWindow"
     ></p>
@@ -24,27 +26,17 @@
 
   <Teleport to="body">
     <transition name="modal-fade">
-      <div
+      <ModalFullscreen
         v-if="isOpenModal"
-        class="image-message__modal-overlay"
-        @click="closeModalOutside"
+        :data-theme="getTheme().theme ? getTheme().theme : 'light'"
+        @close="closeModal"
       >
-        <div class="image-message__modal">
-          <button
-            class="image-message__modal-close-button"
-            @click="closeModal"
-          >
-            <span>
-              <i class="pi pi-times" />
-            </span>
-          </button>
-          <img
-            class="image-message__modal-image"
-            :src="message.url"
-            :alt="message.alt"
-          >
-        </div>
-      </div>
+        <img
+          class="image-message__modal-image"
+          :src="message.url"
+          :alt="message.alt"
+        >
+      </ModalFullscreen>
     </transition>
   </Teleport>
 </template>
@@ -53,10 +45,15 @@
   setup
   lang="ts"
 >
-import { ref, watch, onMounted, onUnmounted } from 'vue';
+import { ref, watch, inject } from 'vue';
 import linkifyStr from "linkify-string";
-
 import { IImageMessage } from '../../types';
+import ModalFullscreen from '../modals/modal-wrapper/ModalFullscreen.vue';
+import { useTheme } from '../../helpers/useTheme';
+
+const chatAppId = inject('chatAppId')
+
+const { getTheme } = useTheme(chatAppId as string)
 
 const props = defineProps({
   message: {
@@ -88,31 +85,25 @@ function inNewWindow(event) {
 
 const closeModal = () => isOpenModal.value = false
 
-const closeModalOutside = (evt) => {
-  if (evt.target.classList.contains('image-message__modal-overlay')) {
-    closeModal()
-  }
-}
-
-const handleEscKey = (evt) => {
-  if (evt.key === 'Escape' && isOpenModal.value) {
-    closeModal()
-  }
-};
-
-onMounted(() => {
-  document.addEventListener('keydown', handleEscKey)
-});
-
-onUnmounted(() => {
-  document.removeEventListener('keydown', handleEscKey);
-});
 </script>
 
 <style
   scoped
   lang="scss"
 >
+
+p {
+  margin: 0;
+  font-size: var(--chotto-additional-text-font-size);
+  color: var(--chotto-secondary-text-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
 .image-message {
 
   &__preview-button {
@@ -140,60 +131,16 @@ onUnmounted(() => {
     max-height: 80vh;
   }
 
-  &__modal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 101;
-    color: var(--chotto-primary-text-color);
-    background-color: var(--chotto-modal-bg);
-    border-radius: var(--chotto-modal-border-radius);
-    padding: var(--chotto-modal-padding);
-    max-width: 45%;
-    box-shadow: var(--chotto-modal-overlay-shadow);
-  }
-
-  &__modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--chotto-modal-mask-background);
-    z-index: 1000;
-  }
-
-  &__modal-close-button {
-    display: block;
-    background-color: transparent;
-    border: none;
-    padding: 4px;
-    margin: 0 0 14px auto;
-    cursor: pointer;
-
-    span {
-      color: var(--chotto-secondary-text-color);
-      font-size: var(--chotto-button-icon-size);
-    }
-  }
-
-
   &__text-container {
     word-wrap: break-word;
     align-content: center;
     word-break: break-word;
-    p {
-      margin: 0;
-      font-size: var(--chotto-additional-text-font-size);
-      color: var(--chotto-secondary-text-color);
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 5;
-      line-clamp: 5;
-      -webkit-box-orient: vertical;
-    }
+  }
+
+  &__text{
+    margin-top: 8px;
+    font-size: var(--chotto-text-font-size);
+    color: var(--chotto-primary-text-color);
   }
 
   &__reply-description {

@@ -1,8 +1,12 @@
 <template>
-  <p
-    v-html="linkedText"
-    @click="inNewWindow"
-  />
+  <div class="container">
+    <p v-if="message.header">{{ message.header }}</p>
+    <p
+      class="text"
+      v-html="linkedText"
+      @click="inNewWindow"
+    />
+  </div>
 </template>
 
 <script
@@ -44,6 +48,18 @@ function inNewWindow(event) {
   scoped
   lang="scss"
 >
+
+.container{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.text{
+  font-size: var(--chotto-text-font-size);
+  color: var(--chotto-primary-text-color)
+}
+
 p {
   margin: 0;
   font-size: var(--chotto-additional-text-font-size);
