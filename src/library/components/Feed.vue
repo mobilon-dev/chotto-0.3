@@ -60,8 +60,9 @@
     :to="'#chat-input-reply-line-'+chatAppId"
   >
     <BaseReplyMessage
-      :message="getMessage().reply"
       class="chat-input-reply"
+      :message="getMessage().reply"
+      @reset="handleResetReply"
     />
   </teleport>
 </template>
@@ -128,7 +129,7 @@ const props = defineProps({
 });
 
 const chatAppId = inject('chatAppId')
-const { setReply, getMessage } = useMessage(chatAppId as string)
+const { setReply, getMessage, resetReply } = useMessage(chatAppId as string)
 const emit = defineEmits([
   'messageAction',
   'loadMore', 
@@ -259,16 +260,30 @@ const handleClickReplied = (messageId) => {
 const feedObjectDoubleClick = (event: MouseEvent,object : IFeedObject) => {
   if (props.enableDoubleClickReply){
     event?.preventDefault()
-    if (object.type.indexOf('system') == -1 && object.type.indexOf('typing') == -1)
+    if (object.type.indexOf('system') == -1 && object.type.indexOf('typing') == -1){
+      const previewContainer = document.getElementById('chat-input-reply-line-'+chatAppId)
+      if (previewContainer){
+        previewContainer.style.display = 'inherit'
+      }
       setReply({
         messageId: object.messageId,
         type: object.type,
         text: object.text,
         filename: object.filename,
         url: object.url,
+        header: object.header,
+        callDuration: object.callDuration,
       })
+    }
   }
-  
+}
+
+const handleResetReply = () => {
+  resetReply()
+  const previewContainer = document.getElementById('chat-input-reply-line-'+chatAppId)
+  if (previewContainer){
+    previewContainer.style.display = 'none'
+  }
 }
 
 const callback = (entries: Array<IntersectionObserverEntry>) => {

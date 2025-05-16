@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-
+import { onMounted, onUnmounted } from 'vue';
 const props = defineProps({
   theme: {
     type: String,
@@ -37,6 +37,20 @@ const closeModalOutside = (evt) => {
     emit('close')
   }
 }
+
+const handleEscKey = (evt) => {
+  if (evt.key === 'Escape') {
+    emit('close')
+  }
+};
+
+onMounted(() => {
+  document.addEventListener('keydown', handleEscKey)
+});
+
+onUnmounted(() => {
+  document.removeEventListener('keydown', handleEscKey);
+});
 
 </script>
 

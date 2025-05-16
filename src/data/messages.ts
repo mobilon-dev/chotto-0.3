@@ -3,6 +3,7 @@ export const messages = [
     chatId: 1, type: "message.call", direction: 'incoming',
     messageId: '3',
     callDuration: "18 мин", isMissedCall: false, timestamp: '1727027959',
+    header: 'Василий',
     avatar: 'https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg', subText: '89829445678',
     transcript: {
       dialog: [
@@ -31,6 +32,7 @@ export const messages = [
   },
   {
     chatId: 1, type: "message.text", text: "зачетный обзор", direction: 'incoming', status: 'read', timestamp: '1727027959', subText: 'test test',
+    header: 'Василий',
     messageId: '265765',
     embed: {
       type: 'youtube',
@@ -39,6 +41,7 @@ export const messages = [
   },
   {
     chatId: 1, type: "message.text", text: "зачетный обзор", direction: 'incoming', status: 'read', timestamp: '1727027959', subText: 'test test',
+    header: 'Василий',
     messageId: '265765',
     embed: {
       type: 'yamusic',
@@ -47,6 +50,7 @@ export const messages = [
   },
   {
     chatId: 1, type: "message.text", text: "зачетный обзор", direction: 'incoming', status: 'read', timestamp: '1727027959', subText: 'test test',
+    header: 'Василий',
     messageId: '265765',
     embed: {
       type: 'rutube',
@@ -55,6 +59,7 @@ export const messages = [
   },
   {
     chatId: 1, type: "message.text", text: "новая реклама", direction: 'outgoing', status: 'read', timestamp: '1727027959', subText: 'test test',
+    header: 'Вы',
     messageId: '265766',
     embed: {
       type: 'vkvideo',
@@ -63,6 +68,7 @@ export const messages = [
   },
   {
     chatId: 1, type: "message.text", text: "Привет!", direction: 'incoming', status: 'read', timestamp: '1727027959', subText: 'test test',
+    header: 'Василий',
     messageId: '2',
     actions: [
       { action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=pin' },
@@ -74,6 +80,7 @@ export const messages = [
   {
     chatId: 1, messageId: '3', type: "message.text", text: "Привет! Сообщение с просмотрами",
     direction: 'outgoing', status: 'received', timestamp: '1727027959',
+    header: 'Вы',
     views: 1000,
     actions: [
       { action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=pin' },
@@ -82,6 +89,7 @@ export const messages = [
   {
     chatId: 1, type: "message.image", url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg", timestamp: '1727027959',
     alt: "Example Image", direction: 'outgoing',
+    header: 'Вы',
     views: 1667, messageId: '4',
     status: 'read', actions: [
       { action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=pin' },
@@ -90,6 +98,7 @@ export const messages = [
   {
     chatId: 2, type: "message.image", url: "https://filebump2.services.mobilon.ru/file/Oao1XkPt8LKLVdFA8pMcXAQeClMehtdrJVsJ", timestamp: '1727027959',
     alt: "Example Image", direction: 'outgoing',
+    header: 'Вы',
     views: 1667, messageId: '4',
     status: 'read', actions: [
       { action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=pin' },
@@ -98,6 +107,7 @@ export const messages = [
   {
     chatId: 2, type: "message.video", url: "https://filebump2.services.mobilon.ru/file/XgYPv3t1VT1RxoUVPpWvQuyOkpdSCayNgpv1",
     text: "Привет!", direction: 'outgoing', status: 'read', timestamp: '1727027959',
+    header: 'Вы',
     actions: [
       { action: 'edit', title: 'изменить', icon: 'fa-edit' },
       { action: 'delete', title: 'удалить' }]
@@ -105,6 +115,7 @@ export const messages = [
   {
     chatId: 2, type: "message.video", url: "https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3",
     text: "Привет!", direction: 'outgoing', status: 'read', timestamp: '1727027959',
+    header: 'Вы',
     actions: [
       { action: 'edit', title: 'изменить', icon: 'fa-edit' },
       { action: 'delete', title: 'удалить' }]
@@ -112,6 +123,7 @@ export const messages = [
   {
     chatId: 2, type: "message.video", url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
     direction: 'outgoing', status: 'read', timestamp: '1727027959',
+    header: 'Вы',
   },
   {
     chatId: 2,
@@ -127,23 +139,29 @@ export const messages = [
   {
     chatId: 2, type: "message.file", url: "https://axiomabio.com/pdf/test.pdf", filename: "Документ.pdf", direction: 'incoming',
     status: 'received', timestamp: '1727027959', actions: [{ action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' }]
+    ,header: 'Мария',
+    text: 'Привет!',
   },
-  { chatId: 2, type: "message.text", text: "Привет!", direction: 'incoming', status: 'read', timestamp: '1727027959' },
+  { chatId: 2, header: 'Мария', type: "message.text", text: "Привет!", direction: 'incoming', status: 'read', timestamp: '1727027959' },
   {
     chatId: 2, type: "message.audio", url: "https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3",
     text: "Привет!", direction: 'incoming', status: 'received', subText: '89829445678', timestamp: '1727027959',
     transcript: {
       text: 'Привет, доехала хорошо, позвони мне завтра',
     },
+    header: 'Мария',
     actions: [{ action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' }]
   },
   {
     chatId: 2, type: "message.audio", url: "https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3",
     text: "Привет!", direction: 'outgoing', status: 'received', subText: '89829445678', timestamp: '1727027959',
+    header: 'Вы',
     actions: [{ action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' }]
   },
   {
     chatId: 2, type: "message.image", url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg", alt: "Example Image",
+    header: 'Мария',
+    text: 'Привет!',
     direction: 'incoming', subText: '89829445678', timestamp: '1726743559',
   },
   {

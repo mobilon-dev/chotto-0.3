@@ -138,7 +138,7 @@
     <transition name="modal-fade">
       <ModalFullscreen
         v-if="isOpenModal"
-        :data-theme="getTheme().theme ? getTheme().theme : null"
+        :data-theme="getTheme().theme ? getTheme().theme : 'light'"
         @close="closeModal"
       >
         <video
@@ -158,7 +158,7 @@
   setup
   lang="ts"
 >
-import { ref, computed, onMounted, onUnmounted, watch, inject } from 'vue'
+import { ref, computed, watch, inject } from 'vue'
 import linkifyStr from "linkify-string";
 
 import { ContextMenu } from '../components'
@@ -270,25 +270,6 @@ const videoBorderRadius = computed(() => {
 
 const closeModal = () => isOpenModal.value = false
 
-const closeModalOutside = (evt) => {
-  if (evt.target.classList.contains('video-message__modal-overlay')) {
-    closeModal()
-  }
-}
-
-const handleEscKey = (evt) => {
-  if (evt.key === 'Escape' && isOpenModal.value) {
-    closeModal()
-  }
-};
-
-onMounted(() => {
-  document.addEventListener('keydown', handleEscKey)
-});
-
-onUnmounted(() => {
-  document.removeEventListener('keydown', handleEscKey);
-});
 </script>
 
 <style

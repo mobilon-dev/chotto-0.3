@@ -8,11 +8,13 @@
       :is="componentsMap(message?.type)"
       :message="message"
     ></component>
-    <span
-      class="pi pi-times reply__reset"
-      style="font-size: 1rem"
-      @click="handleReset"
-    />
+    <div class="reply__reset">
+      <span
+        class="pi pi-times "
+        @click="emit('reset')"
+      />
+    </div>
+    
   </div>
 </template>
 
@@ -20,8 +22,6 @@
   setup
   lang="ts"
 >
-import { inject } from "vue";
-import { useMessage } from "../../helpers/useMessage";
 import {
   ReplyTextMessage,
   ReplyImageMessage,
@@ -33,8 +33,9 @@ import {
 import {
   IFeedObject
 } from '../../types';
+import ReplyCallMessage from "./ReplyCallMessage.vue";
 
-const emit = defineEmits(['action', 'reply']);
+const emit = defineEmits(['action', 'reply', 'reset']);
 
 const props = defineProps({
   message: {
@@ -42,8 +43,6 @@ const props = defineProps({
   }
 });
 
-const chatAppId = inject('chatAppId')
-const { resetReply } = useMessage(chatAppId as string)
 
 const onReply = () => {
   if (props.message){
@@ -58,6 +57,7 @@ const componentsMap = (type) => {
     'message.file': ReplyFileMessage,
     'message.audio': ReplyAudioMessage,
     'message.video': ReplyVideoMessage,
+    'message.call': ReplyCallMessage,
   };
   return r[type];
 }
@@ -66,16 +66,14 @@ const componentsClassMap = (type) => {
   const r = {
     'message.text': '',
     'message.image': 'grid',
-    'message.file': '',
+    'message.file': 'grid',
     'message.audio': 'grid',
     'message.video': 'grid',
+    'message.call': 'grid',
   }
   return r[type]
 }
 
-const handleReset = () => {
-  resetReply()
-}
 
 </script>
 
@@ -83,7 +81,7 @@ const handleReset = () => {
 .reply {
   &__container {
     position: relative;
-    padding: 10px 6px 10px 12px;
+    padding: 10px 6px 10px 20px;
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 6px;
@@ -128,14 +126,20 @@ const handleReset = () => {
 }
 
 .chat-input-reply {
-  padding-right: 20px;
+  padding-right: 30px;
   border: 1px solid var(--chotto-item-border-color);
   border-radius: 0;
-  max-width: 300px;
   word-break: break-word;
 
   .reply__reset {
-    display: inherit;
+    font-size: 1.1rem;
+    display: flex;
+    height: 100%;
+    margin-right: 10px;
+
+    span{
+      margin: auto;
+    }
   }
 }
 </style>
