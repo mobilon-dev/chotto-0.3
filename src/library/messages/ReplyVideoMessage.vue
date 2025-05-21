@@ -112,6 +112,7 @@ p {
     border-radius: 4px;
     object-fit: cover;
     cursor: zoom-in;
+    margin: auto;
   }
 
   &__preview-button {

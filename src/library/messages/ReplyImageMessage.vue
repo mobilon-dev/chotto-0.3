@@ -121,6 +121,7 @@ p {
     cursor: zoom-in;
     object-fit: cover;
     border-radius: 4px;
+    margin: auto;
   }
 
   &__modal-image {
