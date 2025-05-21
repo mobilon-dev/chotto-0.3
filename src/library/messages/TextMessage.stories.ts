@@ -304,6 +304,7 @@ export const LeftMessageWithReplyText: Story = {
         messageId: '324324',
         type: 'message.text',
         text: 'previous message',
+        header: 'Мария',
       },
     },
   },
@@ -318,6 +319,7 @@ export const RightMessageWithReplyText: Story = {
         messageId: '324324',
         type: 'message.text',
         text: 'previous message',
+        header: 'Мария',
       },
     },
   },
@@ -333,6 +335,7 @@ export const LeftMessageWithReplyImage: Story = {
         type: 'message.image',
         text: messageLongText.text,
         url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg",
+        header: 'Мария',
       },
     },
   },
@@ -348,6 +351,7 @@ export const RightMessageWithReplyImage: Story = {
         type: 'message.image',
         text: messageLongText.text,
         url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg",
+        header: 'Мария',
       },
     },
   },
@@ -363,6 +367,7 @@ export const LeftMessageWithReplyVideo: Story = {
         type: 'message.video',
         text: messageLongText.text,
         url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
+        header: 'Мария',
       },
     },
   },
@@ -378,6 +383,7 @@ export const RightMessageWithReplyVideo: Story = {
         type: 'message.video',
         text: messageLongText.text,
         url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
+        header: 'Мария',
       },
     },
   },
@@ -395,6 +401,7 @@ export const LeftMessageWithReplyFile: Story = {
         filename: 'video.mp4',
         text: messageLongText.text,
         url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
+        header: 'Мария',
       },
     },
   },
@@ -411,6 +418,7 @@ export const RightMessageWithReplyFile: Story = {
         filename: 'video.mp4',
         text: messageLongText.text,
         url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
+        header: 'Мария',
       },
     },
   },
@@ -427,6 +435,7 @@ export const LeftMessageWithReplyAudio: Story = {
         filename: 'video.mp4',
         text: messageLongText.text,
         url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
+        header: 'Мария',
       },
     },
   },
@@ -442,6 +451,39 @@ export const RightMessageWithReplyAudio: Story = {
         type: 'message.audio',
         text: messageLongText.text,
         url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
+        header: 'Мария',
+      },
+    },
+  },
+};
+
+export const LeftMessageWithReplyCall: Story = {
+  args: {
+    message: {
+      ...messageLink,
+      position: 'left',
+      reply: {
+        messageId: '324324',
+        type: 'message.call',
+        callDuration: '18 минут',
+        isMissedCall: true, 
+        header: 'Мария',
+      },
+    },
+  },
+};
+
+export const RightMessageWithReplyCall: Story = {
+  args: {
+    message: {
+      ...messageLink,
+      position: 'right',
+      reply: {
+        messageId: '324324',
+        type: 'message.call',
+        callDuration: '18 минут',
+        isMissedCall: false, 
+        header: 'Мария',
       },
     },
   },

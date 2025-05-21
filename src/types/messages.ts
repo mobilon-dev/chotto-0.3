@@ -9,6 +9,7 @@ export interface Reply {
   filename?: string
   header?: string
   callDuration?: string
+  isMissedCall?: boolean
 }
 
 export interface ILinkPreview {

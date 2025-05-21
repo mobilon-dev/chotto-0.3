@@ -67,11 +67,12 @@
           {{ formatDuration }}
         </span>
       </div>
-      <span
-        class="pi pi-times preview__reset"
-        style="font-size: 1rem"
-        @click="emit('reset')"
-      />
+      <div class="preview__reset">
+        <span
+          class="pi pi-times"
+          @click="emit('reset')"
+        />
+      </div>
     </div>
     <Teleport to="body">
       <transition name="modal-fade">
@@ -205,7 +206,6 @@ onMounted(() => {
     position: relative;
     display: flex;
     border:  1px solid var(--chotto-item-border-color);
-    max-width: 400px;
   }
 
   &__image,
@@ -299,7 +299,12 @@ onMounted(() => {
   }
 
   &__reset{
-    margin: 10px;
+    display: flex;
+    margin-right: 10px;
+    font-size: 1.1rem;
+    span{
+      margin: auto;
+    }
   }
 
   &__reset:hover {
@@ -313,4 +318,18 @@ onMounted(() => {
   }
 }
 
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.modal-fade-enter-from,
+.modal-fade-leave-to {
+  opacity: 0;
+}
+
+.modal-fade-enter-to,
+.modal-fade-leave-from {
+  opacity: 1;
+}
 </style>

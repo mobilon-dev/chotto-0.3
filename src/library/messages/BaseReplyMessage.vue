@@ -130,6 +130,7 @@ const componentsClassMap = (type) => {
   border: 1px solid var(--chotto-item-border-color);
   border-radius: 0;
   word-break: break-word;
+  margin-bottom: 0;
 
   .reply__reset {
     font-size: 1.1rem;
