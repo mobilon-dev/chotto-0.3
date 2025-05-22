@@ -1,6 +1,6 @@
 export const messages = [
   {
-    chatId: 1, type: "message.call", direction: 'incoming',
+    chatId: 1, dialogId: 'dlg_43543555', type: "message.call", direction: 'incoming',
     messageId: '3',
     callDuration: "18 мин", isMissedCall: false, timestamp: '1727027959',
     header: 'Василий',
@@ -31,7 +31,7 @@ export const messages = [
     },
   },
   {
-    chatId: 1, type: "message.text", text: "зачетный обзор", direction: 'incoming', status: 'read', timestamp: '1727027959', subText: 'test test',
+    chatId: 1, dialogId: 'dlg_43543555', type: "message.text", text: "зачетный обзор", direction: 'incoming', status: 'read', timestamp: '1727027959', subText: 'test test',
     header: 'Василий',
     messageId: '265765',
     embed: {
@@ -40,7 +40,7 @@ export const messages = [
     },
   },
   {
-    chatId: 1, type: "message.text", text: "зачетный обзор", direction: 'incoming', status: 'read', timestamp: '1727027959', subText: 'test test',
+    chatId: 1, dialogId: 'dlg_43543555', type: "message.text", text: "зачетный обзор", direction: 'incoming', status: 'read', timestamp: '1727027959', subText: 'test test',
     header: 'Василий',
     messageId: '265765',
     embed: {
@@ -49,7 +49,7 @@ export const messages = [
     },
   },
   {
-    chatId: 1, type: "message.text", text: "зачетный обзор", direction: 'incoming', status: 'read', timestamp: '1727027959', subText: 'test test',
+    chatId: 1, dialogId: 'dlg_43543555', type: "message.text", text: "зачетный обзор", direction: 'incoming', status: 'read', timestamp: '1727027959', subText: 'test test',
     header: 'Василий',
     messageId: '265765',
     embed: {
@@ -58,7 +58,7 @@ export const messages = [
     },
   },
   {
-    chatId: 1, type: "message.text", text: "новая реклама", direction: 'outgoing', status: 'read', timestamp: '1727027959', subText: 'test test',
+    chatId: 1, dialogId: 'dlg_43543555', type: "message.text", text: "новая реклама", direction: 'outgoing', status: 'read', timestamp: '1727027959', subText: 'test test',
     header: 'Вы',
     messageId: '265766',
     embed: {
@@ -67,7 +67,7 @@ export const messages = [
     },
   },
   {
-    chatId: 1, type: "message.text", text: "Привет!", direction: 'incoming', status: 'read', timestamp: '1727027959', subText: 'test test',
+    chatId: 1, dialogId: 'dlg_43543555', type: "message.text", text: "Привет!", direction: 'incoming', status: 'read', timestamp: '1727027959', subText: 'test test',
     header: 'Василий',
     messageId: '2',
     actions: [
@@ -75,10 +75,10 @@ export const messages = [
       { action: 'delete', title: 'удалить' }]
   },
   {
-    chatId: 1, type: "message.typing", subText: '89829445678', avatar: 'https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg',
+    chatId: 1, dialogId: 'dlg_43543555', type: "message.typing", subText: '89829445678', avatar: 'https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg',
   },
   {
-    chatId: 1, messageId: '3', type: "message.text", text: "Привет! Сообщение с просмотрами",
+    chatId: 1, dialogId: 'dlg_43543555', messageId: '3', type: "message.text", text: "Привет! Сообщение с просмотрами",
     direction: 'outgoing', status: 'received', timestamp: '1727027959',
     header: 'Вы',
     views: 1000,
@@ -87,7 +87,7 @@ export const messages = [
       { action: 'delete', title: 'удалить' }]
   },
   {
-    chatId: 1, type: "message.image", url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg", timestamp: '1727027959',
+    chatId: 1, dialogId: 'dlg_43543555', type: "message.image", url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg", timestamp: '1727027959',
     alt: "Example Image", direction: 'outgoing',
     header: 'Вы',
     views: 1667, messageId: '4',
@@ -95,6 +95,168 @@ export const messages = [
       { action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=pin' },
       { action: 'delete', title: 'удалить' }]
   },
+    {
+    chatId: 1, dialogId: 'dlg_43543555', messageId: 1,
+    timestamp: 1731411505,
+    type: "message.system", text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  },
+    {
+    chatId: 1, dialogId: 'dlg_89789879',type: "message.text", text: "Привет! Извини, давно тебе не писал. Как дела?",
+    messageId: '5',
+    direction: 'outgoing', status: 'received', timestamp: '1727027959',
+    actions: [
+      { action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=pin' },
+      { action: 'delete', title: 'удалить' }
+    ],
+    reply: {
+      messageId: '14',
+      type: 'message.text',
+      text: 'Привет, что-то давно не пишешь?',
+    },
+  },
+  {
+    chatId: 1, dialogId: 'dlg_89789879',type: "message.text", text: "классное фото, тоже таки хочу",
+    direction: 'outgoing', status: 'received', timestamp: '1727027959',
+    messageId: '6',
+    reply: {
+      messageId: '15',
+      type: 'message.file',
+      text: 'мои новые кроссовки',
+      filename: 'cross.png',
+      url: 'https://placehold.jp/30/336633/ffffff/320x160.png?text=кроссовки',
+    },
+  },
+  {
+    chatId: 1,dialogId: 'dlg_89789879', url: 'https://placehold.jp/30/336633/ffffff/320x160.png?text=кроссовки',
+    type: "message.image", text: "классное фото, тоже таки хочу",
+    messageId: '7',
+    direction: 'outgoing', status: 'received', timestamp: '1727027959',
+    reply: {
+      messageId: '15',
+      type: 'message.image',
+      text: 'мои новые кроссовки',
+      url: 'https://placehold.jp/30/336633/ffffff/320x160.png?text=кроссовки',
+    },
+  },
+  {
+    chatId: 1, dialogId: 'dlg_89789879',url: 'https://placehold.jp/30/336633/ffffff/320x160.png?text=кроссовки',
+    type: "message.image",
+    messageId: '15',
+    direction: 'outgoing', status: 'received', timestamp: '1727027859',
+    text: 'мои новые кроссовки',
+  },
+  {
+    chatId: 1, dialogId: 'dlg_89789879',type: "message.text", text: "Привет! Извини, давно тебе не писал. Как дела?",
+    direction: 'incoming', status: 'received', timestamp: '1727027959',
+    actions: [
+      { action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=pin' },
+      { action: 'delete', title: 'удалить' }
+    ],
+    messageId: '8',
+    reply: {
+      messageId: '14',
+      type: 'message.text',
+      text: 'Привет, что-то давно не пишешь?',
+    },
+  },
+  {
+    chatId: 1, dialogId: 'dlg_89789879',type: "message.text",
+    direction: 'incoming', status: 'received', timestamp: '1727027759',
+    actions: [
+      { action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=pin' },
+      { action: 'delete', title: 'удалить' }
+    ],
+    messageId: '14',
+    text: 'Привет, что-то давно не пишешь?',
+  },
+  {
+    chatId: 1, dialogId: 'dlg_89789879',type: "message.text", text: "классное фото, тоже таки хочу",
+    direction: 'incoming', status: 'received', timestamp: '1727027959',
+    messageId: '9',
+    reply: {
+      messageId: '15',
+      type: 'message.image',
+      text: 'Оченьдлинноесообщениебезпробеловзанимающеесразунесколькострокивызывающеестранноеповедениеокон',
+      url: 'https://placehold.jp/30/336633/ffffff/320x160.png?text=кроссовки',
+    },
+  },
+  {
+    chatId: 1, dialogId: 'dlg_89789879',url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
+    type: "message.file", text: "ответ на видео", filename: "video.mp4",
+    direction: 'incoming', status: 'received', timestamp: '1727027959',
+    messageId: '10',
+    reply: {
+      messageId: 'msg_3450349543',
+      type: 'message.video',
+      text: 'Оченьдлинноесообщениебезпробеловзанимающеесразунесколькострокивызывающеестранноеповедениеокон',
+      url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
+    },
+  },
+  {
+    chatId: 1, dialogId: 'dlg_89789879',type: "message.audio", url: "https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3",
+    text: "Привет!", direction: 'incoming', status: 'received', subText: '89829445678', timestamp: '1727027959',
+    transcript: {
+      text: 'Привет, доехала хорошо, позвони мне завтра',
+    },
+    messageId: '11',
+    actions: [{ action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' }],
+    reply: {
+      messageId: 'msg_3450349543',
+      type: 'message.audio',
+      text: 'Оченьдлинноесообщениебезпробеловзанимающеесразунесколькострокивызывающеестранноеповедениеокон',
+      url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
+    },
+  },
+  {
+    chatId: 1,dialogId: 'dlg_89789879', type: "message.text", text: "Привет! Сообщение с превью ссылки github.com",
+    direction: 'outgoing', status: 'received', timestamp: '1727027959',
+    messageId: '12',
+    linkPreview: {
+      title: 'GitHub · Build and ship software on a single, collaborative platform',
+      imageUrl: 'https://filebump2.services.mobilon.ru/file/eMWLDOFaV3htGOMJZUVFcdE6r29TPFnZHofq',
+      url: 'https://github.com',
+      description: 'Join the world\'s most widely adopted, AI-powered developer platform where millions of developers, ' +
+        'businesses, and the largest open source community build software that advances humanity.',
+    },
+  },
+  {
+    chatId: 1, dialogId: 'dlg_89789879',type: "message.text", text: "Привет! Сообщение с превью ссылки yandex.ru",
+    direction: 'incoming', status: 'received', timestamp: '1727028159',
+    messageId: '13',
+    linkPreview: {
+      title: 'Яндекс',
+      imageUrl: 'https://yastatic.net/s3/home-static/_/37/37a02b5dc7a51abac55d8a5b6c865f0e.png',
+      url: 'https://yandex.ru',
+      description: 'Найдётся всё',
+    },
+  },
+  {
+    chatId: 1, dialogId: 'dlg_89789879',type: "message.text", text: "Привет! Сообщение с keyboard",
+    direction: 'incoming', status: 'received', timestamp: '1735029659',
+    messageId:'149',
+    keyboard: [
+      {
+        key: 'key_1',
+        action: null,
+        color: null,
+        text: 'Все ок',
+        order: 1,
+      },{
+        key: 'key_2',
+        text: 'Перезвоню позже',
+        action: null,
+        color: null,
+        order: 2,
+      },{
+        key: 'key_3',
+        text: 'Игнорировать',
+        action: 'ignore',
+        color: 'rgba(255, 0, 0, 0.15)',
+        order: 3,
+      },
+    ],
+  },
+//=========================================================================================================================================================================================//
   {
     chatId: 2, type: "message.image", url: "https://filebump2.services.mobilon.ru/file/Oao1XkPt8LKLVdFA8pMcXAQeClMehtdrJVsJ", timestamp: '1727027959',
     alt: "Example Image", direction: 'outgoing',
@@ -131,11 +293,7 @@ export const messages = [
     timestamp: '1731411505',
     type: "message.system", text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
-  {
-    chatId: 1, messageId: 1,
-    timestamp: 1731411505,
-    type: "message.system", text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  },
+
   {
     chatId: 2, type: "message.file", url: "https://axiomabio.com/pdf/test.pdf", filename: "Документ.pdf", direction: 'incoming',
     status: 'received', timestamp: '1727027959', actions: [{ action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' }]
@@ -233,162 +391,7 @@ export const messages = [
       },
     ],
   },
-  {
-    chatId: 1, type: "message.text", text: "Привет! Извини, давно тебе не писал. Как дела?",
-    messageId: '5',
-    direction: 'outgoing', status: 'received', timestamp: '1727027959',
-    actions: [
-      { action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=pin' },
-      { action: 'delete', title: 'удалить' }
-    ],
-    reply: {
-      messageId: '14',
-      type: 'message.text',
-      text: 'Привет, что-то давно не пишешь?',
-    },
-  },
-  {
-    chatId: 1, type: "message.text", text: "классное фото, тоже таки хочу",
-    direction: 'outgoing', status: 'received', timestamp: '1727027959',
-    messageId: '6',
-    reply: {
-      messageId: '15',
-      type: 'message.file',
-      text: 'мои новые кроссовки',
-      filename: 'cross.png',
-      url: 'https://placehold.jp/30/336633/ffffff/320x160.png?text=кроссовки',
-    },
-  },
-  {
-    chatId: 1, url: 'https://placehold.jp/30/336633/ffffff/320x160.png?text=кроссовки',
-    type: "message.image", text: "классное фото, тоже таки хочу",
-    messageId: '7',
-    direction: 'outgoing', status: 'received', timestamp: '1727027959',
-    reply: {
-      messageId: '15',
-      type: 'message.image',
-      text: 'мои новые кроссовки',
-      url: 'https://placehold.jp/30/336633/ffffff/320x160.png?text=кроссовки',
-    },
-  },
-  {
-    chatId: 1, url: 'https://placehold.jp/30/336633/ffffff/320x160.png?text=кроссовки',
-    type: "message.image",
-    messageId: '15',
-    direction: 'outgoing', status: 'received', timestamp: '1727027859',
-    text: 'мои новые кроссовки',
-  },
-  {
-    chatId: 1, type: "message.text", text: "Привет! Извини, давно тебе не писал. Как дела?",
-    direction: 'incoming', status: 'received', timestamp: '1727027959',
-    actions: [
-      { action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=pin' },
-      { action: 'delete', title: 'удалить' }
-    ],
-    messageId: '8',
-    reply: {
-      messageId: '14',
-      type: 'message.text',
-      text: 'Привет, что-то давно не пишешь?',
-    },
-  },
-  {
-    chatId: 1, type: "message.text",
-    direction: 'incoming', status: 'received', timestamp: '1727027759',
-    actions: [
-      { action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=pin' },
-      { action: 'delete', title: 'удалить' }
-    ],
-    messageId: '14',
-    text: 'Привет, что-то давно не пишешь?',
-  },
-  {
-    chatId: 1, type: "message.text", text: "классное фото, тоже таки хочу",
-    direction: 'incoming', status: 'received', timestamp: '1727027959',
-    messageId: '9',
-    reply: {
-      messageId: '15',
-      type: 'message.image',
-      text: 'Оченьдлинноесообщениебезпробеловзанимающеесразунесколькострокивызывающеестранноеповедениеокон',
-      url: 'https://placehold.jp/30/336633/ffffff/320x160.png?text=кроссовки',
-    },
-  },
-  {
-    chatId: 1, url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
-    type: "message.file", text: "ответ на видео", filename: "video.mp4",
-    direction: 'incoming', status: 'received', timestamp: '1727027959',
-    messageId: '10',
-    reply: {
-      messageId: 'msg_3450349543',
-      type: 'message.video',
-      text: 'Оченьдлинноесообщениебезпробеловзанимающеесразунесколькострокивызывающеестранноеповедениеокон',
-      url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
-    },
-  },
-  {
-    chatId: 1, type: "message.audio", url: "https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3",
-    text: "Привет!", direction: 'incoming', status: 'received', subText: '89829445678', timestamp: '1727027959',
-    transcript: {
-      text: 'Привет, доехала хорошо, позвони мне завтра',
-    },
-    messageId: '11',
-    actions: [{ action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' }],
-    reply: {
-      messageId: 'msg_3450349543',
-      type: 'message.audio',
-      text: 'Оченьдлинноесообщениебезпробеловзанимающеесразунесколькострокивызывающеестранноеповедениеокон',
-      url: "https://filebump2.services.mobilon.ru/file/i3UQnryC89WwxtigxSUXWq0ltJBhLfJXp5hT",
-    },
-  },
-  {
-    chatId: 1, type: "message.text", text: "Привет! Сообщение с превью ссылки github.com",
-    direction: 'outgoing', status: 'received', timestamp: '1727027959',
-    messageId: '12',
-    linkPreview: {
-      title: 'GitHub · Build and ship software on a single, collaborative platform',
-      imageUrl: 'https://filebump2.services.mobilon.ru/file/eMWLDOFaV3htGOMJZUVFcdE6r29TPFnZHofq',
-      url: 'https://github.com',
-      description: 'Join the world\'s most widely adopted, AI-powered developer platform where millions of developers, ' +
-        'businesses, and the largest open source community build software that advances humanity.',
-    },
-  },
-  {
-    chatId: 1, type: "message.text", text: "Привет! Сообщение с превью ссылки yandex.ru",
-    direction: 'incoming', status: 'received', timestamp: '1727028159',
-    messageId: '13',
-    linkPreview: {
-      title: 'Яндекс',
-      imageUrl: 'https://yastatic.net/s3/home-static/_/37/37a02b5dc7a51abac55d8a5b6c865f0e.png',
-      url: 'https://yandex.ru',
-      description: 'Найдётся всё',
-    },
-  },
-  {
-    chatId: 1, type: "message.text", text: "Привет! Сообщение с keyboard",
-    direction: 'incoming', status: 'received', timestamp: '1735029659',
-    messageId:'149',
-    keyboard: [
-      {
-        key: 'key_1',
-        action: null,
-        color: null,
-        text: 'Все ок',
-        order: 1,
-      },{
-        key: 'key_2',
-        text: 'Перезвоню позже',
-        action: null,
-        color: null,
-        order: 2,
-      },{
-        key: 'key_3',
-        text: 'Игнорировать',
-        action: 'ignore',
-        color: 'rgba(255, 0, 0, 0.15)',
-        order: 3,
-      },
-    ],
-  },
+
   /**============================================================================================================ */
   { messageId: 1,
     chatId: 5, type: "message.text", 
@@ -489,9 +492,6 @@ export const messages = [
     { messageId: 25,
     chatId: 5, type: "message.text", 
     text: "25!", 
-    direction: 'incoming', status: 'read', timestamp: '1727027959' },{ messageId: 1,
-    chatId: 5, type: "message.text", 
-    text: "26!", 
     direction: 'incoming', status: 'read', timestamp: '1727027959' },
     { messageId: 26,
     chatId: 5, type: "message.text", 
