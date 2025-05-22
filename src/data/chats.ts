@@ -38,6 +38,13 @@ export const chats = [
         'lastActivity.timestamp': 1727001759111,   // для сортировки
         isSelected: false,
       },
+      {
+        dialogId: 'all',
+        name: 'Просмотр всех диалогов',
+        'lastActivity.timestamp': 17270000000,   // для сортировки
+        countUnread: 100,
+        isSelected: false,
+      }
     ],
     contact: {
       attributes: [
@@ -56,7 +63,7 @@ export const chats = [
       ],
     },
   },
-  {
+  /*{
     chatId: 25, name: "Василий ВасилийВасилийВасилий Василий",
     avatar: 'https://img.freepik.com/free-photo/smiley-man-relaxing-outdoors_23-2148739334.jpg',
     countUnread: 102,
@@ -102,7 +109,7 @@ export const chats = [
         },
       ],
     },
-  },
+  },*/
   {
     chatId: 2, name: "Мария",
     colorUnread: 'green',

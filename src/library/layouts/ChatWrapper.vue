@@ -2,6 +2,7 @@
   <div
     :id="'chat-wrapper-' + chatAppId"
     class="chat-wrapper"
+    :class="applyStyle()"
   >
     <div
       v-if="isSelectedChat"
@@ -48,6 +49,10 @@ const props = defineProps({
     type: Number,
     required: false,
     default: 50,
+  },
+    applyStyle: {
+    type: Function,
+    default: null
   }
 })
 

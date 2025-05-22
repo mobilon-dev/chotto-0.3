@@ -53,6 +53,8 @@
             :is-open-chat-panel="isOpenChatPanel"
             :is-selected-chat="!!selectedChat"
             :chat-panel-width="chatPanelWidth"
+                  :apply-style="setMessageClass"
+
           >
             <template #default>
               <div
@@ -76,13 +78,6 @@
                       >
                         <span class="pi pi-info-circle" />
                       </button>
-                      <!--ButtonContextMenu
-                        :actions="actions"
-                        :button-class="'pi pi-list'"
-                        :mode="'click'"
-                        :menu-side="'bottom'"
-                        :context-menu-key="'top-actions'"
-                      /-->
                       <button
                         class="chat-info__button-panel"
                         @click="handleOpenSearchPanel"
@@ -283,6 +278,8 @@ const themes = [
 const chatsStore = useChatsStore();
 
 const selectedChat = ref(null);
+const selectedDialog = ref(null)
+
 const messages = ref([]);
 const userProfile = ref({});
 const channels = ref([]);
@@ -318,6 +315,15 @@ const commands = computed(() => {
   if (selectedChat.value && selectedChat.value.commands) return selectedChat.value.commands
   else return null
 })
+
+const setMessageClass = () => {
+  if (selectedDialog.value){
+    if (selectedDialog.value.dialogId == 'dlg_89789879')
+      return 'tg-message'
+    else 
+      return 'wa-message' 
+  }
+}
 
 const setTheme = (themeCode) => {
   theme.value = themeCode
@@ -460,9 +466,12 @@ const getFeedObjects = () => {
   // console.log('get feed')
   if (selectedChat.value) {
     // здесь обработка для передачи сообщений в feed
-    const messages = props.dataProvider.getFeed(selectedChat.value.chatId);
+    let messages = props.dataProvider.getFeed(selectedChat.value.chatId);
+    if (selectedDialog.value && selectedDialog.value.dialogId != 'all'){
+      messages = messages.filter(m => m.dialogId == selectedDialog.value.dialogId)
+    }
     const messages3 = transformToFeed(messages);
-    return messages3;
+      return messages3;
   } else {
     return [];
   }
@@ -521,8 +530,10 @@ const sendWabaValues = (obj) => {
 
 const selectChat = (args) => {
   console.log(args.chat, args.dialog)
-  if(args.dialog)
+  if(args.dialog){
     description.value = args.dialog.name
+    selectedDialog.value = args.dialog
+  }
   else description.value = null
   isThirdColVisible.value = true
   isSecondColVisible.value = false
@@ -644,17 +655,20 @@ onMounted(() => {
 });
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 
-.button-close {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
+.tg-message{
+  --chotto-message-right-bg: #DAF0FF;
+  --chotto-message-right-secondary-bg: #bce1fa;
+  --chotto-message-accent-line-color: #37AFE2;
+  --chotto-chat-input-icon-color: #37AFE2;
+}
 
-  span {
-    font-size: var(--chotto-button-icon-size);
-    color: var(--chotto-button-color-active);
-  }
+.wa-message{
+  --chotto-message-right-bg: #D9FDD3;
+  --chotto-message-right-secondary-bg: #bbf3b2;
+  --chotto-message-accent-line-color: #25D366;
+  --chotto-chat-input-icon-color: #25D366;
 }
 
 </style>
