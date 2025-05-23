@@ -13,7 +13,14 @@
         <slot name="inline-buttons"/>
       </div>
       
+      <div 
+        v-if="disabledPlaceholder && (state == 'disabled' || getMessage().isRecording)"
+        class="chat-input__input chat-input__disabled-placeholder"
+      >
+        {{ disabledPlaceholder }}
+      </div>
       <textarea
+        v-else
         :disabled="state == 'disabled' || getMessage().isRecording"
         ref="refInput"
         v-model="getMessage().text"
@@ -64,6 +71,10 @@ const props = defineProps({
     required: false,
     default: false,
   },
+  disabledPlaceholder: {
+    type: String,
+    default: null,
+  }
 })
 
 const disabledSendButton = computed(() => {
@@ -227,6 +238,12 @@ const sendMessage = () => {
     &::placeholder {
       color: var(--chotto-secondary-text-color);
     }
+  }
+
+  &__disabled-placeholder {
+    color: var(--chotto-secondary-text-color);
+    text-align: center;
+    user-select: none;
   }
 
   &__button {

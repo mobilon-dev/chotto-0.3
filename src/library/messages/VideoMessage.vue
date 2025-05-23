@@ -1,7 +1,10 @@
 <template>
   <div
     class="video-message"
-    :class="getClass(message)"
+    :class="
+      getClass(message),
+      applyStyle(message)
+    "
     :messageId="message.messageId"
     @mouseleave="hideMenu"
   >
@@ -183,6 +186,10 @@ const props = defineProps({
     type: Object as () => IVideoMessage,
     required: true,
   },
+  applyStyle: {
+    type: Function,
+    default: () => {return null}
+  }
 });
 
 const emit = defineEmits(['action','reply']);

@@ -52,7 +52,7 @@ const props = defineProps({
   },
     applyStyle: {
     type: Function,
-    default: null
+    default: () => {return null}
   }
 })
 

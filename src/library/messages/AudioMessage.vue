@@ -1,7 +1,10 @@
 <template>
   <div
     class="audio-message"
-    :class="getClass(message)"
+    :class="
+      getClass(message),
+      applyStyle(message)
+    "
     :messageId="message.messageId"
     @mouseleave="hideMenu"
   >
@@ -212,6 +215,10 @@ const props = defineProps({
     type: Object as () => IAudioMessage,
     required: true,
   },
+  applyStyle: {
+    type: Function,
+    default: () => {return null}
+  }
 });
 
 const speed = ref([
