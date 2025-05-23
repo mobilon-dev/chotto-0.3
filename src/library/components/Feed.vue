@@ -14,10 +14,11 @@
       class="tracking-message"
     >
       <component
+        class="message-feed__message"
         :is="componentsMap(object.type)"
         :key="object.messageId"
-        class="message-feed__message"
         :message="object"
+        :applyStyle="applyStyle"
         @action="messageAction"
         @reply="handleClickReplied"
       />
@@ -125,6 +126,10 @@ const props = defineProps({
   scrollTo:{
     type: String,
     default: null,
+  },
+  applyStyle: {
+    type: Function,
+    default: () => {return null}
   }
 });
 

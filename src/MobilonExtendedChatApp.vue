@@ -53,8 +53,6 @@
             :is-open-chat-panel="isOpenChatPanel"
             :is-selected-chat="!!selectedChat"
             :chat-panel-width="chatPanelWidth"
-                  :apply-style="setMessageClass"
-
           >
             <template #default>
               <div
@@ -109,6 +107,7 @@
                   :enable-double-click-reply="true"
                   :scroll-to="clickedReply"
                   :scroll-to-bottom="scrollToBottomOnSelectChat || isScrollToBottomOnUpdateObjectsEnabled"
+                  :apply-style="setMessageClass"
                   @message-action="messageAction"
                   @load-more="loadMore"
                   @load-more-down="loadMoreDown"
@@ -119,6 +118,8 @@
                 />
                 <ChatInput 
                   :focus-on-input-area="inputFocus"
+                  :state="'disabled'"
+                  disabled-placeholder="Ввод запрещён"
                 >
                   <template #inline-buttons>
                     <ButtonCommandsSelector
@@ -316,9 +317,9 @@ const commands = computed(() => {
   else return null
 })
 
-const setMessageClass = () => {
-  if (selectedDialog.value){
-    if (selectedDialog.value.dialogId == 'dlg_89789879')
+const setMessageClass = (message) => {
+  if (message){
+    if (message.dialogId == 'dlg_89789879')
       return 'tg-message'
     else 
       return 'wa-message' 

@@ -1,6 +1,9 @@
 <template>
   <div
-    :class="getClass(message, elementType.message)"
+    :class="
+      getClass(message, elementType.message),
+      applyStyle(message)
+    "
     :messageId="message.messageId"
   >
     <img
@@ -114,6 +117,10 @@ const props = defineProps({
     type: Object as () => ICallMessage,
     required: true,
   },
+  applyStyle: {
+    type: Function,
+    default: () => {return null}
+  }
 });
 
 const isFullTranscript = ref(false)
