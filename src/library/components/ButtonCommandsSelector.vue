@@ -83,7 +83,7 @@ watch(
       padding: var(--chotto-chat-input-button-padding);
       display: block;
       cursor: pointer;
-      font-size: var(--chotto-button-icon-size);
+      font-size: calc(var(--chotto-button-icon-size) - 7px);
       color: var(--chotto-button-color-active);
     }
 

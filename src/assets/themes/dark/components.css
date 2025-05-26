@@ -22,12 +22,15 @@
 
   /* Chat Item */
   --chotto-chat-item-padding-container: 10px 20px 10px 15px;
+  --chotto-chat-item-dialog-padding: 5px 0 0 75px;
   --chotto-chat-item-border-radius: 0;
 
   /* Chat Info */
   --chotto-chat-info-padding: 10px 15px 10px 15px;
   --chotto-chat-info-border-radius: 0;
-  
+  --chotto-chat-info-background-color: transparent;
+  --chotto-chat-info-additional-title-border-color: #25D366;
+
   /* Scroll Bar */
   --chotto-scrollbar-bg: var(--neutral-50);
   --chotto-scrollbar-thumb-bg: var(--neutral-300);

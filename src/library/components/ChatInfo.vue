@@ -24,11 +24,15 @@
       <div class="chat-info__info-container">
         <span class="chat-info__title">
           {{ chat.name }}
+          <span class="chat-info__additional-title">
+            {{additionalTitle}}
+          </span>
         </span>
         <p
           v-if="chatDescription"
           class="chat-info__time"
         >
+          <slot name="img-description"/>
           {{ chatDescription }}
         </p>
       </div>
@@ -64,6 +68,10 @@ const props = defineProps({
     type: String,
     required: false,
   },
+  additionalTitle:{
+    type: String,
+    required: false,
+  },
   defaultLastActivityTime: {
     type: Boolean,
     required: false,
@@ -92,6 +100,7 @@ const chatDescription = computed(() => {
     border-radius: var(--chotto-chat-info-border-radius);
     padding: var(--chotto-chat-info-padding);
     border-bottom: 1px solid  var(--chotto-item-border-color);
+    background-color: var(--chotto-chat-info-background-color);
   }
 
   &__base-line{
@@ -129,6 +138,7 @@ const chatDescription = computed(() => {
   }
 
   &__title {
+    display: flex;
     grid-column: 2;
     color: var(--chotto-primary-text-color);
     font-size: var(--chotto-title-font-size);
@@ -136,7 +146,17 @@ const chatDescription = computed(() => {
     margin: 0;
   }
 
+  &__additional-title{
+    margin: auto;
+    font-size: var(--chotto-text-font-size);
+    padding: 0 10px;
+    border: 1px solid var(--chotto-chat-info-additional-title-border-color);
+    border-radius: 5px;
+    margin-left: 15px;
+  }
+
   &__time {
+    display: flex;
     font-size: var(--chotto-text-font-size);
     color: var(--chotto-secondary-text-color);
     grid-column: 2;

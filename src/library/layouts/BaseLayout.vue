@@ -21,7 +21,7 @@
     height: inherit;
     width: 100%;
     display: grid;
-    grid-template-columns: 1.25fr 3fr;
+    grid-template-columns: 1.8fr 3fr;
     transition: all 0.3s ease;
     position: relative;
     border-top: var(--chotto-container-borders, none);
@@ -38,7 +38,6 @@
     border-right: var(--chotto-container-borders, none);
     border-bottom: var(--chotto-container-borders, none);
     width: 100%;
-    min-width: 300px;
   }
 
   &__second-col {

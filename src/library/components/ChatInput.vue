@@ -110,9 +110,14 @@ watch(
       if (refInput.value){
         refInput.value.style.height = 'auto'
         refInput.value.style.height = refInput.value.scrollHeight + 'px'
+        if (getMessage().text.length == 0){
+          refInput.value.style.height = '40px'
+        }
       }
+      
     })
-  }
+  },
+  {immediate: true}
 );
 
 watch(

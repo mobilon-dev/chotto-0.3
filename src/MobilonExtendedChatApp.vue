@@ -68,6 +68,14 @@
                   :description="description"
                   @return-to-chats="handleReturnToChats"
                 >
+                  <template #img-description>
+                    <img 
+                      src="https://img.freepik.com/free-photo/smiley-man-relaxing-outdoors_23-2148739334.jpg"
+                      height="16"
+                      width="16"
+                      style="margin: auto; margin-left: 0; margin-right: 5px;"
+                    >
+                  </template>
                   <template #actions>
                     <div style="display: flex;">
                       <button
@@ -118,13 +126,11 @@
                 />
                 <ChatInput 
                   :focus-on-input-area="inputFocus"
-                  :state="'disabled'"
-                  disabled-placeholder="Ввод запрещён"
+
                 >
                   <template #inline-buttons>
                     <ButtonCommandsSelector
                       :mode="'hover'"
-                      :state="'disabled'"
                       :commands="commands"
                       @send="addMessage"
                     />
@@ -141,7 +147,7 @@
                       :elevated-window="false"
                     />
                   </template>
-                  <template #buttons>
+                  <!--template #buttons>
                     
                     <ButtonWabaTemplateSelector
                       :waba-templates="wabaTemplates"
@@ -158,7 +164,7 @@
                     />
                     <AudioRecorder :filebump-url="filebumpUrl" />
                     <VideoRecorder :filebump-url="filebumpUrl" />
-                  </template>
+                  </template-->
                 </ChatInput>
               </div>
             </template>
@@ -264,8 +270,12 @@ const themes = [
   {
     code: "light",
     name: "Light",
-    default: true,
   },
+  /*{
+    code: "mobilon1",
+    name: "mobilon1",
+    default: true,
+  },*/
   {
     code: "dark",
     name: "Dark",
