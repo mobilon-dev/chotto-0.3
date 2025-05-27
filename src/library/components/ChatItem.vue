@@ -1,157 +1,155 @@
 <template>
   <div>
     <div
-    class="chat-item__container"
-    :class="getClass()"
-    @mouseenter="buttonMenuVisible = true"
-    @mouseleave="onMouseLeave"
-    @click="selectChat"
-  >
-    <div class="chat-item__avatar-container">
-      <span
-        class="chat-item__status-user"
-        :style="{ backgroundColor: props.chat.status }"
-      />
-      <img
-        v-if="props.chat.avatar"
-        :src="props.chat.avatar"
-        height="48"
-        width="48"
-      >
-      <span
-        v-else
-        class="pi pi-user"
-      />
-    </div>
-
-    <div class="chat-item__info-container">
-      <Tooltip :text="chat.name" position="bottom">
-        <div class="chat-item__name">
-        {{ chat.name }}
-      </div>
-      </Tooltip>
-      
-      <Tooltip :text="chat.lastMessage" position="bottom">
-        <div
-        v-if="chat.lastMessage || chat.typing"
-        class="chat-item__last-message"
-      >
-        {{ showText }}
-      </div>
-      </Tooltip>
-      
-    </div>
-
-    <div class="chat-item__details-container">
-      <div
-        v-if="chat['lastActivity.time'] && !buttonMenuVisible"
-        class="chat-item__time"
-      >
-        {{ chat['lastActivity.time'] }}
-      </div>
-      <div
-        v-if="chat.countUnread > 0"
-        class="chat-item__unread"
-        :style="{backgroundColor: chat.colorUnread ? chat.colorUnread : null}"
-      >
-        {{ chat.countUnread > 99 ? '99+' : chat.countUnread }}
-      </div>
-
-      <ButtonContextMenu
-        v-if="buttonMenuVisible && chat.actions"
-        mode="click"
-        menu-side="bottom"
-        :actions="chat.actions"
-        @click="clickAction"
-        @button-click="BCMclick"
-        @menu-mouse-leave="buttonMenuVisible = false"
-      >
-        <span class='pi pi-ellipsis-h chat-item__actions-trigger'></span>
-      </ButtonContextMenu>
-
-      <div
-        v-if="chat.countUnread < 1"
-        class="chat-item__status-chat-container"
-      >
-        <div
-          v-if="statuses.includes(chat['lastMessage.status'])"
-          class="chat-item__status-message"
-          :class="status"
-        >
-          <span
-            v-if="chat['lastMessage.status'] !== 'sent'"
-            class="pi pi-check"
-          />
-          <span class="pi pi-check" />
-        </div>
-
+      class="chat-item__container"
+      :class="getClass()"
+      @mouseenter="buttonMenuVisible = true"
+      @mouseleave="onMouseLeave"
+      @click="selectChat"
+    >
+      <div class="chat-item__avatar-container">
         <span
-          v-if="(chat.isFixedTop || chat.isFixedBottom)"
-          class="chat-item__fixed pi pi-thumbtack"
+          class="chat-item__status-user"
+          :style="{ backgroundColor: props.chat.status }"
+        />
+        <img
+          v-if="props.chat.avatar"
+          :src="props.chat.avatar"
+          height="48"
+          width="48"
+        >
+        <span
+          v-else
+          class="pi pi-user"
         />
       </div>
-    </div>
 
-    <div
-      v-if="chat.dialogs" 
-      class="chat-item__dialog-buttons"
-    >
-      <button
-        v-if="!chat.dialogsExpanded"
-        class="chat-item__menu-button"
-        @click="chat.dialogsExpanded = !chat.dialogsExpanded"
-        id="noSelectButton"
-      >
-        <span id="noSelectButton" class="pi pi-angle-down" />
-      </button>
-      <button
-        v-if="chat.dialogsExpanded"
-        class="chat-item__menu-button"
-        @click="chat.dialogsExpanded = !chat.dialogsExpanded"
-        id="noSelectButton"
-      >
-        <span id="noSelectButton" class="pi pi-angle-up" />
-      </button>
-    </div>
-
-  </div>
-
-  <div 
-    v-if="chat.dialogsExpanded"
-    class="dialog__container"
-  >
-    <div
-      v-for="dialog in getSortedDialogs()"
-      class="dialog__item"
-      :class="getDialogClass(dialog)"
-      @click="selectDialog(dialog)"
-    >
-      <img
-        class="dialog__icon"
-        v-if="dialog.icon"
-        :src="dialog.icon"
-        height="16"
-        width="16"
-      >
-      <span
-        v-else
-        class="dialog__icon pi pi-user"
-      />
-      <div class="dialog__text-container">
-        <div class="dialog__name">{{ dialog.name }}</div>
-        <div class="dialog__time">{{ dialog['lastActivity.time'] }}</div>
+      <div class="chat-item__info-container">
+        <Tooltip :text="chat.name" position="bottom">
+          <div class="chat-item__name">
+          {{ chat.name }}
+        </div>
+        </Tooltip>
+        
+        <Tooltip :text="chat.lastMessage" position="bottom">
+          <div
+          v-if="chat.lastMessage || chat.typing"
+          class="chat-item__last-message"
+        >
+          {{ showText }}
+        </div>
+        </Tooltip>
+        
       </div>
+
+      <div class="chat-item__details-container">
+        <div
+          v-if="chat['lastActivity.time'] && !buttonMenuVisible"
+          class="chat-item__time"
+        >
+          {{ chat['lastActivity.time'] }}
+        </div>
+        <div
+          v-if="chat.countUnread > 0"
+          class="chat-item__unread"
+          :style="{backgroundColor: chat.colorUnread ? chat.colorUnread : null}"
+        >
+          {{ chat.countUnread > 99 ? '99+' : chat.countUnread }}
+        </div>
+
+        <ButtonContextMenu
+          v-if="buttonMenuVisible && chat.actions"
+          mode="click"
+          menu-side="bottom"
+          :actions="chat.actions"
+          @click="clickAction"
+          @button-click="BCMclick"
+          @menu-mouse-leave="buttonMenuVisible = false"
+        >
+          <span class='pi pi-ellipsis-h chat-item__actions-trigger'></span>
+        </ButtonContextMenu>
+
+        <div
+          v-if="chat.countUnread < 1"
+          class="chat-item__status-chat-container"
+        >
+          <div
+            v-if="statuses.includes(chat['lastMessage.status'])"
+            class="chat-item__status-message"
+            :class="status"
+          >
+            <span
+              v-if="chat['lastMessage.status'] !== 'sent'"
+              class="pi pi-check"
+            />
+            <span class="pi pi-check" />
+          </div>
+
+          <span
+            v-if="(chat.isFixedTop || chat.isFixedBottom)"
+            class="chat-item__fixed pi pi-thumbtack"
+          />
+        </div>
+      </div>
+
       <div
-        v-if="dialog.countUnread > 0"
-        class="chat-item__unread"
-        :style="{backgroundColor: dialog.colorUnread ? dialog.colorUnread : null}"
+        v-if="chat.dialogs" 
+        class="chat-item__dialog-buttons"
       >
-        {{ dialog.countUnread > 99 ? '99+' : dialog.countUnread }}
+        <button
+          v-if="!chat.dialogsExpanded"
+          class="chat-item__menu-button"
+          @click="chat.dialogsExpanded = !chat.dialogsExpanded"
+          id="noSelectButton"
+        >
+          <span id="noSelectButton" class="pi pi-angle-down" />
+        </button>
+        <button
+          v-if="chat.dialogsExpanded"
+          class="chat-item__menu-button"
+          @click="chat.dialogsExpanded = !chat.dialogsExpanded"
+          id="noSelectButton"
+        >
+          <span id="noSelectButton" class="pi pi-angle-up" />
+        </button>
+      </div>
+    </div>
+
+    <div 
+      v-if="chat.dialogsExpanded"
+      class="dialog__container"
+    >
+      <div
+        v-for="dialog in getSortedDialogs()"
+        class="dialog__item"
+        :class="getDialogClass(dialog)"
+        @click="selectDialog(dialog)"
+      >
+        <img
+          class="dialog__icon"
+          v-if="dialog.icon"
+          :src="dialog.icon"
+          height="16"
+          width="16"
+        >
+        <span
+          v-else
+          class="dialog__icon pi pi-user"
+        />
+        <div class="dialog__text-container">
+          <div class="dialog__name">{{ dialog.name }}</div>
+          <div class="dialog__time">{{ dialog['lastActivity.time'] }}</div>
+        </div>
+        <div
+          v-if="dialog.countUnread > 0"
+          class="chat-item__unread"
+          :style="{backgroundColor: dialog.colorUnread ? dialog.colorUnread : null}"
+        >
+          {{ dialog.countUnread > 99 ? '99+' : dialog.countUnread }}
+        </div>
       </div>
     </div>
   </div>
-  </div>
-  
 </template>
 
 <script setup lang="ts">
@@ -265,8 +263,9 @@ const onMouseLeave = (event) => {
 >
 .chat-item {
 
-
   &__container {
+    grid-row: 1;
+    grid-column: 1 / 2;
     display: flex;
     position: relative;
     padding: var(--chotto-chat-item-padding-container);
@@ -403,8 +402,8 @@ const onMouseLeave = (event) => {
     border-radius: 50%;
     margin-left: auto;
     margin-top: auto;
-    min-width: 22px;
-    min-height: 22px;
+    min-width: 25px;
+    min-height: 25px;
     font-size: var(--chotto-additional-text-font-size);
     color: var(--chotto-unread-text-color);
     background-color: var(--chotto-unread-background-color);
@@ -437,6 +436,11 @@ const onMouseLeave = (event) => {
       font-size: var(--chotto-text-font-size);
     }
   }
+
+  &__dialog-buttons{
+    display: flex;
+    margin-left: 8px;
+  }
 }
 
 .dialog{
@@ -446,8 +450,7 @@ const onMouseLeave = (event) => {
     position: relative;
     cursor: pointer;
     gap: 5px;
-    padding-left: 30px;
-    padding-top: 5px;
+    padding: var(--chotto-chat-item-dialog-padding);
   }
 
   &__icon{
@@ -474,6 +477,7 @@ const onMouseLeave = (event) => {
     text-overflow: ellipsis;
     width: 100%;
     padding: 0 5px;
+    margin: auto;
   }
 
   &__name{
