@@ -123,7 +123,25 @@
                   @click-replied-message="handleClickReplied"
                   @force-scroll-to-bottom="forceScrollToBottom"
                   @keyboard-action="keyboardAction"
-                />
+                >
+                  <template #empty-feed>
+                    <SplashScreen>
+                      <template #title>
+                        <h3>Нет сообщений</h3>
+                      </template>
+                      <template #text>
+                        <span style="max-width: 300px; display: block;">Вы можете отправить новое сообщение или воспользоваться шаблоном</span>
+                      </template>
+                      <template #picture>
+                        <img 
+                          src="https://filebump2.services.mobilon.ru/file/J2PDOO0mtcsK2v7J3z6tGJ2ttG1IwtlYnHLU/"
+                          width="196"
+                          height="196"
+                        >
+                      </template>
+                    </SplashScreen>
+                  </template>
+                </Feed>
                 <ChatInput 
                   :focus-on-input-area="inputFocus"
 

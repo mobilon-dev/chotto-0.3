@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="objects.length > 0 || typing"
     ref="refFeed"
     class="message-feed"
     @scroll="throttledScrollTopCheck()"
@@ -55,6 +56,15 @@
         <span class="pi pi-angle-down message-feed__icon-down" />
       </button>
     </transition>
+  </div>
+  <div 
+    v-else
+    class="message-feed"
+    ref="refFeed"
+  >
+    <div style="margin: auto;">
+      <slot name="empty-feed"/>
+    </div>
   </div>
   <teleport
     v-if="getMessage().reply"
