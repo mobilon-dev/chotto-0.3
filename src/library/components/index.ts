@@ -22,6 +22,8 @@ import Tooltip from './Tooltip.vue';
 import AudioRecorder from './AudioRecorder.vue';
 import VideoRecorder from './VideoRecorder.vue';
 import ButtonCommandsSelector from './ButtonCommandsSelector.vue';
+import SplashScreen from './SplashScreen.vue';
+
 export {
   ChatInfo,
   ChatInput,
@@ -47,4 +49,5 @@ export {
   AudioRecorder,
   VideoRecorder,
   ButtonCommandsSelector,
+  SplashScreen,
 }

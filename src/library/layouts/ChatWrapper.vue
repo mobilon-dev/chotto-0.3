@@ -13,11 +13,11 @@
 
     <div
       v-else
-      style="width: 100%"
+      style="display: flex; width: 100%;"
     >
-      <p>
-        {{ t('layout.ChatWrapper.noSelectedChat') }}
-      </p>
+      <div style="margin: auto;">
+        <slot name="placeholder" />
+      </div>
     </div>
 
     <div
@@ -34,7 +34,6 @@
   setup
 >
 import { watch, inject } from 'vue';
-import { t } from '../../locale/useLocale';
 
 const props = defineProps({
   isOpenChatPanel: {
