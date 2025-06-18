@@ -123,7 +123,25 @@
                   @click-replied-message="handleClickReplied"
                   @force-scroll-to-bottom="forceScrollToBottom"
                   @keyboard-action="keyboardAction"
-                />
+                >
+                  <template #empty-feed>
+                    <SplashScreen>
+                      <template #title>
+                        <h3>Нет сообщений</h3>
+                      </template>
+                      <template #text>
+                        <span style="max-width: 300px; display: block;">Вы можете отправить новое сообщение или воспользоваться шаблоном</span>
+                      </template>
+                      <template #picture>
+                        <img 
+                          src="https://filebump2.services.mobilon.ru/file/J2PDOO0mtcsK2v7J3z6tGJ2ttG1IwtlYnHLU/"
+                          width="196"
+                          height="196"
+                        >
+                      </template>
+                    </SplashScreen>
+                  </template>
+                </Feed>
                 <ChatInput 
                   :focus-on-input-area="inputFocus"
 
@@ -167,6 +185,24 @@
                   </template-->
                 </ChatInput>
               </div>
+            </template>
+
+            <template #placeholder>
+              <SplashScreen>
+                <template #title>
+                  <h3>Привет!</h3>
+                </template>
+                <template #text>
+                  <span>Выберите чат и диалог из списка слева</span>
+                </template>
+                <template #picture>
+                  <img 
+                    src="https://filebump2.services.mobilon.ru/file/kUvCq3FDfVXR5UsJ1rB9Z7eFk23Xy3bqyQEZ"
+                    width="196"
+                    height="196"
+                  >
+                </template>
+              </SplashScreen>
             </template>
 
             <template #chatpanel>
@@ -237,6 +273,7 @@ import { transformToFeed } from "./transform/transformToFeed";
 import { useLocale } from "./locale/useLocale";
 import VideoRecorder from "./library/components/VideoRecorder.vue";
 import ButtonCommandsSelector from "./library/components/ButtonCommandsSelector.vue";
+import SplashScreen from "./library/components/SplashScreen.vue";
 
 const { locale, locales } = useLocale()
 
@@ -649,8 +686,8 @@ onMounted(() => {
   props.eventor.subscribe(handleEvent);
   userProfile.value = props.authProvider.getUserProfile();
   chatsStore.chats = props.dataProvider.getChats();
-  selectedChat.value = chatsStore.chats[5]
-  selectChat({chat: chatsStore.chats[5]})
+  //selectedChat.value = chatsStore.chats[5]
+  //selectChat({chat: chatsStore.chats[5]})
   channels.value = props.dataProvider.getChannels();
   templates.value = props.dataProvider.getTemplates()
   wabaTemplates.value = props.dataProvider.getWABATemplates()
