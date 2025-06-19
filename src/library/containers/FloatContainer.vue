@@ -142,10 +142,7 @@ onMounted(() => {
 });
 </script>
 
-<style
-  scoped
-  lang="scss"
->
+<style lang="scss">
 .float-window {
   z-index: 1000;
   width: fit-content;
