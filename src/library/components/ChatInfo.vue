@@ -24,7 +24,7 @@
       <div class="chat-info__info-container">
         <span class="chat-info__title">
           {{ chat.name }}
-          <span class="chat-info__additional-title">
+          <span v-if="additionalTitle" class="chat-info__additional-title">
             {{additionalTitle}}
           </span>
         </span>
