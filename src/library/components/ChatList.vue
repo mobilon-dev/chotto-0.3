@@ -35,6 +35,7 @@
           class="chat-list__item"
           :chat="chat"
           @select="selectChat"
+          @expand="expandChat"
           @action="action"
         />
       </div>
@@ -46,6 +47,7 @@
           class="chat-list__item"
           :chat="chat"
           @select="selectChat"
+          @expand="expandChat"
           @action="action"
         />
       </div>
@@ -57,6 +59,7 @@
           class="chat-list__item"
           :chat="chat"
           @select="selectChat"
+          @expand="expandChat"
           @action="action"
         />
       </div>
@@ -99,7 +102,7 @@ const props = defineProps({
 });
 
 // Define emits
-const emit = defineEmits(['select', 'action', 'loadMoreChats']);
+const emit = defineEmits(['select', 'action', 'loadMoreChats', 'expand']);
 
 const filter = ref('');
 const refChatList = ref()
@@ -170,6 +173,10 @@ const startScrollWatch = (event) => {
 
 const stopScrollWatch = () => {
   isScrollByMouseButton.value = false
+}
+
+const expandChat = (args) => {
+  emit('expand', args)
 }
 
 // Define method

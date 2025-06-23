@@ -95,11 +95,11 @@
       <div
         v-if="chat.dialogs" 
         class="chat-item__dialog-buttons"
+        @click="emit('expand', props.chat)"
       >
         <button
           v-if="!chat.dialogsExpanded"
           class="chat-item__menu-button"
-          @click="chat.dialogsExpanded = !chat.dialogsExpanded"
           id="noSelectButton"
         >
           <span id="noSelectButton" class="pi pi-angle-down" />
@@ -107,7 +107,6 @@
         <button
           v-if="chat.dialogsExpanded"
           class="chat-item__menu-button"
-          @click="chat.dialogsExpanded = !chat.dialogsExpanded"
           id="noSelectButton"
         >
           <span id="noSelectButton" class="pi pi-angle-up" />
@@ -167,7 +166,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['select', 'action']);
+const emit = defineEmits(['select', 'action', 'expand']);
 
 const buttonMenuVisible = ref(false);
 const preventEmit = ref(false)
@@ -178,10 +177,8 @@ const BCMclick = () => {
 
 const selectChat = (event: MouseEvent) => { 
   if (!preventEmit.value){
-    if (event.target instanceof HTMLElement && event.target.id != 'noSelectButton' && !props.chat.dialogs)
+    if (event.target instanceof HTMLElement && event.target.id != 'noSelectButton')
       emit('select', {chat: props.chat, dialog: null});
-    if (props.chat.dialogs)
-      props.chat.dialogsExpanded = !props.chat.dialogsExpanded
   }
   preventEmit.value = false
 }
