@@ -26,6 +26,7 @@
             filter-enabled
             :title-enabled="false"
             @select="selectChat"
+            @expand="expandChat"
             @action="chatAction"
             @load-more-chats="loadMoreChats"
           >
@@ -66,6 +67,7 @@
                   :show-return-button="isShowReturnButton"
                   :default-last-activity-time="true"
                   :description="description"
+                  additional-title="11:06"
                   @return-to-chats="handleReturnToChats"
                 >
                   <template #img-description>
@@ -576,13 +578,32 @@ const sendWabaValues = (obj) => {
   addMessage(messageObject)
 }
 
+const expandChat = (args) => {
+  console.log(args)
+  for (let chat of chatsStore.chats){
+    if (chat.chatId != args.chatId) chat.dialogsExpanded = false
+    else chat.dialogsExpanded = !chat.dialogsExpanded
+  }
+}
+
 const selectChat = (args) => {
   console.log(args.chat, args.dialog)
   if(args.dialog){
     description.value = args.dialog.name
     selectedDialog.value = args.dialog
   }
-  else description.value = null
+  else {
+    description.value = null
+    if (args.chat.dialogs && args.chat.dialogs.length > 0){
+      for (let d of args.chat.dialogs){
+        selectedDialog.value = d
+        description.value = d.name
+        d.isSelected = true
+        args.chat.dialogsExpanded = true
+        break
+      }
+    }
+  }
   isThirdColVisible.value = true
   isSecondColVisible.value = false
   scrollToBottomOnSelectChat.value = true
