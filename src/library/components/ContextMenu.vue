@@ -61,7 +61,6 @@ const click = (index) => {
     z-index: 1000;
     position: absolute;
     width: max-content;
-    max-width: 250px;
     box-shadow: 0px 2px 10px 1px var(--chotto-shadow-light-color);
     border-radius: 8px;
     font-size: var(--chotto-title-font-size);
