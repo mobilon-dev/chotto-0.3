@@ -1,14 +1,13 @@
 <template>
   <div
     class="image-message"
-    :class="
+    :class="[
       getClass(message),
       applyStyle(message)
-    "
+    ]"
     :messageId="message.messageId"
     @mouseleave="hideMenu"
   >
-
     <img
       v-if="message.avatar"
       class="image-message__avatar"
@@ -53,8 +52,8 @@
           >
             <div
               v-if="message.views"
-              @click.stop="viewsAction"
               class="image-message__views"
+              @click.stop="viewsAction"
             >
               <span class="pi pi-eye" />
               <p>{{ message.views }}</p>
@@ -79,16 +78,15 @@
         <transition name="modal-fade">
           <a
             v-if="buttonDownloadVisible"
-            @click.stop="() => '//Предотвращаем всплытие события клика'"
             class="image-message__download-button"
             :href="message.url"
             download
             target="_blank"
+            @click.stop="() => '//Предотвращаем всплытие события клика'"
           >
             <span class="pi pi-download" />
           </a>
         </transition>
-
       </div>
 
       <transition name="modal-fade">
@@ -116,21 +114,21 @@
         class="image-message__text-container"
       >
         <p
-          v-html="linkedText"
           @click="inNewWindow"
-        ></p>
+          v-html="linkedText"
+        />
       </div>
 
       <LinkPreview
+        v-if="message.linkPreview"
         class="image-message__link-preview"
         :class="message.position"
-        v-if="message.linkPreview"
-        :linkPreview="message.linkPreview"
+        :link-preview="message.linkPreview"
       />
 
       <EmbedPreview
-        :class="message.position"
         v-if="message.embed"
+        :class="message.position"
         :embed="message.embed"
       />
     </div>
@@ -152,8 +150,6 @@
       </transition>
     </Teleport>
   </div>
-
-
 </template>
 
 <script

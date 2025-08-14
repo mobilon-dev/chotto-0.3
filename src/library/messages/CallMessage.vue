@@ -1,9 +1,9 @@
 <template>
   <div
-    :class="
+    :class="[
       getClass(message, elementType.message),
       applyStyle(message)
-    "
+    ]"
     :messageId="message.messageId"
   >
     <img
@@ -85,18 +85,17 @@
               </button>
 
               <div
+                v-for="item in message.transcript?.dialog"
+                :key="item.time"
                 :class="getClass(item, elementType.textDialog)"
-                v-for="(item, index) in message.transcript?.dialog"
               >
                 <p>{{ item.text }}</p>
                 <span>{{ item.time }}</span>
               </div>
-
             </div>
           </div>
         </transition>
       </Teleport>
-
     </div>
   </div>
 </template>

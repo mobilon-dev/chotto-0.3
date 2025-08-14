@@ -3,7 +3,6 @@
     v-if="!getMessage().isRecording"
     class="video-recorder__container"
   >
-    
     <button
       v-if="uploadStatus != 'uploading'"
       class="video-recorder__button"

@@ -14,9 +14,9 @@ export interface IFeedObject {
   avatar?: string
   subtext?: string
   actions?: IAction[]
-  views?: Number
+  views?: number
   callDuration?: string
-  isMissedCall?: Boolean
+  isMissedCall?: boolean
   reply?: Reply
   linkPreview?: ILinkPreview
   keyboard?: IKeyBoard[]
@@ -48,7 +48,7 @@ export interface IFeedTyping {
 
 export interface IFeedUnreadButton {
   // color: string
-  unreadAmount: Number
+  unreadAmount: number
 }
 
 export interface IDialog {

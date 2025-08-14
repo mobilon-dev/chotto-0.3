@@ -2,8 +2,8 @@
   <div class="quick-reply-buttons">
     <div
       v-for="(button, index) in buttons.slice(0, 3)"
-      class="quick-reply-buttons__preview-action"
       :key="index"
+      class="quick-reply-buttons__preview-action"
       @click="handleQuickReplyClick(index)"
     >
       <hr class="quick-reply-buttons__separator">
@@ -13,12 +13,11 @@
           :class="index == 2 && buttons.length > 3 ? 'pi-list' : icons[button.type]"
         />
         <p>
-          {{index == 2 && buttons.length > 3 ? 'Смотреть все варианты' : button.text }}
+          {{ index == 2 && buttons.length > 3 ? 'Смотреть все варианты' : button.text }}
         </p>
       </div>
     </div>
   </div>
-  
 </template>
 
 <script setup lang="ts">
@@ -43,7 +42,7 @@ const icons = {
   'QUICK_REPLY': 'pi-arrow-up-left',
 }
 
-const handleQuickReplyClick = (index : Number) => {
+const handleQuickReplyClick = (index : number) => {
   if (index == 2 && props.buttons.length > 3){
     emit('selectAllVariants')
   }

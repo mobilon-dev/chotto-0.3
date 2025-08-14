@@ -416,6 +416,7 @@ const allFieldsUnFilled = computed(() => {
     return containsVariables
   else if (selectedTemplate.value.type !== 'TEXT')
     return containsVariables || !selectedFile.value
+  return false
 });
 
 // Сброс значений

@@ -1,18 +1,18 @@
 <template>
   <transition>
     <div class="feed-search__container">
-      <span style="line-height: 40px;">{{t('component.FeedSearch.SearchLabel')}}</span>
+      <span style="line-height: 40px;">{{ t('component.FeedSearch.SearchLabel') }}</span>
       <input
         ref="refInput"
+        v-model="getModel().text"
         class="feed-search__input"
         type="text"
         :placeholder="t('component.FeedSearch.SearchPlaceholder')"
-        v-model="getModel().text"
       >
       <i 
         class="pi pi-times" 
-        @click="clearInput"
         :style="{right: resetLoc}"
+        @click="clearInput"
       />
       <span 
         v-if="isFeedLocation" 
@@ -48,6 +48,7 @@ const search = useDelayDebouncedRef('', 500)
 const resetLoc = computed(() => {
   if (props.isFeedLocation) return '40px'
   if (!props.isFeedLocation) return '20px'
+  return '20px'
 })
 
 watch(

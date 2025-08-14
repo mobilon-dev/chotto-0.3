@@ -1,7 +1,11 @@
 <template>
-  <div ref="keyboard" class="keyboard__container">
+  <div
+    ref="keyboard"
+    class="keyboard__container"
+  >
     <div 
       v-for="key in keyboard"
+      :key="key.text"
       class="keyboard__key"
       :style="{'box-shadow': '0px 0px 10px 5px ' + key.color}"
       @click="handleClickKey(key)"

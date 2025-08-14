@@ -1,10 +1,10 @@
 <template>
   <div
     class="file-message"
-    :class="
+    :class="[
       getClass(message),
       applyStyle(message)
-    "
+    ]"
     :messageId="message.messageId"
     @mouseleave="hideMenu"
   >
@@ -54,29 +54,28 @@
         class="file-message__text-container"
       >
         <p
-          v-html="linkedText"
           @click="inNewWindow"
-        ></p>
+          v-html="linkedText"
+        />
       </div>
 
       <LinkPreview
-        :class="message.position"
         v-if="message.linkPreview"
-        :linkPreview="message.linkPreview"
+        :class="message.position"
+        :link-preview="message.linkPreview"
       />
 
       <EmbedPreview
-        :class="message.position"
         v-if="message.embed"
+        :class="message.position"
         :embed="message.embed"
       />
 
       <div class="file-message__info-container">
-
         <div
           v-if="message.views"
-          @click="viewsAction"
           class="file-message__views"
+          @click="viewsAction"
         >
           <span class="pi pi-eye" />
           <p>{{ message.views }}</p>
@@ -95,7 +94,6 @@
           />
           <span class="pi pi-check" />
         </div>
-
       </div>
 
       <button
@@ -114,7 +112,6 @@
           @click="clickAction"
         />
       </transition>
-
     </div>
   </div>
 </template>

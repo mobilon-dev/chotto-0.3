@@ -1,5 +1,5 @@
 <template>
-  <div class="separated-quick-buttons" >
+  <div class="separated-quick-buttons">
     <div class="separated-quick-buttons__title">
       <p>Все варианты</p>
       <span
@@ -9,11 +9,14 @@
     </div>
     <div class="separated-quick-buttons__actions scrollbar">
       <div
-        class="separated-quick-buttons__action"
         v-for="(button, index) in buttons"
         :key="index"
+        class="separated-quick-buttons__action"
       >
-        <span class="pi pi-arrow-up-left" :class="icons[button.type]"  />
+        <span
+          class="pi pi-arrow-up-left"
+          :class="icons[button.type]"
+        />
         <p>{{ button.text }}</p>
       </div>
     </div>

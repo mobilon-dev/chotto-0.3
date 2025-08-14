@@ -9,34 +9,34 @@
       class="chat-input__file-line"
     />
 
-      <div class="chat-input__inline-buttons">
-        <slot name="inline-buttons"/>
-      </div>
+    <div class="chat-input__inline-buttons">
+      <slot name="inline-buttons" />
+    </div>
       
-      <div 
-        v-if="disabledPlaceholder && (state == 'disabled' || getMessage().isRecording)"
-        class="chat-input__input chat-input__disabled-placeholder"
-      >
-        {{ disabledPlaceholder }}
-      </div>
-      <textarea
-        v-else
-        :disabled="state == 'disabled' || getMessage().isRecording"
-        ref="refInput"
-        v-model="getMessage().text"
-        class="chat-input__input"
-        :placeholder="t('component.ChatInput.InputPlaceholder')"
-        @keydown.enter="keyEnter"
-        @input="sendTyping"
-      />
-      <button
-        class="chat-input__button"
-        :disabled="getMessage().isRecording"
-        :class="{ 'chat-input__button-disabled': disabledSendButton }"
-        @click="sendMessage"
-      >
-        <span class="pi pi-send" />
-      </button>
+    <div 
+      v-if="disabledPlaceholder && (state == 'disabled' || getMessage().isRecording)"
+      class="chat-input__input chat-input__disabled-placeholder"
+    >
+      {{ disabledPlaceholder }}
+    </div>
+    <textarea
+      v-else
+      ref="refInput"
+      v-model="getMessage().text"
+      :disabled="state == 'disabled' || getMessage().isRecording"
+      class="chat-input__input"
+      :placeholder="t('component.ChatInput.InputPlaceholder')"
+      @keydown.enter="keyEnter"
+      @input="sendTyping"
+    />
+    <button
+      class="chat-input__button"
+      :disabled="getMessage().isRecording"
+      :class="{ 'chat-input__button-disabled': disabledSendButton }"
+      @click="sendMessage"
+    >
+      <span class="pi pi-send" />
+    </button>
 
     <div class="chat-input__third-line">
       <slot name="buttons" />
@@ -81,6 +81,7 @@ const disabledSendButton = computed(() => {
   if (props.state == 'disabled') return true
   if (getMessage().text == '' && !getMessage().file) return true
   if (getMessage().isRecording) return true
+  return false
 })
 
 watch(

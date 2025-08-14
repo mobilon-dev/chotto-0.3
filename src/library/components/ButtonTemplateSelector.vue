@@ -12,6 +12,7 @@
   </button>
   <transition>
     <div
+      v-show="props.state === 'active'"
       ref="template"
       @mouseover="hover"
       @mouseout="hoverout"

@@ -1,9 +1,9 @@
 <template>
-    <div class="system-message__container">
-      <p class="system-message__text">
-        {{ message.text }}
-      </p>
-    </div>
+  <div class="system-message__container">
+    <p class="system-message__text">
+      {{ message.text }}
+    </p>
+  </div>
 </template>
 
 <script setup lang="ts">

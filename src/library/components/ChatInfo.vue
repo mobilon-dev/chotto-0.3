@@ -70,10 +70,12 @@ const props = defineProps({
   description: {
     type: String,
     required: false,
+    default: '',
   },
   additionalTitle:{
     type: String,
     required: false,
+    default: '',
   },
   defaultLastActivityTime: {
     type: Boolean,

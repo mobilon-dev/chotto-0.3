@@ -1,25 +1,26 @@
 <template>
   <div
     v-if="objects.length > 0 || typing"
+    :id="'feed-container-' + chatAppId"
     ref="refFeed"
     class="message-feed"
     @scroll="throttledScrollTopCheck()"
     @mousedown="startScrollWatch"
     @mouseup="stopScrollWatch"
-    :id="'feed-container-' + chatAppId"
   >
     <div
       v-for="object in objects"
-      @dblclick="feedObjectDoubleClick($event,object)"
+      :key="object.messageId"
       :id="JSON.stringify(object)"
       class="tracking-message"
+      @dblclick="feedObjectDoubleClick($event,object)"
     >
       <component
-        class="message-feed__message"
         :is="componentsMap(object.type)"
         :key="object.messageId"
+        class="message-feed__message"
         :message="object"
-        :applyStyle="applyStyle"
+        :apply-style="applyStyle"
         @action="messageAction"
         @reply="handleClickReplied"
       />
@@ -27,9 +28,9 @@
     <typing-message
       v-if="typing"
       :message="{
-      subText: (typing as IFeedTyping).title,
-      avatar: (typing as IFeedTyping).avatar,
-    }"
+        subText: (typing as IFeedTyping).title,
+        avatar: (typing as IFeedTyping).avatar,
+      }"
     />
     <Transition>
       <MessageKeyboard
@@ -59,11 +60,11 @@
   </div>
   <div 
     v-else
-    class="message-feed"
     ref="refFeed"
+    class="message-feed"
   >
     <div style="margin: auto;">
-      <slot name="empty-feed"/>
+      <slot name="empty-feed" />
     </div>
   </div>
   <teleport
@@ -242,7 +243,7 @@ const componentsMap = (type) => {
   return r[type];
 }
 
-function scrollToBottom() {
+function performScrollToBottom() {
   nextTick(function () {
     const element = unref(refFeed);
     element.scrollTop = element.scrollHeight;
@@ -251,7 +252,7 @@ function scrollToBottom() {
 
 function scrollToBottomForce() {
   emit('forceScrollToBottom')
-  scrollToBottom()
+  performScrollToBottom()
 }
 
 watch(
@@ -259,7 +260,7 @@ watch(
   () => {
     console.log('force scroll to bottom')
     if (props.scrollToBottom)
-      scrollToBottom()
+      performScrollToBottom()
   },
   {immediate: true}
 )

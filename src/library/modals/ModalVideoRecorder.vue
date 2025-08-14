@@ -4,20 +4,20 @@
       class="video-recorder__button video-recorder__button-close"
       @click="emit('close')"
     >
-      <span class="pi pi-times"/>
+      <span class="pi pi-times" />
     </button>
   </div>
   
   <div>
     <video 
-      class='video-recorder__view-area'
-      v-show="!videoURL" 
-      ref="refVideo"
+      v-show="!videoURL"
+      ref="refVideo" 
+      class="video-recorder__view-area"
     />
     <video 
-      class='video-recorder__view-area'
-      v-show="videoURL" 
-      ref="refRecord"
+      v-show="videoURL"
+      ref="refRecord" 
+      class="video-recorder__view-area"
       controls
     />
     <div class="video-recorder__controls">
@@ -59,15 +59,15 @@
           <span class="pi pi-trash" />
         </button>
         <button
-        v-if="videoRecording"
+          v-if="videoRecording"
           class="video-recorder__button"
           @click="stopVideoRecording"
         >
           <!--span class="pi pi-stop" /-->
-          <div class="video-recorder__stop"></div>
+          <div class="video-recorder__stop" />
         </button>
         <span class="video-recorder__recording-time">
-          {{elapsedTime}}
+          {{ elapsedTime }}
         </span>
       </div>
       <button
@@ -77,14 +77,11 @@
       >
         <span 
           class="video-recorder__save-button"
-          
         >
           Прикрепить видео
         </span>
       </button>
-      
     </div>
-    
   </div>
 </template>
 

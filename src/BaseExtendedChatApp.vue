@@ -186,7 +186,7 @@ import { useChatsStore } from "./stores/useChatStore";
 import { transformToFeed } from "./transform/transformToFeed";
 import { useLocale } from "./locale/useLocale";
 
-const { locale, locales } = useLocale()
+const { locale: currentLocale, locales } = useLocale()
 
 
 // Define props
@@ -209,6 +209,9 @@ const props = defineProps({
     default: 'ru',
   }
 });
+
+// Use the locale from props or fallback to currentLocale
+const locale = props.locale || currentLocale;
 
 const buttonParams = {
   unreadAmount: 12

@@ -25,21 +25,26 @@
       </div>
 
       <div class="chat-item__info-container">
-        <Tooltip :text="chat.name" position="bottom">
-          <div class="chat-item__name">
-          {{ chat.name }}
-        </div>
-        </Tooltip>
-        
-        <Tooltip :text="chat.lastMessage" position="bottom">
-          <div
-          v-if="chat.lastMessage || chat.typing"
-          class="chat-item__last-message"
+        <Tooltip
+          :text="chat.name"
+          position="bottom"
         >
-          {{ showText }}
-        </div>
+          <div class="chat-item__name">
+            {{ chat.name }}
+          </div>
         </Tooltip>
         
+        <Tooltip
+          :text="chat.lastMessage"
+          position="bottom"
+        >
+          <div
+            v-if="chat.lastMessage || chat.typing"
+            class="chat-item__last-message"
+          >
+            {{ showText }}
+          </div>
+        </Tooltip>
       </div>
 
       <div class="chat-item__details-container">
@@ -66,7 +71,7 @@
           @button-click="BCMclick"
           @menu-mouse-leave="buttonMenuVisible = false"
         >
-          <span class='pi pi-ellipsis-h chat-item__actions-trigger'></span>
+          <span class="pi pi-ellipsis-h chat-item__actions-trigger" />
         </ButtonContextMenu>
 
         <div
@@ -99,17 +104,23 @@
       >
         <button
           v-if="!chat.dialogsExpanded"
-          class="chat-item__menu-button"
           id="noSelectButton"
+          class="chat-item__menu-button"
         >
-          <span id="noSelectButton" class="pi pi-angle-down" />
+          <span
+            id="noSelectButton"
+            class="pi pi-angle-down"
+          />
         </button>
         <button
           v-if="chat.dialogsExpanded"
-          class="chat-item__menu-button"
           id="noSelectButton"
+          class="chat-item__menu-button"
         >
-          <span id="noSelectButton" class="pi pi-angle-up" />
+          <span
+            id="noSelectButton"
+            class="pi pi-angle-up"
+          />
         </button>
       </div>
     </div>
@@ -120,13 +131,14 @@
     >
       <div
         v-for="dialog in getSortedDialogs()"
+        :key="dialog.dialogId"
         class="dialog__item"
         :class="getDialogClass(dialog)"
         @click="selectDialog(dialog)"
       >
         <img
-          class="dialog__icon"
           v-if="dialog.icon"
+          class="dialog__icon"
           :src="dialog.icon"
           height="16"
           width="16"
@@ -136,8 +148,12 @@
           class="dialog__icon pi pi-user"
         />
         <div class="dialog__text-container">
-          <div class="dialog__name">{{ dialog.name }}</div>
-          <div class="dialog__time">{{ dialog['lastActivity.time'] }}</div>
+          <div class="dialog__name">
+            {{ dialog.name }}
+          </div>
+          <div class="dialog__time">
+            {{ dialog['lastActivity.time'] }}
+          </div>
         </div>
         <div
           v-if="dialog.countUnread > 0"

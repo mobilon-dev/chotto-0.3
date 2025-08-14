@@ -1,10 +1,10 @@
 <template>
   <div
     class="text-message"
-    :class="
+    :class="[
       getClass(message),
       applyStyle(message)
-    "
+    ]"
     :messageId="message.messageId"
     @mouseleave="hideMenu"
   >
@@ -28,7 +28,6 @@
       class="text-message__content"
       @mouseenter="showMenu"
     >
-
       <BaseReplyMessage
         v-if="message.reply"
         :class="message.position"
@@ -36,20 +35,20 @@
         @reply="handleClickReplied"
       />
       <p
-        v-html="linkedText"
         class="text-message__text"
         @click="inNewWindow"
+        v-html="linkedText"
       />
 
       <LinkPreview
-        :class="message.position"
         v-if="message.linkPreview"
-        :linkPreview="message.linkPreview"
+        :class="message.position"
+        :link-preview="message.linkPreview"
       />
 
       <EmbedPreview
-        :class="message.position"
         v-if="message.embed"
+        :class="message.position"
         :embed="message.embed"
       />
 
@@ -97,8 +96,6 @@
       </transition>
     </div>
   </div>
-
-
 </template>
 
 <script

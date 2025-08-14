@@ -13,7 +13,7 @@ interface Message {
 interface UploadedFile{
     url: string
     name?: string
-    size?: Number
+    size?: number
     type?: string
 }
 
@@ -23,7 +23,7 @@ export const useMessage = (outId : string) => {
 
     const index = ref<number>(0)
 
-    let foundMessage = messages.value.find(({id}) => id == outId)
+    const foundMessage = messages.value.find(({id}) => id == outId)
     if (foundMessage != undefined){
         index.value = messages.value.indexOf(foundMessage)
     } 

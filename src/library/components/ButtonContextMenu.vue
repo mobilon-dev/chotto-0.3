@@ -13,7 +13,7 @@
     @mouseleave="hoverOut"
   >
     <div @click="toggle">
-      <slot></slot>
+      <slot />
     </div>
     <Teleport to="body">
       <ContextMenu
@@ -25,7 +25,6 @@
         @click="click"
       />
     </Teleport>
-    
   </button>
 </template>
 

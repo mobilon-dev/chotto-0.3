@@ -1,14 +1,13 @@
 <template>
   <div
     class="video-message"
-    :class="
+    :class="[
       getClass(message),
       applyStyle(message)
-    "
+    ]"
     :messageId="message.messageId"
     @mouseleave="hideMenu"
   >
-
     <img
       v-if="message.avatar"
       class="video-message__avatar"
@@ -42,10 +41,10 @@
           ref="previewPlayer"
           class="video-message__video"
           :style="{ borderRadius: videoBorderRadius }"
-          @ended="playAgain"
           :src="message.url"
           :muted="true"
           autoplay
+          @ended="playAgain"
         />
 
         <transition name="modal-fade">
@@ -55,8 +54,8 @@
           >
             <div
               v-if="message.views"
-              @click.stop="viewsAction"
               class="video-message__views"
+              @click.stop="viewsAction"
             >
               <span class="pi pi-eye" />
               <p>{{ message.views }}</p>
@@ -82,11 +81,11 @@
         <transition name="modal-fade">
           <a
             v-if="buttonDownloadVisible"
-            @click.stop="() => '//Предотвращаем всплытие события клика'"
             class="video-message__download-button"
             :href="message.url"
             download
             target="_blank"
+            @click.stop="() => '//Предотвращаем всплытие события клика'"
           >
             <span class="pi pi-download" />
           </a>
@@ -118,21 +117,21 @@
         class="video-message__text-container"
       >
         <p
-          v-html="linkedText"
           @click="inNewWindow"
-        ></p>
+          v-html="linkedText"
+        />
       </div>
 
       <LinkPreview
+        v-if="message.linkPreview"
         class="video-message__link-preview"
         :class="message.position"
-        v-if="message.linkPreview"
-        :linkPreview="message.linkPreview"
+        :link-preview="message.linkPreview"
       />
 
       <EmbedPreview
-        :class="message.position"
         v-if="message.embed"
+        :class="message.position"
         :embed="message.embed"
       />
     </div>

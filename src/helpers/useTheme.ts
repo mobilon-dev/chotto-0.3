@@ -11,7 +11,7 @@ export const useTheme = (outId : string) => {
 
     const index = ref<number>(0)
 
-    let foundTheme = themes.value.find(({id}) => id == outId)
+    const foundTheme = themes.value.find(({id}) => id == outId)
     if (foundTheme != undefined){
         index.value = themes.value.indexOf(foundTheme)
     } 

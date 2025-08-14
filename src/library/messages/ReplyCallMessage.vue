@@ -7,7 +7,9 @@
   </div>
 
   <div class="call-message__text-container">
-    <p v-if="message.header">{{ message.header }}</p>
+    <p v-if="message.header">
+      {{ message.header }}
+    </p>
     <div class="call-message__reply-description">
       <span
         v-if="!message.isMissedCall"

@@ -1,21 +1,28 @@
 <template>
-  <h3 style="padding-left: 12px;">{{ t('component.FeedFoundObjects.results') }}: {{ foundAmount }}</h3>
+  <h3 style="padding-left: 12px;">
+    {{ t('component.FeedFoundObjects.results') }}: {{ foundAmount }}
+  </h3>
   <div 
     v-if="foundAmount > 0" 
-    class="feed-found-objects__items"
-    ref="refItems"  
+    ref="refItems"
+    class="feed-found-objects__items"  
     @scroll="scrollTopCheck"
   >
     <div 
-      v-for="object in objects" 
+      v-for="object in objects"
+      :key="object.messageId"
       @click="clickObject(object)"
     >
       <FeedFoundItem  
         :object="object"
-        :selected="object == selectedItem"/>
+        :selected="object == selectedItem"
+      />
     </div>
   </div>
-  <div v-else-if="foundAmount == 0" class="feed-found-objects__placeholder">
+  <div
+    v-else-if="foundAmount == 0"
+    class="feed-found-objects__placeholder"
+  >
     <p>{{ placeholder }}</p>
   </div>
 </template>
@@ -50,6 +57,7 @@ const selectedItem = ref(null)
 const placeholder = computed(() => {
   if (props.notFound) return t('component.FeedFoundObjects.notFound')
   if (!props.notFound) return t('component.FeedFoundObjects.notSearched')
+  return ''
 })
 
 const clickObject = (object) => {

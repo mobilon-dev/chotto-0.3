@@ -15,10 +15,9 @@
     @button-click="triggerFileUploadDefault"
   >
     <span 
-      class='pi pi-file-arrow-up file-uploader__trigger'
+      class="pi pi-file-arrow-up file-uploader__trigger"
       :class="{'file-uploader__disabled' : !canUploadFile || state == 'disabled'}"
-    >
-    </span>
+    />
   </ButtonContextMenu>
   <input
     ref="fileInput"

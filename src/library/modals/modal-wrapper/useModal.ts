@@ -24,7 +24,7 @@ export function useModal<T>({component, attrs, Modal, modalAttrs}): Promise<any>
             resolve(Data.value as any)
         }
 
-        const changeDataHandler = (data: Object) => {
+        const changeDataHandler = (data: object) => {
             Object.keys(data).forEach(key => {
                 Data.value[key] = data[key]
             })

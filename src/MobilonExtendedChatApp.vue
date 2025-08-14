@@ -276,7 +276,7 @@ import VideoRecorder from "./library/components/VideoRecorder.vue";
 import ButtonCommandsSelector from "./library/components/ButtonCommandsSelector.vue";
 import SplashScreen from "./library/components/SplashScreen.vue";
 
-const { locale, locales } = useLocale()
+const { locale: currentLocale, locales } = useLocale()
 
 
 // Define props
@@ -299,6 +299,9 @@ const props = defineProps({
     default: 'ru',
   }
 });
+
+// Use the locale from props or fallback to currentLocale
+const locale = props.locale || currentLocale;
 
 const buttonParams = {
   unreadAmount: 12
@@ -702,7 +705,7 @@ const resizeObserver = new ResizeObserver((entries) => {
 });
 
 onMounted(() => {
-  locale.value = locales.find((loc) => loc.code == props.locale)
+  props.locale = locales.find((loc) => loc.code == props.locale)
   props.eventor.subscribe(handleEvent);
   userProfile.value = props.authProvider.getUserProfile();
   chatsStore.chats = props.dataProvider.getChats();

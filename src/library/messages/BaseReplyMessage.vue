@@ -7,14 +7,13 @@
     <component
       :is="componentsMap(message?.type)"
       :message="message"
-    ></component>
+    />
     <div class="reply__reset">
       <span
         class="pi pi-times "
         @click="emit('reset')"
       />
     </div>
-    
   </div>
 </template>
 

@@ -10,7 +10,7 @@
       @click="sendCommand"
     >
       <span 
-        class='commands__trigger'
+        class="commands__trigger"
         :class="{'commands__disabled' : getMessage().isRecording || state == 'disabled'}"
       >
         /

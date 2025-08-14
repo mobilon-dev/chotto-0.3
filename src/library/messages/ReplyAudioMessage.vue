@@ -6,17 +6,19 @@
     <span class="pi pi-play" />
   </div>
   <div class="audio-message__text-container">
-    <p v-if="message.header">{{ message.header }}</p>
+    <p v-if="message.header">
+      {{ message.header }}
+    </p>
     <div class="audio-message__reply-description">
-      <span class="pi pi-microphone"></span>
+      <span class="pi pi-microphone" />
       <p>Аудиосообщение</p>
     </div>
     <p
       v-if="message.text"
       class="audio-message__text"
-      v-html="linkedText"
       @click="inNewWindow"
-    ></p>
+      v-html="linkedText"
+    />
   </div>
 </template>
 

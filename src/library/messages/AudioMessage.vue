@@ -1,14 +1,13 @@
 <template>
   <div
     class="audio-message"
-    :class="
+    :class="[
       getClass(message),
       applyStyle(message)
-    "
+    ]"
     :messageId="message.messageId"
     @mouseleave="hideMenu"
   >
-
     <img
       v-if="message.avatar"
       class="audio-message__avatar"
@@ -57,13 +56,13 @@
           <span class="pi pi-pause" />
         </button>
         <input 
-          class="audio-message__progress-bar-container"
+          v-model="currentTime"
+          class="audio-message__progress-bar-container" 
           type="range" 
           :min="0" 
           :max="audioDuration" 
-          step="0.1" 
-          v-model="currentTime"
-        />
+          step="0.1"
+        >
         <div class="audio-message__player-controls">
           <p class="audio-message__remaining-time">
             {{ `${formatCurrentTime} / ${formatDuration}` }}
@@ -71,9 +70,10 @@
           <div class="audio-message__speed-btn-container">
             <p
               v-for="(s, index) in speed"
-              @click="setPlayerSpeed(index)"
+              :key="s.text"
               class="audio-message__speed-btn"
               :class="{'audio-message__speed-btn-selected' : s.selected}"
+              @click="setPlayerSpeed(index)"
             >
               {{ s.text }}
             </p>
@@ -82,10 +82,10 @@
         
         <a
           class="audio-message__download-button"
-          @click.stop="() => '//Предотвращаем всплытие события клика'"
           :href="message.url"
           download
           target="_blank"
+          @click.stop="() => '//Предотвращаем всплытие события клика'"
         >
           <span class="pi pi-download" />
         </a>
@@ -95,36 +95,38 @@
         v-if="message.transcript?.text"
         class="audio-message__transcript-container"
       >
-        <p @click="isFullTranscript = !isFullTranscript">{{ message.transcript.text }}</p>
+        <p @click="isFullTranscript = !isFullTranscript">
+          {{ message.transcript.text }}
+        </p>
       </div>
       <div
         v-if="message.text"
         class="audio-message__text-container"
       >
         <p
-          v-html="linkedText"
           @click="inNewWindow"
-        ></p>
+          v-html="linkedText"
+        />
       </div>
 
       <LinkPreview
+        v-if="message.linkPreview"
         class="audio-message__link-preview"
         :class="message.position"
-        v-if="message.linkPreview"
-        :linkPreview="message.linkPreview"
+        :link-preview="message.linkPreview"
       />
 
       <EmbedPreview
-        :class="message.position"
         v-if="message.embed"
+        :class="message.position"
         :embed="message.embed"
       />
 
       <div class="audio-message__info-container">
         <div
           v-if="message.views"
-          @click="viewsAction"
           class="audio-message__views"
+          @click="viewsAction"
         >
           <span class="pi pi-eye" />
           <p>{{ message.views }}</p>
@@ -177,16 +179,17 @@
                   <i class="pi pi-times" />
                 </span>
               </button>
-              <p style="
+              <p
+                style="
                 word-wrap: break-word;
-                max-width: 25rem;">
+                max-width: 25rem;"
+              >
                 {{ message.transcript?.text }}
               </p>
             </div>
           </div>
         </transition>
       </Teleport>
-
     </div>
   </div>
 </template>
@@ -267,6 +270,7 @@ const isFullTranscript = ref(false)
 
 const linkedText = computed(() => {
   if (props.message.text) return linkifyStr(props.message.text)
+  return ''
 })
 
 const handleClickReplied = (messageId) => {

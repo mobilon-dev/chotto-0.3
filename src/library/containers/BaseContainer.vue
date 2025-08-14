@@ -16,9 +16,18 @@
 import { useId, provide, onMounted } from 'vue'
 
 const props = defineProps({
-  height: String,
-  width: String,
-  extChatAppId: String
+  height: {
+    type: String,
+    default: '100%'
+  },
+  width: {
+    type: String,
+    default: '100%'
+  },
+  extChatAppId: {
+    type: String,
+    default: ''
+  }
 })
 
 const chatAppId = useId()

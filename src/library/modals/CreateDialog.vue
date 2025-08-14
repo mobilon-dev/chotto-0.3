@@ -14,6 +14,7 @@
       >
         <option
           v-for="contact in contacts"
+          :key="contact.id || contact.value"
           :value="contact"
         >
           {{ contact.value }}
@@ -31,6 +32,7 @@
       >
         <option
           v-for="channel in filteredChannels"
+          :key="channel.id || channel.title"
           :value="channel"
         >
           {{ channel.title }}
@@ -75,6 +77,7 @@ const props = defineProps({
   filter:{
     type: Function,
     required: false,
+    default: null,
   }
 });
 

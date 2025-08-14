@@ -61,9 +61,18 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  height: String,
-  width: String,
-  extChatAppId: String,
+  height: {
+    type: String,
+    default: '100%'
+  },
+  width: {
+    type: String,
+    default: '100%'
+  },
+  extChatAppId: {
+    type: String,
+    default: ''
+  },
 });
 const emit = defineEmits(["close-window", "get-size"]);
 

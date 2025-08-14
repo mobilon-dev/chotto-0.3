@@ -11,17 +11,19 @@
   </div>
 
   <div class="video-message__text-container">
-    <p v-if="message.header">{{ message.header }}</p>
+    <p v-if="message.header">
+      {{ message.header }}
+    </p>
     <div class="video-message__reply-description">
-      <span class="pi pi-video"></span>
+      <span class="pi pi-video" />
       <p>Видео</p>
     </div>
     <p
       v-if="message.text"
       class="video-message__text"
-      v-html="linkedText"
       @click="inNewWindow"
-    ></p>
+      v-html="linkedText"
+    />
   </div>
   <Teleport to="body">
     <transition name="modal-fade">

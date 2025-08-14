@@ -11,17 +11,19 @@
   </div>
 
   <div class="image-message__text-container">
-    <p v-if="message.header">{{ message.header }}</p>
+    <p v-if="message.header">
+      {{ message.header }}
+    </p>
     <div class="image-message__reply-description">
-      <span class="pi pi-camera"></span>
+      <span class="pi pi-camera" />
       <p>Фотография</p>
     </div>
     <p
       v-if="message.text"
       class="image-message__text"
-      v-html="linkedText"
       @click="inNewWindow"
-    ></p>
+      v-html="linkedText"
+    />
   </div>
 
   <Teleport to="body">

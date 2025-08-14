@@ -1,18 +1,18 @@
 <template>
   <div 
-    class="tooltip-wrapper" 
     ref="container" 
+    class="tooltip-wrapper" 
     @mouseover="updatePosition"
     @mouseout="hideTooltip"
   >
-    <slot/>
+    <slot />
   </div>
-  <Teleport to="body" >
+  <Teleport to="body">
     <Transition>
       <span 
         v-if="show"
-        :data-theme="getTheme().theme ? getTheme().theme : 'light'"
         ref="tooltip"
+        :data-theme="getTheme().theme ? getTheme().theme : 'light'"
         :class="tooltipClasses" 
       >
         {{ text }}

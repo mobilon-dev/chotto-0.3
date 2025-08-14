@@ -12,6 +12,7 @@
   </button>
   <Transition>
     <div 
+      v-show="props.state === 'active'"
       ref="emoji" 
       class="emoji"
       @mouseenter="hover"

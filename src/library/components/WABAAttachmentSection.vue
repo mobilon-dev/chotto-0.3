@@ -6,9 +6,9 @@
     @click="triggerFileUpload" 
   >
     <input 
-      type="file" 
       id="file-upload" 
-      ref="fileInput"
+      ref="fileInput" 
+      type="file"
       style="display: none;" 
       :accept="fileInfo[type].accept"
       @change="handleFileChange" 

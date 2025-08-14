@@ -11,7 +11,7 @@ export const useSearchModel = (outId : string) => {
 
     const index = ref<number>(0)
     
-        let foundModel = searchModels.value.find(({id}) => id == outId)
+        const foundModel = searchModels.value.find(({id}) => id == outId)
         if (foundModel != undefined){
             index.value = searchModels.value.indexOf(foundModel)
         } 

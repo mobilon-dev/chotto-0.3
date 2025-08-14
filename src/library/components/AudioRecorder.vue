@@ -10,7 +10,7 @@
       v-if="audioRecording && uploadStatus != 'uploading'" 
       class="audio-recorder__recording-container"
     >
-      <span class="audio-recorder__recording-icon pi pi-circle-fill"/>
+      <span class="audio-recorder__recording-icon pi pi-circle-fill" />
       <button
         class="audio-recorder__button audio-recorder__button-record"
         @click="cancelAudioRecording"
@@ -21,10 +21,10 @@
         class="audio-recorder__button audio-recorder__button-record"
         @click="stopAudioRecording"
       >
-        <div class="audio-recorder__stop"></div>
+        <div class="audio-recorder__stop" />
       </button>
       <span class="audio-recorder__recording-time">
-        {{elapsedTime}}
+        {{ elapsedTime }}
       </span>
     </div>
     <button

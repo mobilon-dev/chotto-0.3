@@ -1,10 +1,12 @@
 <template>
   <div class="container">
-    <p v-if="message.header">{{ message.header }}</p>
+    <p v-if="message.header">
+      {{ message.header }}
+    </p>
     <p
       class="text"
-      v-html="linkedText"
       @click="inNewWindow"
+      v-html="linkedText"
     />
   </div>
 </template>

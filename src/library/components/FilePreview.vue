@@ -12,13 +12,13 @@
           class="preview__image"
         >
         <div class="preview__shadow">
-          <span class="pi pi-plus-circle"/>
+          <span class="pi pi-plus-circle" />
         </div>
       </div>
       <div 
         v-else-if="fileInfo.isVideo"
-        @click="isOpenModal = true"
         style="position: relative;"
+        @click="isOpenModal = true"
       >
         <video
           ref="video"
@@ -26,7 +26,7 @@
           class="preview__video"
         />
         <div class="preview__shadow">
-          <span class="pi pi-play"/>
+          <span class="pi pi-play" />
         </div>
       </div>
       <div 
@@ -45,8 +45,14 @@
           class="preview__audio-control"
           @click="togglePlayPause"
         >
-          <span v-show="!isPlaying" class="pi pi-play" />
-          <span v-show="isPlaying" class="pi pi-pause" />
+          <span
+            v-show="!isPlaying"
+            class="pi pi-play"
+          />
+          <span
+            v-show="isPlaying"
+            class="pi pi-pause"
+          />
         </button>
       </div>
       <div v-else>
@@ -59,11 +65,20 @@
     <div class="preview__control-block">
       <div class="preview__information">
         <span class="preview__name">{{ fileInfo.fileName }}</span>
-        <span v-if="!fileInfo.isAudio && !fileInfo.isVideo" class="preview__size">{{ fileInfo.fileSize }}</span>
-        <span v-if="fileInfo.isAudio" class="preview__audio-time">
+        <span
+          v-if="!fileInfo.isAudio && !fileInfo.isVideo"
+          class="preview__size"
+        >{{ fileInfo.fileSize }}</span>
+        <span
+          v-if="fileInfo.isAudio"
+          class="preview__audio-time"
+        >
           {{ `${formatCurrentTime} / ${formatDuration}` }}
         </span>
-        <span v-if="fileInfo.isVideo" class="preview__audio-time">
+        <span
+          v-if="fileInfo.isVideo"
+          class="preview__audio-time"
+        >
           {{ formatDuration }}
         </span>
       </div>
@@ -89,7 +104,7 @@
             controls
             autoplay
           />
-            <img
+          <img
             v-if="fileInfo.isImage"
             class="preview__modal-image"
             :src="fileInfo.previewUrl"

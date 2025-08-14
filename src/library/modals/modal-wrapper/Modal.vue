@@ -21,6 +21,7 @@ const closeModalOutside = (evt) => {
 <template>
   <transition name="modal-fade">
     <div 
+      v-show="true"
       class="modal-backdrop"
       :data-theme="theme"
       @click="closeModalOutside"
