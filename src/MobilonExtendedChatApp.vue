@@ -146,7 +146,6 @@
                 </Feed>
                 <ChatInput 
                   :focus-on-input-area="inputFocus"
-
                 >
                   <template #inline-buttons>
                     <ButtonCommandsSelector

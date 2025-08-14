@@ -10,7 +10,7 @@
         {{ t('component.ChatList.Title') }}
       </h2>
 
-      <slot name="actions"></slot>
+      <slot name="actions" />
     </div>
 
     <slot name="sidebar" />
