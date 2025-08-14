@@ -109,7 +109,7 @@ const refRecord = ref<HTMLVideoElement>()
 const videoRecording = ref(false)
 const mediaRecorder = ref<MediaRecorder>()
 const stream = ref<MediaStream>()
-const chunks = ref<any[]>([])
+const chunks = ref<Blob[]>([])
 const videoURL = ref<string>()
 const videoFile = ref<File>()
 
@@ -131,7 +131,7 @@ const startVideoRecording = async () => {
   if (!videoRecording.value && stream.value instanceof MediaStream){
     mediaRecorder.value = new MediaRecorder(stream.value)
     mediaRecorder.value.start();
-    mediaRecorder.value.ondataavailable = (event: any) => {
+    mediaRecorder.value.ondataavailable = (event: BlobEvent) => {
       chunks.value.push(event.data);
     }
     videoRecording.value = true
@@ -223,7 +223,7 @@ const runIdleScreenVideo = async () => {
       cursor: 'always',
     },
     audio: false,
-  } as DisplayMediaStreamOptions;
+  } as MediaStreamConstraints;
 
   await navigator.mediaDevices.getDisplayMedia(displayMediaOptions)
   .then((s) => {

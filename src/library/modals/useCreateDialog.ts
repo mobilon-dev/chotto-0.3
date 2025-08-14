@@ -1,7 +1,14 @@
 import { useModal } from './modal-wrapper/useModal';
 import Modal from './modal-wrapper/ModalNoFooter.vue';
 
-export const useModalCreateDialog = async (title: string, name: string, contacts, channels, filter: Function, theme?: string) => {
+export const useModalCreateDialog = async (
+  title: string, 
+  name: string, 
+  contacts: unknown, 
+  channels: unknown, 
+  filter: (data: unknown) => void, 
+  theme?: string
+) => {
   const data = await useModal({
     //в component должен быть встроен emit change(key: value)
     component: import('./CreateDialog.vue'),

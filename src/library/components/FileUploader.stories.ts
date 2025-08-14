@@ -30,7 +30,7 @@ const theme = [{
 
 export const Standard: Story = {
   args: {
-    //@ts-expect-error
+    //@ts-expect-error - theme prop type mismatch in storybook
     theme
   },
 };
@@ -38,7 +38,7 @@ export const Standard: Story = {
 export const InactiveButton: Story = {
   args: {
     state: 'disabled',
-    //@ts-expect-error
+    //@ts-expect-error - theme prop type mismatch in storybook
     theme
   },
 };

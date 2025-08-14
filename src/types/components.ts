@@ -58,7 +58,7 @@ export interface IDialog {
 } 
 
 export interface IFilePreview {
-  previewUrl?: any
+  previewUrl?: string
   isImage: boolean  
   isVideo: boolean
   isAudio: boolean

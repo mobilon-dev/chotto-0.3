@@ -1,11 +1,11 @@
 import {sortByTimestamp, formatTimestamp, insertDaySeparators} from '../helpers';
 
-export const transformToFeed = (objects: any[], outPreviousDay: any = null) => {
+export const transformToFeed = (objects: Array<{direction: string; timestamp: number}>, outPreviousDay: number | null = null) => {
   // а. сортировка по timestamp
   const messages1 = sortByTimestamp(objects);
 
   // б. переформатирование
-  const messages2 = messages1.map((m: any) => {
+  const messages2 = messages1.map((m: {direction: string; timestamp: number}) => {
     return {
       ...m,
       position: m.direction === 'outgoing' ? 'right' : 'left',

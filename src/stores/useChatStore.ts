@@ -2,20 +2,20 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 
 export const useChatsStore = defineStore('chats', () => {
-	const chats: any = ref([])
+	const chats = ref<Array<{chatId: string; countUnread?: number}>>([])
 
 	function setUnreadCounter(chatId: string, countUnread: number) {
 		// console.log('setUnreadCounter', chatId, countUnread)
 		// console.log(chats.value, 'chats')
 		// @TODO fix any
-		const chat: any = chats.value.find((c:any) => c.chatId === chatId)
+		const chat = chats.value.find((c) => c.chatId === chatId)
 		if (chat) {
 			console.log('if chat found')
 			chat.countUnread = countUnread
 		}
 	}
 
-  function addChat(chat: any){
+  function addChat(chat: {chatId: string; countUnread?: number}){
     chats.value.push(chat);
   }
 

@@ -44,7 +44,7 @@ export const Right: Story = {
     text: 'right',
     position: 'right',
     default: '<span>hover me</span>',
-    //@ts-expect-error
+    //@ts-expect-error - theme prop type mismatch in storybook
     theme
   }
 };
@@ -55,7 +55,7 @@ export const Top: Story = {
     text: 'top',
     position: 'top',
     default: '<span>hover me</span>',
-    //@ts-expect-error
+    //@ts-expect-error - theme prop type mismatch in storybook
     theme
   },
 };
@@ -65,7 +65,7 @@ export const Left: Story = {
     text: 'left',
     position: 'left',
     default:'<span>hover me</span>',
-    //@ts-expect-error
+    //@ts-expect-error - theme prop type mismatch in storybook
     theme
   },
 };
@@ -75,7 +75,7 @@ export const Bottom: Story = {
     text: 'bottom',
     position: 'bottom',
     default: '<span>hover me</span>',
-    //@ts-expect-error
+    //@ts-expect-error - theme prop type mismatch in storybook
     theme
   },
 };
