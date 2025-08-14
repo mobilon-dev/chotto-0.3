@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from '@storybook/vue3-vite';
  
 import {ButtonWabaTemplateSelector} from '.';
 import {wabaTemplates, groupTemplates} from '../../data';

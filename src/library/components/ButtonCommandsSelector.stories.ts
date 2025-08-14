@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from '@storybook/vue3-vite';
  
 import BaseContainer from '../containers/BaseContainer.vue';
 import ButtonCommandsSelector from './ButtonCommandsSelector.vue';

@@ -1,4 +1,4 @@
-import type { Preview } from "@storybook/vue3";
+import type { Preview } from "@storybook/vue3-vite";
 import '../src/assets/style.css';
 import 'primeicons/primeicons.css'
 
@@ -11,6 +11,8 @@ const preview: Preview = {
       },
     },
   },
+
+  tags: ['autodocs']
 };
 
 export default preview;

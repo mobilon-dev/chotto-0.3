@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from '@storybook/vue3-vite';
  
 import ButtonContextMenu from './ButtonContextMenu.vue';
 import BaseContainer from '../containers/BaseContainer.vue'

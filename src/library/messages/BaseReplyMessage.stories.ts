@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from '@storybook/vue3-vite';
 
 import BaseReplyMessage from './BaseReplyMessage.vue';
 import { Reply } from '../../types';

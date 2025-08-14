@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from '@storybook/vue3-vite';
 
 import TextMessage from './TextMessage.vue';
 import { ITextMessage } from '../../types'

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from '@storybook/vue3-vite';
  
 import TemplateSelector from './TemplateSelector.vue';
 import {templates, groupTemplates} from '../../data';

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from '@storybook/vue3-vite';
  
 import CallMessage from './CallMessage.vue';
 import { ICallMessage } from '../../types';

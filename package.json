@@ -1,57 +1,54 @@
 {
-    "name": "@mobilon-dev/chotto",
-    "version": "0.0.132",
-    "type": "module",
-    "main": "./dist/vuessages.umd.js",
-    "module": "./dist/vuessages.es.js",
-    "exports": {
-        ".": {
-            "import": "./dist/vuessages.es.js",
-            "require": "./dist/vuessages.umd.js"
-        },
-        "./style.css": "./dist/vuessages.css"
+  "name": "@mobilon-dev/chotto",
+  "version": "0.0.132",
+  "type": "module",
+  "main": "./dist/vuessages.umd.js",
+  "module": "./dist/vuessages.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/vuessages.es.js",
+      "require": "./dist/vuessages.umd.js"
     },
-    "files": [
-        "dist"
-    ],
-    "types": "./dist/types/index.d.ts",
-    "scripts": {
-        "dev": "vite",
-        "build": "vite build && vue-tsc --emitDeclarationOnly",
-        "preview": "vite preview",
-        "storybook": "storybook dev -p 6006",
-        "build-storybook": "storybook build -o docs",
-        "lint-fix": "npx eslint . --fix",
-        "lint": "npx eslint ."
-    },
-    "dependencies": {
-        "@fontsource/montserrat": "^5.2.6",
-        "@fontsource/open-sans": "^5.2.6",
-        "linkify-string": "^4.3.2",
-        "linkifyjs": "^4.3.2",
-        "primeicons": "^7.0.0",
-        "vue": "^3.5.18",
-        "vue3-emoji-picker": "^1.1.8"
-    },
-    "devDependencies": {
-        "@chromatic-com/storybook": "^3.2.7",
-        "@storybook/addon-essentials": "^8.6.14",
-        "@storybook/addon-interactions": "^8.6.14",
-        "@storybook/addon-links": "^8.6.14",
-        "@storybook/blocks": "^8.6.14",
-        "@storybook/test": "^8.6.14",
-        "@storybook/vue3": "^8.6.14",
-        "@storybook/vue3-vite": "^8.6.14",
-        "@types/node": "^22.17.1",
-        "@vitejs/plugin-vue": "^5.2.4",
-        "eslint": "^9.33.0",
-        "eslint-plugin-vue": "^9.33.0",
-        "moment": "^2.30.1",
-        "pinia": "^2.3.1",
-        "storybook": "^8.6.14",
-        "typescript": "^5.9.2",
-        "vite": "^6.3.5",
-        "vite-plugin-static-copy": "^2.3.1",
-        "vue-tsc": "^2.2.12"
-    }
+    "./style.css": "./dist/vuessages.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "types": "./dist/types/index.d.ts",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && vue-tsc --emitDeclarationOnly",
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build -o docs",
+    "lint-fix": "npx eslint . --fix",
+    "lint": "npx eslint ."
+  },
+  "dependencies": {
+    "@fontsource/montserrat": "^5.2.6",
+    "@fontsource/open-sans": "^5.2.6",
+    "linkify-string": "^4.3.2",
+    "linkifyjs": "^4.3.2",
+    "primeicons": "^7.0.0",
+    "vue": "^3.5.18",
+    "vue3-emoji-picker": "^1.1.8"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "^4.1.0",
+    "@storybook/addon-links": "^9.1.2",
+    "@storybook/vue3-vite": "^9.1.2",
+    "@types/node": "^22.17.1",
+    "@vitejs/plugin-vue": "^5.2.4",
+    "eslint": "^9.33.0",
+    "eslint-plugin-vue": "^9.33.0",
+    "moment": "^2.30.1",
+    "pinia": "^2.3.1",
+    "storybook": "^9.1.2",
+    "typescript": "^5.9.2",
+    "vite": "^6.3.5",
+    "vite-plugin-static-copy": "^2.3.1",
+    "vue-tsc": "^2.2.12",
+    "eslint-plugin-storybook": "9.1.2",
+    "@storybook/addon-docs": "^9.1.2"
+  }
 }
