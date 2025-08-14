@@ -9,7 +9,7 @@
     @mouseleave="hoverout"
   >
     <span class="pi pi-face-smile" />
-  </button>
+</button>
   <Transition>
     <div 
       ref="emoji" 

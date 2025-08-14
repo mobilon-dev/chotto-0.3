@@ -29,9 +29,10 @@
       @click="selectChannel"
     >
       <span 
-        class="pi pi-list channels__trigger"
+        class='pi pi-list channels__trigger'
         :class="{'channels__disabled' : state == 'disabled'}"
-      />
+      >
+      </span>
     </ButtonContextMenu>
   </div>
 </template>

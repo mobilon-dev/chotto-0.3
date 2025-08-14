@@ -5,19 +5,14 @@
       class="embed-preview__player"
       :src="embed.url"
       title="YouTube video player"
-      frameborder="0"
-      allowfullscreen
+      frameborder="0" allowfullscreen
     />
     <iframe
       v-else-if="embed.type == 'rutube'"
       class="embed-preview__player"
       :src="embed.url"
       title="YouTube video player"
-      frameborder="0"
-      allow="clipboard-write; autoplay"
-      webkitAllowFullScreen
-      mozallowfullscreen
-      allowFullScreen
+      frameborder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen
     />
     <iframe 
       v-else

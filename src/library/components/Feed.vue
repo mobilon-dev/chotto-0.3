@@ -1,69 +1,51 @@
 <template>
   <div
     v-if="objects.length > 0 || typing"
-    ref="feedContainer"
+    ref="refFeed"
     class="message-feed"
-    @scroll="handleScroll"
-    @mousedown="handleMouseDown"
-    @mouseup="handleMouseUp"
-    :id="`feed-container-${chatAppId}`"
+    @scroll="throttledScrollTopCheck()"
+    @mousedown="startScrollWatch"
+    @mouseup="stopScrollWatch"
+    :id="'feed-container-' + chatAppId"
   >
-    <!-- Виртуализированный список сообщений -->
-    <div 
-      :style="{ height: totalHeight + 'px', position: 'relative' }"
-      class="message-feed__virtual-container"
+    <div
+      v-for="object in objects"
+      @dblclick="feedObjectDoubleClick($event,object)"
+      :id="JSON.stringify(object)"
+      class="tracking-message"
     >
-      <div
-        v-for="item in visibleItems"
-        :key="item.id"
-        :style="{ 
-          position: 'absolute', 
-          top: `${item.offset}px`,
-          width: '100%',
-          height: `${itemHeight}px`
-        }"
-        :data-message-id="item.id"
-        class="message-feed__virtual-item"
-        @dblclick="handleDoubleClick($event, item.data)"
-      >
-        <component
-          :is="getMessageComponent(item.data.type)"
-          :message="item.data"
-          :apply-style="applyStyle"
-          class="message-feed__message"
-          @action="handleMessageAction"
-          @reply="handleReplyClick"
-        />
-      </div>
+      <component
+        class="message-feed__message"
+        :is="componentsMap(object.type)"
+        :key="object.messageId"
+        :message="object"
+        :applyStyle="applyStyle"
+        @action="messageAction"
+        @reply="handleClickReplied"
+      />
     </div>
-
-    <!-- Индикатор печати -->
-    <TypingMessage
+    <typing-message
       v-if="typing"
       :message="{
-        subText: (typing as IFeedTyping).title,
-        avatar: (typing as IFeedTyping).avatar,
-      }"
-      class="message-feed__typing"
+      subText: (typing as IFeedTyping).title,
+      avatar: (typing as IFeedTyping).avatar,
+    }"
     />
-
-    <!-- Клавиатура быстрых ответов -->
-    <Transition name="keyboard">
+    <Transition>
       <MessageKeyboard
         v-if="showKeyboard"
         ref="keyboardRef"
         class="message-feed__keyboard"
-        :keyboard="lastMessageKeyboard"
-        @action="handleKeyboardAction"
+        :keyboard="objects[objects.length - 1].keyboard!"
+        @action="keyboardAction"
       />
     </Transition>
     
-    <!-- Кнопка прокрутки вниз -->
-    <Transition name="scroll-button">
+    <transition>
       <button
-        v-if="showScrollButton"
+        v-if="isShowButton"
         class="message-feed__button-down"
-        @click="scrollToBottom"
+        @click="scrollToBottomForce"
       >
         <div
           v-if="buttonParams"
@@ -73,45 +55,34 @@
         </div>
         <span class="pi pi-angle-down message-feed__icon-down" />
       </button>
-    </Transition>
+    </transition>
   </div>
-
-  <!-- Пустое состояние -->
   <div 
     v-else
-    class="message-feed message-feed--empty"
-    ref="feedContainer"
+    class="message-feed"
+    ref="refFeed"
   >
-    <div class="message-feed__empty">
+    <div style="margin: auto;">
       <slot name="empty-feed"/>
     </div>
   </div>
-
-  <!-- Teleport для ответа на сообщение -->
   <teleport
-    v-if="replyMessage"
-    :to="`#chat-input-reply-line-${chatAppId}`"
+    v-if="getMessage().reply"
+    :to="'#chat-input-reply-line-'+chatAppId"
   >
     <BaseReplyMessage
       class="chat-input-reply"
-      :message="replyMessage"
+      :message="getMessage().reply"
       @reset="handleResetReply"
     />
   </teleport>
 </template>
 
-<script setup lang="ts">
-import { 
-  ref, 
-  computed, 
-  watch, 
-  nextTick, 
-  inject, 
-  onMounted, 
-  onUnmounted,
-  shallowRef,
-  markRaw
-} from 'vue'
+<script
+  setup
+  lang="ts"
+>
+import { ref, unref, watch, nextTick, inject, computed } from 'vue';
 import {
   FileMessage,
   ImageMessage,
@@ -123,22 +94,33 @@ import {
   SystemMessage,
   TypingMessage,
   BaseReplyMessage
-} from "../messages"
+} from "../messages";
 
-import { IFeedObject, IFeedTyping, IFeedUnreadButton } from '../../types'
-import { useMessage } from '../../helpers/useMessage'
-import MessageKeyboard from './MessageKeyboard.vue'
+import { IFeedObject, IFeedTyping, IFeedUnreadButton } from '../../types';
+import { throttle } from '../../helpers/throttle';
+import { useMessage } from '../../helpers/useMessage';
+import MessageKeyboard from './MessageKeyboard.vue';
 
-// Props
+const trackingObjects = ref();
+const refFeed = ref();
+const keyboardRef = ref();
+const isShowButton = ref(false)
+const isKeyboardPlace = ref(false)
+const allowLoadMoreTop = ref(false)
+const allowLoadMoreBottom = ref(false)
+const movingDown = ref(false)
+const isScrollByMouseButton = ref(false)
+
 const props = defineProps({
   objects: {
-    type: Array as () => IFeedObject[],
+    type: Array <IFeedObject>,
     required: true,
   },
   buttonParams: {
     type: Object as () => IFeedUnreadButton,
     required: false,
   },
+  // принудительный скролл вниз по событию извне (сообщение, смена чата)
   scrollToBottom: {
     type: Boolean,
     default: false,
@@ -151,26 +133,18 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  scrollTo: {
+  scrollTo:{
     type: String,
     default: null,
   },
   applyStyle: {
     type: Function,
-    default: () => null
-  },
-  // Новые пропсы для виртуализации
-  itemHeight: {
-    type: Number,
-    default: 80, // Примерная высота сообщения
-  },
-  overscan: {
-    type: Number,
-    default: 5, // Количество элементов для предзагрузки
+    default: () => {return null}
   }
-})
+});
 
-// Emits
+const chatAppId = inject('chatAppId')
+const { setReply, getMessage, resetReply } = useMessage(chatAppId as string)
 const emit = defineEmits([
   'messageAction',
   'loadMore', 
@@ -179,281 +153,214 @@ const emit = defineEmits([
   'clickRepliedMessage',
   'forceScrollToBottom',
   'keyboardAction'
-])
-
-// Injections
-const chatAppId = inject('chatAppId') as string
-const { setReply, getMessage, resetReply } = useMessage(chatAppId)
-
-// Refs
-const feedContainer = ref<HTMLElement>()
-const keyboardRef = ref()
-const replyMessage = ref()
-
-// Состояние виртуализации
-const scrollTop = ref(0)
-const containerHeight = ref(0)
-const isScrolling = ref(false)
-const isMouseScrolling = ref(false)
-
-// Кэшированные компоненты сообщений
-const messageComponents = markRaw({
-  'message.text': TextMessage,
-  'message.image': ImageMessage,
-  'message.file': FileMessage,
-  'message.audio': AudioMessage,
-  'message.video': VideoMessage,
-  'message.call': CallMessage,
-  'message.system': SystemMessage,
-  'system.date': DateMessage,
-  'message.typing': TypingMessage
-})
-
-// Intersection Observer для отслеживания видимых сообщений
-const intersectionObserver = shallowRef<IntersectionObserver>()
-
-// Computed
-const totalHeight = computed(() => props.objects.length * props.itemHeight)
-
-const visibleItems = computed(() => {
-  if (!containerHeight.value) return []
-  
-  const startIndex = Math.max(0, Math.floor(scrollTop.value / props.itemHeight) - props.overscan)
-  const endIndex = Math.min(
-    props.objects.length - 1,
-    Math.ceil((scrollTop.value + containerHeight.value) / props.itemHeight) + props.overscan
-  )
-  
-  const items = []
-  for (let i = startIndex; i <= endIndex; i++) {
-    items.push({
-      id: props.objects[i].messageId,
-      data: props.objects[i],
-      offset: i * props.itemHeight
-    })
-  }
-  
-  return items
-})
+]);
 
 const showKeyboard = computed(() => {
-  if (!props.objects.length) return false
-  const lastMessage = props.objects[props.objects.length - 1]
-  return lastMessage.keyboard && isNearBottom.value
+  if (isKeyboardPlace.value && props.objects.length > 0 && props.objects[props.objects.length - 1].keyboard)
+    return true
+  else return false
 })
 
-const lastMessageKeyboard = computed(() => {
-  if (!props.objects.length) return null
-  return props.objects[props.objects.length - 1].keyboard
-})
-
-const showScrollButton = computed(() => {
-  return !isNearBottom.value && props.objects.length > 0
-})
-
-const isNearBottom = computed(() => {
-  if (!feedContainer.value) return true
-  const { scrollTop, scrollHeight, clientHeight } = feedContainer.value
-  return scrollHeight - scrollTop - clientHeight < 100
-})
-
-// Methods
-const getMessageComponent = (type: string) => {
-  return messageComponents[type] || TextMessage
+const keyboardAction = (action) => {
+  emit('keyboardAction', action)
 }
 
-const handleScroll = () => {
-  if (!feedContainer.value) return
-  
-  const { scrollTop: newScrollTop, scrollHeight, clientHeight } = feedContainer.value
-  scrollTop.value = newScrollTop
-  
-  // Проверяем необходимость загрузки дополнительных сообщений
-  if (newScrollTop < 300) {
-    emit('loadMore')
+function scrollTopCheck (allowLoadMore: boolean = true) {
+  const element = unref(refFeed);
+  let keyboardHeight = 0
+  if (keyboardRef.value){
+    keyboardHeight = keyboardRef.value.refKeyboard.clientHeight
+  }
+  const limit = 100;
+  const scrollBottom = element.scrollHeight - element.scrollTop - element.clientHeight;
+  // Проверяем, что scrollBottom меньше заданного порога
+  if (scrollBottom < limit + keyboardHeight) {
+    isShowButton.value = false;
+    isKeyboardPlace.value = true
+  } else {
+    isShowButton.value = true;
+    isKeyboardPlace.value = false
+  }
+
+  if (isScrollByMouseButton.value){
+    if (element.scrollTop < 300){      
+      movingDown.value = false
+      allowLoadMoreTop.value = false
+    }
+    if (scrollBottom < 300){
+      allowLoadMoreBottom.value = false
+      movingDown.value = true
+    }
+  }
+  else if (allowLoadMore){
+    if (element.scrollTop < 300) {
+      allowLoadMoreTop.value = false
+    }
+    if (scrollBottom < 300){
+      allowLoadMoreBottom.value = false
+    }
   }
   
-  if (scrollHeight - newScrollTop - clientHeight < 300) {
-    emit('loadMoreDown')
+};
+
+watch(
+  () => [allowLoadMoreBottom.value, allowLoadMoreTop.value],
+  () => {
+    if (!allowLoadMoreBottom.value) emit('loadMoreDown')
+    if (!allowLoadMoreTop.value) emit('loadMore')
   }
-  
-  // Отправляем событие о видимых сообщениях
-  emitVisibleMessages()
-}
+)
 
-const handleMouseDown = (event: MouseEvent) => {
-  if (!feedContainer.value) return
-  
-  const { offsetX, offsetY } = event
-  const { clientWidth, clientHeight } = feedContainer.value
-  
-  isMouseScrolling.value = offsetX > clientWidth || offsetY > clientHeight
-}
-
-const handleMouseUp = () => {
-  isMouseScrolling.value = false
-}
-
-const handleDoubleClick = (event: MouseEvent, message: IFeedObject) => {
-  if (!props.enableDoubleClickReply) return
-  
-  event.preventDefault()
-  
-  if (message.type.includes('system') || message.type.includes('typing')) return
-  
-  const previewContainer = document.getElementById(`chat-input-reply-line-${chatAppId}`)
-  if (previewContainer) {
-    previewContainer.style.display = 'inherit'
+const startScrollWatch = (event) => {
+  const element = unref(refFeed);
+  const isScrollbar = event.offsetX > element.clientWidth || event.offsetY > element.clientHeight;
+  if (isScrollbar) {
+    isScrollByMouseButton.value = true
   }
-  
-  setReply({
-    messageId: message.messageId,
-    type: message.type,
-    text: message.text,
-    filename: message.filename,
-    url: message.url,
-    header: message.header,
-    callDuration: message.callDuration,
+}
+
+const stopScrollWatch = () => {
+  isScrollByMouseButton.value = false
+}
+
+const throttledScrollTopCheck = throttle(scrollTopCheck, 250)
+
+// Register components
+const componentsMap = (type) => {
+
+  const r = {
+    'message.text': TextMessage,
+    'message.image': ImageMessage,
+    'message.file': FileMessage,
+    'message.audio': AudioMessage,
+    'message.video': VideoMessage,
+    'message.call': CallMessage,
+    'message.system': SystemMessage,
+    'system.date': DateMessage,
+    'message.typing': TypingMessage
+  };
+  return r[type];
+}
+
+function scrollToBottom() {
+  nextTick(function () {
+    const element = unref(refFeed);
+    element.scrollTop = element.scrollHeight;
   })
-  
-  replyMessage.value = message
 }
 
-const handleMessageAction = (action: any) => {
-  emit('messageAction', action)
+function scrollToBottomForce() {
+  emit('forceScrollToBottom')
+  scrollToBottom()
 }
 
-const handleReplyClick = (messageId: string) => {
+watch(
+  ()=> props.scrollToBottom,
+  () => {
+    console.log('force scroll to bottom')
+    if (props.scrollToBottom)
+      scrollToBottom()
+  },
+  {immediate: true}
+)
+
+const messageAction = (message) => {
+  emit('messageAction', message);
+}
+
+const handleClickReplied = (messageId) => {
   emit('clickRepliedMessage', messageId)
 }
 
-const handleKeyboardAction = (action: any) => {
-  emit('keyboardAction', action)
+const feedObjectDoubleClick = (event: MouseEvent,object : IFeedObject) => {
+  if (props.enableDoubleClickReply){
+    event?.preventDefault()
+    if (object.type.indexOf('system') == -1 && object.type.indexOf('typing') == -1){
+      const previewContainer = document.getElementById('chat-input-reply-line-'+chatAppId)
+      if (previewContainer){
+        previewContainer.style.display = 'inherit'
+      }
+      setReply({
+        messageId: object.messageId,
+        type: object.type,
+        text: object.text,
+        filename: object.filename,
+        url: object.url,
+        header: object.header,
+        callDuration: object.callDuration,
+      })
+    }
+  }
 }
 
 const handleResetReply = () => {
   resetReply()
-  replyMessage.value = null
-  
-  const previewContainer = document.getElementById(`chat-input-reply-line-${chatAppId}`)
-  if (previewContainer) {
+  const previewContainer = document.getElementById('chat-input-reply-line-'+chatAppId)
+  if (previewContainer){
     previewContainer.style.display = 'none'
   }
 }
 
-const scrollToBottom = () => {
-  if (!feedContainer.value) return
-  
-  emit('forceScrollToBottom')
-  
-  nextTick(() => {
-    if (feedContainer.value) {
-      feedContainer.value.scrollTop = feedContainer.value.scrollHeight
+const callback = (entries: Array<IntersectionObserverEntry>) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      emit('messageVisible', JSON.parse(entry.target.id))
     }
   })
 }
 
-const scrollToMessage = (messageId: string) => {
-  if (!feedContainer.value) return
-  
-  const messageIndex = props.objects.findIndex(obj => obj.messageId === messageId)
-  if (messageIndex === -1) return
-  
-  const targetScrollTop = messageIndex * props.itemHeight
-  feedContainer.value.scrollTop = targetScrollTop
-  
-  // Добавляем подсветку сообщения
-  const messageElement = document.querySelector(`[data-message-id="${messageId}"]`)
-  if (messageElement) {
-    messageElement.classList.add('focused-message')
-    setTimeout(() => {
-      messageElement.classList.remove('focused-message')
-    }, 2000)
-  }
+const options = {
+  root: document.getElementById('feed-container-' + chatAppId),
+  rootMargin: '5px',
+  threshold: 0,
 }
 
-const emitVisibleMessages = () => {
-  if (!feedContainer.value) return
-  
-  const { scrollTop, clientHeight } = feedContainer.value
-  const startIndex = Math.floor(scrollTop / props.itemHeight)
-  const endIndex = Math.ceil((scrollTop + clientHeight) / props.itemHeight)
-  
-  for (let i = startIndex; i <= endIndex && i < props.objects.length; i++) {
-    emit('messageVisible', props.objects[i])
-  }
-}
+const observer = new IntersectionObserver(callback, options)
 
-// Watchers
-watch(() => props.scrollToBottom, (shouldScroll) => {
-  if (shouldScroll) {
-    scrollToBottom()
-  }
-}, { immediate: true })
-
-watch(() => props.scrollTo, (messageId) => {
-  if (messageId) {
-    scrollToMessage(messageId)
-  }
-})
-
-watch(() => props.objects, () => {
-  nextTick(() => {
-    // Обновляем размеры контейнера
-    if (feedContainer.value) {
-      containerHeight.value = feedContainer.value.clientHeight
-    }
-    
-    // Если пользователь был внизу, прокручиваем к новым сообщениям
-    if (isNearBottom.value && !isMouseScrolling.value) {
-      scrollToBottom()
-    }
-  })
-}, { flush: 'post' })
-
-// Lifecycle
-onMounted(() => {
-  if (feedContainer.value) {
-    containerHeight.value = feedContainer.value.clientHeight
-    
-    // Создаем Intersection Observer для отслеживания видимых сообщений
-    intersectionObserver.value = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const messageId = entry.target.getAttribute('data-message-id')
-            if (messageId) {
-              emit('messageVisible', { messageId })
-            }
-          }
-        })
-      },
-      {
-        root: feedContainer.value,
-        rootMargin: '50px',
-        threshold: 0.1
-      }
-    )
-    
-    // Наблюдаем за видимыми элементами
+watch(
+  () => props.objects,
+  () => {
     nextTick(() => {
-      const visibleElements = feedContainer.value?.querySelectorAll('.message-feed__virtual-item')
-      visibleElements?.forEach(element => {
-        intersectionObserver.value?.observe(element)
-      })
+      allowLoadMoreTop.value = true
+      allowLoadMoreBottom.value = true
+      scrollTopCheck(false)
+      if (isScrollByMouseButton.value){
+        const element = unref(refFeed);
+        if (movingDown.value)
+          element.scrollTop = element.scrollHeight - 400
+        if (!movingDown.value)
+          element.scrollTop = 400
+      }
+      trackingObjects.value = document.querySelectorAll('.tracking-message')
+      trackingObjects.value.forEach((obj) => observer.observe(obj))
     })
-  }
-})
+  },
+  { immediate: true })
 
-onUnmounted(() => {
-  // Очищаем Intersection Observer
-  if (intersectionObserver.value) {
-    intersectionObserver.value.disconnect()
+watch(
+  () => props.scrollTo,
+  () => {
+    if (props.scrollTo){
+      const elem = props.scrollTo
+      let target = document.getElementById(elem)
+      let list = document.getElementById('feed-container-' + chatAppId)
+      if (target instanceof HTMLElement && list instanceof HTMLElement)
+        list.scrollTop = target.offsetTop + target.clientHeight / 2 - list.clientHeight / 2
+      document.getElementById(elem)?.children[0].classList.add('focused-message')
+      setTimeout(() => {
+        document.getElementById(elem)?.children[0].classList.remove('focused-message')
+      }, 2000)
+      
+    }
   }
-})
+)
+
 </script>
 
-<style scoped lang="scss">
+<style
+  scoped
+  lang="scss"
+>
 .message-feed {
   height: 100%;
   max-height: inherit;
@@ -466,31 +373,11 @@ onUnmounted(() => {
   padding: 10px 30px 10px 30px;
   position: relative;
   
-  &--empty {
-    justify-content: center;
-    align-items: center;
-  }
-  
-  &__virtual-container {
-    flex: 1;
-    position: relative;
-  }
-  
-  &__virtual-item {
-    position: absolute;
-    left: 0;
-    right: 0;
-  }
-  
   &__message {
     position: relative;
-    transition: all 0.2s ease;
+    transition: all 2s;
   }
-  
-  &__typing {
-    margin-top: 10px;
-  }
-  
+
   &__button-down {
     position: sticky;
     z-index: 100;
@@ -505,13 +392,8 @@ onUnmounted(() => {
     align-items: center;
     cursor: pointer;
     background-color: var(--chotto-button-color-disabled);
-    transition: all 0.2s ease;
-    
-    &:hover {
-      background-color: var(--chotto-button-color-hover);
-    }
   }
-  
+
   &__keyboard {
     position: sticky;
     z-index: 100;
@@ -520,12 +402,12 @@ onUnmounted(() => {
     width: fit-content;
     margin-left: auto;
   }
-  
+
   &__icon-down {
     font-size: var(--chotto-button-icon-size);
     color: var(--chotto-button-color-active);
   }
-  
+
   &__unread-amount {
     position: absolute;
     top: -8px;
@@ -542,22 +424,17 @@ onUnmounted(() => {
     background-color: var(--chotto-unread-background-color);
     border-radius: 50%;
   }
-  
-  &__empty {
-    text-align: center;
-    color: var(--chotto-secondary-text-color);
-  }
-  
+
   &::-webkit-scrollbar {
     width: 6px;
     background-color: var(--chotto-scrollbar-bg);
   }
-  
+
   &::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background-color: var(--chotto-scrollbar-thumb-bg);
   }
-  
+
   &::-webkit-scrollbar-track {
     border-radius: 10px;
   }
@@ -566,38 +443,19 @@ onUnmounted(() => {
 .focused-message {
   background-color: color-mix(in srgb, var(--chotto-message-focused-color) 30%, transparent);
   box-shadow: 0px 0px 12px 2px color-mix(in srgb, var(--chotto-message-focused-color) 30%, transparent);
-  animation: focus-pulse 2s ease-out;
 }
 
-@keyframes focus-pulse {
-  0% {
-    background-color: color-mix(in srgb, var(--chotto-message-focused-color) 50%, transparent);
-  }
-  100% {
-    background-color: color-mix(in srgb, var(--chotto-message-focused-color) 30%, transparent);
-  }
+.v-enter-active {
+  transition: all 0.1s ease-out;
 }
 
-// Transitions
-.keyboard-enter-active,
-.keyboard-leave-active {
-  transition: all 0.3s ease;
+.v-leave-active {
+  transition: all 0.1s;
 }
 
-.keyboard-enter-from,
-.keyboard-leave-to {
-  transform: translateY(20px);
-  opacity: 0;
-}
-
-.scroll-button-enter-active,
-.scroll-button-leave-active {
-  transition: all 0.2s ease;
-}
-
-.scroll-button-enter-from,
-.scroll-button-leave-to {
-  transform: scale(0.8);
+.v-enter-from,
+.v-leave-to {
+  transform: translateY(10px);
   opacity: 0;
 }
 </style>
