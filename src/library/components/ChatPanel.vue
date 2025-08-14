@@ -2,7 +2,8 @@
   <div class="chat-panel">
     <div
       v-if="titleEnabled" 
-      class="chat-panel__title-container">
+      class="chat-panel__title-container"
+    >
       <p
         v-if="title"
         class="chat-panel__title"

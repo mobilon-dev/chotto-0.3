@@ -1,6 +1,6 @@
 <template>
   <div class="chat-filter__container">
-    <span class="pi pi-search chat-filter__icon"></span>
+    <span class="pi pi-search chat-filter__icon" />
     <input
       ref="refInput"
       class="chat-filter__input"

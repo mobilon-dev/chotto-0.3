@@ -1,12 +1,12 @@
 <template>
   <div class="splash__container">
-    <slot name="title"/>
-    <slot name="text"/>
+    <slot name="title" />
+    <slot name="text" />
     <div 
       class="splash__img"
       @click="handleImage"
     >
-      <slot name="picture"/>
+      <slot name="picture" />
     </div>
   </div>
 </template>
