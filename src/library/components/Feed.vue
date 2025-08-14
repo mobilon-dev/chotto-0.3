@@ -10,8 +10,8 @@
   >
     <div
       v-for="object in objects"
-      :key="object.messageId"
       :id="JSON.stringify(object)"
+      :key="object.messageId"
       class="tracking-message"
       @dblclick="feedObjectDoubleClick($event,object)"
     >
