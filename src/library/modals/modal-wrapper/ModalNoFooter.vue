@@ -1,6 +1,7 @@
 <script setup>
 const emit = defineEmits(['close'])
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps({
   theme: {
     type: String,

@@ -131,7 +131,7 @@ watch(
   }
 )
 
-const sendTyping = (event: any) => {
+const sendTyping = (event: Event) => {
   // console.log('typing', event.target.value);
   emit('typing', event.target.value);
 }

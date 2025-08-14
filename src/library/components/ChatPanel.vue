@@ -26,6 +26,7 @@
 </template>
 
 <script setup>
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps({
   title: {
     type: String,
@@ -37,6 +38,7 @@ const props = defineProps({
   }
 })
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const emit = defineEmits(['close-panel']);
 </script>
 

@@ -98,7 +98,8 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from "vue";
+import { onMounted, ref } from "vue";
+// import { watch } from "vue";
 
 import {
   ChatInfo,
@@ -118,10 +119,10 @@ import {
 } from "./library";
 
 import {
-  formatTimestamp,
-  insertDaySeparators,
+  // formatTimestamp,
+  // insertDaySeparators,
   playNotificationAudio,
-  sortByTimestamp,
+  // sortByTimestamp,
 } from "./helpers";
 
 import { useChatsStore } from "./stores/useChatStore";

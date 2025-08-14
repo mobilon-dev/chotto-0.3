@@ -1,13 +1,13 @@
-export function throttle(callee, timeout) {
-  let timer : any = null
+export function throttle(callee: (...args: unknown[]) => void, timeout: number) {
+  let timer: NodeJS.Timeout | null = null
 
-  return function perform(...args) {
+  return function perform(...args: unknown[]) {
     if (timer) return
 
     timer = setTimeout(() => {
       callee(...args)
 
-      clearTimeout(timer)
+      if (timer) clearTimeout(timer)
       timer = null
     }, timeout)
   }

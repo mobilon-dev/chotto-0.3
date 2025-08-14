@@ -1,6 +1,6 @@
-export const insertDaySeparators = (messages: any, outPreviousDay: any = null) => {
-  const result: any = [];
-  let previousDay: any = new Date(outPreviousDay * 1000).toLocaleDateString();
+export const insertDaySeparators = (messages: unknown[], outPreviousDay: unknown = null) => {
+  const result: unknown[] = [];
+  let previousDay: string = new Date((outPreviousDay as number) * 1000).toLocaleDateString();
 
   for (let i = 0; i < messages.length; i++) {
     const message = messages[i];
@@ -22,12 +22,12 @@ export const insertDaySeparators = (messages: any, outPreviousDay: any = null) =
   return result;
 }
 
-const messages = [
-  {timestamp: '1727027959',},
-  {timestamp: '1726916359',},
-  {timestamp: '1726830251',},
-  {timestamp: '1726829959',},
-  {timestamp: '1726743559',},
-];
+// const messages = [
+//   {timestamp: '1727027959',},
+//   {timestamp: '1726916359',},
+//   {timestamp: '1726830251',},
+//   {timestamp: '1726829959',},
+//   {timestamp: '1726743559',},
+// ];
 
 // console.log('t', insertDaySeparators(messages));

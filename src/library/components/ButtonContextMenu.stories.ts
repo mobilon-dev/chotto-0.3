@@ -66,7 +66,7 @@ export const StandardRight: Story = {
     actions: actions,
     menuSide: 'right',
     default: '<span class="pi pi-list"></span>',
-    //@ts-ignore
+    //@ts-expect-error - theme prop type mismatch in storybook
     theme,
     extChatAppId: '1'
   },
@@ -77,7 +77,7 @@ export const WithIcons: Story = {
     actions: actionsWithIcons,
     menuSide: 'left',
     default: '<span class="pi pi-list"></span>',
-    //@ts-ignore
+    //@ts-expect-error - theme prop type mismatch in storybook
     theme: theme,
     extChatAppId: '2'
   },
@@ -88,7 +88,7 @@ export const FileDropDownMenu: Story = {
     actions: actionsFileDropDown,
     menuSide: 'right',
     default: '<span class="pi pi-list"></span>',
-    //@ts-ignore
+    //@ts-expect-error
     theme: theme,
     extChatAppId: '3'
   },
@@ -100,7 +100,7 @@ export const WithoutIcon: Story = {
     menuSide: 'right',
     default: '<span>Нажми сюда</span>',
     mode: 'click',
-    //@ts-ignore
+    //@ts-expect-error
     theme: theme,
     extChatAppId: '4'
   },
@@ -111,7 +111,7 @@ export const StandardTop: Story = {
     actions: actions,
     menuSide: 'top',
     default: '<span class="pi pi-list"></span>',
-    //@ts-ignore
+    //@ts-expect-error
     theme: theme,
     extChatAppId: '5'
   },
@@ -122,7 +122,7 @@ export const StandardLeft: Story = {
     actions: actions,
     menuSide: 'left',
     default: '<span class="pi pi-list"></span>',
-    //@ts-ignore
+    //@ts-expect-error
     theme: theme,
     extChatAppId: '6'
   },
@@ -133,7 +133,7 @@ export const StandardBottom: Story = {
     actions: actions,
     menuSide: 'bottom',
     default: '<span class="pi pi-list"></span>',
-    //@ts-ignore
+    //@ts-expect-error
     theme: theme,
     extChatAppId: '7'
   },
@@ -144,7 +144,7 @@ export const LongActions: Story = {
     actions: actionsLA,
     menuSide: 'right',
     default: '<span class="pi pi-list"></span>',
-    //@ts-ignore
+    //@ts-expect-error
     theme: theme,
     extChatAppId: '8'
   },

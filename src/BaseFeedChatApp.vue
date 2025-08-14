@@ -20,27 +20,28 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from "vue";
+import { onMounted, ref } from "vue";
+// import { watch } from "vue";
 
 import {
   ChatInfo,
   ChatInput,
-  ChatList,
+  // ChatList,
   Feed,
-  UserProfile,
-  FileUploader,
-  ThemeMode,
-  SideBar,
-  ChatPanel,
+  // UserProfile,
+  // FileUploader,
+  // ThemeMode,
+  // SideBar,
+  // ChatPanel,
   BaseContainer,
   FeedLayout,
 } from "./library";
 
 import {
-  formatTimestamp,
-  insertDaySeparators,
+  // formatTimestamp,
+  // insertDaySeparators,
   playNotificationAudio,
-  sortByTimestamp,
+  // sortByTimestamp,
 } from "./helpers";
 
 import { useChatsStore } from "./stores/useChatStore";
@@ -63,24 +64,24 @@ const props = defineProps({
   },
 });
 
-const themes = [
-  {
-    code: "light",
-    name: "Light",
-  },
-  {
-    code: "dark",
-    name: "Dark",
-  },
-  {
-    code: "green",
-    name: "Green",
-  },
-  {
-    code: "diamond",
-    name: "Diamond",
-  },
-];
+// const themes = [
+//   {
+//     code: "light",
+//     name: "Light",
+//   },
+//   {
+//     code: "dark",
+//     name: "Dark",
+//   },
+//   {
+//     code: "green",
+//     name: "Green",
+//   },
+//   {
+//     code: "diamond",
+//     name: "Diamond",
+//   },
+// ];
 
 const chatsStore = useChatsStore();
 
@@ -91,55 +92,55 @@ const userProfile = ref({});
 const channels = ref([]);
 const sidebarItems = ref([]);
 
-const isOpenChatPanel = ref(false);
+// const isOpenChatPanel = ref(false);
 
-const modalShow = ref(false);
-const modalTitle = ref("");
-const users = ref([]);
+// const modalShow = ref(false);
+// const modalTitle = ref("");
+// const users = ref([]);
 
-const chatApp = ref(null);
+// const chatApp = ref(null);
 
-const chatAppSize = ref({
-  width: 0,
-  height: 0,
-});
+// const chatAppSize = ref({
+//   width: 0,
+//   height: 0,
+// });
 
-const updateChatAppSize = () => {
-  return (chatAppSize.value = {
-    width: chatApp.value.offsetWidth,
-    height: chatApp.value.offsetHeight,
-  });
-};
+// const updateChatAppSize = () => {
+//   return (chatAppSize.value = {
+//     width: chatApp.value.offsetWidth,
+//     height: chatApp.value.offsetHeight,
+//   });
+// };
 
-const selectItem = (item) => {
-  console.log("selected sidebar item", item);
-};
+// const selectItem = (item) => {
+//   console.log("selected sidebar item", item);
+// };
 
-const chatAction = (data) => {
-  console.log("chat action", data);
-  if (data.action === "add") {
-    modalTitle.value = `Добавить в чат ${data.chatId}`;
-    users.value = getUsers();
-    modalShow.value = true;
-  }
-};
+// const chatAction = (data) => {
+//   console.log("chat action", data);
+//   if (data.action === "add") {
+//     modalTitle.value = `Добавить в чат ${data.chatId}`;
+//     users.value = getUsers();
+//     modalShow.value = true;
+//   }
+// };
 
-const selectUsers = (users) => {
-  console.log("users selected", users);
-};
+// const selectUsers = (users) => {
+//   console.log("users selected", users);
+// };
 
-const onCloseModal = () => {
-  modalShow.value = false;
-};
+// const onCloseModal = () => {
+//   modalShow.value = false;
+// };
 
 const messageAction = (data) => {
   console.log("message action", data);
 };
 
-const getUsers = () => {
-  return props.dataProvider.getUsers();
-  // return (props.dataProvider.getChats()).map(c => { return { ...c, userId: c.chatId.toString() } });
-};
+// const getUsers = () => {
+//   return props.dataProvider.getUsers();
+//   // return (props.dataProvider.getChats()).map(c => { return { ...c, userId: c.chatId.toString() } });
+// };
 
 const loadMore = () => {
   // do load more messages to feed

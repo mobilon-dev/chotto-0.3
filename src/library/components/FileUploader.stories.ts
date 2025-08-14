@@ -30,7 +30,7 @@ const theme = [{
 
 export const Standard: Story = {
   args: {
-    //@ts-ignore
+    //@ts-expect-error
     theme
   },
 };
@@ -38,7 +38,7 @@ export const Standard: Story = {
 export const InactiveButton: Story = {
   args: {
     state: 'disabled',
-    //@ts-ignore
+    //@ts-expect-error
     theme
   },
 };

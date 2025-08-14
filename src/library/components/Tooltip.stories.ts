@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
-import { h } from 'vue'
+// import { h } from 'vue'
 
 import Tooltip from './Tooltip.vue';
 import BaseContainer from '../containers/BaseContainer.vue'
@@ -44,7 +44,7 @@ export const Right: Story = {
     text: 'right',
     position: 'right',
     default: '<span>hover me</span>',
-    //@ts-ignore
+    //@ts-expect-error
     theme
   }
 };
@@ -55,7 +55,7 @@ export const Top: Story = {
     text: 'top',
     position: 'top',
     default: '<span>hover me</span>',
-    //@ts-ignore
+    //@ts-expect-error
     theme
   },
 };
@@ -65,7 +65,7 @@ export const Left: Story = {
     text: 'left',
     position: 'left',
     default:'<span>hover me</span>',
-    //@ts-ignore
+    //@ts-expect-error
     theme
   },
 };
@@ -75,7 +75,7 @@ export const Bottom: Story = {
     text: 'bottom',
     position: 'bottom',
     default: '<span>hover me</span>',
-    //@ts-ignore
+    //@ts-expect-error
     theme
   },
 };

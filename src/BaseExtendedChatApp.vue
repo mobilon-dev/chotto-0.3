@@ -147,7 +147,8 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref, watch } from "vue";
+import { onMounted, ref } from "vue";
+// import { computed, watch } from "vue";
 import moment from 'moment';
 
 import {
@@ -163,9 +164,9 @@ import {
   ExtendedLayout,
   ChatWrapper,
   useModalSelectUser2,
-  useModalCreateChat,
-  useModalCreateChat2,
-  ButtonContextMenu,
+  // useModalCreateChat,
+  // useModalCreateChat2,
+  // ButtonContextMenu,
   ButtonTemplateSelector,
   ButtonWabaTemplateSelector,
   ButtonEmojiPicker,
@@ -176,10 +177,10 @@ import {
 } from "./library";
 
 import {
-  formatTimestamp,
-  insertDaySeparators,
+  // formatTimestamp,
+  // insertDaySeparators,
   playNotificationAudio,
-  sortByTimestamp,
+  // sortByTimestamp,
 } from "./helpers";
 
 import { useChatsStore } from "./stores/useChatStore";
@@ -320,7 +321,9 @@ const forceScrollToBottom = () => {
 
 const messageVisible = (message) => {
   // processing message in feed visible area 
-  // console.log('visible message', message.type)
+  // console.log('visible message', message.type')
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const _message = message;
 }
 
 const searchMessages = (string) => {

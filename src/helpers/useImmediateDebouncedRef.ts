@@ -1,6 +1,6 @@
 import { customRef } from 'vue'
 
-function useImmediateDebouncedRef(value : any, delay = 500) {
+function useImmediateDebouncedRef(value: unknown, delay = 500) {
   let timeout : number | undefined
   return customRef((track, trigger) => {
     return {

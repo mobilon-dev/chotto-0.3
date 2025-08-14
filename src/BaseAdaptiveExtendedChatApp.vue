@@ -187,7 +187,8 @@
 </template>
 
 <script setup>
-import { onMounted, ref, computed, unref, nextTick } from "vue";
+import { onMounted, ref, computed, unref } from "vue";
+// import { nextTick } from "vue";
 import moment from 'moment';
 
 import {
@@ -202,10 +203,10 @@ import {
   BaseContainer,
   AdaptiveExtendedLayout,
   ChatWrapper,
-  useModalSelectUser2,
-  useModalCreateChat,
-  useModalCreateChat2,
-  ButtonContextMenu,
+    useModalSelectUser2,
+  // useModalCreateChat,
+  // useModalCreateChat2,
+  // ButtonContextMenu,
   useModalCreateDialog,
   ButtonTemplateSelector,
   ButtonWabaTemplateSelector,
@@ -218,10 +219,10 @@ import {
 } from "./library";
 
 import {
-  formatTimestamp,
-  insertDaySeparators,
+  // formatTimestamp,
+  // insertDaySeparators,
   playNotificationAudio,
-  sortByTimestamp,
+  // sortByTimestamp,
 } from "./helpers";
 
 import { useChatsStore } from "./stores/useChatStore";
@@ -425,7 +426,9 @@ const keyboardAction = (action) => {
 
 const messageVisible = (message) => {
   // processing message in feed visible area 
-  // console.log('visible message', message.type)
+  // console.log('visible message', message.type')
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const _message = message;
 }
 
 const searchMessages = (string) => {

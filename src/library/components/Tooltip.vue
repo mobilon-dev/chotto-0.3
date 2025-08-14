@@ -22,7 +22,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, unref, inject, onMounted, nextTick } from 'vue';
+import { computed, ref, unref, inject, nextTick } from 'vue';
+// import { onMounted } from 'vue';
 import { useTheme } from '../../helpers/useTheme';
 
 const chatAppId = inject('chatAppId')

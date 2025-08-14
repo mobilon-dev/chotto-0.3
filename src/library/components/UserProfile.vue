@@ -32,6 +32,7 @@
 <script setup>
 
 // Define props
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps({
   user: {
     type: Object,

@@ -78,7 +78,8 @@
 
 <script setup>
 import { ref, unref, watch, nextTick } from 'vue';
-import { ChatItem, ChatFilter, ContextMenu } from "./";
+import { ChatItem, ChatFilter } from "./";
+// import { ContextMenu } from "./";
 import { t } from '../../locale/useLocale';
 
 // Define props

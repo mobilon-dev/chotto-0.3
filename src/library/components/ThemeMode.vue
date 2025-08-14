@@ -14,7 +14,8 @@
 </template>
 
 <script setup>
-import { onMounted, ref, inject } from 'vue';
+import { onMounted, inject } from 'vue';
+// import { ref } from 'vue';
 import { useTheme } from '../../helpers/useTheme';
 const props = defineProps({
   themes: {

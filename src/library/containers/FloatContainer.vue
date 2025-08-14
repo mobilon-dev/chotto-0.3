@@ -74,6 +74,7 @@ const props = defineProps({
     default: ''
   },
 });
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const emit = defineEmits(["close-window", "get-size"]);
 
 const floatWindowPosition = ref({ x: 0, y: 0 });
@@ -88,17 +89,17 @@ const chatAppId = useId()
 provide('chatAppId', chatAppId)
 provide('extChatAppId', props.extChatAppId ? props.extChatAppId : '')
 
-const centerWindow = () => {
-  if (element.value) {
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
-    const elementWidth = element.value.offsetWidth;
-    const elementHeight = element.value.offsetHeight;
+// const centerWindow = () => {
+//   if (element.value) {
+//     const windowWidth = window.innerWidth;
+//     const windowHeight = window.innerHeight;
+//     const elementWidth = element.value.offsetWidth;
+//     const elementHeight = element.value.offsetHeight;
 
-    floatWindowPosition.value.x = (windowWidth - elementWidth) / 2;
-    floatWindowPosition.value.y = (windowHeight - elementHeight) / 2;
-  }
-};
+//     floatWindowPosition.value.x = (windowWidth - elementWidth) / 2;
+//     floatWindowPosition.value.y = (windowHeight - elementHeight) / 2;
+//   }
+// };
 
 const mouseDown = (e) => {
   dragMode.value = true;

@@ -10,5 +10,7 @@ export const playNotificationAudio = async () => {
     }
   }catch(err){
     console.log('no audio permissions');
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const _err = err;
   }
 }

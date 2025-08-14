@@ -32,7 +32,8 @@
 // import picker compopnent
 import EmojiPicker from 'vue3-emoji-picker';
 import 'vue3-emoji-picker/css';
-import {computed, onMounted, onUnmounted, ref, inject} from 'vue'
+import {onMounted, onUnmounted, ref, inject} from 'vue'
+// import {computed} from 'vue'
 import { useMessage } from '../../helpers/useMessage';
 
 

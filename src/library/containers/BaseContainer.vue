@@ -13,7 +13,8 @@
 </template>
 
 <script setup>
-import { useId, provide, onMounted } from 'vue'
+import { useId, provide } from 'vue'
+// import { onMounted } from 'vue'
 
 const props = defineProps({
   height: {

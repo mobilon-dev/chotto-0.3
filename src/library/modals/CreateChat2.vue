@@ -21,6 +21,7 @@
 import { ref } from 'vue';
 
 // Define props
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps({
   title: {
     type: String,

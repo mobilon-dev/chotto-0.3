@@ -10,6 +10,7 @@
 
 import { ISystemMessage } from '../../types';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps({
   message: {
     type: Object as () => ISystemMessage,

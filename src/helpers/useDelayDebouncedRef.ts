@@ -1,7 +1,7 @@
 import { customRef } from 'vue'
 
-function useDelayDebouncedRef(value : any, delay = 500) {
-  let timeout : number 
+function useDelayDebouncedRef(value: unknown, delay = 500) {
+  let timeout: number 
   return customRef((track, trigger) => {
     return {
       get() {

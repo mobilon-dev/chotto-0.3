@@ -24,6 +24,7 @@
 >
 import { ILinkPreview } from '../../types';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps({
   linkPreview: {
     type: Object as () => ILinkPreview,

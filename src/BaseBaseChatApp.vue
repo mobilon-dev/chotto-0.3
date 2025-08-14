@@ -87,7 +87,8 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from "vue";
+import { onMounted, ref } from "vue";
+// import { watch } from "vue";
 
 import {
   ChatInfo,
@@ -97,8 +98,8 @@ import {
   UserProfile,
   FileUploader,
   ThemeMode,
-  SideBar,
-  ChatPanel,
+  // SideBar,
+  // ChatPanel,
   BaseContainer,
   BaseLayout,
   ChatWrapper,
@@ -108,17 +109,18 @@ import {
 } from "./library";
 
 import {
-  formatTimestamp,
-  insertDaySeparators,
+  // formatTimestamp,
+  // insertDaySeparators,
   playNotificationAudio,
-  sortByTimestamp,
+  // sortByTimestamp,
 } from "./helpers";
 
 import { useChatsStore } from "./stores/useChatStore";
 import { transformToFeed } from "./transform/transformToFeed";
 import { useLocale } from "./locale/useLocale";
 
-const {t, locale: currentLocale, locales} = useLocale()
+const {locale: currentLocale, locales} = useLocale()
+// const {t} = useLocale()
 
 // Define props
 const props = defineProps({
@@ -179,23 +181,23 @@ const modalShow = ref(false);
 const modalTitle = ref("");
 const users = ref([]);
 
-const chatApp = ref(null);
+// const chatApp = ref(null);
 
-const chatAppSize = ref({
-  width: 0,
-  height: 0,
-});
+// const chatAppSize = ref({
+//   width: 0,
+//   height: 0,
+// });
 
-const updateChatAppSize = () => {
-  return (chatAppSize.value = {
-    width: chatApp.value.offsetWidth,
-    height: chatApp.value.offsetHeight,
-  });
-};
+// const updateChatAppSize = () => {
+//   return (chatAppSize.value = {
+//     width: chatApp.value.offsetWidth,
+//     height: chatApp.value.offsetHeight,
+//   });
+// };
 
-const selectItem = (item) => {
-  console.log("selected sidebar item", item);
-};
+// const selectItem = (item) => {
+//   console.log("selected sidebar item", item);
+// };
 
 const chatAction = (data) => {
   console.log("chat action", data);

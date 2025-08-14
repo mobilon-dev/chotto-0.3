@@ -20,6 +20,7 @@ import { inject, useTemplateRef } from "vue";
 import { useMessage } from "../../helpers/useMessage";
 import { IKeyBoard } from "../../types";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps({
   keyboard: {
     type: Array<IKeyBoard>,

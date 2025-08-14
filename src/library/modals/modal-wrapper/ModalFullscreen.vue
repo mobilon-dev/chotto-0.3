@@ -21,6 +21,7 @@
 
 <script setup>
 import { onMounted, onUnmounted } from 'vue';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps({
   theme: {
     type: String,

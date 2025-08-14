@@ -232,7 +232,8 @@
 </template>
 
 <script setup>
-import { onMounted, ref, computed, unref, nextTick } from "vue";
+import { onMounted, ref, computed, unref } from "vue";
+// import { nextTick } from "vue";
 import moment from 'moment';
 
 import {
@@ -240,7 +241,7 @@ import {
   ChatInput,
   ChatList,
   Feed,
-  UserProfile,
+  // UserProfile,
   ThemeMode,
   SideBar,
   ChatPanel,
@@ -248,35 +249,35 @@ import {
   ExtendedLayout,
   ChatWrapper,
   useModalSelectUser2,
-  useModalCreateChat,
-  useModalCreateChat2,
-  ButtonContextMenu,
+  // useModalCreateChat,
+  // useModalCreateChat2,
+  // ButtonContextMenu,
   useModalCreateDialog,
   ButtonTemplateSelector,
-  ButtonWabaTemplateSelector,
+  // ButtonWabaTemplateSelector,
   ButtonEmojiPicker,
   FileUploader,
   FeedSearch,
-  ChannelSelector,
+  // ChannelSelector,
   FeedFoundObjects,
-  AudioRecorder,
+  // AudioRecorder,
 } from "./library";
 
 import {
-  formatTimestamp,
-  insertDaySeparators,
+  // formatTimestamp,
+  // insertDaySeparators,
   playNotificationAudio,
-  sortByTimestamp,
+  // sortByTimestamp,
 } from "./helpers";
 
 import { useChatsStore } from "./stores/useChatStore";
 import { transformToFeed } from "./transform/transformToFeed";
-import { useLocale } from "./locale/useLocale";
-import VideoRecorder from "./library/components/VideoRecorder.vue";
+// import { useLocale } from "./locale/useLocale";
+// import VideoRecorder from "./library/components/VideoRecorder.vue";
 import ButtonCommandsSelector from "./library/components/ButtonCommandsSelector.vue";
 import SplashScreen from "./library/components/SplashScreen.vue";
 
-const { locale: currentLocale, locales } = useLocale()
+// const { locale: currentLocale, locales } = useLocale()
 
 
 // Define props
@@ -301,7 +302,7 @@ const props = defineProps({
 });
 
 // Use the locale from props or fallback to currentLocale
-const locale = props.locale || currentLocale;
+// const locale = props.locale || currentLocale;
 
 const buttonParams = {
   unreadAmount: 12
@@ -489,7 +490,9 @@ const keyboardAction = (action) => {
 
 const messageVisible = (message) => {
   // processing message in feed visible area 
-  // console.log('visible message', message.type)
+  // console.log('visible message', message.type')
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const _message = message;
 }
 
 const searchMessages = (string) => {
@@ -529,9 +532,9 @@ const getFeedObjects = () => {
   }
 };
 
-const onSelectChannel = (channel) => {
-  console.log('selected channel', channel);
-}
+// const onSelectChannel = (channel) => {
+//   console.log('selected channel', channel);
+// }
 
 const addMessage = (message) => {
   console.log(message);
@@ -556,29 +559,29 @@ const addMessage = (message) => {
   
 };
 
-const sendWabaValues = (obj) => {
-  console.log('send waba values', obj);
-  const messageObject = {
-    type: '',
-    text: '',
-    url: '',
-    filename: '',
-    size: '',
-  };
+// const sendWabaValues = (obj) => {
+//   console.log('send waba values', obj);
+//   const messageObject = {
+//     type: '',
+//     text: '',
+//     url: '',
+//     filename: '',
+//     size: '',
+//   };
 
-  if (obj.file) {
-    messageObject.type = 'message.' + obj.file.filetype;
-    messageObject.url = obj.file.url;
-    messageObject.filename = obj.file.filename;
-    messageObject.size = obj.file.filesize.toString();
-    messageObject.text = obj.text.trim();
-  } else {
-    messageObject.type = 'message.text';
-    messageObject.text = obj.text.trim();
-  }
+//   if (obj.file) {
+//     messageObject.type = 'message.' + obj.file.filetype;
+//     messageObject.url = obj.file.url;
+//     messageObject.filename = obj.file.filename;
+//     messageObject.size = obj.file.filesize.toString();
+//     messageObject.text = obj.text.trim();
+//   } else {
+//     messageObject.type = 'message.text';
+//     messageObject.text = obj.text.trim();
+//   }
 
-  addMessage(messageObject)
-}
+//   addMessage(messageObject)
+// }
 
 const expandChat = (args) => {
   console.log(args)
@@ -705,7 +708,7 @@ const resizeObserver = new ResizeObserver((entries) => {
 });
 
 onMounted(() => {
-  props.locale = locales.find((loc) => loc.code == props.locale)
+  // props.locale = locales.find((loc) => loc.code == props.locale)
   props.eventor.subscribe(handleEvent);
   userProfile.value = props.authProvider.getUserProfile();
   chatsStore.chats = props.dataProvider.getChats();

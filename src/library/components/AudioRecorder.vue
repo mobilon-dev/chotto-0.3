@@ -54,7 +54,7 @@ import { useMessage } from '../../helpers/useMessage';
 import { IFilePreview } from '../../types';
 import { uploadFile } from '../../helpers/uploadFile';
 import FilePreview from './FilePreview.vue';
-const emit = defineEmits(['send', 'typing']);
+// const emit = defineEmits(['send', 'typing']);
 
 const chatAppId = inject('chatAppId')
 const { getMessage, setMessageFile, resetMessageFile, setRecordingMessage } = useMessage(chatAppId as string)
@@ -76,7 +76,7 @@ const elapsedTime = computed(() => {
 const uploadStatus = ref("");
 const audioRecording = ref(false)
 const mediaRecorder = ref<MediaRecorder>()
-const chunks = ref<any[]>([])
+const chunks = ref<Blob[]>([])
 const audio = ref<string>()
 const audioPreview = ref<IFilePreview>()
 
@@ -113,7 +113,7 @@ const startAudioRecording = async () => {
     audioRecording.value = true
     mediaRecorder.value = new MediaRecorder(stream)
     mediaRecorder.value.start();
-    mediaRecorder.value.ondataavailable = (event: any) => {
+    mediaRecorder.value.ondataavailable = (event: BlobEvent) => {
       chunks.value.push(event.data);
     }
   }
