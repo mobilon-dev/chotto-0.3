@@ -36,11 +36,14 @@ const chatAppId = inject('chatAppId')
 const { setMessageText, setForceSendMessage } = useMessage(chatAppId as string)
 
 const handleClickKey = (key : IKeyBoard) => {
-  if (key.action == null){
+  if (key.action && typeof key.action === 'function') {
+    (key.action as () => void)()
+  } else if (key.action != null) {
+    emit('action', key.action)
+  } else {
     setMessageText(key.text)
     setForceSendMessage(true)
   }
-  else emit('action', key.action)
 }
 
 defineExpose({
