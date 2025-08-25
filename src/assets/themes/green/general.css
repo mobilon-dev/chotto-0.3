@@ -1,7 +1,7 @@
 [data-theme="green"] {
 
   --chotto-container-font-family: "Open Sans", sans-serif;
-  --chotto-container-font-weight: var(--regular-font-weight);
+  --chotto-container-font-weight: 400;
   --chotto-container-borders: 1px solid var(--neutral-200);
 
   --chotto-primary-color: #ffffff;
@@ -44,8 +44,4 @@
   --chotto-action-button-color-active: #00cbfa;
   --chotto-action-button-color-hover: #3fddff;
   --chotto-action-button-color-disabled: #b4e8f9;
-
-  --chotto-danger-button-color-active: '';
-  --chotto-danger-button-color-hover: '';
-  --chotto-danger-button-color-disabled: '';
 }
