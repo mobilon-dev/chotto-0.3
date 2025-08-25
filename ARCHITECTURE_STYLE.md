@@ -3,12 +3,15 @@
 ## Диаграмма архитектуры
 
 ```mermaid
-graph TD
+flowchart TD
     %% Основной файл стилей
-    A[style.css] --> B[default/_theme.css]
+    A[style.css]
+    
+    %% Темы
+    A --> B[default/_theme.css]
     A --> C[dark/_theme.css]
     A --> D[green/_theme.css]
-
+    
     %% Структура default темы
     B --> E[default/variables.css]
     B --> F[default/general.css]
@@ -16,7 +19,7 @@ graph TD
     B --> H[default/containers.css]
     B --> I[default/layouts.css]
     B --> J[default/messages.css]
-
+    
     %% Структура dark темы
     C --> K[dark/variables.css]
     C --> L[dark/general.css]
@@ -24,7 +27,7 @@ graph TD
     C --> N[dark/containers.css]
     C --> O[dark/layouts.css]
     C --> P[dark/messages.css]
-
+    
     %% Структура green темы
     D --> Q[green/variables.css]
     D --> R[green/general.css]
@@ -32,93 +35,97 @@ graph TD
     D --> T[green/containers.css]
     D --> U[green/layouts.css]
     D --> V[green/messages.css]
-
+    
     %% Базовые цветовые палитры
     E --> W[--emerald-50 до --emerald-950]
     E --> X[--neutral-50 до --neutral-950]
     E --> Y[--p-red-50 до --p-red-950]
     E --> Z[--default-white]
-
+    
     K --> W
     K --> X
     K --> Y
     K --> Z
-
+    
     Q --> W
     Q --> X
     Q --> Y
     Q --> Z
-
+    
     %% Общие настройки
     F --> AA[Шрифты, размеры, цвета]
     L --> BB[Шрифты, размеры, цвета]
     R --> CC[Шрифты, размеры, цвета]
-
+    
     %% Компоненты
     G --> DD[Chat Panel, SideBar, ChatList]
     G --> EE[Chat Input, Chat Item, Chat Info]
     G --> FF[Scroll Bar, Tooltip, Input]
     G --> GG[Avatar, Template Selector]
-
+    
     M --> DD
     M --> EE
     M --> FF
     M --> GG
-
+    
     S --> DD
     S --> EE
     S --> FF
     S --> GG
-
+    
     %% Сообщения
     J --> HH[Text, Image, Audio, Video]
     J --> II[File, Call, System, Typing]
     J --> JJ[Reply Messages, Link Preview]
-
+    
     P --> HH
     P --> II
     P --> JJ
-
+    
     V --> HH
     V --> II
     V --> JJ
-
+    
     %% Контейнеры и макеты
     H --> KK[Float Container, Modal]
     I --> LL[Base Layout, Extended Layout]
     I --> MM[Feed Layout, Adaptive Layout]
-
+    
     N --> KK
     O --> LL
     O --> MM
-
+    
     T --> KK
     U --> LL
     U --> MM
-
+    
     %% Система переключения
-    NN[ThemeMode.vue] --> OO[useTheme.ts]
+    NN[ThemeMode.vue]
+    NN --> OO[useTheme.ts]
     OO --> PP[data-theme атрибут]
     PP --> QQ[CSS селекторы]
-
+    
     %% Применение стилей
     QQ --> RR[Vue компоненты]
     RR --> SS[CSS переменные]
     SS --> TT[Стилизация элементов]
-
+    
     %% Стили для лучшей визуализации
-    style A fill:#e1f5fe,stroke:#01579b,stroke-width:3px
-    style B fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    style C fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    style D fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    style W fill:#e8f5e8,stroke:#2e7d32,stroke-width:1px
-    style X fill:#f5f5f5,stroke:#424242,stroke-width:1px
-    style Y fill:#ffebee,stroke:#c62828,stroke-width:1px
-    style Z fill:#ffffff,stroke:#000000,stroke-width:1px
-    style NN fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    style OO fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    style PP fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    style QQ fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef mainFile fill:#e1f5fe,stroke:#01579b,stroke-width:3px
+    classDef themeFile fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef emeraldColor fill:#e8f5e8,stroke:#2e7d32,stroke-width:1px
+    classDef neutralColor fill:#f5f5f5,stroke:#424242,stroke-width:1px
+    classDef redColor fill:#ffebee,stroke:#c62828,stroke-width:1px
+    classDef whiteColor fill:#ffffff,stroke:#000000,stroke-width:1px
+    classDef themeSystem fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    
+    class A mainFile
+    class B,C,D themeFile
+    class W emeraldColor
+    class X neutralColor
+    class Y redColor
+    class Z whiteColor
+    class NN,OO,PP,QQ themeSystem
 ```
 
 ## Ключевые особенности архитектуры
