@@ -3,7 +3,7 @@
 ## Диаграмма архитектуры
 
 ```mermaid
-flowchart TD
+flowchart LR
     %% Основной файл стилей
     A[style.css]
     
