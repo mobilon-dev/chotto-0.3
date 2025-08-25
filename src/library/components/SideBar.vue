@@ -15,16 +15,23 @@
           :class="{'sidebar-horizontal__item' : horizontal}"
           @click="selectItem(item.itemId)"
         >
-          <img
-            :src="item.icon"
-            :alt="item.name"
-            class="sidebar__image"
-            :class="{ 
-              'sidebar__image--active': item.selected === true,
-              'sidebar-horizontal__image' : horizontal 
-            }"
+          <Tooltip 
+            v-if="item.name" 
+            :text="getName(item.name)" 
+            position="right" 
+            :offset="8"
           >
-          <p>Мои</p>
+            <img
+              :src="item.icon"
+              :alt="item.name"
+              class="sidebar__image"
+              :class="{ 
+                'sidebar__image--active': item.selected === true,
+                'sidebar-horizontal__image' : horizontal 
+              }"
+            >
+            <p>Мои</p>
+          </Tooltip>
           <span
             v-if="item.notificationCount"
           >{{ item.notificationCount > 99 ? '99+' :
@@ -34,12 +41,13 @@
           <!-- <p v-if="item.name">
             {{ getName(item.name) }}
           </p> -->
-          <div
+
+          <!-- <div
             v-if="item.name"
             class="sidebar__tooltip"
           >
             {{ getName(item.name) }}
-          </div>
+          </div> -->
         </li>
       </ul>
 
@@ -54,15 +62,21 @@
           :class="{'sidebar-horizontal__item' : horizontal}"
           @click="selectItem(item.itemId)"
         >
-          <img
-            :src="item.icon"
-            :alt="item.name"
-            class="sidebar__image"
-            :class="{ 
-              'sidebar__image--active': item.selected === true,
-              'sidebar-horizontal__image' : horizontal 
-            }"
+          <Tooltip 
+            :text="item.name || 'Имя не указано'" 
+            position="right" 
+            :offset="8"
           >
+            <img
+              :src="item.icon"
+              :alt="item.name"
+              class="sidebar__image"
+              :class="{ 
+                'sidebar__image--active': item.selected === true,
+                'sidebar-horizontal__image' : horizontal 
+              }"
+            >
+          </Tooltip>
           <span
             v-if="item.notificationCount"
             :style="{ backgroundColor: item.notificationColor ? 'var(--chotto-unread-background-color)' : 'var(--chotto-unread-background-color)' }"
@@ -72,12 +86,13 @@
           <!-- <p v-if="item.name">
             {{ getName(item.name) }}
           </p> -->
-          <div
+
+          <!-- <div
             v-if="item.name"
             class="sidebar__tooltip"
           >
             {{ getName(item.name) }}
-          </div>
+          </div> -->
         </li>
       </ul>
     </div>
@@ -99,6 +114,12 @@
 
 <script setup>
 import { toRef } from 'vue'
+import { ref } from 'vue';
+import ButtonContextMenu from './ButtonContextMenu.vue';
+import SettingsIcon from '../../assets/icons/SettingsIcon.vue';
+import Tooltip from './Tooltip.vue';
+
+const lastAction = ref('');
 
 const props = defineProps({
   sidebarItems: {
@@ -134,11 +155,6 @@ const getName = (name) => {
   const parts = name.split(' ');
   return parts.length > 2 ? parts.slice(0, 2).join(' ') : name;
 }
-
-import { ref } from 'vue';
-import ButtonContextMenu from './ButtonContextMenu.vue';
-import SettingsIcon from '../../assets/icons/SettingsIcon.vue';
-const lastAction = ref('');
 
 const menuActions = [
   {
@@ -265,43 +281,6 @@ const handleButtonClick = () => {
   &__image--active {
     border: var(--chotto-sidebar-image-active-border);
     opacity: 1;
-  }
-
-  &__tooltip {
-    position: absolute;
-    left: 50%;
-    top: -10px;
-    transform: translateX(-50%) translateY(-100%);
-    background: rgba(0, 0, 0, 0.9);
-    color: white;
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-size: 12px;
-    white-space: nowrap;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 1000;
-    pointer-events: none;
-    
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-width: 5px 5px 0;
-      border-style: solid;
-      border-color: rgba(0, 0, 0, 0.9) transparent transparent;
-    }
-  }
-
-  &__item:hover {
-    .sidebar__tooltip {
-      opacity: 1;
-      visibility: visible;
-      transform: translateX(-50%) translateY(-110%);
-    }
   }
 
   &__settings-container {
