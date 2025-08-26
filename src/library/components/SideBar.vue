@@ -116,7 +116,7 @@
 import { toRef } from 'vue'
 import { ref } from 'vue';
 import ButtonContextMenu from './ButtonContextMenu.vue';
-import SettingsIcon from '../../assets/icons/SettingsIcon.vue';
+import SettingsIcon from '../../library/icons/SettingsIcon.vue';
 import Tooltip from './Tooltip.vue';
 
 const lastAction = ref('');
