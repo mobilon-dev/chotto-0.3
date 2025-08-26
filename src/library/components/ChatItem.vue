@@ -18,10 +18,12 @@
           height="48"
           width="48"
         >
-        <span
+        <div
           v-else
-          class="pi pi-user"
-        />
+          class="chat-item__avatar-placeholder"
+        >
+          <AvatarIcon />
+        </div>
       </div>
 
       <div class="chat-item__info-container">
@@ -174,6 +176,7 @@ import { getStatus, statuses } from "../../helpers";
 import { t } from '../../locale/useLocale'
 import Tooltip from './Tooltip.vue';
 import ButtonContextMenu from './ButtonContextMenu.vue';
+import AvatarIcon from '../icons/AvatarIcon.vue';
 
 const props = defineProps({
   chat: {
@@ -303,7 +306,7 @@ const onMouseLeave = (event) => {
     align-self: center;
     object-fit: cover;
     margin-right: 15px;
-    background-color: var(--chotto-avatar-background-color);
+    /* background-color: var(--chotto-avatar-background-color); */
     min-width: var(--chotto-avatar-medium);
     min-height: var(--chotto-avatar-medium);
     border-radius: var(--chotto-avatar-border-radius);
@@ -317,6 +320,11 @@ const onMouseLeave = (event) => {
       border-radius: var(--chotto-avatar-border-radius);
       object-fit: cover;
     }
+  }
+
+  &__avatar-placeholder {
+    width: 48px;
+    height: 48px;
   }
 
   &__status-user {

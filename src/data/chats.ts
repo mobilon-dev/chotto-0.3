@@ -121,6 +121,7 @@ export const chats = [
     actions: [
       { action: 'edit', title: 'изменить' }, { action: 'unpin', title: 'открепить' },
     ],
+    status: "#00b972",
     metadata: '',
     contact: {
       attributes: [
