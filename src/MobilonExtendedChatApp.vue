@@ -24,14 +24,14 @@
             ref="refChatList"
             :chats="chatsStore.chats"
             filter-enabled
-            :title-enabled="false"
+            :title-enabled="true"
             @select="selectChat"
             @expand="expandChat"
             @action="chatAction"
             @load-more-chats="loadMoreChats"
           >
             <template #actions>
-              <h2>Чаты</h2>
+              <!-- <h2>Чаты</h2> -->
             </template>
           </ChatList>
           <FeedSearch 

@@ -295,8 +295,10 @@ const action = (data) => emit('action', data);
   }
 
   &__title {
+    font-family: var(--chotto-header-font, var(--chotto-container-font-family));
     font-size: var(--chotto-header-font-size);
     font-weight: var(--chotto-header-font-weight);
+    color: var(--chotto-header-font-color, var(--chotto-primary-text-color));
   }
 
   &__title-container {
