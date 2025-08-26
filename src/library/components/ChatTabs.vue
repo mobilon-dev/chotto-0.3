@@ -43,6 +43,7 @@ defineEmits(['tab-click']);
   margin: 0;
   padding-left: 15px;
   gap: 10px;
+  margin-bottom: 10px;
 }
 
 .chat-tabs__item {
