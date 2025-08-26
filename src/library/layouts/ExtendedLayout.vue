@@ -24,7 +24,7 @@
   &__container {
     height: inherit;
     display: grid;
-    grid-template-columns: min-content 1.8fr 3fr min-content;
+    grid-template-columns: min-content 1fr 3fr min-content;
     transition: all 0.3s ease;
     position: relative;
     border-top: var(--chotto-container-borders, none);
@@ -49,6 +49,7 @@
     display: flex;
     flex-direction: column;
     height: inherit;
+    width: var(--chotto-layout-extended-second-col-width, 100%);
     overflow: hidden;
     border-right: var(--chotto-container-borders, none);
     border-bottom: var(--chotto-container-borders, none);
