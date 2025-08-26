@@ -15,7 +15,7 @@
   --chotto-context-menu-items-row-gap: 0;
 
   /* Chat List */
-  --chotto-chat-list-filter-margin: 0 15px 10px 15px;
+  --chotto-chat-list-filter-margin: 0 16px 10px 15px;
   --chotto-chat-list-items-padding: 0;
   --chotto-chat-list-title-container-padding: 23px 0 23px 15px;
   --chotto-chat-list-fixed-background-color: var(--default-white);
@@ -58,15 +58,15 @@
   --chotto-quick-reply-buttons-color: var(--blue-1);
 
   /*Input*/
-  --chotto-input-border: 1px solid var(--neutral-300);
+  --chotto-input-border: 1px solid var(--neutral-250);
   --chotto-input-hover-border-color: var(--neutral-500);
   --chotto-input-focus-border-color: var(--neutral-700);
-  --chotto-input-border-radius: 2px;
+  --chotto-input-border-radius: 5px;
 
   --chotto-input-background: transparent;
   --chotto-input-padding: 0.5rem 0.75rem;
   --chotto-input-transition-duration: 0.2s;
-  --chotto-input-font-size: 16px;
+  --chotto-input-font-size: 14px;
 
   /*Avatar*/
   --chotto-avatar-small: 43px;
