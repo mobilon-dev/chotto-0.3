@@ -346,7 +346,8 @@ const onMouseLeave = (event) => {
   }
 
   &__name {
-    margin-bottom: 8px;
+    margin-top: var(--chotto-chat-item-name-margin-top, 0);
+    margin-bottom: var(--chotto-chat-item-name-margin-bottom, 8px);
     font-size: var(--chotto-title-font-size);
     font-weight: var(--chotto-title-font-weight);
     overflow: hidden;

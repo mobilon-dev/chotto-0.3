@@ -30,6 +30,8 @@
   --chotto-chat-item-padding-container: 10px 8px 10px 14px;
   --chotto-chat-item-dialog-padding: 5px 0 0 75px;
   --chotto-chat-item-border-radius: 0;
+  --chotto-chat-item-name-margin-top: 2px;
+  --chotto-chat-item-name-margin-bottom: 4px;
 
   /* Chat Info */
   --chotto-chat-info-padding: 10px 15px 10px 15px;
