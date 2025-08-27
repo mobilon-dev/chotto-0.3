@@ -1,5 +1,5 @@
 export const ru = {
-    'component.ChatList.Title': 'Чаты',
+    'component.ChatList.Title': 'Mobilon One',
     'component.ChatFilter.InputPlaceholder': 'Поиск чата',
     'layout.ChatWrapper.noSelectedChat': 'Выберите контакт для начала общения',
     'component.ChatItem.typing': 'печатает',
