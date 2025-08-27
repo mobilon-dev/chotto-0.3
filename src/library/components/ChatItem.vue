@@ -59,7 +59,6 @@
         <div
           v-if="chat.countUnread > 0"
           class="chat-item__unread"
-          :style="{backgroundColor: chat.colorUnread ? chat.colorUnread : null}"
         >
           {{ chat.countUnread > 99 ? '99+' : chat.countUnread }}
         </div>
