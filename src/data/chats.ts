@@ -1,3 +1,5 @@
+import tatianaImg from '../data/images/image1.png'
+
 export const chats = [
   {
     chatId: 1, name: "Василий ВасилийВасилийВасилий Василий",
@@ -111,9 +113,10 @@ export const chats = [
     },
   },*/
   {
-    chatId: 2, name: "Мария",
+    chatId: 2, name: "Васильева Татьяна Александровна",
+    avatar: tatianaImg,
     colorUnread: 'green',
-    lastMessage: 'Длинное сообщение сомнительного характера в контексте размещения на малой строке',
+    lastMessage: 'Лучше отправьте документы Алексею, он бухгалтер',
     countUnread: 0, isFixedTop: true,
     'lastActivity.time': 'час назад',
     'lastActivity.timestamp': '1727027359',
