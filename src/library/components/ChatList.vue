@@ -243,14 +243,16 @@ const getFilter = (value) => {
 
 const action = (data) => emit('action', data);
 
-const dialogTabs = [
+const dialogTabs = ref([
   { id: 'all', label: 'Все', count: 2, active: true },
   { id: 'deal', label: 'По сделке', count: 3, active: false },
   { id: 'rejected', label: 'Непринятые', count: 1, active: false },
-];
+]);
 
 const handleTabClick = (tabId) => {
-  console.log('Active tab:', tabId);
+  dialogTabs.value.forEach(tab => {
+    tab.active = tab.id === tabId;
+  });
 };
 </script>
 
