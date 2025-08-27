@@ -420,14 +420,17 @@ const onMouseLeave = (event) => {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50%;
+    border-radius: var(--chotto-unread-border-radius, 50%);
     margin-left: auto;
     margin-top: auto;
-    min-width: 25px;
-    min-height: 25px;
+    min-width: var(--chotto-unread-min-width, 25px);
+    min-height: var(--chotto-unread-min-height, 25px);
+    max-height: 20px;
     font-size: var(--chotto-additional-text-font-size);
+    font-weight: var(--chotto-unread-font-weight, 400);
     color: var(--chotto-unread-text-color);
     background-color: var(--chotto-unread-background-color);
+    padding: 0 6px;
   }
 
   &__time {
