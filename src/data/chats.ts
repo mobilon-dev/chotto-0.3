@@ -159,7 +159,7 @@ export const chats = [
     chatId: 3, name: "Анна",
     countUnread: 0, isFixedBottom: true,
     lastMessage: 'text',
-    'lastMessage.status': 'se',
+    'lastMessage.status': 'sent',
     'lastActivity.timestamp': '1727027359',
     actions: [
       { action: 'edit', title: 'изменить' }, { action: 'unpin', title: 'открепить' },
@@ -196,6 +196,7 @@ export const chats = [
     chatId: 7, name: "Василий 2",
     countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад',
     'lastActivity.timestamp': '1727021159',
+    'lastMessage.status': 'received',
     actions: [
       { action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' },
     ],
@@ -215,6 +216,7 @@ export const chats = [
     chatId: 9, name: "Василий",
     countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад',
     'lastActivity.timestamp': '1727021159',
+    'lastMessage.status': 'read',
     actions: [
       { action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' },
     ],

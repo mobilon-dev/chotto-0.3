@@ -1,6 +1,7 @@
 [data-theme="mobilon1"] {
 
   /* General */
+  --azure-500: #1B92D1;
 
   --emerald-50: #ecfdf5;
   --emerald-100: #d1fae5;
@@ -28,6 +29,7 @@
   --neutral-600: #525252;
   --neutral-700: #404040;
   --neutral-800: #262626;
+  --neutral-850: #1E1E1E;
   --neutral-900: #171717;
   --neutral-950: #0a0a0a;
 

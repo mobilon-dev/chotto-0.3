@@ -34,8 +34,8 @@
   --chotto-shadow-color: var(--neutral-800);
   --chotto-shadow-light-color: var(--neutral-300);
   
-  --chotto-status-color-received: var(--neutral-500);
-  --chotto-status-color-read: #00c2ff;
+  --chotto-status-color-received: var(--neutral-850);
+  --chotto-status-color-read: var(--azure-500);
 
   --chotto-item-background-color-focus: var(--neutral-75);
   --chotto-item-background-color-hover: var(--neutral-200);
