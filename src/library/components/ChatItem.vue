@@ -285,8 +285,18 @@ const onMouseLeave = (event) => {
     position: relative;
     padding: var(--chotto-chat-item-padding-container);
     cursor: pointer;
-    border-bottom: var(--chotto-chat-list-container-border-bottom, none);
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      transform: translateX(15%);
+      width: var(--chotto-chat-list-container-border-bottom-width, 416px);
+      height: var(--chotto-chat-list-container-border-bottom-height, 1px);
+      background-color: var(--chotto-chat-list-container-border-bottom-color, #F3F3F3);
+    }
   }
+
 
   &__selected {
     cursor: pointer;
