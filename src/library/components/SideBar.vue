@@ -63,7 +63,8 @@
           @click="selectItem(item.itemId)"
         >
           <Tooltip 
-            :text="item.name || 'Имя не указано'" 
+            v-if="item.name" 
+            :text="item.name" 
             position="right" 
             :offset="8"
           >
@@ -77,6 +78,17 @@
               }"
             >
           </Tooltip>
+    
+          <img
+            v-else
+            :src="item.icon"
+            :alt="'icon'"
+            class="sidebar__image"
+            :class="{ 
+              'sidebar__image--active': item.selected === true,
+              'sidebar-horizontal__image' : horizontal 
+            }"
+          >
           <span
             v-if="item.notificationCount"
             :style="{ backgroundColor: item.notificationColor ? 'var(--chotto-unread-background-color)' : 'var(--chotto-unread-background-color)' }"
