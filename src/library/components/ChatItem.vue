@@ -285,6 +285,7 @@ const onMouseLeave = (event) => {
     position: relative;
     padding: var(--chotto-chat-item-padding-container);
     cursor: pointer;
+    border-bottom: var(--chotto-chat-list-container-border-bottom, none);
   }
 
   &__selected {
