@@ -287,7 +287,7 @@ const sendMessage = () => {
     margin: auto 0;
     grid-row: 3;
     grid-column: 1;
-    margin: var(--chotto-input-container-inline-buttons-padding, 0);
+    margin: var(--chotto-input-container-inline-buttons-margin, 0);
     gap: var(--chotto-input-container-inline-buttons-gap, 0);
     height: var(--chotto-input-container-inline-buttons-height, auto);
   }
