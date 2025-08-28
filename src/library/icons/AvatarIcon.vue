@@ -1,7 +1,7 @@
 <template>
   <svg
-    width="48"
-    height="48"
+    :width="size" 
+    :height="size"
     viewBox="0 0 52 50"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -30,3 +30,31 @@
     </defs>
   </svg>
 </template>
+
+<script>
+export default {
+  name: 'AvatarIcon',
+  props: {
+    size: {
+      type: [String, Number],
+      default: 48
+    },
+    width: {
+      type: [String, Number],
+      default: 48
+    },
+    height: {
+      type: [String, Number],
+      default: 48
+    },
+  },
+  computed: {
+    computedWidth() {
+      return this.width || this.size;
+    },
+    computedHeight() {
+      return this.height || this.size;
+    }
+  }
+}
+</script>

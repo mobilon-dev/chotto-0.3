@@ -89,6 +89,7 @@
   --chotto-input-font-size: 14px;
 
   /*Avatar*/
+  --chotto-chat-avatar-small: 40px;
   --chotto-avatar-small: 43px;
   --chotto-avatar-medium: 50px;
   --chotto-avatar-small-icon-size: 24px;
