@@ -35,7 +35,9 @@
       :class="{ 'chat-input__button-disabled': disabledSendButton }"
       @click="sendMessage"
     >
-      <span class="pi pi-send" />
+      <span class="">
+        <WhatsAppSendIcon />
+      </span>
     </button>
 
     <div class="chat-input__third-line">
@@ -50,6 +52,7 @@ import { useMessage } from '../../helpers/useMessage';
 import { t } from '../../locale/useLocale';
 import { IFilePreview, IInputMessage } from '../../types';
 import useImmediateDebouncedRef from '../../helpers/useImmediateDebouncedRef';
+import WhatsAppSendIcon from '../icons/WhatsAppSendIcon.vue';
 
 const emit = defineEmits(['send','typing']);
 
