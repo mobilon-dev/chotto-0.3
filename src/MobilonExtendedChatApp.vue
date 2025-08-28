@@ -148,22 +148,22 @@
                   :focus-on-input-area="inputFocus"
                 >
                   <template #inline-buttons>
-                    <ButtonCommandsSelector
+                    <!-- <ButtonCommandsSelector
                       :mode="'hover'"
                       :commands="commands"
                       @send="addMessage"
-                    />
+                    /> -->
                     <FileUploader
                       :filebump-url="filebumpUrl"
-                    />
-                    <ButtonEmojiPicker
-                      :mode="'hover'"
                     />
                     <ButtonTemplateSelector
                       :templates="templates"
                       :group-templates="groupTemplates"
                       :mode="'click'"
                       :elevated-window="false"
+                    />
+                    <ButtonEmojiPicker
+                      :mode="'hover'"
                     />
                   </template>
                   <!--template #buttons>
