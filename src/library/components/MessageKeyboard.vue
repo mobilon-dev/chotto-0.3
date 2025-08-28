@@ -2,6 +2,7 @@
   <div
     ref="keyboard"
     class="keyboard__container"
+    :class="[`keyboard__container--${align}`]"
   >
     <div 
       v-for="key in keyboard"
@@ -25,6 +26,11 @@ const props = defineProps({
   keyboard: {
     type: Array<IKeyBoard>,
     required: true,
+  },
+  align: {
+    type: String as () => 'left' | 'center' | 'right',
+    default: 'right',
+    validator: (value: string) => ['left', 'center', 'right'].includes(value)
   }
 });
 
@@ -36,11 +42,14 @@ const chatAppId = inject('chatAppId')
 const { setMessageText, setForceSendMessage } = useMessage(chatAppId as string)
 
 const handleClickKey = (key : IKeyBoard) => {
-  if (key.action == null){
+  if (key.action && typeof key.action === 'function') {
+    (key.action as () => void)()
+  } else if (key.action != null) {
+    emit('action', key.action)
+  } else {
     setMessageText(key.text)
     setForceSendMessage(true)
   }
-  else emit('action', key.action)
 }
 
 defineExpose({
@@ -56,7 +65,24 @@ defineExpose({
       gap: 5px;
       justify-content: right;
       flex-wrap: wrap;
+      &--left {
+      justify-content: flex-start;
+      margin-left: 0;
+      margin-right: auto;
     }
+    
+    &--center {
+      justify-content: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    &--right {
+      justify-content: flex-end;
+      margin-left: auto;
+      margin-right: 0;
+    }
+  }
     &__key{
       background: var(--chotto-secondary-color);
       border: 1px solid var(--chotto-item-border-color);
