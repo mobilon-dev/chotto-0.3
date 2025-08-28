@@ -199,10 +199,10 @@ const sendMessage = () => {
     position: relative;
     display: grid;
     align-items: center;
-    border-top: var(--chotto-input-border);
+    border-top: var(--chotto-input-container-border-top, var(--chotto-input-border));
     background-color: var(--chotto-chat-input-container-bg);
-    padding: 5px;
-    grid-gap: 5px;
+    padding: var(--chotto-input-container-padding, 5px);
+    grid-gap: var(--chotto-input-container-grid-gap, 5px);
     grid-template-columns: min-content auto min-content;
     grid-template-rows: auto auto auto auto;
   }
@@ -284,6 +284,9 @@ const sendMessage = () => {
     margin: auto 0;
     grid-row: 3;
     grid-column: 1;
+    margin: var(--chotto-input-container-inline-buttons-padding, 0);
+    gap: var(--chotto-input-container-inline-buttons-gap, 0);
+    height: var(--chotto-input-container-inline-buttons-height, auto);
   }
 }
 

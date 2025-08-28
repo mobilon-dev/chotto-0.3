@@ -27,7 +27,7 @@
   --chotto-chat-input-container-bg: #ffffff;
   --chotto-chat-input-icon-color: var(--neutral-600);
   --chotto-chat-input-icon-color-disabled: var(--neutral-200);
-  --chotto-chat-input-button-padding: 7px;
+  --chotto-chat-input-button-padding: 1px 0 0 3px;
   --chotto-unread-min-width: 20px;
   --chotto-unread-min-height: 20px;
   --chotto-unread-font-weight: 600;
@@ -68,6 +68,12 @@
 
   /*Input*/
   --chotto-input-border: 1px solid var(--neutral-250);
+  --chotto-input-container-border-top: none;
+  --chotto-input-container-grid-gap: none;
+  --chotto-input-container-padding: 12px 0 8px 9px;
+  --chotto-input-container-inline-buttons-padding: 0 7px 0 0;
+  --chotto-input-container-inline-buttons-height: 30px;
+  --chotto-input-container-inline-buttons-gap: 2px;
   --chotto-input-hover-border-color: var(--neutral-500);
   --chotto-input-focus-border-color: var(--neutral-700);
   --chotto-input-border-radius: 5px;
