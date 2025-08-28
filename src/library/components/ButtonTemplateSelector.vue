@@ -8,7 +8,9 @@
     @mouseover="hover"
     @mouseout="hoverout"
   >
-    <span class="pi pi-objects-column" />
+    <span class="">
+      <ChatTemplatesIcon />
+    </span>
   </button>
   <transition>
     <div
@@ -31,6 +33,7 @@
 import { ref, onMounted, inject } from 'vue';
 import TemplateSelector from './TemplateSelector.vue';
 import { useMessage } from '../../helpers/useMessage';
+import ChatTemplatesIcon from '../icons/ChatTemplatesIcon.vue';
 
 const props = defineProps({
   templates: {

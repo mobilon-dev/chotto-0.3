@@ -15,9 +15,11 @@
     @button-click="triggerFileUploadDefault"
   >
     <span 
-      class="pi pi-file-arrow-up file-uploader__trigger"
+      class="file-uploader__trigger"
       :class="{'file-uploader__disabled' : !canUploadFile || state == 'disabled'}"
-    />
+    >
+      <FileUploaderIcon />
+    </span>
   </ButtonContextMenu>
   <input
     ref="fileInput"
@@ -44,6 +46,7 @@ import FilePreview from "./FilePreview.vue";
 import { useMessage } from "../../helpers/useMessage";
 import { uploadFile } from "../../helpers/uploadFile";
 import { IFilePreview } from "../../types";
+import FileUploaderIcon from "../icons/FileUploaderIcon.vue";
 
 const props = defineProps({
   filebumpUrl: {
