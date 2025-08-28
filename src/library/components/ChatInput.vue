@@ -231,14 +231,15 @@ const sendMessage = () => {
     grid-column: 2;
     border: var(--chotto-input-border);
     background-color: var(--chotto-input-background);
-    padding: var(--chotto-input-padding);
+    padding: var(--chotto-input-message-padding, var(--chotto-input-padding));
     color: var(--chotto-primary-text-color);
-    font-size: var(--chotto-input-font-size);
+    font-size: var(--chotto-input-message-font-size, var(--chotto-input-font-size));
     overflow-y: hidden;
     resize: none;
     white-space: pre-wrap;
     max-height: 140px;
-    border-radius: var(--chotto-input-border-radius);
+    border-radius: var(--chotto-input-message-border-radius, var(--chotto-input-border-radius));
+    font-family: var(--chotto-container-font-family);
 
     &:focus-visible {
       outline: none;
@@ -269,6 +270,8 @@ const sendMessage = () => {
       padding: var(--chotto-chat-input-button-padding);
       font-size: var(--chotto-button-icon-size);
       color: var(--chotto-chat-input-icon-color);
+      height: var(--chotto-input-message-send-button-height, auto);
+      margin: var(--chotto-chat-input-button-margin, 0);
     }
   }
 
