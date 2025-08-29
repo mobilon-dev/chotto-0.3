@@ -1,17 +1,22 @@
 <template>
-  <button
-    v-if="!getMessage().isRecording"
-    ref="templateButton"
-    class="button-template"
-    :class="{'button-template-disabled' : state == 'disabled'}"
-    @click="toggle"
-    @mouseover="hover"
-    @mouseout="hoverout"
+  <Tooltip
+    text="Шаблоны сообщений"
+    position="left"
   >
-    <span class="">
-      <ChatTemplatesIcon />
-    </span>
-  </button>
+    <button
+      v-if="!getMessage().isRecording"
+      ref="templateButton"
+      class="button-template"
+      :class="{'button-template-disabled' : state == 'disabled'}"
+      @click="toggle"
+      @mouseover="hover"
+      @mouseout="hoverout"
+    >
+      <span class="">
+        <ChatTemplatesIcon />
+      </span>
+    </button>
+  </Tooltip>
   <transition>
     <div
       v-show="props.state === 'active'"
@@ -34,6 +39,7 @@ import { ref, onMounted, inject } from 'vue';
 import TemplateSelector from './TemplateSelector.vue';
 import { useMessage } from '../../helpers/useMessage';
 import ChatTemplatesIcon from '../icons/ChatTemplatesIcon.vue';
+import Tooltip from './Tooltip.vue';
 
 const props = defineProps({
   templates: {
