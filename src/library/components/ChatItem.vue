@@ -295,6 +295,10 @@ const onMouseLeave = (event) => {
       height: var(--chotto-chat-list-container-border-bottom-height, 1px);
       background-color: var(--chotto-chat-list-container-border-bottom-color, #F3F3F3);
     }
+
+    &:hover {
+      background-color: var(--chotto-item-background-color-hover, #F6F6F6);
+    }
   }
 
 
