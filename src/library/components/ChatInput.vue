@@ -301,6 +301,7 @@ const sendMessage = () => {
     margin: var(--chotto-input-container-inline-buttons-margin, 0);
     gap: var(--chotto-input-container-inline-buttons-gap, 0);
     height: var(--chotto-input-container-inline-buttons-height, auto);
+    align-self: flex-end;
   }
 }
 

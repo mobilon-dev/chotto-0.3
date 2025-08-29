@@ -72,7 +72,7 @@
   --chotto-input-container-border-top: none;
   --chotto-input-container-grid-gap: none;
   --chotto-input-container-padding: 12px 0 8px 15px;
-  --chotto-input-container-inline-buttons-margin: 0 15px 0 0;
+  --chotto-input-container-inline-buttons-margin: 0 15px 4px 0;
   --chotto-input-container-inline-buttons-height: 30px;
   --chotto-input-container-inline-buttons-gap: 11px;
   --chotto-input-hover-border-color: var(--neutral-500);
