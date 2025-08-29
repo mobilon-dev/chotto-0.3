@@ -102,7 +102,6 @@ onUnmounted(() => {
     background-color: transparent;
     border: none;
     height: fit-content;
-    padding: 0;
     span {
       display: block;
       cursor: pointer;
