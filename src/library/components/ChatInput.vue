@@ -237,7 +237,7 @@ const sendMessage = () => {
     overflow-y: hidden;
     resize: none;
     white-space: pre-wrap;
-    max-height: 140px;
+    max-height: 220px;
     border-radius: var(--chotto-input-message-border-radius, var(--chotto-input-border-radius));
     font-family: var(--chotto-container-font-family);
 
