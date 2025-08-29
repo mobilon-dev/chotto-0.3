@@ -275,6 +275,20 @@ const sendMessage = () => {
     &::placeholder {
       color: var(--chotto-secondary-text-color);
     }
+
+    &::-webkit-scrollbar {
+      width: 6px;
+      background-color: var(--chotto-scrollbar-bg);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background-color: var(--chotto-scrollbar-thumb-bg);
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: 10px;
+    }
   }
 
   &__disabled-placeholder {
