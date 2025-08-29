@@ -245,10 +245,10 @@ const sendMessage = () => {
     padding: var(--chotto-input-message-padding, var(--chotto-input-padding));
     color: var(--chotto-primary-text-color);
     font-size: var(--chotto-input-message-font-size, var(--chotto-input-font-size));
-    overflow-y: hidden;
+    overflow-y: auto;
     resize: none;
     white-space: pre-wrap;
-    max-height: 220px;
+    max-height: 240px;
     border-radius: var(--chotto-input-message-border-radius, var(--chotto-input-border-radius));
     font-family: var(--chotto-container-font-family);
 
