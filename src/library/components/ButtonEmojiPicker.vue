@@ -4,9 +4,7 @@
     ref="emojiButton"
     class="button"
     :class="{'button-disabled' : state == 'disabled'}"
-    @click="toggle"
-    @mouseenter="hover"
-    @mouseleave="hoverout"
+    @click="toggleEmojiPicker"
   >
     <span class="">
       <SmilesIcon />
@@ -14,11 +12,9 @@
   </button>
   <Transition>
     <div 
-      v-show="props.state === 'active'"
+      v-show="isEmojiPickerVisible"
       ref="emoji" 
       class="emoji"
-      @mouseenter="hover"
-      @mouseleave="hoverout"
     >
       <EmojiPicker
         :native="true"
@@ -41,12 +37,7 @@ import SmilesIcon from '../icons/SmilesIcon.vue';
 
 
 const props = defineProps({
-  mode: {
-    type: String,
-    required: false,
-    default: 'hover',
-  },
-  state:{
+  state: {
     type: String,
     default: 'active',
   },
@@ -55,6 +46,7 @@ const props = defineProps({
 const emoji = ref(null)
 const emojiTheme = ref('light')
 const emojiButton = ref(null)
+const isEmojiPickerVisible = ref(false)
 const chatAppId = inject('chatAppId')
 const { setMessageText, getMessage } = useMessage(chatAppId)
 
@@ -70,29 +62,24 @@ const onSelectEmoji = (emoji) => {
   // console.log('emoji', emoji)
 }
 
-const toggle = () => {
-  if (props.mode == 'click' && props.state == 'active'){
-    emoji.value.style.display = 'inherit'
-    emojiTheme.value = changeThemeDialogEmoji()
+const toggleEmojiPicker = () => {
+  if (props.state !== 'active') return;
+  
+  isEmojiPickerVisible.value = !isEmojiPickerVisible.value;
+  if (isEmojiPickerVisible.value) {
+    emojiTheme.value = changeThemeDialogEmoji();
   }
 }
 
-const hover = () => {
-  if (props.mode == 'hover' && props.state == 'active'){
-    emoji.value.style.display = 'inherit'
-    emojiTheme.value = changeThemeDialogEmoji()
-  }
-}
-
-const hoverout = () => {
-  if (props.mode == 'hover' && props.state == 'active'){
-    emoji.value.style.display = 'none'
-  }
+const closeEmojiPicker = () => {
+  isEmojiPickerVisible.value = false;
 }
 
 const handleClickOutside = (event) => {
-  if (props.mode == 'click' && !emojiButton.value.contains(event.target) && !emoji.value.contains(event.target)) {
-    emoji.value.style.display = 'none'
+  if (isEmojiPickerVisible.value && 
+      !emojiButton.value.contains(event.target) && 
+      !emoji.value.contains(event.target)) {
+    closeEmojiPicker();
   }
 }
 
@@ -115,10 +102,11 @@ onUnmounted(() => {
     background-color: transparent;
     border: none;
     height: fit-content;
+    padding: 0;
     span {
       display: block;
       cursor: pointer;
-      padding: var(--chotto-chat-input-button-padding);
+      padding: 0;
       font-size: var(--chotto-button-icon-size);
       color: var(--chotto-button-color-active);
     }
