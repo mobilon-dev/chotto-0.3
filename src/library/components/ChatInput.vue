@@ -109,19 +109,33 @@ watch(
 watch(
   () => getMessage().text,
   () => {
-    nextTick(function () {
-      typing.value = getMessage().text
-      if (refInput.value){
-        refInput.value.style.height = 'auto'
-        refInput.value.style.height = refInput.value.scrollHeight + 'px'
-        if (getMessage().text.length == 0){
-          refInput.value.style.height = '40px'
-        }
+    nextTick(() => {
+      const el = refInput.value;
+      if (!el) return;
+
+      const scrollTop = el.scrollTop;
+      el.style.height = 'auto';
+
+      const lineHeight = parseFloat(getComputedStyle(el).lineHeight);
+      const maxHeight = lineHeight * 11;
+      const scrollHeight = el.scrollHeight;
+
+      if (!getMessage().text.trim()) {
+        el.style.height = '40px';
+        el.style.overflowY = 'hidden';
       }
-      
-    })
+      else if (scrollHeight <= maxHeight) {
+        el.style.height = scrollHeight + 'px';
+        el.style.overflowY = 'hidden';
+      }
+      else {
+        el.style.height = maxHeight + 'px';
+        el.style.overflowY = 'auto';
+        el.scrollTop = scrollTop;
+      }
+    });
   },
-  {immediate: true}
+  { immediate: true }
 );
 
 watch(
@@ -245,10 +259,12 @@ const sendMessage = () => {
     padding: var(--chotto-input-message-padding, var(--chotto-input-padding));
     color: var(--chotto-primary-text-color);
     font-size: var(--chotto-input-message-font-size, var(--chotto-input-font-size));
-    overflow-y: auto;
+    overflow-y: hidden;
     resize: none;
     white-space: pre-wrap;
-    max-height: 240px;
+    line-height: 1.4;
+    min-height: 40px;
+    max-height: calc(1.5em * 10);
     border-radius: var(--chotto-input-message-border-radius, var(--chotto-input-border-radius));
     font-family: var(--chotto-container-font-family);
 
