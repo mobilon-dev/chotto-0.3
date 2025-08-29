@@ -84,14 +84,16 @@
                         class="chat-info__button-panel"
                         @click="isOpenChatPanel = !isOpenChatPanel"
                       >
-                        <span class="pi pi-info-circle" />
+                        <span class="">
+                          <MenuIcon />
+                        </span>
                       </button>
-                      <button
+                      <!-- <button
                         class="chat-info__button-panel"
                         @click="handleOpenSearchPanel"
                       >
                         <span class="pi pi-search" />
-                      </button>
+                      </button> -->
                     </div>
                   </template>
                 </ChatInfo>
@@ -235,6 +237,7 @@
 import { onMounted, ref, computed, unref } from "vue";
 // import { nextTick } from "vue";
 import moment from 'moment';
+import MenuIcon from "./library/icons/MenuIcon.vue"
 
 import {
   ChatInfo,
@@ -745,4 +748,14 @@ onMounted(() => {
   --chotto-chat-input-icon-color: #25D366;
 }
 
+.chat-info__button-panel {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+}
 </style>
