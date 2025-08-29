@@ -140,7 +140,7 @@ const sendTyping = (event: Event) => {
 }
 
 const keyEnter = (event: KeyboardEvent) => {
-  if (event.ctrlKey) {
+  if (event.shiftKey) {
     if (refInput.value instanceof HTMLTextAreaElement){
       let caret = refInput.value.selectionStart;
       if (caret){
@@ -148,6 +148,17 @@ const keyEnter = (event: KeyboardEvent) => {
         setMessageText(refInput.value.value)
       }
     }
+    event.preventDefault();
+  }
+  else if (event.ctrlKey) {
+    if (refInput.value instanceof HTMLTextAreaElement){
+      let caret = refInput.value.selectionStart;
+      if (caret){
+        refInput.value.setRangeText("\n", caret, caret, "end");
+        setMessageText(refInput.value.value)
+      }
+    }
+    event.preventDefault();
   }
   else {
     event.preventDefault()
