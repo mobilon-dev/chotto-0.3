@@ -304,7 +304,10 @@ const sendMessage = () => {
     border: 0px;
     height: fit-content;
     width: fit-content;
-    margin: auto 0;
+    display: flex;
+    align-self: end;
+    margin-bottom: 4px;
+
     span {
       display: block;
       cursor: pointer;
