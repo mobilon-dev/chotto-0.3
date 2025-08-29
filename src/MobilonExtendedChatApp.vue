@@ -751,11 +751,20 @@ onMounted(() => {
 .chat-info__button-panel {
   background: none;
   border: none;
-  padding: 0;
-  margin: 0;
+  padding: 5px;
+  margin-right: 16px;
   font: inherit;
   color: inherit;
   cursor: pointer;
   outline: none;
+  transition: all 0.2s;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+
+  &:hover {
+    background-color: var(--neutral-125);
+    box-shadow: 0 0 0 6px var(--neutral-125);
+  }
 }
 </style>
