@@ -211,17 +211,27 @@
             <template #chatpanel>
               <ChatPanel
                 v-if="isOpenChatPanel"
-                :title-enabled="false"
+                title="Данные контакта"
+                :title-enabled="true"
+                chat-panel-width="17"
+                @close-panel="isOpenChatPanel = false"
               >
                 <template #content>
                   <div>
-                    {{ selectedChat.name }} 
-                    <button
+                    <!-- {{ selectedChat.name }}  -->
+                    <!-- <button
                       class="button-close"
                       @click="isOpenChatPanel = !isOpenChatPanel"
                     >
                       <span class="pi pi-times" />
-                    </button>
+                    </button> -->
+                    <ContactInfo
+                      :contact="selectedChat?.contact"
+                      :current-dialog-name="selectedDialog?.name"
+                      @close="isOpenChatPanel = false"
+                      @open-crm="openInCRM"
+                      @select-phone="handlePhoneSelect"
+                    />
                   </div>
                 </template>
               </ChatPanel>
@@ -279,6 +289,7 @@ import { transformToFeed } from "./transform/transformToFeed";
 // import VideoRecorder from "./library/components/VideoRecorder.vue";
 import ButtonCommandsSelector from "./library/components/ButtonCommandsSelector.vue";
 import SplashScreen from "./library/components/SplashScreen.vue";
+import ContactInfo from "./library/components/ContactInfo.vue";
 
 // const { locale: currentLocale, locales } = useLocale()
 
@@ -667,6 +678,14 @@ const highlightMessage = (messageId) => {
     }, 100)
   }
 }
+
+const openInCRM = () => {
+  console.log('Открытие контакта в CRM', selectedChat.value);
+};
+
+const handlePhoneSelect = (phoneAttr) => {
+  console.log('Выбран атрибут контакта:', phoneAttr);
+};
 
 const handleEvent = async (event) => {
   console.log(event)

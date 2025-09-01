@@ -57,17 +57,17 @@ const props = defineProps({
 
 const chatAppId = inject('chatAppId')
 
-watch(
-  () => props.chatPanelWidth,
-  () => {
-    const container = document.getElementById('chat-wrapper-' + chatAppId)
-    if (container){
-      container.style.setProperty('--chotto-chat-panel-width', props.chatPanelWidth + '%')
-      container.style.setProperty('--chotto-chat-panel-left', (100 - props.chatPanelWidth) + '%')
-    }
-  },
-  {immediate: true}
-)
+// watch(
+//   () => props.chatPanelWidth,
+//   () => {
+//     const container = document.getElementById('chat-wrapper-' + chatAppId)
+//     if (container){
+//       container.style.setProperty('--chotto-chat-panel-width', props.chatPanelWidth + '%')
+//       container.style.setProperty('--chotto-chat-panel-left', (100 - props.chatPanelWidth) + '%')
+//     }
+//   },
+//   {immediate: true}
+// )
 </script>
 
 
@@ -77,8 +77,8 @@ watch(
 >
 .chat-wrapper {
 
-  --chotto-chat-panel-width: 50%;
-  --chotto-chat-panel-left: 50%;
+  /* --chotto-chat-panel-width: 60%;
+  --chotto-chat-panel-left: 50%; */
 
   display: flex;
   height: 100%;
@@ -95,13 +95,15 @@ watch(
 
   &__chat-panel {
     background-color: var(--chotto-primary-color);
-    border-left: 1px solid var(--chotto-item-border-color, none);
+    border-left: 1px solid var(--chotto-item-chat-panel-border-color, none);
+    border-right: 1px solid var(--chotto-item-chat-panel-border-color, none);
     border-radius: var(--chotto-chat-panel-border-radius);
     position: absolute;
     height: 100%;
     z-index: 100;
-    width: var(--chotto-chat-panel-width);
-    left: var(--chotto-chat-panel-left);
+    width: var(--chotto-chat-panel-width, 50%);
+    left: var(--chotto-chat-panel-left, 50%);
+    padding: var(--chotto-chat-panel-padding, 12px);
   }
 }
 </style>

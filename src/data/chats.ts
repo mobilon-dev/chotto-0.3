@@ -129,16 +129,16 @@ export const chats = [
     contact: {
       attributes: [
         {
-          id: 'phone:79135292926',
-          value: 'whatsapp 79135292926',
+          id: 'phone:79831693504',
+          value: 'whatsapp 79831693504',
         },
         {
-          id: 'phone:7913529XXXX',
-          value: 'whatsapp 7913529XXXX',
+          id: 'phone:74992907555',
+          value: 'whatsapp 74992907555',
         },
         {
-          id: 'tgNickName:@antirek',
-          value: 'telegram @antirek',
+          id: 'tgNickName:@Ivan12345',
+          value: 'telegram @Ivan12345',
         },
       ],
     },

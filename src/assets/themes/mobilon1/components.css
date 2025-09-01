@@ -46,6 +46,11 @@
   --chotto-chat-info-border-radius: 0;
   --chotto-chat-info-background-color: #ffffff;
   --chotto-chat-info-additional-title-border-color: #25D366;
+
+  /* Chat Panel */
+  --chotto-chat-panel-width: 400px;
+  --chotto-chat-panel-left: 65.3%;
+  --chotto-chat-panel-padding: 12px;
   
   /* Scroll Bar */
   --chotto-scrollbar-bg: var(--neutral-50);

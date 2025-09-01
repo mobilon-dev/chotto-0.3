@@ -7,7 +7,7 @@
   --chotto-primary-color: #ffffff;
   --chotto-secondary-color: #faf6f4;
 
-  --chotto-primary-text-color: #1e1e1e;
+  --chotto-primary-text-color: var(--neutral-850);
   --chotto-secondary-text-color: var(--neutral-550);
 
   --chotto-header-font: "Inter", sans-serif;
@@ -41,6 +41,7 @@
   --chotto-item-background-color-hover: var(--neutral-90);
 
   /* --chotto-item-border-color: var(--neutral-200); */
+  --chotto-item-chat-panel-border-color: var(--neutral-200);
 
   --chotto-unread-background-color: var(--p-red-550);
   --chotto-unread-text-color: var(--neutral-50); 
