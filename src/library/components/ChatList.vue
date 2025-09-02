@@ -22,6 +22,7 @@
     />
 
     <ChatTabs
+      v-if="dialogTabs && dialogTabs.length > 0"
       :tabs="dialogTabs"
       @tab-click="handleTabClick"
     />
@@ -105,11 +106,15 @@ const props = defineProps({
   filterQuery: {
     type: String,
     default: null
-  }
+  },
+  dialogTabs: {
+    type: Array,
+    default: () => [],
+  },
 });
 
 // Define emits
-const emit = defineEmits(['select', 'action', 'loadMoreChats', 'expand']);
+const emit = defineEmits(['select', 'action', 'loadMoreChats', 'expand', 'tab-click']);
 
 const filter = ref('');
 const refChatList = ref()
@@ -243,16 +248,9 @@ const getFilter = (value) => {
 
 const action = (data) => emit('action', data);
 
-const dialogTabs = ref([
-  { id: 'all', label: 'Все', count: 2, active: true },
-  { id: 'deal', label: 'По сделке', count: 3, active: false },
-  { id: 'rejected', label: 'Непринятые', count: 1, active: false },
-]);
 
 const handleTabClick = (tabId) => {
-  dialogTabs.value.forEach(tab => {
-    tab.active = tab.id === tabId;
-  });
+  emit('tab-click', tabId);
 };
 </script>
 

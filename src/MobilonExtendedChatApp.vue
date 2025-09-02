@@ -25,10 +25,12 @@
             :chats="chatsStore.chats"
             filter-enabled
             :title-enabled="true"
+            :dialog-tabs="dialogTabs"
             @select="selectChat"
             @expand="expandChat"
             @action="chatAction"
             @load-more-chats="loadMoreChats"
+            @tab-click="handleTabClick"
           >
             <template #actions>
               <!-- <h2>Чаты</h2> -->
@@ -364,6 +366,13 @@ const filebumpUrl = ref('https://filebump2.services.mobilon.ru');
 const clickedReply = ref('')
 const foundMessages = ref([])
 
+const dialogTabs = ref([]);
+// const dialogTabs = ref([
+//   { id: 'all', label: 'Все', count: 2, active: true },
+//   { id: 'deal', label: 'По сделке', count: 3, active: false },
+//   { id: 'rejected', label: 'Непринятые', count: 1, active: false },
+// ]);
+
 const feedSearchFeedCol = ref(false)
 const sidebarFirstCol = ref(true)
 const isShowFeedWhileSearch = ref(true)
@@ -405,6 +414,13 @@ const handleReturnToChats = () => {
   isSecondColVisible.value = true
   isThirdColVisible.value = false
 }
+
+const handleTabClick = (tabId) => {
+  dialogTabs.value.forEach(tab => {
+    tab.active = tab.id === tabId;
+  });
+  console.log('Active tab:', tabId);
+};
 
 const selectItem = (item) => {
   console.log("selected sidebar item", item);
