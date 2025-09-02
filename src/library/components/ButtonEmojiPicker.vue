@@ -41,6 +41,10 @@ const props = defineProps({
     type: String,
     default: 'active',
   },
+  mode: {
+    type: String,
+    default: 'click',
+  }
 })
 
 const emoji = ref(null)
