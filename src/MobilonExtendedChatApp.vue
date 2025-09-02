@@ -9,6 +9,7 @@
         <template #first-col>
           <SideBar
             :sidebar-items="sidebarItems"
+            :menu-actions="menuActions"
             @select-item="selectItem"
           />
           <ThemeMode
@@ -343,6 +344,25 @@ const themes = [
     name: 'Green'
   }
 ]
+
+const menuActions = [
+  {
+    id: 'profile',
+    title: 'Профиль',
+    disabled: false,
+    action: () => {
+      console.log('Открытие профиля...');
+    }
+  },
+  {
+    id: 'settings',
+    title: 'Настройки',
+    disabled: false,
+    action: () => {
+      console.log('Открытие настроек...');
+    }
+  }
+];
 
 const chatsStore = useChatsStore();
 

@@ -143,6 +143,11 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: false,
+  },
+  menuActions: {
+    type: Array,
+    required: false,
+    default: () => []
   }
 });
 
@@ -168,31 +173,24 @@ const getName = (name) => {
   return parts.length > 2 ? parts.slice(0, 2).join(' ') : name;
 }
 
-const menuActions = [
-  {
-    id: 'profile',
-    title: 'Профиль',
-    disabled: false
-  },
-  {
-    id: 'settings',
-    title: 'Настройки',
-    disabled: false
-  },
-];
+const menuActions = toRef(props, 'menuActions');
 
 const handleMenuAction = (action) => {
   lastAction.value = action.label;
   console.log('Выбрано действие:', action);
-  
-  switch (action.id) {
-    case 'profile':
-      console.log('Профиль...');
-      break;
-    case 'settings':
-      console.log('Настройки...');
-      break;
+
+  if (typeof action.action === 'function') {
+    action.action();
   }
+  
+  // switch (action.id) {
+  //   case 'profile':
+  //     console.log('Профиль...');
+  //     break;
+  //   case 'settings':
+  //     console.log('Настройки...');
+  //     break;
+  // }
 };
 
 const handleButtonClick = () => {
