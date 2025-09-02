@@ -120,7 +120,7 @@ watch(
       const maxHeight = lineHeight * 11;
       const scrollHeight = el.scrollHeight;
 
-      if (!getMessage().text.trim()) {
+      if (!getMessage().text.trim() || scrollHeight <= 61) {
         el.style.height = '40px';
         el.style.overflowY = 'hidden';
       }
