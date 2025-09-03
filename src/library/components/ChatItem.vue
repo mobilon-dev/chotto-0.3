@@ -3,7 +3,7 @@
     <div
       class="chat-item__container"
       :class="getClass()"
-      @mouseenter="buttonMenuVisible = true"
+      @mouseenter="buttonMenuVisible = false"
       @mouseleave="onMouseLeave"
       @click="selectChat"
     >
