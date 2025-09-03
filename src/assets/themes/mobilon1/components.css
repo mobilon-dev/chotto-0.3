@@ -61,8 +61,13 @@
   --chotto-scrollbar-thumb-bg: var(--neutral-300);
 
   /* Tooltip */
-  --chotto-tooltip-text-color: var(--neutral-100);
-  --chotto-tooltip-bg-color: var(--neutral-500);
+  --chotto-tooltip-text-color: var(--neutral-850);
+  --chotto-tooltip-bg-color: var(--default-white);
+  --chotto-tooltip-border: 1px solid var(--neutral-550);
+  --chotto-tooltip-border-radius: 5px;
+  --chotto-tooltip-padding: 5px 9px 5px 12px;
+  --chotto-tooltip-max-width: 372px;
+  --chotto-tooltip-text-align: left;
 
   /* Template Selector */
   --chotto-variable-placeholder-empty-color: var(--p-red-100);

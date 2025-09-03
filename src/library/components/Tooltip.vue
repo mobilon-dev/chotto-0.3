@@ -91,11 +91,11 @@ const hideTooltip = () => {
 <style scoped lang="scss">
 
 .tooltip__text {
-  max-width: 300px;
+  max-width: var(--chotto-tooltip-max-width, 300px);
   color: var(--chotto-tooltip-text-color);
-  text-align: center;
-  padding: 7px;
-  border-radius: 8px;
+  text-align: var(--chotto-tooltip-text-align, center);
+  padding: var(--chotto-tooltip-padding, 7px);
+  border-radius: var(--chotto-tooltip-border-radius, 8px);
   background: var(--chotto-tooltip-bg-color);
   top: 0;
   left: 0;
@@ -103,6 +103,7 @@ const hideTooltip = () => {
   z-index: 99999;
   font-family: var(--chotto-container-font-family);
   font-weight: var(--chotto-container-font-weight);
+  border: var(--chotto-tooltip-border, none);
 }
 
 .tooltip-wrapper {
@@ -110,37 +111,37 @@ const hideTooltip = () => {
   width: fit-content;
 }
 
-.tooltip__text::after {
-  content: " ";
-  position: absolute;
-  border-width: 5px;
-  border-style: solid;
-  border-color: var(--chotto-tooltip-bg-color) transparent transparent transparent;
-}
+// .tooltip__text::after {
+//   content: " ";
+//   position: absolute;
+//   border-width: 5px;
+//   border-style: solid;
+//   border-color: var(--chotto-tooltip-bg-color) transparent transparent transparent;
+// }
 
-.tooltip--left::after {
-  inset-block-start: 50%;
-  inset-inline-start: 100%;
-  border-color: transparent transparent transparent var(--chotto-tooltip-bg-color);
-}
+// .tooltip--left::after {
+//   inset-block-start: 50%;
+//   inset-inline-start: 100%;
+//   border-color: transparent transparent transparent var(--chotto-tooltip-bg-color);
+// }
 
-.tooltip--right::after {
-  inset-block-start: 50%;
-  inset-inline-end: 100%;
-  border-color: transparent var(--chotto-tooltip-bg-color) transparent transparent;
-}
+// .tooltip--right::after {
+//   inset-block-start: 50%;
+//   inset-inline-end: 100%;
+//   border-color: transparent var(--chotto-tooltip-bg-color) transparent transparent;
+// }
 
-.tooltip--top::after {
-  inset-block-start: 100%;
-  inset-inline-start: 50%;
-  border-color: var(--chotto-tooltip-bg-color) transparent transparent  transparent;
-}
+// .tooltip--top::after {
+//   inset-block-start: 100%;
+//   inset-inline-start: 50%;
+//   border-color: var(--chotto-tooltip-bg-color) transparent transparent  transparent;
+// }
 
-.tooltip--bottom::after {
-  inset-block-end: 100%;
-  inset-inline-start: 50%;
-  border-color: transparent transparent var(--chotto-tooltip-bg-color) transparent;
-}
+// .tooltip--bottom::after {
+//   inset-block-end: 100%;
+//   inset-inline-start: 50%;
+//   border-color: transparent transparent var(--chotto-tooltip-bg-color) transparent;
+// }
 
 .v-enter-active,
 .v-leave-active {
