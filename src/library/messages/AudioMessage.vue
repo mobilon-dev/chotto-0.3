@@ -595,7 +595,7 @@ onMounted(() => {
   }
 
   &__time {
-    font-size: var(--chotto-small-text-font-size);
+    font-size: var(--chotto-text-font-size);
     color: var(--chotto-secondary-text-color);
   }
 
