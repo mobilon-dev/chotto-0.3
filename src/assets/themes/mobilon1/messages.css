@@ -15,6 +15,7 @@
 
   --chotto-message-popup-info-bg-color: rgb(0 0 0 / 39%);
   --chotto-message-popup-info-color: var(--default-white);
+  --chotto-message-border-radius: 4px;
 
   /* Audio Message */
   --chotto-audio-message-transcript-delimiter-color: var(--neutral-400);

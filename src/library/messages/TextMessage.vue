@@ -185,7 +185,7 @@ function getClass(message) {
     word-wrap: break-word;
     width: fit-content;
     max-width: 25rem;
-    border-radius: 4px;
+    border-radius: var(--chotto-message-border-radius, 14px);
     padding: 10px 10px 4px 16px;
   }
 

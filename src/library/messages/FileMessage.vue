@@ -203,7 +203,7 @@ function getClass(message) {
   &__content {
     position: relative;
     width: fit-content;
-    border-radius: 14px;
+    border-radius: var(--chotto-message-border-radius, 14px);
     padding: 10px 10px 4px 16px;;
     max-width: 25rem;
   }
