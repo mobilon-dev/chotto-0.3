@@ -384,8 +384,32 @@ onMounted(() => {
     width: 50%;
     max-width: 25rem;
     min-width: 25rem;
-    border-radius: 14px;
-    padding: 10px 10px 4px 16px;;
+    border-radius: 4px;
+    padding: 10px 10px 4px 16px;
+  }
+
+    &__left .audio-message__content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -8px;
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-top: 15px solid var(--chotto-message-left-bg);
+    z-index: 1;
+  }
+
+  &__right .audio-message__content::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -8px;
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-top: 15px solid var(--chotto-message-right-bg);
+    z-index: 1;
   }
 
   &__audio-container {

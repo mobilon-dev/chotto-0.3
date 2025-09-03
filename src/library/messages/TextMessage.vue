@@ -185,8 +185,32 @@ function getClass(message) {
     word-wrap: break-word;
     width: fit-content;
     max-width: 25rem;
-    border-radius: 14px;
+    border-radius: 4px;
     padding: 10px 10px 4px 16px;
+  }
+
+  &__left .text-message__content::before {
+    content: '';
+    position: absolute;
+    top: 0;           
+    left: -8px;
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-top: 15px solid var(--chotto-message-left-bg);
+    z-index: 1;
+  }
+
+  &__right .text-message__content::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -8px;
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-top: 15px solid var(--chotto-message-right-bg);
+    z-index: 1;
   }
 
   &__info-container {
