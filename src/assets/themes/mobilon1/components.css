@@ -47,6 +47,10 @@
   --chotto-chat-info-background-color: #ffffff;
   --chotto-chat-info-additional-title-border-color: #25D366;
 
+  /* Chat Message */
+  --chotto-chat-date-meggase-padding: 4px 11px;
+  --chotto-chat-date-meggase-border-radius: 4px;
+
   /* Chat Panel */
   --chotto-chat-panel-width: 400px;
   --chotto-chat-panel-left: 65.3%;

@@ -40,7 +40,10 @@ const props = defineProps({
 
   &__text {
     font-size: var(--chotto-additional-text-font-size);
-    color: var(--chotto-secondary-text-color);
+    color: var(--chotto-primary-text-color);
+    background-color: var(--chotto-chat-list-fixed-background-color);
+    padding: var(--chotto-chat-date-meggase-padding, 4px 11px);
+    border-radius: var(--chotto-chat-date-meggase-border-radius, 4px);
   }
 }
 </style>
