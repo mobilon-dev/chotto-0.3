@@ -28,7 +28,9 @@
           <span
             v-if="isCurrentChat(attr)"
             class="contact-info__badge"
-          >Текущий чат</span>
+          >
+            Текущий чат
+          </span>
         </label>
       </div>
     </div>
@@ -41,9 +43,20 @@
           @click="isOpen = !isOpen"
         >
           <div class="contact-info__icon">
-            <WhatsAppIcon />
+            <img
+              v-if="currentChannel?.icon"
+              :src="currentChannel.icon"
+              :alt="currentChannel.title"
+              width="22"
+              height="22"
+            >
+            <component
+              :is="getChannelComponent(currentChannel?.channelId)"
+              v-else
+              class="contact-info__icon-component"
+            />
           </div>
-          <span>Отдел продаж {{ formatValue(localSelectedChannel) }}</span>
+          <span>{{ currentChannel?.title }}</span>
           <div
             class="contact-info__arrow"
             :class="{ 'contact-info__arrow--open': isOpen }"
@@ -55,15 +68,26 @@
           class="contact-info__select-options"
         >
           <div
-            v-for="attr in contact?.attributes || []"
-            :key="attr.id"
+            v-for="channel in availableChannels"
+            :key="channel.channelId"
             class="contact-info__select-option"
-            @click="selectChannel(attr.value)"
+            @click="selectChannel(channel)"
           >
             <div class="contact-info__icon">
-              <WhatsAppIcon />
+              <img
+                v-if="channel.icon"
+                :src="channel.icon"
+                :alt="channel.title"
+                width="22"
+                height="22"
+              >
+              <component
+                :is="getChannelComponent(channel.channelId)"
+                v-else
+                class="contact-info__icon-component"
+              />
             </div>
-            <span>Отдел продаж {{ formatValue(attr.value) }}</span>
+            <span>{{ channel.title }}</span>
           </div>
         </div>
       </div>
@@ -84,11 +108,11 @@
 </template>
 
 <script setup>
-import WhatsAppIcon from '../icons/WhatsAppIcon.vue';
+import { ref, watch, computed } from 'vue';
 import ContactCRMIcon from '../icons/ContactCRMIcon.vue';
 import CheckIcon from '../icons/CheckIcon.vue';
-
-import { ref, watch } from 'vue';
+import WhatsAppIcon from '../icons/WhatsAppIcon.vue';
+import TelegramIcon from '../icons/TelegramIcon.vue';
 
 const props = defineProps({
   contact: {
@@ -99,23 +123,59 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  channels: {
+    type: Array,
+    required: true,
+  }
 });
 
 const emit = defineEmits(['close', 'open-crm', 'select-phone']);
 
 const localSelectedPhone = ref('');
-const localSelectedChannel = ref('');
+const localSelectedChannel = ref(null);
 const isOpen = ref(false);
 
-const isCurrentChat = (attr) => {
-  if (!props.currentDialogName) return false;
-  const phone = attr.value.replace(/whatsapp\s+/, '').trim();
-  return props.currentDialogName.includes(phone);
+const selectChannel = (channel) => {
+  localSelectedChannel.value = channel;
+  isOpen.value = false;
+  console.log(`Выбран канал связи: ${channel.title}`);
 };
 
-const selectChannel = (value) => {
-  localSelectedChannel.value = value;
-  isOpen.value = false;
+const extractPhone = (value) => value?.replace(/\D/g, '') || '';
+
+const selectedAttribute = computed(() => {
+  return props.contact.attributes?.find(attr => attr.id === localSelectedPhone.value);
+});
+
+const currentChannel = computed(() => {
+  if (localSelectedChannel.value) {
+    return localSelectedChannel.value;
+  }
+
+  if (!selectedAttribute.value) return props.channels[0] || null;
+  const phone = extractPhone(selectedAttribute.value.value);
+  if (!phone) return props.channels[0] || null;
+
+  const found = props.channels.find(ch => {
+    const channelTitle = ch.title?.toLowerCase() || '';
+    const channelValue = ch.channelId?.toLowerCase() || '';
+    const hasPhone = channelTitle.includes(phone);
+    const isRelevant = ['whatsapp', 'waba', 'telegram'].some(type => channelValue.includes(type));
+    return hasPhone && isRelevant;
+  });
+
+  return found || props.channels[0] || { title: 'default', channelId: 'fallback' };
+});
+
+const availableChannels = computed(() => {
+  return props.channels;
+});
+
+const getChannelComponent = (channelId) => {
+  if (!channelId) return null;
+  if (channelId.includes('whatsapp') || channelId.includes('waba')) return WhatsAppIcon;
+  if (channelId.includes('telegram')) return TelegramIcon;
+  return null;
 };
 
 const formatValue = (value) => {
@@ -146,6 +206,12 @@ const formatValue = (value) => {
   return value.trim();
 };
 
+const isCurrentChat = (attr) => {
+  if (!props.currentDialogName) return false;
+  const phone = attr.value.replace(/whatsapp\s+/, '').trim();
+  return props.currentDialogName.includes(phone);
+};
+
 const onPhoneSelected = (attr) => {
   emit('select-phone', attr);
 };
@@ -153,9 +219,8 @@ const onPhoneSelected = (attr) => {
 watch(
   () => props.contact,
   () => {
-    if (props.contact?.attributes?.length) {
-      localSelectedPhone.value = props.contact.attributes[0].id;
-      localSelectedChannel.value = props.contact.attributes[0].value;
+    if (props.contact?.attributes?.length && !localSelectedPhone.value) {
+    localSelectedPhone.value = props.contact.attributes[0].id;
     }
   },
   { immediate: true }
@@ -284,7 +349,7 @@ watch(
   &__select-options {
     position: absolute;
     top: 100%;
-    left: 0;
+    left: 3px;
     right: 0;
     background: var(--chotto-primary-color);
     border: var(--chotto-input-border, 1px solid #d0d0d0);

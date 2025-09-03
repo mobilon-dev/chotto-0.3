@@ -231,6 +231,7 @@
                     <ContactInfo
                       :contact="selectedChat?.contact"
                       :current-dialog-name="selectedDialog?.name"
+                      :channels="channels"
                       @close="isOpenChatPanel = false"
                       @open-crm="openInCRM"
                       @select-phone="handlePhoneSelect"
