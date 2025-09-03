@@ -156,12 +156,11 @@ function getClass(element, type) {
     width: fit-content;
     display: grid;
     grid-template-columns: min-content 1fr;
-    border-radius: 14px;
+    border-radius: var(--chotto-message-border-radius, 14px);
     column-gap: 12px;
     max-width: 51%;
     min-width: 30%;
     padding: 10px 16px 4px 16px;
-
   }
 
   &__info-container {

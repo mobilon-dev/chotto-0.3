@@ -68,7 +68,7 @@ const props = defineProps({
   &__loader-container {
     min-height: 40px;
     grid-column: 2;
-    border-radius: 10px;
+    border-radius: var(--chotto-message-border-radius, 10px);
     padding: 6px 6px 6px 6px;
     max-width: 80px;
     background-color: var(--chotto-message-left-bg);
