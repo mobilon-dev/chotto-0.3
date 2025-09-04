@@ -3,7 +3,7 @@
     <div
       class="chat-item__container"
       :class="getClass()"
-      @mouseenter="buttonMenuVisible = false"
+      @mouseenter="buttonMenuVisible = true"
       @mouseleave="onMouseLeave"
       @click="selectChat"
     >
@@ -51,7 +51,7 @@
 
       <div class="chat-item__details-container">
         <div
-          v-if="chat['lastActivity.time'] && !buttonMenuVisible"
+          v-if="chat['lastActivity.time'] && (chat.actions ? !buttonMenuVisible : true)"
           class="chat-item__time"
         >
           {{ chat['lastActivity.time'] }}

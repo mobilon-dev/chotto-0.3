@@ -124,9 +124,9 @@ export const chats = [
     'lastActivity.time': 'час назад',
     'lastActivity.timestamp': '1727027359',
     'lastMessage.status': 'received',
-    actions: [
-      { action: 'edit', title: 'изменить' }, { action: 'unpin', title: 'открепить' },
-    ],
+    // actions: [
+    //   { action: 'edit', title: 'изменить' }, { action: 'unpin', title: 'открепить' },
+    // ],
     status: "#00b972",
     metadata: '',
     contact: {
