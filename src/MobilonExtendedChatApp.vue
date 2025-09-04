@@ -123,6 +123,8 @@
                   :scroll-to="clickedReply"
                   :scroll-to-bottom="scrollToBottomOnSelectChat || isScrollToBottomOnUpdateObjectsEnabled"
                   :apply-style="setMessageClass"
+                  :feed-keyboards="feedKeyboards"
+                  feed-keyboard-align="left"
                   @message-action="messageAction"
                   @load-more="loadMore"
                   @load-more-down="loadMoreDown"
@@ -393,6 +395,19 @@ const dialogTabs = ref([]);
 //   { id: 'deal', label: 'По сделке', count: 3, active: false },
 //   { id: 'rejected', label: 'Непринятые', count: 1, active: false },
 // ]);
+
+
+const feedKeyboards = ref([
+  {
+    key: 'No answer',
+    text: 'Ответ не нужен',
+    order: 1,
+    'shadow-color': '#00000033',
+    action: () => {
+      console.log('Ответ не нужен');
+    }
+  },
+]);
 
 const feedSearchFeedCol = ref(false)
 const sidebarFirstCol = ref(true)

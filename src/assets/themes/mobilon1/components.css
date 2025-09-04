@@ -69,6 +69,13 @@
   --chotto-tooltip-max-width: 372px;
   --chotto-tooltip-text-align: left;
 
+  /* FeedKeyboard */
+  --chotto-feedkeyboard-bg-color: var(--default-white);
+  --chotto-feedkeyboard-padding: 3px 16px;
+  --chotto-feedkeyboard-border: 1px solid #6C757D;
+  --chotto-feedkeyboard-margin-top: 10px;
+  --chotto-feedkeyboard-margin-bottom: 10px;
+
   /* Template Selector */
   --chotto-variable-placeholder-empty-color: var(--p-red-100);
   --chotto-variable-placeholder-filled-color: var(--emerald-300);

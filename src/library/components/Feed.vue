@@ -58,6 +58,12 @@
         <span class="pi pi-angle-down message-feed__icon-down" />
       </button>
     </transition>
+    <FeedKeyboard
+      v-if="feedKeyboards && feedKeyboards.length > 0"
+      :buttons="feedKeyboards"
+      :align="feedKeyboardAlign"
+      @action="feedKeyboardAction"
+    />
   </div>
   <div 
     v-else
@@ -102,6 +108,8 @@ import { IFeedObject, IFeedTyping, IFeedUnreadButton } from '../../types';
 import { throttle } from '../../helpers/throttle';
 import { useMessage } from '../../helpers/useMessage';
 import MessageKeyboard from './MessageKeyboard.vue';
+import type { IFeedKeyboard } from '../../types/IFeedKeyboard';
+import FeedKeyboard from './FeedKeyboard.vue';
 
 const trackingObjects = ref();
 const refFeed = ref();
@@ -147,6 +155,16 @@ const props = defineProps({
     type: String as () => 'left' | 'center' | 'right',
     default: 'right',
     validator: (value: string) => ['left', 'center', 'right'].includes(value)
+  },
+  feedKeyboards: {
+    type: Array as () => IFeedKeyboard[],
+    required: false,
+    default: undefined
+  },
+  feedKeyboardAlign: {
+    type: String as () => 'left' | 'center' | 'right',
+    default: 'right',
+    validator: (value: string) => ['left', 'center', 'right'].includes(value)
   }
 });
 
@@ -159,7 +177,8 @@ const emit = defineEmits([
   'messageVisible', 
   'clickRepliedMessage',
   'forceScrollToBottom',
-  'keyboardAction'
+  'keyboardAction',
+  'feedAction'
 ]);
 
 const showKeyboard = computed(() => {
@@ -170,6 +189,10 @@ const showKeyboard = computed(() => {
 
 const keyboardAction = (action) => {
   emit('keyboardAction', action)
+}
+
+const feedKeyboardAction = (action) => {
+  emit('feedAction', action);
 }
 
 function scrollTopCheck (allowLoadMore: boolean = true) {
