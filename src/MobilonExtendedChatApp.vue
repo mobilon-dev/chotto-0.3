@@ -232,11 +232,11 @@
                     </button> -->
                     <ContactInfo
                       :contact="selectedChat?.contact"
-                      :current-dialog-name="selectedDialog?.name"
+                      :current-dialog="selectedDialog"
                       :channels="channels"
                       @close="isOpenChatPanel = false"
                       @open-crm="openInCRM"
-                      @select-phone="handlePhoneSelect"
+                      @select-attribute-channel="handleAttributeChannelSelect"
                     />
                   </div>
                 </template>
@@ -658,7 +658,7 @@ const expandChat = (args) => {
 }
 
 const selectChat = (args) => {
-  console.log(args.chat, args.dialog)
+  console.log('TEST selectChat', args)
   if(args.dialog){
     description.value = args.dialog.name
     selectedDialog.value = args.dialog
@@ -735,8 +735,8 @@ const openInCRM = () => {
   console.log('Открытие контакта в CRM', selectedChat.value);
 };
 
-const handlePhoneSelect = (phoneAttr) => {
-  console.log('Выбран атрибут контакта:', phoneAttr);
+const handleAttributeChannelSelect = (data) => {
+  console.log('Выбран атрибут/канал:', data);
 };
 
 const handleEvent = async (event) => {
