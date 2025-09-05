@@ -193,7 +193,7 @@ export const chats = [
     metadata: '',
   },
   {
-    chatId: 6, name: "Василий",
+    chatId: 6, name: "Виктор",
     countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад',
     'lastActivity.timestamp': '1727023159',
     actions: [
