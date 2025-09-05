@@ -20,21 +20,27 @@ export const chats = [
     metadata: '',    // фильтр работает по name и данным в metadata
     dialogsExpanded: true,
     dialogs: [
-      {
+      { 
+        branchId: 'bch_1',
         dialogId: 'dlg_43543555',
+        attributeId: 'atr_1',
+        channelId: 'whatsapp.W1243',
         icon: 'https://img.freepik.com/free-photo/smiley-man-relaxing-outdoors_23-2148739334.jpg',
         name: 'диалог1 79135292926',
-        fullname: 'диалог1 номер 79135292926 канал whatsapp 73912000000 (основной)',   // для tooltip'а
+        fullname: 'диалог1 номер 79135292926 канал whatsapp 73910001100 (основной)',   // для tooltip'а
         countUnread: 10,
         'lastActivity.time': 'час назад',  
         'lastActivity.timestamp': 1727001759456,   // для сортировки
         isSelected: false,
       },
-      {
+      { 
+        branchId: 'bch_1',
         dialogId: 'dlg_89789879',
+        attributeId: 'atr_2',
+        channelId: 'whatsapp.W1243',
         icon: 'https://img.freepik.com/free-photo/smiley-man-relaxing-outdoors_23-2148739334.jpg',
         name: 'диалог2 7913529XXXX',
-        fullname: 'диалог2 номер 7913529XX27 канал whatsapp 73912000000 (основной)',
+        fullname: 'диалог2 номер 7913529XX27 канал whatsapp 73910001100 (основной)',
         countUnread: 90,
         'lastActivity.time': '2 часа назад',
         'lastActivity.timestamp': 1727001759111,   // для сортировки
@@ -54,15 +60,15 @@ export const chats = [
       // К примеру, поле id может быть равно atr_1, atr_adsafg и т.д. 
       attributes: [
         {
-          id: 'phone:79135292926',
+          id: 'atr_1',
           value: 'whatsapp 79135292926',
         },
         {
-          id: 'phone:7913529XXXX',
+          id: 'atr_2',
           value: 'whatsapp 7913529XXXX',
         },
         {
-          id: 'tgNickName:@antirek',
+          id: 'atr_3',
           value: 'telegram @antirek',
         },
       ],
