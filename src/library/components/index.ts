@@ -10,6 +10,7 @@ import ChatPanel from './ChatPanel.vue'
 import ChannelSelector from './ChannelSelector.vue';
 import ChatItem from './ChatItem.vue';
 import ChatFilter from './ChatFilter.vue';
+import ContactInfo from './ContactInfo.vue';
 import ButtonContextMenu from './ButtonContextMenu.vue';
 import TemplateSelector from './TemplateSelector.vue'
 import ButtonTemplateSelector from './ButtonTemplateSelector.vue';
@@ -28,6 +29,7 @@ export {
   ChatInfo,
   ChatInput,
   ChatList,
+  ContactInfo,
   Feed,
   FileUploader,
   UserProfile,
