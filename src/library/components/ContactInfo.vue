@@ -1,30 +1,30 @@
 <template>
   <div class="contact-info">
-    <div class="contact-info__phone-list">
+    <div class="contact-info__attribute-list">
       <div
         v-for="(attr, index) in contact?.attributes || []"
         :key="attr.id"
-        class="contact-info__phone-item"
-        :class="{ 'contact-info__phone-item--current-chat': isCurrentChat(attr) }"
+        class="contact-info__attribute-item"
+        :class="{ 'contact-info__attribute-item--current-chat': isCurrentChat(attr) }"
       >
         <input
-          :id="`phone-${index}`"
-          v-model="localSelectedPhone"
+          :id="`attr-${index}`"
+          v-model="localSelectedAttributeId"
           type="radio"
           :value="attr.id"
-          @change="onPhoneSelected(attr)"
+          @change="onAttributeSelected(attr)"
         >
 
-        <label :for="`phone-${index}`">
+        <label :for="`attr-${index}`">
           <span class="contact-info__custom-radio">
             <span class="contact-info__radio-inner">
               <CheckIcon
-                v-if="localSelectedPhone === attr.id"
+                v-if="localSelectedAttributeId === attr.id"
               />
             </span>
           </span>
 
-          {{ formatValue(attr.value) }}
+          {{ attr.value }}
           <span
             v-if="isCurrentChat(attr)"
             class="contact-info__badge"
@@ -119,9 +119,9 @@ const props = defineProps({
     type: Object,
     required: true,
   },
-  currentDialogName: {
-    type: String,
-    default: '',
+  currentDialog: {
+    type: Object,
+    default: {},
   },
   channels: {
     type: Array,
@@ -129,22 +129,26 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits(['close', 'open-crm', 'select-phone']);
+const emit = defineEmits(['close', 'open-crm', 'select-attribute-channel']);
 
-const localSelectedPhone = ref('');
-const localSelectedChannel = ref(null);
+const localSelectedAttributeId = ref(props.contact.attributes[0].id || '');
+const localSelectedChannel = ref(props.channels[0] || null);
 const isOpen = ref(false);
 
 const selectChannel = (channel) => {
   localSelectedChannel.value = channel;
   isOpen.value = false;
   console.log(`Выбран канал связи: ${channel.title}`);
+  emit('select-attribute-channel', {
+    attributeId: localSelectedAttributeId.value,
+    channelId: channel.channelId
+  });
 };
 
 const extractPhone = (value) => value?.replace(/\D/g, '') || '';
 
 const selectedAttribute = computed(() => {
-  return props.contact.attributes?.find(attr => attr.id === localSelectedPhone.value);
+  return props.contact.attributes?.find(attr => attr.id === localSelectedAttributeId.value);
 });
 
 const currentChannel = computed(() => {
@@ -178,49 +182,23 @@ const getChannelComponent = (channelId) => {
   return null;
 };
 
-const formatValue = (value) => {
-  const isWhatsapp = value.includes('whatsapp');
-  const isTelegram = value.includes('telegram');
-
-  const cleaned = value.replace(/[^0-9X]/gi, '').toUpperCase();
-
-  if (cleaned.length >= 11 || cleaned.includes('X')) {
-    const digits = cleaned.slice(-11);
-    const countryCode = digits[0] === '8' ? '7' : digits[0];
-    const part1 = digits.slice(1, 4) || 'XXX';
-    const part2 = digits.slice(4, 7) || 'XXX';
-    const part3 = digits.slice(7, 9) || 'XX';
-    const part4 = digits.slice(9, 11) || 'XX';
-
-    const formatted = `+${countryCode} ${part1} ${part2}-${part3}-${part4}`;
-
-    return isWhatsapp ? formatted : formatted;
-  }
-
-  if (isTelegram) {
-    const match = value.match(/@(\S+)/i);
-    const username = match ? match[1] : 'неизвестный';
-    return `@${username}`;
-  }
-
-  return value.trim();
-};
-
 const isCurrentChat = (attr) => {
-  if (!props.currentDialogName) return false;
-  const phone = attr.value.replace(/whatsapp\s+/, '').trim();
-  return props.currentDialogName.includes(phone);
+  if (!props.currentDialog || !Object.keys(props.currentDialog)) return false;
+  return props.currentDialog.attributeId === attr.id;
 };
 
-const onPhoneSelected = (attr) => {
-  emit('select-phone', attr);
+const onAttributeSelected = (attr) => {
+  emit('select-attribute-channel', {
+    attributeId: attr.id,
+    channelId: localSelectedChannel.value.channelId
+  });
 };
 
 watch(
   () => props.contact,
   () => {
-    if (props.contact?.attributes?.length && !localSelectedPhone.value) {
-    localSelectedPhone.value = props.contact.attributes[0].id;
+    if (props.contact?.attributes?.length && !localSelectedAttributeId.value) {
+    localSelectedAttributeId.value = props.contact.attributes[0].id;
     }
   },
   { immediate: true }
@@ -233,12 +211,12 @@ watch(
   min-width: 300px;
   font-size: var(--chotto-title-font-size, 16px);
 
-  &__phone-list {
+  &__attribute-list {
     padding-bottom: 15px;
     margin-left: 6px;
   }
 
-  &__phone-item {
+  &__attribute-item {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
@@ -289,7 +267,7 @@ watch(
     transition: opacity 0.2s ease;
   }
 
-  &__phone-item label:hover &__custom-radio {
+  &__attribute-item label:hover &__custom-radio {
     border-color: var(--chotto-input-focus-border-color);
   }
 

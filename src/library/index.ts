@@ -3,3 +3,4 @@ export * from './components';
 export * from './modals';
 export * from './containers';
 export * from './layouts';
+export * from './icons';
