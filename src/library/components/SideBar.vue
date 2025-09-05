@@ -3,15 +3,15 @@
     class="sidebar__container"
     :class="{'sidebar-horizontal__container' : horizontal}"
   >
-    <div>
+    <div class="sidebar__scroll-container">
       <ul 
         class="sidebar__list-fixed"
         :class="{'sidebar-horizontal__list-fixed' : horizontal}"
       >
         <li
-          v-for="(item, index) in items.filter(i => i.isFixedBottom)"
+          v-for="(item, index) in fixedItems"
           :key="index"
-          class="sidebar__item"
+          class="sidebar__item-fixed"
           :class="{'sidebar-horizontal__item' : horizontal}"
           @click="selectItem(item.itemId)"
         >
@@ -34,20 +34,7 @@
           </Tooltip>
           <span
             v-if="item.notificationCount"
-          >{{ item.notificationCount > 99 ? '99+' :
-            item.notificationCount }}</span>
-
-          <!-- :style="{ backgroundColor: item.notificationColor ? item.notificationColor : null }" -->
-          <!-- <p v-if="item.name">
-            {{ getName(item.name) }}
-          </p> -->
-
-          <!-- <div
-            v-if="item.name"
-            class="sidebar__tooltip"
-          >
-            {{ getName(item.name) }}
-          </div> -->
+          >{{ item.notificationCount > 99 ? '99+' : item.notificationCount }}</span>
         </li>
       </ul>
 
@@ -56,7 +43,7 @@
         :class="{'sidebar-horizontal__list' : horizontal}"
       >
         <li
-          v-for="(item, index) in items.filter(i => !i.isFixedBottom)"
+          v-for="(item, index) in regularItems"
           :key="index"
           class="sidebar__item"
           :class="{'sidebar-horizontal__item' : horizontal}"
@@ -91,23 +78,12 @@
           >
           <span
             v-if="item.notificationCount"
-            :style="{ backgroundColor: item.notificationColor ? 'var(--chotto-unread-background-color)' : 'var(--chotto-unread-background-color)' }"
-          >{{ item.notificationCount > 99 ? '99+' :
-            item.notificationCount }}</span>
-
-          <!-- <p v-if="item.name">
-            {{ getName(item.name) }}
-          </p> -->
-
-          <!-- <div
-            v-if="item.name"
-            class="sidebar__tooltip"
-          >
-            {{ getName(item.name) }}
-          </div> -->
+            :style="{ backgroundColor: item.notificationColor || 'var(--chotto-unread-background-color)' }"
+          >{{ item.notificationCount > 99 ? '99+' : item.notificationCount }}</span>
         </li>
       </ul>
     </div>
+
     <div class="sidebar__settings-container">
       <ButtonContextMenu
         :actions="menuActions"
@@ -125,13 +101,10 @@
 </template>
 
 <script setup>
-import { toRef } from 'vue'
-import { ref } from 'vue';
+import { toRef, computed } from 'vue';
 import ButtonContextMenu from './ButtonContextMenu.vue';
 import SettingsIcon from '../../library/icons/SettingsIcon.vue';
 import Tooltip from './Tooltip.vue';
-
-const lastAction = ref('');
 
 const props = defineProps({
   sidebarItems: {
@@ -152,18 +125,14 @@ const props = defineProps({
 });
 
 const items = toRef(props, 'sidebarItems');
+const menuActions = toRef(props, 'menuActions');
 
 const emit = defineEmits(["selectItem"]);
 
+const fixedItems = computed(() => items.value.filter(i => i.isFixedBottom));
+const regularItems = computed(() => items.value.filter(i => !i.isFixedBottom));
+
 const selectItem = (itemId) => {
-  /*
-  items.value = items.value.map(u => {
-    u.selected = false;
-    if(u.itemId === itemId) {u.selected = true}
-    return u;
-  });
-  */
-  // item.selected = true;
   const item = items.value.find(i => i.itemId === itemId);
   emit('selectItem', item);
 };
@@ -171,26 +140,13 @@ const selectItem = (itemId) => {
 const getName = (name) => {
   const parts = name.split(' ');
   return parts.length > 2 ? parts.slice(0, 2).join(' ') : name;
-}
-
-const menuActions = toRef(props, 'menuActions');
+};
 
 const handleMenuAction = (action) => {
-  lastAction.value = action.label;
   console.log('Выбрано действие:', action);
-
   if (typeof action.action === 'function') {
     action.action();
   }
-  
-  // switch (action.id) {
-  //   case 'profile':
-  //     console.log('Профиль...');
-  //     break;
-  //   case 'settings':
-  //     console.log('Настройки...');
-  //     break;
-  // }
 };
 
 const handleButtonClick = () => {
@@ -198,50 +154,67 @@ const handleButtonClick = () => {
 };
 </script>
 
-<style
-  scoped
-  lang="scss"
->
+<style scoped lang="scss">
 .sidebar {
-
   &__container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     height: 100%;
     padding: var(--chotto-sidebar-padding-container);
     background-color: transparent;
+    position: relative;
+    overflow: hidden;
   }
 
-  &__list,
+  &__scroll-container {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 60px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
   &__list-fixed {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    background-color: var(--chotto-layout-extended-first-col-bg);
+    padding: var(--chotto-sidebar-list-fixed-padding, 12px 10px 30px);
+    margin-bottom: 15px;
+    border-top: var(--chotto-sidebar-list-fixed-border-top, none);
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--chotto-sidebar-row-gap-list);
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: var(--chotto-sidebar-list-fixed-border-bottom-width, 1px);
+      background-color: var(--chotto-sidebar-list-fixed-border-bottom-color, #ccc);
+      display: var(--chotto-sidebar-list-fixed-border-bottom-display, block);
+    }
+  }
+
+  &__list {
     display: flex;
     flex-direction: column;
     row-gap: var(--chotto-sidebar-row-gap-list);
     padding: 0;
+    background-color: var(--chotto-layout-extended-first-col-bg);
+    z-index: 2;
   }
 
-  &__list-fixed {
-    padding-top: 12px;
-    padding-bottom: 15px;
-    margin-bottom: 15px;
-    border-top: var(--chotto-sidebar-list-fixed-border-top, none);
-    position: relative;
-
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 40px;
-        height: var(--chotto-sidebar-list-fixed-border-bottom-width, 1px);
-        background-color: var(--chotto-sidebar-list-fixed-border-bottom-color, #ccc);
-        display: var(--chotto-sidebar-list-fixed-border-bottom-display, block);
-    }
-  }
-
-  &__item {
+  &__item,
+  &__item-fixed {
     position: relative;
     cursor: pointer;
     display: flex;
@@ -275,6 +248,7 @@ const handleButtonClick = () => {
       font-size: var(--chotto-small-text-font-size);
       text-align: center;
       line-height: 1;
+      color: var(--chotto-header-font-color, #5F5F5F);
     }
   }
 
@@ -294,10 +268,14 @@ const handleButtonClick = () => {
   }
 
   &__settings-container {
+    background-color: var(--chotto-layout-extended-first-col-bg);
+    position: absolute;
+    bottom: 7px;
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: center;
-    align-items:flex-end;
-    margin-top: auto;
+    z-index: 2;
   }
 
   &__settings-btn {
@@ -319,45 +297,55 @@ const handleButtonClick = () => {
   }
 }
 
-
-.sidebar-horizontal{
-  &__container{
-    display: flex;
+.sidebar-horizontal {
+  &__container {
     flex-direction: row;
     height: fit-content;
-    padding-top: 0px;
+    padding-top: 0;
     padding-bottom: 5px;
-    border-right: 0px;
     background-color: transparent;
   }
-  &__list{
+
+  &__list,
+  &__list-fixed {
     flex-direction: row;
+  }
+
+  &__list {
     gap: var(--chotto-sidebar-row-gap-list);
   }
-  &__item{
+
+  &__list-fixed {
+    position: static;
+    padding-left: 10px;
+    border-left: var(--chotto-sidebar-list-fixed-border-top);
+    padding-top: 0;
+    border-top: 0;
+    margin-right: 10px;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  &__item,
+  &__item-fixed {
     display: block;
     max-width: 70px;
     text-align: center;
-    span{
+
+    span {
       width: 24px;
       height: 24px;
       left: 45px;
     }
-    p{
+
+    p {
       font-size: 14px;
     }
   }
-  &__list-fixed{
-    padding-left: 10px;
-    border-left: var(--chotto-sidebar-list-fixed-border-top);
-    padding-top: 0;
-    border-top: 0px;
-    margin-right: 10px;
-  }
-  &__image{
+
+  &__image {
     width: calc(var(--chotto-avatar-small) * 1.2);
     height: calc(var(--chotto-avatar-small) * 1.2);
   }
 }
-
 </style>

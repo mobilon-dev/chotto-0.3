@@ -9,6 +9,7 @@
   /* --chotto-sidebar-list-fixed-border-top: 1px solid var(--neutral-300); */
   --chotto-sidebar-list-fixed-border-bottom: 1px solid var(--neutral-300);
   --chotto-sidebar-notification-count-height: 18px;
+  --chotto-sidebar-list-fixed-padding: 12px 10px 30px;
 
   /* Context Menu */
   --chotto-context-menu-border-radius: 4px;
