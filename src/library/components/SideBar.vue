@@ -31,10 +31,10 @@
               }"
             >
             <p>Мои</p>
+            <span
+              v-if="item.notificationCount"
+            >{{ item.notificationCount > 99 ? '99+' : item.notificationCount }}</span>
           </Tooltip>
-          <span
-            v-if="item.notificationCount"
-          >{{ item.notificationCount > 99 ? '99+' : item.notificationCount }}</span>
         </li>
       </ul>
 
@@ -193,7 +193,7 @@ const handleButtonClick = () => {
     top: 0;
     z-index: 3;
     background-color: var(--chotto-layout-extended-first-col-bg);
-    padding: var(--chotto-sidebar-list-fixed-padding, 12px 10px 30px);
+    padding: var(--chotto-sidebar-list-fixed-padding, 12px 10px 22px);
     margin-bottom: 15px;
     border-top: var(--chotto-sidebar-list-fixed-border-top, none);
     display: flex;
@@ -203,7 +203,7 @@ const handleButtonClick = () => {
     &::after {
       content: '';
       position: absolute;
-      bottom: 10px;
+      bottom: 7px;
       left: 50%;
       transform: translateX(-50%);
       width: 40px;
@@ -220,6 +220,10 @@ const handleButtonClick = () => {
     padding: 0;
     background-color: var(--chotto-layout-extended-first-col-bg);
     z-index: 2;
+  }
+
+  &__item {
+    max-height: var(--chotto-avatar-small);
   }
 
   &__item,
