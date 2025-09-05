@@ -129,8 +129,17 @@ const menuActions = toRef(props, 'menuActions');
 
 const emit = defineEmits(["selectItem"]);
 
-const fixedItems = computed(() => items.value.filter(i => i.isFixedBottom));
-const regularItems = computed(() => items.value.filter(i => !i.isFixedBottom));
+const fixedItems = computed(() => 
+  items.value
+    .filter(i => i.isFixedBottom)
+    .sort((a, b) => b.notificationCount - a.notificationCount)
+);
+
+const regularItems = computed(() => 
+  items.value
+    .filter(i => !i.isFixedBottom)
+    .sort((a, b) => b.notificationCount - a.notificationCount)
+);
 
 const selectItem = (itemId) => {
   const item = items.value.find(i => i.itemId === itemId);

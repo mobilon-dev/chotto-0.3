@@ -105,13 +105,13 @@ export const sidebarItems = [
   },  {
     itemId: 'itemId14',
     icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=DP',
-    notificationCount: 0,
+    notificationCount: 6,
     notificationColor: '#FF0000',
     selected: false,
   },  {
     itemId: 'itemId15',
     icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=DP',
-    notificationCount: 0,
+    notificationCount: 9,
     notificationColor: '#FF0000',
     selected: false,
   },  {
@@ -132,7 +132,7 @@ export const sidebarItems = [
     icon: borisImage,
     name: 'Борис',
     isFixedBottom: true,
-    notificationCount: 99,
+    notificationCount: 9,
     notificationColor: '#00FF00',
     selected: true,
   },
