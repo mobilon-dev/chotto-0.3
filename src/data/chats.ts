@@ -30,7 +30,7 @@ export const chats = [
         fullname: 'диалог1 номер 79135292926 канал whatsapp 73910001100 (основной)',   // для tooltip'а
         countUnread: 10,
         'lastActivity.time': 'час назад',  
-        'lastActivity.timestamp': 1727001759456,   // для сортировки
+        'lastActivity.timestamp': 1757318879000,   // для сортировки
         isSelected: false,
       },
       { 
@@ -42,8 +42,57 @@ export const chats = [
         name: 'диалог2 7913529XXXX',
         fullname: 'диалог2 номер 7913529XX27 канал whatsapp 73910001100 (основной)',
         countUnread: 90,
-        'lastActivity.time': '2 часа назад',
-        'lastActivity.timestamp': 1727001759111,   // для сортировки
+        'lastActivity.time': '8 months ago',
+        'lastActivity.timestamp': 1737014959111,   // для сортировки
+        isSelected: false,
+      },
+      { 
+        branchId: 'bch_1',
+        dialogId: 'dlg_17431847',
+        attributeId: 'atr_2',
+        channelId: 'whatsapp.W5432',
+        icon: 'https://img.freepik.com/free-photo/smiley-man-relaxing-outdoors_23-2148739334.jpg',
+        name: 'диалог3 7913529XXXX whatsapp.W5432',
+        fullname: 'диалог3 7913529XXXX whatsapp.W5432',
+        countUnread: 90,
+        'lastActivity.time': 'a year ago',
+        'lastActivity.timestamp': 1727006459111,   // для сортировки
+        isSelected: false,
+      },
+      { 
+        branchId: 'bch_1',
+        dialogId: 'dlg_00123981',
+        attributeId: 'atr_2',
+        channelId: 'waba.WABA7534',
+        name: 'диалог4 7913529XXXX waba.WABA7534',
+        fullname: 'диалог4 7913529XXXX waba.WABA7534',
+        countUnread: 90,
+        'lastActivity.time': 'a year ago',
+        'lastActivity.timestamp': 1727131759111,   // для сортировки
+        isSelected: false,
+      },
+      { 
+        branchId: 'bch_1',
+        dialogId: 'dlg_89460153',
+        attributeId: 'atr_3',
+        channelId: 'telegram.T6432',
+        name: 'диалог5 telegram @antirek (telegram)',
+        fullname: 'диалог5 telegram @antirek (telegram)',
+        countUnread: 90,
+        'lastActivity.time': 'a year ago',
+        'lastActivity.timestamp': 1727641759111,   // для сортировки
+        isSelected: false,
+      },
+      { 
+        branchId: 'bch_1',
+        dialogId: 'dlg_71053061',
+        attributeId: 'atr_3',
+        channelId: 'telegrambot.TGB5431',
+        name: 'диалог6 telegram @antirek (telegrambot)',
+        fullname: 'диалог6 telegram @antirek (telegrambot)',
+        countUnread: 90,
+        'lastActivity.time': 'a year ago',
+        'lastActivity.timestamp': 1727001759123,   // для сортировки
         isSelected: false,
       },
       {
@@ -61,15 +110,25 @@ export const chats = [
       attributes: [
         {
           id: 'atr_1',
+          type: 'phone',
+          data: '79135292926',
           value: 'whatsapp 79135292926',
         },
         {
           id: 'atr_2',
+          type: 'phone',
+          data: '7913529XXXX',
           value: 'whatsapp 7913529XXXX',
         },
         {
           id: 'atr_3',
-          value: 'telegram @antirek',
+          type: 'telegram',
+          data: {
+            id: '182940012993',
+            nickname: 'test_nick',
+            phone: '79139310012'
+          },
+          value: '@antirek',
         },
       ],
     },
