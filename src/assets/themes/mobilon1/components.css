@@ -49,6 +49,11 @@
   --chotto-chat-info-additional-title-border-color: #25D366;
   --chotto-chat-info-border-bottom: none;
 
+  /* Communication Panel */
+  --chotto-communication-panel-btn-active-color: var(--azure-600); 
+  --chotto-communication-panel-btn-divider-color: var(--neutral-90);
+  --chotto-communication-panel-btn-width: 50px;
+
   /* Chat Message */
   --chotto-chat-date-message-padding: 4px 11px;
   --chotto-chat-date-message-border-radius: 4px;

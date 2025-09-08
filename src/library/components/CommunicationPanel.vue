@@ -1,7 +1,13 @@
 <template>
-  <div class="communication-panel" ref="panelRef">
+  <div
+    ref="panelRef"
+    class="communication-panel"
+  >
     <!-- Панель с кнопками каналов -->
-    <div class="channels-panel" ref="channelsPanelRef">
+    <div
+      ref="channelsPanelRef"
+      class="channels-panel"
+    >
       <button
         v-for="channel in channelsTypes"
         :key="channel.type"
@@ -13,8 +19,13 @@
         @mouseenter="hoveredChannel = channel.type"
         @mouseleave="hoveredChannel = null"
       >
-        <span class="channel-icon" v-html="channel.icon"></span>
-        <span v-if="activeChannelType === channel.type" class="active-indicator"></span>
+        <span class="channel-icon">
+          <component :is="channel.component" />
+        </span>
+        <span
+          v-if="activeChannelType === channel.type"
+          class="active-indicator"
+        />
       </button>
     </div>
 
@@ -43,13 +54,18 @@
         <div class="attribute-info">
           <span class="attribute-value">{{ recentAttribute?.value }}</span>
         </div>
-        <span class="channel-icon-small" v-html="getChannelIcon(activeChannelType)"></span>
+        <span
+          class="channel-icon-small"
+          :class="{ 'menu-icon-grey': activeChannelType !== 'sms' }"
+        >
+          <component :is="getMenuChannelIconComponent(activeChannelType)" />
+        </span>
       </div>
 
       <div 
-        class="menu-divider" 
-        v-if="showRecentAttribute && organizedContactAttributes[activeChannelType]?.length && activeChannelType !== 'phone'"
-      ></div>
+        v-if="showRecentAttribute && organizedContactAttributes[activeChannelType]?.length && activeChannelType !== 'phone'" 
+        class="menu-divider"
+      />
 
       <!-- Все контакты -->
       <div
@@ -67,7 +83,13 @@
         </div>
         <span class="menu-icon">
           <span v-if="hasMultipleChannels(activeChannelType)">></span>
-          <span v-else class="channel-icon-small" v-html="getSingleChannelIcon(activeChannelType)"></span>
+          <span
+            v-else
+            class="channel-icon-small"
+            :class="{ 'menu-icon-grey': activeChannelType !== 'sms' }"
+          >
+            <component :is="getSingleMenuChannelIconComponent(activeChannelType)" />
+          </span>
         </span>
       </div>
 
@@ -89,7 +111,12 @@
           @click="selectChannel(channel.channelId)"
         >
           <span class="sub-menu-title">{{ channel.title || channel.channelId }}</span>
-          <span class="sub-menu-icon" v-html="getChannelIconForChannelId(channel.channelId)"></span>
+          <span
+            class="sub-menu-icon"
+            :class="{ 'menu-icon-grey': getChannelTypeFromId(channel.channelId) !== 'sms' }"
+          >
+            <component :is="getMenuChannelIconComponentForChannelId(channel.channelId)" />
+          </span>
         </div>
       </div>
     </div>
@@ -98,7 +125,19 @@
 
 <script setup>
 import { ref, watch, onMounted, onUnmounted, computed } from 'vue';
-import { buttonIconsData } from './communicationPannelButtons.ts';
+
+import { 
+  CommunicationPanelPhoneIcon,
+  CommunicationPanelWhatsAppIcon,
+  CommunicationPanelTelegramIcon,
+  CommunicationPanelMaxIcon,
+  CommunicationPanelSMSIcon,
+  CommunicationPanelSubmenuPhoneIcon,
+  CommunicationPanelSubmenuWhatsAppIcon,
+  CommunicationPanelSubmenuTelegramIcon,
+  CommunicationPanelSubmenuMaxIcon,
+  CommunicationPanelSubmenuSMSIcon
+} from '@/library/icons/index.ts'
 
 const props = defineProps({
   contactAttributes: {
@@ -135,10 +174,26 @@ const isRecentAttributeHovered = ref(false);
 // Constants
 const CHANNEL_TYPES = ['phone', 'whatsapp', 'telegram', 'max', 'sms'];
 
+const channelIconsMap = {
+  phone: CommunicationPanelPhoneIcon,
+  whatsapp: CommunicationPanelWhatsAppIcon,
+  telegram: CommunicationPanelTelegramIcon,
+  max: CommunicationPanelMaxIcon,
+  sms: CommunicationPanelSMSIcon,
+};
+
+const menuChannelIconsMap = {
+  phone: CommunicationPanelSubmenuPhoneIcon,
+  whatsapp: CommunicationPanelSubmenuWhatsAppIcon,
+  telegram: CommunicationPanelSubmenuTelegramIcon,
+  max: CommunicationPanelSubmenuMaxIcon,
+  sms: CommunicationPanelSubmenuSMSIcon,
+};
+
 const channelsTypes = computed(() => 
   CHANNEL_TYPES.map(type => ({
     type,
-    icon: buttonIconsData[type] || ''
+    component: channelIconsMap[type]
   }))
 );
 
@@ -194,18 +249,21 @@ const getSingleChannelForType = (channelType) => {
   return channelsForType.length === 1 ? channelsForType[0] : null;
 };
 
-const getSingleChannelIcon = (channelType) => {
-  const singleChannel = getSingleChannelForType(channelType);
-  return singleChannel ? getChannelIconForChannelId(singleChannel.channelId) : getChannelIcon(channelType);
+// kept for reference of old API; function removed as unused
+
+
+const getMenuChannelIconComponent = (channelType) => {
+  return menuChannelIconsMap[channelType] || null;
 };
 
-const getChannelIconForChannelId = (channelId) => {
+const getMenuChannelIconComponentForChannelId = (channelId) => {
   const channelType = getChannelTypeFromId(channelId);
-  return getChannelIcon(channelType);
+  return getMenuChannelIconComponent(channelType);
 };
 
-const getChannelIcon = (channelType) => {
-  return buttonIconsData[channelType] || '';
+const getSingleMenuChannelIconComponent = (channelType) => {
+  const singleChannel = getSingleChannelForType(channelType);
+  return singleChannel ? getMenuChannelIconComponentForChannelId(singleChannel.channelId) : getMenuChannelIconComponent(channelType);
 };
 
 const organizeContactAttributes = () => {
@@ -411,26 +469,26 @@ onUnmounted(() => {
   display: flex;
   background: white;
   border: 0.01rem solid;
-  border-radius: 8px;
-  border-color: #cdcdcd;
+  border-radius: 5px;
+  border-color: #EEEEEE;
   padding: 0px;
   gap: 0;
   position: relative;
+  height: 40px;
 }
 
 .channel-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px;
+  padding: 0;
   border: none;
   background: transparent;
   border-radius: 0;
   cursor: pointer;
   transition: all 0.2s ease;
   position: relative;
-  width: 44px;
-  height: 44px;
+  width: var(--chotto-communication-panel-btn-width, 50px);
 }
 
 .channel-btn:not(:last-child)::after {
@@ -440,7 +498,7 @@ onUnmounted(() => {
   top: 25%;
   bottom: 25%;
   width: 1px;
-  background-color: #f8f7f7;
+  background-color: var(--chotto-communication-panel-btn-divider-color, #F6F6F6);
 }
 
 .channel-btn:first-child {
@@ -454,23 +512,22 @@ onUnmounted(() => {
 }
 
 .channel-btn.hover {
-  background: #f8f7f7;
+  background: var(--chotto-item-background-color-hover, #F6F6F6);
 }
 
 .channel-btn.active {
-  background: #f8f7f7;
-  color: #1976d2;
+  color: var(--chotto-communication-panel-btn-active-color, #007CFF);
 }
 
 .active-indicator {
   position: absolute;
-  bottom: 0;
+  bottom: 1px;
   left: 50%;
   transform: translateX(-50%);
   width: 60%;
   height: 2px;
-  background: #1976d2;
-  border-radius: 1px 1px 0 0;
+  background: var(--chotto-communication-panel-btn-active-color, #007CFF);
+  border-radius: 20px;
 }
 
 .channel-icon {
@@ -481,21 +538,22 @@ onUnmounted(() => {
 
 .attributes-menu {
   position: absolute;
-  top: 100%;
+  top: 108%;
   left: 0;
   background: white;
   border: 1px solid #e9e7e7;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.08);
   padding: 8px 0;
   z-index: 1000;
   max-height: 300px;
+  gap: 2px;
 }
 
 .menu-header {
   padding: 8px 16px 4px;
-  font-size: 12px;
-  color: #666;
+  font-size: var(--chotto-text-font-size);
+  color: var(--chotto-secondary-text-color);
   font-weight: 500;
   letter-spacing: 0.5px;
 }
@@ -505,14 +563,14 @@ onUnmounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 16px;
+  padding: 6px 16px;
   cursor: pointer;
   transition: background 0.2s ease;
 }
 
 .recent-attribute:hover,
 .attribute-item:hover {
-  background: #f8f7f7;
+  background: var(--chotto-item-background-color-hover);
 }
 
 .attribute-info {
@@ -522,7 +580,8 @@ onUnmounted(() => {
 
 .attribute-value {
   font-weight: 500;
-  color: #333;
+  font-size: var(--chotto-text-font-size);
+  color: var(--chotto-primary-text-color);
 }
 
 .channel-icon-small {
@@ -532,6 +591,10 @@ onUnmounted(() => {
   width: 20px;
   height: 20px;
   margin-left: 8px;
+}
+
+.menu-icon-grey {
+  color: #5F5F5F;
 }
 
 .menu-icon {
@@ -546,22 +609,22 @@ onUnmounted(() => {
 .menu-divider {
   height: 1px;
   background: #e0e0e0;
-  margin: 4px 0;
+  margin: 4px 12px;
 }
 
 .attribute-item.frozen-hover,
 .recent-attribute.frozen-hover {
-  background: #f8f7f7;
+  background: var(--chotto-item-background-color-hover);
 }
 
 .sub-menu {
   position: absolute;
-  top: 0;
+  bottom: 0;
   right: 100%;
   background: white;
   border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.08);
   padding: 8px 0;
   min-width: 250px;
   z-index: 1001;
@@ -571,12 +634,11 @@ onUnmounted(() => {
 }
 
 .sub-menu-header {
-  padding: 8px 12px 4px;
-  font-size: 12px;
-  color: #666;
+  padding: 8px 12px 2px;
+  font-size: var(--chotto-text-font-size);
+  color: var(--chotto-secondary-text-color);
   font-weight: 500;
   letter-spacing: 0.5px;
-  border-bottom: 1px solid #f0f0f0;
   margin-bottom: 4px;
 }
 
@@ -592,7 +654,7 @@ onUnmounted(() => {
 }
 
 .sub-menu-item:hover {
-  background: #f5f5f5;
+  background: var(--chotto-item-background-color-hover);
 }
 
 .sub-menu-icon {
@@ -606,8 +668,8 @@ onUnmounted(() => {
 }
 
 .sub-menu-title {
-  font-size: 14px;
-  color: #333;
+  font-size: var(--chotto-text-font-size);
+  color: var(--chotto-primary-text-color);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
