@@ -82,7 +82,10 @@
           <span class="attribute-value">{{ attribute.value }}</span>
         </div>
         <span class="menu-icon">
-          <span v-if="hasMultipleChannels(activeChannelType)">></span>
+          <span
+            v-if="hasMultipleChannels(activeChannelType)"
+            class="menu-icon-arrow"
+          ></span>
           <span
             v-else
             class="channel-icon-small"
@@ -604,6 +607,14 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.menu-icon-arrow {
+  width: 9px;
+  height: 9px;
+  border-top: 1px solid #5F5F5F;
+  border-right: 1px solid #5F5F5F;
+  transform: rotate(45deg);
 }
 
 .menu-divider {
