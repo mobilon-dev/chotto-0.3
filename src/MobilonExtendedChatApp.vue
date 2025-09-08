@@ -389,12 +389,12 @@ const filebumpUrl = ref('https://filebump2.services.mobilon.ru');
 const clickedReply = ref('')
 const foundMessages = ref([])
 
-const dialogTabs = ref([]);
-// const dialogTabs = ref([
-//   { id: 'all', label: 'Все', count: 2, active: true },
-//   { id: 'deal', label: 'По сделке', count: 3, active: false },
-//   { id: 'rejected', label: 'Непринятые', count: 1, active: false },
-// ]);
+// const dialogTabs = ref([]);
+const dialogTabs = ref([
+  { id: 'all', label: 'Все', count: 2, active: true },
+  { id: 'deal', label: 'По сделке', count: 3, active: false },
+  { id: 'rejected', label: 'Непринятые', count: 1, active: false },
+]);
 
 
 const feedKeyboards = ref([
