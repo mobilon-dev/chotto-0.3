@@ -43,7 +43,7 @@
   --chotto-chat-item-name-margin-bottom: 4px;
 
   /* Chat Info */
-  --chotto-chat-info-padding: 10px 15px 10px 15px;
+  --chotto-chat-info-padding: 10px 0 10px 15px;
   --chotto-chat-info-border-radius: 0;
   --chotto-chat-info-background-color: #ffffff;
   --chotto-chat-info-additional-title-border-color: #25D366;

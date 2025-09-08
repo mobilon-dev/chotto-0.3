@@ -867,7 +867,8 @@ onMounted(() => {
   background: none;
   border: none;
   padding: 5px;
-  margin-right: 16px;
+  margin-right: 10px;
+  margin-left: 10px;
   font: inherit;
   color: inherit;
   cursor: pointer;
@@ -876,6 +877,8 @@ onMounted(() => {
   border-radius: 50%;
   width: 35px;
   height: 35px;
+  display: flex;
+  align-self: center;
 
   &:hover {
     background-color: var(--neutral-125);
