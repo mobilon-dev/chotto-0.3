@@ -9,7 +9,7 @@
     @mouseleave="hideMenu"
   >
     <img
-      v-if="message.avatar"
+      v-if="message.avatar && isFirstInSeries"
       class="file-message__avatar"
       :src="message.avatar"
       height="32"
@@ -18,7 +18,7 @@
     >
 
     <p
-      v-if="message.subText"
+      v-if="message.subText && isFirstInSeries"
       class="file-message__subtext"
     >
       {{ message.subText }}
@@ -26,6 +26,7 @@
 
     <div
       class="file-message__content"
+      :class="{ 'is-first': isFirstInSeries }"
       :style="{ gridRow: message.subText ? '2' : '1' }"
       @mouseenter="showMenu"
     >
@@ -142,6 +143,10 @@ const props = defineProps({
   applyStyle: {
     type: Function,
     default: () => {return null}
+  },
+  isFirstInSeries: {
+    type: Boolean,
+    default: true
   }
 });
 
@@ -208,7 +213,7 @@ function getClass(message) {
     max-width: 25rem;
   }
 
-  &__left .file-message__content::before {
+  &__left .file-message__content.is-first::before {
     content: '';
     position: absolute;
     top: 0;
@@ -220,7 +225,7 @@ function getClass(message) {
     z-index: 1;
   }
 
-  &__right .file-message__content::after {
+  &__right .file-message__content.is-first::after {
     content: '';
     position: absolute;
     top: 0;
