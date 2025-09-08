@@ -1,12 +1,18 @@
 export const channels = [
   { 
-    channelId: 'channel1', 
+    branchId: "bch_1",
+    channelId: 'whatsapp.W0010',
     title: 'test channel 1', 
-    icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/240px-Telegram_logo.svg.png' 
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/240px-Telegram_logo.svg.png',
+    status: "active",
+    autoAccess: false
   },
   { 
-    channelId: 'channel2', 
-    title: 'test channel 2' 
+    branchId: "bch_1",
+    channelId: 'waba.WABA0007', 
+    title: 'test channel 2',
+    status: "active",
+    autoAccess: false
   },
 
   // Примеры структуры каналов из приложения
