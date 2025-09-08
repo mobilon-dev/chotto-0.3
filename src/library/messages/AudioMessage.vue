@@ -9,7 +9,7 @@
     @mouseleave="hideMenu"
   >
     <img
-      v-if="message.avatar"
+      v-if="message.avatar && isFirstInSeries"
       class="audio-message__avatar"
       :src="message.avatar"
       height="32"
@@ -18,7 +18,7 @@
     >
 
     <p
-      v-if="message.subText"
+      v-if="message.subText && isFirstInSeries"
       class="audio-message__subtext"
     >
       {{ message.subText }}
@@ -26,6 +26,7 @@
 
     <div
       class="audio-message__content"
+      :class="{ 'is-first': isFirstInSeries }"
       @mouseenter="showMenu"
     >
       <BaseReplyMessage
@@ -221,6 +222,10 @@ const props = defineProps({
   applyStyle: {
     type: Function,
     default: () => {return null}
+  },
+  isFirstInSeries: {
+    type: Boolean,
+    default: true
   }
 });
 
@@ -388,7 +393,7 @@ onMounted(() => {
     padding: 10px 10px 4px 16px;
   }
 
-    &__left .audio-message__content::before {
+    &__left .audio-message__content.is-first::before {
     content: '';
     position: absolute;
     top: 0;
@@ -400,7 +405,7 @@ onMounted(() => {
     z-index: 1;
   }
 
-  &__right .audio-message__content::after {
+  &__right .audio-message__content.is-first::after {
     content: '';
     position: absolute;
     top: 0;

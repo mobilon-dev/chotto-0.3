@@ -9,7 +9,7 @@
     @mouseleave="hideMenu"
   >
     <img
-      v-if="message.avatar"
+      v-if="message.avatar && isFirstInSeries"
       class="video-message__avatar"
       :src="message.avatar"
       height="32"
@@ -17,13 +17,13 @@
     >
 
     <p
-      v-if="message.subText"
+      v-if="message.subText && isFirstInSeries"
       class="video-message__subtext"
     >
       {{ message.subText }}
     </p>
 
-    <div class="video-message__content">
+    <div class="video-message__content" :class="{ 'is-first': isFirstInSeries }">
       <BaseReplyMessage
         v-if="message.reply"
         style="margin: 10px 10px 4px 16px;"
@@ -188,6 +188,10 @@ const props = defineProps({
   applyStyle: {
     type: Function,
     default: () => {return null}
+  },
+  isFirstInSeries: {
+    type: Boolean,
+    default: true
   }
 });
 

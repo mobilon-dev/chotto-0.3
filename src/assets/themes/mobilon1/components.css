@@ -47,6 +47,7 @@
   --chotto-chat-info-border-radius: 0;
   --chotto-chat-info-background-color: #ffffff;
   --chotto-chat-info-additional-title-border-color: #25D366;
+  --chotto-chat-info-border-bottom: none;
 
   /* Chat Message */
   --chotto-chat-date-message-padding: 4px 11px;

@@ -107,7 +107,7 @@ const chatDescription = computed(() => {
   &__container {
     border-radius: var(--chotto-chat-info-border-radius);
     padding: var(--chotto-chat-info-padding);
-    border-bottom: 1px solid  var(--chotto-item-border-color);
+    border-bottom: var(--chotto-chat-info-border-bottom, 1px solid var(--chotto-item-border-color));
     background-color: var(--chotto-chat-info-background-color);
   }
 

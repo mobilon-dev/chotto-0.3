@@ -9,7 +9,7 @@
     @mouseup="stopScrollWatch"
   >
     <div
-      v-for="object in objects"
+      v-for="object in groupedObjects"
       :id="JSON.stringify(object)"
       :key="object.messageId"
       class="tracking-message"
@@ -21,6 +21,7 @@
         class="message-feed__message"
         :message="object"
         :apply-style="applyStyle"
+        :is-first-in-series="object.isFirstInSeries"
         @action="messageAction"
         @reply="handleClickReplied"
       />
@@ -253,7 +254,7 @@ const stopScrollWatch = () => {
   isScrollByMouseButton.value = false
 }
 
-const throttledScrollTopCheck = throttle(scrollTopCheck, 250)
+const throttledScrollTopCheck = throttle(() => scrollTopCheck(), 250)
 
 // Register components
 const componentsMap = (type) => {
@@ -384,6 +385,28 @@ watch(
     }
   }
 )
+
+const groupedObjects = computed(() => {
+  if (!props.objects || props.objects.length === 0) return []
+
+  return props.objects.map((message, index, arr) => {
+    const isSameSenderAsPrevious =
+      index > 0 &&
+      arr[index - 1].position === message.position &&
+      arr[index - 1].header === message.header
+
+    const prevIsGroupable =
+      index > 0 &&
+      !['message.system', 'message.typing'].includes(arr[index - 1].type)
+
+    const isFirstInSeries = !isSameSenderAsPrevious || !prevIsGroupable
+
+    return {
+      ...message,
+      isFirstInSeries,
+    }
+  })
+})
 
 </script>
 

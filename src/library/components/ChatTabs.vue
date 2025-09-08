@@ -51,17 +51,21 @@ defineEmits(['tab-click']);
   align-items: center;
   justify-content: center;
   font-size: var(--chotto-text-font-size);
-  border: 1px solid var(--neutral-250, #d0d0d0);
+  border: 1px solid var(--chotto-item-border-color, #d0d0d0);
   border-radius: 20px;
   height: 26px;
   min-width: 61px;
-  color: #1E1E1E;
+  color: var(--chotto-primary-text-color);
 
   &--active {
-    color: #5F5F5F;
+    color: var(--chotto-secondary-text-color);
     font-weight: 600;
     background-color: var(--chotto-item-background-color-focus);
-    border: none;
+    border: 1px solid var(--chotto-item-border-color, #d0d0d0);
+  }
+
+  &:hover {
+    background-color: var(--chotto-item-background-color-hover);
   }
 }
 
