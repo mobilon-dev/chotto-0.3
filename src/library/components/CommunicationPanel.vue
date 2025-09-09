@@ -51,7 +51,7 @@
           :class="['recent-attribute', { 
             'frozen-hover': isRecentAttributeHovered 
           }]"
-          @mouseenter="handleRecentAttributeMouseEnter"
+          @mouseenter="handleRecentAttributeMouseEnter($event)"
           @mouseleave="handleRecentAttributeMouseLeave"
           @mouseover="resetRegularAttributeHover"
           @click="handleRecentAttributeClick()"
@@ -80,7 +80,7 @@
         :class="['attribute-item', { 
           'frozen-hover': isAttributeFrozen(attribute) 
         }]"
-        @mouseenter="handleAttributeMouseEnter(attribute)"
+        @mouseenter="handleAttributeMouseEnter(attribute, $event)"
         @mouseleave="handleAttributeMouseLeave"
         @click="handleAttributeClick(attribute)"
       >
@@ -106,6 +106,7 @@
       <div
         v-if="showSubMenu && shouldShowSubMenu"
         class="sub-menu left"
+        :style="{ top: subMenuTop + 'px' }"
         @mouseenter="keepSubMenuOpen"
         @mouseleave="closeSubMenu"
       >
@@ -185,6 +186,7 @@ const hoveredAttribute = ref(null);
 const menuWidth = ref('0px');
 const frozenAttribute = ref(null);
 const isRecentAttributeHovered = ref(false);
+const subMenuTop = ref(0);
 
 // Constants
 const CHANNEL_TYPES = ['phone', 'whatsapp', 'telegram', 'max', 'sms'];
@@ -387,11 +389,12 @@ const selectChannelForRecentAttribute = (channelId) => {
   closeMenu();
 };
 
-const handleRecentAttributeMouseEnter = () => {
+const handleRecentAttributeMouseEnter = (event) => {
   if (hasMultipleChannels(activeChannelType.value)) {
     resetRegularAttributeHover();
     isRecentAttributeHovered.value = true;
     showSubMenu.value = true;
+    alignSubMenuWithTarget(event.currentTarget);
   }
 };
 
@@ -401,12 +404,13 @@ const handleRecentAttributeMouseLeave = () => {
   }
 };
 
-const handleAttributeMouseEnter = (attribute) => {
+const handleAttributeMouseEnter = (attribute, event) => {
   if (hasMultipleChannels(activeChannelType.value)) {
     isRecentAttributeHovered.value = false;
     hoveredAttribute.value = attribute;
     showSubMenu.value = true;
     frozenAttribute.value = attribute;
+    alignSubMenuWithTarget(event.currentTarget);
   }
 };
 
@@ -447,6 +451,37 @@ const selectChannel = (channelId) => {
 const updateMenuWidth = () => {
   if (channelsPanelRef.value) {
     menuWidth.value = `${channelsPanelRef.value.offsetWidth}px`;
+  }
+};
+
+const alignSubMenuWithTarget = (targetEl) => {
+  try {
+    requestAnimationFrame(() => {
+      const menuEl = panelRef.value?.querySelector('.attributes-menu');
+      const headerEl = panelRef.value?.querySelector('.sub-menu-header');
+      const subMenuEl = panelRef.value?.querySelector('.sub-menu');
+      if (!menuEl || !targetEl) {
+        subMenuTop.value = 0;
+        return;
+      }
+      const menuRect = menuEl.getBoundingClientRect();
+      const itemRect = targetEl.getBoundingClientRect();
+      let headerBlock = 0;
+      if (headerEl) {
+        const headerRect = headerEl.getBoundingClientRect();
+        const cs = getComputedStyle(headerEl);
+        const mb = parseFloat(cs.marginBottom || '0');
+        headerBlock = headerRect.height + (isNaN(mb) ? 0 : mb);
+      }
+      let subMenuPadTop = 0;
+      if (subMenuEl) {
+        const smcs = getComputedStyle(subMenuEl);
+        subMenuPadTop = parseFloat(smcs.paddingTop || '0') || 0;
+      }
+      subMenuTop.value = itemRect.top - menuRect.top - headerBlock - subMenuPadTop - 2;
+    });
+  } catch {
+    subMenuTop.value = 0;
   }
 };
 
@@ -653,7 +688,6 @@ onUnmounted(() => {
   z-index: 1001;
   display: flex;
   flex-direction: column;
-  gap: 4px;
 }
 
 .sub-menu-header {
@@ -669,7 +703,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 12px;
+  padding: 6px 12px;
   cursor: pointer;
   transition: background 0.2s ease;
   border-radius: 4px;
