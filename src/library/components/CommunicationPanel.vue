@@ -20,6 +20,12 @@
         @mouseenter="hoveredChannel = channel.type"
         @mouseleave="hoveredChannel = null"
       >
+      <Tooltip
+        v-if="isChannelActive(channel.type)"
+        :text="selectedChannel?.title"
+        position="bottom"
+        :offset="8"
+      >
         <span class="channel-icon">
           <component :is="channel.component" />
         </span>
@@ -27,6 +33,10 @@
           v-if="isChannelActive(channel.type)"
           class="active-indicator"
         />
+        </Tooltip>
+        <span v-else class="channel-icon">
+          <component :is="channel.component" />
+        </span>
       </button>
     </div>
 
@@ -171,6 +181,11 @@ const props = defineProps({
     required: false,
     default: '',
   },
+  selectedDialog: {
+    type: Object,
+    required: false,
+    default: null,
+  },
 });
 
 const emit = defineEmits(['select-attribute-channel', 'phone-call']);
@@ -187,6 +202,8 @@ const menuWidth = ref('0px');
 const frozenAttribute = ref(null);
 const isRecentAttributeHovered = ref(false);
 const selectedChannelType = ref(null);
+const selectedChannel = ref({});
+
 
 // Constants
 const CHANNEL_TYPES = ['phone', 'whatsapp', 'telegram', 'max', 'sms'];
@@ -390,6 +407,8 @@ const selectSingleChannel = (attribute, channelId) => {
     channelId: channelId,
   });
   selectedChannelType.value = activeChannelType.value;
+  selectedChannel.value = props.channels.find(ch => ch.channelId === channelId);
+  console.log('TEST selectedChannel.value', selectedChannel.value)
   closeMenu();
 };
 
@@ -401,6 +420,8 @@ const selectChannelForRecentAttribute = (channelId) => {
     });
   }
   selectedChannelType.value = activeChannelType.value;
+  selectedChannel.value = props.channels.find(ch => ch.channelId === channelId);
+  console.log('TEST selectedChannel.value', selectedChannel.value)
   closeMenu();
 };
 
@@ -458,6 +479,8 @@ const selectChannel = (channelId) => {
       channelId: channelId,
     });
     selectedChannelType.value = activeChannelType.value;
+    selectedChannel.value = props.channels.find(ch => ch.channelId === channelId);
+    console.log('TEST selectedChannel.value', selectedChannel.value)
   }
   closeMenu();
 };
@@ -476,6 +499,22 @@ const handleClickOutside = (event) => {
 
 // Watchers
 watch(() => props.contactAttributes, organizeContactAttributes, { deep: true });
+watch(() => props.selectedDialog, (newDialog) => {
+  updateSelectedChannelFromDialog(newDialog);
+}, { deep: true });
+const updateSelectedChannelFromDialog = (dialog) => {
+  if (!dialog) {
+    selectedChannelType.value = null;
+    selectedChannel.value = {};
+    return;
+  }
+  
+  const channelType = getChannelTypeFromId(dialog.channelId);
+  if (channelType && CHANNEL_TYPES.includes(channelType)) {
+    selectedChannelType.value = channelType;
+    selectedChannel.value = props.channels.find(ch => ch.channelId === dialog.channelId);
+  }
+};
 
 // Lifecycle
 onMounted(() => {
@@ -483,6 +522,7 @@ onMounted(() => {
   window.addEventListener('resize', updateMenuWidth);
   document.addEventListener('click', handleClickOutside);
   organizeContactAttributes();
+  updateSelectedChannelFromDialog(props.selectedDialog);
 });
 
 onUnmounted(() => {

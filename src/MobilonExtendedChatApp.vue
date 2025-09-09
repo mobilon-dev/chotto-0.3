@@ -88,6 +88,7 @@
                         :channels="toRaw(channels)"
                         :recent-attribute-channels="recentAttributeChannels"
                         :recent-tooltip-text="recentTooltipText"
+                        :selected-dialog="selectedDialog"
                         @select-attribute-channel="handleAttributeChannelSelect"
                         @phone-call="handlePhoneCall"
                       />
