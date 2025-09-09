@@ -400,6 +400,7 @@ export const messages = [
     direction: 'incoming',
     status: 'read',
     timestamp: '1756960441',
+    subText: 'Виктор',
     header: 'Анна',
     actions: [
       { action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=pin' },
@@ -414,6 +415,7 @@ export const messages = [
     text: "Привет! Рад тебя видеть. Как дела?",
     direction: 'outgoing',
     status: 'received',
+    subText: 'Анна',
     timestamp: '1756960442',
     header: 'Вы'
   },
@@ -425,6 +427,7 @@ export const messages = [
     text: "Занят?",
     direction: 'outgoing',
     status: 'received',
+    subText: 'Анна',
     timestamp: '1756960442',
     header: 'Вы'
   },
@@ -435,6 +438,7 @@ export const messages = [
     type: "message.text",
     text: "Почему молчишь?",
     direction: 'outgoing',
+    subText: 'Анна',
     status: 'received',
     timestamp: '1756960442',
     header: 'Вы'
@@ -446,6 +450,7 @@ export const messages = [
     type: "message.text",
     text: "Да, занят",
     direction: 'incoming',
+    subText: 'Виктор',
     status: 'received',
     timestamp: '1756960442',
     header: 'Вы'
@@ -457,6 +462,7 @@ export const messages = [
     type: "message.text",
     text: "Теперь свободен, кидай отчёт",
     direction: 'incoming',
+    subText: 'Виктор',
     status: 'received',
     timestamp: '1756960442',
     header: 'Вы'
@@ -469,6 +475,7 @@ export const messages = [
     url: "https://axiomabio.com/pdf/test.pdf",
     filename: "Отчет_за_квартал.pdf",
     direction: 'outgoing',
+    subText: 'Анна',
     status: 'received',
     timestamp: '1756960446',
     header: 'Вы',
@@ -481,10 +488,11 @@ export const messages = [
     type: "message.file",
     url: "https://axiomabio.com/pdf/test.pdf",
     filename: "Отчет_за_квартал.pdf",
+    subText: 'Ангелина',
     direction: 'outgoing',
     status: 'received',
     timestamp: '1756960447',
-    header: 'Вы',
+    header: 'Ангелина',
     text: "Держи актуальный отчет."
   },
   {
@@ -493,10 +501,11 @@ export const messages = [
     messageId: '608',
     type: "message.text",
     text: "Тут даты глянь",
+    subText: 'Георгий',
     direction: 'outgoing',
     status: 'received',
     timestamp: '1756960448',
-    header: 'Вы'
+    header: 'Георгий'
   },
   {
     chatId: 6,
@@ -507,7 +516,8 @@ export const messages = [
     direction: 'incoming',
     status: 'read',
     timestamp: '1756960448',
-    header: 'Анна',
+    header: 'Виктор',
+    subText: 'Виктор',
     reply: {
       messageId: '606',
       type: 'message.file',
@@ -524,7 +534,8 @@ export const messages = [
     direction: 'incoming',
     status: 'received',
     timestamp: '1756960449',
-    header: 'Анна',
+    header: 'Ярослав',
+    subText: 'Ярослав',
   },
   {
     chatId: 6, 
@@ -534,9 +545,9 @@ export const messages = [
     text: "зачетный обзор", 
     direction: 'incoming', 
     status: 'read', 
-    timestamp: '1756960450', 
-    subText: 'test test',
-    header: 'Анна',
+    timestamp: '1756960450',
+    header: 'Ярослав',
+    subText: 'Ярослав',
     embed: {
       type: 'rutube',
       url: 'https://rutube.ru/play/embed/6eb0c597c11c89ad5a5fafa3030d0e53/',
@@ -551,7 +562,8 @@ export const messages = [
     direction: 'outgoing',
     status: 'received',
     timestamp: '1756960451',
-    header: 'Вы',
+    header: 'Анна',
+    subText: 'Анна',
   },
 
   /**============================================================================================================ */
