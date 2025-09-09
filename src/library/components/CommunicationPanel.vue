@@ -14,27 +14,30 @@
         :class="['channel-btn', { 
           active: isChannelActive(channel.type),
           hover: hoveredChannel === channel.type && !isChannelActive(channel.type) || 
-                 hoveredChannel === channel.type && isChannelActive(channel.type)
+            hoveredChannel === channel.type && isChannelActive(channel.type)
         }]"
         @click="handleChannelClick(channel.type)"
         @mouseenter="hoveredChannel = channel.type"
         @mouseleave="hoveredChannel = null"
       >
-      <Tooltip
-        v-if="isChannelActive(channel.type)"
-        :text="selectedChannel?.title"
-        position="bottom"
-        :offset="8"
-      >
-        <span class="channel-icon">
-          <component :is="channel.component" />
-        </span>
-        <span
+        <Tooltip
           v-if="isChannelActive(channel.type)"
-          class="active-indicator"
-        />
+          :text="selectedChannel?.title"
+          position="bottom"
+          :offset="8"
+        >
+          <span class="channel-icon">
+            <component :is="channel.component" />
+          </span>
+          <span
+            v-if="isChannelActive(channel.type)"
+            class="active-indicator"
+          />
         </Tooltip>
-        <span v-else class="channel-icon">
+        <span
+          v-else
+          class="channel-icon"
+        >
           <component :is="channel.component" />
         </span>
       </button>
@@ -630,7 +633,7 @@ onUnmounted(() => {
   bottom: 1px;
   left: 50%;
   transform: translateX(-50%);
-  width: 60%;
+  width: 48%;
   height: 2px;
   background: var(--chotto-communication-panel-btn-active-color, #007CFF);
   border-radius: 20px;
@@ -792,5 +795,9 @@ onUnmounted(() => {
 .attributes-menu :deep(.tooltip-wrapper) {
   display: block;
   width: 100%;
+}
+
+.channels-panel :deep(.tooltip-wrapper) {
+  display: contents;
 }
 </style>
