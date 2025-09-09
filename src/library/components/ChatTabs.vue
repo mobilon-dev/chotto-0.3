@@ -55,10 +55,10 @@ defineEmits(['tab-click']);
   border-radius: 20px;
   height: 26px;
   min-width: 61px;
-  color: var(--chotto-primary-text-color);
+  color: var(--chotto-secondary-text-color);
 
   &--active {
-    color: var(--chotto-secondary-text-color);
+    color: var(--chotto-primary-text-color);
     font-weight: 600;
     background-color: var(--chotto-item-background-color-focus);
     border: 1px solid var(--chotto-item-border-color, #d0d0d0);
