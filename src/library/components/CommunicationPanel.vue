@@ -12,20 +12,31 @@
         v-for="channel in channelsTypes"
         :key="channel.type"
         :class="['channel-btn', { 
-          active: activeChannelType === channel.type,
-          hover: hoveredChannel === channel.type && activeChannelType !== channel.type
+          active: isChannelActive(channel.type),
+          hover: hoveredChannel === channel.type && !isChannelActive(channel.type) || 
+                 hoveredChannel === channel.type && isChannelActive(channel.type)
         }]"
-        @click="toggleMenu(channel.type)"
+        @click="handleChannelClick(channel.type)"
         @mouseenter="hoveredChannel = channel.type"
         @mouseleave="hoveredChannel = null"
+      >
+      <Tooltip
+        v-if="isChannelActive(channel.type)"
+        :text="selectedChannel?.title"
+        position="bottom"
+        :offset="8"
       >
         <span class="channel-icon">
           <component :is="channel.component" />
         </span>
         <span
-          v-if="activeChannelType === channel.type"
+          v-if="isChannelActive(channel.type)"
           class="active-indicator"
         />
+        </Tooltip>
+        <span v-else class="channel-icon">
+          <component :is="channel.component" />
+        </span>
       </button>
     </div>
 
@@ -171,6 +182,11 @@ const props = defineProps({
     required: false,
     default: '',
   },
+  selectedDialog: {
+    type: Object,
+    required: false,
+    default: null,
+  },
 });
 
 const emit = defineEmits(['select-attribute-channel', 'phone-call']);
@@ -186,6 +202,8 @@ const hoveredAttribute = ref(null);
 const menuWidth = ref('0px');
 const frozenAttribute = ref(null);
 const isRecentAttributeHovered = ref(false);
+const selectedChannelType = ref(null);
+const selectedChannel = ref({});
 const subMenuTop = ref(0);
 
 // Constants
@@ -259,15 +277,16 @@ const hasMultipleChannels = (channelType) => {
   ).length > 1;
 };
 
+const isChannelActive = (channelType) => {
+  return selectedChannelType.value === channelType;
+};
+
 const getSingleChannelForType = (channelType) => {
   const channelsForType = props.channels.filter(channel => 
     getChannelTypeFromId(channel.channelId) === channelType
   );
   return channelsForType.length === 1 ? channelsForType[0] : null;
 };
-
-// kept for reference of old API; function removed as unused
-
 
 const getMenuChannelIconComponent = (channelType) => {
   return menuChannelIconsMap[channelType] || null;
@@ -314,10 +333,22 @@ const isAttributeFrozen = (attribute) => {
   return frozenAttribute.value?.id === attribute.id;
 };
 
-const toggleMenu = (channelType) => {
-  if (activeChannelType.value === channelType) {
-    closeMenu();
+// Обработчик клика по каналу
+const handleChannelClick = (channelType) => {
+  // Если канал уже выбран, просто открываем/закрываем меню
+  if (selectedChannelType.value === channelType) {
+    if (activeChannelType.value === channelType) {
+      closeMenu();
+    } else {
+      activeChannelType.value = channelType;
+      showMenu.value = true;
+      showSubMenu.value = false;
+      frozenAttribute.value = null;
+      isRecentAttributeHovered.value = false;
+      updateMenuWidth();
+    }
   } else {
+    // Если кликаем на другой канал, просто открываем меню без установки активного состояния
     activeChannelType.value = channelType;
     showMenu.value = true;
     showSubMenu.value = false;
@@ -376,6 +407,9 @@ const selectSingleChannel = (attribute, channelId) => {
     attributeId: attribute.id,
     channelId: channelId,
   });
+  selectedChannelType.value = activeChannelType.value;
+  selectedChannel.value = props.channels.find(ch => ch.channelId === channelId);
+  console.log('TEST selectedChannel.value', selectedChannel.value)
   closeMenu();
 };
 
@@ -386,6 +420,9 @@ const selectChannelForRecentAttribute = (channelId) => {
       channelId: channelId,
     });
   }
+  selectedChannelType.value = activeChannelType.value;
+  selectedChannel.value = props.channels.find(ch => ch.channelId === channelId);
+  console.log('TEST selectedChannel.value', selectedChannel.value)
   closeMenu();
 };
 
@@ -444,6 +481,9 @@ const selectChannel = (channelId) => {
       attributeId: hoveredAttribute.value.id,
       channelId: channelId,
     });
+    selectedChannelType.value = activeChannelType.value;
+    selectedChannel.value = props.channels.find(ch => ch.channelId === channelId);
+    console.log('TEST selectedChannel.value', selectedChannel.value)
   }
   closeMenu();
 };
@@ -493,6 +533,22 @@ const handleClickOutside = (event) => {
 
 // Watchers
 watch(() => props.contactAttributes, organizeContactAttributes, { deep: true });
+watch(() => props.selectedDialog, (newDialog) => {
+  updateSelectedChannelFromDialog(newDialog);
+}, { deep: true });
+const updateSelectedChannelFromDialog = (dialog) => {
+  if (!dialog) {
+    selectedChannelType.value = null;
+    selectedChannel.value = {};
+    return;
+  }
+  
+  const channelType = getChannelTypeFromId(dialog.channelId);
+  if (channelType && CHANNEL_TYPES.includes(channelType)) {
+    selectedChannelType.value = channelType;
+    selectedChannel.value = props.channels.find(ch => ch.channelId === dialog.channelId);
+  }
+};
 
 // Lifecycle
 onMounted(() => {
@@ -500,6 +556,7 @@ onMounted(() => {
   window.addEventListener('resize', updateMenuWidth);
   document.addEventListener('click', handleClickOutside);
   organizeContactAttributes();
+  updateSelectedChannelFromDialog(props.selectedDialog);
 });
 
 onUnmounted(() => {
@@ -509,7 +566,6 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-/* Стили остаются без изменений */
 .communication-panel {
   position: relative;
   display: inline-block;

@@ -88,6 +88,7 @@
                         :channels="toRaw(channels)"
                         :recent-attribute-channels="recentAttributeChannels"
                         :recent-tooltip-text="recentTooltipText"
+                        :selected-dialog="selectedDialog"
                         @select-attribute-channel="handleAttributeChannelSelect"
                         @phone-call="handlePhoneCall"
                       />
@@ -710,6 +711,12 @@ const selectChat = (args) => {
   if(args.dialog){
     description.value = args.dialog.name
     selectedDialog.value = args.dialog
+    selectedDialog.value.isSelected = true
+    if (selectedChat.value) {
+      selectedChat.value.dialogs.forEach(d => 
+      d.isSelected = d.dialogId === selectedDialog.value.dialogId
+    )
+    }
   }
   else {
     description.value = null
@@ -785,7 +792,15 @@ const openInCRM = () => {
 
 const handleAttributeChannelSelect = (data) => {
   console.log('Выбран атрибут/канал:', data);
+  if (selectedChat.value) {
+    const targetDialog = selectedChat.value.dialogs.find(
+      d => d.attributeId === data.attributeId && 
+      d.channelId === data.channelId
+    );
+    if (targetDialog) selectChat({chat: selectedChat.value, dialog: targetDialog});
+  }
 };
+
 
 const handleEvent = async (event) => {
   console.log(event)
