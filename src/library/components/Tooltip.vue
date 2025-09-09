@@ -104,6 +104,7 @@ const hideTooltip = () => {
   font-family: var(--chotto-container-font-family);
   font-weight: var(--chotto-container-font-weight);
   border: var(--chotto-tooltip-border, none);
+  font-size: var(--chotto-tooltip-font-size, 16px);
 }
 
 .tooltip-wrapper {

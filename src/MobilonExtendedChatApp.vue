@@ -87,6 +87,7 @@
                         :contactAttributes="selectedChat?.contact?.attributes"
                         :channels="toRaw(channels)"
                         :recent-attribute-channels="recentAttributeChannels"
+                        :recent-tooltip-text="recentTooltipText"
                         @select-attribute-channel="handleAttributeChannelSelect"
                         @phone-call="handlePhoneCall"
                       />
@@ -427,6 +428,9 @@ const chatPanelWidth = ref(50)
 const theme = ref('')
 
 const description = ref()
+
+// Моковая строка тултипа для блока "Недавний"
+const recentTooltipText = ref('01.09.25 10:05:10 через +7 (391) 247-50-00 Успешный 02:05')
 
 const refContainer = ref()
 const refChatWrapper = ref()

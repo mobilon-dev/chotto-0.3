@@ -75,6 +75,7 @@
   --chotto-tooltip-padding: 5px 9px 5px 12px;
   --chotto-tooltip-max-width: 372px;
   --chotto-tooltip-text-align: left;
+  --chotto-tooltip-font-size: 14px;
 
   /* FeedKeyboard */
   --chotto-feedkeyboard-bg-color: var(--default-white);

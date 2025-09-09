@@ -41,26 +41,32 @@
       </div>
 
       <!-- Недавний контакт -->
-      <div
+      <Tooltip
         v-if="showRecentAttribute"
-        :class="['recent-attribute', { 
-          'frozen-hover': isRecentAttributeHovered 
-        }]"
-        @mouseenter="handleRecentAttributeMouseEnter"
-        @mouseleave="handleRecentAttributeMouseLeave"
-        @mouseover="resetRegularAttributeHover"
-        @click="handleRecentAttributeClick()"
+        :text="recentTooltipText"
+        position="bottom"
+        :offset="8"
       >
-        <div class="attribute-info">
-          <span class="attribute-value">{{ recentAttribute?.value }}</span>
-        </div>
-        <span
-          class="channel-icon-small"
-          :class="{ 'menu-icon-grey': activeChannelType !== 'sms' }"
+        <div
+          :class="['recent-attribute', { 
+            'frozen-hover': isRecentAttributeHovered 
+          }]"
+          @mouseenter="handleRecentAttributeMouseEnter"
+          @mouseleave="handleRecentAttributeMouseLeave"
+          @mouseover="resetRegularAttributeHover"
+          @click="handleRecentAttributeClick()"
         >
-          <component :is="getMenuChannelIconComponent(activeChannelType)" />
-        </span>
-      </div>
+          <div class="attribute-info">
+            <span class="attribute-value">{{ recentAttribute?.value }}</span>
+          </div>
+          <span
+            class="channel-icon-small"
+            :class="{ 'menu-icon-grey': activeChannelType !== 'sms' }"
+          >
+            <component :is="getMenuChannelIconComponent(activeChannelType)" />
+          </span>
+        </div>
+      </Tooltip>
 
       <div 
         v-if="showRecentAttribute && organizedContactAttributes[activeChannelType]?.length && activeChannelType !== 'phone'" 
@@ -85,7 +91,7 @@
           <span
             v-if="hasMultipleChannels(activeChannelType)"
             class="menu-icon-arrow"
-          ></span>
+          />
           <span
             v-else
             class="channel-icon-small"
@@ -128,6 +134,7 @@
 
 <script setup>
 import { ref, watch, onMounted, onUnmounted, computed } from 'vue';
+import Tooltip from './Tooltip.vue';
 
 import { 
   CommunicationPanelPhoneIcon,
@@ -157,6 +164,11 @@ const props = defineProps({
     type: Object,
     required: true,
     default: () => ({}),
+  },
+  recentTooltipText: {
+    type: String,
+    required: false,
+    default: '',
   },
 });
 
@@ -630,7 +642,7 @@ onUnmounted(() => {
 
 .sub-menu {
   position: absolute;
-  bottom: 0;
+  top: 0;
   right: 100%;
   background: white;
   border: 1px solid #e0e0e0;
