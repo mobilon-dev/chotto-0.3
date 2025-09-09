@@ -9,15 +9,15 @@
     @mouseup="stopScrollWatch"
   >
     <div
-      v-for="object in groupedObjects"
+      v-for="(object, index) in groupedObjects"
       :id="JSON.stringify(object)"
-      :key="object.messageId"
+      :key="`${object.messageId ?? 'mid'}-${index}`"
       class="tracking-message"
       @dblclick="feedObjectDoubleClick($event,object)"
     >
       <component
         :is="componentsMap(object.type)"
-        :key="object.messageId"
+        :key="`${object.messageId ?? 'mid'}-${index}`"
         class="message-feed__message"
         :message="object"
         :apply-style="applyStyle"

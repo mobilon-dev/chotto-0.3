@@ -78,7 +78,6 @@
           >
           <span
             v-if="item.notificationCount"
-            :style="{ backgroundColor: item.notificationColor || 'var(--chotto-unread-background-color)' }"
           >{{ item.notificationCount > 99 ? '99+' : item.notificationCount }}</span>
         </li>
       </ul>
