@@ -12,10 +12,11 @@
         v-for="channel in channelsTypes"
         :key="channel.type"
         :class="['channel-btn', { 
-          active: activeChannelType === channel.type,
-          hover: hoveredChannel === channel.type && activeChannelType !== channel.type
+          active: isChannelActive(channel.type),
+          hover: hoveredChannel === channel.type && !isChannelActive(channel.type) || 
+                 hoveredChannel === channel.type && isChannelActive(channel.type)
         }]"
-        @click="toggleMenu(channel.type)"
+        @click="handleChannelClick(channel.type)"
         @mouseenter="hoveredChannel = channel.type"
         @mouseleave="hoveredChannel = null"
       >
@@ -23,7 +24,7 @@
           <component :is="channel.component" />
         </span>
         <span
-          v-if="activeChannelType === channel.type"
+          v-if="isChannelActive(channel.type)"
           class="active-indicator"
         />
       </button>
@@ -185,6 +186,7 @@ const hoveredAttribute = ref(null);
 const menuWidth = ref('0px');
 const frozenAttribute = ref(null);
 const isRecentAttributeHovered = ref(false);
+const selectedChannelType = ref(null);
 
 // Constants
 const CHANNEL_TYPES = ['phone', 'whatsapp', 'telegram', 'max', 'sms'];
@@ -257,15 +259,16 @@ const hasMultipleChannels = (channelType) => {
   ).length > 1;
 };
 
+const isChannelActive = (channelType) => {
+  return selectedChannelType.value === channelType;
+};
+
 const getSingleChannelForType = (channelType) => {
   const channelsForType = props.channels.filter(channel => 
     getChannelTypeFromId(channel.channelId) === channelType
   );
   return channelsForType.length === 1 ? channelsForType[0] : null;
 };
-
-// kept for reference of old API; function removed as unused
-
 
 const getMenuChannelIconComponent = (channelType) => {
   return menuChannelIconsMap[channelType] || null;
@@ -312,10 +315,22 @@ const isAttributeFrozen = (attribute) => {
   return frozenAttribute.value?.id === attribute.id;
 };
 
-const toggleMenu = (channelType) => {
-  if (activeChannelType.value === channelType) {
-    closeMenu();
+// Обработчик клика по каналу
+const handleChannelClick = (channelType) => {
+  // Если канал уже выбран, просто открываем/закрываем меню
+  if (selectedChannelType.value === channelType) {
+    if (activeChannelType.value === channelType) {
+      closeMenu();
+    } else {
+      activeChannelType.value = channelType;
+      showMenu.value = true;
+      showSubMenu.value = false;
+      frozenAttribute.value = null;
+      isRecentAttributeHovered.value = false;
+      updateMenuWidth();
+    }
   } else {
+    // Если кликаем на другой канал, просто открываем меню без установки активного состояния
     activeChannelType.value = channelType;
     showMenu.value = true;
     showSubMenu.value = false;
@@ -374,6 +389,7 @@ const selectSingleChannel = (attribute, channelId) => {
     attributeId: attribute.id,
     channelId: channelId,
   });
+  selectedChannelType.value = activeChannelType.value;
   closeMenu();
 };
 
@@ -384,6 +400,7 @@ const selectChannelForRecentAttribute = (channelId) => {
       channelId: channelId,
     });
   }
+  selectedChannelType.value = activeChannelType.value;
   closeMenu();
 };
 
@@ -440,6 +457,7 @@ const selectChannel = (channelId) => {
       attributeId: hoveredAttribute.value.id,
       channelId: channelId,
     });
+    selectedChannelType.value = activeChannelType.value;
   }
   closeMenu();
 };
@@ -474,7 +492,6 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-/* Стили остаются без изменений */
 .communication-panel {
   position: relative;
   display: inline-block;
