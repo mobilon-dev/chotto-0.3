@@ -698,4 +698,9 @@ onUnmounted(() => {
   text-overflow: ellipsis;
   flex-grow: 1;
 }
+
+.attributes-menu :deep(.tooltip-wrapper) {
+  display: block;
+  width: 100%;
+}
 </style>
