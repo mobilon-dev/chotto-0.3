@@ -26,7 +26,7 @@
 
     <div
       class="audio-message__content"
-      :class="{ 'is-first': isFirstInSeries }"
+      :class="{ 'is-first': isFirstInSeries, 'with-avatar-indent': !isFirstInSeries && message.avatar }"
       @mouseenter="showMenu"
     >
       <BaseReplyMessage
@@ -710,6 +710,10 @@ onMounted(() => {
       background-color: var(--chotto-message-left-bg);
     }
 
+    .audio-message__content.with-avatar-indent {
+      margin-left: calc(var(--chotto-avatar-small) + 12px);
+    }
+
     .audio-message__menu-button {
       top: 50%;
       right: -40px;
@@ -741,6 +745,10 @@ onMounted(() => {
       grid-column: 1;
       margin-left: auto;
       background-color: var(--chotto-message-right-bg);
+    }
+
+    .audio-message__content.with-avatar-indent {
+      margin-right: calc(var(--chotto-avatar-small) + 12px);
     }
 
     .audio-message__menu-button {

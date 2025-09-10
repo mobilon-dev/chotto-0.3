@@ -23,7 +23,7 @@
       {{ message.subText }}
     </p>
 
-    <div class="image-message__content" :class="{ 'is-first': isFirstInSeries }">
+    <div class="image-message__content" :class="{ 'is-first': isFirstInSeries, 'with-avatar-indent': !isFirstInSeries && message.avatar }">
       <BaseReplyMessage
         v-if="message.reply"
         style="margin: 10px 10px 4px 16px;"
@@ -441,6 +441,10 @@ const closeModal = () => isOpenModal.value = false
       background-color: var(--chotto-message-left-bg);
     }
 
+    .image-message__content.with-avatar-indent {
+      margin-left: calc(var(--chotto-avatar-small) + 12px);
+    }
+
     .image-message__menu-button {
       top: 50%;
       right: -40px;
@@ -471,6 +475,10 @@ const closeModal = () => isOpenModal.value = false
       grid-column: 1;
       margin-left: auto;
       background-color: var(--chotto-message-right-bg);
+    }
+
+    .image-message__content.with-avatar-indent {
+      margin-right: calc(var(--chotto-avatar-small) + 12px);
     }
 
     .image-message__text-container {

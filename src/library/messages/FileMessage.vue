@@ -238,7 +238,7 @@ function getClass(message) {
   }
 
   &__avatar {
-    align-self: center;
+    align-self: auto;
     object-fit: cover;
     min-width: var(--chotto-avatar-small);
     min-height: var(--chotto-avatar-small);

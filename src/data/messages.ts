@@ -402,6 +402,7 @@ export const messages = [
     timestamp: '1756960441',
     subText: 'Виктор',
     header: 'Анна',
+    avatar:'https://placehold.jp/30/336633/ffffff/64x64.png?text=VIK',
     actions: [
       { action: 'edit', title: 'изменить', icon: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=pin' },
       { action: 'delete', title: 'удалить' }
@@ -416,6 +417,7 @@ export const messages = [
     direction: 'outgoing',
     status: 'received',
     subText: 'Анна',
+    avatar:'https://placehold.jp/30/f1048e/ffffff/64x64.png?text=Ann',
     timestamp: '1756960442',
     header: 'Вы'
   },
@@ -428,6 +430,7 @@ export const messages = [
     direction: 'outgoing',
     status: 'received',
     subText: 'Анна',
+    avatar:'https://placehold.jp/30/f1048e/ffffff/64x64.png?text=Ann',
     timestamp: '1756960442',
     header: 'Вы'
   },
@@ -439,6 +442,7 @@ export const messages = [
     text: "Почему молчишь?",
     direction: 'outgoing',
     subText: 'Анна',
+    avatar:'https://placehold.jp/30/f1048e/ffffff/64x64.png?text=Ann',
     status: 'received',
     timestamp: '1756960442',
     header: 'Вы'
@@ -451,6 +455,7 @@ export const messages = [
     text: "Да, занят",
     direction: 'incoming',
     subText: 'Виктор',
+    avatar:'https://placehold.jp/30/336633/ffffff/64x64.png?text=VIK',
     status: 'received',
     timestamp: '1756960442',
     header: 'Вы'
@@ -463,6 +468,7 @@ export const messages = [
     text: "Теперь свободен, кидай отчёт",
     direction: 'incoming',
     subText: 'Виктор',
+    avatar:'https://placehold.jp/30/336633/ffffff/64x64.png?text=VIK',
     status: 'received',
     timestamp: '1756960442',
     header: 'Вы'
@@ -476,6 +482,7 @@ export const messages = [
     filename: "Отчет_за_квартал.pdf",
     direction: 'outgoing',
     subText: 'Анна',
+    avatar:'https://placehold.jp/30/f1048e/ffffff/64x64.png?text=Ann',
     status: 'received',
     timestamp: '1756960446',
     header: 'Вы',
@@ -489,6 +496,7 @@ export const messages = [
     url: "https://axiomabio.com/pdf/test.pdf",
     filename: "Отчет_за_квартал.pdf",
     subText: 'Ангелина',
+    avatar:'https://placehold.jp/30/8b3dff/ffffff/64x64.png?text=Ang',
     direction: 'outgoing',
     status: 'received',
     timestamp: '1756960447',
@@ -502,6 +510,7 @@ export const messages = [
     type: "message.text",
     text: "Тут даты глянь",
     subText: 'Георгий',
+    avatar:'https://placehold.jp/30/0d0618/ffffff/64x64.png?text=Geo',
     direction: 'outgoing',
     status: 'received',
     timestamp: '1756960448',
@@ -518,6 +527,7 @@ export const messages = [
     timestamp: '1756960448',
     header: 'Виктор',
     subText: 'Виктор',
+    avatar:'https://placehold.jp/30/336633/ffffff/64x64.png?text=VIK',
     reply: {
       messageId: '606',
       type: 'message.file',
@@ -536,6 +546,7 @@ export const messages = [
     timestamp: '1756960449',
     header: 'Ярослав',
     subText: 'Ярослав',
+    avatar:'https://placehold.jp/30/1b97e4/ffffff/64x64.png?text=Jar',
   },
   {
     chatId: 6, 
@@ -548,6 +559,7 @@ export const messages = [
     timestamp: '1756960450',
     header: 'Ярослав',
     subText: 'Ярослав',
+    avatar:'https://placehold.jp/30/1b97e4/ffffff/64x64.png?text=Jar',
     embed: {
       type: 'rutube',
       url: 'https://rutube.ru/play/embed/6eb0c597c11c89ad5a5fafa3030d0e53/',
@@ -564,6 +576,7 @@ export const messages = [
     timestamp: '1756960451',
     header: 'Анна',
     subText: 'Анна',
+    avatar:'https://placehold.jp/30/f1048e/ffffff/64x64.png?text=Ann',
   },
 
   /**============================================================================================================ */

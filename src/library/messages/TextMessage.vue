@@ -26,7 +26,7 @@
 
     <div
       class="text-message__content"
-      :class="{ 'is-first': isFirstInSeries }"
+      :class="{ 'is-first': isFirstInSeries, 'with-avatar-indent': !isFirstInSeries && message.avatar }"
       @mouseenter="showMenu"
     >
       <BaseReplyMessage
@@ -286,7 +286,7 @@ function getClass(message) {
   }
 
   &__avatar {
-    align-self: center;
+    align-self: auto;
     object-fit: cover;
     min-width: var(--chotto-avatar-small);
     min-height: var(--chotto-avatar-small);
@@ -342,6 +342,10 @@ function getClass(message) {
       background-color: var(--chotto-message-left-bg);
     }
 
+    .text-message__content.with-avatar-indent {
+      margin-left: calc(var(--chotto-avatar-small) + 12px);
+    }
+
     .text-message__menu-button {
       top: 50%;
       right: -40px;
@@ -372,6 +376,10 @@ function getClass(message) {
       grid-column: 1;
       margin-left: auto;
       background-color: var(--chotto-message-right-bg);
+    }
+
+    .text-message__content.with-avatar-indent {
+      margin-right: calc(var(--chotto-avatar-small) + 12px);
     }
 
     .text-message__menu-button {
