@@ -14,7 +14,7 @@
         :class="['channel-btn', { 
           active: isChannelActive(channel.type),
           hover: hoveredChannel === channel.type && !isChannelActive(channel.type) || 
-          hoveredChannel === channel.type && isChannelActive(channel.type)
+            hoveredChannel === channel.type && isChannelActive(channel.type)
         }]"
         @click="handleChannelClick(channel.type)"
         @mouseenter="hoveredChannel = channel.type"
@@ -815,9 +815,5 @@ onUnmounted(() => {
 .attributes-menu :deep(.tooltip-wrapper) {
   display: block;
   width: 100%;
-}
-
-.channels-panel :deep(.tooltip-wrapper) {
-  display: contents;
 }
 </style>
