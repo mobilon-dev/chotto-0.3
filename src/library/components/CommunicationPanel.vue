@@ -59,7 +59,7 @@
 
       <!-- Недавний контакт -->
       <Tooltip
-        v-if="showRecentAttribute"
+        v-if="showRecentAttribute && recentTooltipText"
         :text="recentTooltipText"
         position="bottom"
         :offset="8"
