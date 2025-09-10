@@ -14,6 +14,7 @@
   /* Context Menu */
   --chotto-context-menu-border-radius: 4px;
   --chotto-context-menu-items-row-gap: 0;
+  --chotto-context-menu-border-color: none;
 
   /* Chat List */
   --chotto-chat-list-filter-margin: 0 16px 10px 15px;
@@ -62,6 +63,7 @@
   --chotto-chat-panel-width: 400px;
   --chotto-chat-panel-left: 65.3%;
   --chotto-chat-panel-padding: 12px;
+  --chotto-item-chat-panel-border-color: var(--neutral-200);
   
   /* Scroll Bar */
   --chotto-scrollbar-bg: var(--neutral-50);

@@ -95,7 +95,7 @@ const click = (index) => {
 
   &__item:not(:last-child) {
     /* padding-bottom: 6px; */
-    border-bottom: 1px solid var(--chotto-item-border-color);
+    border-bottom: 1px solid var(--chotto-context-menu-border-color, var(--chotto-item-border-color));
   }
 }
 </style>

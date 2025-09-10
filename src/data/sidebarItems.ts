@@ -8,7 +8,7 @@ export const sidebarItems = [
     icon: vasiliyImage,
     name: 'Василий Петрович',
     notificationCount: 100,
-    selected: false,
+    selected: true,
   },
   {
     itemId: 'itemId1',
@@ -16,7 +16,7 @@ export const sidebarItems = [
     name: 'Радий Юсупович',
     notificationCount: 10,
     notificationColor: '#FF0000',
-    selected: false,
+    selected: true,
   },
   {
     itemId: 'itemId2',
