@@ -98,7 +98,7 @@ const handleClick = (button: IFeedKeyboard) => {
     p {
       font-size: var(--chotto-text-font-size);
       margin: 0;
-      font-weight: bold;
+      font-weight: var(--chotto-feedkeyboard-font-weight, 600);
     }
   }
 }
