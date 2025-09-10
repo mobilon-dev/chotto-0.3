@@ -89,6 +89,7 @@
                         :recent-attribute-channels="recentAttributeChannels"
                         :recent-tooltip-text="recentTooltipText"
                         :selected-dialog="selectedDialog"
+                        :channel-tooltips="channelTooltips"
                         @select-attribute-channel="handleAttributeChannelSelect"
                         @phone-call="handlePhoneCall"
                       />
@@ -430,8 +431,16 @@ const theme = ref('')
 
 const description = ref()
 
-// Моковая строка тултипа для блока "Недавний"
+// Моковая строка тултипа для блока "Недавний" панели CommunicationPanel
 const recentTooltipText = ref('01.09.25 10:05:10 через +7 (391) 247-50-00 Успешный 02:05')
+
+// Тексты тултипов для кнопок панели CommunicationPanel
+const channelTooltips = ref({
+  phone: 'Позвонить',
+  whatsapp: 'Выберите контакт и канал для отправки сообщения',
+  telegram: 'Выберите контакт и канал для отправки сообщения',
+  max: 'Выберите контакт и канал для отправки сообщения'
+})
 
 const refContainer = ref()
 const refChatWrapper = ref()

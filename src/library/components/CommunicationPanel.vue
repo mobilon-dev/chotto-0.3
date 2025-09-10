@@ -20,26 +20,29 @@
         @mouseenter="hoveredChannel = channel.type"
         @mouseleave="hoveredChannel = null"
       >
-        <Tooltip
-          v-if="isChannelActive(channel.type)"
-          :text="selectedChannel?.title"
-          position="bottom"
-          :offset="8"
-        >
-          <span class="channel-icon">
-            <component :is="channel.component" />
-          </span>
-        </Tooltip>
-        <span
-          v-if="isChannelActive(channel.type)"
-          class="active-indicator"
-        />
-        <span
-          v-else
-          class="channel-icon"
-        >
-          <component :is="channel.component" />
-        </span>
+        <template v-if="isChannelActive(channel.type)">
+          <Tooltip
+            :text="selectedChannel?.title"
+            position="bottom"
+            :offset="8"
+          >
+            <span class="channel-icon">
+              <component :is="channel.component" />
+            </span>
+          </Tooltip>
+          <span class="active-indicator" />
+        </template>
+        <template v-else>
+          <Tooltip
+            :text="getTooltipText(channel.type)"
+            position="bottom"
+            :offset="8"
+          >
+            <span class="channel-icon">
+              <component :is="channel.component" />
+            </span>
+          </Tooltip>
+        </template>
       </button>
     </div>
 
@@ -190,6 +193,11 @@ const props = defineProps({
     required: false,
     default: null,
   },
+  channelTooltips: {
+    type: Object,
+    required: false,
+    default: () => ({})
+  },
 });
 
 const emit = defineEmits(['select-attribute-channel', 'phone-call']);
@@ -263,6 +271,18 @@ const shouldShowSubMenu = computed(() =>
 );
 
 // Methods
+const defaultTooltips = {
+  phone: 'Позвонить',
+  whatsapp: 'Выберите контакт и канал для отправки сообщения',
+  telegram: 'Выберите контакт и канал для отправки сообщения',
+  max: 'Выберите контакт и канал для отправки сообщения',
+  sms: 'Выберите контакт и канал для отправки сообщения',
+};
+
+const getTooltipText = (channelType) => {
+  return props.channelTooltips?.[channelType] ?? defaultTooltips[channelType] ?? '';
+};
+
 const getChannelTypeFromId = (channelId) => {
   if (!channelId) return null;
   
