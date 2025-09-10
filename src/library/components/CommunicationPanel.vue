@@ -29,11 +29,11 @@
           <span class="channel-icon">
             <component :is="channel.component" />
           </span>
-          <span
-            v-if="isChannelActive(channel.type)"
-            class="active-indicator"
-          />
         </Tooltip>
+        <span
+          v-if="isChannelActive(channel.type)"
+          class="active-indicator"
+        />
         <span
           v-else
           class="channel-icon"
