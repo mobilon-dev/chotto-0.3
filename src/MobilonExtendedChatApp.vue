@@ -87,7 +87,6 @@
                         :contactAttributes="selectedChat?.contact?.attributes"
                         :channels="toRaw(channels)"
                         :recent-attribute-channels="recentAttributeChannels"
-                        :recent-tooltip-text="recentTooltipText"
                         :selected-dialog="selectedDialog"
                         :channel-tooltips="channelTooltips"
                         @select-attribute-channel="handleAttributeChannelSelect"
@@ -463,14 +462,16 @@ const recentAttributeChannels = computed(() => {
   if (whatsappDialogs?.length) {
     recentAttributeChannels['whatsapp'] = {
       attributeId: whatsappDialogs[0]?.attributeId, 
-      channelId: whatsappDialogs[0]?.channelId
+      channelId: whatsappDialogs[0]?.channelId,
+      tooltip: channels.value.find(ch => ch.channelId === whatsappDialogs[0]?.channelId)?.title,
     };
   }
 
   if (telegramDialogs?.length) {
     recentAttributeChannels['telegram'] = {
       attributeId: telegramDialogs[0]?.attributeId, 
-      channelId: telegramDialogs[0]?.channelId
+      channelId: telegramDialogs[0]?.channelId,
+      tooltip: channels.value.find(ch => ch.channelId === telegramDialogs[0]?.channelId)?.title,
     };
   }
 
