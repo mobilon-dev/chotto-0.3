@@ -61,7 +61,7 @@
       <Tooltip
         v-if="showRecentAttribute && props.recentAttributeChannels[activeChannelType]?.tooltip"
         :text="props.recentAttributeChannels[activeChannelType]?.tooltip"
-        position="left"
+        position="bottom"
         :offset="8"
       >
         <div
