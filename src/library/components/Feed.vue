@@ -8,6 +8,13 @@
     @mousedown="startScrollWatch"
     @mouseup="stopScrollWatch"
   >
+    <transition>
+      <DateMessageSticky
+        v-if="showStickyDate"
+        class="message-feed__sticky-date"
+        :text="stickyDateText"
+      />
+    </transition>
     <div
       v-for="(object, index) in groupedObjects"
       :id="JSON.stringify(object)"
@@ -97,12 +104,13 @@ import {
   ImageMessage,
   TextMessage,
   DateMessage,
+  DateMessageSticky,
   AudioMessage,
   VideoMessage,
   CallMessage,
   SystemMessage,
   TypingMessage,
-  BaseReplyMessage
+  BaseReplyMessage,
 } from "../messages";
 
 import { IFeedObject, IFeedTyping, IFeedUnreadButton } from '../../types';
@@ -121,6 +129,9 @@ const allowLoadMoreTop = ref(false)
 const allowLoadMoreBottom = ref(false)
 const movingDown = ref(false)
 const isScrollByMouseButton = ref(false)
+const showStickyDate = ref(false)
+const stickyDateText = ref('')
+let stickyHideTimer = null as unknown as number | null
 
 const props = defineProps({
   objects: {
@@ -204,7 +215,7 @@ function scrollTopCheck (allowLoadMore: boolean = true) {
   }
   const limit = 100;
   const scrollBottom = element.scrollHeight - element.scrollTop - element.clientHeight;
-  // Проверяем, что scrollBottom меньше заданного порога
+
   if (scrollBottom < limit + keyboardHeight) {
     isShowButton.value = false;
     isKeyboardPlace.value = true
@@ -231,7 +242,13 @@ function scrollTopCheck (allowLoadMore: boolean = true) {
       allowLoadMoreBottom.value = false
     }
   }
-  
+
+  updateStickyDate();
+  showStickyDate.value = true;
+  if (stickyHideTimer) window.clearTimeout(stickyHideTimer as unknown as number)
+  stickyHideTimer = window.setTimeout(() => {
+    showStickyDate.value = false;
+  }, 500);
 };
 
 watch(
@@ -407,6 +424,37 @@ const groupedObjects = computed(() => {
     }
   })
 })
+
+function updateStickyDate() {
+  const feedEl = unref(refFeed) as HTMLElement
+  if (!feedEl || !trackingObjects.value) return
+  const feedTop = feedEl.getBoundingClientRect().top
+  let topMost: HTMLElement | null = null
+
+  for (const el of trackingObjects.value) {
+    const rect = el.getBoundingClientRect()
+    if (rect.top <= feedTop + 1 && rect.bottom > feedTop) { 
+      topMost = el
+      break
+    }
+  }
+
+  if (!topMost) {
+    for (const el of trackingObjects.value) {
+      const rect = el.getBoundingClientRect()
+      if (rect.top >= feedTop) { topMost = el; break }
+    }
+  }
+  if (!topMost) return
+  try {
+    const obj = JSON.parse(topMost.id)
+    if (!obj || !obj.timestamp) return
+    const d = new Date(Number(obj.timestamp) * 1000)
+    stickyDateText.value = d.toLocaleDateString()
+  } catch {
+    // ignore
+  }
+}
 
 </script>
 
