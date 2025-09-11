@@ -1,8 +1,15 @@
 <template>
   <div 
+    ref="containerRef"
     class="sidebar__container"
     :class="{'sidebar-horizontal__container' : horizontal}"
   >
+    <span
+      v-if="!horizontal && barVisible"
+      class="sidebar__selected-bar"
+      :class="{ 'is-animating': isAnimating }"
+      :style="{ top: barTop + 'px', height: barHeight + 'px' }"
+    />
     <div class="sidebar__scroll-container">
       <ul 
         class="sidebar__list-fixed"
@@ -13,7 +20,7 @@
           :key="index"
           class="sidebar__item-fixed"
           :class="{'sidebar-horizontal__item' : horizontal}"
-          @click="selectItem(item.itemId)"
+          @click="onItemClick($event, item.itemId)"
         >
           <Tooltip 
             v-if="item.name" 
@@ -47,7 +54,7 @@
           :key="index"
           class="sidebar__item"
           :class="{'sidebar-horizontal__item' : horizontal}"
-          @click="selectItem(item.itemId)"
+          @click="onItemClick($event, item.itemId)"
         >
           <Tooltip 
             v-if="item.name" 
@@ -65,7 +72,7 @@
               }"
             >
           </Tooltip>
-    
+  
           <img
             v-else
             :src="item.icon"
@@ -100,7 +107,7 @@
 </template>
 
 <script setup>
-import { toRef, computed } from 'vue';
+import { toRef, computed, ref, onMounted, onUnmounted, nextTick, watch } from 'vue';
 import ButtonContextMenu from './ButtonContextMenu.vue';
 import SettingsIcon from '../../library/icons/SettingsIcon.vue';
 import Tooltip from './Tooltip.vue';
@@ -145,6 +152,11 @@ const selectItem = (itemId) => {
   emit('selectItem', item);
 };
 
+const onItemClick = (event, itemId) => {
+  animateBarToTarget(event.currentTarget);
+  selectItem(itemId);
+};
+
 const getName = (name) => {
   const parts = name.split(' ');
   return parts.length > 2 ? parts.slice(0, 2).join(' ') : name;
@@ -160,6 +172,77 @@ const handleMenuAction = (action) => {
 const handleButtonClick = () => {
   console.log('Кнопка меню была нажата');
 };
+
+const containerRef = ref(null);
+const barVisible = ref(false);
+const barTop = ref(0);
+const barHeight = ref(40);
+const isAnimating = ref(false);
+
+const computeTopForAvatar = (avatarEl) => {
+  const containerEl = containerRef.value;
+  if (!containerEl || !avatarEl) return 0;
+  const containerRect = containerEl.getBoundingClientRect();
+  const avatarRect = avatarEl.getBoundingClientRect();
+  const centerY = avatarRect.top + (avatarRect.height / 2);
+  const top = centerY - containerRect.top - barHeight.value / 2;
+  return Math.max(0, top);
+};
+
+const syncBarWithSelected = () => {
+  if (!containerRef.value) return;
+  const containerEl = containerRef.value;
+  const active = containerEl.querySelector('.sidebar__image--active');
+  if (active) {
+    barTop.value = computeTopForAvatar(active);
+    barVisible.value = true;
+  } else {
+    barVisible.value = false;
+  }
+};
+
+const animateBarToTarget = (liEl) => {
+  try {
+    if (!liEl || !containerRef.value) return;
+    const avatarEl = liEl.querySelector('.sidebar__image');
+    if (!avatarEl) return;
+    const targetTop = computeTopForAvatar(avatarEl);
+
+    const MIN_HEIGHT = 12;
+    const STEP_MS = 160;
+
+    isAnimating.value = true;
+    barHeight.value = MIN_HEIGHT;
+    setTimeout(() => {
+      barTop.value = targetTop;
+      requestAnimationFrame(() => {
+        barHeight.value = 40;
+        setTimeout(() => {
+          isAnimating.value = false;
+        }, STEP_MS);
+      });
+    }, STEP_MS);
+  } catch {
+    // ignore
+  }
+};
+
+const handleResize = () => syncBarWithSelected();
+
+onMounted(() => {
+  nextTick(syncBarWithSelected);
+  window.addEventListener('resize', handleResize);
+  const scrollEl = containerRef.value?.querySelector('.sidebar__scroll-container');
+  if (scrollEl) scrollEl.addEventListener('scroll', syncBarWithSelected);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize);
+  const scrollEl = containerRef.value?.querySelector('.sidebar__scroll-container');
+  if (scrollEl) scrollEl.removeEventListener('scroll', syncBarWithSelected);
+});
+
+watch(() => items.value.map(i => i.selected), () => nextTick(syncBarWithSelected));
 </script>
 
 <style scoped lang="scss">
@@ -267,15 +350,13 @@ const handleButtonClick = () => {
   &__image {
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid transparent;
-    opacity: 0.8;
     transition: all 0.2s;
+    opacity: 0.8;
     width: var(--chotto-avatar-small);
     height: var(--chotto-avatar-small);
   }
 
   &__image--active {
-    border: var(--chotto-sidebar-image-active-border);
     opacity: 1;
   }
 
@@ -307,6 +388,18 @@ const handleButtonClick = () => {
       background-color: var(--neutral-125);
     }
   }
+}
+
+.sidebar__selected-bar {
+  position: absolute;
+  width: 2px;
+  height: 40px;
+  left: 3px;
+  top: 0;
+  border-radius: 2px;
+  background-color: #007CFF;
+  z-index: 4;
+  transition: top 0.16s ease, height 0.16s ease;
 }
 
 .sidebar-horizontal {

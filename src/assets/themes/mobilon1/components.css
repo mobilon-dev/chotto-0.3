@@ -4,7 +4,7 @@
 
   /* Side Bar */
   --chotto-sidebar-padding-container: 0 8px 7px 8px;
-  --chotto-sidebar-row-gap-list: 10px;
+  --chotto-sidebar-row-gap-list: 15px;
   --chotto-sidebar-image-active-border: 3px solid var(--neutral-125);
   /* --chotto-sidebar-list-fixed-border-top: 1px solid var(--neutral-300); */
   --chotto-sidebar-list-fixed-border-bottom: 1px solid var(--neutral-300);
@@ -122,7 +122,7 @@
 
   /*Avatar*/
   --chotto-chat-avatar-small: 40px;
-  --chotto-avatar-small: 43px;
+  --chotto-avatar-small: 40px;
   --chotto-avatar-medium: 50px;
   --chotto-avatar-small-icon-size: 24px;
   --chotto-avatar-medium-icon-size: 21px;
