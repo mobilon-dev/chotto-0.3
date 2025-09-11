@@ -23,7 +23,7 @@
       {{ message.subText }}
     </p>
 
-    <div class="video-message__content" :class="{ 'is-first': isFirstInSeries }">
+    <div class="video-message__content" :class="{ 'is-first': isFirstInSeries, 'with-avatar-indent': !isFirstInSeries && message.avatar  }">
       <BaseReplyMessage
         v-if="message.reply"
         style="margin: 10px 10px 4px 16px;"
@@ -467,6 +467,10 @@ const closeModal = () => isOpenModal.value = false
       background-color: var(--chotto-message-left-bg);
     }
 
+    .video-message__content.with-avatar-indent {
+      margin-left: calc(var(--chotto-avatar-small) + 12px);
+    }
+
     .video-message__text-container {
       grid-column: 2;
     }
@@ -497,11 +501,14 @@ const closeModal = () => isOpenModal.value = false
       margin: 0 10px 2px auto;
     }
 
-
     .video-message__content {
       grid-column: 1;
       margin-left: auto;
       background-color: var(--chotto-message-right-bg);
+    }
+
+    .video-message__content.with-avatar-indent {
+      margin-left: calc(var(--chotto-avatar-small) + 12px);
     }
 
     .video-message__text-container {

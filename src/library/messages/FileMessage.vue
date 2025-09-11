@@ -26,7 +26,7 @@
 
     <div
       class="file-message__content"
-      :class="{ 'is-first': isFirstInSeries }"
+      :class="{ 'is-first': isFirstInSeries, 'with-avatar-indent': !isFirstInSeries && message.avatar }"
       :style="{ gridRow: message.subText ? '2' : '1' }"
       @mouseenter="showMenu"
     >
@@ -403,6 +403,10 @@ function getClass(message) {
       background-color: var(--chotto-message-left-bg);
     }
 
+    .file-message__content.with-avatar-indent {
+      margin-left: calc(var(--chotto-avatar-small) + 12px);
+    }
+
     .file-message__menu-button {
       top: 50%;
       right: -40px;
@@ -434,6 +438,10 @@ function getClass(message) {
       grid-column: 1;
       margin-left: auto;
       background-color: var(--chotto-message-right-bg);
+    }
+
+    .file-message__content.with-avatar-indent {
+      margin-left: calc(var(--chotto-avatar-small) + 12px);
     }
 
     .file-message__menu-button {
