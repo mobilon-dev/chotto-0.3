@@ -314,7 +314,6 @@ watch(() => items.value.map(i => i.selected), () => nextTick(syncBarWithSelected
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     row-gap: 2px;
     align-items: center;
     background-color: transparent;
