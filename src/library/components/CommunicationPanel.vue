@@ -59,9 +59,9 @@
 
       <!-- Недавний контакт -->
       <Tooltip
-        v-if="showRecentAttribute && recentTooltipText"
-        :text="recentTooltipText"
-        position="bottom"
+        v-if="showRecentAttribute && props.recentAttributeChannels[activeChannelType]?.tooltip"
+        :text="props.recentAttributeChannels[activeChannelType]?.tooltip"
+        position="left"
         :offset="8"
       >
         <div
@@ -84,6 +84,26 @@
           </span>
         </div>
       </Tooltip>
+      <div
+        v-else-if="showRecentAttribute"
+        :class="['recent-attribute', { 
+          'frozen-hover': isRecentAttributeHovered 
+        }]"
+        @mouseenter="handleRecentAttributeMouseEnter($event)"
+        @mouseleave="handleRecentAttributeMouseLeave"
+        @mouseover="resetRegularAttributeHover"
+        @click="handleRecentAttributeClick()"
+      >
+        <div class="attribute-info">
+          <span class="attribute-value">{{ recentAttribute?.value }}</span>
+        </div>
+        <span
+          class="channel-icon-small"
+          :class="{ 'menu-icon-grey': activeChannelType !== 'sms' }"
+        >
+          <component :is="getMenuChannelIconComponent(activeChannelType)" />
+        </span>
+      </div>
 
       <div 
         v-if="showRecentAttribute && organizedContactAttributes[activeChannelType]?.length && activeChannelType !== 'phone'" 
@@ -182,11 +202,6 @@ const props = defineProps({
     type: Object,
     required: true,
     default: () => ({}),
-  },
-  recentTooltipText: {
-    type: String,
-    required: false,
-    default: '',
   },
   selectedDialog: {
     type: Object,
