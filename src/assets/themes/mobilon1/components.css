@@ -10,6 +10,7 @@
   --chotto-sidebar-list-fixed-border-bottom: 1px solid var(--neutral-300);
   --chotto-sidebar-notification-count-height: 18px;
   --chotto-sidebar-list-fixed-padding: 12px 10px 22px;
+  --chotto-sidebar-hover-radius: 10px;
 
   /* Context Menu */
   --chotto-context-menu-border-radius: 4px;

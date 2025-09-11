@@ -317,7 +317,26 @@ watch(() => items.value.map(i => i.selected), () => nextTick(syncBarWithSelected
     row-gap: 2px;
     align-items: center;
     background-color: transparent;
-    border-radius: 50%;
+    border-radius: 0;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: calc(var(--chotto-avatar-small) + 15px);
+      height: var(--chotto-avatar-small);
+      border-radius: var(--chotto-sidebar-hover-radius, 10px);
+      background-color: transparent;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 0;
+      transition: background-color 0.2s ease;
+      pointer-events: none;
+    }
+
+    &:hover::before {
+      background-color: var(--neutral-125);
+    }
 
     span {
       position: absolute;
@@ -336,6 +355,7 @@ watch(() => items.value.map(i => i.selected), () => nextTick(syncBarWithSelected
       font-weight: var(--chotto-small-text-font-weight, 400);
       color: var(--chotto-unread-text-color);
       background-color: var(--chotto-unread-background-color);
+      z-index: 2;
     }
 
     p {
@@ -347,6 +367,8 @@ watch(() => items.value.map(i => i.selected), () => nextTick(syncBarWithSelected
   }
 
   &__image {
+    position: relative;
+    z-index: 1;
     border-radius: 50%;
     object-fit: cover;
     transition: all 0.2s;
