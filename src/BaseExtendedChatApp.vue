@@ -174,7 +174,7 @@ import {
   FeedSearch,
   ChannelSelector,
   FeedFoundObjects,
-} from "./library";
+} from ".";
 
 import {
   // formatTimestamp,

@@ -262,7 +262,7 @@
 import { onMounted, ref, computed, unref, toRaw } from "vue";
 // import { nextTick } from "vue";
 import moment from 'moment';
-import MenuIcon from "./library/icons/MenuIcon.vue"
+import MenuIcon from "./icons/MenuIcon.vue"
 
 import {
   ChatInfo,
@@ -290,7 +290,7 @@ import {
   FeedFoundObjects,
   // AudioRecorder,
   CommunicationPanel,
-} from "./library";
+} from ".";
 
 import {
   // formatTimestamp,
@@ -303,7 +303,7 @@ import { useChatsStore } from "./stores/useChatStore";
 import { transformToFeed } from "./transform/transformToFeed";
 // import { useLocale } from "./locale/useLocale";
 // import { VideoRecorder } from "./library";
-import { ButtonCommandsSelector, SplashScreen, ContactInfo } from "./library";
+import { ButtonCommandsSelector, SplashScreen, ContactInfo } from ".";
 
 // const { locale: currentLocale, locales } = useLocale()
 

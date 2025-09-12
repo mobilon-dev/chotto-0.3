@@ -116,7 +116,7 @@ import {
   ButtonContextMenu,
   FeedFoundObjects,
   FeedSearch,
-} from "./library";
+} from ".";
 
 import {
   // formatTimestamp,

@@ -216,7 +216,7 @@ import {
   ChannelSelector,
   FeedFoundObjects,
   AudioRecorder,
-} from "./library";
+} from ".";
 
 import {
   // formatTimestamp,
@@ -228,7 +228,7 @@ import {
 import { useChatsStore } from "./stores/useChatStore";
 import { transformToFeed } from "./transform/transformToFeed";
 import { useLocale } from "./locale/useLocale";
-import { VideoRecorder } from "./library";
+import { VideoRecorder } from ".";
 
 const { locale: currentLocale, locales } = useLocale()
 

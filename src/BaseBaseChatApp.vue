@@ -106,7 +106,7 @@ import {
   ButtonEmojiPicker,
   ButtonTemplateSelector,
   ChannelSelector
-} from "./library";
+} from ".";
 
 import {
   // formatTimestamp,
