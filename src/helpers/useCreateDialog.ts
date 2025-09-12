@@ -1,5 +1,5 @@
 import { useModal } from './useModal';
-import Modal from '../components/atoms/ModalNoFooter.vue';
+import Modal from '../components/atoms/ModalNoFooter/ModalNoFooter.vue';
 
 export const useModalCreateDialog = async (
   title: string, 
@@ -11,7 +11,7 @@ export const useModalCreateDialog = async (
 ) => {
   const data = await useModal({
     //в component должен быть встроен emit change(key: value)
-    component: import('../components/molecules/CreateDialog.vue'),
+    component: import('../components/molecules/CreateDialog/CreateDialog.vue'),
     attrs: {
       title, 
       name,

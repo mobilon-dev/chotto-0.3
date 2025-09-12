@@ -1,44 +1,24 @@
-export { default as AudioRecorder } from './elements/AudioRecorder.vue';
-export { default as ButtonCommandsSelector } from './elements/ButtonCommandsSelector.vue';
-export { default as ButtonContextMenu } from './elements/ButtonContextMenu.vue';
-export { default as ButtonEmojiPicker } from './elements/ButtonEmojiPicker.vue';
-export { default as ButtonTemplateSelector } from './elements/ButtonTemplateSelector.vue';
-export { default as ButtonWabaTemplateSelector } from './elements/ButtonWabaTemplateSelector.vue';
-export { default as ChannelSelector } from './elements/ChannelSelector.vue';
-export { default as ChatFilter } from './elements/ChatFilter.vue';
-export { default as ChatInfo } from './elements/ChatInfo.vue';
-export { default as ChatInput } from './elements/ChatInput.vue';
-export { default as ChatItem } from './blocks/ChatItem.vue';
-export { default as ChatList } from './blocks/ChatList.vue';
-export { default as ChatPanel } from './blocks/ChatPanel.vue';
-export { default as ChatTabs } from './elements/ChatTabs.vue';
-export { default as CommunicationPanel } from './compounds/CommunicationPanel.vue';
-export { default as ContactInfo } from './elements/ContactInfo.vue';
-export { default as ContextMenu } from './elements/ContextMenu.vue';
-export { default as Feed } from './blocks/Feed.vue';
-export { default as FeedFoundItem } from './blocks/FeedFoundItem.vue';
-export { default as FeedFoundObjects } from './blocks/FeedFoundObjects.vue';
-export { default as FeedKeyboard } from './elements/FeedKeyboard.vue';
-export { default as FeedSearch } from './blocks/FeedSearch.vue';
-export { default as FilePreview } from './elements/FilePreview.vue';
-export { default as FileUploader } from './elements/FileUploader.vue';
-export { default as MessageKeyboard } from './blocks/MessageKeyboard.vue';
-export { default as PlaceholderComponent } from './containers/PlaceholderComponent.vue';
-export { default as SideBar } from './compounds/SideBar.vue';
-export { default as SplashScreen } from './containers/SplashScreen.vue';
-export { default as TemplateSelector } from './compounds/TemplateSelector.vue';
-export { default as ThemeMode } from './elements/ThemeMode.vue';
-// Atoms (basic UI elements)
+// Atoms
 export * from './atoms';
-export { default as UserProfile } from './compounds/UserProfile.vue';
-export { default as VideoRecorder } from './elements/VideoRecorder.vue';
-export { default as WABAAttachmentSection } from './elements/WABAAttachmentSection.vue';
-export { default as WABAQuickReplyButtons } from './elements/WABAQuickReplyButtons.vue';
-export { default as WABASeparatedQuickButtons } from './elements/WABASeparatedQuickButtons.vue';
-export { default as WABATemplateSelector } from './elements/WABATemplateSelector.vue';
 
-// Molecules (simple composed components)
+// Blocks
+export * from './blocks';
+
+// Compounds
+export * from './compounds';
+
+// Elements
+export * from './elements';
+
+// Molecules
 export * from './molecules';
 
-// Organisms (complex composed components)  
+// Organisms
 export * from './organisms';
+
+// Containers
+export * from './containers';
+
+// Layouts
+export * from './layouts';
+
