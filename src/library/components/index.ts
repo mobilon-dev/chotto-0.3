@@ -1,57 +1,37 @@
-import ChatInfo from './ChatInfo.vue';
-import ChatInput from './ChatInput.vue';
-import ChatList from './ChatList.vue';
-import Feed from './Feed.vue';
-import UserProfile from './UserProfile.vue';
-import FileUploader from './FileUploader.vue';
-import ThemeMode from './ThemeMode.vue';
-import SideBar from './SideBar.vue';
-import ChatPanel from './ChatPanel.vue'
-import ChannelSelector from './ChannelSelector.vue';
-import ChatItem from './ChatItem.vue';
-import ChatFilter from './ChatFilter.vue';
-import ContactInfo from './ContactInfo.vue';
-import ButtonContextMenu from './ButtonContextMenu.vue';
-import TemplateSelector from './TemplateSelector.vue'
-import ButtonTemplateSelector from './ButtonTemplateSelector.vue';
-import ButtonWabaTemplateSelector from './ButtonWabaTemplateSelector.vue'
-import ButtonEmojiPicker from './ButtonEmojiPicker.vue';
-import ContextMenu from './ContextMenu.vue';
-import FeedSearch from './FeedSearch.vue';
-import FeedFoundObjects from './FeedFoundObjects.vue'
-import Tooltip from './Tooltip.vue';
-import AudioRecorder from './AudioRecorder.vue';
-import VideoRecorder from './VideoRecorder.vue';
-import ButtonCommandsSelector from './ButtonCommandsSelector.vue';
-import SplashScreen from './SplashScreen.vue';
-import CommunicationPanel from './CommunicationPanel.vue';
-
-export {
-  ChatInfo,
-  ChatInput,
-  ChatList,
-  ContactInfo,
-  Feed,
-  FileUploader,
-  UserProfile,
-  ThemeMode,
-  SideBar,
-  ChatPanel,
-  ChannelSelector,
-  ChatItem,
-  ChatFilter,
-  ButtonContextMenu,
-  TemplateSelector,
-  ButtonTemplateSelector,
-  ButtonWabaTemplateSelector,
-  ButtonEmojiPicker,
-  ContextMenu,
-  FeedSearch,
-  FeedFoundObjects,
-  Tooltip,
-  AudioRecorder,
-  VideoRecorder,
-  ButtonCommandsSelector,
-  SplashScreen,
-  CommunicationPanel,
-}
+export { default as AudioRecorder } from './elements/AudioRecorder.vue';
+export { default as ButtonCommandsSelector } from './elements/ButtonCommandsSelector.vue';
+export { default as ButtonContextMenu } from './elements/ButtonContextMenu.vue';
+export { default as ButtonEmojiPicker } from './elements/ButtonEmojiPicker.vue';
+export { default as ButtonTemplateSelector } from './elements/ButtonTemplateSelector.vue';
+export { default as ButtonWabaTemplateSelector } from './elements/ButtonWabaTemplateSelector.vue';
+export { default as ChannelSelector } from './elements/ChannelSelector.vue';
+export { default as ChatFilter } from './elements/ChatFilter.vue';
+export { default as ChatInfo } from './elements/ChatInfo.vue';
+export { default as ChatInput } from './elements/ChatInput.vue';
+export { default as ChatItem } from './blocks/ChatItem.vue';
+export { default as ChatList } from './blocks/ChatList.vue';
+export { default as ChatPanel } from './blocks/ChatPanel.vue';
+export { default as ChatTabs } from './elements/ChatTabs.vue';
+export { default as CommunicationPanel } from './compounds/CommunicationPanel.vue';
+export { default as ContactInfo } from './elements/ContactInfo.vue';
+export { default as ContextMenu } from './elements/ContextMenu.vue';
+export { default as Feed } from './blocks/Feed.vue';
+export { default as FeedFoundItem } from './blocks/FeedFoundItem.vue';
+export { default as FeedFoundObjects } from './blocks/FeedFoundObjects.vue';
+export { default as FeedKeyboard } from './elements/FeedKeyboard.vue';
+export { default as FeedSearch } from './blocks/FeedSearch.vue';
+export { default as FilePreview } from './elements/FilePreview.vue';
+export { default as FileUploader } from './elements/FileUploader.vue';
+export { default as MessageKeyboard } from './blocks/MessageKeyboard.vue';
+export { default as PlaceholderComponent } from './containers/PlaceholderComponent.vue';
+export { default as SideBar } from './compounds/SideBar.vue';
+export { default as SplashScreen } from './containers/SplashScreen.vue';
+export { default as TemplateSelector } from './compounds/TemplateSelector.vue';
+export { default as ThemeMode } from './elements/ThemeMode.vue';
+export { default as Tooltip } from './atoms/Tooltip.vue';
+export { default as UserProfile } from './compounds/UserProfile.vue';
+export { default as VideoRecorder } from './elements/VideoRecorder.vue';
+export { default as WABAAttachmentSection } from './elements/WABAAttachmentSection.vue';
+export { default as WABAQuickReplyButtons } from './elements/WABAQuickReplyButtons.vue';
+export { default as WABASeparatedQuickButtons } from './elements/WABASeparatedQuickButtons.vue';
+export { default as WABATemplateSelector } from './elements/WABATemplateSelector.vue';

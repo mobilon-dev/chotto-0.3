@@ -228,7 +228,7 @@ import {
 import { useChatsStore } from "./stores/useChatStore";
 import { transformToFeed } from "./transform/transformToFeed";
 import { useLocale } from "./locale/useLocale";
-import VideoRecorder from "./library/components/VideoRecorder.vue";
+import { VideoRecorder } from "./library";
 
 const { locale: currentLocale, locales } = useLocale()
 

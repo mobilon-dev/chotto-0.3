@@ -18,9 +18,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && vue-tsc --emitDeclarationOnly",
+    "build:lib": "vite build && vue-tsc --emitDeclarationOnly",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build -o docs",
+    "validate-themes": "node ./scripts/validate-themes.cjs",
+    "prepublishOnly": "npm run build && npm run validate-themes",
     "lint-fix": "npx eslint . --fix",
     "lint": "npx eslint ."
   },

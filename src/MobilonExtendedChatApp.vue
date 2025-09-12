@@ -302,10 +302,8 @@ import {
 import { useChatsStore } from "./stores/useChatStore";
 import { transformToFeed } from "./transform/transformToFeed";
 // import { useLocale } from "./locale/useLocale";
-// import VideoRecorder from "./library/components/VideoRecorder.vue";
-import ButtonCommandsSelector from "./library/components/ButtonCommandsSelector.vue";
-import SplashScreen from "./library/components/SplashScreen.vue";
-import ContactInfo from "./library/components/ContactInfo.vue";
+// import { VideoRecorder } from "./library";
+import { ButtonCommandsSelector, SplashScreen, ContactInfo } from "./library";
 
 // const { locale: currentLocale, locales } = useLocale()
 
