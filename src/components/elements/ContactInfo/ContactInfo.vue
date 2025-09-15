@@ -117,7 +117,8 @@ import TelegramIcon from '../../icons/TelegramIcon.vue';
 const props = defineProps({
   contact: {
     type: Object,
-    required: true,
+    required: false,
+    default: () => ({ attributes: [] })
   },
   currentDialog: {
     type: Object,
@@ -131,7 +132,7 @@ const props = defineProps({
 
 const emit = defineEmits(['close', 'open-crm', 'select-attribute-channel']);
 
-const localSelectedAttributeId = ref(props.contact.attributes[0].id || '');
+const localSelectedAttributeId = ref(props.contact?.attributes?.[0]?.id || '');
 const localSelectedChannel = ref(props.channels[0] || null);
 const isOpen = ref(false);
 
@@ -148,7 +149,7 @@ const selectChannel = (channel) => {
 const extractPhone = (value) => value?.replace(/\D/g, '') || '';
 
 const selectedAttribute = computed(() => {
-  return props.contact.attributes?.find(attr => attr.id === localSelectedAttributeId.value);
+  return props.contact?.attributes?.find(attr => attr.id === localSelectedAttributeId.value);
 });
 
 const currentChannel = computed(() => {
@@ -197,8 +198,14 @@ const onAttributeSelected = (attr) => {
 watch(
   () => props.contact,
   () => {
-    if (props.contact?.attributes?.length && !localSelectedAttributeId.value) {
-    localSelectedAttributeId.value = props.contact.attributes[0].id;
+    if (props.contact?.attributes?.length) {
+      if (!localSelectedAttributeId.value) {
+        localSelectedAttributeId.value = props.contact.attributes[0].id;
+      } else if (!props.contact.attributes.some(a => a.id === localSelectedAttributeId.value)) {
+        localSelectedAttributeId.value = props.contact.attributes[0].id;
+      }
+    } else {
+      localSelectedAttributeId.value = '';
     }
   },
   { immediate: true }
