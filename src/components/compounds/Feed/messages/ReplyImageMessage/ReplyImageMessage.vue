@@ -1,30 +1,31 @@
 <template>
   <div
-    class="video-message__preview-button"
+    class="image-message__preview-button"
     @click="isOpenModal = true"
   >
-    <video
-      class="video-message__video"
+    <img
+      class="image-message__preview-image"
       :src="message.url"
-      :muted="true"
-    />
+      :alt="message.alt"
+    >
   </div>
 
-  <div class="video-message__text-container">
+  <div class="image-message__text-container">
     <p v-if="message.header">
       {{ message.header }}
     </p>
-    <div class="video-message__reply-description">
-      <span class="pi pi-video" />
-      <p>Видео</p>
+    <div class="image-message__reply-description">
+      <span class="pi pi-camera" />
+      <p>Фотография</p>
     </div>
     <p
       v-if="message.text"
-      class="video-message__text"
+      class="image-message__text"
       @click="inNewWindow"
       v-html="linkedText"
     />
   </div>
+
   <Teleport to="body">
     <transition name="modal-fade">
       <ModalFullscreen
@@ -32,14 +33,11 @@
         :data-theme="getTheme().theme ? getTheme().theme : 'light'"
         @close="closeModal"
       >
-        <video
-          ref="player"
-          class="video-message__modal-video"
+        <img
+          class="image-message__modal-image"
           :src="message.url"
           :alt="message.alt"
-          controls
-          autoplay
-        />
+        >
       </ModalFullscreen>
     </transition>
   </Teleport>
@@ -49,11 +47,11 @@
   setup
   lang="ts"
 >
-import { ref, watch, inject } from 'vue'
+import { ref, watch, inject } from 'vue';
 import linkifyStr from "linkify-string";
-import { IVideoMessage } from '../../types';
-import ModalFullscreen from '../../atoms/ModalFullscreen/ModalFullscreen.vue';
-import { useTheme } from '../../../helpers/useTheme';
+import { IImageMessage } from '../../../../../types';
+import ModalFullscreen from "../../../../atoms/ModalFullscreen/ModalFullscreen.vue";
+import { useTheme } from "../../../../../helpers/useTheme";
 
 const chatAppId = inject('chatAppId')
 
@@ -61,13 +59,14 @@ const { getTheme } = useTheme(chatAppId as string)
 
 const props = defineProps({
   message: {
-    type: Object as () => IVideoMessage,
+    type: Object as () => IImageMessage,
     required: true,
   },
 });
 
-const player = ref<HTMLVideoElement | null>();
+
 const isOpenModal = ref(false);
+
 const linkedText = ref('')
 
 watch(
@@ -94,6 +93,7 @@ const closeModal = () => isOpenModal.value = false
   scoped
   lang="scss"
 >
+
 p {
   margin: 0;
   font-size: var(--chotto-additional-text-font-size);
@@ -106,21 +106,32 @@ p {
   -webkit-box-orient: vertical;
 }
 
-.video-message {
-
-  &__video {
-    width: 60px;
-    height: 60px;
-    border-radius: 4px;
-    object-fit: cover;
-    cursor: zoom-in;
-    margin: auto;
-  }
+.image-message {
 
   &__preview-button {
+    grid-column: 1;
     position: relative;
     display: flex;
     flex-direction: column;
+    padding: 0;
+
+  }
+
+  &__preview-image {
+    width: 60px;
+    height: 60px;
+    cursor: zoom-in;
+    object-fit: cover;
+    border-radius: 4px;
+    margin: auto;
+  }
+
+  &__modal-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    max-height: 80vh;
   }
 
   &__text-container {
@@ -140,19 +151,10 @@ p {
     align-items: center;
     column-gap: 6px;
     margin-bottom: 4px;
-
+    white-space: nowrap;
     span {
       color: var(--chotto-secondary-text-color);
     }
-  }
-
-  &__modal-video {
-    width: 100%;
-    height: 100%;
-    max-height: 60%;
-    object-fit: cover;
-    border-radius: 5px;
-    max-height: 80vh;
   }
 }
 

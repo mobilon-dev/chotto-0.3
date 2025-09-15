@@ -1,19 +1,8 @@
 // Components
-export { default as BaseReplyMessage } from './BaseReplyMessage/BaseReplyMessage.vue';
 export { default as CreateChat } from './CreateChat/CreateChat.vue';
 export { default as CreateChat2 } from './CreateChat2/CreateChat2.vue';
 export { default as CreateDialog } from './CreateDialog/CreateDialog.vue';
-export { default as DateMessage } from './DateMessage/DateMessage.vue';
-export { default as DateMessageSticky } from './DateMessageSticky/DateMessageSticky.vue';
 export { default as EmbedPreview } from './EmbedPreview/EmbedPreview.vue';
 export { default as LinkPreview } from './LinkPreview/LinkPreview.vue';
-export { default as ReplyAudioMessage } from './ReplyAudioMessage/ReplyAudioMessage.vue';
-export { default as ReplyCallMessage } from './ReplyCallMessage/ReplyCallMessage.vue';
-export { default as ReplyFileMessage } from './ReplyFileMessage/ReplyFileMessage.vue';
-export { default as ReplyImageMessage } from './ReplyImageMessage/ReplyImageMessage.vue';
-export { default as ReplyTextMessage } from './ReplyTextMessage/ReplyTextMessage.vue';
-export { default as ReplyVideoMessage } from './ReplyVideoMessage/ReplyVideoMessage.vue';
 export { default as SelectUser } from './SelectUser/SelectUser.vue';
 export { default as SelectUser2 } from './SelectUser2/SelectUser2.vue';
-export { default as SystemMessage } from './SystemMessage/SystemMessage.vue';
-export { default as TypingMessage } from './TypingMessage/TypingMessage.vue';

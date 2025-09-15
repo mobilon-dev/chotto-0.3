@@ -29,7 +29,7 @@ import ReplyFileMessage from "../ReplyFileMessage/ReplyFileMessage.vue";
 
 import {
   IFeedObject
-} from '../../types';
+} from '../../../../../types';
 import ReplyCallMessage from "../ReplyCallMessage/ReplyCallMessage.vue";
 
 const emit = defineEmits(['action', 'reply', 'reset']);

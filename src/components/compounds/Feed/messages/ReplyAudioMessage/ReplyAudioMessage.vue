@@ -30,6 +30,8 @@ import { ref, watch } from 'vue'
 import linkifyStr from "linkify-string";
 
 import { IAudioMessage } from '../../types';
+import ModalFullscreen from "../../../../atoms/ModalFullscreen/ModalFullscreen.vue";
+import { useTheme } from "../../../../helpers/useTheme";
 
 // Define props
 const props = defineProps({

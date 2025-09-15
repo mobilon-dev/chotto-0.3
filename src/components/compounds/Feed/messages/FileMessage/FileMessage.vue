@@ -130,7 +130,7 @@ import ContextMenu from "../../../../../components/elements/ContextMenu/ContextM
 import { getStatus, statuses } from "../../../../../helpers";
 
 import { IFileMessage } from '../../../../../types'
-import BaseReplyMessage from '../../../../../components/molecules/BaseReplyMessage/BaseReplyMessage.vue';
+import BaseReplyMessage from '../BaseReplyMessage/BaseReplyMessage.vue';
 import LinkPreview from '../../../../../components/molecules/LinkPreview/LinkPreview.vue';
 import EmbedPreview from '../../../../../components/molecules/EmbedPreview/EmbedPreview.vue';
 

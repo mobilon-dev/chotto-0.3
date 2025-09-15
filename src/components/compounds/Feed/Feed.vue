@@ -100,11 +100,11 @@
 >
 import { ref, unref, watch, nextTick, inject, computed } from 'vue';
 import { AudioMessage, CallMessage, FileMessage, ImageMessage, TextMessage, VideoMessage } from './messages';
-import DateMessage from "../../molecules/DateMessage/DateMessage.vue";
-import DateMessageSticky from "../../molecules/DateMessageSticky/DateMessageSticky.vue";
-import SystemMessage from "../../molecules/SystemMessage/SystemMessage.vue";
-import TypingMessage from "../../molecules/TypingMessage/TypingMessage.vue";
-import BaseReplyMessage from "../../molecules/BaseReplyMessage/BaseReplyMessage.vue";
+import DateMessage from "./messages/DateMessage/DateMessage.vue";
+import DateMessageSticky from "./messages/DateMessageSticky/DateMessageSticky.vue";
+import SystemMessage from "./messages/SystemMessage/SystemMessage.vue";
+import TypingMessage from "./messages/TypingMessage/TypingMessage.vue";
+import BaseReplyMessage from "./messages/BaseReplyMessage/BaseReplyMessage.vue";
 
 import { IFeedObject, IFeedTyping, IFeedUnreadButton } from '../../../types';
 import { throttle } from '../../../helpers/throttle';

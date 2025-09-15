@@ -109,9 +109,11 @@ import linkifyStr from "linkify-string";
 import ContextMenu from "../../../../../components/elements/ContextMenu/ContextMenu.vue";
 import { getStatus, statuses } from "../../../../../helpers";
 import { ITextMessage } from '../../../../../types';
-import BaseReplyMessage from "../../../../../components/molecules/BaseReplyMessage/BaseReplyMessage.vue";
+import BaseReplyMessage from "../BaseReplyMessage/BaseReplyMessage.vue";
 import LinkPreview from "../../../../../components/molecules/LinkPreview/LinkPreview.vue";
 import EmbedPreview from "../../../../../components/molecules/EmbedPreview/EmbedPreview.vue";
+import ModalFullscreen from "../../../atoms/ModalFullscreen/ModalFullscreen.vue";
+import { useTheme } from "../../../../helpers/useTheme";
 
 // Define props
 const props = defineProps({
