@@ -111,11 +111,11 @@ import SystemMessage from "../../molecules/SystemMessage/SystemMessage.vue";
 import TypingMessage from "../../molecules/TypingMessage/TypingMessage.vue";
 import BaseReplyMessage from "../../molecules/BaseReplyMessage/BaseReplyMessage.vue";
 
-import { IFeedObject, IFeedTyping, IFeedUnreadButton } from '../../types';
+import { IFeedObject, IFeedTyping, IFeedUnreadButton } from '../../../types';
 import { throttle } from '../../../helpers/throttle';
 import { useMessage } from '../../../helpers/useMessage';
-import MessageKeyboard from '../MessageKeyboard/MessageKeyboard.vue';
-import type { IFeedKeyboard } from '../../types/IFeedKeyboard';
+import MessageKeyboard from '../../blocks/MessageKeyboard/MessageKeyboard.vue';
+import type { IFeedKeyboard } from '../../../types/IFeedKeyboard';
 import FeedKeyboard from '../../elements/FeedKeyboard/FeedKeyboard.vue';
 
 const trackingObjects = ref();
@@ -139,6 +139,7 @@ const props = defineProps({
   buttonParams: {
     type: Object as () => IFeedUnreadButton,
     required: false,
+    default: undefined,
   },
   // принудительный скролл вниз по событию извне (сообщение, смена чата)
   scrollToBottom: {
