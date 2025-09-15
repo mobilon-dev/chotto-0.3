@@ -185,7 +185,7 @@ import {
   CommunicationPanelSubmenuTelegramIcon,
   CommunicationPanelSubmenuMaxIcon,
   CommunicationPanelSubmenuSMSIcon
-} from '@/components/icons/index.ts'
+} from './icons/index.ts'
 
 const props = defineProps({
   contactAttributes: {
