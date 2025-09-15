@@ -1,6 +1,6 @@
 <template>
   <div
-    class="file-message"
+    class="text-message"
     :class="[
       getClass(message),
       applyStyle(message)
@@ -10,55 +10,36 @@
   >
     <img
       v-if="message.avatar && isFirstInSeries"
-      class="file-message__avatar"
+      class="text-message__avatar"
       :src="message.avatar"
       height="32"
       width="32"
-      :style="{ gridRow: message.subText ? '2' : '1' }"
+      :style="{ gridRow: (message.subText && isFirstInSeries) ? '2' : '1' }"
     >
 
     <p
       v-if="message.subText && isFirstInSeries"
-      class="file-message__subtext"
+      class="text-message__subtext"
     >
       {{ message.subText }}
     </p>
 
     <div
-      class="file-message__content"
+      class="text-message__content"
       :class="{ 'is-first': isFirstInSeries, 'with-avatar-indent': !isFirstInSeries && message.avatar }"
-      :style="{ gridRow: message.subText ? '2' : '1' }"
       @mouseenter="showMenu"
     >
       <BaseReplyMessage
         v-if="message.reply"
-        :message="message.reply"
         :class="message.position"
+        :message="message.reply"
         @reply="handleClickReplied"
       />
-      <a
-        class="file-message__link"
-        :href="message.url"
-        download
-        target="_blank"
-      >
-        <span class="pi pi-file" />
-        <p class="file-message__filename-text">
-          {{ message.filename }}
-        </p>
-        <div class="file-message__download-button">
-          <span class="pi pi-download" />
-        </div>
-      </a>
-      <div
-        v-if="message.text"
-        class="file-message__text-container"
-      >
-        <p
-          @click="inNewWindow"
-          v-html="linkedText"
-        />
-      </div>
+      <p
+        class="text-message__text"
+        @click="inNewWindow"
+        v-html="linkedText"
+      />
 
       <LinkPreview
         v-if="message.linkPreview"
@@ -72,21 +53,22 @@
         :embed="message.embed"
       />
 
-      <div class="file-message__info-container">
+      <div class="text-message__info-container">
         <div
           v-if="message.views"
-          class="file-message__views"
+          class="text-message__views"
           @click="viewsAction"
         >
           <span class="pi pi-eye" />
           <p>{{ message.views }}</p>
         </div>
-
-        <span class="file-message__time">{{ message.time }}</span>
-
+        <span
+          v-if="message.time"
+          class="text-message__time"
+        >{{ message.time }}</span>
         <div
-          v-if="getClass(message) === 'file-message__right' && statuses.includes(message.status)"
-          class="file-message__status"
+          v-if="getClass(message) === 'text-message__right' && statuses.includes(message.status)"
+          class="text-message__status"
           :class="status"
         >
           <span
@@ -99,7 +81,7 @@
 
       <button
         v-if="buttonMenuVisible && message.actions"
-        class="file-message__menu-button"
+        class="text-message__menu-button"
         @click="isOpenMenu = !isOpenMenu"
       >
         <span class="pi pi-ellipsis-h" />
@@ -108,7 +90,7 @@
       <transition>
         <ContextMenu
           v-if="isOpenMenu && message.actions"
-          class="file-message__context-menu"
+          class="text-message__context-menu"
           :actions="message.actions"
           @click="clickAction"
         />
@@ -124,20 +106,17 @@
 import { computed, ref, watch } from 'vue'
 import linkifyStr from "linkify-string";
 
-
-import ContextMenu from '../../elements/ContextMenu/ContextMenu.vue'
-
-import { getStatus, statuses } from '../../../helpers';
-
-import { IFileMessage } from '../../types'
-import BaseReplyMessage from '../../molecules/BaseReplyMessage/BaseReplyMessage.vue';
-import LinkPreview from '../../molecules/LinkPreview/LinkPreview.vue';
-import EmbedPreview from '../../molecules/EmbedPreview/EmbedPreview.vue';
+import ContextMenu from "../../../../../components/elements/ContextMenu/ContextMenu.vue";
+import { getStatus, statuses } from "../../../../../helpers";
+import { ITextMessage } from '../../../../../types';
+import BaseReplyMessage from "../../../../../components/molecules/BaseReplyMessage/BaseReplyMessage.vue";
+import LinkPreview from "../../../../../components/molecules/LinkPreview/LinkPreview.vue";
+import EmbedPreview from "../../../../../components/molecules/EmbedPreview/EmbedPreview.vue";
 
 // Define props
 const props = defineProps({
   message: {
-    type: Object as () => IFileMessage,
+    type: Object as () => ITextMessage,
     required: true,
   },
   applyStyle: {
@@ -159,9 +138,7 @@ const linkedText = ref('')
 watch(
   () => props.message.text,
   () => {
-    if (props.message.text) {
-      linkedText.value = linkifyStr(props.message.text)
-    }
+    linkedText.value = linkifyStr(props.message.text)
   },
   { immediate: true }
 )
@@ -176,12 +153,6 @@ function inNewWindow(event) {
     window.open(event.target.href, '_blank');
 }
 
-const viewsAction = () => {
-  emit('action', { messageId: props.message.messageId, type: 'views' });
-}
-
-const clickAction = () => { }
-
 const showMenu = () => {
   buttonMenuVisible.value = true;
 };
@@ -193,30 +164,40 @@ const hideMenu = () => {
 
 const status = computed(() => getStatus(props.message.status))
 
-function getClass(message) {
-  return message.position === 'left' ? 'file-message__left' : 'file-message__right';
+const clickAction = (action) => {
+  hideMenu();
+  emit('action', { messageId: props.message.messageId, type: 'menu', ...action });
 }
 
+const viewsAction = () => {
+  hideMenu();
+  emit('action', { messageId: props.message.messageId, type: 'views' });
+}
+
+function getClass(message) {
+  return message.position === 'left' ? 'text-message__left' : 'text-message__right';
+}
 </script>
 
 <style
   scoped
   lang="scss"
 >
-.file-message {
+.text-message {
 
   &__content {
     position: relative;
+    word-wrap: break-word;
     width: fit-content;
-    border-radius: var(--chotto-message-border-radius, 14px);
-    padding: 10px 10px 4px 16px;;
     max-width: 25rem;
+    border-radius: var(--chotto-message-border-radius, 14px);
+    padding: 10px 10px 4px 16px;
   }
 
-  &__left .file-message__content.is-first::before {
+  &__left .text-message__content.is-first::before {
     content: '';
     position: absolute;
-    top: 0;
+    top: 0;           
     left: -8px;
     width: 0;
     height: 0;
@@ -225,7 +206,7 @@ function getClass(message) {
     z-index: 1;
   }
 
-  &__right .file-message__content.is-first::after {
+  &__right .text-message__content.is-first::after {
     content: '';
     position: absolute;
     top: 0;
@@ -237,71 +218,32 @@ function getClass(message) {
     z-index: 1;
   }
 
-  &__avatar {
-    align-self: auto;
-    object-fit: cover;
-    min-width: var(--chotto-avatar-small);
-    min-height: var(--chotto-avatar-small);
-    border-radius: var(--chotto-avatar-border-radius);
-  }
-
-  &__subtext {
-    font-size: var(--chotto-additional-text-font-size);
-    color: var(--chotto-secondary-text-color);
-  }
-
-  &__text-container {
-    margin-top: 6px;
-    word-wrap: break-word;
-
-    p {
-      white-space: pre-wrap;
-      font-size: var(--chotto-text-font-size);
-    }
-  }
-
-  &__link {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    column-gap: 12px;
-
-    span {
-      color: var(--chotto-secondary-text-color);
-      font-size: var(--chotto-button-icon-size);
-    }
-  }
-
-  &__filename-text {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-line-clamp: 1;
-    line-clamp: 1;
-    -webkit-box-orient: vertical;
-    margin-right: 40px;
-    font-size: var(--chotto-text-font-size);
-    color: var(--chotto-primary-text-color);
-  }
-
   &__info-container {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    column-gap: 2px;
+    column-gap: 4px;
   }
 
-  &__download-button {
-    margin-bottom: 5px;
-    border: none;
-    border-radius: 12px;
-    background-color: transparent;
-    padding: 0;
-    cursor: pointer;
+  &__views {
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
 
     span {
+      font-size: var(--chotto-small-text-icon-size);
       color: var(--chotto-secondary-text-color);
-      font-size: var(--chotto-text-icon-size);
     }
+
+    p {
+      font-size: var(--chotto-small-text-font-size);
+      color: var(--chotto-secondary-text-color);
+    }
+  }
+
+  &__time {
+    font-size: var(--chotto-text-font-size);
+    color: var(--chotto-secondary-text-color);
   }
 
   &__status {
@@ -310,7 +252,6 @@ function getClass(message) {
     span {
       color: var(--chotto-status-color-received);
       font-size: var(--chotto-small-text-icon-size);
-      font-weight: 400;
     }
   }
 
@@ -334,25 +275,22 @@ function getClass(message) {
     }
   }
 
-  &__views {
-    display: flex;
-    align-items: center;
-    column-gap: 4px;
-
-    span {
-      font-size: var(--chotto-small-text-icon-size);
-      color: var(--chotto-secondary-text-color);
-    }
-
-    p {
-      font-size: var(--chotto-small-text-font-size);
-      color: var(--chotto-secondary-text-color);
-    }
+  &__text {
+    font-size: var(--chotto-text-font-size);
+    white-space: pre-wrap;
   }
 
-  &__time {
-    font-size: var(--chotto-text-font-size);
+  &__subtext {
+    font-size: var(--chotto-additional-text-font-size);
     color: var(--chotto-secondary-text-color);
+  }
+
+  &__avatar {
+    align-self: auto;
+    object-fit: cover;
+    min-width: var(--chotto-avatar-small);
+    min-height: var(--chotto-avatar-small);
+    border-radius: var(--chotto-avatar-border-radius);
   }
 
   &__menu-button {
@@ -387,72 +325,71 @@ function getClass(message) {
   &__left {
     grid-template-columns: min-content 1fr;
 
-    .file-message__avatar {
+    .text-message__avatar {
       grid-column: 1;
+      grid-row: 2;
       margin-right: 12px;
     }
 
-    .file-message__subtext {
+    .text-message__subtext {
       grid-column: 2;
       grid-row: 1;
       margin: 0 0 2px 10px;
     }
 
-    .file-message__content {
+    .text-message__content {
       grid-column: 2;
       background-color: var(--chotto-message-left-bg);
     }
 
-    .file-message__content.with-avatar-indent {
+    .text-message__content.with-avatar-indent {
       margin-left: calc(var(--chotto-avatar-small) + 12px);
     }
 
-    .file-message__menu-button {
+    .text-message__menu-button {
       top: 50%;
       right: -40px;
     }
 
-    .file-message__context-menu {
-      top: 50%;
+    .text-message__context-menu {
+      top: 56%;
       left: 100%;
-      margin-top: 20px;
     }
-
   }
 
   &__right {
     grid-template-columns: 1fr min-content;
 
-    .file-message__avatar {
+    .text-message__avatar {
       grid-column: 2;
+      grid-row: 2;
       margin-left: 12px;
     }
 
-    .file-message__subtext {
+    .text-message__subtext {
       grid-column: 1;
       grid-row: 1;
       margin: 0 10px 2px auto;
     }
 
-    .file-message__content {
+    .text-message__content {
       grid-column: 1;
       margin-left: auto;
       background-color: var(--chotto-message-right-bg);
     }
 
-    .file-message__content.with-avatar-indent {
+    .text-message__content.with-avatar-indent {
       margin-right: calc(var(--chotto-avatar-small) + 12px);
     }
 
-    .file-message__menu-button {
+    .text-message__menu-button {
       top: 50%;
       left: -40px;
     }
 
-    .file-message__context-menu {
-      top: 50%;
+    .text-message__context-menu {
+      top: 56%;
       right: 100%;
-      margin-top: 20px;
     }
   }
 }

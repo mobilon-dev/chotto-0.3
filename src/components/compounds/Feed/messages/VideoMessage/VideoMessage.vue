@@ -163,14 +163,14 @@
 import { ref, computed, watch, inject } from 'vue'
 import linkifyStr from "linkify-string";
 
-import ContextMenu from '../../elements/ContextMenu/ContextMenu.vue'
-import { getStatus, statuses } from '../../../helpers';
-import { IVideoMessage } from '../../types';
-import BaseReplyMessage from '../../molecules/BaseReplyMessage/BaseReplyMessage.vue';
-import LinkPreview from '../../molecules/LinkPreview/LinkPreview.vue';
-import EmbedPreview from '../../molecules/EmbedPreview/EmbedPreview.vue';
-import ModalFullscreen from '../../atoms/ModalFullscreen/ModalFullscreen.vue';
-import { useTheme } from '../../../helpers/useTheme';
+import ContextMenu from "../../../../../components/elements/ContextMenu/ContextMenu.vue";
+import { getStatus, statuses } from "../../../../../helpers";
+import { IVideoMessage } from '../../../../../types';
+import BaseReplyMessage from "../../../../../components/molecules/BaseReplyMessage/BaseReplyMessage.vue";
+import LinkPreview from "../../../../../components/molecules/LinkPreview/LinkPreview.vue";
+import EmbedPreview from "../../../../../components/molecules/EmbedPreview/EmbedPreview.vue";
+import ModalFullscreen from "../../../../../components/atoms/ModalFullscreen/ModalFullscreen.vue";
+import { useTheme } from "../../../../../helpers/useTheme";
 
 const chatAppId = inject('chatAppId')
 

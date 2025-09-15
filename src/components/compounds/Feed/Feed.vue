@@ -99,14 +99,9 @@
   lang="ts"
 >
 import { ref, unref, watch, nextTick, inject, computed } from 'vue';
-import FileMessage from "../../organisms/FileMessage/FileMessage.vue";
-import ImageMessage from "../../organisms/ImageMessage/ImageMessage.vue";
-import TextMessage from "../../organisms/TextMessage/TextMessage.vue";
+import { AudioMessage, CallMessage, FileMessage, ImageMessage, TextMessage, VideoMessage } from './messages';
 import DateMessage from "../../molecules/DateMessage/DateMessage.vue";
 import DateMessageSticky from "../../molecules/DateMessageSticky/DateMessageSticky.vue";
-import AudioMessage from "../../organisms/AudioMessage/AudioMessage.vue";
-import VideoMessage from "../../organisms/VideoMessage/VideoMessage.vue";
-import CallMessage from "../../organisms/CallMessage/CallMessage.vue";
 import SystemMessage from "../../molecules/SystemMessage/SystemMessage.vue";
 import TypingMessage from "../../molecules/TypingMessage/TypingMessage.vue";
 import BaseReplyMessage from "../../molecules/BaseReplyMessage/BaseReplyMessage.vue";

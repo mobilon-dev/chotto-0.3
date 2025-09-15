@@ -4,7 +4,7 @@ import Modal from '../components/atoms/ModalNoFooter/ModalNoFooter.vue';
 export const useModalVideoRecorder = async (theme?: string) => {
   const data = await useModal({
     //в component должен быть встроен emit change(key: value)
-    component: import('../components/organisms/ModalVideoRecorder/ModalVideoRecorder.vue'),
+    component: import('../components/compounds/ModalVideoRecorder/ModalVideoRecorder.vue'),
     attrs: {
     },
     Modal,

@@ -105,8 +105,8 @@
   lang="ts"
 >
 import { ref, inject} from 'vue'
-import { ICallMessage } from '../../types'
-import { useTheme } from '../../../helpers/useTheme';
+import { ICallMessage } from '../../../../../types'
+import { useTheme } from '../../../../../helpers/useTheme';
 
 const chatAppId = inject('chatAppId')
 const { getTheme } = useTheme(chatAppId as string)

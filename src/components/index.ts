@@ -13,9 +13,6 @@ export * from './elements';
 // Molecules
 export * from './molecules';
 
-// Organisms
-export * from './organisms';
-
 // Containers
 export * from './containers';
 
