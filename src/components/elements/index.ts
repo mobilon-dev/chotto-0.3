@@ -8,7 +8,6 @@ export { default as ButtonWabaTemplateSelector } from './ButtonWabaTemplateSelec
 export { default as ChannelSelector } from './ChannelSelector/ChannelSelector.vue';
 export { default as ChatFilter } from './ChatFilter/ChatFilter.vue';
 export { default as ChatInfo } from './ChatInfo/ChatInfo.vue';
-export { default as ChatInput } from './ChatInput/ChatInput.vue';
 export { default as ChatTabs } from './ChatTabs/ChatTabs.vue';
 export { default as ContactInfo } from './ContactInfo/ContactInfo.vue';
 export { default as ContextMenu } from './ContextMenu/ContextMenu.vue';
