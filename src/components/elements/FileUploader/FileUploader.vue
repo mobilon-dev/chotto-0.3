@@ -48,12 +48,13 @@ import { ref, computed, inject, onMounted } from "vue";
 import FilePreview from "../FilePreview/FilePreview.vue";
 import { useMessage } from '../../../helpers/useMessage';
 import { uploadFile } from '../../../helpers/uploadFile';
-import { IFilePreview } from "../../types";
-import FileUploaderIcon from "../../icons/FileUploaderIcon.vue";
+import { IFilePreview } from "../../../types";
+import { FileUploaderIcon } from "./icons";
 
 const props = defineProps({
   filebumpUrl: {
     type: String,
+    default: '',
   },
   state:{
     type: String,

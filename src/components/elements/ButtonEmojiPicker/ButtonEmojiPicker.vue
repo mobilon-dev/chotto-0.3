@@ -33,7 +33,7 @@ import 'vue3-emoji-picker/css';
 import {onMounted, onUnmounted, ref, inject} from 'vue'
 // import {computed} from 'vue'
 import { useMessage } from '../../../helpers/useMessage';
-import SmilesIcon from '../../icons/SmilesIcon.vue';
+import { SmilesIcon } from './icons';
 
 
 const props = defineProps({
