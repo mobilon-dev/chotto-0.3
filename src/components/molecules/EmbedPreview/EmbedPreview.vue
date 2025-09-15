@@ -41,31 +41,6 @@ const props = defineProps({
 });
 </script>
 
-<style
-  scoped
-  lang="scss"
->
-.embed-preview {
-  border-radius: 10px;
-  position: relative;
-  margin: 10px 0 4px 0;
-  padding: 8px 8px 8px 12px;
-  overflow: hidden;
-
-  &__player {
-    object-fit: cover;
-    width: 100%;
-    max-height: 300px;
-    border-radius: 8px;
-    border: none;
-  }
-
-  .left {
-    background-color: var(--chotto-message-left-secondary-bg);
-  }
-
-  .right {
-    background-color: var(--chotto-message-right-secondary-bg);
-  }
-}
+<style scoped lang="scss">
+@use './styles/EmbedPreview.scss';
 </style>

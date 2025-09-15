@@ -112,25 +112,5 @@ const handleStartDialog = () => {
 </script>
 
 <style scoped lang="scss">
-
-
-
-.modal{
-  &__contact-line{
-    display: flex;
-    margin: 10px 0;
-    justify-content: space-between;
-  }
-
-  &__channel-line{
-    display: flex;
-    margin: 10px 0;
-    justify-content: space-between;
-  }
-
-  &__button-start{
-    margin-left: calc(100% - 98px);
-  }
-}
-
+@use './styles/CreateDialog.scss';
 </style>

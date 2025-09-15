@@ -77,49 +77,6 @@ const onCancel = () => {
 }
 </script>
 
-<style scoped>
-.new-chat-modal {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-  z-index: 1000;
-}
-
-.modal-content {
-	background-color: white;
-	padding: 20px;
-	border-radius: 8px;
-	width: 300px;
-}
-
-.participant-list {
-  margin-top: 10px;
-	max-height: 200px;
-}
-.participant-item {
-	display: flex;
-	align-items: center;
-	margin-bottom: 10px;
-}
-
-.participant-item input[type='checkbox'] {
-	margin-right: 10px;
-}
-
-.modal-actions {
-	display: flex;
-	justify-content: flex-end;
-	margin-top: 20px;
-}
-
-.modal-actions button {
-	margin-left: 10px;
-}
-
+<style scoped lang="scss">
+@use './styles/SelectUser.scss';
 </style>

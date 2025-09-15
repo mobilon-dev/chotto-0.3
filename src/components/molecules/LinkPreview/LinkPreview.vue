@@ -33,57 +33,6 @@ const props = defineProps({
 });
 </script>
 
-<style
-  scoped
-  lang="scss"
->
-.link-preview {
-  border-radius: 10px;
-  position: relative;
-  margin: 10px 0 4px 0;
-  padding: 8px 8px 8px 12px;
-  overflow: hidden;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background-color: var(--chotto-message-accent-line-color);
-  }
-
-
-  &__link-container {
-    display: flex;
-    flex-direction: column;
-    color: var(--chotto-primary-text-color);
-    font-size: var(--chotto-text-font-size);
-  }
-
-  &__title {
-    font-weight: 600;
-    margin-bottom: 4px;
-  }
-
-  &__description {
-    margin-bottom: 6px;
-  }
-
-  &__image {
-    object-fit: cover;
-    width: 100%;
-    max-height: 300px;
-    border-radius: 8px;
-  }
-
-  .left {
-    background-color: var(--chotto-message-left-secondary-bg);
-  }
-
-  .right {
-    background-color: var(--chotto-message-right-secondary-bg);
-  }
-}
+<style scoped lang="scss">
+@use './styles/LinkPreview.scss';
 </style>

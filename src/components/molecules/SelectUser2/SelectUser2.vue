@@ -48,22 +48,6 @@ const onChange = () => {
 
 </script>
 
-<style scoped>
-
-.participant-list {
-  margin-top: 10px;
-  max-height: 200px;
-  overflow: auto;
-}
-
-.participant-item {
-	display: flex;
-	align-items: center;
-	margin-bottom: 10px;
-}
-
-.participant-item input[type='checkbox'] {
-	margin-right: 10px;
-}
-
+<style scoped lang="scss">
+@use './styles/SelectUser2.scss';
 </style>

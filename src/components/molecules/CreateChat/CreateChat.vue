@@ -32,4 +32,6 @@ const onChange = () => {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+@use './styles/CreateChat.scss';
+</style>
