@@ -47,58 +47,6 @@ const props = defineProps({
 const emit = defineEmits(['close-panel']);
 </script>
 
-<style
-  scoped
-  lang="scss"
->
-.chat-panel {
-  display: flex;
-  align-items: stretch;
-  flex-direction: column;
-  height: 100%;
-
-  &::-webkit-scrollbar {
-    width: 6px;
-    background-color: var(--chotto-scrollbar-bg);
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-color: var(--chotto-scrollbar-thumb-bg);
-  }
-
-  &::-webkit-scrollbar-track {
-    border-radius: 10px;
-  }
-
-  &__header {
-    display: flex;
-    gap: 6px;
-  }
-
-  &__title-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  &__title {
-    font-size: var(--chotto-header-font-size);
-    font-weight: var(--chotto-header-font-weight);
-    font-family: var(--chotto-header-font);
-    color: var(--chotto-secondary-text-color);
-    letter-spacing: 0.5px;
-  }
-
-  &__button-close {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-
-    span {
-      font-size: var(--chotto-button-icon-size);
-      color: var(--chotto-button-color-active);
-    }
-  }
-}
+<style scoped lang="scss">
+@use './styles/ChatPanel.scss';
 </style>
