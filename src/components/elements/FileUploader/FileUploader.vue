@@ -49,7 +49,7 @@ import FilePreview from "../FilePreview/FilePreview.vue";
 import { useMessage } from '../../../helpers/useMessage';
 import { uploadFile } from '../../../helpers/uploadFile';
 import { IFilePreview } from "../../types";
-import FileUploaderIcon from "../../../icons/FileUploaderIcon.vue";
+import FileUploaderIcon from "../../icons/FileUploaderIcon.vue";
 
 const props = defineProps({
   filebumpUrl: {

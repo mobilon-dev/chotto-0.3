@@ -175,7 +175,7 @@ import { getStatus, statuses } from '../../../helpers';
 import { t } from '../../../locale/useLocale'
 import Tooltip from '../../atoms/Tooltip/Tooltip.vue';
 import ButtonContextMenu from '../../elements/ButtonContextMenu/ButtonContextMenu.vue';
-import AvatarIcon from '../../../icons/AvatarIcon.vue';
+import AvatarIcon from '../../icons/AvatarIcon.vue';
 
 const props = defineProps({
   chat: {
