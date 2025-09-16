@@ -18,13 +18,13 @@
   --chotto-context-menu-border-color: none;
 
   /* Chat List */
-  --chotto-chat-list-filter-margin: 0 16px 10px 15px;
+  /* --chotto-chat-list-filter-margin: 0 16px 10px 15px;
   --chotto-chat-list-items-padding: 0;
   --chotto-chat-list-title-container-padding: 20px 0 20px 15px;
   --chotto-chat-list-fixed-background-color: var(--default-white);
   --chotto-chat-list-container-border-bottom-color: var(--neutral-75);
   --chotto-chat-list-container-border-bottom-width: 416px;
-  --chotto-chat-list-container-border-bottom-height: 1px;
+  --chotto-chat-list-container-border-bottom-height: 1px; */
 
   /* Chat Input */
   /* --chotto-chat-input-container-bg: #ffffff;
@@ -38,11 +38,11 @@
   --chotto-unread-border-radius: 10px; */
   
   /* Chat Item */
-  --chotto-chat-item-padding-container: 10px 8px 10px 14px;
+  /* --chotto-chat-item-padding-container: 10px 8px 10px 14px;
   --chotto-chat-item-dialog-padding: 5px 0 0 75px;
   --chotto-chat-item-border-radius: 0;
   --chotto-chat-item-name-margin-top: 2px;
-  --chotto-chat-item-name-margin-bottom: 4px;
+  --chotto-chat-item-name-margin-bottom: 4px; */
 
   /* Chat Info */
   --chotto-chat-info-padding: 10px 0 10px 15px;
@@ -61,10 +61,10 @@
   --chotto-chat-date-message-border-radius: 4px;
 
   /* Chat Panel */
-  --chotto-chat-panel-width: 400px;
+  /* --chotto-chat-panel-width: 400px;
   --chotto-chat-panel-left: 65.3%;
   --chotto-chat-panel-padding: 12px;
-  --chotto-item-chat-panel-border-color: var(--neutral-200);
+  --chotto-item-chat-panel-border-color: var(--neutral-200); */
   
   /* Scroll Bar */
   --chotto-scrollbar-bg: var(--neutral-50);
