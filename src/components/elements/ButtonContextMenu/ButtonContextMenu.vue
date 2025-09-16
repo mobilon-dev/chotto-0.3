@@ -188,4 +188,5 @@ defineExpose({
   scoped
   lang="scss"
 >
+@use './styles/ButtonContextMenu.scss';
 </style>

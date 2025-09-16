@@ -78,24 +78,5 @@ watch(
   scoped
   lang="scss"
 >
-  .commands{
-    &__trigger{
-      padding: var(--chotto-chat-input-button-padding);
-      display: block;
-      cursor: pointer;
-      font-size: calc(var(--chotto-button-icon-size) - 7px);
-      color: var(--chotto-button-color-active);
-    }
-
-    &__trigger:hover{
-      color: var(--chotto-button-color-hover);
-    }
-
-    &__disabled {
-      color: var(--chotto-button-color-disabled);
-      cursor: auto;
-      pointer-events: none;
-    }
-  }
-
+@use './styles/ButtonCommandsSelector.scss';
 </style>

@@ -48,7 +48,7 @@ import { ref, computed, inject, onMounted } from "vue";
 import FilePreview from "../FilePreview/FilePreview.vue";
 import { useMessage } from '../../../helpers/useMessage';
 import { uploadFile } from '../../../helpers/uploadFile';
-import { IFilePreview } from "../../../types";
+import { IFilePreview } from "../../../types/components";
 import { FileUploaderIcon } from "./icons";
 
 const props = defineProps({
@@ -188,25 +188,5 @@ onMounted(() => {
   scoped
   lang="scss"
 >
-.file-uploader{
-  &__trigger{
-    padding: var(--chotto-chat-input-button-padding);
-    display: block;
-    cursor: pointer;
-    font-size: var(--chotto-button-icon-size);
-    color: var(--chotto-button-color-active);
-  }
-
-  &__trigger:hover{
-    color: var(--chotto-button-color-hover);
-  }
-
-  &__disabled {
-    color: var(--chotto-button-color-disabled);
-    cursor: auto;
-    pointer-events: none;
-  }
-
-}
-
+@use './styles/FileUploader.scss';
 </style>

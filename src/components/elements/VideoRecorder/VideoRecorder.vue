@@ -36,7 +36,7 @@ import { useMessage } from '../../../helpers/useMessage';
 import { uploadFile } from '../../../helpers/uploadFile';
 import { useModalVideoRecorder } from '../../../helpers';
 import FilePreview from '../FilePreview/FilePreview.vue';
-import { IFilePreview } from '../../types';
+import { IFilePreview } from '../../../types/components';
 import { useTheme } from '../../../helpers/useTheme';
 
 const chatAppId = inject('chatAppId')
@@ -119,39 +119,5 @@ watch(
   scoped
   lang="scss"
 >
-.video-recorder {
-  &__container {
-    position: relative;
-    display: grid;
-    align-items: center;
-    background-color: transparent;
-    height: fit-content;
-  }
-
-  &__button {
-    background-color: transparent;
-    border: 0px;
-
-    span {
-      display: block;
-      cursor: pointer;
-      padding: var(--chotto-chat-input-button-padding);
-      font-size: var(--chotto-button-icon-size);
-      color: var(--chotto-button-color-active);
-    }
-  }
-
-  &__button:hover span{
-    color: var(--chotto-button-color-hover);
-  }
-
-  &__button-disabled {
-    pointer-events: none;
-    span {
-      cursor: auto;
-      color: var(--chotto-button-color-disabled);
-    }
-  }
-}
-
+@use './styles/VideoRecorder.scss';
 </style>

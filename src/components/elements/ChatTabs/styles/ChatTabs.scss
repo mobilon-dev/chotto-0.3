@@ -1,0 +1,46 @@
+.chat-tabs__list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  padding-left: 15px;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.chat-tabs__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--chotto-text-font-size);
+  border: 1px solid var(--chotto-item-border-color, #d0d0d0);
+  border-radius: 20px;
+  height: 26px;
+  min-width: 61px;
+  color: var(--chotto-secondary-text-color);
+
+  &--active {
+    color: var(--chotto-primary-text-color);
+    font-weight: 600;
+    background-color: var(--chotto-item-background-color-focus);
+    border: 1px solid var(--chotto-item-border-color, #d0d0d0);
+  }
+
+  &:hover {
+    background-color: var(--chotto-item-background-color-hover);
+  }
+}
+
+.chat-tabs__button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
+  color: inherit;
+  outline: none;
+}
+
+

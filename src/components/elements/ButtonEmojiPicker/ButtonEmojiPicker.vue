@@ -102,33 +102,5 @@ onUnmounted(() => {
   scoped
   lang="scss"
 >
-  .button {
-    background-color: transparent;
-    border: none;
-    height: fit-content;
-    span {
-      display: block;
-      cursor: pointer;
-      padding: 0;
-      font-size: var(--chotto-button-icon-size);
-      color: var(--chotto-button-color-active);
-    }
-  }
-
-  .button:hover span{
-    color: var(--chotto-button-color-hover);
-  }
-
-  .button-disabled{
-    pointer-events: none;
-    span{
-      cursor: auto;
-      color: var(--chotto-button-color-disabled);
-    }
-  }
-  .emoji {
-    position: absolute;
-    bottom: 50px;
-  }
-
+@use './styles/ButtonEmojiPicker.scss';
 </style>

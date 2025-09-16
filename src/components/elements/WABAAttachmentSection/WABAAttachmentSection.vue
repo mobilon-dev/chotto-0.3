@@ -42,7 +42,7 @@
 import { unref, ref, watch, inject } from "vue";
 import FilePreview from "../FilePreview/FilePreview.vue";
 import { uploadFile } from '../../../helpers/uploadFile';
-import { IFilePreview } from "../../types";
+import { IFilePreview } from "../../../types/components";
 const props = defineProps({
   type: {
     type: String,
@@ -166,56 +166,5 @@ watch(
 </script>
 
 <style scoped lang="scss">
-
-.attachment-section {
-  position: relative;
-  display: flex;
-
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  border-radius: 5px;
-  background-color: var(--chotto-attachment-section-color);
-
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-bottom: 5px;
-
-  &__error{
-    border: 1px solid var(--chotto-attachment-section-error-color);
-  }
-
-  &__icon{
-    padding-left: 10px;
-    color: var(--chotto-primary-text-color);
-
-  }
-
-  &__title{
-    font-size: var(--chotto-additional-text-font-size);
-    color: var(--chotto-primary-text-color);
-    font-weight: 600;
-  }
-
-  &__info{
-    margin-top: 1px;
-    color: var(--chotto-secondary-text-color);
-    font-size: var(--chotto-additional-text-font-size);
-    word-break: break-word;
-    font-weight: 600;
-  }
-
-  &__error-text{
-    color: var(--chotto-attachment-section-error-color);
-    margin-left: 5px;
-    font-size: var(--chotto-small-text-font-size);
-  }
-}
-
-.attachment-section:hover {
-  cursor: pointer;
-  background-color: var(--chotto-attachment-section-hover-color);
-}
-
+@use './styles/WABAAttachmentSection.scss';
 </style>
