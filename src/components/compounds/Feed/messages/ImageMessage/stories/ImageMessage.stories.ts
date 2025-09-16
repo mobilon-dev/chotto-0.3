@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
 
-import { ImageMessage } from './';
-import { IImageMessage } from '../../types'
+import ImageMessage from '../ImageMessage.vue';
+import { IImageMessage } from '../../../../../../types/'
 
 const meta: Meta<typeof ImageMessage> = {
   component: ImageMessage,
