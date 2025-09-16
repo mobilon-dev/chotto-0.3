@@ -1,3 +1,8 @@
+@use './themes/default.scss';
+@use './themes/dark.scss';
+@use './themes/green.scss';
+@use './themes/mobilon1.scss';
+
 .tooltip__text {
   max-width: var(--chotto-tooltip-max-width, 300px);
   color: var(--chotto-tooltip-text-color);
