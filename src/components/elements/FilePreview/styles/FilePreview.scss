@@ -1,3 +1,8 @@
+@use './themes/default.scss';
+@use './themes/dark.scss';
+@use './themes/green.scss';
+@use './themes/mobilon1.scss';
+
 .preview {
   &__container{
     position: relative;
@@ -65,7 +70,6 @@
   }
 
   &__block {
-    --chotto-file-preview-resolution: 60px;
     max-width: var(--chotto-file-preview-resolution);
     max-height: var(--chotto-file-preview-resolution);
     min-width: var(--chotto-file-preview-resolution);

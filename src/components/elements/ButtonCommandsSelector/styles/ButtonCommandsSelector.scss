@@ -1,3 +1,7 @@
+@use './themes/default.scss';
+@use './themes/dark.scss';
+@use './themes/green.scss';
+@use './themes/mobilon1.scss';
 .commands{
   &__trigger{
     padding: var(--chotto-chat-input-button-padding);
