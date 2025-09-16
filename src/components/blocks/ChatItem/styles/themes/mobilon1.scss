@@ -1,9 +1,25 @@
 :global([data-theme="mobilon1"]) {
-  --chotto-chat-item-padding-container: 10px 8px 10px 14px;
-  --chotto-chat-item-dialog-padding: 5px 0 0 75px;
-  --chotto-chat-item-border-radius: 0;
-  --chotto-chat-item-name-margin-top: 2px;
-  --chotto-chat-item-name-margin-bottom: 4px;
+  --chotto-chatitem-divider-translate-x: 15%;
+  --chotto-chatitem-avatar-margin-right: 15px;
+  --chotto-chatitem-avatar-placeholder-size: 48px;
+  --chotto-chatitem-status-user-right: 5px;
+  --chotto-chatitem-status-user-size: 10px;
+  --chotto-chatitem-info-margin-right: 15px;
+  --chotto-chatitem-menu-button-font-size: 18px;
+  --chotto-chatitem-unread-max-height: 20px;
+  --chotto-chatitem-unread-padding: 0 6px;
+  --chotto-chatitem-context-menu-top: 40%;
+  --chotto-chatitem-status-gap: 4px;
+  --chotto-chatitem-dialog-gap: 5px;
+  --chotto-chatitem-dialog-item-padding: 3px;
+  --chotto-chatitem-text-container-padding: 0 5px;
+  --chotto-chatitem-status-first-icon-margin-right: -8px;
+  --chotto-chatitem-menu-enter-translate-y: 20px;
+  --chotto-chatitem-padding-container: 10px 8px 10px 14px;
+  --chotto-chatitem-dialog-padding: 5px 0 0 75px;
+  --chotto-chatitem-border-radius: 0;
+  --chotto-chatitem-name-margin-top: 2px;
+  --chotto-chatitem-name-margin-bottom: 4px;
 }
 
 

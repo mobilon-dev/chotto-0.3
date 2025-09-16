@@ -1,5 +1,10 @@
 :global([data-theme="dark"]) {
-  --chotto-chat-panel-border-radius: 10px;
+  --chotto-chatpanel-border-radius: 10px;
+  --chotto-chatpanel-scrollbar-width: 6px;
+  --chotto-chatpanel-scrollbar-thumb-radius: 10px;
+  --chotto-chatpanel-scrollbar-track-radius: 10px;
+  --chotto-chatpanel-header-gap: 6px;
+  --chotto-chatpanel-title-letter-spacing: 0.5px;
 }
 
 

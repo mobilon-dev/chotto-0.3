@@ -1,8 +1,25 @@
 :global([data-theme="green"]) {
-  --chotto-chat-list-filter-margin: 0 15px 10px 15px;
-  --chotto-chat-list-items-padding: 0;
-  --chotto-chat-list-title-container-padding: 16px 0 16px 15px;
-  --chotto-chat-list-fixed-background-color: var(--default-white);
+  --chotto-chatlist-height: 70%;
+  --chotto-chatlist-scrollbar-width: 6px;
+  --chotto-chatlist-scrollbar-thumb-radius: 10px;
+  --chotto-chatlist-scrollbar-track-radius: 10px;
+  --chotto-chatlist-fixed-z-index: 100;
+  --chotto-chatlist-fixed-top: 0;
+  --chotto-chatlist-fixed-bottom: 0;
+  --chotto-chatlist-title-column-gap: 50px;
+  --chotto-chatlist-context-menu-top: 46px;
+  --chotto-chatlist-context-menu-right: 20px;
+  --chotto-chatlist-button-z-index: 100;
+  --chotto-chatlist-button-bottom: 15px;
+  --chotto-chatlist-button-right: 25px;
+  --chotto-chatlist-button-min: 40px;
+  --chotto-chatlist-menu-enter-duration: 0.1s;
+  --chotto-chatlist-menu-leave-duration: 0.1s;
+  --chotto-chatlist-menu-scale: 0.9;
+  --chotto-chatlist-filter-margin: 0 15px 10px 15px;
+  --chotto-chatlist-items-padding: 0;
+  --chotto-chatlist-title-container-padding: 16px 0 16px 15px;
+  --chotto-chatlist-fixed-background-color: var(--default-white);
 }
 
 

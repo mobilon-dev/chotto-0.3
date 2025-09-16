@@ -1,6 +1,11 @@
 :global([data-theme="mobilon1"]) {
-  --chotto-chat-panel-width: 400px;
-  --chotto-chat-panel-left: 65.3%;
-  --chotto-chat-panel-padding: 12px;
-  --chotto-item-chat-panel-border-color: var(--neutral-200);
+  --chotto-chatpanel-width: 400px;
+  --chotto-chatpanel-left: 65.3%;
+  --chotto-chatpanel-padding: 12px;
+  --chotto-item-chatpanel-border-color: var(--neutral-200);
+  --chotto-chatpanel-scrollbar-width: 6px;
+  --chotto-chatpanel-scrollbar-thumb-radius: 10px;
+  --chotto-chatpanel-scrollbar-track-radius: 10px;
+  --chotto-chatpanel-header-gap: 6px;
+  --chotto-chatpanel-title-letter-spacing: 0.5px;
 }
