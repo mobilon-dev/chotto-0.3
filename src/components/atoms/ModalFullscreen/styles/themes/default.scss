@@ -1,4 +1,15 @@
 :global([data-theme="light"]) {
+  --chotto-modalfullscreen-background: var(--chotto-primary-color, #ffffff);
+  --chotto-modalfullscreen-border-radius: 8px;
+  --chotto-modalfullscreen-padding: 16px;
+  --chotto-modalfullscreen-max-width: 95%;
+  --chotto-modalfullscreen-width: fit-content;
+  --chotto-modalfullscreen-box-shadow: 2px 2px 10px 1px var(--chotto-shadow-color, rgba(0,0,0,0.2));
+  --chotto-modalfullscreen-overlay-bg: rgba(0, 0, 0, 0.3);
+  --chotto-modalfullscreen-overlay-z-index: 1000;
+  --chotto-modalfullscreen-container-z-index: 101;
+  --chotto-modalfullscreen-close-button-padding: 4px;
+  --chotto-modalfullscreen-close-button-margin: 0 0 14px auto;
 }
 
 

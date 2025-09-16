@@ -1,4 +1,9 @@
 :global([data-theme="green"]) {
+  --chotto-modalnofooter-background: var(--chotto-primary-color, #ffffff);
+  --chotto-modalnofooter-backdrop-bg: rgba(0, 0, 0, 0.4);
+  --chotto-modalnofooter-body-padding: 20px 10px;
+  --chotto-modalnofooter-overflow-x: auto;
+  --chotto-modalnofooter-buttons-margin: 10px 10px 10px 10px;
 }
 
 

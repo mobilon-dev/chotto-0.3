@@ -9,7 +9,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: var(--chotto-modal-backdrop-bg, rgba(0, 0, 0, 0.3));
     display: flex;
     justify-content: center;  
     align-items: center;
@@ -17,23 +17,23 @@
 }
 
 .modal {
-    background: #fff;
-    box-shadow: 2px 2px 10px 1px;
-    min-width: 300px;
-    min-height: 300px;
-    overflow-x: auto;
+    background: var(--chotto-modal-background, #fff);
+    box-shadow: var(--chotto-modal-box-shadow, 2px 2px 10px 1px);
+    min-width: var(--chotto-modal-min-width, 300px);
+    min-height: var(--chotto-modal-min-height, 300px);
+    overflow-x: var(--chotto-modal-overflow-x, auto);
     display: flex; 
     flex-direction: column;
 }
 
 .buttons {
   display: block;
-  margin: 10px 10px 10px 10px;
+  margin: var(--chotto-modal-buttons-margin, 10px 10px 10px 10px);
 }
 
 .modal-body {
     position: relative;
-    padding: 20px 10px;
+    padding: var(--chotto-modal-body-padding, 20px 10px);
     flex-grow: 1;
 }
 
