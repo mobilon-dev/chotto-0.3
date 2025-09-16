@@ -1,0 +1,23 @@
+:global([data-theme="light"]) {
+  /* Chat Input specific vars */
+  --chotto-chat-input-container-bg: var(--neutral-100);
+  --chotto-chat-input-icon-color: var(--neutral-600);
+  --chotto-chat-input-icon-color-disabled: var(--neutral-200);
+  --chotto-chat-input-button-padding: 14px;
+
+  /* Input base vars used by ChatInput */
+  --chotto-input-border: 1px solid var(--neutral-300);
+  --chotto-input-hover-border-color: var(--neutral-500);
+  --chotto-input-focus-border-color: var(--neutral-700);
+  --chotto-input-border-radius: 0px 0px 10px 10px;
+  --chotto-input-background: transparent;
+  --chotto-input-padding: 0.5rem 0.75rem;
+  --chotto-input-transition-duration: 0.2s;
+  --chotto-input-font-size: 16px;
+
+  /* Scrollbar used in ChatInput */
+  --chotto-scrollbar-bg: var(--neutral-50);
+  --chotto-scrollbar-thumb-bg: var(--neutral-300);
+}
+
+
