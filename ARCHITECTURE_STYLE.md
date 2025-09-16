@@ -5,7 +5,7 @@
 ```mermaid
 flowchart LR
     %% Основной файл стилей
-    A[style.css]
+    A[themes/index.scss]
     
     %% Темы
     A --> B[default/_theme.css]
@@ -156,7 +156,7 @@ flowchart LR
 ## Структура файлов
 
 ```
-src/assets/themes/
+src/themes/
 ├── default/
 │   ├── _theme.css          # Главный файл темы
 │   ├── variables.css       # Базовые цветовые палитры

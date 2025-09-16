@@ -4,7 +4,7 @@ import 'primeicons/primeicons.css'
 
 import App from './App.vue';
 
-import './assets/style.css'
+import './themes/index.scss'
 
 const pinia = createPinia()
 

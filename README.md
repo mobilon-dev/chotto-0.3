@@ -116,7 +116,7 @@ import {
   ChatInput,
   ThemeMode
 } from '@mobilon-dev/chotto'
-import '@mobilon-dev/chotto/style.css'
+import '@mobilon-dev/chotto/themes/index.scss'
 
 // Ваша логика...
 </script>
@@ -167,8 +167,7 @@ src/
 ├── helpers/          # Утилиты и хелперы
 ├── types/            # TypeScript типы
 ├── data/             # Mock данные для демонстрации
-├── assets/           # Стили и темы
-│   └── themes/       # CSS темы (default, dark, green)
+├── themes/           # Стили и темы (default, dark, green)
 └── locale/           # Локализация (EN, RU)
 ```
 
