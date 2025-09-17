@@ -5,86 +5,86 @@
 
 .video-recorder {
   &__container {
-    position: relative;
-    display: grid;
-    align-items: center;
+    position: var(--chotto-modalvideorecorder-container-position, relative);
+    display: var(--chotto-modalvideorecorder-container-display, grid);
+    align-items: var(--chotto-modalvideorecorder-container-align-items, center);
   }
 
   &__view-area{
-    width: 640px;
-    height: 480px;
+    width: var(--chotto-modalvideorecorder-view-area-width, 640px);
+    height: var(--chotto-modalvideorecorder-view-area-height, 480px);
   }
 
   &__controls{ 
-    display: flex;
-    justify-content: space-between;
+    display: var(--chotto-modalvideorecorder-controls-display, flex);
+    justify-content: var(--chotto-modalvideorecorder-controls-justify-content, space-between);
   }
 
   &__recording-container{
-    display: flex;
-    gap: 3px;
+    display: var(--chotto-modalvideorecorder-recording-container-display, flex);
+    gap: var(--chotto-modalvideorecorder-recording-container-gap, 3px);
   }
 
   &__recording-icon {
-    font-size: 10px;
-    -webkit-animation: blink 3s linear infinite;
-    animation: blink 3s linear infinite;
+    font-size: var(--chotto-modalvideorecorder-recording-icon-font-size, 10px);
+    -webkit-animation: var(--chotto-modalvideorecorder-recording-icon-animation, blink 3s linear infinite);
+    animation: var(--chotto-modalvideorecorder-recording-icon-animation, blink 3s linear infinite);
   }
 
   &__stop {
-    width: 20px;
-    height: 20px;
-    background-color: black;
-    cursor: pointer;
-    border-radius: 2px;
+    width: var(--chotto-modalvideorecorder-stop-width, 20px);
+    height: var(--chotto-modalvideorecorder-stop-height, 20px);
+    background-color: var(--chotto-modalvideorecorder-stop-background-color, black);
+    cursor: var(--chotto-modalvideorecorder-stop-cursor, pointer);
+    border-radius: var(--chotto-modalvideorecorder-stop-border-radius, 2px);
   }
 
   &__recording-time {
-    margin: auto;
+    margin: var(--chotto-modalvideorecorder-recording-time-margin, auto);
   }
 
   @-webkit-keyframes blink {
-    0% { color: red; }
-    50% { color: transparent; }
-    100% { color: red; }
+    0% { color: var(--chotto-modalvideorecorder-blink-color-start, red); }
+    50% { color: var(--chotto-modalvideorecorder-blink-color-middle, transparent); }
+    100% { color: var(--chotto-modalvideorecorder-blink-color-end, red); }
   }
   @keyframes blink {
-    0% { color: red; }
-    50% { color: transparent; }
-    100% { color: red; }
+    0% { color: var(--chotto-modalvideorecorder-blink-color-start, red); }
+    50% { color: var(--chotto-modalvideorecorder-blink-color-middle, transparent); }
+    100% { color: var(--chotto-modalvideorecorder-blink-color-end, red); }
   }
 
   &__button {
-    background-color: transparent;
-    border: 0px;
+    background-color: var(--chotto-modalvideorecorder-button-background-color, transparent);
+    border: var(--chotto-modalvideorecorder-button-border, 0px);
     span {
-      cursor: pointer;
-      display: block;
+      cursor: var(--chotto-modalvideorecorder-button-span-cursor, pointer);
+      display: var(--chotto-modalvideorecorder-button-span-display, block);
       font-size: var(--chotto-button-icon-size);
       color: var(--chotto-button-color-active);
     }
   }
 
   &__header{
-    text-align: right;
-    width: 100%;
+    text-align: var(--chotto-modalvideorecorder-header-text-align, right);
+    width: var(--chotto-modalvideorecorder-header-width, 100%);
   }
 
   &__button-close span{
-    padding-bottom: 5px;
+    padding-bottom: var(--chotto-modalvideorecorder-button-close-span-padding-bottom, 5px);
   }
 
   &__button-disabled {
-    cursor: auto;
+    cursor: var(--chotto-modalvideorecorder-button-disabled-cursor, auto);
     span {
       color: var(--chotto-button-color-disabled);
     }
   }
 
   &__recording-button {
-    cursor: auto;
+    cursor: var(--chotto-modalvideorecorder-recording-button-cursor, auto);
     span{
-      cursor: auto;
+      cursor: var(--chotto-modalvideorecorder-recording-button-span-cursor, auto);
     }
   }
 }
