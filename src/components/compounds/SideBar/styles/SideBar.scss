@@ -5,47 +5,47 @@
 
 .sidebar {
   &__container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+    display: var(--chotto-sidebar-container-display, flex);
+    flex-direction: var(--chotto-sidebar-container-flex-direction, column);
+    height: var(--chotto-sidebar-container-height, 100%);
     padding: var(--chotto-sidebar-padding-container);
-    background-color: transparent;
-    position: relative;
-    overflow: hidden;
+    background-color: var(--chotto-sidebar-container-background-color, transparent);
+    position: var(--chotto-sidebar-container-position, relative);
+    overflow: var(--chotto-sidebar-container-overflow, hidden);
   }
 
   &__scroll-container {
-    flex: 1;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding-bottom: 60px;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    flex: var(--chotto-sidebar-scroll-container-flex, 1);
+    overflow-y: var(--chotto-sidebar-scroll-container-overflow-y, auto);
+    overflow-x: var(--chotto-sidebar-scroll-container-overflow-x, hidden);
+    padding-bottom: var(--chotto-sidebar-scroll-container-padding-bottom, 60px);
+    scrollbar-width: var(--chotto-sidebar-scroll-container-scrollbar-width, none);
+    -ms-overflow-style: var(--chotto-sidebar-scroll-container-ms-overflow-style, none);
 
     &::-webkit-scrollbar {
-      display: none;
+      display: var(--chotto-sidebar-scroll-container-webkit-scrollbar-display, none);
     }
   }
 
   &__list-fixed {
-    position: sticky;
-    top: 0;
-    z-index: 3;
+    position: var(--chotto-sidebar-list-fixed-position, sticky);
+    top: var(--chotto-sidebar-list-fixed-top, 0);
+    z-index: var(--chotto-sidebar-list-fixed-z-index, 3);
     background-color: var(--chotto-layout-extended-first-col-bg);
     padding: var(--chotto-sidebar-list-fixed-padding, 12px 10px 22px);
-    margin-bottom: 15px;
+    margin-bottom: var(--chotto-sidebar-list-fixed-margin-bottom, 15px);
     border-top: var(--chotto-sidebar-list-fixed-border-top, none);
-    display: flex;
-    flex-direction: column;
+    display: var(--chotto-sidebar-list-fixed-display, flex);
+    flex-direction: var(--chotto-sidebar-list-fixed-flex-direction, column);
     row-gap: var(--chotto-sidebar-row-gap-list);
 
     &::after {
-      content: '';
-      position: absolute;
-      bottom: 7px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 40px;
+      content: var(--chotto-sidebar-list-fixed-after-content, '');
+      position: var(--chotto-sidebar-list-fixed-after-position, absolute);
+      bottom: var(--chotto-sidebar-list-fixed-after-bottom, 7px);
+      left: var(--chotto-sidebar-list-fixed-after-left, 50%);
+      transform: var(--chotto-sidebar-list-fixed-after-transform, translateX(-50%));
+      width: var(--chotto-sidebar-list-fixed-after-width, 40px);
       height: var(--chotto-sidebar-list-fixed-border-bottom-width, 1px);
       background-color: var(--chotto-sidebar-list-fixed-border-bottom-color, #ccc);
       display: var(--chotto-sidebar-list-fixed-border-bottom-display, block);
@@ -53,12 +53,12 @@
   }
 
   &__list {
-    display: flex;
-    flex-direction: column;
+    display: var(--chotto-sidebar-list-display, flex);
+    flex-direction: var(--chotto-sidebar-list-flex-direction, column);
     row-gap: var(--chotto-sidebar-row-gap-list);
-    padding: 0;
+    padding: var(--chotto-sidebar-list-padding, 0);
     background-color: var(--chotto-layout-extended-first-col-bg);
-    z-index: 2;
+    z-index: var(--chotto-sidebar-list-z-index, 2);
   }
 
   &__item {
@@ -67,28 +67,28 @@
 
   &__item,
   &__item-fixed {
-    position: relative;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    row-gap: 2px;
-    align-items: center;
-    background-color: transparent;
-    border-radius: 0;
+    position: var(--chotto-sidebar-item-position, relative);
+    cursor: var(--chotto-sidebar-item-cursor, pointer);
+    display: var(--chotto-sidebar-item-display, flex);
+    flex-direction: var(--chotto-sidebar-item-flex-direction, column);
+    row-gap: var(--chotto-sidebar-item-row-gap, 2px);
+    align-items: var(--chotto-sidebar-item-align-items, center);
+    background-color: var(--chotto-sidebar-item-background-color, transparent);
+    border-radius: var(--chotto-sidebar-item-border-radius, 0);
 
     &::before {
-      content: '';
-      position: absolute;
-      width: calc(var(--chotto-avatar-small) + 15px);
-      height: var(--chotto-avatar-small);
+      content: var(--chotto-sidebar-item-before-content, '');
+      position: var(--chotto-sidebar-item-before-position, absolute);
+      width: var(--chotto-sidebar-item-before-width, calc(var(--chotto-avatar-small) + 15px));
+      height: var(--chotto-sidebar-item-before-height, var(--chotto-avatar-small));
       border-radius: var(--chotto-sidebar-hover-radius, 10px);
-      background-color: transparent;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 0;
-      transition: background-color 0.2s ease;
-      pointer-events: none;
+      background-color: var(--chotto-sidebar-item-before-background-color, transparent);
+      top: var(--chotto-sidebar-item-before-top, 0);
+      left: var(--chotto-sidebar-item-before-left, 50%);
+      transform: var(--chotto-sidebar-item-before-transform, translateX(-50%));
+      z-index: var(--chotto-sidebar-item-before-z-index, 0);
+      transition: var(--chotto-sidebar-item-before-transition, background-color 0.2s ease);
+      pointer-events: var(--chotto-sidebar-item-before-pointer-events, none);
     }
 
     &:hover::before {
@@ -96,71 +96,71 @@
     }
 
     span {
-      position: absolute;
-      top: 2px;
-      right: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 5px;
-      max-width: 29px;
-      min-width: 16px;
+      position: var(--chotto-sidebar-item-span-position, absolute);
+      top: var(--chotto-sidebar-item-span-top, 2px);
+      right: var(--chotto-sidebar-item-span-right, 0);
+      display: var(--chotto-sidebar-item-span-display, flex);
+      justify-content: var(--chotto-sidebar-item-span-justify-content, center);
+      align-items: var(--chotto-sidebar-item-span-align-items, center);
+      padding: var(--chotto-sidebar-item-span-padding, 5px);
+      max-width: var(--chotto-sidebar-item-span-max-width, 29px);
+      min-width: var(--chotto-sidebar-item-span-min-width, 16px);
       height: var(--chotto-sidebar-notification-count-height, 18px);
-      border-radius: 10px;
-      line-height: 16px;
+      border-radius: var(--chotto-sidebar-item-span-border-radius, 10px);
+      line-height: var(--chotto-sidebar-item-span-line-height, 16px);
       font-size: var(--chotto-small-text-font-size);
       font-weight: var(--chotto-small-text-font-weight, 400);
       color: var(--chotto-unread-text-color);
       background-color: var(--chotto-unread-background-color);
-      z-index: 2;
+      z-index: var(--chotto-sidebar-item-span-z-index, 2);
     }
 
     p {
       font-size: var(--chotto-small-text-font-size);
-      text-align: center;
-      line-height: 1;
+      text-align: var(--chotto-sidebar-item-p-text-align, center);
+      line-height: var(--chotto-sidebar-item-p-line-height, 1);
       color: var(--chotto-header-font-color, #5F5F5F);
     }
   }
 
   &__image {
-    position: relative;
-    z-index: 1;
-    border-radius: 50%;
-    object-fit: cover;
-    transition: all 0.2s;
-    opacity: 0.8;
+    position: var(--chotto-sidebar-image-position, relative);
+    z-index: var(--chotto-sidebar-image-z-index, 1);
+    border-radius: var(--chotto-sidebar-image-border-radius, 50%);
+    object-fit: var(--chotto-sidebar-image-object-fit, cover);
+    transition: var(--chotto-sidebar-image-transition, all 0.2s);
+    opacity: var(--chotto-sidebar-image-opacity, 0.8);
     width: var(--chotto-avatar-small);
     height: var(--chotto-avatar-small);
   }
 
   &__image--active {
-    opacity: 1;
+    opacity: var(--chotto-sidebar-image-active-opacity, 1);
   }
 
   &__settings-container {
     background-color: var(--chotto-layout-extended-first-col-bg);
-    position: absolute;
-    bottom: 7px;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    z-index: 2;
+    position: var(--chotto-sidebar-settings-container-position, absolute);
+    bottom: var(--chotto-sidebar-settings-container-bottom, 7px);
+    left: var(--chotto-sidebar-settings-container-left, 0);
+    right: var(--chotto-sidebar-settings-container-right, 0);
+    display: var(--chotto-sidebar-settings-container-display, flex);
+    justify-content: var(--chotto-sidebar-settings-container-justify-content, center);
+    z-index: var(--chotto-sidebar-settings-container-z-index, 2);
   }
 
   &__settings-btn {
-    background: none;
-    border: none;
-    padding: 12px;
-    margin: 0;
-    outline: none;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: background-color 0.2s;
+    background: var(--chotto-sidebar-settings-btn-background, none);
+    border: var(--chotto-sidebar-settings-btn-border, none);
+    padding: var(--chotto-sidebar-settings-btn-padding, 12px);
+    margin: var(--chotto-sidebar-settings-btn-margin, 0);
+    outline: var(--chotto-sidebar-settings-btn-outline, none);
+    cursor: var(--chotto-sidebar-settings-btn-cursor, pointer);
+    display: var(--chotto-sidebar-settings-btn-display, inline-flex);
+    align-items: var(--chotto-sidebar-settings-btn-align-items, center);
+    justify-content: var(--chotto-sidebar-settings-btn-justify-content, center);
+    border-radius: var(--chotto-sidebar-settings-btn-border-radius, 50%);
+    transition: var(--chotto-sidebar-settings-btn-transition, background-color 0.2s);
     
     &:hover {
       background-color: var(--neutral-125);
@@ -169,29 +169,29 @@
 }
 
 .sidebar__selected-bar {
-  position: absolute;
-  width: 2px;
-  height: 40px;
-  left: 3px;
-  top: 0;
-  border-radius: 2px;
-  background-color: #007CFF;
-  z-index: 4;
-  transition: top 0.16s ease, height 0.16s ease;
+  position: var(--chotto-sidebar-selected-bar-position, absolute);
+  width: var(--chotto-sidebar-selected-bar-width, 2px);
+  height: var(--chotto-sidebar-selected-bar-height, 40px);
+  left: var(--chotto-sidebar-selected-bar-left, 3px);
+  top: var(--chotto-sidebar-selected-bar-top, 0);
+  border-radius: var(--chotto-sidebar-selected-bar-border-radius, 2px);
+  background-color: var(--chotto-sidebar-selected-bar-background-color, #007CFF);
+  z-index: var(--chotto-sidebar-selected-bar-z-index, 4);
+  transition: var(--chotto-sidebar-selected-bar-transition, top 0.16s ease, height 0.16s ease);
 }
 
 .sidebar-horizontal {
   &__container {
-    flex-direction: row;
-    height: fit-content;
-    padding-top: 0;
-    padding-bottom: 5px;
-    background-color: transparent;
+    flex-direction: var(--chotto-sidebar-horizontal-container-flex-direction, row);
+    height: var(--chotto-sidebar-horizontal-container-height, fit-content);
+    padding-top: var(--chotto-sidebar-horizontal-container-padding-top, 0);
+    padding-bottom: var(--chotto-sidebar-horizontal-container-padding-bottom, 5px);
+    background-color: var(--chotto-sidebar-horizontal-container-background-color, transparent);
   }
 
   &__list,
   &__list-fixed {
-    flex-direction: row;
+    flex-direction: var(--chotto-sidebar-horizontal-list-flex-direction, row);
   }
 
   &__list {
@@ -199,35 +199,35 @@
   }
 
   &__list-fixed {
-    position: static;
-    padding-left: 10px;
+    position: var(--chotto-sidebar-horizontal-list-fixed-position, static);
+    padding-left: var(--chotto-sidebar-horizontal-list-fixed-padding-left, 10px);
     border-left: var(--chotto-sidebar-list-fixed-border-top);
-    padding-top: 0;
-    border-top: 0;
-    margin-right: 10px;
-    margin-bottom: 0;
-    flex-shrink: 0;
+    padding-top: var(--chotto-sidebar-horizontal-list-fixed-padding-top, 0);
+    border-top: var(--chotto-sidebar-horizontal-list-fixed-border-top, 0);
+    margin-right: var(--chotto-sidebar-horizontal-list-fixed-margin-right, 10px);
+    margin-bottom: var(--chotto-sidebar-horizontal-list-fixed-margin-bottom, 0);
+    flex-shrink: var(--chotto-sidebar-horizontal-list-fixed-flex-shrink, 0);
   }
 
   &__item,
   &__item-fixed {
-    display: block;
-    max-width: 70px;
-    text-align: center;
+    display: var(--chotto-sidebar-horizontal-item-display, block);
+    max-width: var(--chotto-sidebar-horizontal-item-max-width, 70px);
+    text-align: var(--chotto-sidebar-horizontal-item-text-align, center);
 
     span {
-      width: 24px;
-      height: 24px;
-      left: 45px;
+      width: var(--chotto-sidebar-horizontal-item-span-width, 24px);
+      height: var(--chotto-sidebar-horizontal-item-span-height, 24px);
+      left: var(--chotto-sidebar-horizontal-item-span-left, 45px);
     }
 
     p {
-      font-size: 14px;
+      font-size: var(--chotto-sidebar-horizontal-item-p-font-size, 14px);
     }
   }
 
   &__image {
-    width: calc(var(--chotto-avatar-small) * 1.2);
-    height: calc(var(--chotto-avatar-small) * 1.2);
+    width: var(--chotto-sidebar-horizontal-image-width, calc(var(--chotto-avatar-small) * 1.2));
+    height: var(--chotto-sidebar-horizontal-image-height, calc(var(--chotto-avatar-small) * 1.2));
   }
 }
