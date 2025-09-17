@@ -6,14 +6,14 @@
 .feed-found-item{
 
   &__container{
-    padding: var(--chotto-chat-item-padding-container);
+    padding: var(--chotto-chatitem-padding-container, var(--chotto-chat-item-padding-container));
     display: flex;
     position: relative;
     cursor: pointer;
     width: 100%;
     word-wrap: anywhere;
     background-color:  transparent;
-    border-radius: var(--chotto-chat-item-border-radius);
+    border-radius: var(--chotto-chatitem-border-radius, var(--chotto-chat-item-border-radius));
   }
   
   &__container:hover{
@@ -25,13 +25,13 @@
   }
 
   &__info{
-    width: 80%;
+    width: var(--chotto-feedfounditem-info-width, 80%);
   }  
 
   &__first-line{
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: var(--chotto-feedfounditem-first-line-margin-bottom, 10px);
   }  
 
   &__name{
@@ -72,12 +72,12 @@
     height: var(--chotto-avatar-medium);
     border-radius: var(--chotto-avatar-border-radius);
     background-size: cover;
-    margin-right: 10px;
+    margin-right: var(--chotto-feedfounditem-avatar-margin-right, 10px);
     span {
       font-size: var(--chotto-avatar-medium-icon-size);
       color: var(--chotto-avatar-color);
-      line-height: 24px;
-      width: 24px;
+      line-height: var(--chotto-feedfounditem-avatar-icon-size, 24px);
+      width: var(--chotto-feedfounditem-avatar-icon-size, 24px);
     }
 
     img {

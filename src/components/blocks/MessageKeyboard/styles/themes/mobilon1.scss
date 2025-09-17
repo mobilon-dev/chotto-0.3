@@ -1,10 +1,8 @@
 :global([data-theme="mobilon1"]) {
-  --chotto-feedkeyboard-bg-color: var(--default-white);
-  --chotto-feedkeyboard-font-weight: 600;
-  --chotto-feedkeyboard-padding: 2.5px 14px;
-  --chotto-feedkeyboard-border: 1px solid #6C757D;
-  --chotto-feedkeyboard-margin-top: 10px;
-  --chotto-feedkeyboard-margin-bottom: 10px;
+  --chotto-messagekeyboard-gap: 5px;
+  --chotto-messagekeyboard-key-border-radius: 3px;
+  --chotto-messagekeyboard-key-box-shadow: 0px 0px 10px 5px var(--chotto-shadow-light-color);
+  --chotto-messagekeyboard-key-padding: 5px;
 }
 
 

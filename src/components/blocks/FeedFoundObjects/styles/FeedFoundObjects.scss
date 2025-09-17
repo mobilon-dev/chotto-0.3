@@ -13,17 +13,17 @@
     overflow-x: hidden;
     height: 100%;
     &::-webkit-scrollbar {
-      width: 6px;
+      width: var(--chotto-feedfoundobjects-scrollbar-width, 6px);
       background-color: var(--chotto-scrollbar-bg);
     }
 
     &::-webkit-scrollbar-thumb {
-      border-radius: 10px;
+      border-radius: var(--chotto-feedfoundobjects-scrollbar-thumb-radius, 10px);
       background-color: var(--chotto-scrollbar-thumb-bg);
     }
 
     &::-webkit-scrollbar-track {
-      border-radius: 10px;
+      border-radius: var(--chotto-feedfoundobjects-scrollbar-track-radius, 10px);
     }
   }
 
