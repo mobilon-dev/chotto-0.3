@@ -1,41 +1,20 @@
 :global([data-theme="mobilon1"]) {
-  /* Chat Input specific vars */
-  --chotto-chat-input-container-bg: #ffffff;
-  --chotto-chat-input-icon-color: var(--neutral-600);
-  --chotto-chat-input-icon-color-disabled: var(--neutral-200);
-  --chotto-chat-input-button-padding: 1px 0 0 3px;
-  --chotto-chat-input-button-margin: 0 9px 2px 4px;
-
-  /* Extra mobilon1 specific vars used by ChatInput */
-  --chotto-unread-min-width: 20px;
-  --chotto-unread-min-height: 20px;
-  --chotto-unread-font-weight: 600;
-  --chotto-unread-border-radius: 10px;
-
-  /* Input base vars used by ChatInput */
-  --chotto-input-border: 1px solid var(--neutral-250);
-  --chotto-input-container-border-top: none;
-  --chotto-input-container-grid-gap: none;
-  --chotto-input-container-padding: 12px 0 8px 15px;
-  --chotto-input-container-inline-buttons-margin: 0 5px 4px 2px;
-  --chotto-input-container-inline-buttons-height: 30px;
-  --chotto-input-container-inline-buttons-gap: 7px;
-  --chotto-input-hover-border-color: var(--neutral-500);
-  --chotto-input-focus-border-color: var(--neutral-700);
-  --chotto-input-border-radius: 5px;
-  --chotto-input-message-border-radius: 2px;
-  --chotto-input-message-font-size: 16px;
-  --chotto-input-message-padding: 0.5rem 0.60rem;
-  --chotto-input-message-send-button-height: 30px;
-
-  --chotto-input-background: transparent;
-  --chotto-input-padding: 0.5rem 0.75rem;
-  --chotto-input-transition-duration: 0.2s;
-  --chotto-input-font-size: 14px;
-
-  /* Scrollbar used in ChatInput */
-  --chotto-scrollbar-bg: var(--neutral-50);
-  --chotto-scrollbar-thumb-bg: var(--neutral-300);
+  --chotto-chatinput-container-bg: #ffffff;
+  --chotto-chatinput-icon-color: var(--neutral-600);
+  --chotto-chatinput-icon-color-disabled: var(--neutral-200);
+  --chotto-chatinput-button-padding: 1px 0 0 3px;
+  --chotto-chatinput-button-margin: 0 9px 2px 4px;
+  --chotto-chatinput-container-border-top: none;
+  --chotto-chatinput-input-line-height: 1.4;
+  --chotto-chatinput-input-min-height: 40px;
+  --chotto-chatinput-input-max-rows: 10;
+  --chotto-chatinput-scrollbar-width: 6px;
+  --chotto-chatinput-scrollbar-thumb-radius: 10px;
+  --chotto-chatinput-scrollbar-track-radius: 10px;
+  --chotto-chatinput-button-margin-bottom: 4px;
+  --chotto-chatinput-enter-duration: 0.2s;
+  --chotto-chatinput-leave-duration: 0.2s;
+  --chotto-chatinput-enter-translate-y: 20px;
 }
 
 

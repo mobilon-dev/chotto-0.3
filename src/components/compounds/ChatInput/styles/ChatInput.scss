@@ -8,8 +8,8 @@
     position: relative;
     display: grid;
     align-items: center;
-    border-top: var(--chotto-input-container-border-top, var(--chotto-input-border));
-    background-color: var(--chotto-chat-input-container-bg);
+    border-top: var(--chotto-chatinput-container-border-top, var(--chotto-input-border));
+    background-color: var(--chotto-chatinput-container-bg);
     padding: var(--chotto-input-container-padding, 5px);
     grid-gap: var(--chotto-input-container-grid-gap, 5px);
     grid-template-columns: min-content auto min-content;
@@ -46,9 +46,9 @@
     overflow-y: hidden;
     resize: none;
     white-space: pre-wrap;
-    line-height: 1.4;
-    min-height: 40px;
-    max-height: calc(1.5em * 10);
+    line-height: var(--chotto-chatinput-input-line-height, 1.4);
+    min-height: var(--chotto-chatinput-input-min-height, 40px);
+    max-height: calc(1.5em * var(--chotto-chatinput-input-max-rows, 10));
     border-radius: var(--chotto-input-message-border-radius, var(--chotto-input-border-radius));
     font-family: var(--chotto-container-font-family);
 
@@ -61,17 +61,17 @@
     }
 
     &::-webkit-scrollbar {
-      width: 6px;
+      width: var(--chotto-chatinput-scrollbar-width, 6px);
       background-color: var(--chotto-scrollbar-bg);
     }
 
     &::-webkit-scrollbar-thumb {
-      border-radius: 10px;
+      border-radius: var(--chotto-chatinput-scrollbar-thumb-radius, 10px);
       background-color: var(--chotto-scrollbar-thumb-bg);
     }
 
     &::-webkit-scrollbar-track {
-      border-radius: 10px;
+      border-radius: var(--chotto-chatinput-scrollbar-track-radius, 10px);
     }
   }
 
@@ -90,23 +90,23 @@
     width: fit-content;
     display: flex;
     align-self: end;
-    margin-bottom: 4px;
+    margin-bottom: var(--chotto-chatinput-button-margin-bottom, 4px);
 
     span {
       display: block;
       cursor: pointer;
-      padding: var(--chotto-chat-input-button-padding);
+      padding: var(--chotto-chatinput-button-padding);
       font-size: var(--chotto-button-icon-size);
-      color: var(--chotto-chat-input-icon-color);
+      color: var(--chotto-chatinput-icon-color);
       height: var(--chotto-input-message-send-button-height, auto);
-      margin: var(--chotto-chat-input-button-margin, 0);
+      margin: var(--chotto-chatinput-button-margin, 0);
     }
   }
 
   &__button-disabled {
     span {
       cursor: auto;
-      color: var(--chotto-chat-input-icon-color-disabled);
+      color: var(--chotto-chatinput-icon-color-disabled);
     }
   }
 
@@ -123,15 +123,15 @@
 }
 
 .v-enter-active {
-  transition: all 0.2s ease-out;
+  transition: all var(--chotto-chatinput-enter-duration, 0.2s) ease-out;
 }
 
 .v-leave-active {
-  transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+  transition: all var(--chotto-chatinput-leave-duration, 0.2s) cubic-bezier(1, 0.5, 0.8, 1);
 }
 
 .v-enter-from,
 .v-leave-to {
-  transform: translateY(20px);
+  transform: translateY(var(--chotto-chatinput-enter-translate-y, 20px));
   opacity: 0;
 }
