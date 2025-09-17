@@ -1,4 +1,42 @@
 :global([data-theme="dark"]) {
+  --chotto-communicationpanel-background: var(--dark-surface-100);
+  --chotto-communicationpanel-border-color: var(--dark-border-200);
+  --chotto-communicationpanel-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+  --chotto-communicationpanel-btn-background: transparent;
+  --chotto-communicationpanel-btn-color: var(--dark-text-100);
+  --chotto-communicationpanel-btn-hover-background: var(--dark-surface-200);
+  --chotto-communicationpanel-btn-hover-color: var(--dark-text-100);
+  --chotto-communicationpanel-btn-active-color: var(--dark-primary-500);
+  --chotto-communicationpanel-btn-active-background: transparent;
+  --chotto-communicationpanel-btn-divider-color: var(--dark-border-300);
+
+  --chotto-communicationpanel-active-indicator-background: var(--dark-primary-500);
+
+  --chotto-communicationpanel-icon-color: var(--dark-text-200);
+  --chotto-communicationpanel-icon-small-color: var(--dark-text-200);
+
+  --chotto-communicationpanel-menu-background: var(--dark-surface-200);
+  --chotto-communicationpanel-menu-border: 1px solid var(--dark-border-300);
+  --chotto-communicationpanel-menu-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.2);
+  --chotto-communicationpanel-menu-header-color: var(--dark-text-300);
+  --chotto-communicationpanel-attribute-color: var(--dark-text-100);
+  --chotto-communicationpanel-attribute-hover-background: var(--dark-surface-300);
+  --chotto-communicationpanel-attribute-value-color: var(--dark-text-100);
+  --chotto-communicationpanel-menu-icon-color: var(--dark-text-300);
+  --chotto-communicationpanel-menu-icon-grey-color: var(--dark-text-400);
+  --chotto-communicationpanel-menu-arrow-border-top: 1px solid var(--dark-text-400);
+  --chotto-communicationpanel-menu-arrow-border-right: 1px solid var(--dark-text-400);
+  --chotto-communicationpanel-menu-divider-background: var(--dark-border-300);
+
+  --chotto-communicationpanel-submenu-background: var(--dark-surface-200);
+  --chotto-communicationpanel-submenu-border: 1px solid var(--dark-border-300);
+  --chotto-communicationpanel-submenu-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.2);
+  --chotto-communicationpanel-submenu-header-color: var(--dark-text-300);
+  --chotto-communicationpanel-submenu-item-color: var(--dark-text-100);
+  --chotto-communicationpanel-submenu-item-hover-background: var(--dark-surface-300);
+  --chotto-communicationpanel-submenu-icon-color: var(--dark-text-200);
+  --chotto-communicationpanel-submenu-title-color: var(--dark-text-100);
 }
 
 

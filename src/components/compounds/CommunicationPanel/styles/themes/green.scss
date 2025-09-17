@@ -1,4 +1,42 @@
 :global([data-theme="green"]) {
+  --chotto-communicationpanel-background: #f8fff8;
+  --chotto-communicationpanel-border-color: #c8e6c9;
+  --chotto-communicationpanel-box-shadow: 0 2px 8px rgba(76, 175, 80, 0.1);
+
+  --chotto-communicationpanel-btn-background: transparent;
+  --chotto-communicationpanel-btn-color: #2e7d32;
+  --chotto-communicationpanel-btn-hover-background: #e8f5e8;
+  --chotto-communicationpanel-btn-hover-color: #1b5e20;
+  --chotto-communicationpanel-btn-active-color: #4caf50;
+  --chotto-communicationpanel-btn-active-background: transparent;
+  --chotto-communicationpanel-btn-divider-color: #c8e6c9;
+
+  --chotto-communicationpanel-active-indicator-background: #4caf50;
+
+  --chotto-communicationpanel-icon-color: #4caf50;
+  --chotto-communicationpanel-icon-small-color: #4caf50;
+
+  --chotto-communicationpanel-menu-background: #f8fff8;
+  --chotto-communicationpanel-menu-border: 1px solid #c8e6c9;
+  --chotto-communicationpanel-menu-box-shadow: 0 4px 12px rgba(76, 175, 80, 0.2), 0 2px 6px rgba(76, 175, 80, 0.1);
+  --chotto-communicationpanel-menu-header-color: #2e7d32;
+  --chotto-communicationpanel-attribute-color: #1b5e20;
+  --chotto-communicationpanel-attribute-hover-background: #e8f5e8;
+  --chotto-communicationpanel-attribute-value-color: #1b5e20;
+  --chotto-communicationpanel-menu-icon-color: #4caf50;
+  --chotto-communicationpanel-menu-icon-grey-color: #66bb6a;
+  --chotto-communicationpanel-menu-arrow-border-top: 1px solid #66bb6a;
+  --chotto-communicationpanel-menu-arrow-border-right: 1px solid #66bb6a;
+  --chotto-communicationpanel-menu-divider-background: #c8e6c9;
+
+  --chotto-communicationpanel-submenu-background: #f8fff8;
+  --chotto-communicationpanel-submenu-border: 1px solid #c8e6c9;
+  --chotto-communicationpanel-submenu-box-shadow: 0 4px 12px rgba(76, 175, 80, 0.2), 0 2px 6px rgba(76, 175, 80, 0.1);
+  --chotto-communicationpanel-submenu-header-color: #2e7d32;
+  --chotto-communicationpanel-submenu-item-color: #1b5e20;
+  --chotto-communicationpanel-submenu-item-hover-background: #e8f5e8;
+  --chotto-communicationpanel-submenu-icon-color: #4caf50;
+  --chotto-communicationpanel-submenu-title-color: #1b5e20;
 }
 
 
