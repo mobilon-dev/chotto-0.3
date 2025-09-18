@@ -4,78 +4,77 @@
 @use './themes/mobilon1.scss';
 
 .theme-button {
-  margin: 0 auto;
+  margin: var(--chotto-thememode-button-margin, 0 auto);
 
   &__switch {
-    position: relative;
-    display: inline-block;
-    box-sizing: border-box;
-    width: 56px;
-    height: 28px;
-    /* var*/border: 1px solid var(--neutral-400);
-    border-radius: 25%/50%;
-    /* var*/background: var(--neutral-50);
-    transition: .15s;
-    cursor: pointer;
-
+    position: var(--chotto-thememode-switch-position, relative);
+    display: var(--chotto-thememode-switch-display, inline-block);
+    box-sizing: var(--chotto-thememode-switch-box-sizing, border-box);
+    width: var(--chotto-thememode-switch-width, 56px);
+    height: var(--chotto-thememode-switch-height, 28px);
+    border: var(--chotto-thememode-switch-border);
+    border-radius: var(--chotto-thememode-switch-border-radius, 25%/50%);
+    background: var(--chotto-thememode-switch-background);
+    transition: var(--chotto-thememode-switch-transition, .15s);
+    cursor: var(--chotto-thememode-switch-cursor, pointer);
 
     span {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      margin: auto 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      position: var(--chotto-thememode-switch-span-position, absolute);
+      top: var(--chotto-thememode-switch-span-top, 0);
+      bottom: var(--chotto-thememode-switch-span-bottom, 0);
+      margin: var(--chotto-thememode-switch-span-margin, auto 0);
+      display: var(--chotto-thememode-switch-span-display, flex);
+      justify-content: var(--chotto-thememode-switch-span-justify-content, center);
+      align-items: var(--chotto-thememode-switch-span-align-items, center);
     }
 
     span.pi-sun {
-      /* var*/background-color: var(--neutral-400);
-      /* var*/color: var(--neutral-700);
-      left: 1px;
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      transition: .15s;
+      background-color: var(--chotto-thememode-switch-sun-background-color);
+      color: var(--chotto-thememode-switch-sun-color);
+      left: var(--chotto-thememode-switch-sun-left, 1px);
+      width: var(--chotto-thememode-switch-sun-width, 24px);
+      height: var(--chotto-thememode-switch-sun-height, 24px);
+      border-radius: var(--chotto-thememode-switch-sun-border-radius, 50%);
+      transition: var(--chotto-thememode-switch-sun-transition, .15s);
     }
 
     span.pi-moon {
-      opacity: 0;
-      /* var*/background-color: var(--neutral-400);
-      /* var*/color: var(--neutral-700);
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      transition: .15s;
+      opacity: var(--chotto-thememode-switch-moon-opacity, 0);
+      background-color: var(--chotto-thememode-switch-moon-background-color);
+      color: var(--chotto-thememode-switch-moon-color);
+      width: var(--chotto-thememode-switch-moon-width, 24px);
+      height: var(--chotto-thememode-switch-moon-height, 24px);
+      border-radius: var(--chotto-thememode-switch-moon-border-radius, 50%);
+      transition: var(--chotto-thememode-switch-moon-transition, .15s);
     }
   }
 }
 
 .theme-button input[type=checkbox] {
-  display: block;
-  width: 0;
-  height: 0;
-  position: absolute;
-  z-index: -1;
-  opacity: 0;
+  display: var(--chotto-thememode-input-display, block);
+  width: var(--chotto-thememode-input-width, 0);
+  height: var(--chotto-thememode-input-height, 0);
+  position: var(--chotto-thememode-input-position, absolute);
+  z-index: var(--chotto-thememode-input-z-index, -1);
+  opacity: var(--chotto-thememode-input-opacity, 0);
 }
 
 .theme-button input[type=checkbox]:checked+.theme-button__switch {
-  /* var*/background: var(--neutral-700);
-  transition: .15s;
+  background: var(--chotto-thememode-switch-checked-background);
+  transition: var(--chotto-thememode-switch-checked-transition, .15s);
 }
 
 .theme-button input[type=checkbox]:checked+.theme-button__switch {
   span.pi-sun {
-    transform: translateX(29px);
-    opacity: 0;
-    transition: all .15s;
+    transform: var(--chotto-thememode-switch-sun-checked-transform, translateX(29px));
+    opacity: var(--chotto-thememode-switch-sun-checked-opacity, 0);
+    transition: var(--chotto-thememode-switch-sun-checked-transition, all .15s);
   }
 
   span.pi-moon {
-    transform: translateX(29px);
-    opacity: 1;
-    transition: all .15s;
+    transform: var(--chotto-thememode-switch-moon-checked-transform, translateX(29px));
+    opacity: var(--chotto-thememode-switch-moon-checked-opacity, 1);
+    transition: var(--chotto-thememode-switch-moon-checked-transition, all .15s);
   }
 
 }
