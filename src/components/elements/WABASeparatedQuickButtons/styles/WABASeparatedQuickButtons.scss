@@ -4,48 +4,50 @@
 @use './themes/mobilon1.scss';
 
 .separated-quick-buttons{
-  width: 100%;
-  position: absolute;
-  left:0; right:0; bottom:0;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  background: var(--chotto-primary-color);
-  white-space: pre-wrap;
+  width: var(--chotto-wabaseparatedquickbuttons-width, 100%);
+  position: var(--chotto-wabaseparatedquickbuttons-position, absolute);
+  left: var(--chotto-wabaseparatedquickbuttons-left, 0);
+  right: var(--chotto-wabaseparatedquickbuttons-right, 0);
+  bottom: var(--chotto-wabaseparatedquickbuttons-bottom, 0);
+  border-top-left-radius: var(--chotto-wabaseparatedquickbuttons-border-top-left-radius, 10px);
+  border-top-right-radius: var(--chotto-wabaseparatedquickbuttons-border-top-right-radius, 10px);
+  background: var(--chotto-wabaseparatedquickbuttons-background);
+  white-space: var(--chotto-wabaseparatedquickbuttons-white-space, pre-wrap);
 
   &__title{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 15px;
+    display: var(--chotto-wabaseparatedquickbuttons-title-display, flex);
+    justify-content: var(--chotto-wabaseparatedquickbuttons-title-justify-content, space-between);
+    align-items: var(--chotto-wabaseparatedquickbuttons-title-align-items, center);
+    margin: var(--chotto-wabaseparatedquickbuttons-title-margin, 15px);
     
     p{
-      font-size: var(--chotto-text-font-size);
-      margin-left: auto;
-      margin-right: auto;
+      font-size: var(--chotto-wabaseparatedquickbuttons-title-p-font-size);
+      margin-left: var(--chotto-wabaseparatedquickbuttons-title-p-margin-left, auto);
+      margin-right: var(--chotto-wabaseparatedquickbuttons-title-p-margin-right, auto);
     }
     
     span{
-      cursor: pointer;
+      cursor: var(--chotto-wabaseparatedquickbuttons-title-span-cursor, pointer);
     }
   }
 
   &__actions{
-    border-top: 1px solid var(--chotto-item-border-color);
-    max-height: 200px;
-    overflow-y: auto;
+    border-top: var(--chotto-wabaseparatedquickbuttons-actions-border-top);
+    max-height: var(--chotto-wabaseparatedquickbuttons-actions-max-height, 200px);
+    overflow-y: var(--chotto-wabaseparatedquickbuttons-actions-overflow-y, auto);
   }
 
   &__action {
-    position: relative;
-    z-index: 0;
-    width: 90%;
-    font-size: var(--chotto-text-font-size);
-    margin-right: auto;
-    margin-left: 25px;
-    display: flex;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    gap: 10px;
+    position: var(--chotto-wabaseparatedquickbuttons-action-position, relative);
+    z-index: var(--chotto-wabaseparatedquickbuttons-action-z-index, 0);
+    width: var(--chotto-wabaseparatedquickbuttons-action-width, 90%);
+    font-size: var(--chotto-wabaseparatedquickbuttons-action-font-size);
+    margin-right: var(--chotto-wabaseparatedquickbuttons-action-margin-right, auto);
+    margin-left: var(--chotto-wabaseparatedquickbuttons-action-margin-left, 25px);
+    display: var(--chotto-wabaseparatedquickbuttons-action-display, flex);
+    margin-top: var(--chotto-wabaseparatedquickbuttons-action-margin-top, 20px);
+    margin-bottom: var(--chotto-wabaseparatedquickbuttons-action-margin-bottom, 20px);
+    gap: var(--chotto-wabaseparatedquickbuttons-action-gap, 10px);
   }
 }
 
