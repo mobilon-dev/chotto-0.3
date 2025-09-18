@@ -1,23 +1,28 @@
+@use './themes/default.scss';
+@use './themes/dark.scss';
+@use './themes/green.scss';
+@use './themes/mobilon1.scss';
+
 .container{
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  display: var(--chotto-replytextmessage-container-display, flex);
+  flex-direction: var(--chotto-replytextmessage-container-flex-direction, column);
+  gap: var(--chotto-replytextmessage-container-gap, 8px);
 }
 
 .text{
-  font-size: var(--chotto-text-font-size);
-  color: var(--chotto-primary-text-color)
+  font-size: var(--chotto-replytextmessage-text-font-size);
+  color: var(--chotto-replytextmessage-text-color);
 }
 
 p {
-  margin: 0;
-  font-size: var(--chotto-additional-text-font-size);
-  color: var(--chotto-secondary-text-color);
-  white-space: pre-wrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 5;
-  line-clamp: 5;
-  -webkit-box-orient: vertical;
+  margin: var(--chotto-replytextmessage-p-margin, 0);
+  font-size: var(--chotto-replytextmessage-p-font-size);
+  color: var(--chotto-replytextmessage-p-color);
+  white-space: var(--chotto-replytextmessage-p-white-space, pre-wrap);
+  overflow: var(--chotto-replytextmessage-p-overflow, hidden);
+  text-overflow: var(--chotto-replytextmessage-p-text-overflow, ellipsis);
+  display: var(--chotto-replytextmessage-p-display, -webkit-box);
+  -webkit-line-clamp: var(--chotto-replytextmessage-p-webkit-line-clamp, 5);
+  line-clamp: var(--chotto-replytextmessage-p-line-clamp, 5);
+  -webkit-box-orient: var(--chotto-replytextmessage-p-webkit-box-orient, vertical);
 }
