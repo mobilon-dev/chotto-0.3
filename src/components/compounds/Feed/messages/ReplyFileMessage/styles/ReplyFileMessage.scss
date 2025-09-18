@@ -1,48 +1,53 @@
+@use './themes/default.scss';
+@use './themes/dark.scss';
+@use './themes/green.scss';
+@use './themes/mobilon1.scss';
+
 p {
-  margin: 0;
-  margin-top: 6px;
-  word-wrap: break-word;
-  white-space: pre-wrap;
-  font-size: var(--chotto-additional-text-font-size);
-  color: var(--chotto-secondary-text-color);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 5;
-  line-clamp: 5;
-  -webkit-box-orient: vertical;
+  margin: var(--chotto-replyfilemessage-p-margin, 0);
+  margin-top: var(--chotto-replyfilemessage-p-margin-top, 6px);
+  word-wrap: var(--chotto-replyfilemessage-p-word-wrap, break-word);
+  white-space: var(--chotto-replyfilemessage-p-white-space, pre-wrap);
+  font-size: var(--chotto-replyfilemessage-p-font-size);
+  color: var(--chotto-replyfilemessage-p-color);
+  overflow: var(--chotto-replyfilemessage-p-overflow, hidden);
+  text-overflow: var(--chotto-replyfilemessage-p-text-overflow, ellipsis);
+  display: var(--chotto-replyfilemessage-p-display, -webkit-box);
+  -webkit-line-clamp: var(--chotto-replyfilemessage-p-webkit-line-clamp, 5);
+  line-clamp: var(--chotto-replyfilemessage-p-line-clamp, 5);
+  -webkit-box-orient: var(--chotto-replyfilemessage-p-webkit-box-orient, vertical);
 }
 
 .file-message {
 
   &__text {
-    margin-top: 8px;
-    font-size: var(--chotto-text-font-size);
-    color: var(--chotto-primary-text-color);
+    margin-top: var(--chotto-replyfilemessage-text-margin-top, 8px);
+    font-size: var(--chotto-replyfilemessage-text-font-size);
+    color: var(--chotto-replyfilemessage-text-color);
   }
 
   &__link {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    column-gap: 13px;
+    display: var(--chotto-replyfilemessage-link-display, flex);
+    justify-content: var(--chotto-replyfilemessage-link-justify-content, flex-start);
+    align-items: var(--chotto-replyfilemessage-link-align-items, center);
+    column-gap: var(--chotto-replyfilemessage-link-column-gap, 13px);
 
     span {
-      color: var(--chotto-secondary-text-color);
-      font-size: var(--chotto-button-icon-size);
+      color: var(--chotto-replyfilemessage-link-span-color);
+      font-size: var(--chotto-replyfilemessage-link-span-font-size);
     }
   }
 
   &__filename-text {
-    margin: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-line-clamp: 1;
-    line-clamp: 1;
-    -webkit-box-orient: vertical;
-    margin-right: 40px;
-    font-size: var(--chotto-additional-text-font-size);
-    color: var(--chotto-secondary-text-color);
-    text-decoration: underline;
+    margin: var(--chotto-replyfilemessage-filename-text-margin, 0);
+    overflow: var(--chotto-replyfilemessage-filename-text-overflow, hidden);
+    text-overflow: var(--chotto-replyfilemessage-filename-text-text-overflow, ellipsis);
+    -webkit-line-clamp: var(--chotto-replyfilemessage-filename-text-webkit-line-clamp, 1);
+    line-clamp: var(--chotto-replyfilemessage-filename-text-line-clamp, 1);
+    -webkit-box-orient: var(--chotto-replyfilemessage-filename-text-webkit-box-orient, vertical);
+    margin-right: var(--chotto-replyfilemessage-filename-text-margin-right, 40px);
+    font-size: var(--chotto-replyfilemessage-filename-text-font-size);
+    color: var(--chotto-replyfilemessage-filename-text-color);
+    text-decoration: var(--chotto-replyfilemessage-filename-text-text-decoration, underline);
   }
 }
