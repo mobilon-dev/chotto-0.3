@@ -4,48 +4,48 @@
 @use './themes/mobilon1.scss';
 
 .chat-tabs__list {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  padding-left: 15px;
-  gap: 10px;
-  margin-bottom: 10px;
+  display: var(--chotto-chattabs-list-display, flex);
+  list-style: var(--chotto-chattabs-list-list-style, none);
+  padding: var(--chotto-chattabs-list-padding, 0);
+  margin: var(--chotto-chattabs-list-margin, 0);
+  padding-left: var(--chotto-chattabs-list-padding-left, 15px);
+  gap: var(--chotto-chattabs-list-gap, 10px);
+  margin-bottom: var(--chotto-chattabs-list-margin-bottom, 10px);
 }
 
 .chat-tabs__item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: var(--chotto-text-font-size);
-  border: 1px solid var(--chotto-item-border-color, #d0d0d0);
-  border-radius: 20px;
-  height: 26px;
-  min-width: 61px;
-  color: var(--chotto-secondary-text-color);
+  display: var(--chotto-chattabs-item-display, flex);
+  align-items: var(--chotto-chattabs-item-align-items, center);
+  justify-content: var(--chotto-chattabs-item-justify-content, center);
+  font-size: var(--chotto-chattabs-item-font-size);
+  border: var(--chotto-chattabs-item-border);
+  border-radius: var(--chotto-chattabs-item-border-radius, 20px);
+  height: var(--chotto-chattabs-item-height, 26px);
+  min-width: var(--chotto-chattabs-item-min-width, 61px);
+  color: var(--chotto-chattabs-item-color);
 
   &--active {
-    color: var(--chotto-primary-text-color);
-    font-weight: 600;
-    background-color: var(--chotto-item-background-color-focus);
-    border: 1px solid var(--chotto-item-border-color, #d0d0d0);
+    color: var(--chotto-chattabs-item-active-color);
+    font-weight: var(--chotto-chattabs-item-active-font-weight, 600);
+    background-color: var(--chotto-chattabs-item-active-background-color);
+    border: var(--chotto-chattabs-item-active-border);
   }
 
   &:hover {
-    background-color: var(--chotto-item-background-color-hover);
+    background-color: var(--chotto-chattabs-item-hover-background-color);
   }
 }
 
 .chat-tabs__button {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: inherit;
-  color: inherit;
-  outline: none;
+  display: var(--chotto-chattabs-button-display, flex);
+  align-items: var(--chotto-chattabs-button-align-items, center);
+  gap: var(--chotto-chattabs-button-gap, 8px);
+  background: var(--chotto-chattabs-button-background, none);
+  border: var(--chotto-chattabs-button-border, none);
+  cursor: var(--chotto-chattabs-button-cursor, pointer);
+  font-size: var(--chotto-chattabs-button-font-size, inherit);
+  color: var(--chotto-chattabs-button-color, inherit);
+  outline: var(--chotto-chattabs-button-outline, none);
 }
 
 
