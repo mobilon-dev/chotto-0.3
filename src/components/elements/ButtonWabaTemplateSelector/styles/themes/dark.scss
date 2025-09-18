@@ -1,3 +1,17 @@
 :global([data-theme="dark"]) {
-  --chotto-chat-input-button-padding: 14px;
+  // ButtonWabaTemplateSelector button variables
+  --chotto-buttonwabatemplateselector-button-background-color: transparent;
+  --chotto-buttonwabatemplateselector-button-border: 0px;
+  --chotto-buttonwabatemplateselector-button-height: fit-content;
+  --chotto-buttonwabatemplateselector-button-span-display: block;
+  --chotto-buttonwabatemplateselector-button-span-cursor: pointer;
+  --chotto-buttonwabatemplateselector-button-span-padding: 14px;
+  --chotto-buttonwabatemplateselector-button-span-font-size: var(--chotto-button-icon-size);
+  --chotto-buttonwabatemplateselector-button-span-color: var(--chotto-button-color-active);
+  --chotto-buttonwabatemplateselector-button-span-hover-color: var(--chotto-button-color-hover);
+
+  // ButtonWabaTemplateSelector button-disabled variables
+  --chotto-buttonwabatemplateselector-button-disabled-pointer-events: none;
+  --chotto-buttonwabatemplateselector-button-disabled-span-cursor: auto;
+  --chotto-buttonwabatemplateselector-button-disabled-span-color: var(--chotto-button-color-disabled);
 }
