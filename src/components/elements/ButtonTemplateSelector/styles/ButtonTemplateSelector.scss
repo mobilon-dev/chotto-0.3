@@ -4,27 +4,27 @@
 @use './themes/mobilon1.scss';
 
 .button-template {
-  background-color: transparent;
-  border: 0px;
-  height: fit-content;
+  background-color: var(--chotto-buttontemplateselector-button-background-color, transparent);
+  border: var(--chotto-buttontemplateselector-button-border, 0px);
+  height: var(--chotto-buttontemplateselector-button-height, fit-content);
   span {
-    display: block;
-    cursor: pointer;
-    padding: var(--chotto-chat-input-button-padding);
-    font-size: var(--chotto-button-icon-size);
-    color: var(--chotto-button-color-active);
+    display: var(--chotto-buttontemplateselector-button-span-display, block);
+    cursor: var(--chotto-buttontemplateselector-button-span-cursor, pointer);
+    padding: var(--chotto-buttontemplateselector-button-span-padding);
+    font-size: var(--chotto-buttontemplateselector-button-span-font-size);
+    color: var(--chotto-buttontemplateselector-button-span-color);
   }
 }
 
 .button-template:hover span{
-  color: var(--chotto-button-color-hover);
+  color: var(--chotto-buttontemplateselector-button-span-hover-color);
 }
 
 .button-template-disabled{
-  pointer-events: none;
+  pointer-events: var(--chotto-buttontemplateselector-button-disabled-pointer-events, none);
   span{
-    cursor: auto;
-    color: var(--chotto-button-color-disabled);
+    cursor: var(--chotto-buttontemplateselector-button-disabled-span-cursor, auto);
+    color: var(--chotto-buttontemplateselector-button-disabled-span-color);
   }
 }
 
