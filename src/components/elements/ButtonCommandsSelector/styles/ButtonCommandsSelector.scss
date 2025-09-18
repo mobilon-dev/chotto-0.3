@@ -4,21 +4,21 @@
 @use './themes/mobilon1.scss';
 .commands{
   &__trigger{
-    padding: var(--chotto-chat-input-button-padding);
-    display: block;
-    cursor: pointer;
-    font-size: calc(var(--chotto-button-icon-size) - 7px);
-    color: var(--chotto-button-color-active);
+    padding: var(--chotto-buttoncommandsselector-trigger-padding);
+    display: var(--chotto-buttoncommandsselector-trigger-display, block);
+    cursor: var(--chotto-buttoncommandsselector-trigger-cursor, pointer);
+    font-size: var(--chotto-buttoncommandsselector-trigger-font-size);
+    color: var(--chotto-buttoncommandsselector-trigger-color);
   }
 
   &__trigger:hover{
-    color: var(--chotto-button-color-hover);
+    color: var(--chotto-buttoncommandsselector-trigger-hover-color);
   }
 
   &__disabled {
-    color: var(--chotto-button-color-disabled);
-    cursor: auto;
-    pointer-events: none;
+    color: var(--chotto-buttoncommandsselector-disabled-color);
+    cursor: var(--chotto-buttoncommandsselector-disabled-cursor, auto);
+    pointer-events: var(--chotto-buttoncommandsselector-disabled-pointer-events, none);
   }
 }
 

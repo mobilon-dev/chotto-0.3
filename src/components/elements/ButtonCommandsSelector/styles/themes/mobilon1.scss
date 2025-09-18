@@ -1,3 +1,14 @@
 :global([data-theme="mobilon1"]) {
-  --chotto-chat-input-button-padding: 1px 0 0 3px;
+  // ButtonCommandsSelector trigger variables
+  --chotto-buttoncommandsselector-trigger-padding: 1px 0 0 3px;
+  --chotto-buttoncommandsselector-trigger-display: block;
+  --chotto-buttoncommandsselector-trigger-cursor: pointer;
+  --chotto-buttoncommandsselector-trigger-font-size: calc(var(--chotto-button-icon-size) - 7px);
+  --chotto-buttoncommandsselector-trigger-color: var(--chotto-button-color-active);
+  --chotto-buttoncommandsselector-trigger-hover-color: var(--chotto-button-color-hover);
+
+  // ButtonCommandsSelector disabled variables
+  --chotto-buttoncommandsselector-disabled-color: var(--chotto-button-color-disabled);
+  --chotto-buttoncommandsselector-disabled-cursor: auto;
+  --chotto-buttoncommandsselector-disabled-pointer-events: none;
 }
