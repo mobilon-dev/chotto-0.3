@@ -5,21 +5,21 @@
 
 .file-uploader{
   &__trigger{
-    padding: var(--chotto-chat-input-button-padding);
-    display: block;
-    cursor: pointer;
-    font-size: var(--chotto-button-icon-size);
-    color: var(--chotto-button-color-active);
+    padding: var(--chotto-fileuploader-trigger-padding);
+    display: var(--chotto-fileuploader-trigger-display, block);
+    cursor: var(--chotto-fileuploader-trigger-cursor, pointer);
+    font-size: var(--chotto-fileuploader-trigger-font-size);
+    color: var(--chotto-fileuploader-trigger-color);
   }
 
   &__trigger:hover{
-    color: var(--chotto-button-color-hover);
+    color: var(--chotto-fileuploader-trigger-hover-color);
   }
 
   &__disabled {
-    color: var(--chotto-button-color-disabled);
-    cursor: auto;
-    pointer-events: none;
+    color: var(--chotto-fileuploader-disabled-color);
+    cursor: var(--chotto-fileuploader-disabled-cursor, auto);
+    pointer-events: var(--chotto-fileuploader-disabled-pointer-events, none);
   }
 
 }
