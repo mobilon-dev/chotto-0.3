@@ -1,22 +1,27 @@
+@use './themes/default.scss';
+@use './themes/dark.scss';
+@use './themes/green.scss';
+@use './themes/mobilon1.scss';
+
 .date-message-sticky {
   &__container {
-    position: sticky;
-    top: 10px;
-    height: 0;
-    overflow: visible;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 200;
-    pointer-events: none;
+    position: var(--chotto-datemessagesticky-container-position, sticky);
+    top: var(--chotto-datemessagesticky-container-top, 10px);
+    height: var(--chotto-datemessagesticky-container-height, 0);
+    overflow: var(--chotto-datemessagesticky-container-overflow, visible);
+    display: var(--chotto-datemessagesticky-container-display, flex);
+    align-items: var(--chotto-datemessagesticky-container-align-items, center);
+    justify-content: var(--chotto-datemessagesticky-container-justify-content, center);
+    z-index: var(--chotto-datemessagesticky-container-z-index, 200);
+    pointer-events: var(--chotto-datemessagesticky-container-pointer-events, none);
   }
 
   &__text {
-    font-size: var(--chotto-additional-text-font-size);
-    color: var(--chotto-primary-text-color);
-    background-color: var(--chotto-chatlist-fixed-background-color);
-    padding: var(--chotto-chat-date-message-padding, 4px 11px);
-    border-radius: var(--chotto-chat-date-message-border-radius, 4px);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    font-size: var(--chotto-datemessagesticky-text-font-size, 14px);
+    color: var(--chotto-datemessagesticky-text-color, var(--neutral-850));
+    background-color: var(--chotto-datemessagesticky-text-background-color, #F0F0F0);
+    padding: var(--chotto-datemessagesticky-text-padding, 4px 11px);
+    border-radius: var(--chotto-datemessagesticky-text-border-radius, 4px);
+    box-shadow: var(--chotto-datemessagesticky-text-box-shadow, 0 2px 6px rgba(0,0,0,0.08));
   }
 }
