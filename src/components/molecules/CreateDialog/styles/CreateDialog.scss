@@ -1,17 +1,22 @@
+@use './themes/default.scss';
+@use './themes/dark.scss';
+@use './themes/green.scss';
+@use './themes/mobilon1.scss';
+
 .modal{
   &__contact-line{
-    display: flex;
-    margin: 10px 0;
-    justify-content: space-between;
+    display: var(--chotto-createdialog-contact-line-display, flex);
+    margin: var(--chotto-createdialog-contact-line-margin, 10px 0);
+    justify-content: var(--chotto-createdialog-contact-line-justify-content, space-between);
   }
 
   &__channel-line{
-    display: flex;
-    margin: 10px 0;
-    justify-content: space-between;
+    display: var(--chotto-createdialog-channel-line-display, flex);
+    margin: var(--chotto-createdialog-channel-line-margin, 10px 0);
+    justify-content: var(--chotto-createdialog-channel-line-justify-content, space-between);
   }
 
   &__button-start{
-    margin-left: calc(100% - 98px);
+    margin-left: var(--chotto-createdialog-button-start-margin-left, calc(100% - 98px));
   }
 }
