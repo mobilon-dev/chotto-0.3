@@ -4,32 +4,32 @@
 @use './themes/mobilon1.scss';
 
 .button {
-  background-color: transparent;
-  border: none;
-  height: fit-content;
+  background-color: var(--chotto-buttonemojipicker-button-background-color, transparent);
+  border: var(--chotto-buttonemojipicker-button-border, none);
+  height: var(--chotto-buttonemojipicker-button-height, fit-content);
   span {
-    display: block;
-    cursor: pointer;
-    padding: 0;
-    font-size: var(--chotto-button-icon-size);
-    color: var(--chotto-button-color-active);
+    display: var(--chotto-buttonemojipicker-button-span-display, block);
+    cursor: var(--chotto-buttonemojipicker-button-span-cursor, pointer);
+    padding: var(--chotto-buttonemojipicker-button-span-padding, 0);
+    font-size: var(--chotto-buttonemojipicker-button-span-font-size);
+    color: var(--chotto-buttonemojipicker-button-span-color);
   }
 }
 
 .button:hover span{
-  color: var(--chotto-button-color-hover);
+  color: var(--chotto-buttonemojipicker-button-span-hover-color);
 }
 
 .button-disabled{
-  pointer-events: none;
+  pointer-events: var(--chotto-buttonemojipicker-button-disabled-pointer-events, none);
   span{
-    cursor: auto;
-    color: var(--chotto-button-color-disabled);
+    cursor: var(--chotto-buttonemojipicker-button-disabled-span-cursor, auto);
+    color: var(--chotto-buttonemojipicker-button-disabled-span-color);
   }
 }
 .emoji {
-  position: absolute;
-  bottom: 50px;
+  position: var(--chotto-buttonemojipicker-emoji-position, absolute);
+  bottom: var(--chotto-buttonemojipicker-emoji-bottom, 50px);
 }
 
 
