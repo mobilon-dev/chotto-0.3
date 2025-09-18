@@ -3,5 +3,10 @@
 @use './themes/green.scss';
 @use './themes/mobilon1.scss';
 
-
-
+.button-context-menu {
+  position: var(--chotto-buttoncontextmenu-position, relative);
+  width: var(--chotto-buttoncontextmenu-width, fit-content);
+  border: var(--chotto-buttoncontextmenu-border, none);
+  background: var(--chotto-buttoncontextmenu-background, transparent);
+  height: var(--chotto-buttoncontextmenu-height, fit-content);
+}
