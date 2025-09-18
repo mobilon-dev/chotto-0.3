@@ -5,39 +5,39 @@
 
 .chat-filter {
   &__container{
-    position: relative;
+    position: var(--chotto-chatfilter-container-position, relative);
   }
 
   &__icon{
-    position: absolute;
-    left: 14px;
-    top: 25%;
-    color: var(--chotto-secondary-text-color);
+    position: var(--chotto-chatfilter-icon-position, absolute);
+    left: var(--chotto-chatfilter-icon-left, 14px);
+    top: var(--chotto-chatfilter-icon-top, 25%);
+    color: var(--chotto-chatfilter-icon-color);
   }
 
   &__input {
-    width: 100%;
-    background-color: transparent;
-    color: var(--chotto-primary-text-color);
-    padding: var(--chotto-input-padding);
-    padding-left: 40px;
-    border: var(--chotto-input-border);
-    border-radius: var(--chotto-input-border-radius);
-    font-size: var(--chotto-input-font-size);
-    transition: border-color var(--chotto-input-transition-duration);
-    background-color: var(--chotto-input-background);
+    width: var(--chotto-chatfilter-input-width, 100%);
+    background-color: var(--chotto-chatfilter-input-background-color);
+    color: var(--chotto-chatfilter-input-color);
+    padding: var(--chotto-chatfilter-input-padding);
+    padding-left: var(--chotto-chatfilter-input-padding-left, 40px);
+    border: var(--chotto-chatfilter-input-border);
+    border-radius: var(--chotto-chatfilter-input-border-radius);
+    font-size: var(--chotto-chatfilter-input-font-size);
+    transition: var(--chotto-chatfilter-input-transition);
+    background-color: var(--chotto-chatfilter-input-background);
 
     &::placeholder {
-      color: var(--chotto-secondary-text-color);
+      color: var(--chotto-chatfilter-input-placeholder-color);
     }
 
     &:hover {
-      border-color: var(--chotto-input-hover-border-color);
+      border-color: var(--chotto-chatfilter-input-hover-border-color);
     }
 
     &:focus-visible {
-      border-color: var(--chotto-input-focus-border-color);
-      outline: none;
+      border-color: var(--chotto-chatfilter-input-focus-border-color);
+      outline: var(--chotto-chatfilter-input-focus-outline, none);
     }
   }
 }

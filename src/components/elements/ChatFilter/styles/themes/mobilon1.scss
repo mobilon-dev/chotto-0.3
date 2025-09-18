@@ -1,2 +1,26 @@
 :global([data-theme="mobilon1"]) {
+  // ChatFilter container variables
+  --chotto-chatfilter-container-position: relative;
+
+  // ChatFilter icon variables
+  --chotto-chatfilter-icon-position: absolute;
+  --chotto-chatfilter-icon-left: 14px;
+  --chotto-chatfilter-icon-top: 25%;
+  --chotto-chatfilter-icon-color: var(--chotto-secondary-text-color);
+
+  // ChatFilter input variables
+  --chotto-chatfilter-input-width: 100%;
+  --chotto-chatfilter-input-background-color: transparent;
+  --chotto-chatfilter-input-color: var(--chotto-primary-text-color);
+  --chotto-chatfilter-input-padding: var(--chotto-input-padding);
+  --chotto-chatfilter-input-padding-left: 40px;
+  --chotto-chatfilter-input-border: var(--chotto-input-border);
+  --chotto-chatfilter-input-border-radius: var(--chotto-input-border-radius);
+  --chotto-chatfilter-input-font-size: var(--chotto-input-font-size);
+  --chotto-chatfilter-input-transition: border-color var(--chotto-input-transition-duration);
+  --chotto-chatfilter-input-background: var(--chotto-input-background);
+  --chotto-chatfilter-input-placeholder-color: var(--chotto-secondary-text-color);
+  --chotto-chatfilter-input-hover-border-color: var(--chotto-input-hover-border-color);
+  --chotto-chatfilter-input-focus-border-color: var(--chotto-input-focus-border-color);
+  --chotto-chatfilter-input-focus-outline: none;
 }
