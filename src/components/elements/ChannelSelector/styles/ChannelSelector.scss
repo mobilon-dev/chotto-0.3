@@ -5,50 +5,50 @@
 
 .channels {
   &__container {
-    display: flex;
+    display: var(--chotto-channelselector-container-display, flex);
   }
 
   &__container-disabled{
-    color: var(--chotto-button-color-disabled);
+    color: var(--chotto-channelselector-container-disabled-color);
   }
 
   &__title {
-    font-size: var(--chotto-text-font-size);
+    font-size: var(--chotto-channelselector-title-font-size);
   }
 
   &__selected {
-    height: fit-content;
-    margin: auto;
-    display: flex;
-    justify-content: flex-start;
-    column-gap: 6px;
-    align-items: center;
-    margin-left: 10px;
+    height: var(--chotto-channelselector-selected-height, fit-content);
+    margin: var(--chotto-channelselector-selected-margin, auto);
+    display: var(--chotto-channelselector-selected-display, flex);
+    justify-content: var(--chotto-channelselector-selected-justify-content, flex-start);
+    column-gap: var(--chotto-channelselector-selected-column-gap, 6px);
+    align-items: var(--chotto-channelselector-selected-align-items, center);
+    margin-left: var(--chotto-channelselector-selected-margin-left, 10px);
   }
 
   &__icon {
-    display: block;
-    height: fit-content;
-    width: var(--chotto-text-font-size);
-    height: var(--chotto-text-font-size);
+    display: var(--chotto-channelselector-icon-display, block);
+    height: var(--chotto-channelselector-icon-height, fit-content);
+    width: var(--chotto-channelselector-icon-width);
+    height: var(--chotto-channelselector-icon-height);
   }
 
   &__trigger{
-    padding: var(--chotto-chat-input-button-padding)var(--chotto-chat-input-button-padding);
-    display: block;
-    cursor: pointer;
-    font-size: var(--chotto-button-icon-size);
-    color: var(--chotto-button-color-active);
+    padding: var(--chotto-channelselector-trigger-padding);
+    display: var(--chotto-channelselector-trigger-display, block);
+    cursor: var(--chotto-channelselector-trigger-cursor, pointer);
+    font-size: var(--chotto-channelselector-trigger-font-size);
+    color: var(--chotto-channelselector-trigger-color);
   }
 
   &__trigger:hover{
-    color: var(--chotto-button-color-hover);
+    color: var(--chotto-channelselector-trigger-hover-color);
   }
 
   &__disabled {
-    color: var(--chotto-button-color-disabled);
-    cursor: auto;
-    pointer-events: none;
+    color: var(--chotto-channelselector-disabled-color);
+    cursor: var(--chotto-channelselector-disabled-cursor, auto);
+    pointer-events: var(--chotto-channelselector-disabled-pointer-events, none);
   }
 }
 
