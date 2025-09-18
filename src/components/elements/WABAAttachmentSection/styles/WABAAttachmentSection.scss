@@ -4,54 +4,51 @@
 @use './themes/mobilon1.scss';
 
 .attachment-section {
-  position: relative;
-  display: flex;
-
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  border-radius: 5px;
-  background-color: var(--chotto-attachment-section-color);
-
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-bottom: 5px;
+  position: var(--chotto-wabaattachmentsection-position, relative);
+  display: var(--chotto-wabaattachmentsection-display, flex);
+  text-align: var(--chotto-wabaattachmentsection-text-align, center);
+  align-items: var(--chotto-wabaattachmentsection-align-items, center);
+  justify-content: var(--chotto-wabaattachmentsection-justify-content, center);
+  gap: var(--chotto-wabaattachmentsection-gap, 8px);
+  border-radius: var(--chotto-wabaattachmentsection-border-radius, 5px);
+  background-color: var(--chotto-wabaattachmentsection-background-color);
+  padding-top: var(--chotto-wabaattachmentsection-padding-top, 10px);
+  padding-bottom: var(--chotto-wabaattachmentsection-padding-bottom, 10px);
+  margin-bottom: var(--chotto-wabaattachmentsection-margin-bottom, 5px);
 
   &__error{
-    border: 1px solid var(--chotto-attachment-section-error-color);
+    border: var(--chotto-wabaattachmentsection-error-border);
   }
 
   &__icon{
-    padding-left: 10px;
-    color: var(--chotto-primary-text-color);
-
+    padding-left: var(--chotto-wabaattachmentsection-icon-padding-left, 10px);
+    color: var(--chotto-wabaattachmentsection-icon-color);
   }
 
   &__title{
-    font-size: var(--chotto-additional-text-font-size);
-    color: var(--chotto-primary-text-color);
-    font-weight: 600;
+    font-size: var(--chotto-wabaattachmentsection-title-font-size);
+    color: var(--chotto-wabaattachmentsection-title-color);
+    font-weight: var(--chotto-wabaattachmentsection-title-font-weight, 600);
   }
 
   &__info{
-    margin-top: 1px;
-    color: var(--chotto-secondary-text-color);
-    font-size: var(--chotto-additional-text-font-size);
-    word-break: break-word;
-    font-weight: 600;
+    margin-top: var(--chotto-wabaattachmentsection-info-margin-top, 1px);
+    color: var(--chotto-wabaattachmentsection-info-color);
+    font-size: var(--chotto-wabaattachmentsection-info-font-size);
+    word-break: var(--chotto-wabaattachmentsection-info-word-break, break-word);
+    font-weight: var(--chotto-wabaattachmentsection-info-font-weight, 600);
   }
 
   &__error-text{
-    color: var(--chotto-attachment-section-error-color);
-    margin-left: 5px;
-    font-size: var(--chotto-small-text-font-size);
+    color: var(--chotto-wabaattachmentsection-error-text-color);
+    margin-left: var(--chotto-wabaattachmentsection-error-text-margin-left, 5px);
+    font-size: var(--chotto-wabaattachmentsection-error-text-font-size);
   }
 }
 
 .attachment-section:hover {
-  cursor: pointer;
-  background-color: var(--chotto-attachment-section-hover-color);
+  cursor: var(--chotto-wabaattachmentsection-hover-cursor, pointer);
+  background-color: var(--chotto-wabaattachmentsection-hover-background-color);
 }
 
 
