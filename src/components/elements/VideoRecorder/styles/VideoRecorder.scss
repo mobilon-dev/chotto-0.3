@@ -5,35 +5,35 @@
 
 .video-recorder {
   &__container {
-    position: relative;
-    display: grid;
-    align-items: center;
-    background-color: transparent;
-    height: fit-content;
+    position: var(--chotto-videorecorder-container-position, relative);
+    display: var(--chotto-videorecorder-container-display, grid);
+    align-items: var(--chotto-videorecorder-container-align-items, center);
+    background-color: var(--chotto-videorecorder-container-background-color, transparent);
+    height: var(--chotto-videorecorder-container-height, fit-content);
   }
 
   &__button {
-    background-color: transparent;
-    border: 0px;
+    background-color: var(--chotto-videorecorder-button-background-color, transparent);
+    border: var(--chotto-videorecorder-button-border, 0px);
 
     span {
-      display: block;
-      cursor: pointer;
-      padding: var(--chotto-chat-input-button-padding);
-      font-size: var(--chotto-button-icon-size);
-      color: var(--chotto-button-color-active);
+      display: var(--chotto-videorecorder-button-span-display, block);
+      cursor: var(--chotto-videorecorder-button-span-cursor, pointer);
+      padding: var(--chotto-videorecorder-button-span-padding);
+      font-size: var(--chotto-videorecorder-button-span-font-size);
+      color: var(--chotto-videorecorder-button-span-color);
     }
   }
 
   &__button:hover span{
-    color: var(--chotto-button-color-hover);
+    color: var(--chotto-videorecorder-button-hover-span-color);
   }
 
   &__button-disabled {
-    pointer-events: none;
+    pointer-events: var(--chotto-videorecorder-button-disabled-pointer-events, none);
     span {
-      cursor: auto;
-      color: var(--chotto-button-color-disabled);
+      cursor: var(--chotto-videorecorder-button-disabled-span-cursor, auto);
+      color: var(--chotto-videorecorder-button-disabled-span-color);
     }
   }
 }
