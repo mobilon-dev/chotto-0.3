@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 
-import { IDateMessage } from '../../types';
+import { IDateMessage } from '../../../../../types';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps({
@@ -20,29 +20,6 @@ const props = defineProps({
 });
 </script>
 
-<style
-  scoped
-  lang="scss"
->
-.date-message {
-
-  &__container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    padding: 6px 18px;
-    margin-bottom: 18px;
-    width: fit-content;
-    background-color: var(--chotto-secondary-color, transparent);
-  }
-
-  &__text {
-    font-size: var(--chotto-additional-text-font-size);
-    color: var(--chotto-primary-text-color);
-    background-color: var(--chotto-chat-list-fixed-background-color);
-    padding: var(--chotto-chat-date-message-padding, 4px 11px);
-    border-radius: var(--chotto-chat-date-message-border-radius, 4px);
-  }
-}
+<style scoped lang="scss">
+@use './styles/DateMessage.scss';
 </style>

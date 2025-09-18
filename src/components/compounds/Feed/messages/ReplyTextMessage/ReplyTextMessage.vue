@@ -18,7 +18,7 @@
 import { ref, watch } from 'vue'
 import linkifyStr from "linkify-string";
 
-import { ITextMessage } from '../../types';
+import { ITextMessage } from '../../../../../types';
 
 // Define props
 const props = defineProps({
@@ -46,32 +46,6 @@ function inNewWindow(event) {
 
 </script>
 
-<style
-  scoped
-  lang="scss"
->
-
-.container{
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.text{
-  font-size: var(--chotto-text-font-size);
-  color: var(--chotto-primary-text-color)
-}
-
-p {
-  margin: 0;
-  font-size: var(--chotto-additional-text-font-size);
-  color: var(--chotto-secondary-text-color);
-  white-space: pre-wrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 5;
-  line-clamp: 5;
-  -webkit-box-orient: vertical;
-}
+<style scoped lang="scss">
+@use './styles/ReplyTextMessage.scss';
 </style>

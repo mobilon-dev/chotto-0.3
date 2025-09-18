@@ -39,9 +39,7 @@
 import { ref, watch } from 'vue'
 import linkifyStr from "linkify-string";
 
-import { IFileMessage } from '../../types'
-import ModalFullscreen from "../../../../atoms/ModalFullscreen/ModalFullscreen.vue";
-import { useTheme } from "../../../../helpers/useTheme";
+import { IFileMessage } from '../../../../../types'
 
 // Define props
 const props = defineProps({
@@ -72,58 +70,6 @@ function inNewWindow(event) {
 
 </script>
 
-<style
-  scoped
-  lang="scss"
->
-
-p {
-  margin: 0;
-  margin-top: 6px;
-  word-wrap: break-word;
-  white-space: pre-wrap;
-  font-size: var(--chotto-additional-text-font-size);
-  color: var(--chotto-secondary-text-color);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 5;
-  line-clamp: 5;
-  -webkit-box-orient: vertical;
-}
-
-.file-message {
-
-  &__text {
-    margin-top: 8px;
-    font-size: var(--chotto-text-font-size);
-    color: var(--chotto-primary-text-color);
-  }
-
-  &__link {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    column-gap: 13px;
-
-    span {
-      color: var(--chotto-secondary-text-color);
-      font-size: var(--chotto-button-icon-size);
-    }
-  }
-
-  &__filename-text {
-    margin: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-line-clamp: 1;
-    line-clamp: 1;
-    -webkit-box-orient: vertical;
-    margin-right: 40px;
-    font-size: var(--chotto-additional-text-font-size);
-    color: var(--chotto-secondary-text-color);
-    text-decoration: underline;
-  }
-}
-
+<style scoped lang="scss">
+@use './styles/ReplyFileMessage.scss';
 </style>

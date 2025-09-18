@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 
-import { ISystemMessage } from '../../types';
+import { ISystemMessage } from '../../../../../types';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps({
@@ -20,24 +20,6 @@ const props = defineProps({
 
 </script>
 
-<style
-  scoped
-  lang="scss"
->
-.system-message {
-  &__container {
-    width: 54%;
-    border-radius: var(--chotto-message-border-radius, 10px);
-    padding: 10px;
-    margin: 0 auto 18px auto;
-    background-color: var(--chotto-system-message-bg-color);
-  }
-
-  &__text {
-    font-size: var(--chotto-text-font-size);
-    line-height: 1.5;
-    text-align: center;
-    color: var(--chotto-secondary-text-color);
-  }
-}
+<style scoped lang="scss">
+@use './styles/SystemMessage.scss';
 </style>
