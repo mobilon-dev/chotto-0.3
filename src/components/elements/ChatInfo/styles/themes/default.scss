@@ -1,2 +1,63 @@
 :global([data-theme="light"]) {
+  // ChatInfo container variables
+  --chotto-chatinfo-container-border-radius: var(--chotto-chat-info-border-radius);
+  --chotto-chatinfo-container-padding: var(--chotto-chat-info-padding);
+  --chotto-chatinfo-container-border-bottom: var(--chotto-chat-info-border-bottom, 1px solid var(--chotto-item-border-color));
+  --chotto-chatinfo-container-background-color: var(--chotto-chat-info-background-color);
+
+  // ChatInfo base-line variables
+  --chotto-chatinfo-base-line-display: flex;
+  --chotto-chatinfo-base-line-align-items: center;
+  --chotto-chatinfo-base-line-gap: 10px;
+
+  // ChatInfo avatar-container variables
+  --chotto-chatinfo-avatar-container-display: flex;
+  --chotto-chatinfo-avatar-container-justify-content: center;
+  --chotto-chatinfo-avatar-container-align-items: center;
+  --chotto-chatinfo-avatar-container-border-radius: var(--chotto-avatar-border-radius);
+  --chotto-chatinfo-avatar-container-background-size: cover;
+  --chotto-chatinfo-avatar-container-span-color: var(--chotto-avatar-color);
+  --chotto-chatinfo-avatar-container-span-display: flex;
+  --chotto-chatinfo-avatar-container-span-justify-content: center;
+  --chotto-chatinfo-avatar-container-span-align-items: center;
+  --chotto-chatinfo-avatar-container-img-width: var(--chotto-chat-avatar-small, var(--chotto-avatar-small));
+  --chotto-chatinfo-avatar-container-img-height: var(--chotto-chat-avatar-small, var(--chotto-avatar-small));
+  --chotto-chatinfo-avatar-container-img-border-radius: var(--chotto-avatar-border-radius);
+  --chotto-chatinfo-avatar-container-img-object-fit: cover;
+
+  // ChatInfo info-container variables
+  --chotto-chatinfo-info-container-display: flex;
+  --chotto-chatinfo-info-container-flex-direction: column;
+
+  // ChatInfo title variables
+  --chotto-chatinfo-title-display: flex;
+  --chotto-chatinfo-title-grid-column: 2;
+  --chotto-chatinfo-title-color: var(--chotto-primary-text-color);
+  --chotto-chatinfo-title-font-size: var(--chotto-title-font-size);
+  --chotto-chatinfo-title-font-weight: var(--chotto-title-font-weight);
+  --chotto-chatinfo-title-margin: 0;
+
+  // ChatInfo additional-title variables
+  --chotto-chatinfo-additional-title-margin: auto;
+  --chotto-chatinfo-additional-title-font-size: var(--chotto-text-font-size);
+  --chotto-chatinfo-additional-title-padding: 0 10px;
+  --chotto-chatinfo-additional-title-border: 1px solid var(--chotto-chat-info-additional-title-border-color);
+  --chotto-chatinfo-additional-title-border-radius: 5px;
+  --chotto-chatinfo-additional-title-margin-left: 15px;
+
+  // ChatInfo time variables
+  --chotto-chatinfo-time-display: flex;
+  --chotto-chatinfo-time-font-size: var(--chotto-text-font-size);
+  --chotto-chatinfo-time-color: var(--chotto-secondary-text-color);
+  --chotto-chatinfo-time-grid-column: 2;
+  --chotto-chatinfo-time-margin: 0;
+
+  // ChatInfo actions variables
+  --chotto-chatinfo-actions-margin-left: auto;
+
+  // ChatInfo return-button variables
+  --chotto-chatinfo-return-button-border: 0px;
+  --chotto-chatinfo-return-button-background-color: transparent;
+  --chotto-chatinfo-return-button-cursor: pointer;
+  --chotto-chatinfo-return-button-color: var(--chotto-button-color-active);
 }
