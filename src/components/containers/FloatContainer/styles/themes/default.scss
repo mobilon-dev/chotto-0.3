@@ -1,0 +1,56 @@
+:global([data-theme="light"]) {
+  // FloatContainer main variables
+  --chotto-floatcontainer-float-window-z-index: 1000;
+  --chotto-floatcontainer-float-window-width: fit-content;
+  --chotto-floatcontainer-float-window-position: absolute;
+
+  // FloatContainer container variables
+  --chotto-floatcontainer-container-width: 100%;
+  --chotto-floatcontainer-container-height: 100%;
+  --chotto-floatcontainer-container-position: absolute;
+  --chotto-floatcontainer-container-font-weight: var(--chotto-container-font-weight);
+  --chotto-floatcontainer-container-color: var(--chotto-primary-text-color);
+  --chotto-floatcontainer-container-font-family: var(--chotto-container-font-family);
+  --chotto-floatcontainer-container-box-shadow: var(--chotto-float-container-box-shadow);
+  --chotto-floatcontainer-container-container: all / inline-size;
+
+  // FloatContainer controls variables
+  --chotto-floatcontainer-controls-display: flex;
+  --chotto-floatcontainer-controls-justify-content: space-between;
+  --chotto-floatcontainer-controls-align-items: center;
+  --chotto-floatcontainer-controls-cursor: grab;
+  --chotto-floatcontainer-controls-padding: 18px 20px;
+  --chotto-floatcontainer-controls-background-color: var(--chotto-float-container-bg-header);
+  --chotto-floatcontainer-controls-border-top-left-radius: var(--chotto-float-container-border-radius-header);
+  --chotto-floatcontainer-controls-border-top-right-radius: var(--chotto-float-container-border-radius-header);
+
+  // FloatContainer avatar variables
+  --chotto-floatcontainer-avatar-width: var(--chotto-avatar-small);
+  --chotto-floatcontainer-avatar-height: var(--chotto-avatar-small);
+  --chotto-floatcontainer-avatar-border-radius: 50%;
+
+  // FloatContainer title variables
+  --chotto-floatcontainer-title-font-size: var(--chotto-title-font-size);
+  --chotto-floatcontainer-title-font-weight: var(--chotto-title-font-weight);
+  --chotto-floatcontainer-title-margin-left: 10px;
+
+  // FloatContainer close-button variables
+  --chotto-floatcontainer-close-button-display: block;
+  --chotto-floatcontainer-close-button-background-color: transparent;
+  --chotto-floatcontainer-close-button-border: none;
+  --chotto-floatcontainer-close-button-font-size: var(--chotto-button-icon-size);
+  --chotto-floatcontainer-close-button-color: var(--chotto-secondary-text-color);
+  --chotto-floatcontainer-close-button-width: fit-content;
+  --chotto-floatcontainer-close-button-margin-left: auto;
+  --chotto-floatcontainer-close-button-cursor: pointer;
+
+  // FloatContainer global styles variables
+  --chotto-floatcontainer-global-box-sizing: border-box;
+  --chotto-floatcontainer-global-body-margin: 0;
+  --chotto-floatcontainer-global-ul-margin: 0;
+  --chotto-floatcontainer-global-ul-padding: 0;
+  --chotto-floatcontainer-global-ul-list-style-type: none;
+  --chotto-floatcontainer-global-input-button-font-family: var(--chotto-container-font-family);
+  --chotto-floatcontainer-global-p-h1-h2-margin: 0;
+  --chotto-floatcontainer-global-a-text-decoration: none;
+}
