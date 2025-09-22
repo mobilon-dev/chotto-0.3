@@ -189,7 +189,7 @@
 import { computed, ref, reactive, onMounted, inject, unref } from 'vue'
 // import { watch, nextTick } from 'vue'
 
-import PlaceholderComponent from '../../containers/PlaceholderComponent.vue'
+import PlaceholderComponent from '../../containers/PlaceholderComponent/PlaceholderComponent.vue'
 import WABAAttachmentSection from '../WABAAttachmentSection/WABAAttachmentSection.vue';
 import WABAQuickReplyButtons from '../WABAQuickReplyButtons/WABAQuickReplyButtons.vue';
 import WABASeparatedQuickButtons from '../WABASeparatedQuickButtons/WABASeparatedQuickButtons.vue';

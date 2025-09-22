@@ -102,19 +102,6 @@ onUnmounted(() => {
 })
 </script>
 
-<style scoped>
-.placeholder {
-  padding: 2px 6px;
-  border-radius: 4px;
-  cursor: pointer;
-  line-height: 1.8;
-}
-
-.placeholder.filled {
-  background-color: var(--chotto-variable-placeholder-filled-color);
-}
-
-.placeholder.empty {
-  background-color: var(--chotto-variable-placeholder-empty-color);
-}
+<style scoped lang="scss">
+@use './styles/PlaceholderComponent.scss';
 </style>
