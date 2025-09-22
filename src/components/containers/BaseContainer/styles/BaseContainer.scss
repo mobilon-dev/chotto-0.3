@@ -1,0 +1,57 @@
+@use './themes/default.scss';
+@use './themes/dark.scss';
+@use './themes/green.scss';
+@use './themes/mobilon1.scss';
+
+.base {
+  &__container {
+    transition: var(--chotto-basecontainer-base-container-transition, all 0.3s ease);
+    font-weight: var(--chotto-basecontainer-base-container-font-weight, var(--chotto-container-font-weight));
+    color: var(--chotto-basecontainer-base-container-color, var(--chotto-primary-text-color));
+    font-family: var(--chotto-basecontainer-base-container-font-family, var(--chotto-container-font-family));
+    container: var(--chotto-basecontainer-base-container-container, all / inline-size);
+    min-width: var(--chotto-basecontainer-base-container-min-width, 480px);
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: var(--chotto-basecontainer-global-box-sizing, border-box);
+  }
+
+  body {
+    margin: var(--chotto-basecontainer-global-body-margin, 0);
+  }
+
+  ul {
+    margin: var(--chotto-basecontainer-global-ul-margin, 0);
+    padding: var(--chotto-basecontainer-global-ul-padding, 0);
+    list-style-type: var(--chotto-basecontainer-global-ul-list-style-type, none);
+  }
+
+  input,
+  button {
+    font-family: var(--chotto-basecontainer-global-input-button-font-family, var(--chotto-container-font-family));
+  }
+
+  p,
+  h1,
+  h2 {
+    margin: var(--chotto-basecontainer-global-p-h1-h2-margin, 0);
+  }
+
+  a {
+    text-decoration: var(--chotto-basecontainer-global-a-text-decoration, none);
+  }
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: var(--chotto-basecontainer-transition-enter-active-transition, opacity 0.5s ease);
+  opacity: var(--chotto-basecontainer-transition-enter-active-opacity, 1);
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: var(--chotto-basecontainer-transition-enter-from-opacity, 0);
+}

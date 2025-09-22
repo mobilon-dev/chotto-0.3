@@ -1,0 +1,24 @@
+:global([data-theme="dark"]) {
+  // BaseContainer base variables
+  --chotto-basecontainer-base-container-transition: all 0.3s ease;
+  --chotto-basecontainer-base-container-font-weight: var(--chotto-container-font-weight);
+  --chotto-basecontainer-base-container-color: var(--chotto-primary-text-color);
+  --chotto-basecontainer-base-container-font-family: var(--chotto-container-font-family);
+  --chotto-basecontainer-base-container-container: all / inline-size;
+  --chotto-basecontainer-base-container-min-width: 480px;
+
+  // BaseContainer global styles variables
+  --chotto-basecontainer-global-box-sizing: border-box;
+  --chotto-basecontainer-global-body-margin: 0;
+  --chotto-basecontainer-global-ul-margin: 0;
+  --chotto-basecontainer-global-ul-padding: 0;
+  --chotto-basecontainer-global-ul-list-style-type: none;
+  --chotto-basecontainer-global-input-button-font-family: var(--chotto-container-font-family);
+  --chotto-basecontainer-global-p-h1-h2-margin: 0;
+  --chotto-basecontainer-global-a-text-decoration: none;
+
+  // BaseContainer transition variables
+  --chotto-basecontainer-transition-enter-active-transition: opacity 0.5s ease;
+  --chotto-basecontainer-transition-enter-active-opacity: 1;
+  --chotto-basecontainer-transition-enter-from-opacity: 0;
+}
