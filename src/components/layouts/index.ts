@@ -1,6 +1,6 @@
 import BaseLayout from './BaseLayout/BaseLayout.vue';
 import ExtendedLayout from './ExtendedLayout/ExtendedLayout.vue';
-import FeedLayout from './FeedLayout.vue';
+import FeedLayout from './FeedLayout/FeedLayout.vue';
 import ChatWrapper from './ChatWrapper/ChatWrapper.vue';
 import AdaptiveExtendedLayout from './AdaptiveExtendedLayout/AdaptiveExtendedLayout.vue';
 
