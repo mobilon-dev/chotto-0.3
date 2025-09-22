@@ -2,7 +2,7 @@ import BaseLayout from './BaseLayout.vue';
 import ExtendedLayout from './ExtendedLayout.vue';
 import FeedLayout from './FeedLayout.vue';
 import ChatWrapper from './ChatWrapper.vue';
-import AdaptiveExtendedLayout from './AdaptiveExtendedLayout.vue';
+import AdaptiveExtendedLayout from './AdaptiveExtendedLayout/AdaptiveExtendedLayout.vue';
 
 export {
   BaseLayout,
