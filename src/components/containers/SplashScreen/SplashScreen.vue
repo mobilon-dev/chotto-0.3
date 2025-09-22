@@ -22,20 +22,5 @@ const handleImage = () => {
 </script>
 
 <style scoped lang="scss">
-.splash{
-  &__container{
-    border-radius: 10px;
-    background-color: inherit;
-    backdrop-filter: brightness(140%);
-    padding: 20px;
-
-    *{
-      text-align: center;
-    }
-  }
-
-  &__img{
-    cursor: pointer;
-  }
-}
+@use './styles/SplashScreen.scss';
 </style>
