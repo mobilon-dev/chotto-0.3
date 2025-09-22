@@ -1,0 +1,86 @@
+<template>
+  <div class="extend-layout__container">
+    <div class="extend-layout__first-col">
+      <slot name="first-col" />
+    </div>
+    <div class="extend-layout__second-col">
+      <slot name="second-col" />
+    </div>
+    <div class="extend-layout__third-col">
+      <slot name="third-col" />
+    </div>
+  </div>
+</template>
+
+<script setup>
+
+</script>
+
+<style
+  scoped
+  lang="scss"
+>
+@use './styles/themes/default.scss';
+@use './styles/themes/dark.scss';
+@use './styles/themes/green.scss';
+@use './styles/themes/mobilon1.scss';
+
+.extend-layout {
+  &__container {
+    height: var(--chotto-extendedlayout-container-height, inherit);
+    display: var(--chotto-extendedlayout-container-display, grid);
+    grid-template-columns: var(--chotto-extendedlayout-container-grid-template-columns, min-content 1fr 3fr min-content);
+    transition: var(--chotto-extendedlayout-container-transition, all 0.3s ease);
+    position: var(--chotto-extendedlayout-container-position, relative);
+    border-top: var(--chotto-extendedlayout-container-border-top, var(--chotto-container-borders, none));
+    border-left: var(--chotto-extendedlayout-container-border-left, var(--chotto-container-borders, none));
+  }
+
+  &__first-col {
+    position: var(--chotto-extendedlayout-first-col-position, relative);
+    grid-column: var(--chotto-extendedlayout-first-col-grid-column, 1);
+    display: var(--chotto-extendedlayout-first-col-display, flex);
+    flex-direction: var(--chotto-extendedlayout-first-col-flex-direction, column);
+    height: var(--chotto-extendedlayout-first-col-height, inherit);
+    width: var(--chotto-extendedlayout-first-col-width, var(--chotto-layout-extended-first-col-width, 100%));
+    border-right: var(--chotto-extendedlayout-first-col-border-right, var(--chotto-container-borders, none));
+    border-bottom: var(--chotto-extendedlayout-first-col-border-bottom, var(--chotto-container-borders, none));
+    background-color: var(--chotto-extendedlayout-first-col-background-color, var(--chotto-layout-extended-first-col-bg, transparent));
+  }
+
+  &__second-col {
+    position: var(--chotto-extendedlayout-second-col-position, relative);
+    grid-column: var(--chotto-extendedlayout-second-col-grid-column, 2);
+    display: var(--chotto-extendedlayout-second-col-display, flex);
+    flex-direction: var(--chotto-extendedlayout-second-col-flex-direction, column);
+    height: var(--chotto-extendedlayout-second-col-height, inherit);
+    width: var(--chotto-extendedlayout-second-col-width, var(--chotto-layout-extended-second-col-width, 100%));
+    overflow: var(--chotto-extendedlayout-second-col-overflow, hidden);
+    border-right: var(--chotto-extendedlayout-second-col-border-right, var(--chotto-container-borders, none));
+    border-bottom: var(--chotto-extendedlayout-second-col-border-bottom, var(--chotto-container-borders, none));
+    background-color: var(--chotto-extendedlayout-second-col-background-color, var(--chotto-layout-extended-second-col-bg, transparent));
+  }
+
+  &__third-col {
+    position: var(--chotto-extendedlayout-third-col-position, relative);
+    display: var(--chotto-extendedlayout-third-col-display, flex);
+    flex-direction: var(--chotto-extendedlayout-third-col-flex-direction, column);
+    grid-column: var(--chotto-extendedlayout-third-col-grid-column, 3);
+    height: var(--chotto-extendedlayout-third-col-height, inherit);
+    border-right: var(--chotto-extendedlayout-third-col-border-right, var(--chotto-container-borders, none));
+    border-bottom: var(--chotto-extendedlayout-third-col-border-bottom, var(--chotto-container-borders, none));
+    background-color: var(--chotto-extendedlayout-third-col-background-color, var(--chotto-layout-extended-third-col-bg, transparent));
+  }
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: var(--chotto-extendedlayout-transition-enter-active-transition, opacity 0.5s ease);
+  opacity: var(--chotto-extendedlayout-transition-enter-active-opacity, 1);
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: var(--chotto-extendedlayout-transition-enter-from-opacity, 0);
+}
+</style>
