@@ -1,0 +1,132 @@
+[data-theme="mobilon1"] {
+
+  /* ===========================================
+     COLOR PALETTE
+     =========================================== */
+
+  /* Azure colors */
+  --azure-500: #1B92D1;
+  --azure-600: #007CFF;
+
+  /* Emerald colors */
+  --emerald-50: #ecfdf5;
+  --emerald-100: #d1fae5;
+  --emerald-200: #a7f3d0;
+  --emerald-300: #6ee7b7;
+  --emerald-400: #34d399;
+  --emerald-500: #10b981;
+  --emerald-600: #059669;
+  --emerald-700: #047857;
+  --emerald-800: #065f46;
+  --emerald-900: #064e3b;
+  --emerald-950: #022c22;
+
+  /* Neutral colors */
+  --neutral-50: #fafafa;
+  --neutral-75: #F3F3F3;
+  --neutral-90: #F6F6F6;
+  --neutral-100: #f5f5f5;
+  --neutral-125: #EAE8E7;
+  --neutral-150: #EEF0F3;
+  --neutral-200: #e5e5e5;
+  --neutral-250: #d0d0d0;
+  --neutral-300: #d4d4d4;
+  --neutral-400: #a3a3a3;
+  --neutral-500: #737373;
+  --neutral-550: #5F5F5F;
+  --neutral-600: #525252;
+  --neutral-700: #404040;
+  --neutral-800: #262626;
+  --neutral-850: #1E1E1E;
+  --neutral-900: #171717;
+  --neutral-950: #0a0a0a;
+
+  /* Red colors */
+  --p-red-50: #fef2f2;
+  --p-red-100: #fee2e2;
+  --p-red-200: #fecaca;
+  --p-red-300: #fca5a5;
+  --p-red-400: #f87171;
+  --p-red-500: #ef4444;
+  --p-red-550: #DC3545;
+  --p-red-600: #dc2626;
+  --p-red-700: #b91c1c;
+  --p-red-800: #991b1b;
+  --p-red-900: #7f1d1d;
+  --p-red-950: #450a0a;
+
+  /* Coral colors */
+  --p-coral-500: #F84932;
+
+  /* Default colors */
+  --default-white: #ffffff;
+
+  /* ===========================================
+     CHOTTO THEME VARIABLES
+     =========================================== */
+
+  /* Container */
+  --chotto-container-font-family: "Open Sans", sans-serif;
+  --chotto-container-font-weight: var(--regular-font-weight);
+  --chotto-container-borders: 1px solid var(--neutral-200);
+
+  /* Primary colors */
+  --chotto-primary-color: #ffffff;
+  --chotto-secondary-color: #faf6f4;
+
+  /* Text colors */
+  --chotto-primary-text-color: var(--neutral-850);
+  --chotto-secondary-text-color: var(--neutral-550);
+
+  /* Typography */
+  --chotto-header-font: "Inter", sans-serif;
+  --chotto-header-font-size: 20px;
+  --chotto-header-font-color: var(--neutral-550);
+  --chotto-title-font-size: 16px;
+  --chotto-text-font-size: 14px;
+  --chotto-additional-text-font-size: 14px;
+  --chotto-small-text-font-size: 12px;
+  --chotto-small-text-font-weight: 600;
+  --chotto-context-menu-font-size: 14px;
+
+  /* Font weights */
+  --chotto-header-font-weight: 700;
+  --chotto-title-font-weight: 400;
+
+  /* Icon sizes */
+  --chotto-button-icon-size: 23px;
+  --chotto-text-icon-size: 14px;
+  --chotto-small-text-icon-size: 12px;
+
+  /* Button colors */
+  --chotto-button-color-active: var(--neutral-600);
+  --chotto-button-color-hover: var(--neutral-700);
+  --chotto-button-color-disabled: var(--neutral-200);
+
+  /* Action button colors */
+  --chotto-action-button-color-active: #00cbfa;
+  --chotto-action-button-color-hover: #3fddff;
+  --chotto-action-button-color-disabled: #b4e8f9;
+
+  /* Danger button colors (not applied) */
+  --chotto-danger-button-color-active: '';
+  --chotto-danger-button-color-hover: '';
+  --chotto-danger-button-color-disabled: '';
+
+  /* Shadows */
+  --chotto-shadow-color: var(--neutral-800);
+  --chotto-shadow-light-color: var(--neutral-300);
+
+  /* Status colors */
+  --chotto-status-color-received: var(--neutral-850);
+  --chotto-status-color-read: var(--azure-600);
+
+  /* Item states */
+  --chotto-item-background-color-focus: var(--neutral-75);
+  --chotto-item-background-color-hover: var(--neutral-90);
+  --chotto-item-border-color: var(--neutral-250);
+
+  /* Unread states */
+  --chotto-unread-background-color: var(--p-red-550);
+  --chotto-unread-text-color: var(--neutral-50);
+}

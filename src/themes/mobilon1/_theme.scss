@@ -1,14 +1,21 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&display=swap');  */
-@import url("@fontsource/open-sans");
-@import url("@fontsource/open-sans/500.css");
-@import url("@fontsource/open-sans/600.css");
-@import url("@fontsource/open-sans/700.css");
-@import url("@fontsource/inter");
+@use './fonts.scss';
+@use './vars.scss';
+@use './components.scss';
 
-@import url('./mobilon1/variables.css');
+
+
+
+// @import url("@fontsource/open-sans");
+// @import url("@fontsource/open-sans/500.css");
+// @import url("@fontsource/open-sans/600.css");
+// @import url("@fontsource/open-sans/700.css");
+// @import url("@fontsource/inter");
+
+// @import url('./mobilon1/variables.css');
 // @import url('./mobilon1/components.css');
-@import './components.scss';
+// @import './components.scss';
 @import url('./mobilon1/containers.css');
 @import url('./mobilon1/layouts.css');
 @import url('./mobilon1/messages.css');
-@import url('./mobilon1/general.css');
+// @import url('./mobilon1/general.css');
