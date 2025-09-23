@@ -14,7 +14,7 @@
           />
           <ThemeMode
             :themes="themes"
-            :show="false"
+            :show="true"
             @selected-theme="setTheme"
           />
         </template>
