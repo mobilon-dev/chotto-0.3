@@ -53,9 +53,9 @@
   --chotto-videomessage-avatar-align-self: end;
   --chotto-videomessage-avatar-margin-bottom: 6px;
   --chotto-videomessage-avatar-object-fit: cover;
-  --chotto-videomessage-avatar-min-width: var(--chotto-avatar-small);
-  --chotto-videomessage-avatar-min-height: var(--chotto-avatar-small);
-  --chotto-videomessage-avatar-border-radius: var(--chotto-avatar-border-radius);
+  --chotto-videomessage-avatar-min-width: 40px;
+  --chotto-videomessage-avatar-min-height: 40px;
+  --chotto-videomessage-avatar-border-radius: 50%;
 
   // VideoMessage video variables
   --chotto-videomessage-video-object-fit: cover;

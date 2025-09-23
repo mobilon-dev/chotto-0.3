@@ -8,10 +8,10 @@
     position: relative;
     display: grid;
     align-items: center;
-    border-top: var(--chotto-chatinput-container-border-top, var(--chotto-input-border));
+    border-top: none;
     background-color: var(--chotto-chatinput-container-bg);
-    padding: var(--chotto-input-container-padding, 5px);
-    grid-gap: var(--chotto-input-container-grid-gap, 5px);
+    padding: 12px 0 8px 15px;
+    grid-gap: none;
     grid-template-columns: min-content auto min-content;
     grid-template-rows: auto auto auto auto;
   }
@@ -38,18 +38,18 @@
   &__input {
     grid-row: 3;
     grid-column: 2;
-    border: var(--chotto-input-border);
-    background-color: var(--chotto-input-background);
-    padding: var(--chotto-input-message-padding, var(--chotto-input-padding));
+    border: 1px solid var(--neutral-250);
+    background-color: transparent;
+    padding: 0.5rem 0.60rem;
     color: var(--chotto-primary-text-color);
-    font-size: var(--chotto-input-message-font-size, var(--chotto-input-font-size));
+    font-size: 16px;
     overflow-y: hidden;
     resize: none;
     white-space: pre-wrap;
     line-height: var(--chotto-chatinput-input-line-height, 1.4);
     min-height: var(--chotto-chatinput-input-min-height, 40px);
     max-height: calc(1.5em * var(--chotto-chatinput-input-max-rows, 10));
-    border-radius: var(--chotto-input-message-border-radius, var(--chotto-input-border-radius));
+    border-radius: 2px;
     font-family: var(--chotto-container-font-family);
 
     &:focus-visible {
@@ -62,12 +62,12 @@
 
     &::-webkit-scrollbar {
       width: var(--chotto-chatinput-scrollbar-width, 6px);
-      background-color: var(--chotto-scrollbar-bg);
+      background-color: var(--neutral-50);
     }
 
     &::-webkit-scrollbar-thumb {
       border-radius: var(--chotto-chatinput-scrollbar-thumb-radius, 10px);
-      background-color: var(--chotto-scrollbar-thumb-bg);
+      background-color: var(--neutral-300);
     }
 
     &::-webkit-scrollbar-track {
@@ -98,7 +98,7 @@
       padding: var(--chotto-chatinput-button-padding);
       font-size: var(--chotto-button-icon-size);
       color: var(--chotto-chatinput-icon-color);
-      height: var(--chotto-input-message-send-button-height, auto);
+      height: 30px;
       margin: var(--chotto-chatinput-button-margin, 0);
     }
   }
@@ -115,9 +115,9 @@
     margin: auto 0;
     grid-row: 3;
     grid-column: 1;
-    margin: var(--chotto-input-container-inline-buttons-margin, 0);
-    gap: var(--chotto-input-container-inline-buttons-gap, 0);
-    height: var(--chotto-input-container-inline-buttons-height, auto);
+    margin: 0 5px 4px 2px;
+    gap: 7px;
+    height: 30px;
     align-self: flex-end;
   }
 }

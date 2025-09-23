@@ -10,10 +10,10 @@
   line-height: var(--chotto-placeholdercomponent-placeholder-line-height, 1.8);
 
   &.filled {
-    background-color: var(--chotto-placeholdercomponent-placeholder-filled-background-color, var(--chotto-variable-placeholder-filled-color));
+    background-color: var(--chotto-placeholdercomponent-placeholder-filled-background-color, var(--emerald-300));
   }
 
   &.empty {
-    background-color: var(--chotto-placeholdercomponent-placeholder-empty-background-color, var(--chotto-variable-placeholder-empty-color));
+    background-color: var(--chotto-placeholdercomponent-placeholder-empty-background-color, var(--p-red-100));
   }
 }

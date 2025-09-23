@@ -31,8 +31,8 @@
   }
 
   &__avatar {
-    width: var(--chotto-floatcontainer-avatar-width, var(--chotto-avatar-small));
-    height: var(--chotto-floatcontainer-avatar-height, var(--chotto-avatar-small));
+    width: var(--chotto-floatcontainer-avatar-width, 40px);
+    height: var(--chotto-floatcontainer-avatar-height, 40px);
     border-radius: var(--chotto-floatcontainer-avatar-border-radius, 50%);
   }
 

@@ -34,10 +34,10 @@
     position: var(--chotto-userprofile-avatar-container-position, relative);
     display: var(--chotto-userprofile-avatar-container-display, flex);
     margin: var(--chotto-userprofile-avatar-container-margin, auto 15px auto 0);
-    border-radius: var(--chotto-avatar-border-radius);
+    border-radius: 50%;
 
     img {
-      border-radius: var(--chotto-avatar-border-radius);
+      border-radius: 50%;
       object-fit: var(--chotto-userprofile-avatar-container-img-object-fit, cover);
     }
   }

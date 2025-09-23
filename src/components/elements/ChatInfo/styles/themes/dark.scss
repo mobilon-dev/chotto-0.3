@@ -14,15 +14,15 @@
   --chotto-chatinfo-avatar-container-display: flex;
   --chotto-chatinfo-avatar-container-justify-content: center;
   --chotto-chatinfo-avatar-container-align-items: center;
-  --chotto-chatinfo-avatar-container-border-radius: var(--chotto-avatar-border-radius);
+  --chotto-chatinfo-avatar-container-border-radius: 50%;
   --chotto-chatinfo-avatar-container-background-size: cover;
-  --chotto-chatinfo-avatar-container-span-color: var(--chotto-avatar-color);
+  --chotto-chatinfo-avatar-container-span-color: var(--neutral-500);
   --chotto-chatinfo-avatar-container-span-display: flex;
   --chotto-chatinfo-avatar-container-span-justify-content: center;
   --chotto-chatinfo-avatar-container-span-align-items: center;
-  --chotto-chatinfo-avatar-container-img-width: var(--chotto-chat-avatar-small, var(--chotto-avatar-small));
-  --chotto-chatinfo-avatar-container-img-height: var(--chotto-chat-avatar-small, var(--chotto-avatar-small));
-  --chotto-chatinfo-avatar-container-img-border-radius: var(--chotto-avatar-border-radius);
+  --chotto-chatinfo-avatar-container-img-width: 40px;
+  --chotto-chatinfo-avatar-container-img-height: 40px;
+  --chotto-chatinfo-avatar-container-img-border-radius: 50%;
   --chotto-chatinfo-avatar-container-img-object-fit: cover;
 
   // ChatInfo info-container variables

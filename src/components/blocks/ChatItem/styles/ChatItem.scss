@@ -48,17 +48,17 @@
     object-fit: cover;
     margin-right: var(--chotto-chatitem-avatar-margin-right, 15px);
     /* background-color: var(--chotto-avatar-background-color); */
-    min-width: var(--chotto-avatar-medium);
-    min-height: var(--chotto-avatar-medium);
-    border-radius: var(--chotto-avatar-border-radius);
+    min-width: 50px;
+    min-height: 50px;
+    border-radius: 50%;
 
     span {
-      font-size: var(--chotto-avatar-medium-icon-size);
-      color: var(--chotto-avatar-color);
+      font-size: 21px;
+      color: var(--neutral-500);
     }
 
     img {
-      border-radius: var(--chotto-avatar-border-radius);
+      border-radius: 50%;
       object-fit: cover;
     }
   }

@@ -68,9 +68,9 @@
   // TextMessage avatar variables
   --chotto-textmessage-avatar-align-self: auto;
   --chotto-textmessage-avatar-object-fit: cover;
-  --chotto-textmessage-avatar-min-width: var(--chotto-avatar-small);
-  --chotto-textmessage-avatar-min-height: var(--chotto-avatar-small);
-  --chotto-textmessage-avatar-border-radius: var(--chotto-avatar-border-radius);
+  --chotto-textmessage-avatar-min-width: 40px;
+  --chotto-textmessage-avatar-min-height: 40px;
+  --chotto-textmessage-avatar-border-radius: 50%;
 
   // TextMessage menu-button variables
   --chotto-textmessage-menu-button-position: absolute;

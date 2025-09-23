@@ -4,20 +4,20 @@
 @use './themes/mobilon1.scss';
 
 .tooltip__text {
-  max-width: var(--chotto-tooltip-max-width, 300px);
-  color: var(--chotto-tooltip-text-color);
-  text-align: var(--chotto-tooltip-text-align, center);
-  padding: var(--chotto-tooltip-padding, 7px);
-  border-radius: var(--chotto-tooltip-border-radius, 8px);
-  background: var(--chotto-tooltip-bg-color);
+  max-width: 372px;
+  color: var(--neutral-850);
+  text-align: left;
+  padding: 5px 9px 5px 12px;
+  border-radius: 5px;
+  background: var(--default-white);
   top: 0;
   left: 0;
   position: absolute;
   z-index: 99999;
   font-family: var(--chotto-container-font-family);
   font-weight: var(--chotto-container-font-weight);
-  border: var(--chotto-tooltip-border, none);
-  font-size: var(--chotto-tooltip-font-size, 16px);
+  border: 1px solid var(--neutral-550);
+  font-size: 14px;
 }
 
 .tooltip-wrapper {

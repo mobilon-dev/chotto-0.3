@@ -9,9 +9,9 @@
   --chotto-imagemessage-avatar-align-self: end;
   --chotto-imagemessage-avatar-object-fit: cover;
   --chotto-imagemessage-avatar-margin-bottom: 6px;
-  --chotto-imagemessage-avatar-min-width: var(--chotto-avatar-small);
-  --chotto-imagemessage-avatar-min-height: var(--chotto-avatar-small);
-  --chotto-imagemessage-avatar-border-radius: var(--chotto-avatar-border-radius);
+  --chotto-imagemessage-avatar-min-width: 40px;
+  --chotto-imagemessage-avatar-min-height: 40px;
+  --chotto-imagemessage-avatar-border-radius: 50%;
 
   // ImageMessage info container variables
   --chotto-imagemessage-info-container-position: absolute;

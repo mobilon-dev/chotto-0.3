@@ -62,7 +62,7 @@
   }
 
   &__item {
-    max-height: var(--chotto-avatar-small);
+    max-height: 40px;
   }
 
   &__item,
@@ -79,8 +79,8 @@
     &::before {
       content: var(--chotto-sidebar-item-before-content, '');
       position: var(--chotto-sidebar-item-before-position, absolute);
-      width: var(--chotto-sidebar-item-before-width, calc(var(--chotto-avatar-small) + 15px));
-      height: var(--chotto-sidebar-item-before-height, var(--chotto-avatar-small));
+      width: var(--chotto-sidebar-item-before-width, calc(40px + 15px));
+      height: var(--chotto-sidebar-item-before-height, 40px);
       border-radius: var(--chotto-sidebar-hover-radius, 10px);
       background-color: var(--chotto-sidebar-item-before-background-color, transparent);
       top: var(--chotto-sidebar-item-before-top, 0);
@@ -130,8 +130,8 @@
     object-fit: var(--chotto-sidebar-image-object-fit, cover);
     transition: var(--chotto-sidebar-image-transition, all 0.2s);
     opacity: var(--chotto-sidebar-image-opacity, 0.8);
-    width: var(--chotto-avatar-small);
-    height: var(--chotto-avatar-small);
+    width: 40px;
+    height: 40px;
   }
 
   &__image--active {
@@ -227,7 +227,7 @@
   }
 
   &__image {
-    width: var(--chotto-sidebar-horizontal-image-width, calc(var(--chotto-avatar-small) * 1.2));
-    height: var(--chotto-sidebar-horizontal-image-height, calc(var(--chotto-avatar-small) * 1.2));
+    width: var(--chotto-sidebar-horizontal-image-width, calc(40px * 1.2));
+    height: var(--chotto-sidebar-horizontal-image-height, calc(40px * 1.2));
   }
 }

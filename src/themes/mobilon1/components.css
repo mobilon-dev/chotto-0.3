@@ -1,21 +1,20 @@
 [data-theme="mobilon1"] {
   /* Chat Panel */
-  --chotto-chat-panel-border-radius: 0px;
+  /* --chotto-chat-panel-border-radius: 0px; */
 
   /* Side Bar */
-  --chotto-sidebar-padding-container: 0 8px 7px 8px;
+  /* --chotto-sidebar-padding-container: 0 8px 7px 8px;
   --chotto-sidebar-row-gap-list: 15px;
   --chotto-sidebar-image-active-border: 3px solid var(--neutral-125);
-  /* --chotto-sidebar-list-fixed-border-top: 1px solid var(--neutral-300); */
   --chotto-sidebar-list-fixed-border-bottom: 1px solid var(--neutral-300);
   --chotto-sidebar-notification-count-height: 18px;
   --chotto-sidebar-list-fixed-padding: 12px 10px 22px;
-  --chotto-sidebar-hover-radius: 10px;
+  --chotto-sidebar-hover-radius: 10px; */
 
   /* Context Menu */
-  --chotto-context-menu-border-radius: 4px;
+  /* --chotto-context-menu-border-radius: 4px;
   --chotto-context-menu-items-row-gap: 0;
-  --chotto-context-menu-border-color: none;
+  --chotto-context-menu-border-color: none; */
 
   /* Chat List */
   /* --chotto-chat-list-filter-margin: 0 16px 10px 15px;
@@ -45,11 +44,11 @@
   --chotto-chat-item-name-margin-bottom: 4px; */
 
   /* Chat Info */
-  --chotto-chat-info-padding: 10px 0 10px 15px;
+  /* --chotto-chat-info-padding: 10px 0 10px 15px;
   --chotto-chat-info-border-radius: 0;
   --chotto-chat-info-background-color: #ffffff;
   --chotto-chat-info-additional-title-border-color: #25D366;
-  --chotto-chat-info-border-bottom: none;
+  --chotto-chat-info-border-bottom: none; */
 
   /* Communication Panel */
   /* --chotto-communication-panel-btn-active-color: var(--azure-600); 
@@ -57,8 +56,8 @@
   --chotto-communication-panel-btn-width: 50px; */
 
   /* Chat Message */
-  --chotto-chat-date-message-padding: 4px 11px;
-  --chotto-chat-date-message-border-radius: 4px;
+  /* --chotto-chat-date-message-padding: 4px 11px;
+  --chotto-chat-date-message-border-radius: 4px; */
 
   /* Chat Panel */
   /* --chotto-chat-panel-width: 400px;
@@ -67,8 +66,8 @@
   --chotto-item-chat-panel-border-color: var(--neutral-200); */
   
   /* Scroll Bar */
-  --chotto-scrollbar-bg: var(--neutral-50);
-  --chotto-scrollbar-thumb-bg: var(--neutral-300);
+  /* --chotto-scrollbar-bg: var(--neutral-50);
+  --chotto-scrollbar-thumb-bg: var(--neutral-300); */
 
   /* Tooltip */
   /* --chotto-tooltip-text-color: var(--neutral-850);
@@ -81,27 +80,27 @@
   --chotto-tooltip-font-size: 14px; */
 
   /* FeedKeyboard */
-  --chotto-feedkeyboard-bg-color: var(--default-white);
+  /* --chotto-feedkeyboard-bg-color: var(--default-white);
   --chotto-feedkeyboard-font-weight: 600;
   --chotto-feedkeyboard-padding: 2.5px 14px;
   --chotto-feedkeyboard-border: 1px solid #6C757D;
   --chotto-feedkeyboard-margin-top: 10px;
-  --chotto-feedkeyboard-margin-bottom: 10px;
+  --chotto-feedkeyboard-margin-bottom: 10px; */
 
   /* Template Selector */
-  --chotto-variable-placeholder-empty-color: var(--p-red-100);
-  --chotto-variable-placeholder-filled-color: var(--emerald-300);
+  /* --chotto-variable-placeholder-empty-color: var(--p-red-100);
+  --chotto-variable-placeholder-filled-color: var(--emerald-300); */
 
   /* WABA Attachment section */
-  --chotto-attachment-section-color:#FEF3B8;
+  /* --chotto-attachment-section-color:#FEF3B8;
   --chotto-attachment-section-hover-color:#fef3b890;
-  --chotto-attachment-section-error-color: var(--p-red-600);
+  --chotto-attachment-section-error-color: var(--p-red-600); */
 
   /* WABA Quick Reply Buttons */
-  --chotto-quick-reply-buttons-color: var(--blue-1);
+  /* --chotto-quick-reply-buttons-color: var(--blue-1); */
 
   /*Input*/
-  --chotto-input-border: 1px solid var(--neutral-250);
+  /* --chotto-input-border: 1px solid var(--neutral-250);
   --chotto-input-container-border-top: none;
   --chotto-input-container-grid-gap: none;
   --chotto-input-container-padding: 12px 0 8px 15px;
@@ -119,15 +118,15 @@
   --chotto-input-background: transparent;
   --chotto-input-padding: 0.5rem 0.75rem;
   --chotto-input-transition-duration: 0.2s;
-  --chotto-input-font-size: 14px;
+  --chotto-input-font-size: 14px; */
 
   /*Avatar*/
-  --chotto-chat-avatar-small: 40px;
+  /* --chotto-chat-avatar-small: 40px;
   --chotto-avatar-small: 40px;
   --chotto-avatar-medium: 50px;
   --chotto-avatar-small-icon-size: 24px;
   --chotto-avatar-medium-icon-size: 21px;
   --chotto-avatar-border-radius: 50%;
   --chotto-avatar-background-color: var(--neutral-300);
-  --chotto-avatar-color: var(--neutral-500);
+  --chotto-avatar-color: var(--neutral-500); */
 }
