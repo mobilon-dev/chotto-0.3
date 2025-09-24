@@ -1,13 +1,16 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 /**
  * Скрипт валидации тем для проекта chotto-themes-prototype
  * Проверяет консистентность CSS переменных с префиксом --chotto-theme
  */
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const THEMES_DIR = path.join(__dirname, '..', 'src', 'themes');
 const PREFIX = '--chotto-theme';
 
@@ -21,22 +24,30 @@ const colors = {
   blue: '\x1b[34m',
   magenta: '\x1b[35m',
   cyan: '\x1b[36m'
-};
+} as const;
+
+type Color = keyof typeof colors;
+
+interface CSSVariable {
+  name: string;
+  value: string;
+  line: number;
+}
 
 /**
  * Логирование с цветами
  */
-function log(message, color = 'reset') {
+function log(message: string, color: Color = 'reset'): void {
   console.log(`${colors[color]}${message}${colors.reset}`);
 }
 
 /**
  * Извлечение CSS переменных из файла
  */
-function extractCSSVariables(filePath) {
+function extractCSSVariables(filePath: string): Map<string, CSSVariable> {
   try {
     const content = fs.readFileSync(filePath, 'utf8');
-    const variables = new Map();
+    const variables = new Map<string, CSSVariable>();
     
     // Разбиваем содержимое на строки для подсчета номеров строк
     const lines = content.split('\n');
@@ -66,7 +77,7 @@ function extractCSSVariables(filePath) {
     
     return variables;
   } catch (error) {
-    log(`Ошибка при чтении файла ${filePath}: ${error.message}`, 'red');
+    log(`Ошибка при чтении файла ${filePath}: ${(error as Error).message}`, 'red');
     return new Map();
   }
 }
@@ -74,8 +85,8 @@ function extractCSSVariables(filePath) {
 /**
  * Валидация синтаксиса CSS переменной
  */
-function validateCSSValue(value) {
-  const errors = [];
+function validateCSSValue(value: string): string[] {
+  const errors: string[] = [];
   
   // Проверка на пустое значение
   if (!value || value.trim() === '') {
@@ -94,7 +105,14 @@ function validateCSSValue(value) {
   if (varMatches) {
     for (const varMatch of varMatches) {
       const varName = varMatch.slice(4, -1); // Убираем var( и )
-      if (!varName.startsWith('--') && !varName.startsWith('chotto-theme-') && !varName.startsWith('emerald-') && !varName.startsWith('neutral-') && !varName.startsWith('p-red-') && !varName.startsWith('azure-') && !varName.startsWith('p-coral-') && !varName.startsWith('default-')) {
+      if (!varName.startsWith('--') && 
+          !varName.startsWith('chotto-theme-') && 
+          !varName.startsWith('emerald-') && 
+          !varName.startsWith('neutral-') && 
+          !varName.startsWith('p-red-') && 
+          !varName.startsWith('azure-') && 
+          !varName.startsWith('p-coral-') && 
+          !varName.startsWith('default-')) {
         errors.push(`Недопустимая ссылка на переменную: ${varName}`);
       }
     }
@@ -106,7 +124,7 @@ function validateCSSValue(value) {
 /**
  * Получение списка всех тем
  */
-function getThemes() {
+function getThemes(): string[] {
   try {
     const themes = fs.readdirSync(THEMES_DIR, { withFileTypes: true })
       .filter(dirent => dirent.isDirectory())
@@ -114,7 +132,7 @@ function getThemes() {
     
     return themes;
   } catch (error) {
-    log(`Ошибка при чтении директории тем: ${error.message}`, 'red');
+    log(`Ошибка при чтении директории тем: ${(error as Error).message}`, 'red');
     return [];
   }
 }
@@ -122,7 +140,7 @@ function getThemes() {
 /**
  * Основная функция валидации
  */
-function validateThemes() {
+function validateThemes(): boolean {
   log('🎨 Валидация тем chotto-themes-prototype', 'cyan');
   log('=' .repeat(50), 'cyan');
   
@@ -137,8 +155,8 @@ function validateThemes() {
   log('');
   
   // Сбор всех переменных из всех тем
-  const allVariables = new Map(); // themeName -> variables
-  const globalVariableSet = new Set(); // все уникальные переменные
+  const allVariables = new Map<string, Map<string, CSSVariable>>(); // themeName -> variables
+  const globalVariableSet = new Set<string>(); // все уникальные переменные
   
   for (const theme of themes) {
     const varsPath = path.join(THEMES_DIR, theme, 'vars.scss');
@@ -165,14 +183,13 @@ function validateThemes() {
   log('🔍 Проверка консистентности переменных...', 'yellow');
   log('');
   
-  
   for (const varName of globalVariableSet) {
-    const themeUsage = new Map();
+    const themeUsage = new Map<string, CSSVariable>();
     
     // Собираем использование переменной во всех темах
     for (const [theme, variables] of allVariables) {
       if (variables.has(varName)) {
-        const variable = variables.get(varName);
+        const variable = variables.get(varName)!;
         themeUsage.set(theme, variable);
       }
     }
@@ -238,18 +255,18 @@ function validateThemes() {
   log('');
   if (hasErrors) {
     log('❌ Валидация завершена с ошибками', 'red');
-    process.exit(1);
+    return false;
   } else {
     log('✅ Валидация завершена успешно', 'green');
     if (totalWarnings > 0) {
       log(`⚠️  Найдено ${totalWarnings} предупреждений`, 'yellow');
     }
+    return true;
   }
 }
 
 // Запуск валидации
-if (require.main === module) {
-  validateThemes();
-}
+const success = validateThemes();
+process.exit(success ? 0 : 1);
 
-module.exports = { validateThemes, extractCSSVariables, validateCSSValue };
+export { validateThemes, extractCSSVariables, validateCSSValue };
