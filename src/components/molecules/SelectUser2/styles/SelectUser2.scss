@@ -1,8 +1,3 @@
-@use './themes/default.scss';
-@use './themes/dark.scss';
-@use './themes/green.scss';
-@use './themes/mobilon1.scss';
-
 .participant-list {
   margin-top: var(--chotto-selectuser2-participant-list-margin-top, 10px);
   max-height: var(--chotto-selectuser2-participant-list-max-height, 200px);

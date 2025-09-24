@@ -1,8 +1,3 @@
-@use './themes/default.scss';
-@use './themes/dark.scss';
-@use './themes/green.scss';
-@use './themes/mobilon1.scss';
-
 .new-chat-modal {
 	position: var(--chotto-selectuser-modal-position, fixed);
 	top: var(--chotto-selectuser-modal-top, 0);
