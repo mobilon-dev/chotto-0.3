@@ -24,7 +24,7 @@
     }
 
     &:hover {
-      background-color: var(--chotto-item-background-color-hover, #F6F6F6);
+      background-color: var(--chotto-theme-item-background-color-hover, #F6F6F6);
     }
   }
 
@@ -32,10 +32,10 @@
   &__selected {
     cursor: pointer;
     border-radius: var(--chotto-chatitem-border-radius);
-    background: var(--chotto-item-background-color-focus);
+    background: var(--chotto-theme-item-background-color-focus);
 
     .chat-item__menu-button {
-      background: var(--chotto-item-background-color-focus);
+      background: var(--chotto-theme-item-background-color-focus);
     }
   }
 
@@ -90,8 +90,8 @@
   &__name {
     margin-top: var(--chotto-chatitem-name-margin-top, 0);
     margin-bottom: var(--chotto-chatitem-name-margin-bottom, 8px);
-    font-size: var(--chotto-title-font-size);
-    font-weight: var(--chotto-title-font-weight);
+    font-size: var(--chotto-theme-title-font-size);
+    font-weight: var(--chotto-theme-title-font-weight);
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -101,8 +101,8 @@
   }
 
   &__last-message {
-    font-size: var(--chotto-text-font-size);
-    color: var(--chotto-secondary-text-color);
+    font-size: var(--chotto-theme-text-font-size);
+    color: var(--chotto-theme-secondary-text-color);
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -120,19 +120,19 @@
     align-items: end;
     
     span {
-      color: var(--chotto-button-color-active);
+      color: var(--chotto-theme-button-color-active);
     }
   }
 
   &__actions-trigger{
     display: block;
     cursor: pointer;
-    font-size: var(--chotto-button-icon-size);
-    color: var(--chotto-button-color-active);
+    font-size: var(--chotto-theme-button-icon-size);
+    color: var(--chotto-theme-button-color-active);
   }
 
   &__actions-trigger:hover{
-    color: var(--chotto-button-color-hover);
+    color: var(--chotto-theme-button-color-hover);
   }
 
   &__menu-button {
@@ -152,7 +152,7 @@
     }
 
     &:hover span {
-      color: var(--chotto-button-color-hover);
+      color: var(--chotto-theme-button-color-hover);
       transition: 0.2s;
     }
   }
@@ -168,16 +168,16 @@
     min-width: var(--chotto-unread-min-width, 25px);
     min-height: var(--chotto-unread-min-height, 25px);
     max-height: var(--chotto-chatitem-unread-max-height, 20px);
-    font-size: var(--chotto-additional-text-font-size);
+    font-size: var(--chotto-theme-additional-text-font-size);
     font-weight: var(--chotto-unread-font-weight, 400);
-    color: var(--chotto-unread-text-color);
-    background-color: var(--chotto-unread-background-color);
+    color: var(--chotto-theme-unread-text-color);
+    background-color: var(--chotto-theme-unread-background-color);
     padding: var(--chotto-chatitem-unread-padding, 0 6px);
   }
 
   &__time {
-    font-size: var(--chotto-additional-text-font-size);
-    color: var(--chotto-secondary-text-color);
+    font-size: var(--chotto-theme-additional-text-font-size);
+    color: var(--chotto-theme-secondary-text-color);
     white-space: nowrap;
   }
 
@@ -198,8 +198,8 @@
     display: flex;
 
     span {
-      color: var(--chotto-status-color-received);
-      font-size: var(--chotto-text-font-size);
+      color: var(--chotto-theme-status-color-received);
+      font-size: var(--chotto-theme-text-font-size);
     }
   }
 
@@ -231,14 +231,14 @@
   &__selected {
     cursor: pointer;
     border-radius: var(--chotto-chatitem-border-radius);
-    background: var(--chotto-item-background-color-focus);
+    background: var(--chotto-theme-item-background-color-focus);
   }
 
   &__text-container {
     display: flex;
     justify-content: space-between;
-    font-size: var(--chotto-text-font-size);
-    color: var(--chotto-primary-text-color);
+    font-size: var(--chotto-theme-text-font-size);
+    color: var(--chotto-theme-primary-text-color);
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
@@ -258,17 +258,17 @@
     -webkit-line-clamp: 1;
     line-clamp: 1;
     -webkit-box-orient: vertical;
-    color: var(--chotto-secondary-text-color);
-    font-size: var(--chotto-additional-text-font-size)
+    color: var(--chotto-theme-secondary-text-color);
+    font-size: var(--chotto-theme-additional-text-font-size)
   }
 }
 
 .status--received span {
-  color: var(--chotto-status-color-received);
+  color: var(--chotto-theme-status-color-received);
 }
 
 .status--read span {
-  color: var(--chotto-status-color-read);
+  color: var(--chotto-theme-status-color-read);
 }
 
 .status--received span:first-child,

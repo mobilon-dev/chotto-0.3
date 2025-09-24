@@ -108,18 +108,18 @@
       height: var(--chotto-sidebar-notification-count-height, 18px);
       border-radius: var(--chotto-sidebar-item-span-border-radius, 10px);
       line-height: var(--chotto-sidebar-item-span-line-height, 16px);
-      font-size: var(--chotto-small-text-font-size);
-      font-weight: var(--chotto-small-text-font-weight, 400);
-      color: var(--chotto-unread-text-color);
-      background-color: var(--chotto-unread-background-color);
+      font-size: var(--chotto-theme-small-text-font-size);
+      font-weight: var(--chotto-theme-small-text-font-weight, 400);
+      color: var(--chotto-theme-unread-text-color);
+      background-color: var(--chotto-theme-unread-background-color);
       z-index: var(--chotto-sidebar-item-span-z-index, 2);
     }
 
     p {
-      font-size: var(--chotto-small-text-font-size);
+      font-size: var(--chotto-theme-small-text-font-size);
       text-align: var(--chotto-sidebar-item-p-text-align, center);
       line-height: var(--chotto-sidebar-item-p-line-height, 1);
-      color: var(--chotto-header-font-color, #5F5F5F);
+      color: var(--chotto-theme-header-font-color, #5F5F5F);
     }
   }
 

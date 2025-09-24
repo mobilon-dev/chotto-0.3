@@ -23,8 +23,8 @@
   &__link-container {
     display: var(--chotto-linkpreview-link-container-display, flex);
     flex-direction: var(--chotto-linkpreview-link-container-flex-direction, column);
-    color: var(--chotto-linkpreview-link-container-color, var(--chotto-primary-text-color));
-    font-size: var(--chotto-linkpreview-link-container-font-size, var(--chotto-text-font-size));
+    color: var(--chotto-linkpreview-link-container-color, var(--chotto-theme-primary-text-color));
+    font-size: var(--chotto-linkpreview-link-container-font-size, var(--chotto-theme-text-font-size));
   }
 
   &__title {

@@ -6,14 +6,14 @@
   --chotto-buttonemojipicker-button-span-display: block;
   --chotto-buttonemojipicker-button-span-cursor: pointer;
   --chotto-buttonemojipicker-button-span-padding: 0;
-  --chotto-buttonemojipicker-button-span-font-size: var(--chotto-button-icon-size);
-  --chotto-buttonemojipicker-button-span-color: var(--chotto-button-color-active);
-  --chotto-buttonemojipicker-button-span-hover-color: var(--chotto-button-color-hover);
+  --chotto-buttonemojipicker-button-span-font-size: var(--chotto-theme-button-icon-size);
+  --chotto-buttonemojipicker-button-span-color: var(--chotto-theme-button-color-active);
+  --chotto-buttonemojipicker-button-span-hover-color: var(--chotto-theme-button-color-hover);
 
   // ButtonEmojiPicker button-disabled variables
   --chotto-buttonemojipicker-button-disabled-pointer-events: none;
   --chotto-buttonemojipicker-button-disabled-span-cursor: auto;
-  --chotto-buttonemojipicker-button-disabled-span-color: var(--chotto-button-color-disabled);
+  --chotto-buttonemojipicker-button-disabled-span-color: var(--chotto-theme-button-color-disabled);
 
   // ButtonEmojiPicker emoji variables
   --chotto-buttonemojipicker-emoji-position: absolute;

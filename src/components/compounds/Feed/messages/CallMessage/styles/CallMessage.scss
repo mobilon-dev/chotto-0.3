@@ -27,7 +27,7 @@
   }
 
   &__title {
-    font-size: var(--chotto-title-font-size);
+    font-size: var(--chotto-theme-title-font-size);
     margin-bottom: var(--chotto-callmessage-title-margin-bottom, 2px);
   }
 
@@ -43,7 +43,7 @@
     width: var(--chotto-callmessage-icon-width, 38px);
     background-color: var(--chotto-message-type-icon-bg-color);
     color: var(--chotto-message-type-icon-color);
-    font-size: var(--chotto-button-icon-size);
+    font-size: var(--chotto-theme-button-icon-size);
   }
 
   &__icon-missed{
@@ -51,13 +51,13 @@
   }
 
   &__duration {
-    color: var(--chotto-secondary-text-color);
-    font-size: var(--chotto-text-font-size);
+    color: var(--chotto-theme-secondary-text-color);
+    font-size: var(--chotto-theme-text-font-size);
   }
 
   &__time {
-    font-size: var(--chotto-text-font-size);
-    color: var(--chotto-secondary-text-color);
+    font-size: var(--chotto-theme-text-font-size);
+    color: var(--chotto-theme-secondary-text-color);
   }
 
   &__download-button {
@@ -74,8 +74,8 @@
     cursor: var(--chotto-callmessage-download-button-cursor, pointer);
 
     span {
-      color: var(--chotto-button-color-active);
-      font-size: var(--chotto-text-icon-size);
+      color: var(--chotto-theme-button-color-active);
+      font-size: var(--chotto-theme-text-icon-size);
     }
   }
 
@@ -83,14 +83,14 @@
     display: var(--chotto-callmessage-status-display, flex);
 
     span {
-      color: var(--chotto-status-color-received);
-      font-size: var(--chotto-small-text-icon-size);
+      color: var(--chotto-theme-status-color-received);
+      font-size: var(--chotto-theme-small-text-icon-size);
     }
   }
 
   &__status--received {
     span {
-      color: var(--chotto-status-color-received);
+      color: var(--chotto-theme-status-color-received);
 
       &:first-child {
         margin-right: -8px;
@@ -100,7 +100,7 @@
 
   &__status--read {
     span {
-      color: var(--chotto-status-color-read);
+      color: var(--chotto-theme-status-color-read);
 
       &:first-child {
         margin-right: -8px;
@@ -109,8 +109,8 @@
   }
 
   &__subtext {
-    font-size: var(--chotto-additional-text-font-size);
-    color: var(--chotto-secondary-text-color);
+    font-size: var(--chotto-theme-additional-text-font-size);
+    color: var(--chotto-theme-secondary-text-color);
   }
 
   &__avatar {
@@ -130,12 +130,12 @@
     transition: var(--chotto-callmessage-menu-button-transition, 0.2s);
 
     span {
-      color: var(--chotto-button-color-active);
-      font-size: var(--chotto-button-icon-size);
+      color: var(--chotto-theme-button-color-active);
+      font-size: var(--chotto-theme-button-icon-size);
     }
 
     &:hover span {
-      color: var(--chotto-button-color-hover);
+      color: var(--chotto-theme-button-color-hover);
       transition: 0.2s;
     }
   }
@@ -158,17 +158,17 @@
       left: var(--chotto-callmessage-text-dialog-before-left, 0);
       width: var(--chotto-callmessage-text-dialog-before-width, 16px);
       height: var(--chotto-callmessage-text-dialog-before-height, 2px);
-      background-color: var(--chotto-secondary-text-color);
+      background-color: var(--chotto-theme-secondary-text-color);
     }
 
     p {
-      font-size: var(--chotto-title-font-size);
+      font-size: var(--chotto-theme-title-font-size);
       margin: 0;
     }
 
     span {
-      color: var(--chotto-secondary-text-color);
-      font-size: var(--chotto-additional-text-font-size);
+      color: var(--chotto-theme-secondary-text-color);
+      font-size: var(--chotto-theme-additional-text-font-size);
     }
   }
 
@@ -240,14 +240,14 @@
 
   &__modal {
     position: var(--chotto-callmessage-modal-position, absolute);
-    font-family: var(--chotto-container-font-family);
-    font-weight: var(--chotto-container-font-weight);
-    font-size: var(--chotto-text-font-size);
+    font-family: var(--chotto-theme-font-family);
+    font-weight: var(--chotto-theme-container-font-weight);
+    font-size: var(--chotto-theme-text-font-size);
     top: var(--chotto-callmessage-modal-top, 50%);
     left: var(--chotto-callmessage-modal-left, 50%);
     transform: var(--chotto-callmessage-modal-transform, translate(-50%, -50%));
     z-index: var(--chotto-callmessage-modal-z-index, 101);
-    color: var(--chotto-primary-text-color);
+    color: var(--chotto-theme-primary-text-color);
     background-color: var(--chotto-modal-bg);
     border-radius: var(--chotto-modal-border-radius);
     padding: var(--chotto-modal-padding);
@@ -293,8 +293,8 @@
     cursor: var(--chotto-callmessage-modal-close-button-cursor, pointer);
 
     span {
-      color: var(--chotto-secondary-text-color);
-      font-size: var(--chotto-button-icon-size);
+      color: var(--chotto-theme-secondary-text-color);
+      font-size: var(--chotto-theme-button-icon-size);
     }
   }
 }

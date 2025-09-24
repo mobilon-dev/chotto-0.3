@@ -21,7 +21,7 @@
   }
 
   &__chat-panel {
-    background-color: var(--chotto-chatwrapper-chat-panel-background-color, var(--chotto-primary-color));
+    background-color: var(--chotto-chatwrapper-chat-panel-background-color, var(--chotto-theme-primary-color));
     border-left: var(--chotto-chatwrapper-chat-panel-border-left);
     border-right: var(--chotto-chatwrapper-chat-panel-border-right);
     border-radius: var(--chotto-chatwrapper-chat-panel-border-radius);

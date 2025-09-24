@@ -1,10 +1,10 @@
 :global([data-theme="light"]) {
   // ChannelSelector container variables
   --chotto-channelselector-container-display: flex;
-  --chotto-channelselector-container-disabled-color: var(--chotto-button-color-disabled);
+  --chotto-channelselector-container-disabled-color: var(--chotto-theme-button-color-disabled);
 
   // ChannelSelector title variables
-  --chotto-channelselector-title-font-size: var(--chotto-text-font-size);
+  --chotto-channelselector-title-font-size: var(--chotto-theme-text-font-size);
 
   // ChannelSelector selected variables
   --chotto-channelselector-selected-height: fit-content;
@@ -17,19 +17,19 @@
 
   // ChannelSelector icon variables
   --chotto-channelselector-icon-display: block;
-  --chotto-channelselector-icon-height: var(--chotto-text-font-size);
-  --chotto-channelselector-icon-width: var(--chotto-text-font-size);
+  --chotto-channelselector-icon-height: var(--chotto-theme-text-font-size);
+  --chotto-channelselector-icon-width: var(--chotto-theme-text-font-size);
 
   // ChannelSelector trigger variables
   --chotto-channelselector-trigger-padding: 14px;
   --chotto-channelselector-trigger-display: block;
   --chotto-channelselector-trigger-cursor: pointer;
-  --chotto-channelselector-trigger-font-size: var(--chotto-button-icon-size);
-  --chotto-channelselector-trigger-color: var(--chotto-button-color-active);
-  --chotto-channelselector-trigger-hover-color: var(--chotto-button-color-hover);
+  --chotto-channelselector-trigger-font-size: var(--chotto-theme-button-icon-size);
+  --chotto-channelselector-trigger-color: var(--chotto-theme-button-color-active);
+  --chotto-channelselector-trigger-hover-color: var(--chotto-theme-button-color-hover);
 
   // ChannelSelector disabled variables
-  --chotto-channelselector-disabled-color: var(--chotto-button-color-disabled);
+  --chotto-channelselector-disabled-color: var(--chotto-theme-button-color-disabled);
   --chotto-channelselector-disabled-cursor: auto;
   --chotto-channelselector-disabled-pointer-events: none;
 }

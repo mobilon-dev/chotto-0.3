@@ -7,8 +7,8 @@
   --chotto-systemmessage-container-background-color: #ffeecc;
 
   // SystemMessage text variables
-  --chotto-systemmessage-text-font-size: var(--chotto-text-font-size);
+  --chotto-systemmessage-text-font-size: var(--chotto-theme-text-font-size);
   --chotto-systemmessage-text-line-height: 1.5;
   --chotto-systemmessage-text-text-align: center;
-  --chotto-systemmessage-text-color: var(--chotto-secondary-text-color);
+  --chotto-systemmessage-text-color: var(--chotto-theme-secondary-text-color);
 }

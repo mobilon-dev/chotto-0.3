@@ -39,31 +39,31 @@
   --chotto-textmessage-views-display: flex;
   --chotto-textmessage-views-align-items: center;
   --chotto-textmessage-views-column-gap: 4px;
-  --chotto-textmessage-views-span-font-size: var(--chotto-small-text-icon-size);
-  --chotto-textmessage-views-span-color: var(--chotto-secondary-text-color);
-  --chotto-textmessage-views-p-font-size: var(--chotto-small-text-font-size);
-  --chotto-textmessage-views-p-color: var(--chotto-secondary-text-color);
+  --chotto-textmessage-views-span-font-size: var(--chotto-theme-small-text-icon-size);
+  --chotto-textmessage-views-span-color: var(--chotto-theme-secondary-text-color);
+  --chotto-textmessage-views-p-font-size: var(--chotto-theme-small-text-font-size);
+  --chotto-textmessage-views-p-color: var(--chotto-theme-secondary-text-color);
 
   // TextMessage time variables
-  --chotto-textmessage-time-font-size: var(--chotto-text-font-size);
-  --chotto-textmessage-time-color: var(--chotto-secondary-text-color);
+  --chotto-textmessage-time-font-size: var(--chotto-theme-text-font-size);
+  --chotto-textmessage-time-color: var(--chotto-theme-secondary-text-color);
 
   // TextMessage status variables
   --chotto-textmessage-status-display: flex;
-  --chotto-textmessage-status-span-color: var(--chotto-status-color-received);
-  --chotto-textmessage-status-span-font-size: var(--chotto-small-text-icon-size);
-  --chotto-textmessage-status-received-color: var(--chotto-status-color-received);
+  --chotto-textmessage-status-span-color: var(--chotto-theme-status-color-received);
+  --chotto-textmessage-status-span-font-size: var(--chotto-theme-small-text-icon-size);
+  --chotto-textmessage-status-received-color: var(--chotto-theme-status-color-received);
   --chotto-textmessage-status-received-first-child-margin-right: -8px;
-  --chotto-textmessage-status-read-color: var(--chotto-status-color-read);
+  --chotto-textmessage-status-read-color: var(--chotto-theme-status-color-read);
   --chotto-textmessage-status-read-first-child-margin-right: -8px;
 
   // TextMessage text variables
-  --chotto-textmessage-text-font-size: var(--chotto-text-font-size);
+  --chotto-textmessage-text-font-size: var(--chotto-theme-text-font-size);
   --chotto-textmessage-text-white-space: pre-wrap;
 
   // TextMessage subtext variables
-  --chotto-textmessage-subtext-font-size: var(--chotto-additional-text-font-size);
-  --chotto-textmessage-subtext-color: var(--chotto-secondary-text-color);
+  --chotto-textmessage-subtext-font-size: var(--chotto-theme-additional-text-font-size);
+  --chotto-textmessage-subtext-color: var(--chotto-theme-secondary-text-color);
 
   // TextMessage avatar variables
   --chotto-textmessage-avatar-align-self: auto;
@@ -79,9 +79,9 @@
   --chotto-textmessage-menu-button-transform: translateY(-50%);
   --chotto-textmessage-menu-button-cursor: pointer;
   --chotto-textmessage-menu-button-transition: 0.2s;
-  --chotto-textmessage-menu-button-span-color: var(--chotto-button-color-active);
-  --chotto-textmessage-menu-button-span-font-size: var(--chotto-button-icon-size);
-  --chotto-textmessage-menu-button-span-hover-color: var(--chotto-button-color-hover);
+  --chotto-textmessage-menu-button-span-color: var(--chotto-theme-button-color-active);
+  --chotto-textmessage-menu-button-span-font-size: var(--chotto-theme-button-icon-size);
+  --chotto-textmessage-menu-button-span-hover-color: var(--chotto-theme-button-color-hover);
   --chotto-textmessage-menu-button-span-hover-transition: 0.2s;
 
   // TextMessage context-menu variables

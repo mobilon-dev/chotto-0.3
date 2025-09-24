@@ -71,11 +71,11 @@
 
   @keyframes typing-message__loader {
     0% {
-      box-shadow: 0 15px 0 -15px var(--chotto-secondary-text-color);
+      box-shadow: 0 15px 0 -15px var(--chotto-theme-secondary-text-color);
     }
 
     100% {
-      box-shadow: 0 15px 0 var(--chotto-secondary-text-color);
+      box-shadow: 0 15px 0 var(--chotto-theme-secondary-text-color);
     }
   }
 }

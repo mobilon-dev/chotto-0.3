@@ -61,7 +61,7 @@
 }
 
 .channel-btn.hover {
-  background: var(--chotto-communicationpanel-btn-hover-background, var(--chotto-item-background-color-hover, #F6F6F6));
+  background: var(--chotto-communicationpanel-btn-hover-background, var(--chotto-theme-item-background-color-hover, #F6F6F6));
   color: var(--chotto-communicationpanel-btn-hover-color, inherit);
   transform: var(--chotto-communicationpanel-btn-hover-transform, none);
 }
@@ -117,8 +117,8 @@
 
 .menu-header {
   padding: var(--chotto-communicationpanel-menu-header-padding, 8px 16px 4px);
-  font-size: var(--chotto-communicationpanel-menu-header-font-size, var(--chotto-text-font-size));
-  color: var(--chotto-communicationpanel-menu-header-color, var(--chotto-secondary-text-color));
+  font-size: var(--chotto-communicationpanel-menu-header-font-size, var(--chotto-theme-text-font-size));
+  color: var(--chotto-communicationpanel-menu-header-color, var(--chotto-theme-secondary-text-color));
   font-weight: var(--chotto-communicationpanel-menu-header-font-weight, 500);
   letter-spacing: var(--chotto-communicationpanel-menu-header-letter-spacing, 0.5px);
   text-transform: var(--chotto-communicationpanel-menu-header-text-transform, none);
@@ -143,7 +143,7 @@
 
 .recent-attribute:hover,
 .attribute-item:hover {
-  background: var(--chotto-communicationpanel-attribute-hover-background, var(--chotto-item-background-color-hover));
+  background: var(--chotto-communicationpanel-attribute-hover-background, var(--chotto-theme-item-background-color-hover));
   color: var(--chotto-communicationpanel-attribute-hover-color, inherit);
   transform: var(--chotto-communicationpanel-attribute-hover-transform, none);
 }
@@ -157,8 +157,8 @@
 
 .attribute-value {
   font-weight: var(--chotto-communicationpanel-attribute-value-font-weight, 500);
-  font-size: var(--chotto-communicationpanel-attribute-value-font-size, var(--chotto-text-font-size));
-  color: var(--chotto-communicationpanel-attribute-value-color, var(--chotto-primary-text-color));
+  font-size: var(--chotto-communicationpanel-attribute-value-font-size, var(--chotto-theme-text-font-size));
+  color: var(--chotto-communicationpanel-attribute-value-color, var(--chotto-theme-primary-text-color));
   line-height: var(--chotto-communicationpanel-attribute-value-line-height, normal);
 }
 
@@ -210,7 +210,7 @@
 
 .attribute-item.frozen-hover,
 .recent-attribute.frozen-hover {
-  background: var(--chotto-item-background-color-hover);
+  background: var(--chotto-theme-item-background-color-hover);
 }
 
 .sub-menu {
@@ -236,8 +236,8 @@
 
 .sub-menu-header {
   padding: var(--chotto-communicationpanel-submenu-header-padding, 8px 12px 2px);
-  font-size: var(--chotto-communicationpanel-submenu-header-font-size, var(--chotto-text-font-size));
-  color: var(--chotto-communicationpanel-submenu-header-color, var(--chotto-secondary-text-color));
+  font-size: var(--chotto-communicationpanel-submenu-header-font-size, var(--chotto-theme-text-font-size));
+  color: var(--chotto-communicationpanel-submenu-header-color, var(--chotto-theme-secondary-text-color));
   font-weight: var(--chotto-communicationpanel-submenu-header-font-weight, 500);
   letter-spacing: var(--chotto-communicationpanel-submenu-header-letter-spacing, 0.5px);
   margin-bottom: var(--chotto-communicationpanel-submenu-header-margin-bottom, 4px);
@@ -261,7 +261,7 @@
 }
 
 .sub-menu-item:hover {
-  background: var(--chotto-communicationpanel-submenu-item-hover-background, var(--chotto-item-background-color-hover));
+  background: var(--chotto-communicationpanel-submenu-item-hover-background, var(--chotto-theme-item-background-color-hover));
   color: var(--chotto-communicationpanel-submenu-item-hover-color, inherit);
   transform: var(--chotto-communicationpanel-submenu-item-hover-transform, none);
 }
@@ -279,8 +279,8 @@
 }
 
 .sub-menu-title {
-  font-size: var(--chotto-communicationpanel-submenu-title-font-size, var(--chotto-text-font-size));
-  color: var(--chotto-communicationpanel-submenu-title-color, var(--chotto-primary-text-color));
+  font-size: var(--chotto-communicationpanel-submenu-title-font-size, var(--chotto-theme-text-font-size));
+  color: var(--chotto-communicationpanel-submenu-title-color, var(--chotto-theme-primary-text-color));
   white-space: var(--chotto-communicationpanel-submenu-title-white-space, nowrap);
   overflow: var(--chotto-communicationpanel-submenu-title-overflow, hidden);
   text-overflow: var(--chotto-communicationpanel-submenu-title-text-overflow, ellipsis);

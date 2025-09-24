@@ -60,8 +60,8 @@
     span {
       cursor: var(--chotto-modalvideorecorder-button-span-cursor, pointer);
       display: var(--chotto-modalvideorecorder-button-span-display, block);
-      font-size: var(--chotto-button-icon-size);
-      color: var(--chotto-button-color-active);
+      font-size: var(--chotto-theme-button-icon-size);
+      color: var(--chotto-theme-button-color-active);
     }
   }
 
@@ -77,7 +77,7 @@
   &__button-disabled {
     cursor: var(--chotto-modalvideorecorder-button-disabled-cursor, auto);
     span {
-      color: var(--chotto-button-color-disabled);
+      color: var(--chotto-theme-button-color-disabled);
     }
   }
 

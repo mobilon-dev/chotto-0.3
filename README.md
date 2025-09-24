@@ -191,8 +191,8 @@ THEME_ARCHITECTURE_PROMPT.md  # Черновик архитектуры тем
 ### Кастомизация CSS переменных
 ```css
 [data-theme="light"] {
-  --chotto-primary-color: #10b981;
-  --chotto-secondary-color: #6b7280;
+  --chotto-theme-primary-color: #10b981;
+  --chotto-theme-secondary-color: #6b7280;
   --chotto-background-color: #ffffff;
   /* ... другие переменные */
 }

@@ -11,14 +11,14 @@
   --chotto-replycallmessage-icon-width: 38px;
   --chotto-replycallmessage-icon-background-color: var(--chotto-message-type-icon-bg-color);
   --chotto-replycallmessage-icon-color: var(--chotto-message-type-icon-color);
-  --chotto-replycallmessage-icon-font-size: var(--chotto-button-icon-size);
+  --chotto-replycallmessage-icon-font-size: var(--chotto-theme-button-icon-size);
 
   // ReplyCallMessage text container variables
   --chotto-replycallmessage-text-container-align-content: center;
   --chotto-replycallmessage-text-container-word-break: break-word;
   --chotto-replycallmessage-text-container-p-margin: 0;
-  --chotto-replycallmessage-text-container-p-font-size: var(--chotto-additional-text-font-size);
-  --chotto-replycallmessage-text-container-p-color: var(--chotto-secondary-text-color);
+  --chotto-replycallmessage-text-container-p-font-size: var(--chotto-theme-additional-text-font-size);
+  --chotto-replycallmessage-text-container-p-color: var(--chotto-theme-secondary-text-color);
   --chotto-replycallmessage-text-container-p-overflow: hidden;
   --chotto-replycallmessage-text-container-p-text-overflow: ellipsis;
   --chotto-replycallmessage-text-container-p-display: -webkit-box;
@@ -31,5 +31,5 @@
   --chotto-replycallmessage-reply-description-align-items: center;
   --chotto-replycallmessage-reply-description-column-gap: 6px;
   --chotto-replycallmessage-reply-description-margin-bottom: 4px;
-  --chotto-replycallmessage-reply-description-span-color: var(--chotto-secondary-text-color);
+  --chotto-replycallmessage-reply-description-span-color: var(--chotto-theme-secondary-text-color);
 }

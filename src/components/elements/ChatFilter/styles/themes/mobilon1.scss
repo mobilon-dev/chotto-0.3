@@ -6,12 +6,12 @@
   --chotto-chatfilter-icon-position: absolute;
   --chotto-chatfilter-icon-left: 14px;
   --chotto-chatfilter-icon-top: 25%;
-  --chotto-chatfilter-icon-color: var(--chotto-secondary-text-color);
+  --chotto-chatfilter-icon-color: var(--chotto-theme-secondary-text-color);
 
   // ChatFilter input variables
   --chotto-chatfilter-input-width: 100%;
   --chotto-chatfilter-input-background-color: transparent;
-  --chotto-chatfilter-input-color: var(--chotto-primary-text-color);
+  --chotto-chatfilter-input-color: var(--chotto-theme-primary-text-color);
   --chotto-chatfilter-input-padding: 0.5rem 0.75rem;
   --chotto-chatfilter-input-padding-left: 40px;
   --chotto-chatfilter-input-border: 1px solid var(--neutral-250);
@@ -19,7 +19,7 @@
   --chotto-chatfilter-input-font-size: 14px;
   --chotto-chatfilter-input-transition: border-color 0.2s;
   --chotto-chatfilter-input-background: transparent;
-  --chotto-chatfilter-input-placeholder-color: var(--chotto-secondary-text-color);
+  --chotto-chatfilter-input-placeholder-color: var(--chotto-theme-secondary-text-color);
   --chotto-chatfilter-input-hover-border-color: var(--neutral-500);
   --chotto-chatfilter-input-focus-border-color: var(--neutral-700);
   --chotto-chatfilter-input-focus-outline: none;

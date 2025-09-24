@@ -1,9 +1,9 @@
 :global([data-theme="green"]) {
   // BaseContainer base variables
   --chotto-basecontainer-base-container-transition: all 0.3s ease;
-  --chotto-basecontainer-base-container-font-weight: var(--chotto-container-font-weight);
-  --chotto-basecontainer-base-container-color: var(--chotto-primary-text-color);
-  --chotto-basecontainer-base-container-font-family: var(--chotto-container-font-family);
+  --chotto-basecontainer-base-container-font-weight: var(--chotto-theme-container-font-weight);
+  --chotto-basecontainer-base-container-color: var(--chotto-theme-primary-text-color);
+  --chotto-basecontainer-base-container-font-family: var(--chotto-theme-font-family);
   --chotto-basecontainer-base-container-container: all / inline-size;
   --chotto-basecontainer-base-container-min-width: 480px;
 
@@ -13,7 +13,7 @@
   --chotto-basecontainer-global-ul-margin: 0;
   --chotto-basecontainer-global-ul-padding: 0;
   --chotto-basecontainer-global-ul-list-style-type: none;
-  --chotto-basecontainer-global-input-button-font-family: var(--chotto-container-font-family);
+  --chotto-basecontainer-global-input-button-font-family: var(--chotto-theme-font-family);
   --chotto-basecontainer-global-p-h1-h2-margin: 0;
   --chotto-basecontainer-global-a-text-decoration: none;
 

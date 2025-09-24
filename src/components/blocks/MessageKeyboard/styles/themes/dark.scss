@@ -1,7 +1,7 @@
 :global([data-theme="dark"]) {
   --chotto-messagekeyboard-gap: 5px;
   --chotto-messagekeyboard-key-border-radius: 3px;
-  --chotto-messagekeyboard-key-box-shadow: 0px 0px 10px 5px var(--chotto-shadow-light-color);
+  --chotto-messagekeyboard-key-box-shadow: 0px 0px 10px 5px var(--chotto-theme-shadow-light-color);
   --chotto-messagekeyboard-key-padding: 5px;
 }
 

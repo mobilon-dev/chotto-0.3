@@ -37,44 +37,44 @@
   --chotto-filemessage-avatar-border-radius: 50%;
 
   // FileMessage text container variables
-  --chotto-filemessage-text-container-p-font-size: var(--chotto-text-font-size);
+  --chotto-filemessage-text-container-p-font-size: var(--chotto-theme-text-font-size);
 
   // FileMessage subtext variables
-  --chotto-filemessage-subtext-font-size: var(--chotto-additional-text-font-size);
-  --chotto-filemessage-subtext-color: var(--chotto-secondary-text-color);
+  --chotto-filemessage-subtext-font-size: var(--chotto-theme-additional-text-font-size);
+  --chotto-filemessage-subtext-color: var(--chotto-theme-secondary-text-color);
 
   // FileMessage link variables
-  --chotto-filemessage-link-span-color: var(--chotto-secondary-text-color);
-  --chotto-filemessage-link-span-font-size: var(--chotto-button-icon-size);
+  --chotto-filemessage-link-span-color: var(--chotto-theme-secondary-text-color);
+  --chotto-filemessage-link-span-font-size: var(--chotto-theme-button-icon-size);
 
   // FileMessage filename text variables
-  --chotto-filemessage-filename-text-font-size: var(--chotto-text-font-size);
-  --chotto-filemessage-filename-text-color: var(--chotto-primary-text-color);
+  --chotto-filemessage-filename-text-font-size: var(--chotto-theme-text-font-size);
+  --chotto-filemessage-filename-text-color: var(--chotto-theme-primary-text-color);
 
   // FileMessage download button variables
-  --chotto-filemessage-download-button-span-color: var(--chotto-secondary-text-color);
-  --chotto-filemessage-download-button-span-font-size: var(--chotto-text-icon-size);
+  --chotto-filemessage-download-button-span-color: var(--chotto-theme-secondary-text-color);
+  --chotto-filemessage-download-button-span-font-size: var(--chotto-theme-text-icon-size);
 
   // FileMessage status variables
-  --chotto-filemessage-status-span-color: var(--chotto-status-color-received);
-  --chotto-filemessage-status-span-font-size: var(--chotto-small-text-icon-size);
-  --chotto-filemessage-status-received-color: var(--chotto-status-color-received);
-  --chotto-filemessage-status-read-color: var(--chotto-status-color-read);
+  --chotto-filemessage-status-span-color: var(--chotto-theme-status-color-received);
+  --chotto-filemessage-status-span-font-size: var(--chotto-theme-small-text-icon-size);
+  --chotto-filemessage-status-received-color: var(--chotto-theme-status-color-received);
+  --chotto-filemessage-status-read-color: var(--chotto-theme-status-color-read);
 
   // FileMessage views variables
-  --chotto-filemessage-views-span-font-size: var(--chotto-small-text-icon-size);
-  --chotto-filemessage-views-span-color: var(--chotto-secondary-text-color);
-  --chotto-filemessage-views-p-font-size: var(--chotto-small-text-font-size);
-  --chotto-filemessage-views-p-color: var(--chotto-secondary-text-color);
+  --chotto-filemessage-views-span-font-size: var(--chotto-theme-small-text-icon-size);
+  --chotto-filemessage-views-span-color: var(--chotto-theme-secondary-text-color);
+  --chotto-filemessage-views-p-font-size: var(--chotto-theme-small-text-font-size);
+  --chotto-filemessage-views-p-color: var(--chotto-theme-secondary-text-color);
 
   // FileMessage time variables
-  --chotto-filemessage-time-font-size: var(--chotto-text-font-size);
-  --chotto-filemessage-time-color: var(--chotto-secondary-text-color);
+  --chotto-filemessage-time-font-size: var(--chotto-theme-text-font-size);
+  --chotto-filemessage-time-color: var(--chotto-theme-secondary-text-color);
 
   // FileMessage menu button variables
-  --chotto-filemessage-menu-button-span-color: var(--chotto-button-color-active);
-  --chotto-filemessage-menu-button-span-font-size: var(--chotto-button-icon-size);
-  --chotto-filemessage-menu-button-span-hover-color: var(--chotto-button-color-hover);
+  --chotto-filemessage-menu-button-span-color: var(--chotto-theme-button-color-active);
+  --chotto-filemessage-menu-button-span-font-size: var(--chotto-theme-button-icon-size);
+  --chotto-filemessage-menu-button-span-hover-color: var(--chotto-theme-button-color-hover);
 
   // FileMessage left/right variables
   --chotto-filemessage-left-right-margin: var(--chotto-message-margin);

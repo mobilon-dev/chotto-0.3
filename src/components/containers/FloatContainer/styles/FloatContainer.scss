@@ -12,9 +12,9 @@
     width: var(--chotto-floatcontainer-container-width, 100%);
     height: var(--chotto-floatcontainer-container-height, 100%);
     position: var(--chotto-floatcontainer-container-position, absolute);
-    font-weight: var(--chotto-floatcontainer-container-font-weight, var(--chotto-container-font-weight));
-    color: var(--chotto-floatcontainer-container-color, var(--chotto-primary-text-color));
-    font-family: var(--chotto-floatcontainer-container-font-family, var(--chotto-container-font-family));
+    font-weight: var(--chotto-floatcontainer-container-font-weight, var(--chotto-theme-container-font-weight));
+    color: var(--chotto-floatcontainer-container-color, var(--chotto-theme-primary-text-color));
+    font-family: var(--chotto-floatcontainer-container-font-family, var(--chotto-theme-font-family));
     box-shadow: var(--chotto-floatcontainer-container-box-shadow, var(--chotto-float-container-box-shadow));
     container: var(--chotto-floatcontainer-container-container, all / inline-size);
   }
@@ -37,8 +37,8 @@
   }
 
   &__title {
-    font-size: var(--chotto-floatcontainer-title-font-size, var(--chotto-title-font-size));
-    font-weight: var(--chotto-floatcontainer-title-font-weight, var(--chotto-title-font-weight));
+    font-size: var(--chotto-floatcontainer-title-font-size, var(--chotto-theme-title-font-size));
+    font-weight: var(--chotto-floatcontainer-title-font-weight, var(--chotto-theme-title-font-weight));
     margin-left: var(--chotto-floatcontainer-title-margin-left, 10px);
   }
 
@@ -46,8 +46,8 @@
     display: var(--chotto-floatcontainer-close-button-display, block);
     background-color: var(--chotto-floatcontainer-close-button-background-color, transparent);
     border: var(--chotto-floatcontainer-close-button-border, none);
-    font-size: var(--chotto-floatcontainer-close-button-font-size, var(--chotto-button-icon-size));
-    color: var(--chotto-floatcontainer-close-button-color, var(--chotto-secondary-text-color));
+    font-size: var(--chotto-floatcontainer-close-button-font-size, var(--chotto-theme-button-icon-size));
+    color: var(--chotto-floatcontainer-close-button-color, var(--chotto-theme-secondary-text-color));
     width: var(--chotto-floatcontainer-close-button-width, fit-content);
     margin-left: var(--chotto-floatcontainer-close-button-margin-left, auto);
     cursor: var(--chotto-floatcontainer-close-button-cursor, pointer);
@@ -71,7 +71,7 @@
 
   input,
   button {
-    font-family: var(--chotto-floatcontainer-global-input-button-font-family, var(--chotto-container-font-family));
+    font-family: var(--chotto-floatcontainer-global-input-button-font-family, var(--chotto-theme-font-family));
   }
 
   p,

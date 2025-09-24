@@ -18,8 +18,8 @@
 
 .modal {
     background: var(--chotto-modalnofooter-background, #ffffff);
-    color: var(--chotto-primary-text-color);
-    font-family: var(--chotto-container-font-family);
+    color: var(--chotto-theme-primary-text-color);
+    font-family: var(--chotto-theme-font-family);
     overflow-x: var(--chotto-modalnofooter-overflow-x, auto);
     display: flex; 
     flex-direction: column;

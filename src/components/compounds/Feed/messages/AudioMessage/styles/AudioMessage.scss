@@ -68,7 +68,7 @@
       top: var(--chotto-audiomessage-play-pause-span-top, 50%);
       left: var(--chotto-audiomessage-play-pause-span-left, 50%);
       transform: var(--chotto-audiomessage-play-pause-span-transform, translate(-50%, -50%));
-      font-size: var(--chotto-button-icon-size);
+      font-size: var(--chotto-theme-button-icon-size);
       color: var(--chotto-message-type-icon-color);
     }
   }
@@ -117,7 +117,7 @@
     background-color: var(--chotto-audiomessage-speed-btn-background-color, transparent);
     border: var(--chotto-audiomessage-speed-btn-border, 0);
     width: var(--chotto-audiomessage-speed-btn-width, 25px);
-    font-size: var(--chotto-additional-text-font-size);
+    font-size: var(--chotto-theme-additional-text-font-size);
     font-weight: var(--chotto-audiomessage-speed-btn-font-weight, 400);
   }
 
@@ -133,7 +133,7 @@
   &__remaining-time {
     grid-column: var(--chotto-audiomessage-remaining-time-grid-column, 2);
     margin-bottom: var(--chotto-audiomessage-remaining-time-margin-bottom, -10px);
-    font-size: var(--chotto-small-text-font-size);
+    font-size: var(--chotto-theme-small-text-font-size);
     height: var(--chotto-audiomessage-remaining-time-height, fit-content);
   }
 
@@ -146,8 +146,8 @@
   }
 
   &__subtext {
-    font-size: var(--chotto-additional-text-font-size);
-    color: var(--chotto-secondary-text-color);
+    font-size: var(--chotto-theme-additional-text-font-size);
+    color: var(--chotto-theme-secondary-text-color);
   }
 
   &__info-container {
@@ -172,8 +172,8 @@
     cursor: var(--chotto-audiomessage-download-button-cursor, pointer);
 
     span {
-      color: var(--chotto-secondary-text-color);
-      font-size: var(--chotto-text-icon-size);
+      color: var(--chotto-theme-secondary-text-color);
+      font-size: var(--chotto-theme-text-icon-size);
     }
   }
 
@@ -181,14 +181,14 @@
     display: var(--chotto-audiomessage-status-display, flex);
 
     span {
-      color: var(--chotto-status-color-received);
-      font-size: var(--chotto-small-text-icon-size);
+      color: var(--chotto-theme-status-color-received);
+      font-size: var(--chotto-theme-small-text-icon-size);
     }
   }
 
   .status--received {
     span {
-      color: var(--chotto-status-color-received);
+      color: var(--chotto-theme-status-color-received);
 
       &:first-child {
         margin-right: -8px;
@@ -198,7 +198,7 @@
 
   .status--read {
     span {
-      color: var(--chotto-status-color-read);
+      color: var(--chotto-theme-status-color-read);
 
       &:first-child {
         margin-right: -8px;
@@ -212,19 +212,19 @@
     column-gap: var(--chotto-audiomessage-views-column-gap, 4px);
 
     span {
-      font-size: var(--chotto-small-text-icon-size);
-      color: var(--chotto-secondary-text-color);
+      font-size: var(--chotto-theme-small-text-icon-size);
+      color: var(--chotto-theme-secondary-text-color);
     }
 
     p {
-      font-size: var(--chotto-small-text-font-size);
-      color: var(--chotto-secondary-text-color);
+      font-size: var(--chotto-theme-small-text-font-size);
+      color: var(--chotto-theme-secondary-text-color);
     }
   }
 
   &__time {
-    font-size: var(--chotto-text-font-size);
-    color: var(--chotto-secondary-text-color);
+    font-size: var(--chotto-theme-text-font-size);
+    color: var(--chotto-theme-secondary-text-color);
   }
 
   &__menu-button {
@@ -236,12 +236,12 @@
     transition: var(--chotto-audiomessage-menu-button-transition, 0.2s);
 
     span {
-      color: var(--chotto-button-color-active);
-      font-size: var(--chotto-button-icon-size);
+      color: var(--chotto-theme-button-color-active);
+      font-size: var(--chotto-theme-button-icon-size);
     }
 
     &:hover span {
-      color: var(--chotto-button-color-hover);
+      color: var(--chotto-theme-button-color-hover);
       transition: 0.2s;
     }
   }
@@ -258,7 +258,7 @@
 
     p {
       white-space: pre-wrap;
-      font-size: var(--chotto-text-font-size);
+      font-size: var(--chotto-theme-text-font-size);
     }
   }
 
@@ -274,7 +274,7 @@
     user-select: var(--chotto-audiomessage-transcript-container-user-select, none);
 
     p {
-      color: var(--chotto-secondary-text-color);
+      color: var(--chotto-theme-secondary-text-color);
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
@@ -387,15 +387,15 @@
   }
 
   &__modal {
-    font-family: var(--chotto-container-font-family);
-    font-weight: var(--chotto-container-font-weight);
-    font-size: var(--chotto-text-font-size);
+    font-family: var(--chotto-theme-font-family);
+    font-weight: var(--chotto-theme-container-font-weight);
+    font-size: var(--chotto-theme-text-font-size);
     position: var(--chotto-audiomessage-modal-position, absolute);
     top: var(--chotto-audiomessage-modal-top, 50%);
     left: var(--chotto-audiomessage-modal-left, 50%);
     transform: var(--chotto-audiomessage-modal-transform, translate(-50%, -50%));
     z-index: var(--chotto-audiomessage-modal-z-index, 101);
-    color: var(--chotto-primary-text-color);
+    color: var(--chotto-theme-primary-text-color);
     background-color: var(--chotto-modal-bg);
     border-radius: var(--chotto-modal-border-radius);
     padding: var(--chotto-modal-padding);
@@ -404,7 +404,7 @@
 
     p {
       margin: 0;
-      font-size: var(--chotto-title-font-size);
+      font-size: var(--chotto-theme-title-font-size);
     }
   }
 
@@ -427,8 +427,8 @@
     cursor: var(--chotto-audiomessage-modal-close-button-cursor, pointer);
 
     span {
-      color: var(--chotto-secondary-text-color);
-      font-size: var(--chotto-button-icon-size);
+      color: var(--chotto-theme-secondary-text-color);
+      font-size: var(--chotto-theme-button-icon-size);
     }
   }
 }

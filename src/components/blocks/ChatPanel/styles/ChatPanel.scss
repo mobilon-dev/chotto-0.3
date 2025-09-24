@@ -35,10 +35,10 @@
   }
 
   &__title {
-    font-size: var(--chotto-header-font-size);
-    font-weight: var(--chotto-header-font-weight);
-    font-family: var(--chotto-header-font);
-    color: var(--chotto-secondary-text-color);
+    font-size: var(--chotto-theme-header-font-size);
+    font-weight: var(--chotto-theme-header-font-weight);
+    font-family: var(--chotto-theme-header-font);
+    color: var(--chotto-theme-secondary-text-color);
     letter-spacing: var(--chotto-chatpanel-title-letter-spacing, 0.5px);
   }
 
@@ -48,8 +48,8 @@
     cursor: pointer;
 
     span {
-      font-size: var(--chotto-button-icon-size);
-      color: var(--chotto-button-color-active);
+      font-size: var(--chotto-theme-button-icon-size);
+      color: var(--chotto-theme-button-color-active);
     }
   }
 }

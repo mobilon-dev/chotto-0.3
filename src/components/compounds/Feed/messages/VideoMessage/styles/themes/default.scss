@@ -29,23 +29,23 @@
   --chotto-videomessage-download-button-background-color: rgba(0, 0, 0, 0.7);
   --chotto-videomessage-download-button-cursor: pointer;
   --chotto-videomessage-download-button-span-color: white;
-  --chotto-videomessage-download-button-span-font-size: var(--chotto-small-text-icon-size);
+  --chotto-videomessage-download-button-span-font-size: var(--chotto-theme-small-text-icon-size);
 
   // VideoMessage views variables
   --chotto-videomessage-views-display: flex;
   --chotto-videomessage-views-align-items: center;
   --chotto-videomessage-views-column-gap: 4px;
-  --chotto-videomessage-views-span-font-size: var(--chotto-small-text-icon-size);
-  --chotto-videomessage-views-p-font-size: var(--chotto-small-text-font-size);
+  --chotto-videomessage-views-span-font-size: var(--chotto-theme-small-text-icon-size);
+  --chotto-videomessage-views-p-font-size: var(--chotto-theme-small-text-font-size);
 
   // VideoMessage time variables
-  --chotto-videomessage-time-font-size: var(--chotto-small-text-font-size);
+  --chotto-videomessage-time-font-size: var(--chotto-theme-small-text-font-size);
 
   // VideoMessage status variables
   --chotto-videomessage-status-display: flex;
-  --chotto-videomessage-status-span-font-size: var(--chotto-small-text-icon-size);
+  --chotto-videomessage-status-span-font-size: var(--chotto-theme-small-text-icon-size);
   --chotto-videomessage-status-received-first-child-margin-right: -8px;
-  --chotto-videomessage-status-read-color: var(--chotto-status-color-read);
+  --chotto-videomessage-status-read-color: var(--chotto-theme-status-color-read);
   --chotto-videomessage-status-read-first-child-margin-right: -8px;
 
   // VideoMessage avatar variables
@@ -64,8 +64,8 @@
   --chotto-videomessage-video-cursor: zoom-in;
 
   // VideoMessage subtext variables
-  --chotto-videomessage-subtext-font-size: var(--chotto-additional-text-font-size);
-  --chotto-videomessage-subtext-color: var(--chotto-secondary-text-color);
+  --chotto-videomessage-subtext-font-size: var(--chotto-theme-additional-text-font-size);
+  --chotto-videomessage-subtext-color: var(--chotto-theme-secondary-text-color);
 
   // VideoMessage preview-button variables
   --chotto-videomessage-preview-button-position: relative;
@@ -79,9 +79,9 @@
   --chotto-videomessage-menu-button-transform: translateY(-50%);
   --chotto-videomessage-menu-button-cursor: pointer;
   --chotto-videomessage-menu-button-transition: 0.2s;
-  --chotto-videomessage-menu-button-span-color: var(--chotto-button-color-active);
-  --chotto-videomessage-menu-button-span-font-size: var(--chotto-button-icon-size);
-  --chotto-videomessage-menu-button-span-hover-color: var(--chotto-button-color-hover);
+  --chotto-videomessage-menu-button-span-color: var(--chotto-theme-button-color-active);
+  --chotto-videomessage-menu-button-span-font-size: var(--chotto-theme-button-icon-size);
+  --chotto-videomessage-menu-button-span-hover-color: var(--chotto-theme-button-color-hover);
   --chotto-videomessage-menu-button-span-hover-transition: 0.2s;
 
   // VideoMessage context-menu variables
@@ -93,7 +93,7 @@
   --chotto-videomessage-text-container-word-wrap: break-word;
   --chotto-videomessage-text-container-max-width: 25rem;
   --chotto-videomessage-text-container-p-white-space: pre-wrap;
-  --chotto-videomessage-text-container-p-font-size: var(--chotto-text-font-size);
+  --chotto-videomessage-text-container-p-font-size: var(--chotto-theme-text-font-size);
 
   // VideoMessage link-preview variables
   --chotto-videomessage-link-preview-margin: 8px;

@@ -17,24 +17,24 @@
 
   // WABAAttachmentSection icon variables
   --chotto-wabaattachmentsection-icon-padding-left: 10px;
-  --chotto-wabaattachmentsection-icon-color: var(--chotto-primary-text-color);
+  --chotto-wabaattachmentsection-icon-color: var(--chotto-theme-primary-text-color);
 
   // WABAAttachmentSection title variables
-  --chotto-wabaattachmentsection-title-font-size: var(--chotto-additional-text-font-size);
-  --chotto-wabaattachmentsection-title-color: var(--chotto-primary-text-color);
+  --chotto-wabaattachmentsection-title-font-size: var(--chotto-theme-additional-text-font-size);
+  --chotto-wabaattachmentsection-title-color: var(--chotto-theme-primary-text-color);
   --chotto-wabaattachmentsection-title-font-weight: 600;
 
   // WABAAttachmentSection info variables
   --chotto-wabaattachmentsection-info-margin-top: 1px;
-  --chotto-wabaattachmentsection-info-color: var(--chotto-secondary-text-color);
-  --chotto-wabaattachmentsection-info-font-size: var(--chotto-additional-text-font-size);
+  --chotto-wabaattachmentsection-info-color: var(--chotto-theme-secondary-text-color);
+  --chotto-wabaattachmentsection-info-font-size: var(--chotto-theme-additional-text-font-size);
   --chotto-wabaattachmentsection-info-word-break: break-word;
   --chotto-wabaattachmentsection-info-font-weight: 600;
 
   // WABAAttachmentSection error text variables
   --chotto-wabaattachmentsection-error-text-color: var(--p-red-600);
   --chotto-wabaattachmentsection-error-text-margin-left: 5px;
-  --chotto-wabaattachmentsection-error-text-font-size: var(--chotto-small-text-font-size);
+  --chotto-wabaattachmentsection-error-text-font-size: var(--chotto-theme-small-text-font-size);
 
   // WABAAttachmentSection hover variables
   --chotto-wabaattachmentsection-hover-cursor: pointer;

@@ -1,7 +1,7 @@
 :global([data-theme="mobilon1"]) {
-  --chotto-modal-background: var(--chotto-primary-color, #ffffff);
+  --chotto-modal-background: var(--chotto-theme-primary-color, #ffffff);
   --chotto-modal-backdrop-bg: rgba(0, 0, 0, 0.3);
-  --chotto-modal-box-shadow: 2px 2px 10px 1px var(--chotto-shadow-color, rgba(0,0,0,0.2));
+  --chotto-modal-box-shadow: 2px 2px 10px 1px var(--chotto-theme-shadow-color, rgba(0,0,0,0.2));
   --chotto-modal-body-padding: 20px 10px;
   --chotto-modal-min-width: 300px;
   --chotto-modal-min-height: 300px;

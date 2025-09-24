@@ -1,5 +1,5 @@
 :global([data-theme="light"]) {
-  --chotto-modalnofooter-background: var(--chotto-primary-color, #ffffff);
+  --chotto-modalnofooter-background: var(--chotto-theme-primary-color, #ffffff);
   --chotto-modalnofooter-backdrop-bg: rgba(0, 0, 0, 0.4);
   --chotto-modalnofooter-body-padding: 20px 10px;
   --chotto-modalnofooter-overflow-x: auto;

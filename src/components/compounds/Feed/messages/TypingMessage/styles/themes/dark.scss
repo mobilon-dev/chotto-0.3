@@ -9,8 +9,8 @@
   --chotto-typingmessage-subtext-grid-column: 2;
   --chotto-typingmessage-subtext-grid-row: 1;
   --chotto-typingmessage-subtext-margin: 0 0 2px 10px;
-  --chotto-typingmessage-subtext-font-size: var(--chotto-additional-text-font-size);
-  --chotto-typingmessage-subtext-color: var(--chotto-secondary-text-color);
+  --chotto-typingmessage-subtext-font-size: var(--chotto-theme-additional-text-font-size);
+  --chotto-typingmessage-subtext-color: var(--chotto-theme-secondary-text-color);
 
   // TypingMessage avatar variables
   --chotto-typingmessage-avatar-align-self: center;
@@ -56,7 +56,7 @@
   --chotto-typingmessage-loader-after-animation-delay: 0.4s;
 
   // TypingMessage keyframes variables
-  --chotto-typingmessage-loader-color: var(--chotto-secondary-text-color);
+  --chotto-typingmessage-loader-color: var(--chotto-theme-secondary-text-color);
   --chotto-typingmessage-keyframes-0-box-shadow: 0 15px 0 -15px var(--chotto-typingmessage-loader-color);
   --chotto-typingmessage-keyframes-100-box-shadow: 0 15px 0 var(--chotto-typingmessage-loader-color);
 }

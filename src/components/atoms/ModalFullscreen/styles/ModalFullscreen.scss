@@ -10,7 +10,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: var(--chotto-modalfullscreen-container-z-index, 101);
-    color: var(--chotto-primary-text-color);
+    color: var(--chotto-theme-primary-text-color);
     background-color: var(--chotto-modalfullscreen-background, #ffffff);
     border-radius: var(--chotto-modalfullscreen-border-radius, 8px);
     padding: var(--chotto-modalfullscreen-padding, 16px);
@@ -38,8 +38,8 @@
     cursor: pointer;
 
     span {
-      color: var(--chotto-secondary-text-color);
-      font-size: var(--chotto-button-icon-size);
+      color: var(--chotto-theme-secondary-text-color);
+      font-size: var(--chotto-theme-button-icon-size);
     }
   }
 }

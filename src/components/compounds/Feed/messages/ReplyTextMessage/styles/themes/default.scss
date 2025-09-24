@@ -5,13 +5,13 @@
   --chotto-replytextmessage-container-gap: 8px;
 
   // ReplyTextMessage text variables
-  --chotto-replytextmessage-text-font-size: var(--chotto-text-font-size);
-  --chotto-replytextmessage-text-color: var(--chotto-primary-text-color);
+  --chotto-replytextmessage-text-font-size: var(--chotto-theme-text-font-size);
+  --chotto-replytextmessage-text-color: var(--chotto-theme-primary-text-color);
 
   // ReplyTextMessage p variables
   --chotto-replytextmessage-p-margin: 0;
-  --chotto-replytextmessage-p-font-size: var(--chotto-additional-text-font-size);
-  --chotto-replytextmessage-p-color: var(--chotto-secondary-text-color);
+  --chotto-replytextmessage-p-font-size: var(--chotto-theme-additional-text-font-size);
+  --chotto-replytextmessage-p-color: var(--chotto-theme-secondary-text-color);
   --chotto-replytextmessage-p-white-space: pre-wrap;
   --chotto-replytextmessage-p-overflow: hidden;
   --chotto-replytextmessage-p-text-overflow: ellipsis;

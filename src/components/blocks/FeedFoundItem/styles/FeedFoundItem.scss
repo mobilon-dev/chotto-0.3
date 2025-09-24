@@ -17,11 +17,11 @@
   }
   
   &__container:hover{
-    background-color: var(--chotto-item-background-color-hover);
+    background-color: var(--chotto-theme-item-background-color-hover);
   }
 
   &__selected-container{
-    background-color: var(--chotto-item-background-color-focus);
+    background-color: var(--chotto-theme-item-background-color-focus);
   }
 
   &__info{
@@ -40,8 +40,8 @@
   }
 
   &__time{
-    color: var(--chotto-secondary-text-color);
-    font-size: var(--chotto-additional-text-font-size);
+    color: var(--chotto-theme-secondary-text-color);
+    font-size: var(--chotto-theme-additional-text-font-size);
     margin: 0;
     padding: 0;
   }
@@ -52,8 +52,8 @@
     p {
       margin: 0;
       padding: 0;
-      font-size: var(--chotto-text-font-size);
-      color: var(--chotto-secondary-text-color);
+      font-size: var(--chotto-theme-text-font-size);
+      color: var(--chotto-theme-secondary-text-color);
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;

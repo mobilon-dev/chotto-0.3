@@ -1,16 +1,16 @@
 :global([data-theme="green"]) {
   // ContextMenu container variables
   --chotto-contextmenu-container-display: none;
-  --chotto-contextmenu-container-font-weight: var(--chotto-container-font-weight);
-  --chotto-contextmenu-container-color: var(--chotto-primary-text-color);
-  --chotto-contextmenu-container-font-family: var(--chotto-container-font-family);
+  --chotto-contextmenu-container-font-weight: var(--chotto-theme-container-font-weight);
+  --chotto-contextmenu-container-color: var(--chotto-theme-primary-text-color);
+  --chotto-contextmenu-container-font-family: var(--chotto-theme-font-family);
   --chotto-contextmenu-container-z-index: 1000;
   --chotto-contextmenu-container-position: absolute;
   --chotto-contextmenu-container-width: max-content;
-  --chotto-contextmenu-container-box-shadow: 0px 2px 10px 1px var(--chotto-shadow-light-color);
+  --chotto-contextmenu-container-box-shadow: 0px 2px 10px 1px var(--chotto-theme-shadow-light-color);
   --chotto-contextmenu-container-border-radius: 8px;
   --chotto-contextmenu-container-font-size: 14px;
-  --chotto-contextmenu-container-background-color: var(--chotto-primary-color);
+  --chotto-contextmenu-container-background-color: var(--chotto-theme-primary-color);
 
   // ContextMenu list variables
   --chotto-contextmenu-list-padding: 12px 0 10px 0;
@@ -30,5 +30,5 @@
   --chotto-contextmenu-item-padding: 6px 16px;
   --chotto-contextmenu-item-width: inherit;
   --chotto-contextmenu-item-hover-background-color: var(--neutral-150);
-  --chotto-contextmenu-item-not-last-child-border-bottom: 1px solid var(--chotto-item-border-color);
+  --chotto-contextmenu-item-not-last-child-border-bottom: 1px solid var(--chotto-theme-item-border-color);
 }

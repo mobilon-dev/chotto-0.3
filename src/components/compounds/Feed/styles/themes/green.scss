@@ -37,7 +37,7 @@
   --chotto-feed-keyboard-width: fit-content;
 
   // Иконка прокрутки
-  --chotto-feed-icon-down-font-size: var(--chotto-button-icon-size);
+  --chotto-feed-icon-down-font-size: var(--chotto-theme-button-icon-size);
   --chotto-feed-icon-down-color: #4caf50;
 
   // Счетчик непрочитанных
@@ -49,7 +49,7 @@
   --chotto-feed-unread-amount-display: flex;
   --chotto-feed-unread-amount-justify-content: center;
   --chotto-feed-unread-amount-align-items: center;
-  --chotto-feed-unread-amount-font-size: var(--chotto-additional-text-font-size);
+  --chotto-feed-unread-amount-font-size: var(--chotto-theme-additional-text-font-size);
   --chotto-feed-unread-amount-width: 22px;
   --chotto-feed-unread-amount-height: 22px;
   --chotto-feed-unread-amount-color: white;

@@ -2,7 +2,7 @@
   // FilePreview container variables
   --chotto-filepreview-container-position: relative;
   --chotto-filepreview-container-display: flex;
-  --chotto-filepreview-container-border: 1px solid var(--chotto-item-border-color);
+  --chotto-filepreview-container-border: 1px solid var(--chotto-theme-item-border-color);
 
   // FilePreview image/video variables
   --chotto-filepreview-image-max-width: 130px;
@@ -47,7 +47,7 @@
   --chotto-filepreview-audio-control-span-top: 50%;
   --chotto-filepreview-audio-control-span-left: 50%;
   --chotto-filepreview-audio-control-span-transform: translate(-50%, -50%);
-  --chotto-filepreview-audio-control-span-font-size: var(--chotto-button-icon-size);
+  --chotto-filepreview-audio-control-span-font-size: var(--chotto-theme-button-icon-size);
   --chotto-filepreview-audio-control-span-color: var(--chotto-message-type-icon-color);
 
   // FilePreview block variables
