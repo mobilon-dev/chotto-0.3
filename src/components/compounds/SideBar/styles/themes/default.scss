@@ -1,8 +1,8 @@
-:global([data-theme="light"]) {
+[data-theme="light"] {
   --chotto-sidebar-padding-container: 10px 8px 22px 8px;
   --chotto-sidebar-row-gap-list: 14px;
   --chotto-sidebar-image-active-border: 3px solid var(--emerald-500);
-  --chotto-sidebar-list-fixed-border-top: 1px solid var(--neutral-300);
+  --chotto-sidebar-list-fixed-border-top: none;
   
   // Container
   --chotto-sidebar-container-display: flex;
