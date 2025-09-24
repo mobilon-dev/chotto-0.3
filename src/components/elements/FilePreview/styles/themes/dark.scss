@@ -41,14 +41,14 @@
   --chotto-filepreview-audio-control-width: 38px;
   --chotto-filepreview-audio-control-height: 38px;
   --chotto-filepreview-audio-control-border-radius: 50%;
-  --chotto-filepreview-audio-control-background-color: var(--chotto-message-type-icon-bg-color);
+  --chotto-filepreview-audio-control-background-color: var(--chotto-theme-message-type-icon-bg-color);
   --chotto-filepreview-audio-control-span-display: flex;
   --chotto-filepreview-audio-control-span-position: absolute;
   --chotto-filepreview-audio-control-span-top: 50%;
   --chotto-filepreview-audio-control-span-left: 50%;
   --chotto-filepreview-audio-control-span-transform: translate(-50%, -50%);
   --chotto-filepreview-audio-control-span-font-size: var(--chotto-theme-button-icon-size);
-  --chotto-filepreview-audio-control-span-color: var(--chotto-message-type-icon-color);
+  --chotto-filepreview-audio-control-span-color: var(--chotto-theme-message-type-icon-color);
 
   // FilePreview block variables
   --chotto-filepreview-block-max-width: 60px;

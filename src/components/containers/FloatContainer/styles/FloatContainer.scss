@@ -15,7 +15,7 @@
     font-weight: var(--chotto-floatcontainer-container-font-weight, var(--chotto-theme-container-font-weight));
     color: var(--chotto-floatcontainer-container-color, var(--chotto-theme-primary-text-color));
     font-family: var(--chotto-floatcontainer-container-font-family, var(--chotto-theme-font-family));
-    box-shadow: var(--chotto-floatcontainer-container-box-shadow, var(--chotto-float-container-box-shadow));
+    box-shadow: var(--chotto-floatcontainer-container-box-shadow, var(--chotto-theme-float-container-box-shadow));
     container: var(--chotto-floatcontainer-container-container, all / inline-size);
   }
 
@@ -25,9 +25,9 @@
     align-items: var(--chotto-floatcontainer-controls-align-items, center);
     cursor: var(--chotto-floatcontainer-controls-cursor, grab);
     padding: var(--chotto-floatcontainer-controls-padding, 18px 20px);
-    background-color: var(--chotto-floatcontainer-controls-background-color, var(--chotto-float-container-bg-header));
-    border-top-left-radius: var(--chotto-floatcontainer-controls-border-top-left-radius, var(--chotto-float-container-border-radius-header));
-    border-top-right-radius: var(--chotto-floatcontainer-controls-border-top-right-radius, var(--chotto-float-container-border-radius-header));
+    background-color: var(--chotto-floatcontainer-controls-background-color, var(--chotto-theme-float-container-bg-header));
+    border-top-left-radius: var(--chotto-floatcontainer-controls-border-top-left-radius, var(--chotto-theme-float-container-border-radius-header));
+    border-top-right-radius: var(--chotto-floatcontainer-controls-border-top-right-radius, var(--chotto-theme-float-container-border-radius-header));
   }
 
   &__avatar {

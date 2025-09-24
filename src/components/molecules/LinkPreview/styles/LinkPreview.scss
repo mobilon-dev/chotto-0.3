@@ -17,7 +17,7 @@
     left: var(--chotto-linkpreview-before-left, 0);
     width: var(--chotto-linkpreview-before-width, 4px);
     height: var(--chotto-linkpreview-before-height, 100%);
-    background-color: var(--chotto-linkpreview-before-background-color, var(--chotto-message-accent-line-color));
+    background-color: var(--chotto-linkpreview-before-background-color, var(--chotto-theme-message-accent-line-color));
   }
 
   &__link-container {
@@ -44,10 +44,10 @@
   }
 
   .left {
-    background-color: var(--chotto-linkpreview-left-background-color, var(--chotto-message-left-secondary-bg));
+    background-color: var(--chotto-linkpreview-left-background-color, var(--chotto-theme-message-left-secondary-bg));
   }
 
   .right {
-    background-color: var(--chotto-linkpreview-right-background-color, var(--chotto-message-right-secondary-bg));
+    background-color: var(--chotto-linkpreview-right-background-color, var(--chotto-theme-message-right-secondary-bg));
   }
 }

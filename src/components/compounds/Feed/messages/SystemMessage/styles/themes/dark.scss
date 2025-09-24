@@ -1,7 +1,7 @@
 :global([data-theme="dark"]) {
   // SystemMessage container variables
   --chotto-systemmessage-container-width: 54%;
-  --chotto-systemmessage-container-border-radius: var(--chotto-message-border-radius, 10px);
+  --chotto-systemmessage-container-border-radius: var(--chotto-theme-message-border-radius, 10px);
   --chotto-systemmessage-container-padding: 10px;
   --chotto-systemmessage-container-margin: 0 auto 18px auto;
   --chotto-systemmessage-container-background-color: #5c4c2e;

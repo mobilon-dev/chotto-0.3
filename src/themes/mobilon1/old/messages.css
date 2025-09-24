@@ -1,9 +1,9 @@
-[data-theme="dark"] {
+[data-theme="mobilon1"] {
 
-  --chotto-theme-message-right-bg: var(--emerald-800);
-  --chotto-theme-message-right-secondary-bg: var(--emerald-700);
-  --chotto-theme-message-left-bg: var(--neutral-700);
-  --chotto-theme-message-left-secondary-bg: var(--neutral-600);
+  --chotto-theme-message-right-bg: var(--emerald-100);
+  --chotto-theme-message-right-secondary-bg: var(--emerald-200);
+  --chotto-theme-message-left-bg: var(--default-white);
+  --chotto-theme-message-left-secondary-bg: var(--neutral-300);
   
   --chotto-theme-message-accent-line-color: var(--emerald-400);
   --chotto-theme-message-focused-color: #8df392;
@@ -15,6 +15,7 @@
 
   --chotto-theme-message-popup-info-bg-color: rgb(0 0 0 / 39%);
   --chotto-theme-message-popup-info-color: var(--default-white);
+  --chotto-theme-message-border-radius: 5px;
 
   /* Audio Message */
   --chotto-theme-audio-message-transcript-delimiter-color: var(--neutral-400);
@@ -25,5 +26,5 @@
   --chotto-theme-call-message-phone-icon-missed-color: var(--p-red-500);
 
   /* System Message */
-  --chotto-theme-system-message-bg-color: #5c4c2e;
+  --chotto-theme-system-message-bg-color: #ffeecc;
 }

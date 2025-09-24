@@ -81,8 +81,8 @@
 }
 
 .focused-message {
-  background-color: var(--chotto-feed-focused-message-background-color, color-mix(in srgb, var(--chotto-message-focused-color) 30%, transparent));
-  box-shadow: var(--chotto-feed-focused-message-box-shadow, 0px 0px 12px 2px color-mix(in srgb, var(--chotto-message-focused-color) 30%, transparent));
+  background-color: var(--chotto-feed-focused-message-background-color, color-mix(in srgb, var(--chotto-theme-message-focused-color) 30%, transparent));
+  box-shadow: var(--chotto-feed-focused-message-box-shadow, 0px 0px 12px 2px color-mix(in srgb, var(--chotto-theme-message-focused-color) 30%, transparent));
 }
 
 .v-enter-active {

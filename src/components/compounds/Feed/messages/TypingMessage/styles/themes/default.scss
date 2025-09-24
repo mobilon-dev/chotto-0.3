@@ -3,7 +3,7 @@
   --chotto-typingmessage-container-display: grid;
   --chotto-typingmessage-container-grid-template-columns: min-content 1fr;
   --chotto-typingmessage-container-position: relative;
-  --chotto-typingmessage-container-margin: var(--chotto-message-margin);
+  --chotto-typingmessage-container-margin: var(--chotto-theme-message-margin);
 
   // TypingMessage subtext variables
   --chotto-typingmessage-subtext-grid-column: 2;
@@ -25,10 +25,10 @@
   // TypingMessage loader-container variables
   --chotto-typingmessage-loader-container-min-height: 40px;
   --chotto-typingmessage-loader-container-grid-column: 2;
-  --chotto-typingmessage-loader-container-border-radius: var(--chotto-message-border-radius, 10px);
+  --chotto-typingmessage-loader-container-border-radius: var(--chotto-theme-message-border-radius, 10px);
   --chotto-typingmessage-loader-container-padding: 6px 6px 6px 6px;
   --chotto-typingmessage-loader-container-max-width: 80px;
-  --chotto-typingmessage-loader-container-background-color: var(--chotto-message-left-bg);
+  --chotto-typingmessage-loader-container-background-color: var(--chotto-theme-message-left-bg);
 
   // TypingMessage loader variables
   --chotto-typingmessage-loader-width: 8px;

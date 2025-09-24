@@ -11,7 +11,7 @@
   --chotto-floatcontainer-container-font-weight: var(--chotto-theme-container-font-weight);
   --chotto-floatcontainer-container-color: var(--chotto-theme-primary-text-color);
   --chotto-floatcontainer-container-font-family: var(--chotto-theme-font-family);
-  --chotto-floatcontainer-container-box-shadow: var(--chotto-float-container-box-shadow);
+  --chotto-floatcontainer-container-box-shadow: var(--chotto-theme-float-container-box-shadow);
   --chotto-floatcontainer-container-container: all / inline-size;
 
   // FloatContainer controls variables
@@ -20,9 +20,9 @@
   --chotto-floatcontainer-controls-align-items: center;
   --chotto-floatcontainer-controls-cursor: grab;
   --chotto-floatcontainer-controls-padding: 18px 20px;
-  --chotto-floatcontainer-controls-background-color: var(--chotto-float-container-bg-header);
-  --chotto-floatcontainer-controls-border-top-left-radius: var(--chotto-float-container-border-radius-header);
-  --chotto-floatcontainer-controls-border-top-right-radius: var(--chotto-float-container-border-radius-header);
+  --chotto-floatcontainer-controls-background-color: var(--chotto-theme-float-container-bg-header);
+  --chotto-floatcontainer-controls-border-top-left-radius: var(--chotto-theme-float-container-border-radius-header);
+  --chotto-floatcontainer-controls-border-top-right-radius: var(--chotto-theme-float-container-border-radius-header);
 
   // FloatContainer avatar variables
   --chotto-floatcontainer-avatar-width: var(--chotto-avatar-small);

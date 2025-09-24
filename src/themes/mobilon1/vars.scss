@@ -70,6 +70,61 @@
   --chotto-theme-container-font-weight: var(--regular-font-weight);
   --chotto-theme-container-borders: 1px solid var(--neutral-200);
 
+  /* Float Container */
+  --chotto-theme-float-container-border-radius-header: 15px;
+  --chotto-theme-float-container-box-shadow: 0px 0px 20px -7px rgba(0, 0, 0, 0.2);
+  --chotto-theme-float-container-bg-header: var(--neutral-300);
+
+  /* Modal Container */
+  --chotto-theme-modal-padding: 20px;
+  --chotto-theme-modal-border-radius: 12px;
+  --chotto-theme-modal-mask-background: rgba(0, 0, 0, 0.4);
+  --chotto-theme-modal-overlay-shadow: 0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --chotto-theme-modal-bg: var(--default-white);
+
+  /* Extended layout */
+  --chotto-theme-layout-extended-third-col-bg: #FAF6F4;
+  --chotto-theme-layout-extended-second-col-bg: #ffffff;
+  --chotto-theme-layout-extended-first-col-bg: #FAF6F4;
+  --chotto-theme-layout-extended-first-col-width: 70px;
+  --chotto-theme-layout-extended-second-col-width: 508px;
+
+  /* Base layout */
+  --chotto-theme-layout-base-second-col-bg: #FAF6F4;
+  --chotto-theme-layout-base-first-col-bg: #ffffff;
+
+  /* Feed layout */
+  --chotto-theme-layout-feed-bg: #FAF6F4;
+
+  /* Messages */
+  --chotto-theme-message-right-bg: var(--emerald-100);
+  --chotto-theme-message-right-secondary-bg: var(--emerald-200);
+  --chotto-theme-message-left-bg: var(--default-white);
+  --chotto-theme-message-left-secondary-bg: var(--neutral-300);
+  
+  --chotto-theme-message-accent-line-color: var(--emerald-400);
+  --chotto-theme-message-focused-color: #8df392;
+
+  --chotto-theme-message-margin: 0 0 8px 0;
+
+  --chotto-theme-message-type-icon-bg-color: var(--neutral-400);
+  --chotto-theme-message-type-icon-color: var(--neutral-100);
+
+  --chotto-theme-message-popup-info-bg-color: rgb(0 0 0 / 39%);
+  --chotto-theme-message-popup-info-color: var(--default-white);
+  --chotto-theme-message-border-radius: 5px;
+
+  /* Audio Message */
+  --chotto-theme-audio-message-transcript-delimiter-color: var(--neutral-400);
+  --chotto-theme-audio-message-pbc-background-color: var(--neutral-400);
+  --chotto-theme-audio-message-pb-background-color: var(--emerald-500);
+
+  /* Call Message */
+  --chotto-theme-call-message-phone-icon-missed-color: var(--p-red-500);
+
+  /* System Message */
+  --chotto-theme-system-message-bg-color: #ffeecc;
+
   /* Primary colors */
   --chotto-theme-primary-color: #ffffff;
   --chotto-theme-secondary-color: #faf6f4;

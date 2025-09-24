@@ -1,10 +1,4 @@
-// @import url('./default/_theme.css');
-// @import url('./dark/_theme.css');
-// @import url('./green/_theme.css');
-// @import url('./mobilon1/_theme.css');
-
-
 @use './default/_theme.scss' as default;
 @use './dark/_theme.scss' as dark;
 @use './green/_theme.scss' as green;
-@use './mobilon1/_theme.scss' as mobilon1;
+@use './mobilon1/index.scss' as mobilon1;

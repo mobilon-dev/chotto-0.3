@@ -18,7 +18,7 @@
     display: var(--chotto-feedlayout-first-col-display, flex);
     flex-direction: var(--chotto-feedlayout-first-col-flex-direction, column);
     height: var(--chotto-feedlayout-first-col-height, inherit);
-    background-color: var(--chotto-feedlayout-first-col-background-color, var(--chotto-layout-feed-bg, transparent));
+    background-color: var(--chotto-feedlayout-first-col-background-color, var(--chotto-theme-layout-feed-bg, transparent));
   }
 }
 

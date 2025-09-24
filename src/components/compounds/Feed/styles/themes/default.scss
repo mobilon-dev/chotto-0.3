@@ -64,8 +64,8 @@
   --chotto-feed-scrollbar-track-border-radius: 10px;
 
   // Сфокусированное сообщение
-  --chotto-feed-focused-message-background-color: color-mix(in srgb, var(--chotto-message-focused-color) 30%, transparent);
-  --chotto-feed-focused-message-box-shadow: 0px 0px 12px 2px color-mix(in srgb, var(--chotto-message-focused-color) 30%, transparent);
+  --chotto-feed-focused-message-background-color: color-mix(in srgb, var(--chotto-theme-message-focused-color) 30%, transparent);
+  --chotto-feed-focused-message-box-shadow: 0px 0px 12px 2px color-mix(in srgb, var(--chotto-theme-message-focused-color) 30%, transparent);
 
   // Анимации
   --chotto-feed-enter-active-transition: all 0.1s ease-out;

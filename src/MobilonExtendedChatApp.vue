@@ -877,16 +877,16 @@ onMounted(() => {
 <style lang="scss">
 
 .tg-message{
-  --chotto-message-right-bg: #DAF0FF;
-  --chotto-message-right-secondary-bg: #bce1fa;
-  --chotto-message-accent-line-color: #37AFE2;
+  --chotto-theme-message-right-bg: #DAF0FF;
+  --chotto-theme-message-right-secondary-bg: #bce1fa;
+  --chotto-theme-message-accent-line-color: #37AFE2;
   --chotto-chat-input-icon-color: #37AFE2;
 }
 
 .wa-message{
-  --chotto-message-right-bg: #D9FDD3;
-  --chotto-message-right-secondary-bg: #bbf3b2;
-  --chotto-message-accent-line-color: #25D366;
+  --chotto-theme-message-right-bg: #D9FDD3;
+  --chotto-theme-message-right-secondary-bg: #bbf3b2;
+  --chotto-theme-message-accent-line-color: #25D366;
   --chotto-chat-input-icon-color: #25D366;
 }
 

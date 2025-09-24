@@ -13,7 +13,7 @@
   --chotto-linkpreview-before-left: 0;
   --chotto-linkpreview-before-width: 4px;
   --chotto-linkpreview-before-height: 100%;
-  --chotto-linkpreview-before-background-color: var(--chotto-message-accent-line-color);
+  --chotto-linkpreview-before-background-color: var(--chotto-theme-message-accent-line-color);
 
   // LinkPreview link container variables
   --chotto-linkpreview-link-container-display: flex;
@@ -35,6 +35,6 @@
   --chotto-linkpreview-image-border-radius: 8px;
 
   // LinkPreview background colors
-  --chotto-linkpreview-left-background-color: var(--chotto-message-left-secondary-bg);
-  --chotto-linkpreview-right-background-color: var(--chotto-message-right-secondary-bg);
+  --chotto-linkpreview-left-background-color: var(--chotto-theme-message-left-secondary-bg);
+  --chotto-linkpreview-right-background-color: var(--chotto-theme-message-right-secondary-bg);
 }

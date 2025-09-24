@@ -21,7 +21,7 @@
     display: var(--chotto-baselayout-first-col-display, flex);
     flex-direction: var(--chotto-baselayout-first-col-flex-direction, column);
     height: var(--chotto-baselayout-first-col-height, inherit);
-    background-color: var(--chotto-baselayout-first-col-background-color, var(--chotto-layout-base-first-col-bg, transparent));
+    background-color: var(--chotto-baselayout-first-col-background-color, var(--chotto-theme-layout-base-first-col-bg, transparent));
     border-right: var(--chotto-baselayout-first-col-border-right, var(--chotto-theme-container-borders, none));
     border-bottom: var(--chotto-baselayout-first-col-border-bottom, var(--chotto-theme-container-borders, none));
     width: var(--chotto-baselayout-first-col-width, 100%);
@@ -34,7 +34,7 @@
     grid-column: var(--chotto-baselayout-second-col-grid-column, 2);
     height: var(--chotto-baselayout-second-col-height, inherit);
     width: var(--chotto-baselayout-second-col-width, 100%);
-    background-color: var(--chotto-baselayout-second-col-background-color, var(--chotto-layout-base-second-col-bg, transparent));
+    background-color: var(--chotto-baselayout-second-col-background-color, var(--chotto-theme-layout-base-second-col-bg, transparent));
     border-right: var(--chotto-baselayout-second-col-border-right, var(--chotto-theme-container-borders, none));
     border-bottom: var(--chotto-baselayout-second-col-border-bottom, var(--chotto-theme-container-borders, none));
   }

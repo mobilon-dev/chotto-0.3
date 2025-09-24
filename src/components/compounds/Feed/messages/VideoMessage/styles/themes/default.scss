@@ -101,7 +101,7 @@
   // VideoMessage left/right variables
   --chotto-videomessage-left-right-display: grid;
   --chotto-videomessage-left-right-grid-template-rows: min-content 1fr min-content;
-  --chotto-videomessage-left-right-margin: var(--chotto-message-margin);
+  --chotto-videomessage-left-right-margin: var(--chotto-theme-message-margin);
 
   // VideoMessage left variables
   --chotto-videomessage-left-grid-template-columns: min-content 1fr;
@@ -111,7 +111,7 @@
   --chotto-videomessage-left-subtext-grid-row: 1;
   --chotto-videomessage-left-subtext-margin: 0 0 2px 10px;
   --chotto-videomessage-left-content-grid-column: 2;
-  --chotto-videomessage-left-bg: var(--chotto-message-left-bg);
+  --chotto-videomessage-left-bg: var(--chotto-theme-message-left-bg);
   --chotto-videomessage-left-content-with-avatar-indent-margin-left: calc(var(--chotto-videomessage-avatar-min-width) + 12px);
   --chotto-videomessage-left-text-container-grid-column: 2;
   --chotto-videomessage-left-menu-button-top: 50%;
@@ -129,7 +129,7 @@
   --chotto-videomessage-right-subtext-margin: 0 10px 2px auto;
   --chotto-videomessage-right-content-grid-column: 1;
   --chotto-videomessage-right-content-margin-left: auto;
-  --chotto-videomessage-right-bg: var(--chotto-message-right-bg);
+  --chotto-videomessage-right-bg: var(--chotto-theme-message-right-bg);
   --chotto-videomessage-right-content-with-avatar-indent-margin-left: calc(var(--chotto-videomessage-avatar-min-width) + 12px);
   --chotto-videomessage-right-text-container-grid-column: 1;
   --chotto-videomessage-right-text-container-margin-left: auto;
