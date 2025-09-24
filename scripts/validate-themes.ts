@@ -3,6 +3,8 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import type { ThemeName, ChottoThemeVariableName, ThemeValidationResult, ThemeValidationSummary } from '../src/themes/types';
+import { THEME_NAMES, REQUIRED_THEME_VARIABLES, OPTIONAL_THEME_VARIABLES } from '../src/themes/constants';
 
 /**
  * Скрипт валидации тем для проекта chotto-themes-prototype
@@ -44,10 +46,10 @@ function log(message: string, color: Color = 'reset'): void {
 /**
  * Извлечение CSS переменных из файла
  */
-function extractCSSVariables(filePath: string): Map<string, CSSVariable> {
+function extractCSSVariables(filePath: string): Map<ChottoThemeVariableName, CSSVariable> {
   try {
     const content = fs.readFileSync(filePath, 'utf8');
-    const variables = new Map<string, CSSVariable>();
+    const variables = new Map<ChottoThemeVariableName, CSSVariable>();
     
     // Разбиваем содержимое на строки для подсчета номеров строк
     const lines = content.split('\n');
@@ -65,7 +67,7 @@ function extractCSSVariables(filePath: string): Map<string, CSSVariable> {
           
           // Проверяем, что имя переменной корректное
           if (varName && varName.startsWith('--chotto-theme-') && varName.length > '--chotto-theme-'.length) {
-            variables.set(varName, {
+            variables.set(varName as ChottoThemeVariableName, {
               name: varName,
               value: varValue,
               line: i + 1
@@ -124,11 +126,12 @@ function validateCSSValue(value: string): string[] {
 /**
  * Получение списка всех тем
  */
-function getThemes(): string[] {
+function getThemes(): ThemeName[] {
   try {
     const themes = fs.readdirSync(THEMES_DIR, { withFileTypes: true })
       .filter(dirent => dirent.isDirectory())
-      .map(dirent => dirent.name);
+      .map(dirent => dirent.name as ThemeName)
+      .filter(theme => THEME_NAMES.includes(theme));
     
     return themes;
   } catch (error) {
@@ -155,8 +158,8 @@ function validateThemes(): boolean {
   log('');
   
   // Сбор всех переменных из всех тем
-  const allVariables = new Map<string, Map<string, CSSVariable>>(); // themeName -> variables
-  const globalVariableSet = new Set<string>(); // все уникальные переменные
+  const allVariables = new Map<ThemeName, Map<ChottoThemeVariableName, CSSVariable>>(); // themeName -> variables
+  const globalVariableSet = new Set<ChottoThemeVariableName>(); // все уникальные переменные
   
   for (const theme of themes) {
     const varsPath = path.join(THEMES_DIR, theme, 'vars.scss');
