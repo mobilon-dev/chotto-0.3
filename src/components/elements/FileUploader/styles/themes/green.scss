@@ -1,6 +1,6 @@
 :global([data-theme="green"]) {
   // FileUploader trigger variables
-  --chotto-fileuploader-trigger-padding: 8px;
+  --chotto-fileuploader-trigger-padding: 1px 0 0 3px;
   --chotto-fileuploader-trigger-display: block;
   --chotto-fileuploader-trigger-cursor: pointer;
   --chotto-fileuploader-trigger-font-size: var(--chotto-theme-button-icon-size);
