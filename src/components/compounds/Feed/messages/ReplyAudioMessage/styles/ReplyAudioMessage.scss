@@ -1,8 +1,3 @@
-@use './themes/default.scss';
-@use './themes/dark.scss';
-@use './themes/green.scss';
-@use './themes/mobilon1.scss';
-
 p {
   margin: var(--chotto-replyaudiomessage-p-margin, 0);
   font-size: var(--chotto-replyaudiomessage-p-font-size);

@@ -1,8 +1,8 @@
-:global([data-theme="dark"]) {
-  --chotto-basereplymessage-accent-line-color: var(--dark-primary-500);
-  --chotto-basereplymessage-left-secondary-bg: var(--dark-surface-200);
-  --chotto-basereplymessage-right-secondary-bg: var(--dark-surface-200);
-  --chotto-basereplymessage-item-border-color: var(--dark-border-300);
+[data-theme="dark"] {
+  --chotto-basereplymessage-accent-line-color: var(--emerald-500);
+  --chotto-basereplymessage-left-secondary-bg: var(--neutral-600);
+  --chotto-basereplymessage-right-secondary-bg: var(--neutral-600);
+  --chotto-basereplymessage-item-border-color: var(--neutral-400);
 
   // BaseReplyMessage container variables
   --chotto-basereplymessage-container-position: relative;

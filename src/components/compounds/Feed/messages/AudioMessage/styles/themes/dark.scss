@@ -1,7 +1,7 @@
-:global([data-theme="dark"]) {
-  --chotto-audiomessage-pbc-background-color: var(--dark-surface-200);
-  --chotto-audiomessage-pb-background-color: var(--dark-primary-500);
-  --chotto-audiomessage-transcript-delimiter-color: var(--dark-border-300);
+[data-theme="dark"] {
+  --chotto-audiomessage-pbc-background-color: var(--neutral-600);
+  --chotto-audiomessage-pb-background-color: var(--emerald-500);
+  --chotto-audiomessage-transcript-delimiter-color: var(--neutral-400);
 
   // AudioMessage content variables
   --chotto-audiomessage-content-position: relative;

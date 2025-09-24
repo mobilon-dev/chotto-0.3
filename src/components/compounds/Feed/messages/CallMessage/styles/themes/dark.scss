@@ -1,5 +1,5 @@
-:global([data-theme="dark"]) {
-  --chotto-callmessage-icon-missed-color: var(--dark-error-500);
+[data-theme="dark"] {
+  --chotto-callmessage-icon-missed-color: var(--p-red-500);
 
   // CallMessage content variables
   --chotto-callmessage-content-position: relative;

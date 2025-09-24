@@ -1,4 +1,4 @@
-:global([data-theme="dark"]) {
+[data-theme="dark"] {
   // DateMessage container variables
   --chotto-datemessage-container-display: flex;
   --chotto-datemessage-container-align-items: center;
@@ -7,12 +7,12 @@
   --chotto-datemessage-container-padding: 6px 18px;
   --chotto-datemessage-container-margin-bottom: 18px;
   --chotto-datemessage-container-width: fit-content;
-  --chotto-datemessage-container-background-color: var(--dark-surface-200);
+  --chotto-datemessage-container-background-color: transparent;
 
   // DateMessage text variables
   --chotto-datemessage-text-padding: 4px 11px;
   --chotto-datemessage-text-border-radius: 4px;
-  --chotto-datemessage-text-background-color: var(--dark-surface-300);
+  --chotto-datemessage-text-background-color: var(--neutral-700);
   --chotto-datemessage-text-font-size: 14px;
   --chotto-datemessage-text-color: var(--neutral-100);
 }
