@@ -1,8 +1,3 @@
-@use './themes/default.scss';
-@use './themes/dark.scss';
-@use './themes/green.scss';
-@use './themes/mobilon1.scss';
-
 .channels {
   &__container {
     display: var(--chotto-channelselector-container-display, flex);

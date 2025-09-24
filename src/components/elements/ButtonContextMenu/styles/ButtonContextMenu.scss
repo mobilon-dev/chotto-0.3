@@ -1,8 +1,3 @@
-@use './themes/default.scss';
-@use './themes/dark.scss';
-@use './themes/green.scss';
-@use './themes/mobilon1.scss';
-
 .button-context-menu {
   position: var(--chotto-buttoncontextmenu-position, relative);
   width: var(--chotto-buttoncontextmenu-width, fit-content);

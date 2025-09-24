@@ -1,8 +1,3 @@
-@use './themes/default.scss';
-@use './themes/dark.scss';
-@use './themes/green.scss';
-@use './themes/mobilon1.scss';
-
 .button-template {
   background-color: var(--chotto-buttontemplateselector-button-background-color, transparent);
   border: var(--chotto-buttontemplateselector-button-border, 0px);

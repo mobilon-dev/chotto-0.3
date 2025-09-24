@@ -1,8 +1,3 @@
-@use './themes/default.scss';
-@use './themes/dark.scss';
-@use './themes/green.scss';
-@use './themes/mobilon1.scss';
-
 .separated-quick-buttons{
   width: var(--chotto-wabaseparatedquickbuttons-width, 100%);
   position: var(--chotto-wabaseparatedquickbuttons-position, absolute);

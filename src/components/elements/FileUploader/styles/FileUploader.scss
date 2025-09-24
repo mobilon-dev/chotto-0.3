@@ -1,8 +1,3 @@
-@use './themes/default.scss';
-@use './themes/dark.scss';
-@use './themes/green.scss';
-@use './themes/mobilon1.scss';
-
 .file-uploader{
   &__trigger{
     padding: var(--chotto-fileuploader-trigger-padding);
