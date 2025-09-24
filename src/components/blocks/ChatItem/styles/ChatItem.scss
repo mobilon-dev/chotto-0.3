@@ -13,9 +13,9 @@
       position: absolute;
       bottom: 0;
       transform: translateX(var(--chotto-chatitem-divider-translate-x, 15%));
-      width: var(--chotto-chat-list-container-border-bottom-width, 416px);
-      height: var(--chotto-chat-list-container-border-bottom-height, 1px);
-      background-color: var(--chotto-chat-list-container-border-bottom-color, #F3F3F3);
+      width: var(--chotto-chatitem-divider-width, 416px);
+      height: var(--chotto-chatitem-divider-height, 1px);
+      background-color: var(--chotto-chatitem-divider-color, #F3F3F3);
     }
 
     &:hover {

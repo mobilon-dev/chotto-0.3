@@ -62,12 +62,12 @@
 
   &::-webkit-scrollbar {
     width: var(--chotto-feed-scrollbar-width, 6px);
-    background-color: var(--chotto-feed-scrollbar-background-color, var(--neutral-50));
+    background-color: var(--chotto-theme-scrollbar-bg, var(--neutral-50));
   }
 
   &::-webkit-scrollbar-thumb {
     border-radius: var(--chotto-feed-scrollbar-thumb-border-radius, 10px);
-    background-color: var(--chotto-feed-scrollbar-thumb-background-color, var(--neutral-300));
+    background-color: var(--chotto-theme-scrollbar-thumb-bg, var(--neutral-300));
   }
 
   &::-webkit-scrollbar-track {

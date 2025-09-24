@@ -57,12 +57,12 @@
 
     &::-webkit-scrollbar {
       width: var(--chotto-chatinput-scrollbar-width, 6px);
-      background-color: var(--neutral-50);
+      background-color: var(--chotto-theme-scrollbar-bg);
     }
 
     &::-webkit-scrollbar-thumb {
       border-radius: var(--chotto-chatinput-scrollbar-thumb-radius, 10px);
-      background-color: var(--neutral-300);
+      background-color: var(--chotto-theme-scrollbar-thumb-bg);
     }
 
     &::-webkit-scrollbar-track {
