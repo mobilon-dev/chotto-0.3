@@ -6,14 +6,14 @@
 .feed-found-item{
 
   &__container{
-    padding: var(--chotto-chatitem-padding-container, var(--chotto-chat-item-padding-container));
+    padding: var(--chotto-chatitem-padding-container);
     display: flex;
     position: relative;
     cursor: pointer;
     width: 100%;
     word-wrap: anywhere;
     background-color:  transparent;
-    border-radius: var(--chotto-chatitem-border-radius, var(--chotto-chat-item-border-radius));
+    border-radius: var(--chotto-chatitem-border-radius);
   }
   
   &__container:hover{

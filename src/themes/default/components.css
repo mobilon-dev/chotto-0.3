@@ -32,8 +32,8 @@
   --chotto-chat-info-additional-title-border-color: #25D366;
   
   /* Scroll Bar */
-  --chotto-scrollbar-bg: var(--neutral-50);
-  --chotto-scrollbar-thumb-bg: var(--neutral-300);
+  --chotto-theme-scrollbar-bg: var(--neutral-50);
+  --chotto-theme-scrollbar-thumb-bg: var(--neutral-300);
 
   /* Tooltip */
   --chotto-tooltip-text-color: var(--neutral-100);

@@ -77,9 +77,9 @@
   --chotto-wabatemplateselector-list-groups-padding: 0;
   --chotto-wabatemplateselector-list-groups-margin: 0;
   --chotto-wabatemplateselector-list-groups-scrollbar-width: 6px;
-  --chotto-wabatemplateselector-list-groups-scrollbar-background-color: var(--chotto-scrollbar-bg);
+  --chotto-wabatemplateselector-list-groups-scrollbar-background-color: var(--chotto-theme-scrollbar-bg);
   --chotto-wabatemplateselector-list-groups-scrollbar-thumb-border-radius: 10px;
-  --chotto-wabatemplateselector-list-groups-scrollbar-thumb-background-color: var(--chotto-scrollbar-thumb-bg);
+  --chotto-wabatemplateselector-list-groups-scrollbar-thumb-background-color: var(--chotto-theme-scrollbar-thumb-bg);
   --chotto-wabatemplateselector-list-groups-scrollbar-track-border-radius: 10px;
 
   // WABATemplateSelector list templates variables
@@ -91,9 +91,9 @@
   --chotto-wabatemplateselector-templates-border: 1px solid var(--chotto-theme-item-border-color);
   --chotto-wabatemplateselector-templates-overflow-y: auto;
   --chotto-wabatemplateselector-templates-scrollbar-width: 6px;
-  --chotto-wabatemplateselector-templates-scrollbar-background-color: var(--chotto-scrollbar-bg);
+  --chotto-wabatemplateselector-templates-scrollbar-background-color: var(--chotto-theme-scrollbar-bg);
   --chotto-wabatemplateselector-templates-scrollbar-thumb-border-radius: 10px;
-  --chotto-wabatemplateselector-templates-scrollbar-thumb-background-color: var(--chotto-scrollbar-thumb-bg);
+  --chotto-wabatemplateselector-templates-scrollbar-thumb-background-color: var(--chotto-theme-scrollbar-thumb-bg);
   --chotto-wabatemplateselector-templates-scrollbar-track-border-radius: 10px;
 
   // WABATemplateSelector item variables
@@ -164,9 +164,9 @@
   --chotto-wabatemplateselector-preview-container-background-image: url('../../../public/chat-background.svg');
   --chotto-wabatemplateselector-preview-container-position: relative;
   --chotto-wabatemplateselector-preview-container-scrollbar-width: 6px;
-  --chotto-wabatemplateselector-preview-container-scrollbar-background-color: var(--chotto-scrollbar-bg);
+  --chotto-wabatemplateselector-preview-container-scrollbar-background-color: var(--chotto-theme-scrollbar-bg);
   --chotto-wabatemplateselector-preview-container-scrollbar-thumb-border-radius: 10px;
-  --chotto-wabatemplateselector-preview-container-scrollbar-thumb-background-color: var(--chotto-scrollbar-thumb-bg);
+  --chotto-wabatemplateselector-preview-container-scrollbar-thumb-background-color: var(--chotto-theme-scrollbar-thumb-bg);
   --chotto-wabatemplateselector-preview-container-scrollbar-track-border-radius: 10px;
 
   // WABATemplateSelector preview variables

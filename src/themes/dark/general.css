@@ -44,4 +44,8 @@
   --chotto-theme-action-button-color-active: #00cbfa;
   --chotto-theme-action-button-color-hover: #3fddff;
   --chotto-theme-action-button-color-disabled: #b4e8f9;
+
+    /* Scroll Bar */
+    --chotto-theme-scrollbar-bg: var(--neutral-50);
+    --chotto-theme-scrollbar-thumb-bg: var(--neutral-300);
 }

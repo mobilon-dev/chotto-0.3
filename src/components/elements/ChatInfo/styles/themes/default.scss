@@ -1,9 +1,9 @@
 :global([data-theme="light"]) {
   // ChatInfo container variables
-  --chotto-chatinfo-container-border-radius: var(--chotto-chat-info-border-radius);
-  --chotto-chatinfo-container-padding: var(--chotto-chat-info-padding);
+  --chotto-chatinfo-container-border-radius: 0;
+  --chotto-chatinfo-container-padding: 10px 15px 10px 15px;
   --chotto-chatinfo-container-border-bottom: var(--chotto-chat-info-border-bottom, 1px solid var(--chotto-theme-item-border-color));
-  --chotto-chatinfo-container-background-color: var(--chotto-chat-info-background-color);
+  --chotto-chatinfo-container-background-color: transparent;
 
   // ChatInfo base-line variables
   --chotto-chatinfo-base-line-display: flex;
@@ -41,7 +41,7 @@
   --chotto-chatinfo-additional-title-margin: auto;
   --chotto-chatinfo-additional-title-font-size: var(--chotto-theme-text-font-size);
   --chotto-chatinfo-additional-title-padding: 0 10px;
-  --chotto-chatinfo-additional-title-border: 1px solid var(--chotto-chat-info-additional-title-border-color);
+  --chotto-chatinfo-additional-title-border: 1px solid #25D366;
   --chotto-chatinfo-additional-title-border-radius: 5px;
   --chotto-chatinfo-additional-title-margin-left: 15px;
 
