@@ -23,6 +23,7 @@
     background-color: var(--chotto-floatcontainer-controls-background-color, var(--chotto-theme-float-container-bg-header));
     border-top-left-radius: var(--chotto-floatcontainer-controls-border-top-left-radius, var(--chotto-theme-float-container-border-radius-header));
     border-top-right-radius: var(--chotto-floatcontainer-controls-border-top-right-radius, var(--chotto-theme-float-container-border-radius-header));
+    gap: var(--chotto-floatcontainer-controls-gap, 5px);
   }
 
   &__avatar {
