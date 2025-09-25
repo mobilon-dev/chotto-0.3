@@ -4,7 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import type { ThemeName, ChottoThemeVariableName, ThemeValidationResult, ThemeValidationSummary } from '../src/themes/types';
-import { THEME_NAMES, REQUIRED_THEME_VARIABLES, OPTIONAL_THEME_VARIABLES } from '../src/themes/constants';
+import { THEME_NAMES, REQUIRED_THEME_VARIABLES } from '../src/themes/constants';
 
 /**
  * Скрипт валидации тем для проекта chotto-themes-prototype

@@ -120,15 +120,19 @@
   --chotto-theme-secondary-text-color: var(--neutral-300);
 
   /* Typography */
+  --chotto-theme-header-font: "Open Sans", sans-serif;
   --chotto-theme-header-font-size: 20px;
+  --chotto-theme-header-font-color: var(--neutral-100);
   --chotto-theme-title-font-size: 16px;
   --chotto-theme-text-font-size: 14px;
   --chotto-theme-additional-text-font-size: 12px;
   --chotto-theme-small-text-font-size: 10px;
+  --chotto-theme-context-menu-font-size: 14px;
 
   /* Font weights */
   --chotto-theme-header-font-weight: 700;
   --chotto-theme-title-font-weight: 600;
+  --chotto-theme-small-text-font-weight: 400;
 
   /* Icon sizes */
   --chotto-theme-button-icon-size: 21px;
@@ -144,6 +148,11 @@
   --chotto-theme-action-button-color-active: #00cbfa;
   --chotto-theme-action-button-color-hover: #3fddff;
   --chotto-theme-action-button-color-disabled: #b4e8f9;
+
+  /* Danger button colors (not applied) */
+  --chotto-theme-danger-button-color-active: '';
+  --chotto-theme-danger-button-color-hover: '';
+  --chotto-theme-danger-button-color-disabled: '';
 
   /* Shadows */
   --chotto-theme-shadow-color: var(--neutral-800);

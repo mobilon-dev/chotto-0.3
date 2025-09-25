@@ -2,7 +2,7 @@
  * Theme constants and configuration
  */
 
-import type { ThemeName, ThemeConfig } from './types';
+import type { ThemeName } from './types';
 
 // Available theme names
 export const THEME_NAMES: ThemeName[] = ['dark', 'default', 'green', 'mobilon1'] as const;
@@ -68,6 +68,8 @@ export const REQUIRED_THEME_VARIABLES = [
   '--chotto-theme-secondary-color',
   '--chotto-theme-primary-text-color',
   '--chotto-theme-secondary-text-color',
+  '--chotto-theme-header-font',
+  '--chotto-theme-header-font-color',
   '--chotto-theme-header-font-size',
   '--chotto-theme-title-font-size',
   '--chotto-theme-text-font-size',
@@ -97,21 +99,11 @@ export const REQUIRED_THEME_VARIABLES = [
   '--chotto-theme-scrollbar-thumb-bg'
 ] as const;
 
-// Optional CSS variables (only in some themes)
-export const OPTIONAL_THEME_VARIABLES = [
-  '--chotto-theme-header-font',
-  '--chotto-theme-header-font-color',
-  '--chotto-theme-small-text-font-weight',
-  '--chotto-theme-context-menu-font-size',
-  '--chotto-theme-danger-button-color-active',
-  '--chotto-theme-danger-button-color-hover',
-  '--chotto-theme-danger-button-color-disabled'
-] as const;
+
 
 // All CSS variables
 export const ALL_THEME_VARIABLES = [
   ...REQUIRED_THEME_VARIABLES,
-  ...OPTIONAL_THEME_VARIABLES
 ] as const;
 
 // Theme file paths

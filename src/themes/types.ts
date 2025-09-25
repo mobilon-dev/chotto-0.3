@@ -1,7 +1,6 @@
-/**
- * TypeScript types for Chotto theme CSS variables
- * Generated based on theme validation analysis
- */
+/*
+  TypeScript types for Chotto theme CSS variables
+*/
 
 // Available theme names
 export type ThemeName = 'dark' | 'default' | 'green' | 'mobilon1';
@@ -85,6 +84,7 @@ export interface ChottoThemeVariables {
   '--chotto-theme-secondary-text-color': ColorValue;
 
   // Typography
+  '--chotto-theme-header-font': FontFamily;
   '--chotto-theme-header-font-size': FontSize;
   '--chotto-theme-title-font-size': FontSize;
   '--chotto-theme-text-font-size': FontSize;
@@ -132,7 +132,6 @@ export interface ChottoThemeVariables {
   '--chotto-theme-scrollbar-thumb-bg': ColorValue;
 
   // Optional variables (only in some themes)
-  '--chotto-theme-header-font'?: FontFamily;
   '--chotto-theme-header-font-color'?: ColorValue;
   '--chotto-theme-small-text-font-weight'?: FontWeight;
   '--chotto-theme-context-menu-font-size'?: FontSize;
@@ -157,7 +156,6 @@ export type ChottoThemeVariableName = keyof ChottoThemeVariables;
 
 // Utility type for required variables (all themes must have)
 export type RequiredChottoThemeVariables = Omit<ChottoThemeVariables, 
-  '--chotto-theme-header-font' |
   '--chotto-theme-header-font-color' |
   '--chotto-theme-small-text-font-weight' |
   '--chotto-theme-context-menu-font-size' |
@@ -168,7 +166,6 @@ export type RequiredChottoThemeVariables = Omit<ChottoThemeVariables,
 
 // Utility type for optional variables (only in some themes)
 export type OptionalChottoThemeVariables = Pick<ChottoThemeVariables,
-  '--chotto-theme-header-font' |
   '--chotto-theme-header-font-color' |
   '--chotto-theme-small-text-font-weight' |
   '--chotto-theme-context-menu-font-size' |
