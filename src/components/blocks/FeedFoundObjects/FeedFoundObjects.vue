@@ -31,7 +31,7 @@
 import { ref, unref, computed } from 'vue';
 import { t } from '../../../locale/useLocale';
 import FeedFoundItem from '../FeedFoundItem/FeedFoundItem.vue';
-import { IFeedObject } from '../../types';
+import { IFeedObject } from '@types';
 
 const emit = defineEmits(['clickedSearch','loadMore']);
 

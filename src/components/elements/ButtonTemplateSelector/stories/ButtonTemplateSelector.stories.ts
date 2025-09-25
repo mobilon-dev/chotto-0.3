@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
  
-import {ButtonTemplateSelector} from './';
+import ButtonTemplateSelector from '../ButtonTemplateSelector.vue';
 import {templates, groupTemplates} from '../../../../data';
  
   

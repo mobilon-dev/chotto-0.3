@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
 
 import TextMessage from '../TextMessage.vue';
-import { ITextMessage } from '../../types'
+import { ITextMessage } from '../../../../../../types'
 
 const meta: Meta<typeof TextMessage> = {
   component: TextMessage,

@@ -48,7 +48,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { IFeedObject } from '../../types';
+import { IFeedObject } from '@types';
 const props = defineProps({
   object: {
     type: Object as () => IFeedObject,

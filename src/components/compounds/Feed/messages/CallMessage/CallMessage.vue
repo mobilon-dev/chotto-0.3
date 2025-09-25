@@ -111,8 +111,7 @@ import { useTheme } from '../../../../../helpers/useTheme';
 const chatAppId = inject('chatAppId')
 const { getTheme } = useTheme(chatAppId as string)
 // Define props
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const props = defineProps({
+defineProps({
   message: {
     type: Object as () => ICallMessage,
     required: true,

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
  
-import {AudioRecorder} from '.';
+import AudioRecorder from '../AudioRecorder.vue';
   
 const meta: Meta<typeof AudioRecorder> = {
   component: AudioRecorder,

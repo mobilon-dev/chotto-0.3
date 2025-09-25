@@ -65,7 +65,7 @@ const openVideoRecorder = async () => {
       if (data.videoFile){
         uploadStatus.value = 'uploading'
         setRecordingMessage(true)
-        await uploadFile(props.filebumpUrl, data.videoFile)
+        await uploadFile(props.filebumpUrl, data.videoFile as File)
           .then((u) => {
             setRecordingMessage(false)
             uploadStatus.value = u.status

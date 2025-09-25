@@ -5,12 +5,13 @@ import {
     App,
     ref,
     defineAsyncComponent,
+    Component,
 } from 'vue'
 
 export function useModal({component, attrs, Modal, modalAttrs}: {
-    component: Promise<unknown>;
+    component: Promise<Component>;
     attrs: Record<string, unknown>;
-    Modal: unknown;
+    Modal: Component;
     modalAttrs: Record<string, unknown>;
 }): Promise<Record<string, unknown>> {
     return new Promise((resolve) => {
@@ -38,7 +39,7 @@ export function useModal({component, attrs, Modal, modalAttrs}: {
         const ModalWrapper = defineComponent({
             render() {
                 return h(
-                    Modal as unknown,
+                    Modal,
                     {
                         ...modalAttrs,
                         onClose: closeHandler,

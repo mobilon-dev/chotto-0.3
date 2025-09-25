@@ -72,7 +72,6 @@ const template = '<div data-theme="light" style="min-height: 100px; min-width: 6
 export const HaveSelectedChannel: Story = {
   args: {
     channels: testChannelsList,
-    //@ts-expect-error - extChatAppId prop type mismatch in storybook
     extChatAppId: '1',
     theme,
   },
@@ -82,7 +81,6 @@ export const HaveSelectedChannel: Story = {
 export const HaveNotSelectedChannel: Story = {
   args: {
     channels: testChannelsList2,
-    //@ts-expect-error - extChatAppId prop type mismatch in storybook
     extChatAppId: '2',
     theme,
   },
@@ -92,7 +90,6 @@ export const HaveNotSelectedChannel: Story = {
 export const ChannelsEmptyArray: Story = {
   args: {
     channels: [],
-    //@ts-expect-error - extChatAppId prop type mismatch in storybook
     extChatAppId: '3',
     theme,
   },
@@ -103,7 +100,6 @@ export const InactiveChannels: Story = {
   args: {
     channels: [],
     state: 'disabled',
-    //@ts-expect-error - extChatAppId prop type mismatch in storybook
     extChatAppId: '4',
     theme,
   },

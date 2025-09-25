@@ -9,7 +9,7 @@ export const transformToFeed = (objects: Array<{direction: string; timestamp: nu
     return {
       ...m,
       position: m.direction === 'outgoing' ? 'right' : 'left',
-      time: formatTimestamp(m.timestamp),
+      time: formatTimestamp(m.timestamp.toString()),
     };
   });
 

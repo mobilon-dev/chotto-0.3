@@ -12,5 +12,14 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    message: {
+      messageId: '1',
+      position: 'left',
+      time: '12:34',
+      url: 'https://example.com/file.pdf',
+      filename: 'document.pdf',
+      status: 'read'
+    }
+  },
 };

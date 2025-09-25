@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
 
 import FileMessage from '../FileMessage.vue';
-import { IFileMessage } from '../../types'
+import { IFileMessage } from '../../../../../../types'
 
 const meta: Meta<typeof FileMessage> = {
   component: FileMessage,

@@ -22,10 +22,9 @@
   setup
   lang="ts"
 >
-import { ILinkPreview } from '../../types';
+import { ILinkPreview } from '@types';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const props = defineProps({
+defineProps({
   linkPreview: {
     type: Object as () => ILinkPreview,
     required: true,

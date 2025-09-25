@@ -33,9 +33,9 @@
   lang="ts"
   setup
 >
-import { watch, inject } from 'vue';
+import { inject } from 'vue';
 
-const props = defineProps({
+defineProps({
   isOpenChatPanel: {
     type: Boolean,
     default: false,

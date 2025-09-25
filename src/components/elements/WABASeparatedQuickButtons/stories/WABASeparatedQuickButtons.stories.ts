@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import WABASeparatedQuickButtons from '../WABASeparatedQuickButtons.vue';
 
-const meta = {
+const meta: Meta<typeof WABASeparatedQuickButtons> = {
   title: 'Elements/WABASeparatedQuickButtons',
   component: WABASeparatedQuickButtons,
   args: {},
-} satisfies Meta<typeof WABASeparatedQuickButtons>;
+};
 
 export default meta;
 

@@ -62,7 +62,7 @@ const updatePosition = () => {
       const tBounds = tooltip.value.getBoundingClientRect()
       const correctLeft = tBounds.left < 0 ? tBounds.left : 0
       const correctTop = tBounds.top < 0 ? tBounds.top : 0
-      const r = {
+      const r: Record<string, {top: number, left: number}> = {
         'left'  : {top: bounds.top - ((tBounds.height - bounds.height) / 2) - correctTop, left: bounds?.left - tBounds.width - correctLeft - props.offset},
         'right' : {top: bounds.top - ((tBounds.height - bounds.height) / 2) - correctTop, left: bounds?.left + bounds.width - correctLeft + props.offset},
         'bottom': {top: bounds?.bottom - correctTop + props.offset, left: bounds?.left - correctLeft},

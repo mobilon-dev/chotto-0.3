@@ -19,10 +19,9 @@
 <script setup lang="ts">
 import { inject, useTemplateRef } from "vue";
 import { useMessage } from '../../../helpers/useMessage';
-import { IKeyBoard } from "../../types";
+import { IKeyBoard } from "@types";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const props = defineProps({
+defineProps({
   keyboard: {
     type: Array<IKeyBoard>,
     required: true,

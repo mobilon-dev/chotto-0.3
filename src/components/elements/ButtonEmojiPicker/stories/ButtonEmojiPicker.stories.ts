@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
  
-import {ButtonEmojiPicker} from '.';
+import ButtonEmojiPicker from '../ButtonEmojiPicker.vue';
 import BaseContainer from '../../../containers/BaseContainer.vue';
   
 const meta: Meta<typeof ButtonEmojiPicker> = {

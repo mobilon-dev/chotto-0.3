@@ -12,5 +12,12 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    linkPreview: {
+      title: 'GitHub',
+      imageUrl: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
+      url: 'https://github.com',
+      description: 'GitHub is where over 100 million developers shape the future of software'
+    }
+  },
 };

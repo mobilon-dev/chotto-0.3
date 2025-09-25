@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
  
-import {VideoRecorder} from '.';
+import VideoRecorder from '../VideoRecorder.vue';
   
 const meta: Meta<typeof VideoRecorder> = {
   component: VideoRecorder,

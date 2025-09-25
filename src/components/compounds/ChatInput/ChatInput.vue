@@ -150,7 +150,8 @@ watch(
 
 const sendTyping = (event: Event) => {
   // console.log('typing', event.target.value);
-  emit('typing', event.target.value);
+  const target = event.target as HTMLTextAreaElement;
+  emit('typing', target.value);
 }
 
 const keyEnter = (event: KeyboardEvent) => {

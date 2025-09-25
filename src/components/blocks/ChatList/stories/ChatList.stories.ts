@@ -65,7 +65,7 @@ export const ChatlistWithActions: Story = {
     chats,
     actions: actionsChatList,
     filterEnabled: true,
-  },
+  } as Record<string, unknown>,
   decorators: [() => ({template})],
 };
 
