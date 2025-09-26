@@ -278,14 +278,14 @@ const linkedText = computed(() => {
   return ''
 })
 
-const handleClickReplied = (messageId) => {
+const handleClickReplied = (messageId: string) => {
   emit('reply', messageId)
 }
 
-function inNewWindow(event) {
+function inNewWindow(event: MouseEvent) {
   event.preventDefault()
-  if (event.target.href)
-    window.open(event.target.href, '_blank');
+  if (event.target && 'href' in event.target)
+    window.open((event.target as HTMLAnchorElement).href, '_blank');
 }
 
 const showMenu = () => {
@@ -316,7 +316,7 @@ function togglePlayPause() {
   }
 }
 
-const formatTime = (time) => {
+const formatTime = (time: number) => {
   const minutes = Math.floor(time / 60);
   const seconds = Math.floor(time % 60);
   return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
@@ -349,7 +349,7 @@ const formatDuration = computed(() => {
   return '0:00';
 });
 
-function getClass(message) {
+function getClass(message: IAudioMessage) {
   return message.position === 'left' ? 'audio-message__left' : 'audio-message__right';
 }
 
