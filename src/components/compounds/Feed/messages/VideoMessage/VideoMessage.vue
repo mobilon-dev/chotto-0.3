@@ -165,7 +165,7 @@ import linkifyStr from "linkify-string";
 
 import ContextMenu from "../../../../../components/elements/ContextMenu/ContextMenu.vue";
 import { getStatus, statuses } from "../../../../../helpers";
-import { IVideoMessage } from '../../../../../types';
+import { IVideoMessage } from '@types';
 import BaseReplyMessage from "../BaseReplyMessage/BaseReplyMessage.vue";
 import LinkPreview from "../../../../../components/molecules/LinkPreview/LinkPreview.vue";
 import EmbedPreview from "../../../../../components/molecules/EmbedPreview/EmbedPreview.vue";
@@ -197,11 +197,11 @@ const props = defineProps({
 
 const emit = defineEmits(['action','reply']);
 
-const handleClickReplied = (messageId) => {
+const handleClickReplied = (messageId: string) => {
   emit('reply', messageId)
 }
 
-function getClass(message) {
+function getClass(message: IVideoMessage) {
   return message.position === 'left' ? 'video-message__left' : 'video-message__right';
 }
 
@@ -227,10 +227,10 @@ watch(
   { immediate: true }
 )
 
-function inNewWindow(event) {
+function inNewWindow(event: Event) {
   event.preventDefault()
-  if (event.target.href)
-    window.open(event.target.href, '_blank');
+  if ((event.target as HTMLAnchorElement).href)
+    window.open((event.target as HTMLAnchorElement).href, '_blank');
 }
 
 const viewsAction = () => {
