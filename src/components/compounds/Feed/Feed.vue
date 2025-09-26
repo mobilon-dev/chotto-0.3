@@ -193,11 +193,11 @@ const showKeyboard = computed(() => {
   else return false
 })
 
-const keyboardAction = (action) => {
+const keyboardAction = (action: string | (() => void)) => {
   emit('keyboardAction', action)
 }
 
-const feedKeyboardAction = (action) => {
+const feedKeyboardAction = (action: string | (() => void)) => {
   emit('feedAction', action);
 }
 
@@ -253,7 +253,7 @@ watch(
   }
 )
 
-const startScrollWatch = (event) => {
+const startScrollWatch = (event: MouseEvent) => {
   const element = unref(refFeed);
   const isScrollbar = event.offsetX > element.clientWidth || event.offsetY > element.clientHeight;
   if (isScrollbar) {
@@ -268,9 +268,9 @@ const stopScrollWatch = () => {
 const throttledScrollTopCheck = throttle(() => scrollTopCheck(), 250)
 
 // Register components
-const componentsMap = (type) => {
+const componentsMap = (type: string) => {
 
-  const r = {
+  const r: Record<string, unknown> = {
     'message.text': TextMessage,
     'message.image': ImageMessage,
     'message.file': FileMessage,
@@ -306,11 +306,11 @@ watch(
   {immediate: true}
 )
 
-const messageAction = (message) => {
+const messageAction = (message: IFeedObject) => {
   emit('messageAction', message);
 }
 
-const handleClickReplied = (messageId) => {
+const handleClickReplied = (messageId: string) => {
   emit('clickRepliedMessage', messageId)
 }
 
@@ -374,7 +374,7 @@ watch(
           element.scrollTop = 400
       }
       trackingObjects.value = document.querySelectorAll('.tracking-message')
-      trackingObjects.value.forEach((obj) => observer.observe(obj))
+      trackingObjects.value.forEach((obj: Element) => observer.observe(obj))
     })
   },
   { immediate: true })
