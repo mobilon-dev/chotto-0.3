@@ -68,7 +68,7 @@ const contextMenu = ref()
 const actionScope = ref()
 const isOpened = ref(false)
 
-const click = (action) => {
+const click = (action: Record<string, unknown>) => {
   hideMenu()
   emit('click', action);
 }
@@ -135,8 +135,8 @@ const updatePosition = () => {
         'top-right': { top: bounds.top - cmBounds.height, left: bounds.right - (cmBounds.width / 2) }
       }
       //console.log(bounds, cmBounds, 'top: ', r[props.menuSide].top + 'px', ' left: ', r[props.menuSide].left + 'px')
-      t.style.top = r[props.menuSide].top + 'px'
-      t.style.left = r[props.menuSide].left + 'px'
+      t.style.top = r[props.menuSide as keyof typeof r].top + 'px'
+      t.style.left = r[props.menuSide as keyof typeof r].left + 'px'
       t.style.opacity = '1'
       t.style.display = 'inherit'
       isOpened.value = true
@@ -157,8 +157,8 @@ const hideMenu = () => {
   }
 }
 
-const handleClickOutside = (event) => {
-  if (props.mode == 'click' && actionScope.value && !actionScope.value.contains(event.target)) {
+const handleClickOutside = (event: Event) => {
+  if (props.mode == 'click' && actionScope.value && !actionScope.value.contains(event.target as Node)) {
     hideMenu()
   }
 }
