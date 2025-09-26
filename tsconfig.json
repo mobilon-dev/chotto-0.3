@@ -21,7 +21,6 @@
     "declarationDir": "./dist/types",
     "outDir": "./dist/types",
     "emitDeclarationOnly": true,
-    "noImplicitAny": false,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
