@@ -129,7 +129,7 @@ const elementType = {
   message: 'message'
 }
 
-function getClass(element, type) {
+function getClass(element: { position: string }, type: string) {
   const position = element.position;
   switch (type) {
     case 'textDialog':
