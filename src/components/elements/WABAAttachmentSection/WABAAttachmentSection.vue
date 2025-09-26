@@ -10,7 +10,7 @@
       ref="fileInput" 
       type="file"
       style="display: none;" 
-      :accept="fileInfo[type].accept"
+      :accept="fileInfo[type as keyof typeof fileInfo].accept"
       @change="handleFileChange" 
     >
     <span
@@ -21,7 +21,7 @@
         Прикрепить файл 
       </p>
       <p class="attachment-section__info">
-        {{ fileInfo[type].text }}
+        {{ fileInfo[type as keyof typeof fileInfo].text }}
       </p>
     </div>
   </div>
@@ -96,16 +96,16 @@ const fileInfo = {
   },
 }
 
-const handleFileChange = (event) => {
-  const file = event.target.files[0];
+const handleFileChange = (event: Event) => {
+  const file = (event.target as HTMLInputElement).files?.[0];
   if (file) {
     error.value = ''
     const ext = file.name.split('.')
-    const hasExt = fileInfo[props.type].accept.indexOf(ext[ext.length - 1])
+    const hasExt = fileInfo[props.type as keyof typeof fileInfo].accept.indexOf(ext[ext.length - 1])
     if (hasExt == -1){
-      error.value = fileInfo[props.type].error
+      error.value = fileInfo[props.type as keyof typeof fileInfo].error
     } 
-    else if (file.size > fileInfo[props.type].maxSize){
+    else if (file.size > fileInfo[props.type as keyof typeof fileInfo].maxSize){
       error.value = 'Файл слишком большого размера'
     }
     else if (!error.value){
