@@ -38,10 +38,10 @@ watch(
   { immediate: true }
 )
 
-function inNewWindow(event) {
+function inNewWindow(event: Event) {
   event.preventDefault()
-  if (event.target.href)
-    window.open(event.target.href, '_blank');
+  if ((event.target as HTMLAnchorElement).href)
+    window.open((event.target as HTMLAnchorElement).href, '_blank');
 }
 
 </script>
