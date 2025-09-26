@@ -12,11 +12,20 @@ export default meta;
 type Story = StoryObj<typeof ChatItem>;
 
 const chat = {
+  chatId: 1,
   name: "John Doe",
   lastMessage: "Привет!",
-  countUnread: "2",
+  countUnread: 2,
   'lastActivity.time': "12:34",
+  'lastActivity.timestamp': "1727001759",
+  isFixedBottom: false,
+  isFixedTop: false,
+  status: "#767676",
+  'lastMessage.status': 'sent',
   typing: true,
+  metadata: '',
+  dialogsExpanded: false,
+  isSelected: false,
 };
 
 const actions = [
@@ -54,7 +63,7 @@ export const ChatItemColoredUnread: Story = {
   args: {
     chat: {
       ...chat,
-      colorUnread: 'red'
+      countUnread: 5
     },
   },
 };
@@ -63,7 +72,7 @@ export const ChatItemWithoutLastMessage: Story = {
   args: {
     chat: {
       ...chat,
-      lastMessage: null,
+      lastMessage: "",
     },
   },
 };
@@ -72,7 +81,7 @@ export const ChatItemWithLastMessageStatusSend: Story = {
   args: {
     chat: {
       ...chat,
-      countUnread: "0",
+      countUnread: 0,
       'lastMessage.status': 'sent',
     },
   },
@@ -82,7 +91,7 @@ export const ChatItemWithLastMessageStatusReceived: Story = {
   args: {
     chat: {
       ...chat,
-      countUnread: "0",
+      countUnread: 0,
       'lastMessage.status': 'received',
     },
   },
@@ -92,7 +101,7 @@ export const ChatItemWithLastMessageStatusRead: Story = {
   args: {
     chat: {
       ...chat,
-      countUnread: "0",
+      countUnread: 0,
       'lastMessage.status': 'read',
     },
   },
@@ -112,7 +121,7 @@ export const ChatItemWithUnread: Story = {
   args: {
     chat: {
       ...chat,
-      countUnread: "123",
+      countUnread: 123,
     }
   },
 };
@@ -122,7 +131,7 @@ export const ChatItemWithLongLastMessage: Story = {
     chat: {
       ...chat,
       lastMessage: "Очень длинное текстовое сообщение. Его надо как-то немного спрятать",
-      countUnread: "0",
+      countUnread: 0,
     },
   },
 };
