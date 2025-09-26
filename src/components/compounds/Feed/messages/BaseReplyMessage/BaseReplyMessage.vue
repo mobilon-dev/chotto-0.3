@@ -1,11 +1,11 @@
 <template>
   <div
     class="reply__container"
-    :class="componentsClassMap(message?.type)"
+    :class="componentsClassMap(message?.type || '')"
     @click="onReply"
   >
     <component
-      :is="componentsMap(message?.type)"
+      :is="componentsMap(message?.type || '')"
       :message="message"
     />
     <div class="reply__reset">
@@ -37,6 +37,7 @@ const emit = defineEmits(['action', 'reply', 'reset']);
 const props = defineProps({
   message: {
     type: Object as () => IFeedObject,
+    default: () => ({} as IFeedObject)
   }
 });
 
@@ -47,8 +48,8 @@ const onReply = () => {
   }
 }
 
-const componentsMap = (type) => {
-  const r = {
+const componentsMap = (type: string) => {
+  const r: Record<string, unknown> = {
     'message.text': ReplyTextMessage,
     'message.image': ReplyImageMessage,
     'message.file': ReplyFileMessage,
@@ -59,8 +60,8 @@ const componentsMap = (type) => {
   return r[type];
 }
 
-const componentsClassMap = (type) => {
-  const r = {
+const componentsClassMap = (type: string) => {
+  const r: Record<string, string> = {
     'message.text': '',
     'message.image': 'grid',
     'message.file': 'grid',
