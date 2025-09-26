@@ -61,16 +61,13 @@ const props = defineProps({
 });
 
 const typePreview = computed(() => {
-  const r = {
+  const r: Record<string, string> = {
     'message.file': 'pi pi-file',
     'message.audio': 'pi pi-volume-up',
     'message.video': 'pi pi-video',
     'message.call': 'pi pi-phone',
   };
-  if (r[props.object.type])
-    return r[props.object.type]
-  else 
-    return null
+  return r[props.object.type] || null
 })
 
 </script>
