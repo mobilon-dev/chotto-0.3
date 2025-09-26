@@ -206,14 +206,14 @@ watch(
   { immediate: true }
 )
 
-const handleClickReplied = (messageId) => {
+const handleClickReplied = (messageId: string) => {
   emit('reply', messageId)
 }
 
-function inNewWindow(event) {
+function inNewWindow(event: Event) {
   event.preventDefault()
-  if (event.target.href)
-    window.open(event.target.href, '_blank');
+  if ((event.target as HTMLAnchorElement).href)
+    window.open((event.target as HTMLAnchorElement).href, '_blank');
 }
 
 const viewsAction = () => {
@@ -241,7 +241,7 @@ const imageBorderRadius = computed(() => {
 
 const status = computed(() => getStatus(props.message.status))
 
-function getClass(message) {
+function getClass(message: IImageMessage) {
   return message.position === 'left' ? 'image-message__left' : 'image-message__right';
 }
 
