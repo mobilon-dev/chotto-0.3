@@ -15,7 +15,7 @@
       >
         <span
           class="pi pi-arrow-up-left"
-          :class="icons[button.type]"
+          :class="icons[button.type as keyof typeof icons]"
         />
         <p>{{ button.text }}</p>
       </div>
