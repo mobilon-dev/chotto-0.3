@@ -143,14 +143,14 @@ watch(
   { immediate: true }
 )
 
-const handleClickReplied = (messageId) => {
+const handleClickReplied = (messageId: string) => {
   emit('reply', messageId)
 }
 
-function inNewWindow(event) {
+function inNewWindow(event: Event) {
   event.preventDefault()
-  if (event.target.href)
-    window.open(event.target.href, '_blank');
+  if ((event.target as HTMLAnchorElement).href)
+    window.open((event.target as HTMLAnchorElement).href, '_blank');
 }
 
 const showMenu = () => {
@@ -164,7 +164,7 @@ const hideMenu = () => {
 
 const status = computed(() => getStatus(props.message.status))
 
-const clickAction = (action) => {
+const clickAction = (action: Record<string, unknown>) => {
   hideMenu();
   emit('action', { messageId: props.message.messageId, type: 'menu', ...action });
 }
@@ -174,7 +174,7 @@ const viewsAction = () => {
   emit('action', { messageId: props.message.messageId, type: 'views' });
 }
 
-function getClass(message) {
+function getClass(message: ITextMessage) {
   return message.position === 'left' ? 'text-message__left' : 'text-message__right';
 }
 </script>
