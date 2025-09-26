@@ -159,7 +159,7 @@
         <div
           v-if="dialog.countUnread > 0"
           class="chat-item__unread"
-          :style="{backgroundColor: dialog.colorUnread ? dialog.colorUnread : null}"
+          :style="dialog.colorUnread ? {backgroundColor: dialog.colorUnread} : {}"
         >
           {{ dialog.countUnread > 99 ? '99+' : dialog.countUnread }}
         </div>
@@ -176,15 +176,17 @@ import { t } from '../../../locale/useLocale'
 import Tooltip from '../../atoms/Tooltip/Tooltip.vue';
 import ButtonContextMenu from '../../elements/ButtonContextMenu/ButtonContextMenu.vue';
 import AvatarIcon from '../../icons/AvatarIcon.vue';
+import { IAction, IChatItem, IChatDialog } from '@types';
 
-const props = defineProps({
-  chat: {
-    type: Object,
-    required: true,
-  },
-});
+const props = defineProps<{
+  chat: IChatItem;
+}>();
 
-const emit = defineEmits(['select', 'action', 'expand']);
+const emit = defineEmits<{
+  select: [{ chat: IChatItem; dialog: IChatDialog | null }];
+  action: [{ chat: IChatItem } & IAction];
+  expand: [IChatItem];
+}>();
 
 const buttonMenuVisible = ref(false);
 const preventEmit = ref(false)
@@ -201,7 +203,7 @@ const selectChat = (event: MouseEvent) => {
   preventEmit.value = false
 }
 
-const selectDialog = (dialog) => {
+const selectDialog = (dialog: IChatDialog) => {
     emit('select', {chat: props.chat, dialog: dialog});
 }
 
@@ -209,28 +211,30 @@ const getClass = () => {
   return props.chat.isSelected ? 'chat-item__selected' : '';
 }
 
-const getDialogClass = (dialog) => {
+const getDialogClass = (dialog: IChatDialog) => {
   return dialog.isSelected ? 'dialog__selected' : ''
 }
 
-const clickAction = (action) => {
+const clickAction = (action: IAction) => {
   // console.log('action', props.chat.chatId, action);
   emit('action', { chat: props.chat, ...action });
 }
 
 
-const getSortedDialogs = () => {
-  return props.chat.dialogs
-    .toSorted((a, b) => {
+const getSortedDialogs = (): IChatDialog[] => {
+  if (!props.chat.dialogs) return [];
+  return [...props.chat.dialogs]
+    .sort((a: IChatDialog, b: IChatDialog) => {
       if (Number(a['lastActivity.timestamp']) > Number(b['lastActivity.timestamp'])) return -1;
       if (Number(a['lastActivity.timestamp']) < Number(b['lastActivity.timestamp'])) return 1;
       if (Number(a['lastActivity.timestamp']) == Number(b['lastActivity.timestamp'])) return 0;
+      return 0;
     })
 }
 
 const status = computed(() => getStatus(props.chat['lastMessage.status']))
 
-let timer;
+let timer: ReturnType<typeof setInterval> | undefined;
 const typingIndex = ref(0)
 const typingText = [t('component.ChatItem.typing') + '.', t('component.ChatItem.typing') + '..', t('component.ChatItem.typing') + '...']
 
@@ -257,14 +261,17 @@ watch(
     }
     else {
       typingIndex.value = 0
-      clearInterval(timer);
+      if (timer) {
+        clearInterval(timer);
+        timer = undefined;
+      }
     }
   },
   { immediate: true }
 )
 
-const onMouseLeave = (event) => {
-  if (event.relatedTarget?.className == 'context-menu__list')
+const onMouseLeave = (event: MouseEvent) => {
+  if (event.relatedTarget instanceof HTMLElement && event.relatedTarget.className == 'context-menu__list')
     buttonMenuVisible.value = true
   else 
     buttonMenuVisible.value = false

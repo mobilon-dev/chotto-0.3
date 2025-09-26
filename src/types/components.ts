@@ -40,7 +40,6 @@ export interface IAction {
   prime?: string
 }
 
-//аналог TypingMessage - убрать?
 export interface IFeedTyping {
   title?: string
   avatar?: string
@@ -64,4 +63,39 @@ export interface IFilePreview {
   isAudio: boolean
   fileName?: string
   fileSize: string
+}
+
+export interface IChatDialog {
+  branchId: string;
+  dialogId: string;
+  attributeId: string;
+  channelId: string;
+  icon?: string;
+  name: string;
+  fullname: string;
+  countUnread: number;
+  'lastActivity.time': string;
+  'lastActivity.timestamp': number;
+  isSelected: boolean;
+  colorUnread?: string;
+}
+
+export interface IChatItem {
+  chatId: number;
+  name: string;
+  avatar?: string;
+  countUnread: number;
+  lastMessage: string;
+  'lastActivity.time': string;
+  'lastActivity.timestamp': string;
+  isFixedBottom: boolean;
+  isFixedTop?: boolean;
+  status: string;
+  'lastMessage.status': string;
+  actions?: IAction[];
+  typing: boolean;
+  metadata: string;
+  dialogsExpanded: boolean;
+  dialogs?: IChatDialog[];
+  isSelected: boolean;
 }
