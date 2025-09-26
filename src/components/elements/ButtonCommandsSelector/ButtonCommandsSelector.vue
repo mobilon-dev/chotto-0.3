@@ -49,11 +49,11 @@ const { getMessage } = useMessage(chatAppId as string)
 
 const refBCM = useTemplateRef('refBCM')
 
-const sendCommand = (command) => {
+const sendCommand = (command: Record<string, unknown>) => {
   console.log(command)
   const messageObject: IInputMessage = {
       type: 'message.command',
-      text: command.action,
+      text: command.action as string,
     };
   emit('send', messageObject)
 }
