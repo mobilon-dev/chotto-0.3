@@ -18,7 +18,7 @@ export function useModal({component, attrs, Modal, modalAttrs}: {
         const modalDiv = document.createElement('div')
         document.body.appendChild(modalDiv)
 
-        const Data = ref({})
+        const Data = ref<Record<string, unknown>>({})
         const closeHandler = () => {
             app.unmount()
             document.body.removeChild(modalDiv)
@@ -27,10 +27,10 @@ export function useModal({component, attrs, Modal, modalAttrs}: {
         const submitHandler = () => {
             closeHandler()
             // console.log('ddd', Data.value)
-            resolve(Data.value as Record<string, unknown>)
+            resolve(Data.value)
         }
 
-        const changeDataHandler = (data: object) => {
+        const changeDataHandler = (data: Record<string, unknown>) => {
             Object.keys(data).forEach(key => {
                 Data.value[key] = data[key]
             })
