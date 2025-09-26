@@ -18,8 +18,7 @@
     class="file-uploader__trigger"
     :class="{'file-uploader__disabled' : !canUploadFile || state == 'disabled'}"
     :disabled="!canUploadFile || state == 'disabled'"
-    @click="triggerFileUpload"
-    @button-click="triggerFileUploadDefault"
+    @click="triggerFileUploadDefault"
   >
     <FileUploaderIcon />
   </span>
@@ -117,12 +116,12 @@ const onFileSelected = async () => {
   }
 };
 
-const triggerFileUpload = (action) => {
-  if (fileInput.value && canUploadFile) {
-    fileInput.value.accept = action.action
-    fileInput.value.click();
-  }
-};
+// const triggerFileUpload = (action: Record<string, unknown>) => {
+//   if (fileInput.value && canUploadFile) {
+//     fileInput.value.accept = action.action as string
+//     fileInput.value.click();
+//   }
+// };
 
 const triggerFileUploadDefault = () => {
   if (fileInput.value && canUploadFile  && props.state == 'active') {
