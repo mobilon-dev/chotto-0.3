@@ -52,7 +52,7 @@ const props = defineProps({
 });
 
 const refItems = ref()
-const selectedItem = ref(null)
+const selectedItem = ref<IFeedObject | null>(null)
 
 const placeholder = computed(() => {
   if (props.notFound) return t('component.FeedFoundObjects.notFound')
@@ -60,7 +60,7 @@ const placeholder = computed(() => {
   return ''
 })
 
-const clickObject = (object) => {
+const clickObject = (object: IFeedObject) => {
   if (object.messageId){
     emit('clickedSearch', object.messageId)
     selectedItem.value = object
