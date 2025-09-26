@@ -10,7 +10,7 @@
       <div class="quick-reply-buttons__line">
         <span 
           class="quick-reply-buttons__icon pi pi-arrow-up-left" 
-          :class="index == 2 && buttons.length > 3 ? 'pi-list' : icons[button.type]"
+          :class="index == 2 && buttons.length > 3 ? 'pi-list' : icons[button.type as keyof typeof icons]"
         />
         <p>
           {{ index == 2 && buttons.length > 3 ? 'Смотреть все варианты' : button.text }}
