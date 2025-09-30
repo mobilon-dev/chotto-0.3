@@ -3,38 +3,42 @@
     <BaseContainer
       ref="refContainer"
       height="90vh"
-      width="90vw"
+      width="70vw"
     >
-      <ExtendedLayout>
+      <AdaptiveExtendedLayout
+        :is-second-col-visible="isSecondColVisible"
+        :is-third-col-visible="isThirdColVisible"
+      >
         <template #first-col>
           <SideBar
+            v-if="sidebarFirstCol"
             :sidebar-items="sidebarItems"
-            :menu-actions="menuActions"
             @select-item="selectItem"
           />
           <ThemeMode
             :themes="themes"
             :show="true"
-            @selected-theme="setTheme"
           />
         </template>
 
         <template #second-col>
+          <UserProfile :user="userProfile" />
           <ChatList
             v-if="!isOpenSearchPanel || (isOpenSearchPanel && feedSearchFeedCol)"
             ref="refChatList"
             :chats="chatsStore.chats"
             filter-enabled
-            :title-enabled="true"
-            :dialog-tabs="dialogTabs"
             @select="selectChat"
-            @expand="expandChat"
             @action="chatAction"
             @load-more-chats="loadMoreChats"
-            @tab-click="handleTabClick"
           >
-            <template #actions>
-              <!-- <h2>Чаты</h2> -->
+            <template #sidebar>
+              <SideBar
+                v-if="!sidebarFirstCol"
+                horizontal
+                :sidebar-items="sidebarItems"
+                @select-item="selectItem"
+              />
             </template>
           </ChatList>
           <FeedSearch 
@@ -70,42 +74,29 @@
                   :show-return-button="isShowReturnButton"
                   :default-last-activity-time="true"
                   :description="description"
-                  additional-title="11:06"
                   @return-to-chats="handleReturnToChats"
                 >
-                  <template #img-description>
-                    <img 
-                      src="https://img.freepik.com/free-photo/smiley-man-relaxing-outdoors_23-2148739334.jpg"
-                      height="16"
-                      width="16"
-                      style="margin: auto; margin-left: 0; margin-right: 5px;"
-                    >
-                  </template>
                   <template #actions>
                     <div style="display: flex;">
-                      <CommunicationPanel
-                        :contactAttributes="selectedChat?.contact?.attributes"
-                        :channels="toRaw(channels)"
-                        :recent-attribute-channels="recentAttributeChannels"
-                        :selected-dialog="selectedDialog"
-                        :channel-tooltips="channelTooltips"
-                        @select-attribute-channel="handleAttributeChannelSelect"
-                        @phone-call="handlePhoneCall"
-                      />
                       <button
                         class="chat-info__button-panel"
                         @click="isOpenChatPanel = !isOpenChatPanel"
                       >
-                        <span class="">
-                          <MenuIcon />
-                        </span>
+                        <span class="pi pi-info-circle" />
                       </button>
-                      <!-- <button
+                      <!--ButtonContextMenu
+                        :actions="actions"
+                        :button-class="'pi pi-list'"
+                        :mode="'click'"
+                        :menu-side="'bottom'"
+                        :context-menu-key="'top-actions'"
+                      /-->
+                      <button
                         class="chat-info__button-panel"
                         @click="handleOpenSearchPanel"
                       >
                         <span class="pi pi-search" />
-                      </button> -->
+                      </button>
                     </div>
                   </template>
                 </ChatInfo>
@@ -131,9 +122,6 @@
                   :enable-double-click-reply="true"
                   :scroll-to="clickedReply"
                   :scroll-to-bottom="scrollToBottomOnSelectChat || isScrollToBottomOnUpdateObjectsEnabled"
-                  :apply-style="setMessageClass"
-                  :feed-keyboards="feedKeyboards"
-                  feed-keyboard-align="left"
                   @message-action="messageAction"
                   @load-more="loadMore"
                   @load-more-down="loadMoreDown"
@@ -141,36 +129,18 @@
                   @click-replied-message="handleClickReplied"
                   @force-scroll-to-bottom="forceScrollToBottom"
                   @keyboard-action="keyboardAction"
-                >
-                  <template #empty-feed>
-                    <SplashScreen>
-                      <template #title>
-                        <h3>Нет сообщений</h3>
-                      </template>
-                      <template #text>
-                        <span style="max-width: 300px; display: block;">Вы можете отправить новое сообщение или воспользоваться шаблоном</span>
-                      </template>
-                      <template #picture>
-                        <img 
-                          src="https://filebump2.services.mobilon.ru/file/J2PDOO0mtcsK2v7J3z6tGJ2ttG1IwtlYnHLU/"
-                          width="196"
-                          height="196"
-                        >
-                      </template>
-                    </SplashScreen>
-                  </template>
-                </Feed>
+                />
                 <ChatInput 
                   :focus-on-input-area="inputFocus"
+                  :commands="commands"
+                  @send="addMessage"
                 >
-                  <template #inline-buttons>
-                    <!-- <ButtonCommandsSelector
-                      :mode="'hover'"
-                      :commands="commands"
-                      @send="addMessage"
-                    /> -->
+                  <template #buttons>
                     <FileUploader
                       :filebump-url="filebumpUrl"
+                    />
+                    <ButtonEmojiPicker
+                      :mode="'hover'"
                     />
                     <ButtonTemplateSelector
                       :templates="templates"
@@ -178,12 +148,6 @@
                       :mode="'click'"
                       :elevated-window="false"
                     />
-                    <ButtonEmojiPicker
-                      :mode="'hover'"
-                    />
-                  </template>
-                  <!--template #buttons>
-                    
                     <ButtonWabaTemplateSelector
                       :waba-templates="wabaTemplates"
                       :group-templates="groupTemplates"
@@ -194,118 +158,79 @@
                     />
                     <ChannelSelector
                       :channels="channels"
-                      :mode="'click'"
+                      :mode="'hover'"
                       @select-channel="onSelectChannel"
                     />
                     <AudioRecorder :filebump-url="filebumpUrl" />
                     <VideoRecorder :filebump-url="filebumpUrl" />
-                  </template-->
+                  </template>
                 </ChatInput>
               </div>
-            </template>
-
-            <template #placeholder>
-              <SplashScreen>
-                <template #title>
-                  <h3>Привет!</h3>
-                </template>
-                <template #text>
-                  <span>Выберите чат и диалог из списка слева</span>
-                </template>
-                <template #picture>
-                  <img 
-                    src="https://filebump2.services.mobilon.ru/file/kUvCq3FDfVXR5UsJ1rB9Z7eFk23Xy3bqyQEZ"
-                    width="196"
-                    height="196"
-                  >
-                </template>
-              </SplashScreen>
             </template>
 
             <template #chatpanel>
               <ChatPanel
                 v-if="isOpenChatPanel"
-                title="Данные контакта"
-                :title-enabled="true"
-                chat-panel-width="17"
-                @close-panel="isOpenChatPanel = false"
+                :title="selectedChat.name"
+                @close-panel="isOpenChatPanel = !isOpenChatPanel"
               >
                 <template #content>
-                  <div>
-                    <!-- {{ selectedChat.name }}  -->
-                    <!-- <button
-                      class="button-close"
-                      @click="isOpenChatPanel = !isOpenChatPanel"
-                    >
-                      <span class="pi pi-times" />
-                    </button> -->
-                    <ContactInfo
-                      :contact="selectedChat?.contact"
-                      :current-dialog="selectedDialog"
-                      :channels="channels"
-                      @close="isOpenChatPanel = false"
-                      @open-crm="openInCRM"
-                      @select-attribute-channel="handleAttributeChannelSelect"
-                    />
-                  </div>
+                  test
                 </template>
               </ChatPanel>
             </template>
           </chat-wrapper>
         </template>
-      </ExtendedLayout>
+      </AdaptiveExtendedLayout>
     </BaseContainer>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref, computed, unref, toRaw } from "vue";
+import { onMounted, ref, computed, unref } from "vue";
 // import { nextTick } from "vue";
 import moment from 'moment';
-import MenuIcon from "./components/icons/MenuIcon.vue"
 
 import {
   ChatInfo,
   ChatInput,
   ChatList,
   Feed,
-  // UserProfile,
+  UserProfile,
   ThemeMode,
   SideBar,
   ChatPanel,
   BaseContainer,
-  ExtendedLayout,
+  AdaptiveExtendedLayout,
   ChatWrapper,
-  useModalSelectUser2,
+    useModalSelectUser2,
   // useModalCreateChat,
   // useModalCreateChat2,
   // ButtonContextMenu,
   useModalCreateDialog,
   ButtonTemplateSelector,
-  // ButtonWabaTemplateSelector,
+  ButtonWabaTemplateSelector,
   ButtonEmojiPicker,
   FileUploader,
   FeedSearch,
-  // ChannelSelector,
+  ChannelSelector,
   FeedFoundObjects,
-  // AudioRecorder,
-  CommunicationPanel,
-} from ".";
+  AudioRecorder,
+} from "..";
 
 import {
   // formatTimestamp,
   // insertDaySeparators,
   playNotificationAudio,
   // sortByTimestamp,
-} from "./helpers";
+} from "../helpers";
 
-import { useChatsStore } from "./stores/useChatStore";
-import { transformToFeed } from "./transform/transformToFeed";
-// import { useLocale } from "./locale/useLocale";
-// import { VideoRecorder } from "./library";
-import { ButtonCommandsSelector, SplashScreen, ContactInfo } from ".";
+import { useChatsStore } from "../stores/useChatStore";
+import { transformToFeed } from "../transform/transformToFeed";
+import { useLocale } from "../locale/useLocale";
+import { VideoRecorder } from "..";
 
-// const { locale: currentLocale, locales } = useLocale()
+const { locale: currentLocale, locales } = useLocale()
 
 
 // Define props
@@ -330,7 +255,7 @@ const props = defineProps({
 });
 
 // Use the locale from props or fallback to currentLocale
-// const locale = props.locale || currentLocale;
+const locale = props.locale || currentLocale;
 
 const buttonParams = {
   unreadAmount: 12
@@ -342,44 +267,23 @@ const themes = [
     name: "Light",
   },
   {
-    code: "mobilon1",
-    name: "mobilon1",
-    default: true,
-  },
-  {
     code: "dark",
     name: "Dark",
   },
   {
     code: "green",
-    name: 'Green'
-  }
-]
-
-const menuActions = [
-  {
-    id: 'profile',
-    title: 'Профиль',
-    disabled: false,
-    action: () => {
-      console.log('Открытие профиля...');
-    }
+    name: "Green",
+    default: true,
   },
   {
-    id: 'settings',
-    title: 'Настройки',
-    disabled: false,
-    action: () => {
-      console.log('Открытие настроек...');
-    }
-  }
+    code: "diamond",
+    name: "Diamond",
+  },
 ];
 
 const chatsStore = useChatsStore();
 
 const selectedChat = ref(null);
-const selectedDialog = ref(null)
-
 const messages = ref([]);
 const userProfile = ref({});
 const channels = ref([]);
@@ -397,26 +301,6 @@ const filebumpUrl = ref('https://filebump2.services.mobilon.ru');
 const clickedReply = ref('')
 const foundMessages = ref([])
 
-// const dialogTabs = ref([]);
-const dialogTabs = ref([
-  { id: 'all', label: 'Все', count: 2, active: true },
-  { id: 'deal', label: 'По сделке', count: 3, active: false },
-  { id: 'rejected', label: 'Непринятые', count: 1, active: false },
-]);
-
-
-const feedKeyboards = ref([
-  {
-    key: 'No answer',
-    text: 'Ответ не нужен',
-    order: 1,
-    'shadow-color': '#00000033',
-    action: () => {
-      console.log('Ответ не нужен');
-    }
-  },
-]);
-
 const feedSearchFeedCol = ref(false)
 const sidebarFirstCol = ref(true)
 const isShowFeedWhileSearch = ref(true)
@@ -424,75 +308,16 @@ const isSecondColVisible = ref(false)
 const isThirdColVisible = ref(false)
 const isShowReturnButton = ref(false)
 const chatPanelWidth = ref(50)
-const theme = ref('')
 
 const description = ref()
 
-// Моковая строка тултипа для блока "Недавний" панели CommunicationPanel
-const recentTooltipText = ref('01.09.25 10:05:10 через +7 (391) 247-50-00 Успешный 02:05')
-
-// Тексты тултипов для кнопок панели CommunicationPanel
-const channelTooltips = ref({
-  phone: 'Позвонить',
-  whatsapp: 'Выберите контакт и канал для отправки сообщения',
-  telegram: 'Выберите контакт и канал для отправки сообщения',
-  max: 'Выберите контакт и канал для отправки сообщения'
-})
-
 const refContainer = ref()
 const refChatWrapper = ref()
-
-const recentAttributeChannels = computed(() => {
-  const dialogs = selectedChat.value?.dialogs || [];
-
-  // IMPORTANT: 'whatsapp' includes both of whatsapp and waba types
-  // 'telegram' includes both of telegram and telegrambot types
-  const recentAttributeChannels = {};
-
-  const whatsappDialogs = dialogs?.filter(
-    d => d.channelId?.includes('whatsapp') || d.channelId?.includes('waba')
-  ).toSorted((d1, d2) => d2['lastActivity.timestamp'] - d1['lastActivity.timestamp']);
-
-  const telegramDialogs = dialogs?.filter(
-    d => d.channelId?.includes('telegram') || d.channelId?.includes('telegrambot')
-  ).toSorted((d1, d2) => d2['lastActivity.timestamp'] - d1['lastActivity.timestamp']);
-
-  if (whatsappDialogs?.length) {
-    recentAttributeChannels['whatsapp'] = {
-      attributeId: whatsappDialogs[0]?.attributeId, 
-      channelId: whatsappDialogs[0]?.channelId,
-      tooltip: channels.value.find(ch => ch.channelId === whatsappDialogs[0]?.channelId)?.title,
-    };
-  }
-
-  if (telegramDialogs?.length) {
-    recentAttributeChannels['telegram'] = {
-      attributeId: telegramDialogs[0]?.attributeId, 
-      channelId: telegramDialogs[0]?.channelId,
-      tooltip: channels.value.find(ch => ch.channelId === telegramDialogs[0]?.channelId)?.title,
-    };
-  }
-
-  return recentAttributeChannels; 
-});
 
 const commands = computed(() => {
   if (selectedChat.value && selectedChat.value.commands) return selectedChat.value.commands
   else return null
 })
-
-const setMessageClass = (message) => {
-  if (message){
-    if (message.dialogId == 'dlg_89789879')
-      return 'tg-message'
-    else 
-      return 'wa-message' 
-  }
-}
-
-const setTheme = (themeCode) => {
-  theme.value = themeCode
-}
 
 const handleOpenSearchPanel = () => {
   isOpenSearchPanel.value = !isOpenSearchPanel.value
@@ -502,17 +327,6 @@ const handleOpenSearchPanel = () => {
 const handleReturnToChats = () => {
   isSecondColVisible.value = true
   isThirdColVisible.value = false
-}
-
-const handleTabClick = (tabId) => {
-  dialogTabs.value.forEach(tab => {
-    tab.active = tab.id === tabId;
-  });
-  console.log('Active tab:', tabId);
-};
-
-const handlePhoneCall = (data) => {
-  console.log(`Звонок на номер ${data?.phoneNumber} ...`);
 }
 
 const selectItem = (item) => {
@@ -548,8 +362,7 @@ const chatAction = async (data) => {
       data.chat.name, 
       data.chat.contact.attributes, 
       channels.value,
-      channelFilter,
-      theme.value
+      channelFilter
     )
     console.log('info', data1);
   }
@@ -644,20 +457,17 @@ const getFeedObjects = () => {
   // console.log('get feed')
   if (selectedChat.value) {
     // здесь обработка для передачи сообщений в feed
-    let messages = props.dataProvider.getFeed(selectedChat.value.chatId);
-    if (selectedDialog.value && selectedDialog.value.dialogId != 'all'){
-      messages = messages.filter(m => m.dialogId == selectedDialog.value.dialogId)
-    }
+    const messages = props.dataProvider.getFeed(selectedChat.value.chatId);
     const messages3 = transformToFeed(messages);
-      return messages3;
+    return messages3;
   } else {
     return [];
   }
 };
 
-// const onSelectChannel = (channel) => {
-//   console.log('selected channel', channel);
-// }
+const onSelectChannel = (channel) => {
+  console.log('selected channel', channel);
+}
 
 const addMessage = (message) => {
   console.log(message);
@@ -682,62 +492,35 @@ const addMessage = (message) => {
   
 };
 
-// const sendWabaValues = (obj) => {
-//   console.log('send waba values', obj);
-//   const messageObject = {
-//     type: '',
-//     text: '',
-//     url: '',
-//     filename: '',
-//     size: '',
-//   };
+const sendWabaValues = (obj) => {
+  console.log('send waba values', obj);
+  const messageObject = {
+    type: '',
+    text: '',
+    url: '',
+    filename: '',
+    size: '',
+  };
 
-//   if (obj.file) {
-//     messageObject.type = 'message.' + obj.file.filetype;
-//     messageObject.url = obj.file.url;
-//     messageObject.filename = obj.file.filename;
-//     messageObject.size = obj.file.filesize.toString();
-//     messageObject.text = obj.text.trim();
-//   } else {
-//     messageObject.type = 'message.text';
-//     messageObject.text = obj.text.trim();
-//   }
-
-//   addMessage(messageObject)
-// }
-
-const expandChat = (args) => {
-  console.log(args)
-  for (let chat of chatsStore.chats){
-    if (chat.chatId != args.chatId) chat.dialogsExpanded = false
-    else chat.dialogsExpanded = !chat.dialogsExpanded
+  if (obj.file) {
+    messageObject.type = 'message.' + obj.file.filetype;
+    messageObject.url = obj.file.url;
+    messageObject.filename = obj.file.filename;
+    messageObject.size = obj.file.filesize.toString();
+    messageObject.text = obj.text.trim();
+  } else {
+    messageObject.type = 'message.text';
+    messageObject.text = obj.text.trim();
   }
+
+  addMessage(messageObject)
 }
 
 const selectChat = (args) => {
-  console.log('TEST selectChat', args)
-  if(args.dialog){
+  console.log(args.chat, args.dialog)
+  if(args.dialog)
     description.value = args.dialog.name
-    selectedDialog.value = args.dialog
-    selectedDialog.value.isSelected = true
-    if (selectedChat.value) {
-      selectedChat.value.dialogs.forEach(d => 
-      d.isSelected = d.dialogId === selectedDialog.value.dialogId
-    )
-    }
-  }
-  else {
-    description.value = null
-    if (args.chat.dialogs && args.chat.dialogs.length > 0){
-      for (let d of args.chat.dialogs){
-        selectedDialog.value = d
-        description.value = d.name
-        d.isSelected = true
-        args.chat.dialogsExpanded = true
-        break
-      }
-    }
-  }
+  else description.value = null
   isThirdColVisible.value = true
   isSecondColVisible.value = false
   scrollToBottomOnSelectChat.value = true
@@ -794,22 +577,6 @@ const highlightMessage = (messageId) => {
   }
 }
 
-const openInCRM = () => {
-  console.log('Открытие контакта в CRM', selectedChat.value);
-};
-
-const handleAttributeChannelSelect = (data) => {
-  console.log('Выбран атрибут/канал:', data);
-  if (selectedChat.value) {
-    const targetDialog = selectedChat.value.dialogs.find(
-      d => d.attributeId === data.attributeId && 
-      d.channelId === data.channelId
-    );
-    if (targetDialog) selectChat({chat: selectedChat.value, dialog: targetDialog});
-  }
-};
-
-
 const handleEvent = async (event) => {
   console.log(event)
   if (event.type === "message") {
@@ -853,12 +620,10 @@ const resizeObserver = new ResizeObserver((entries) => {
 });
 
 onMounted(() => {
-  // props.locale = locales.find((loc) => loc.code == props.locale)
+  locale.value = locales.find((loc) => loc.code == props.locale)
   props.eventor.subscribe(handleEvent);
   userProfile.value = props.authProvider.getUserProfile();
   chatsStore.chats = props.dataProvider.getChats();
-  //selectedChat.value = chatsStore.chats[5]
-  //selectChat({chat: chatsStore.chats[5]})
   channels.value = props.dataProvider.getChannels();
   templates.value = props.dataProvider.getTemplates()
   wabaTemplates.value = props.dataProvider.getWABATemplates()
@@ -873,43 +638,3 @@ onMounted(() => {
   }
 });
 </script>
-
-<style lang="scss">
-
-.tg-message{
-  --chotto-theme-message-right-bg: #DAF0FF;
-  --chotto-theme-message-right-secondary-bg: #bce1fa;
-  --chotto-theme-message-accent-line-color: #37AFE2;
-  --chotto-chat-input-icon-color: #37AFE2;
-}
-
-.wa-message{
-  --chotto-theme-message-right-bg: #D9FDD3;
-  --chotto-theme-message-right-secondary-bg: #bbf3b2;
-  --chotto-theme-message-accent-line-color: #25D366;
-  --chotto-chat-input-icon-color: #25D366;
-}
-
-.chat-info__button-panel {
-  background: none;
-  border: none;
-  padding: 5px;
-  margin-right: 10px;
-  margin-left: 10px;
-  font: inherit;
-  color: inherit;
-  cursor: pointer;
-  outline: none;
-  transition: all 0.2s;
-  border-radius: 50%;
-  width: 35px;
-  height: 35px;
-  display: flex;
-  align-self: center;
-
-  &:hover {
-    background-color: var(--neutral-125);
-    box-shadow: 0 0 0 6px var(--neutral-125);
-  }
-}
-</style>

@@ -106,18 +106,18 @@ import {
   ButtonEmojiPicker,
   ButtonTemplateSelector,
   ChannelSelector
-} from ".";
+} from "..";
 
 import {
   // formatTimestamp,
   // insertDaySeparators,
   playNotificationAudio,
   // sortByTimestamp,
-} from "./helpers";
+} from "../helpers";
 
-import { useChatsStore } from "./stores/useChatStore";
-import { transformToFeed } from "./transform/transformToFeed";
-import { useLocale } from "./locale/useLocale";
+import { useChatsStore } from "../stores/useChatStore";
+import { transformToFeed } from "../transform/transformToFeed";
+import { useLocale } from "../locale/useLocale";
 
 const {locale: currentLocale, locales} = useLocale()
 // const {t} = useLocale()

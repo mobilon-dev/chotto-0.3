@@ -116,17 +116,17 @@ import {
   ButtonContextMenu,
   FeedFoundObjects,
   FeedSearch,
-} from ".";
+} from "..";
 
 import {
   // formatTimestamp,
   // insertDaySeparators,
   playNotificationAudio,
   // sortByTimestamp,
-} from "./helpers";
+} from "../helpers";
 
-import { useChatsStore } from "./stores/useChatStore";
-import { transformToFeed } from "./transform/transformToFeed";
+import { useChatsStore } from "../stores/useChatStore";
+import { transformToFeed } from "../transform/transformToFeed";
 
 
 // Define props
