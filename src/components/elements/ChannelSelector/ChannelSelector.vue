@@ -40,7 +40,7 @@
 import { ref, inject } from 'vue'
 import ButtonContextMenu from '../ButtonContextMenu/ButtonContextMenu.vue';
 import { t } from '../../../locale/useLocale';
-import { useMessage } from '../../../helpers/useMessage';
+import { useMessage } from '../../../hooks/useMessage';
 
 const props = defineProps({
   channels: {

@@ -50,9 +50,9 @@
 
 <script setup lang="ts">
 import { watch, ref, inject, computed } from 'vue';
-import { useMessage } from '../../../helpers/useMessage';
+import { useMessage } from '../../../hooks/useMessage';
 import { IFilePreview } from '../../../types/components';
-import { uploadFile } from '../../../helpers/uploadFile';
+import { uploadFile } from '../../../hooks/uploadFile';
 import FilePreview from '../FilePreview/FilePreview.vue';
 // const emit = defineEmits(['send', 'typing']);
 

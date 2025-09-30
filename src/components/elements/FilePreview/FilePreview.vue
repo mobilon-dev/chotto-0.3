@@ -120,7 +120,7 @@
 import { onMounted, ref, computed, inject } from 'vue';
 import { IFilePreview } from '../../../types/components'
 import ModalFullscreen from '../../atoms/ModalFullscreen/ModalFullscreen.vue';
-import { useTheme } from '../../../helpers/useTheme';
+import { useTheme } from '../../../hooks/useTheme';
 
 const chatAppId = inject('chatAppId')
 

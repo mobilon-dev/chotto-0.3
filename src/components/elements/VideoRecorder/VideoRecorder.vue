@@ -32,12 +32,12 @@
 
 <script setup lang="ts">
 import { watch, ref, inject } from 'vue';
-import { useMessage } from '../../../helpers/useMessage';
-import { uploadFile } from '../../../helpers/uploadFile';
-import { useModalVideoRecorder } from '../../../helpers';
+import { useMessage } from '../../../hooks/useMessage';
+import { uploadFile } from '../../../hooks/uploadFile';
+import { useModalVideoRecorder } from '../../../hooks';
 import FilePreview from '../FilePreview/FilePreview.vue';
 import { IFilePreview } from '../../../types/components';
-import { useTheme } from '../../../helpers/useTheme';
+import { useTheme } from '../../../hooks/useTheme';
 
 const chatAppId = inject('chatAppId')
 const { getMessage, setMessageFile, setRecordingMessage, resetMessageFile } = useMessage(chatAppId as string)

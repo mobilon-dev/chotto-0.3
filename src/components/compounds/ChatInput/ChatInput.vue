@@ -48,10 +48,10 @@
 
 <script setup lang="ts">
 import { unref, ref, watch, nextTick, inject, computed } from 'vue';
-import { useMessage } from '../../../helpers/useMessage';
+import { useMessage } from '../../../hooks/useMessage';
 import { t } from '../../../locale/useLocale';
 import { IFilePreview, IInputMessage } from '../../../types';
-import useImmediateDebouncedRef from '../../../helpers/useImmediateDebouncedRef';
+import useImmediateDebouncedRef from '../../../hooks/useImmediateDebouncedRef';
 import { WhatsAppSendIcon } from './icons';
 
 const emit = defineEmits(['send','typing']);

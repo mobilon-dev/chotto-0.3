@@ -29,7 +29,7 @@
 <script setup>
 import { ref, onMounted, provide, inject } from 'vue';
 import WABATemplateSelector from '../WABATemplateSelector/WABATemplateSelector.vue';
-import { useMessage } from '../../../helpers/useMessage';
+import { useMessage } from '../../../hooks/useMessage';
 
 const props = defineProps({
   wabaTemplates: {

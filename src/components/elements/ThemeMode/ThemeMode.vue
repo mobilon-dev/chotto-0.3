@@ -16,7 +16,7 @@
 <script setup>
 import { onMounted, inject } from 'vue';
 // import { ref } from 'vue';
-import { useTheme } from '../../../helpers/useTheme';
+import { useTheme } from '../../../hooks/useTheme';
 const props = defineProps({
   themes: {
     type: Array,

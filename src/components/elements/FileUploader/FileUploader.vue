@@ -45,8 +45,8 @@
 import { ref, computed, inject, onMounted } from "vue";
 // import ButtonContextMenu from "./ButtonContextMenu.vue";
 import FilePreview from "../FilePreview/FilePreview.vue";
-import { useMessage } from '../../../helpers/useMessage';
-import { uploadFile } from '../../../helpers/uploadFile';
+import { useMessage } from '../../../hooks/useMessage';
+import { uploadFile } from '../../../hooks/uploadFile';
 import { IFilePreview } from "../../../types/components";
 import { FileUploaderIcon } from "./icons";
 

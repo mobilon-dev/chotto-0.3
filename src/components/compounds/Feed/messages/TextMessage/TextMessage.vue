@@ -107,7 +107,7 @@ import { computed, ref, watch } from 'vue'
 import linkifyStr from "linkify-string";
 
 import ContextMenu from "../../../../../components/elements/ContextMenu/ContextMenu.vue";
-import { getStatus, statuses } from "../../../../../helpers";
+import { getStatus, statuses } from "../../../../../hooks";
 import { ITextMessage } from '../../../../../types';
 import BaseReplyMessage from "../BaseReplyMessage/BaseReplyMessage.vue";
 import LinkPreview from "../../../../../components/molecules/LinkPreview/LinkPreview.vue";

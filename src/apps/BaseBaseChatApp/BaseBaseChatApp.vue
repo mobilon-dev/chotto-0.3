@@ -106,7 +106,7 @@ import {
   ButtonEmojiPicker,
   ButtonTemplateSelector,
   ChannelSelector
-} from "..";
+} from "../..";
 
 import {
   // formatTimestamp,
@@ -115,9 +115,9 @@ import {
   // sortByTimestamp,
 } from "../helpers";
 
-import { useChatsStore } from "../stores/useChatStore";
-import { transformToFeed } from "../transform/transformToFeed";
-import { useLocale } from "../locale/useLocale";
+import { useChatsStore } from "../../stores/useChatStore";
+import { transformToFeed } from "../../transform/transformToFeed";
+import { useLocale } from "../../locale/useLocale";
 
 const {locale: currentLocale, locales} = useLocale()
 // const {t} = useLocale()

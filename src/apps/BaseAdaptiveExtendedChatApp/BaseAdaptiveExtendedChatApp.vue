@@ -203,11 +203,9 @@ import {
   BaseContainer,
   AdaptiveExtendedLayout,
   ChatWrapper,
-    useModalSelectUser2,
   // useModalCreateChat,
   // useModalCreateChat2,
   // ButtonContextMenu,
-  useModalCreateDialog,
   ButtonTemplateSelector,
   ButtonWabaTemplateSelector,
   ButtonEmojiPicker,
@@ -216,7 +214,8 @@ import {
   ChannelSelector,
   FeedFoundObjects,
   AudioRecorder,
-} from "..";
+} from "../..";
+import { useModalCreateDialog, useModalSelectUser2 } from "../helpers";
 
 import {
   // formatTimestamp,
@@ -225,10 +224,10 @@ import {
   // sortByTimestamp,
 } from "../helpers";
 
-import { useChatsStore } from "../stores/useChatStore";
-import { transformToFeed } from "../transform/transformToFeed";
-import { useLocale } from "../locale/useLocale";
-import { VideoRecorder } from "..";
+import { useChatsStore } from "../../stores/useChatStore";
+import { transformToFeed } from "../../transform/transformToFeed";
+import { useLocale } from "../../locale/useLocale";
+import { VideoRecorder } from "../..";
 
 const { locale: currentLocale, locales } = useLocale()
 

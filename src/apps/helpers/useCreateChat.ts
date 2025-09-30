@@ -1,10 +1,10 @@
-import { useModal } from './useModal';
-import Modal from '../components/atoms/Modal/Modal.vue';
+import { useModal } from '../../hooks/useModal';
+import Modal from '../../components/atoms/Modal/Modal.vue';
 
 export const useModalCreateChat = async (title: string, theme: string) => {
   const data = await useModal({
     //в component должен быть встроен emit change(key: value)
-    component: import('../components/molecules/CreateChat/CreateChat.vue'),
+    component: import('../../components/molecules/CreateChat/CreateChat.vue'),
     attrs: {
       title, 
     },

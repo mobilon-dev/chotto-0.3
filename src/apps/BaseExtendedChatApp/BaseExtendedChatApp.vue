@@ -163,7 +163,6 @@ import {
   BaseContainer,
   ExtendedLayout,
   ChatWrapper,
-  useModalSelectUser2,
   // useModalCreateChat,
   // useModalCreateChat2,
   // ButtonContextMenu,
@@ -174,7 +173,8 @@ import {
   FeedSearch,
   ChannelSelector,
   FeedFoundObjects,
-} from "..";
+} from "../..";
+import { useModalSelectUser2 } from "../helpers";
 
 import {
   // formatTimestamp,
@@ -183,9 +183,9 @@ import {
   // sortByTimestamp,
 } from "../helpers";
 
-import { useChatsStore } from "../stores/useChatStore";
-import { transformToFeed } from "../transform/transformToFeed";
-import { useLocale } from "../locale/useLocale";
+import { useChatsStore } from "../../stores/useChatStore";
+import { transformToFeed } from "../../transform/transformToFeed";
+import { useLocale } from "../../locale/useLocale";
 
 const { locale: currentLocale, locales } = useLocale()
 

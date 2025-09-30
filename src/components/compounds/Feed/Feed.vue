@@ -107,8 +107,8 @@ import TypingMessage from "./messages/TypingMessage/TypingMessage.vue";
 import BaseReplyMessage from "./messages/BaseReplyMessage/BaseReplyMessage.vue";
 
 import { IFeedObject, IFeedTyping, IFeedUnreadButton } from '../../../types';
-import { throttle } from '../../../helpers/throttle';
-import { useMessage } from '../../../helpers/useMessage';
+import { throttle } from '../../../hooks/throttle';
+import { useMessage } from '../../../hooks/useMessage';
 import MessageKeyboard from '../../blocks/MessageKeyboard/MessageKeyboard.vue';
 import type { IFeedKeyboard } from '../../../types/IFeedKeyboard';
 import FeedKeyboard from '../../elements/FeedKeyboard/FeedKeyboard.vue';

@@ -31,7 +31,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, useId, inject, nextTick} from 'vue';
 import { ContextMenu } from '..';
-import { useTheme } from '../../../helpers/useTheme';
+import { useTheme } from '../../../hooks/useTheme';
 
 const chatAppId = inject('chatAppId')
 const extChatAppId = inject('extChatAppId')

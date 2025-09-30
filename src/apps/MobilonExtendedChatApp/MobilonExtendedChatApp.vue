@@ -276,11 +276,9 @@ import {
   BaseContainer,
   ExtendedLayout,
   ChatWrapper,
-  useModalSelectUser2,
   // useModalCreateChat,
   // useModalCreateChat2,
   // ButtonContextMenu,
-  useModalCreateDialog,
   ButtonTemplateSelector,
   // ButtonWabaTemplateSelector,
   ButtonEmojiPicker,
@@ -297,13 +295,14 @@ import {
   // insertDaySeparators,
   playNotificationAudio,
   // sortByTimestamp,
-} from "../../helpers";
+} from "../helpers";
 
 import { useChatsStore } from "../../stores/useChatStore";
 import { transformToFeed } from "../../transform/transformToFeed";
 // import { useLocale } from "../locale/useLocale";
 // import { VideoRecorder } from "../library";
 import { ButtonCommandsSelector, SplashScreen, ContactInfo } from "../..";
+import { useModalCreateDialog, useModalSelectUser2 } from "../helpers";
 
 // const { locale: currentLocale, locales } = useLocale()
 

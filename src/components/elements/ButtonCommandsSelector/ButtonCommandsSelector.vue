@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 import { useTemplateRef, inject, watch } from 'vue'
-import { useMessage } from '../../../helpers/useMessage';
+import { useMessage } from '../../../hooks/useMessage';
 import { IInputMessage } from '@types';
 import ButtonContextMenu from '../ButtonContextMenu/ButtonContextMenu.vue';
 

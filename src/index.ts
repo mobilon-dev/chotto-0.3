@@ -6,4 +6,4 @@ export * from './components/containers';
 export * from './components/layouts';
 export * from './components/icons';
 
-export * from './helpers';
+export * from './hooks';

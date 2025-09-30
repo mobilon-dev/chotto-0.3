@@ -41,7 +41,7 @@
 <script setup lang="ts">
 import { unref, ref, watch, inject } from "vue";
 import FilePreview from "../FilePreview/FilePreview.vue";
-import { uploadFile } from '../../../helpers/uploadFile';
+import { uploadFile } from '../../../hooks/uploadFile';
 import { IFilePreview } from "../../../types/components";
 const props = defineProps({
   type: {
