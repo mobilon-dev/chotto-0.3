@@ -1,32 +1,32 @@
 .communication-panel {
-  position: relative;
-  display: inline-block;
+  position: var(--chotto-communicationpanel-main-position, relative);
+  display: var(--chotto-communicationpanel-main-display, inline-block);
 }
 
 .channels-panel {
-  display: flex;
+  display: var(--chotto-communicationpanel-channels-display, flex);
   background: var(--chotto-communicationpanel-background, white);
   border: var(--chotto-communicationpanel-border-width, 0.01rem) solid;
   border-radius: var(--chotto-communicationpanel-border-radius, 5px);
   border-color: var(--chotto-communicationpanel-border-color, #EEEEEE);
   padding: var(--chotto-communicationpanel-padding, 0px);
   gap: var(--chotto-communicationpanel-gap, 0);
-  position: relative;
+  position: var(--chotto-communicationpanel-channels-position, relative);
   height: var(--chotto-communicationpanel-height, 40px);
   box-shadow: var(--chotto-communicationpanel-box-shadow, none);
 }
 
 .channel-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: var(--chotto-communicationpanel-btn-display, flex);
+  align-items: var(--chotto-communicationpanel-btn-align-items, center);
+  justify-content: var(--chotto-communicationpanel-btn-justify-content, center);
   padding: var(--chotto-communicationpanel-btn-padding, 0);
   border: var(--chotto-communicationpanel-btn-border, none);
   background: var(--chotto-communicationpanel-btn-background, transparent);
   border-radius: var(--chotto-communicationpanel-btn-border-radius, 0);
   cursor: var(--chotto-communicationpanel-btn-cursor, pointer);
   transition: var(--chotto-communicationpanel-btn-transition, all 0.2s ease);
-  position: relative;
+  position: var(--chotto-communicationpanel-btn-position, relative);
   width: var(--chotto-communicationpanel-btn-width, 50px);
   height: var(--chotto-communicationpanel-btn-height, 100%);
   color: var(--chotto-communicationpanel-btn-color, inherit);
@@ -35,8 +35,8 @@
 }
 
 .channel-btn:not(:last-child)::after {
-  content: '';
-  position: absolute;
+  content: var(--chotto-communicationpanel-btn-divider-content, '');
+  position: var(--chotto-communicationpanel-btn-divider-position, absolute);
   right: var(--chotto-communicationpanel-btn-divider-right, 0);
   top: var(--chotto-communicationpanel-btn-divider-top, 25%);
   bottom: var(--chotto-communicationpanel-btn-divider-bottom, 25%);
@@ -68,7 +68,7 @@
 }
 
 .active-indicator {
-  position: absolute;
+  position: var(--chotto-communicationpanel-active-indicator-position, absolute);
   bottom: var(--chotto-communicationpanel-active-indicator-bottom, 1px);
   left: var(--chotto-communicationpanel-active-indicator-left, 50%);
   transform: var(--chotto-communicationpanel-active-indicator-transform, translateX(-50%));
@@ -81,9 +81,9 @@
 }
 
 .channel-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: var(--chotto-communicationpanel-icon-display, flex);
+  align-items: var(--chotto-communicationpanel-icon-align-items, center);
+  justify-content: var(--chotto-communicationpanel-icon-justify-content, center);
   width: var(--chotto-communicationpanel-icon-width, auto);
   height: var(--chotto-communicationpanel-icon-height, auto);
   color: var(--chotto-communicationpanel-icon-color, inherit);
@@ -92,7 +92,7 @@
 }
 
 .attributes-menu {
-  position: absolute;
+  position: var(--chotto-communicationpanel-menu-position, absolute);
   top: var(--chotto-communicationpanel-menu-top, 108%);
   left: var(--chotto-communicationpanel-menu-left, 0);
   right: var(--chotto-communicationpanel-menu-right, auto);
@@ -123,9 +123,9 @@
 
 .recent-attribute,
 .attribute-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: var(--chotto-communicationpanel-attribute-display, flex);
+  justify-content: var(--chotto-communicationpanel-attribute-justify-content, space-between);
+  align-items: var(--chotto-communicationpanel-attribute-align-items, center);
   padding: var(--chotto-communicationpanel-attribute-padding, 6px 16px);
   cursor: var(--chotto-communicationpanel-attribute-cursor, pointer);
   transition: var(--chotto-communicationpanel-attribute-transition, background 0.2s ease);
@@ -144,8 +144,8 @@
 }
 
 .attribute-info {
-  display: flex;
-  flex-direction: column;
+  display: var(--chotto-communicationpanel-attribute-info-display, flex);
+  flex-direction: var(--chotto-communicationpanel-attribute-info-flex-direction, column);
   gap: var(--chotto-communicationpanel-attribute-info-gap, 0);
   flex: var(--chotto-communicationpanel-attribute-info-flex, 1);
 }
@@ -158,9 +158,9 @@
 }
 
 .channel-icon-small {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: var(--chotto-communicationpanel-icon-small-display, flex);
+  align-items: var(--chotto-communicationpanel-icon-small-align-items, center);
+  justify-content: var(--chotto-communicationpanel-icon-small-justify-content, center);
   width: var(--chotto-communicationpanel-icon-small-width, 20px);
   height: var(--chotto-communicationpanel-icon-small-height, 20px);
   margin-left: var(--chotto-communicationpanel-icon-small-margin-left, 8px);
@@ -178,9 +178,9 @@
   color: var(--chotto-communicationpanel-menu-icon-color, #999);
   font-weight: var(--chotto-communicationpanel-menu-icon-font-weight, bold);
   margin-left: var(--chotto-communicationpanel-menu-icon-margin-left, 8px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: var(--chotto-communicationpanel-menu-icon-display, flex);
+  align-items: var(--chotto-communicationpanel-menu-icon-align-items, center);
+  justify-content: var(--chotto-communicationpanel-menu-icon-justify-content, center);
   font-size: var(--chotto-communicationpanel-menu-icon-font-size, inherit);
   width: var(--chotto-communicationpanel-menu-icon-width, auto);
   height: var(--chotto-communicationpanel-menu-icon-height, auto);
@@ -209,7 +209,7 @@
 }
 
 .sub-menu {
-  position: absolute;
+  position: var(--chotto-communicationpanel-submenu-position, absolute);
   top: var(--chotto-communicationpanel-submenu-top, 0);
   right: var(--chotto-communicationpanel-submenu-right, 100%);
   left: var(--chotto-communicationpanel-submenu-left, auto);
@@ -221,8 +221,8 @@
   min-width: var(--chotto-communicationpanel-submenu-min-width, 250px);
   max-width: var(--chotto-communicationpanel-submenu-max-width, none);
   z-index: var(--chotto-communicationpanel-submenu-z-index, 1001);
-  display: flex;
-  flex-direction: column;
+  display: var(--chotto-communicationpanel-submenu-display, flex);
+  flex-direction: var(--chotto-communicationpanel-submenu-flex-direction, column);
   gap: var(--chotto-communicationpanel-submenu-gap, 0);
   opacity: var(--chotto-communicationpanel-submenu-opacity, 1);
   transform: var(--chotto-communicationpanel-submenu-transform, none);
@@ -241,9 +241,9 @@
 }
 
 .sub-menu-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: var(--chotto-communicationpanel-submenu-item-display, flex);
+  align-items: var(--chotto-communicationpanel-submenu-item-align-items, center);
+  justify-content: var(--chotto-communicationpanel-submenu-item-justify-content, space-between);
   padding: var(--chotto-communicationpanel-submenu-item-padding, 6px 12px);
   cursor: var(--chotto-communicationpanel-submenu-item-cursor, pointer);
   transition: var(--chotto-communicationpanel-submenu-item-transition, background 0.2s ease);
@@ -262,9 +262,9 @@
 }
 
 .sub-menu-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: var(--chotto-communicationpanel-submenu-icon-display, flex);
+  align-items: var(--chotto-communicationpanel-submenu-icon-align-items, center);
+  justify-content: var(--chotto-communicationpanel-submenu-icon-justify-content, center);
   width: var(--chotto-communicationpanel-submenu-icon-width, 20px);
   height: var(--chotto-communicationpanel-submenu-icon-height, 20px);
   flex-shrink: var(--chotto-communicationpanel-submenu-icon-flex-shrink, 0);
@@ -285,6 +285,6 @@
 }
 
 .attributes-menu :deep(.tooltip-wrapper) {
-  display: block;
-  width: 100%;
+  display: var(--chotto-communicationpanel-tooltip-display, block);
+  width: var(--chotto-communicationpanel-tooltip-width, 100%);
 }

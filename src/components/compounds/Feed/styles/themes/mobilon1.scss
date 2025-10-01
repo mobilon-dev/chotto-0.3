@@ -71,10 +71,4 @@
   --chotto-feed-leave-active-transition: all 0.1s;
   --chotto-feed-enter-leave-transform: translateY(10px);
   --chotto-feed-enter-leave-opacity: 0;
-
-  // Совместимость со старыми переменными
-  --chotto-unread-min-width: 20px;
-  --chotto-unread-min-height: 20px;
-  --chotto-unread-font-weight: 600;
-  --chotto-unread-border-radius: 10px;
 }
