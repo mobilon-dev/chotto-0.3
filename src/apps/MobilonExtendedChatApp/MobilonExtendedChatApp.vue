@@ -297,8 +297,8 @@ import {
   // sortByTimestamp,
 } from "../helpers";
 
-import { useChatsStore } from "../../stores/useChatStore";
-import { transformToFeed } from "../../transform/transformToFeed";
+import { useChatsStore } from "../stores/useChatStore";
+import { transformToFeed } from "../transform/transformToFeed";
 // import { useLocale } from "../locale/useLocale";
 // import { VideoRecorder } from "../library";
 import { ButtonCommandsSelector, SplashScreen, ContactInfo } from "../..";
