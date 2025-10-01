@@ -241,7 +241,6 @@
     overflow-y: var(--chotto-wabatemplateselector-preview-container-overflow-y, auto);
     overflow-x: var(--chotto-wabatemplateselector-preview-container-overflow-x, hidden);
     background-color: var(--chotto-wabatemplateselector-preview-container-background-color);
-    background-image: var(--chotto-wabatemplateselector-preview-container-background-image, url('../../../public/chat-background.svg'));
     position: var(--chotto-wabatemplateselector-preview-container-position, relative);
 
     &::-webkit-scrollbar {

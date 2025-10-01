@@ -113,6 +113,7 @@
           <div
             ref="previewContainer"
             class="template-selector__preview-container"
+            :style="{ backgroundImage: `url(${props.chatBackground})` }"
           >
             <div
               v-if="templateParts.length > 0"
@@ -208,6 +209,10 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: false,
+  },
+  chatBackground: {
+    type: String,
+    default: () => new URL('../../compounds/Feed/assets/chat-background.svg', import.meta.url).href
   }
 })
 

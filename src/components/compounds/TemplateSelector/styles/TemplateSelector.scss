@@ -237,8 +237,7 @@
     max-height: var(--chotto-templateselector-preview-container-max-height, 375px);
     overflow-y: var(--chotto-templateselector-preview-container-overflow-y, auto);
     background-color: var(--chotto-theme-secondary-color);
-    background-image: var(--chotto-templateselector-preview-container-background-image, url('../../public/chat-background.svg'));
-
+    
     &::-webkit-scrollbar {
       width: var(--chotto-templateselector-preview-container-webkit-scrollbar-width, 6px);
       background-color: var(--chotto-theme-scrollbar-bg);

@@ -5,7 +5,6 @@
   flex-direction: var(--chotto-feed-flex-direction, column);
   overflow-y: var(--chotto-feed-overflow-y, auto);
   overflow-x: var(--chotto-feed-overflow-x, hidden);
-  background-image: var(--chotto-feed-background-image, url('../../public/chat-background.svg'));
   scroll-behavior: var(--chotto-feed-scroll-behavior, smooth);
   padding: var(--chotto-feed-padding, 10px 30px 10px 30px);
   position: var(--chotto-feed-position, relative);

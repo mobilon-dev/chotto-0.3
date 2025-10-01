@@ -121,7 +121,10 @@
           :id="'template-selector-third-col-' + chatAppId"
           class="template-selector__third-col"
         >
-          <div class="template-selector__preview-container">
+          <div
+            class="template-selector__preview-container"
+            :style="{ backgroundImage: `url(${props.chatBackground})` }"
+          >
             <div
               v-if="selectedTemplate"
               class="template-selector__preview"
@@ -160,6 +163,7 @@
 
 import { computed, ref, onMounted, inject, unref } from 'vue'
 import { useMessage } from '../../../hooks/useMessage';
+
 const props = defineProps({
   templates: {
     type: Array,
@@ -175,6 +179,10 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: false,
+  },
+  chatBackground: {
+    type: String,
+    default: () => new URL('../Feed/assets/chat-background.svg', import.meta.url).href
   }
 })
 

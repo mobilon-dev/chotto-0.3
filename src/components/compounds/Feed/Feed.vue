@@ -4,6 +4,7 @@
     :id="'feed-container-' + chatAppId"
     ref="refFeed"
     class="message-feed"
+    :style="{ backgroundImage: `url(${props.chatBackground})` }"
     @scroll="throttledScrollTopCheck()"
     @mousedown="startScrollWatch"
     @mouseup="stopScrollWatch"
@@ -113,19 +114,6 @@ import MessageKeyboard from '../../blocks/MessageKeyboard/MessageKeyboard.vue';
 import type { IFeedKeyboard } from '../../../types/IFeedKeyboard';
 import FeedKeyboard from '../../elements/FeedKeyboard/FeedKeyboard.vue';
 
-const trackingObjects = ref();
-const refFeed = ref();
-const keyboardRef = ref();
-const isShowButton = ref(false)
-const isKeyboardPlace = ref(false)
-const allowLoadMoreTop = ref(false)
-const allowLoadMoreBottom = ref(false)
-const movingDown = ref(false)
-const isScrollByMouseButton = ref(false)
-const showStickyDate = ref(false)
-const stickyDateText = ref('')
-let stickyHideTimer = null as unknown as number | null
-
 const props = defineProps({
   objects: {
     type: Array <IFeedObject>,
@@ -171,8 +159,25 @@ const props = defineProps({
     type: String as () => 'left' | 'center' | 'right',
     default: 'right',
     validator: (value: string) => ['left', 'center', 'right'].includes(value)
+  },
+  chatBackground: {
+    type: String,
+    default: () => new URL('./assets/chat-background.svg', import.meta.url).href
   }
 });
+
+const trackingObjects = ref();
+const refFeed = ref();
+const keyboardRef = ref();
+const isShowButton = ref(false)
+const isKeyboardPlace = ref(false)
+const allowLoadMoreTop = ref(false)
+const allowLoadMoreBottom = ref(false)
+const movingDown = ref(false)
+const isScrollByMouseButton = ref(false)
+const showStickyDate = ref(false)
+const stickyDateText = ref('')
+let stickyHideTimer = null as unknown as number | null
 
 const chatAppId = inject('chatAppId')
 const { setReply, getMessage, resetReply } = useMessage(chatAppId as string)
