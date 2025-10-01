@@ -1,9 +1,9 @@
 .chat-list {
-  background-color: transparent;
-  flex-grow: 1;
-  display: flex;
-  align-items: stretch;
-  flex-direction: column;
+  background-color: var(--chotto-chatlist-background-color, transparent);
+  flex-grow: var(--chotto-chatlist-flex-grow, 1);
+  display: var(--chotto-chatlist-display, flex);
+  align-items: var(--chotto-chatlist-align-items, stretch);
+  flex-direction: var(--chotto-chatlist-flex-direction, column);
   height: var(--chotto-chatlist-height, 70%);
 
   &__filter {
@@ -11,11 +11,11 @@
   }
 
   &__items {
-    display: block;
-    scroll-behavior: smooth;
-    height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
+    display: var(--chotto-chatlist-items-display, block);
+    scroll-behavior: var(--chotto-chatlist-items-scroll-behavior, smooth);
+    height: var(--chotto-chatlist-items-height, 100%);
+    overflow-y: var(--chotto-chatlist-items-overflow-y, auto);
+    overflow-x: var(--chotto-chatlist-items-overflow-x, hidden);
     padding: var(--chotto-chatlist-items-padding);
 
     &::-webkit-scrollbar {
@@ -36,8 +36,8 @@
   &__fixed-items-top,
   &__fixed-items-bottom {
     z-index: var(--chotto-chatlist-fixed-z-index, 100);
-    display: block;
-    position: sticky;
+    display: var(--chotto-chatlist-fixed-display, block);
+    position: var(--chotto-chatlist-fixed-position, sticky);
     background-color: var(--chotto-chatlist-fixed-background-color);
   }
 
@@ -58,34 +58,34 @@
   }
 
   &__title-container {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    position: var(--chotto-chatlist-title-container-position, relative);
+    display: var(--chotto-chatlist-title-container-display, flex);
+    justify-content: var(--chotto-chatlist-title-container-justify, space-between);
+    align-items: var(--chotto-chatlist-title-container-align, center);
     column-gap: var(--chotto-chatlist-title-column-gap, 50px);
     padding: var(--chotto-chatlist-title-container-padding);
   }
 
   &__context-menu {
-    position: absolute;
+    position: var(--chotto-chatlist-context-menu-position, absolute);
     top: var(--chotto-chatlist-context-menu-top, 46px);
     right: var(--chotto-chatlist-context-menu-right, 20px);
   }
 
   &__button-up {
-    position: absolute;
+    position: var(--chotto-chatlist-button-position, absolute);
     z-index: var(--chotto-chatlist-button-z-index, 100);
     bottom: var(--chotto-chatlist-button-bottom, 15px);
     right: var(--chotto-chatlist-button-right, 25px);
-    margin-left: auto;
-    border: none;
+    margin-left: var(--chotto-chatlist-button-margin-left, auto);
+    border: var(--chotto-chatlist-button-border, none);
     min-width: var(--chotto-chatlist-button-min, 40px);
     min-height: var(--chotto-chatlist-button-min, 40px);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+    border-radius: var(--chotto-chatlist-button-border-radius, 50%);
+    display: var(--chotto-chatlist-button-display, flex);
+    justify-content: var(--chotto-chatlist-button-justify, center);
+    align-items: var(--chotto-chatlist-button-align, center);
+    cursor: var(--chotto-chatlist-button-cursor, pointer);
     background-color: var(--chotto-theme-button-color-disabled);
   }
 
@@ -96,15 +96,15 @@
 }
 
 .menu-enter-active {
-  transition: all var(--chotto-chatlist-menu-enter-duration, 0.1s) ease-out;
+  transition: var(--chotto-chatlist-menu-enter-transition, all var(--chotto-chatlist-menu-enter-duration, 0.1s) ease-out);
 }
 
 .menu-leave-active {
-  transition: all var(--chotto-chatlist-menu-leave-duration, 0.1s) cubic-bezier(1, 0.5, 0.8, 1);
+  transition: var(--chotto-chatlist-menu-leave-transition, all var(--chotto-chatlist-menu-leave-duration, 0.1s) cubic-bezier(1, 0.5, 0.8, 1));
 }
 
 .menu-enter-from,
 .menu-leave-to {
-  transform: scale(var(--chotto-chatlist-menu-scale, 0.9));
-  opacity: 0;
+  transform: var(--chotto-chatlist-menu-transform, scale(var(--chotto-chatlist-menu-scale, 0.9)));
+  opacity: var(--chotto-chatlist-menu-opacity, 0);
 }

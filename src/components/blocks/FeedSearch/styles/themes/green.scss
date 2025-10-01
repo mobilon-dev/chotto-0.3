@@ -1,14 +1,31 @@
 [data-theme="green"] {
+  // Container
+  --chotto-feedsearch-container-display: flex;
+  --chotto-feedsearch-container-position: relative;
   --chotto-feedsearch-container-margin-top: 10px;
   --chotto-feedsearch-container-padding-left: 12px;
   --chotto-feedsearch-container-padding-right: 12px;
   --chotto-feedsearch-container-margin-bottom: 10px;
+  
+  // Icon
+  --chotto-feedsearch-icon-position: absolute;
   --chotto-feedsearch-icon-right: 20px;
   --chotto-feedsearch-icon-top: 11px;
+  --chotto-feedsearch-icon-hover-cursor: pointer;
+  
+  // Input
+  --chotto-feedsearch-input-width: 100%;
+  --chotto-feedsearch-input-transition: border-color var(--chotto-input-transition-duration);
   --chotto-feedsearch-input-margin-left: 10px;
+  --chotto-feedsearch-input-focus-outline: none;
+  
+  // Animations
   --chotto-feedsearch-enter-duration: 2s;
   --chotto-feedsearch-leave-duration: 2s;
   --chotto-feedsearch-scale: 0.9;
+  --chotto-feedsearch-enter-transition: all var(--chotto-feedsearch-enter-duration, 2s) ease-out;
+  --chotto-feedsearch-leave-transition: all var(--chotto-feedsearch-leave-duration, 2s) cubic-bezier(1, 0.5, 0.8, 1);
+  --chotto-feedsearch-transform: scale(var(--chotto-feedsearch-scale, 0.9));
+  --chotto-feedsearch-opacity: 0;
 }
-
 

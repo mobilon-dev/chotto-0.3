@@ -1,10 +1,33 @@
 [data-theme="dark"] {
-  --chotto-chatpanel-border-radius: 10px;
+  // Main container
+  --chotto-chatpanel-display: flex;
+  --chotto-chatpanel-align-items: stretch;
+  --chotto-chatpanel-flex-direction: column;
+  --chotto-chatpanel-height: 100%;
+  
+  // Header
+  --chotto-chatpanel-header-display: flex;
+  --chotto-chatpanel-header-gap: 6px;
+  
+  // Title container
+  --chotto-chatpanel-title-container-display: flex;
+  --chotto-chatpanel-title-container-justify: space-between;
+  --chotto-chatpanel-title-container-align: center;
+  
+  // Title
+  --chotto-chatpanel-title-letter-spacing: 0.5px;
+  
+  // Button close
+  --chotto-chatpanel-button-close-bg: transparent;
+  --chotto-chatpanel-button-close-border: none;
+  --chotto-chatpanel-button-close-cursor: pointer;
+  
+  // Scrollbar
   --chotto-chatpanel-scrollbar-width: 6px;
   --chotto-chatpanel-scrollbar-thumb-radius: 10px;
   --chotto-chatpanel-scrollbar-track-radius: 10px;
-  --chotto-chatpanel-header-gap: 6px;
-  --chotto-chatpanel-title-letter-spacing: 0.5px;
+  
+  // Border radius
+  --chotto-chatpanel-border-radius: 10px;
 }
-
 

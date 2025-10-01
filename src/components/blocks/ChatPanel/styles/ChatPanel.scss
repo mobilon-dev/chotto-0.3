@@ -1,8 +1,8 @@
 .chat-panel {
-  display: flex;
-  align-items: stretch;
-  flex-direction: column;
-  height: 100%;
+  display: var(--chotto-chatpanel-display, flex);
+  align-items: var(--chotto-chatpanel-align-items, stretch);
+  flex-direction: var(--chotto-chatpanel-flex-direction, column);
+  height: var(--chotto-chatpanel-height, 100%);
 
   &::-webkit-scrollbar {
     width: var(--chotto-chatpanel-scrollbar-width, 6px);
@@ -19,14 +19,14 @@
   }
 
   &__header {
-    display: flex;
+    display: var(--chotto-chatpanel-header-display, flex);
     gap: var(--chotto-chatpanel-header-gap, 6px);
   }
 
   &__title-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: var(--chotto-chatpanel-title-container-display, flex);
+    justify-content: var(--chotto-chatpanel-title-container-justify, space-between);
+    align-items: var(--chotto-chatpanel-title-container-align, center);
   }
 
   &__title {
@@ -38,9 +38,9 @@
   }
 
   &__button-close {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
+    background-color: var(--chotto-chatpanel-button-close-bg, transparent);
+    border: var(--chotto-chatpanel-button-close-border, none);
+    cursor: var(--chotto-chatpanel-button-close-cursor, pointer);
 
     span {
       font-size: var(--chotto-theme-button-icon-size);

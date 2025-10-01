@@ -1,12 +1,12 @@
 .feed-found-objects{
 
   &__items {
-    display: flex;
-    flex-direction: column;
-    scroll-behavior: smooth;
-    overflow-y: auto;
-    overflow-x: hidden;
-    height: 100%;
+    display: var(--chotto-feedfoundobjects-items-display, flex);
+    flex-direction: var(--chotto-feedfoundobjects-items-flex-direction, column);
+    scroll-behavior: var(--chotto-feedfoundobjects-items-scroll-behavior, smooth);
+    overflow-y: var(--chotto-feedfoundobjects-items-overflow-y, auto);
+    overflow-x: var(--chotto-feedfoundobjects-items-overflow-x, hidden);
+    height: var(--chotto-feedfoundobjects-items-height, 100%);
     &::-webkit-scrollbar {
       width: var(--chotto-feedfoundobjects-scrollbar-width, 6px);
       background-color: var(--chotto-theme-scrollbar-bg);
@@ -23,12 +23,12 @@
   }
 
   &__placeholder{
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    height: var(--chotto-feedfoundobjects-placeholder-height, 100%);
+    display: var(--chotto-feedfoundobjects-placeholder-display, flex);
+    flex-direction: var(--chotto-feedfoundobjects-placeholder-flex-direction, column);
+    justify-content: var(--chotto-feedfoundobjects-placeholder-justify, center);
     p{
-      text-align: center;
+      text-align: var(--chotto-feedfoundobjects-placeholder-p-text-align, center);
     }
   }
 }
