@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
  
 import ButtonWabaTemplateSelector from '../ButtonWabaTemplateSelector.vue';
-import {wabaTemplates, groupTemplates} from '../../../../data';
+import {wabaTemplates, groupTemplates} from '../../../../apps/data';
  
   
 const meta: Meta<typeof ButtonWabaTemplateSelector> = {

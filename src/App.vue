@@ -23,7 +23,7 @@ import ChatApp from './apps/MobilonExtendedChatApp/MobilonExtendedChatApp.vue'
 import {
   messages, chats, channels,
   sidebarItems, userProfile, users, templates, groupTemplates, wabaTemplates,
-} from './data';
+} from './apps/data';
 
 // Mock data
 const data3 = {

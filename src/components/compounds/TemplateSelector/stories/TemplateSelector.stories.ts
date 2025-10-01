@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
  
 import TemplateSelector from '../TemplateSelector.vue';
-import {templates, groupTemplates} from '../../../../data';
+import {templates, groupTemplates} from '../../../../apps/data';
 
 const meta: Meta<typeof TemplateSelector> = {
   component: TemplateSelector,
