@@ -1,198 +1,174 @@
-/*
-  TypeScript types for Chotto theme CSS variables
-*/
+/**
+ * Цветовая палитра для тем Chotto
+ */
+export interface ChottoColorPalette {
+  // Azure colors
+  '--azure-500': string;
+  '--azure-600': string;
 
-// Available theme names
-export type ThemeName = 'dark' | 'default' | 'green' | 'mobilon1';
+  // Emerald colors
+  '--emerald-50': string;
+  '--emerald-100': string;
+  '--emerald-200': string;
+  '--emerald-300': string;
+  '--emerald-400': string;
+  '--emerald-450': string;
+  '--emerald-500': string;
+  '--emerald-600': string;
+  '--emerald-700': string;
+  '--emerald-800': string;
+  '--emerald-900': string;
+  '--emerald-950': string;
 
-// Base color palette types
-export type ColorValue = string;
-export type FontFamily = string;
-export type FontSize = string;
-export type FontWeight = string | number;
-export type BorderRadius = string;
-export type BoxShadow = string;
-export type Margin = string;
-export type Padding = string;
-export type Width = string;
-export type Height = string;
+  // Neutral colors
+  '--neutral-50': string;
+  '--neutral-75': string;
+  '--neutral-90': string;
+  '--neutral-100': string;
+  '--neutral-125': string;
+  '--neutral-150': string;
+  '--neutral-200': string;
+  '--neutral-250': string;
+  '--neutral-300': string;
+  '--neutral-400': string;
+  '--neutral-500': string;
+  '--neutral-550': string;
+  '--neutral-600': string;
+  '--neutral-700': string;
+  '--neutral-800': string;
+  '--neutral-850': string;
+  '--neutral-900': string;
+  '--neutral-950': string;
 
-// Chotto theme CSS variables interface
+  // Red colors
+  '--p-red-50': string;
+  '--p-red-100': string;
+  '--p-red-200': string;
+  '--p-red-300': string;
+  '--p-red-400': string;
+  '--p-red-500': string;
+  '--p-red-550': string;
+  '--p-red-600': string;
+  '--p-red-700': string;
+  '--p-red-800': string;
+  '--p-red-900': string;
+  '--p-red-950': string;
+
+  // Coral colors
+  '--p-coral-500': string;
+
+  // Default colors
+  '--default-white': string;
+}
+
+/**
+ * CSS переменные для тем Chotto
+ */
 export interface ChottoThemeVariables {
-  // Container
-  '--chotto-theme-font-family': FontFamily;
-  '--chotto-theme-container-font-weight': FontWeight;
+  // Основные цвета
+  '--chotto-theme-primary-color': string;
+  '--chotto-theme-secondary-color': string;
+  '--chotto-theme-primary-text-color': string;
+  '--chotto-theme-secondary-text-color': string;
+
+  // Семантические цвета
+  '--chotto-theme-shadow-color': string;
+  '--chotto-theme-shadow-light-color': string;
+  '--chotto-theme-status-color-received': string;
+  '--chotto-theme-status-color-read': string;
+
+  // Типографика
+  '--chotto-theme-font-family': string;
+  '--chotto-theme-header-font': string;
+  '--chotto-theme-header-font-size': string;
+  '--chotto-theme-header-font-color': string;
+  '--chotto-theme-title-font-size': string;
+  '--chotto-theme-text-font-size': string;
+  '--chotto-theme-additional-text-font-size': string;
+  '--chotto-theme-small-text-font-size': string;
+  '--chotto-theme-small-text-font-weight': string | number;
+  '--chotto-theme-context-menu-font-size': string;
+  '--chotto-theme-header-font-weight': string | number;
+  '--chotto-theme-title-font-weight': string | number;
+  '--chotto-theme-container-font-weight': string | number;
+
+  // Размеры иконок
+  '--chotto-theme-button-icon-size': string;
+  '--chotto-theme-text-icon-size': string;
+  '--chotto-theme-small-text-icon-size': string;
+
+  // Контейнеры
   '--chotto-theme-container-borders': string;
+  '--chotto-theme-float-container-border-radius-header': string;
+  '--chotto-theme-float-container-box-shadow': string;
+  '--chotto-theme-float-container-bg-header': string;
 
-  // Float Container
-  '--chotto-theme-float-container-border-radius-header': BorderRadius;
-  '--chotto-theme-float-container-box-shadow': BoxShadow;
-  '--chotto-theme-float-container-bg-header': ColorValue;
+  // Модальные окна
+  '--chotto-theme-modal-padding': string;
+  '--chotto-theme-modal-border-radius': string;
+  '--chotto-theme-modal-mask-background': string;
+  '--chotto-theme-modal-overlay-shadow': string;
+  '--chotto-theme-modal-bg': string;
 
-  // Modal Container
-  '--chotto-theme-modal-padding': Padding;
-  '--chotto-theme-modal-border-radius': BorderRadius;
-  '--chotto-theme-modal-mask-background': ColorValue;
-  '--chotto-theme-modal-overlay-shadow': BoxShadow;
-  '--chotto-theme-modal-bg': ColorValue;
+  // Макеты
+  '--chotto-theme-layout-extended-third-col-bg': string;
+  '--chotto-theme-layout-extended-second-col-bg': string;
+  '--chotto-theme-layout-extended-first-col-bg': string;
+  '--chotto-theme-layout-extended-first-col-width': string;
+  '--chotto-theme-layout-extended-second-col-width': string;
+  '--chotto-theme-layout-base-second-col-bg': string;
+  '--chotto-theme-layout-base-first-col-bg': string;
+  '--chotto-theme-layout-feed-bg': string;
 
-  // Extended Layout
-  '--chotto-theme-layout-extended-third-col-bg': ColorValue;
-  '--chotto-theme-layout-extended-second-col-bg': ColorValue;
-  '--chotto-theme-layout-extended-first-col-bg': ColorValue;
-  '--chotto-theme-layout-extended-first-col-width': Width;
-  '--chotto-theme-layout-extended-second-col-width': Width;
+  // Сообщения
+  '--chotto-theme-message-right-bg': string;
+  '--chotto-theme-message-right-secondary-bg': string;
+  '--chotto-theme-message-left-bg': string;
+  '--chotto-theme-message-left-secondary-bg': string;
+  '--chotto-theme-message-accent-line-color': string;
+  '--chotto-theme-message-focused-color': string;
+  '--chotto-theme-message-margin': string;
+  '--chotto-theme-message-type-icon-bg-color': string;
+  '--chotto-theme-message-type-icon-color': string;
+  '--chotto-theme-message-popup-info-bg-color': string;
+  '--chotto-theme-message-popup-info-color': string;
+  '--chotto-theme-message-border-radius': string;
 
-  // Base Layout
-  '--chotto-theme-layout-base-second-col-bg': ColorValue;
-  '--chotto-theme-layout-base-first-col-bg': ColorValue;
+  // Аудио сообщения
+  '--chotto-theme-audio-message-transcript-delimiter-color': string;
+  '--chotto-theme-audio-message-pbc-background-color': string;
+  '--chotto-theme-audio-message-pb-background-color': string;
 
-  // Feed Layout
-  '--chotto-theme-layout-feed-bg': ColorValue;
+  // Звонки
+  '--chotto-theme-call-message-phone-icon-missed-color': string;
 
-  // Messages
-  '--chotto-theme-message-right-bg': ColorValue;
-  '--chotto-theme-message-right-secondary-bg': ColorValue;
-  '--chotto-theme-message-left-bg': ColorValue;
-  '--chotto-theme-message-left-secondary-bg': ColorValue;
-  '--chotto-theme-message-accent-line-color': ColorValue;
-  '--chotto-theme-message-focused-color': ColorValue;
-  '--chotto-theme-message-margin': Margin;
-  '--chotto-theme-message-type-icon-bg-color': ColorValue;
-  '--chotto-theme-message-type-icon-color': ColorValue;
-  '--chotto-theme-message-popup-info-bg-color': ColorValue;
-  '--chotto-theme-message-popup-info-color': ColorValue;
-  '--chotto-theme-message-border-radius': BorderRadius;
+  // Системные сообщения
+  '--chotto-theme-system-message-bg-color': string;
 
-  // Audio Message
-  '--chotto-theme-audio-message-transcript-delimiter-color': ColorValue;
-  '--chotto-theme-audio-message-pbc-background-color': ColorValue;
-  '--chotto-theme-audio-message-pb-background-color': ColorValue;
+  // Кнопки
+  '--chotto-theme-button-color-active': string;
+  '--chotto-theme-button-color-hover': string;
+  '--chotto-theme-button-color-disabled': string;
+  '--chotto-theme-action-button-color-active': string;
+  '--chotto-theme-action-button-color-hover': string;
+  '--chotto-theme-action-button-color-disabled': string;
 
-  // Call Message
-  '--chotto-theme-call-message-phone-icon-missed-color': ColorValue;
+  // Состояния элементов
+  '--chotto-theme-item-background-color-focus': string;
+  '--chotto-theme-item-background-color-hover': string;
+  '--chotto-theme-item-border-color': string;
 
-  // System Message
-  '--chotto-theme-system-message-bg-color': ColorValue;
+  // Непрочитанные сообщения
+  '--chotto-theme-unread-background-color': string;
+  '--chotto-theme-unread-text-color': string;
 
-  // Primary Colors
-  '--chotto-theme-primary-color': ColorValue;
-  '--chotto-theme-secondary-color': ColorValue;
+  // Полосы прокрутки
+  '--chotto-theme-scrollbar-bg': string;
+  '--chotto-theme-scrollbar-thumb-bg': string;
 
-  // Text Colors
-  '--chotto-theme-primary-text-color': ColorValue;
-  '--chotto-theme-secondary-text-color': ColorValue;
-
-  // Typography
-  '--chotto-theme-header-font': FontFamily;
-  '--chotto-theme-header-font-size': FontSize;
-  '--chotto-theme-title-font-size': FontSize;
-  '--chotto-theme-text-font-size': FontSize;
-  '--chotto-theme-additional-text-font-size': FontSize;
-  '--chotto-theme-small-text-font-size': FontSize;
-
-  // Font Weights
-  '--chotto-theme-header-font-weight': FontWeight;
-  '--chotto-theme-title-font-weight': FontWeight;
-
-  // Icon Sizes
-  '--chotto-theme-button-icon-size': FontSize;
-  '--chotto-theme-text-icon-size': FontSize;
-  '--chotto-theme-small-text-icon-size': FontSize;
-
-  // Button Colors
-  '--chotto-theme-button-color-active': ColorValue;
-  '--chotto-theme-button-color-hover': ColorValue;
-  '--chotto-theme-button-color-disabled': ColorValue;
-
-  // Action Button Colors
-  '--chotto-theme-action-button-color-active': ColorValue;
-  '--chotto-theme-action-button-color-hover': ColorValue;
-  '--chotto-theme-action-button-color-disabled': ColorValue;
-
-  // Shadows
-  '--chotto-theme-shadow-color': ColorValue;
-  '--chotto-theme-shadow-light-color': ColorValue;
-
-  // Status Colors
-  '--chotto-theme-status-color-received': ColorValue;
-  '--chotto-theme-status-color-read': ColorValue;
-
-  // Item States
-  '--chotto-theme-item-background-color-focus': ColorValue;
-  '--chotto-theme-item-background-color-hover': ColorValue;
-  '--chotto-theme-item-border-color': ColorValue;
-
-  // Unread States
-  '--chotto-theme-unread-background-color': ColorValue;
-  '--chotto-theme-unread-text-color': ColorValue;
-
-  // Scroll Bar
-  '--chotto-theme-scrollbar-bg': ColorValue;
-  '--chotto-theme-scrollbar-thumb-bg': ColorValue;
-
-  // Optional variables (only in some themes)
-  '--chotto-theme-header-font-color'?: ColorValue;
-  '--chotto-theme-small-text-font-weight'?: FontWeight;
-  '--chotto-theme-context-menu-font-size'?: FontSize;
-  '--chotto-theme-danger-button-color-active'?: ColorValue;
-  '--chotto-theme-danger-button-color-hover'?: ColorValue;
-  '--chotto-theme-danger-button-color-disabled'?: ColorValue;
+  // Дополнительные кнопки
+  '--chotto-theme-danger-button-color-active': string;
+  '--chotto-theme-danger-button-color-hover': string;
+  '--chotto-theme-danger-button-color-disabled': string;
 }
 
-// Theme configuration interface
-export interface ThemeConfig {
-  name: ThemeName;
-  displayName: string;
-  description: string;
-  variables: ChottoThemeVariables;
-}
-
-// Theme registry type
-export type ThemeRegistry = Record<ThemeName, ThemeConfig>;
-
-// Utility type for CSS variable names
-export type ChottoThemeVariableName = keyof ChottoThemeVariables;
-
-// Utility type for required variables (all themes must have)
-export type RequiredChottoThemeVariables = Omit<ChottoThemeVariables, 
-  '--chotto-theme-header-font-color' |
-  '--chotto-theme-small-text-font-weight' |
-  '--chotto-theme-context-menu-font-size' |
-  '--chotto-theme-danger-button-color-active' |
-  '--chotto-theme-danger-button-color-hover' |
-  '--chotto-theme-danger-button-color-disabled'
->;
-
-// Utility type for optional variables (only in some themes)
-export type OptionalChottoThemeVariables = Pick<ChottoThemeVariables,
-  '--chotto-theme-header-font-color' |
-  '--chotto-theme-small-text-font-weight' |
-  '--chotto-theme-context-menu-font-size' |
-  '--chotto-theme-danger-button-color-active' |
-  '--chotto-theme-danger-button-color-hover' |
-  '--chotto-theme-danger-button-color-disabled'
->;
-
-// Theme validation result
-export interface ThemeValidationResult {
-  theme: ThemeName;
-  isValid: boolean;
-  missingVariables: ChottoThemeVariableName[];
-  extraVariables: ChottoThemeVariableName[];
-  syntaxErrors: Array<{
-    variable: ChottoThemeVariableName;
-    error: string;
-    line: number;
-  }>;
-}
-
-// Theme validation summary
-export interface ThemeValidationSummary {
-  totalThemes: number;
-  validThemes: number;
-  totalVariables: number;
-  totalErrors: number;
-  totalWarnings: number;
-  results: ThemeValidationResult[];
-}

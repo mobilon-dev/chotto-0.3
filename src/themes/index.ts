@@ -6,30 +6,7 @@
  */
 
 // Types
-export type {
-  ThemeName,
-  ChottoThemeVariables,
-  ThemeConfig,
-  ThemeRegistry,
-  ChottoThemeVariableName,
-  RequiredChottoThemeVariables,
-  OptionalChottoThemeVariables,
-  ThemeValidationResult,
-  ThemeValidationSummary
-} from './types';
-
-// Constants
-export {
-  THEME_NAMES,
-  THEME_DISPLAY_NAMES,
-  THEME_DESCRIPTIONS,
-  THEME_VARIABLE_PREFIX,
-  REQUIRED_THEME_VARIABLES,
-  ALL_THEME_VARIABLES,
-  THEME_FILE_PATHS,
-  DEFAULT_THEME,
-  THEME_VALIDATION_CONFIG
-} from './constants';
+export type { ChottoThemeVariables } from './types';
 
 // Re-export theme styles
 import './index.scss';
