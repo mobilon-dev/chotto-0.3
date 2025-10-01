@@ -1,23 +1,28 @@
 .tooltip__text {
-  max-width: 372px;
-  color: var(--neutral-850);
-  text-align: left;
-  padding: 5px 9px 5px 12px;
-  border-radius: 5px;
-  background: var(--default-white);
-  top: 0;
-  left: 0;
-  position: absolute;
-  z-index: 99999;
-  font-family: var(--chotto-theme-font-family);
-  font-weight: var(--chotto-theme-container-font-weight);
-  border: 1px solid var(--neutral-550);
-  font-size: 14px;
+  max-width: var(--chotto-tooltip-max-width, 372px);
+  color: var(--chotto-tooltip-text-color, var(--neutral-850));
+  text-align: var(--chotto-tooltip-text-align, left);
+  padding: var(--chotto-tooltip-padding, 5px 9px 5px 12px);
+  border-radius: var(--chotto-tooltip-border-radius, 5px);
+  background: var(--chotto-tooltip-bg-color, var(--default-white));
+  top: var(--chotto-tooltip-top, 0);
+  left: var(--chotto-tooltip-left, 0);
+  position: var(--chotto-tooltip-position, absolute);
+  z-index: var(--chotto-tooltip-z-index, 99999);
+  font-family: var(--chotto-tooltip-font-family, var(--chotto-theme-font-family));
+  font-weight: var(--chotto-tooltip-font-weight, var(--chotto-theme-container-font-weight));
+  border: var(--chotto-tooltip-border, 1px solid var(--neutral-550));
+  font-size: var(--chotto-tooltip-font-size, 14px);
+  line-height: var(--chotto-tooltip-line-height, inherit);
+  box-shadow: var(--chotto-tooltip-box-shadow, none);
+  opacity: var(--chotto-tooltip-opacity, 1);
+  transform: var(--chotto-tooltip-transform, none);
+  transition: var(--chotto-tooltip-transition, opacity 0.5s ease);
 }
 
 .tooltip-wrapper {
-  position: relative;
-  width: fit-content;
+  position: var(--chotto-tooltip-wrapper-position, relative);
+  width: var(--chotto-tooltip-wrapper-width, fit-content);
 }
 
 // .tooltip__text::after {
@@ -54,10 +59,17 @@
 
 .v-enter-active,
 .v-leave-active {
-  transition: opacity 0.5s ease;
+  transition: var(--chotto-tooltip-transition, opacity 0.5s ease);
 }
 
 .v-enter-from,
 .v-leave-to {
-  opacity: 0;
+  opacity: var(--chotto-tooltip-enter-opacity, 0);
+  transform: var(--chotto-tooltip-enter-transform, none);
+}
+
+.v-enter-to,
+.v-leave-from {
+  opacity: var(--chotto-tooltip-enter-to-opacity, 1);
+  transform: var(--chotto-tooltip-enter-to-transform, none);
 }
