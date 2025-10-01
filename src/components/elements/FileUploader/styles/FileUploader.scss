@@ -1,5 +1,5 @@
-.file-uploader{
-  &__trigger{
+.file-uploader {
+  &__trigger {
     padding: var(--chotto-fileuploader-trigger-padding);
     display: var(--chotto-fileuploader-trigger-display, block);
     cursor: var(--chotto-fileuploader-trigger-cursor, pointer);
@@ -7,7 +7,7 @@
     color: var(--chotto-fileuploader-trigger-color);
   }
 
-  &__trigger:hover{
+  &__trigger:hover {
     color: var(--chotto-fileuploader-trigger-hover-color);
   }
 
@@ -16,7 +16,4 @@
     cursor: var(--chotto-fileuploader-disabled-cursor, auto);
     pointer-events: var(--chotto-fileuploader-disabled-pointer-events, none);
   }
-
 }
-
-
