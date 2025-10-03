@@ -93,13 +93,13 @@ src/components/
 ├── atoms/                    # Атомарные компоненты (исключаются из проверки)
 ├── blocks/                   # Блочные компоненты
 │   ├── ComponentName/
-│   │   ├── types.ts         # Интерфейс ComponentNameThemeCSSVariables
 │   │   ├── ComponentName.vue
 │   │   └── styles/
-│   │       ├── ComponentName.scss    # Основные стили (проверяется на хардкод)
-│   │       └── themes/               # Темы компонента (если есть)
-│   │           ├── light.scss        # CSS переменные для светлой темы
-│   │           ├── dark.scss         # CSS переменные для темной темы
+│   │       ├── types.ts             # Интерфейс ComponentNameThemeCSSVariables
+│   │       ├── ComponentName.scss   # Основные стили (проверяется на хардкод)
+│   │       └── themes/              # Темы компонента (если есть)
+│   │           ├── light.scss       # CSS переменные для светлой темы
+│   │           ├── dark.scss        # CSS переменные для темной темы
 │   │           └── ...
 ├── compounds/               # Составные компоненты
 ├── containers/              # Контейнерные компоненты
@@ -221,4 +221,4 @@ export interface ComponentNameThemeCSSVariables {
 - **Node.js** 14+
 - **tsx** (`npm install -g tsx` или через npx)
 - **glob** (`npm install glob` или через npx)
-- **Доступ к файлам** `src/components/**/*.scss` и `src/components/**/types.ts`
+- **Доступ к файлам** `src/components/**/*.scss` и `src/components/**/styles/types.ts`

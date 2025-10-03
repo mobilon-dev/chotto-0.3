@@ -138,7 +138,7 @@ function extractCSSVariablesFromSCSS(filePath: string): ThemeCSSVariables {
  * Получает интерфейс компонента из файла types.ts
  */
 function getComponentInterface(componentPath: string): string[] {
-  const typesPath = path.join(componentPath, 'types.ts');
+  const typesPath = path.join(componentPath, 'styles', 'types.ts');
   
   if (!fs.existsSync(typesPath)) {
     return [];
@@ -541,7 +541,7 @@ async function validateAllThemes(): Promise<void> {
   
   for (const componentPath of componentPaths) {
     const componentName = path.basename(componentPath);
-    const typesPath = path.join(componentPath, 'types.ts');
+    const typesPath = path.join(componentPath, 'styles', 'types.ts');
     
     // Проверяем основной файл стилей компонента (для всех компонентов)
     const stylePath = path.join(componentPath, 'styles', `${componentName}.scss`);
