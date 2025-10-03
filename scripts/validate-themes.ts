@@ -3,17 +3,95 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import type { ThemeName, ChottoThemeVariableName, ChottoThemeVariables } from '../src/themes/types';
+import { glob } from 'glob';
 
 /**
- * Скрипт валидации тем для проекта chotto-themes-prototype
- * Проверяет консистентность CSS переменных с префиксом --chotto-theme
+ * Интерфейс для CSS переменных темы
  */
+interface ThemeCSSVariables {
+  [key: string]: string;
+}
+
+/**
+ * Интерфейс для результатов валидации соответствия интерфейсу
+ */
+interface InterfaceValidationResult {
+  component: string;
+  theme: string;
+  isValid: boolean;
+  errors: string[];
+  missingVariables: string[];
+  extraVariables: string[];
+}
+
+/**
+ * Интерфейс для результатов валидации префиксов
+ */
+interface PrefixValidationResult {
+  component: string;
+  theme: string;
+  isValid: boolean;
+  errors: string[];
+  invalidPrefixes: string[];
+}
+
+/**
+ * Интерфейс для результатов валидации запрещенных переменных
+ */
+interface ForbiddenVariablesValidationResult {
+  component: string;
+  theme: string;
+  isValid: boolean;
+  errors: string[];
+  forbiddenVariables: string[];
+}
+
+/**
+ * Интерфейс для результатов валидации использования базовых настроек темы
+ */
+interface ThemeUsageValidationResult {
+  component: string;
+  theme: string;
+  isValid: boolean;
+  errors: string[];
+  hardcodedValues: string[];
+}
+
+/**
+ * Интерфейс для результатов валидации отсутствия data-theme в файлах стилей
+ */
+interface DataThemeValidationResult {
+  component: string;
+  theme: string;
+  isValid: boolean;
+  errors: string[];
+  dataThemeUsage: string[];
+}
+
+/**
+ * Интерфейс для результатов валидации отсутствия CSS классов в файлах тем
+ */
+interface CSSClassesValidationResult {
+  component: string;
+  theme: string;
+  isValid: boolean;
+  errors: string[];
+  cssClasses: string[];
+}
+
+/**
+ * Интерфейс для результатов валидации отсутствия импортов тем в файлах стилей
+ */
+interface ThemeImportsValidationResult {
+  component: string;
+  theme: string;
+  isValid: boolean;
+  errors: string[];
+  themeImports: string[];
+}
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const THEMES_DIR = path.join(__dirname, '..', 'src', 'themes');
-const PREFIX = '--chotto-theme';
 
 // Цвета для консольного вывода
 const colors = {
@@ -30,59 +108,6 @@ const colors = {
 type Color = keyof typeof colors;
 
 /**
- * Интерфейс для CSS переменных темы
- */
-interface ThemeCSSVariables {
-  [key: string]: string;
-}
-
-/**
- * Интерфейс для результатов валидации соответствия интерфейсу
- */
-interface InterfaceValidationResult {
-  theme: string;
-  isValid: boolean;
-  errors: string[];
-  missingVariables: string[];
-  extraVariables: string[];
-}
-
-/**
- * Интерфейс для результатов валидации префиксов
- */
-interface PrefixValidationResult {
-  theme: string;
-  isValid: boolean;
-  errors: string[];
-  invalidPrefixes: string[];
-}
-
-/**
- * Интерфейс для результатов валидации синтаксиса
- */
-interface SyntaxValidationResult {
-  theme: string;
-  isValid: boolean;
-  errors: string[];
-  syntaxErrors: Array<{
-    variable: string;
-    error: string;
-    line: number;
-  }>;
-}
-
-/**
- * Интерфейс для результатов валидации цветовой палитры
- */
-interface ColorPaletteValidationResult {
-  theme: string;
-  isValid: boolean;
-  errors: string[];
-  missingColors: string[];
-  extraColors: string[];
-}
-
-/**
  * Логирование с цветами
  */
 function log(message: string, color: Color = 'reset'): void {
@@ -90,18 +115,18 @@ function log(message: string, color: Color = 'reset'): void {
 }
 
 /**
- * Извлечение CSS переменных из SCSS файла
+ * Извлекает CSS переменные из SCSS файла
  */
 function extractCSSVariablesFromSCSS(filePath: string): ThemeCSSVariables {
   const content = fs.readFileSync(filePath, 'utf-8');
   const variables: ThemeCSSVariables = {};
   
   // Регулярное выражение для поиска CSS переменных
-  const variableRegex = /--chotto-theme-([^:]+):\s*([^;]+);/g;
+  const variableRegex = /--chotto-([^:]+):\s*([^;]+);/g;
   let match;
   
   while ((match = variableRegex.exec(content)) !== null) {
-    const variableName = `--chotto-theme-${match[1]}`;
+    const variableName = `--chotto-${match[1]}`;
     const variableValue = match[2].trim();
     variables[variableName] = variableValue;
   }
@@ -110,48 +135,28 @@ function extractCSSVariablesFromSCSS(filePath: string): ThemeCSSVariables {
 }
 
 /**
- * Извлечение цветовой палитры из SCSS файла
+ * Получает интерфейс компонента из файла types.ts
  */
-function extractColorPaletteFromSCSS(filePath: string): ThemeCSSVariables {
-  const content = fs.readFileSync(filePath, 'utf-8');
-  const variables: ThemeCSSVariables = {};
-  
-  // Регулярное выражение для поиска цветовых переменных
-  const colorRegex = /--(azure|emerald|neutral|p-red|p-coral|default)-([a-zA-Z0-9-]+):\s*([^;]+);/g;
-  let match;
-  
-  while ((match = colorRegex.exec(content)) !== null) {
-    const variableName = `--${match[1]}-${match[2]}`;
-    const variableValue = match[3].trim();
-    variables[variableName] = variableValue;
-  }
-  
-  return variables;
-}
-
-/**
- * Получение ожидаемых переменных из TypeScript интерфейса
- */
-function getExpectedThemeVariables(): string[] {
-  const typesPath = path.join(__dirname, '..', 'src', 'themes', 'types.ts');
+function getComponentInterface(componentPath: string): string[] {
+  const typesPath = path.join(componentPath, 'types.ts');
   
   if (!fs.existsSync(typesPath)) {
     return [];
   }
   
   const content = fs.readFileSync(typesPath, 'utf-8');
-  const interfaceRegex = /export interface ChottoThemeVariables\s*{([^}]+)}/s;
+  const interfaceRegex = /export interface (\w*ThemeCSSVariables)\s*{([^}]+)}/s;
   const match = content.match(interfaceRegex);
   
   if (!match) {
     return [];
   }
   
-  const interfaceContent = match[1];
+  const interfaceContent = match[2];
   const variables: string[] = [];
   
   // Извлекаем переменные из интерфейса
-  const variableRegex = /'([^']+)':\s*(string|number|string\s*\|\s*number);/g;
+  const variableRegex = /'([^']+)':\s*string;/g;
   let varMatch;
   
   while ((varMatch = variableRegex.exec(interfaceContent)) !== null) {
@@ -162,45 +167,14 @@ function getExpectedThemeVariables(): string[] {
 }
 
 /**
- * Получение ожидаемых цветовых переменных из TypeScript интерфейса
+ * 1. Валидация соответствия интерфейсам
  */
-function getExpectedColorPaletteVariables(): string[] {
-  const typesPath = path.join(__dirname, '..', 'src', 'themes', 'types.ts');
-  
-  if (!fs.existsSync(typesPath)) {
-    return [];
-  }
-  
-  const content = fs.readFileSync(typesPath, 'utf-8');
-  const interfaceRegex = /export interface ChottoColorPalette\s*{([^}]+)}/s;
-  const match = content.match(interfaceRegex);
-  
-  if (!match) {
-    return [];
-  }
-  
-  const interfaceContent = match[1];
-  const variables: string[] = [];
-  
-  // Извлекаем переменные из интерфейса
-  const variableRegex = /'([^']+)':\s*(string|number|string\s*\|\s*number);/g;
-  let varMatch;
-  
-  while ((varMatch = variableRegex.exec(interfaceContent)) !== null) {
-    variables.push(varMatch[1]);
-  }
-  
-  return variables;
-}
-
-/**
- * Валидация соответствия темы интерфейсу
- */
-function validateThemeInterface(
-  themeName: string,
+function validateComponentThemeInterface(
+  componentName: string,
   themePath: string,
   expectedVariables: string[]
 ): InterfaceValidationResult {
+  const themeName = path.basename(themePath, '.scss');
   const actualVariables = extractCSSVariablesFromSCSS(themePath);
   const actualVariableNames = Object.keys(actualVariables);
   
@@ -224,6 +198,7 @@ function validateThemeInterface(
   }
   
   return {
+    component: componentName,
     theme: themeName,
     isValid,
     errors,
@@ -233,22 +208,23 @@ function validateThemeInterface(
 }
 
 /**
- * Валидация префиксов CSS переменных
+ * 2. Валидация префиксов CSS переменных
  */
 function validateCSSVariablePrefixes(
-  themeName: string,
+  componentName: string,
   themePath: string
 ): PrefixValidationResult {
+  const themeName = path.basename(themePath, '.scss');
   const content = fs.readFileSync(themePath, 'utf-8');
   
   // Регулярное выражение для поиска всех CSS переменных
-  const variableRegex = /--chotto-theme-([a-zA-Z0-9-]+):/g;
-  const expectedPrefix = '--chotto-theme-';
+  const variableRegex = /--chotto-([a-zA-Z0-9-]+):/g;
+  const expectedPrefix = `--chotto-${componentName.toLowerCase()}`;
   const invalidPrefixes: string[] = [];
   let match;
   
   while ((match = variableRegex.exec(content)) !== null) {
-    const fullVariableName = `--chotto-theme-${match[1]}`;
+    const fullVariableName = `--chotto-${match[1]}`;
     
     // Проверяем, что переменная начинается с правильного префикса
     if (!fullVariableName.startsWith(expectedPrefix)) {
@@ -264,6 +240,7 @@ function validateCSSVariablePrefixes(
   }
   
   return {
+    component: componentName,
     theme: themeName,
     isValid,
     errors,
@@ -272,237 +249,385 @@ function validateCSSVariablePrefixes(
 }
 
 /**
- * Валидация синтаксиса CSS переменных
+ * 3. Валидация отсутствия глобальных переменных
  */
-function validateCSSSyntax(
-  themeName: string,
+function validateForbiddenGlobalVariables(
+  componentName: string,
   themePath: string
-): SyntaxValidationResult {
+): ForbiddenVariablesValidationResult {
+  const themeName = path.basename(themePath, '.scss');
   const content = fs.readFileSync(themePath, 'utf-8');
+  
+  // Регулярное выражение для поиска глобальных переменных
+  const globalVariableRegex = /--chotto-theme-([a-zA-Z0-9-]+):/g;
+  const forbiddenVariables: string[] = [];
+  let match;
+  
+  while ((match = globalVariableRegex.exec(content)) !== null) {
+    const fullVariableName = `--chotto-theme-${match[1]}`;
+    forbiddenVariables.push(fullVariableName);
+  }
+  
+  const isValid = forbiddenVariables.length === 0;
+  const errors: string[] = [];
+  
+  if (forbiddenVariables.length > 0) {
+    errors.push(`Запрещенные глобальные переменные: ${forbiddenVariables.join(', ')}`);
+  }
+  
+  return {
+    component: componentName,
+    theme: themeName,
+    isValid,
+    errors,
+    forbiddenVariables
+  };
+}
+
+/**
+ * 4. Валидация использования базовых настроек темы
+ */
+function validateThemeUsageInComponents(
+  componentName: string,
+  stylePath: string
+): ThemeUsageValidationResult {
+  const content = fs.readFileSync(stylePath, 'utf-8');
+  const hardcodedValues: string[] = [];
+  
+  // Функция для проверки, содержит ли строка CSS переменную
+  function containsCSSVariable(line: string): boolean {
+    return line.includes('var(--chotto-') || line.includes('var(--shadow-');
+  }
+  
+  // Функция для проверки, является ли значение CSS переменной
+  function isCSSVariable(value: string): boolean {
+    return value.trim().startsWith('var(--chotto-') || value.trim().startsWith('var(--shadow-');
+  }
+  
+  // Функция для получения строки, содержащей совпадение
+  function getLineContainingMatch(content: string, matchIndex: number): string {
+    const beforeMatch = content.substring(0, matchIndex);
+    const lines = beforeMatch.split('\n');
+    return lines[lines.length - 1] || '';
+  }
+  
+  // Проверяем жестко заданные цвета (исключаем CSS переменные)
+  const colorRegex = /:\s*(#[0-9a-fA-F]{3,6}|rgba?\([^)]+\)|hsla?\([^)]+\));/g;
+  let colorMatch;
+  while ((colorMatch = colorRegex.exec(content)) !== null) {
+    const currentLine = getLineContainingMatch(content, colorMatch.index);
+    
+    if (!containsCSSVariable(currentLine)) {
+      hardcodedValues.push(`Жестко заданный цвет: ${colorMatch[1]}`);
+    }
+  }
+  
+  // Проверяем жестко заданные размеры шрифтов (исключаем CSS переменные)
+  const fontSizeRegex = /font-size:\s*([0-9.]+(?:rem|em|px|%));/g;
+  let fontSizeMatch;
+  while ((fontSizeMatch = fontSizeRegex.exec(content)) !== null) {
+    const currentLine = getLineContainingMatch(content, fontSizeMatch.index);
+    
+    if (!containsCSSVariable(currentLine)) {
+      hardcodedValues.push(`Жестко заданный размер шрифта: ${fontSizeMatch[1]}`);
+    }
+  }
+  
+  // Проверяем жестко заданные отступы (исключаем CSS переменные)
+  const paddingRegex = /padding:\s*([0-9.]+(?:rem|em|px|%)(?:\s+[0-9.]+(?:rem|em|px|%))*);/g;
+  let paddingMatch;
+  while ((paddingMatch = paddingRegex.exec(content)) !== null) {
+    const currentLine = getLineContainingMatch(content, paddingMatch.index);
+    
+    if (!containsCSSVariable(currentLine)) {
+      hardcodedValues.push(`Жестко заданные отступы: ${paddingMatch[1]}`);
+    }
+  }
+  
+  // Проверяем жестко заданные скругления (исключаем CSS переменные)
+  const borderRadiusRegex = /border-radius:\s*([0-9.]+(?:rem|em|px|%));/g;
+  let borderRadiusMatch;
+  while ((borderRadiusMatch = borderRadiusRegex.exec(content)) !== null) {
+    const currentLine = getLineContainingMatch(content, borderRadiusMatch.index);
+    
+    if (!containsCSSVariable(currentLine)) {
+      hardcodedValues.push(`Жестко заданное скругление: ${borderRadiusMatch[1]}`);
+    }
+  }
+  
+  // Проверяем жестко заданные шрифты (исключаем CSS переменные)
+  const fontFamilyRegex = /font-family:\s*([^;]+);/g;
+  let fontFamilyMatch;
+  while ((fontFamilyMatch = fontFamilyRegex.exec(content)) !== null) {
+    const currentLine = getLineContainingMatch(content, fontFamilyMatch.index);
+    const fontValue = fontFamilyMatch[1].trim();
+    
+    if (!containsCSSVariable(currentLine) && !isCSSVariable(fontValue)) {
+      hardcodedValues.push(`Жестко заданный шрифт: ${fontValue}`);
+    }
+  }
+  
+  // Проверяем жестко заданные тени (исключаем CSS переменные)
+  const boxShadowRegex = /box-shadow:\s*([^;]+);/g;
+  let boxShadowMatch;
+  while ((boxShadowMatch = boxShadowRegex.exec(content)) !== null) {
+    const currentLine = getLineContainingMatch(content, boxShadowMatch.index);
+    const shadowValue = boxShadowMatch[1].trim();
+    
+    if (!containsCSSVariable(currentLine) && !isCSSVariable(shadowValue)) {
+      hardcodedValues.push(`Жестко заданная тень: ${shadowValue}`);
+    }
+  }
+  
+  const isValid = hardcodedValues.length === 0;
+  const errors: string[] = [];
+  
+  if (hardcodedValues.length > 0) {
+    errors.push(`Жестко заданные значения: ${hardcodedValues.join(', ')}`);
+  }
+  
+  return {
+    component: componentName,
+    theme: 'style.scss',
+    isValid,
+    errors,
+    hardcodedValues
+  };
+}
+
+/**
+ * 5. Валидация отсутствия data-theme в файлах стилей
+ */
+function validateNoDataThemeInStyleFiles(
+  componentName: string,
+  stylePath: string
+): DataThemeValidationResult {
+  const content = fs.readFileSync(stylePath, 'utf-8');
+  const dataThemeUsage: string[] = [];
+  
+  // Регулярное выражение для поиска data-theme
+  const dataThemeRegex = /\[data-theme="[^"]+"\]/g;
+  let match;
+  
+  while ((match = dataThemeRegex.exec(content)) !== null) {
+    dataThemeUsage.push(match[0]);
+  }
+  
+  const isValid = dataThemeUsage.length === 0;
+  const errors: string[] = [];
+  
+  if (dataThemeUsage.length > 0) {
+    errors.push(`Использование data-theme в файле стилей: ${dataThemeUsage.join(', ')}`);
+  }
+  
+  return {
+    component: componentName,
+    theme: 'style.scss',
+    isValid,
+    errors,
+    dataThemeUsage
+  };
+}
+
+/**
+ * 6. Валидация отсутствия CSS классов в файлах тем
+ */
+function validateNoCSSClassesInThemeFiles(
+  componentName: string,
+  themePath: string
+): CSSClassesValidationResult {
+  const themeName = path.basename(themePath, '.scss');
+  const content = fs.readFileSync(themePath, 'utf-8');
+  const cssClasses: string[] = [];
+  
+  // Разбиваем на строки и проверяем каждую
   const lines = content.split('\n');
-  const syntaxErrors: Array<{ variable: string; error: string; line: number }> = [];
   
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i].trim();
     
-    if (line.startsWith('--chotto-theme-') && line.includes(':')) {
-      const colonIndex = line.indexOf(':');
-      if (colonIndex > 0) {
-        const varName = line.substring(0, colonIndex).trim();
-        const varValue = line.substring(colonIndex + 1).replace(/;$/, '').trim();
-        
-        const errors = validateCSSValue(varValue);
-        if (errors.length > 0) {
-          syntaxErrors.push({
-            variable: varName,
-            error: errors.join(', '),
-            line: i + 1
-          });
-        }
-      }
+    // Пропускаем пустые строки и комментарии
+    if (!line || line.startsWith('//') || line.startsWith('/*')) {
+      continue;
     }
-  }
-  
-  const isValid = syntaxErrors.length === 0;
-  const errors: string[] = [];
-  
-  if (syntaxErrors.length > 0) {
-    errors.push(`Синтаксические ошибки: ${syntaxErrors.length} переменных`);
-  }
-  
-  return {
-    theme: themeName,
-    isValid,
-    errors,
-    syntaxErrors
-  };
-}
-
-/**
- * Валидация цветовой палитры
- */
-function validateColorPalette(
-  themeName: string,
-  themePath: string,
-  expectedColors: string[]
-): ColorPaletteValidationResult {
-  const actualColors = extractColorPaletteFromSCSS(themePath);
-  const actualColorNames = Object.keys(actualColors);
-  
-  const missingColors = expectedColors.filter(
-    expected => !actualColorNames.includes(expected)
-  );
-  
-  const extraColors = actualColorNames.filter(
-    actual => !expectedColors.includes(actual)
-  );
-  
-  const isValid = missingColors.length === 0 && extraColors.length === 0;
-  const errors: string[] = [];
-  
-  if (missingColors.length > 0) {
-    errors.push(`Отсутствуют цвета: ${missingColors.join(', ')}`);
-  }
-  
-  if (extraColors.length > 0) {
-    errors.push(`Лишние цвета: ${extraColors.join(', ')}`);
-  }
-  
-  return {
-    theme: themeName,
-    isValid,
-    errors,
-    missingColors,
-    extraColors
-  };
-}
-
-/**
- * Валидация синтаксиса CSS переменной
- */
-function validateCSSValue(value: string): string[] {
-  const errors: string[] = [];
-  
-  // Проверка на пустое значение
-  if (!value || value.trim() === '') {
-    errors.push('Пустое значение');
-    return errors;
-  }
-  
-  // Проверка на недопустимые символы
-  if (value.includes('undefined') || value.includes('null')) {
-    errors.push('Содержит undefined или null');
-  }
-  
-  // Проверка на корректность var() функций
-  const varRegex = /var\(--[a-zA-Z0-9-]+\)/g;
-  const varMatches = value.match(varRegex);
-  if (varMatches) {
-    for (const varMatch of varMatches) {
-      const varName = varMatch.slice(4, -1); // Убираем var( и )
-      if (!varName.startsWith('--') && 
-          !varName.startsWith('chotto-theme-') && 
-          !varName.startsWith('emerald-') && 
-          !varName.startsWith('neutral-') && 
-          !varName.startsWith('p-red-') && 
-          !varName.startsWith('azure-') && 
-          !varName.startsWith('p-coral-') && 
-          !varName.startsWith('default-')) {
-        errors.push(`Недопустимая ссылка на переменную: ${varName}`);
-      }
-    }
-  }
-  
-  return errors;
-}
-
-/**
- * Получение списка всех тем
- */
-function getThemes(): ThemeName[] {
-  try {
-    const themes = fs.readdirSync(THEMES_DIR, { withFileTypes: true })
-      .filter(dirent => dirent.isDirectory())
-      .map(dirent => dirent.name as ThemeName);
     
-    return themes;
-  } catch (error) {
-    log(`Ошибка при чтении директории тем: ${(error as Error).message}`, 'red');
-    return [];
+    // Ищем CSS классы в строке
+    const classMatch = line.match(/\.([a-zA-Z][a-zA-Z0-9_-]*)\s*{/);
+    if (classMatch) {
+      const className = classMatch[1];
+      
+      // Запрещаем любые CSS классы в файлах тем компонентов
+      cssClasses.push(`.${className}`);
+    }
   }
+  
+  const isValid = cssClasses.length === 0;
+  const errors: string[] = [];
+  
+  if (cssClasses.length > 0) {
+    errors.push(`CSS классы в файле темы: ${cssClasses.join(', ')}`);
+  }
+  
+  return {
+    component: componentName,
+    theme: themeName,
+    isValid,
+    errors,
+    cssClasses
+  };
+}
+
+/**
+ * 7. Валидация отсутствия импортов тем в файлах стилей
+ */
+function validateNoThemeImportsInStyleFiles(
+  componentName: string,
+  stylePath: string
+): ThemeImportsValidationResult {
+  const content = fs.readFileSync(stylePath, 'utf-8');
+  const themeImports: string[] = [];
+  
+  // Регулярное выражение для поиска импортов тем
+  const themeImportRegex = /@(import|use)\s+['"][^'"]*themes[^'"]*['"]/g;
+  let match;
+  
+  while ((match = themeImportRegex.exec(content)) !== null) {
+    themeImports.push(match[0]);
+  }
+  
+  const isValid = themeImports.length === 0;
+  const errors: string[] = [];
+  
+  if (themeImports.length > 0) {
+    errors.push(`Импорты тем в файле стилей: ${themeImports.join(', ')}`);
+  }
+  
+  return {
+    component: componentName,
+    theme: 'style.scss',
+    isValid,
+    errors,
+    themeImports
+  };
 }
 
 /**
  * Основная функция валидации
  */
 async function validateAllThemes(): Promise<void> {
-  log('🔍 Начинаю валидацию тем chotto-themes-prototype...', 'cyan');
+  log('🔍 Начинаю валидацию тем компонентов...', 'cyan');
   log('');
   
-  const themes = getThemes();
-  if (themes.length === 0) {
-    log('❌ Темы не найдены', 'red');
-    process.exit(1);
-  }
+  // Находим все компоненты (исключаем atoms, так как они не содержат тем)
+  const allPaths = await glob('src/components/*/*');
+  const componentPaths = allPaths.filter(path => {
+    const isDirectory = fs.statSync(path).isDirectory();
+    const pathParts = path.split('/');
+    const parentDir = pathParts[pathParts.length - 2]; // Получаем родительскую директорию
+    const isNotAtoms = parentDir !== 'atoms'; // Исключаем atoms
+    // Исключаем подпапки (styles, stories, themes)
+    const componentName = pathParts[pathParts.length - 1];
+    const isNotSubfolder = !['styles', 'stories', 'themes'].includes(componentName);
+    return isDirectory && isNotAtoms && isNotSubfolder;
+  });
   
-  log(`📁 Найдено тем: ${themes.length}`, 'green');
-  themes.forEach(theme => log(`   - ${theme}`, 'blue'));
-  log('');
-  
-  // Получаем ожидаемые переменные из TypeScript интерфейсов
-  const expectedThemeVariables = getExpectedThemeVariables();
-  const expectedColorVariables = getExpectedColorPaletteVariables();
-  
-  log(`🔍 Отладочная информация:`, 'yellow');
-  log(`   Найдено переменных темы: ${expectedThemeVariables.length}`, 'blue');
-  log(`   Найдено цветов: ${expectedColorVariables.length}`, 'blue');
-  log(`   Первые 5 переменных: ${expectedThemeVariables.slice(0, 5).join(', ')}`, 'blue');
-  log(`   Font-weight переменные: ${expectedThemeVariables.filter(v => v.includes('font-weight')).join(', ')}`, 'blue');
-  log('');
-  
-  if (expectedThemeVariables.length === 0) {
-    log('❌ Не удалось получить ожидаемые переменные из интерфейса ChottoThemeVariables', 'red');
-    process.exit(1);
-  }
-  
-  if (expectedColorVariables.length === 0) {
-    log('❌ Не удалось получить ожидаемые цвета из интерфейса ChottoColorPalette', 'red');
-    process.exit(1);
-  }
-  
-  // Массивы для сбора результатов валидации
   const interfaceResults: InterfaceValidationResult[] = [];
   const prefixResults: PrefixValidationResult[] = [];
-  const syntaxResults: SyntaxValidationResult[] = [];
-  const colorPaletteResults: ColorPaletteValidationResult[] = [];
+  const forbiddenResults: ForbiddenVariablesValidationResult[] = [];
+  const themeUsageResults: ThemeUsageValidationResult[] = [];
+  const dataThemeResults: DataThemeValidationResult[] = [];
+  const cssClassesResults: CSSClassesValidationResult[] = [];
+  const themeImportsResults: ThemeImportsValidationResult[] = [];
   
-  // Валидация каждой темы
-  for (const theme of themes) {
-    const varsPath = path.join(THEMES_DIR, theme, 'vars.scss');
+  for (const componentPath of componentPaths) {
+    const componentName = path.basename(componentPath);
+    const typesPath = path.join(componentPath, 'types.ts');
     
-    if (!fs.existsSync(varsPath)) {
-      log(`⚠️  Тема ${theme}: файл vars.scss не найден`, 'yellow');
+    // Проверяем основной файл стилей компонента (для всех компонентов)
+    const stylePath = path.join(componentPath, 'styles', `${componentName}.scss`);
+    if (fs.existsSync(stylePath)) {
+      // 4. Валидация использования базовых настроек темы
+      const themeUsageResult = validateThemeUsageInComponents(componentName, stylePath);
+      themeUsageResults.push(themeUsageResult);
+      
+      // 5. Валидация отсутствия data-theme в файлах стилей
+      const dataThemeResult = validateNoDataThemeInStyleFiles(componentName, stylePath);
+      dataThemeResults.push(dataThemeResult);
+      
+      // 7. Валидация отсутствия импортов тем в файлах стилей
+      const themeImportsResult = validateNoThemeImportsInStyleFiles(componentName, stylePath);
+      themeImportsResults.push(themeImportsResult);
+      
+      if (!themeUsageResult.isValid) {
+        log(`   ⚠️  style.scss: ${themeUsageResult.errors.join('; ')}`, 'yellow');
+      }
+      
+      if (!dataThemeResult.isValid) {
+        log(`   ❌  style.scss: ${dataThemeResult.errors.join('; ')}`, 'red');
+      }
+      
+      if (!themeImportsResult.isValid) {
+        log(`   ❌  style.scss: ${themeImportsResult.errors.join('; ')}`, 'red');
+      }
+    }
+    
+    // Проверяем, есть ли файл types.ts
+    if (!fs.existsSync(typesPath)) {
+      log(`⚠️  Компонент ${componentName}: файл types.ts не найден`, 'yellow');
       continue;
     }
     
-    log(`📋 Проверяю тему: ${theme}`);
-    log(`   Ожидаемые переменные темы: ${expectedThemeVariables.length}`);
-    log(`   Ожидаемые цвета: ${expectedColorVariables.length}`);
+    // Получаем ожидаемые переменные из интерфейса
+    const expectedVariables = getComponentInterface(componentPath);
     
-    // Валидация 1: Соответствие интерфейсу
-    const interfaceResult = validateThemeInterface(theme, varsPath, expectedThemeVariables);
-    interfaceResults.push(interfaceResult);
+    if (expectedVariables.length === 0) {
+      log(`⚠️  Компонент ${componentName}: интерфейс не найден или пуст`, 'yellow');
+      continue;
+    }
     
-    // Валидация 2: Префиксы CSS переменных
-    const prefixResult = validateCSSVariablePrefixes(theme, varsPath);
-    prefixResults.push(prefixResult);
+    log(`📋 Проверяю компонент: ${componentName}`, 'blue');
+    log(`   Ожидаемые переменные: ${expectedVariables.length}`, 'blue');
     
-    // Валидация 3: Синтаксис CSS переменных
-    const syntaxResult = validateCSSSyntax(theme, varsPath);
-    syntaxResults.push(syntaxResult);
+    // Находим все темы компонента
+    const themePaths = await glob(path.join(componentPath, 'styles/themes/*.scss'));
     
-    // Валидация 4: Цветовая палитра
-    const colorPaletteResult = validateColorPalette(theme, varsPath, expectedColorVariables);
-    colorPaletteResults.push(colorPaletteResult);
-    
-    // Выводим результаты для текущей темы
-    if (interfaceResult.isValid && prefixResult.isValid && syntaxResult.isValid && colorPaletteResult.isValid) {
-      log(`   ✅ ${theme}: интерфейс OK, префиксы OK, синтаксис OK, цвета OK`, 'green');
-    } else {
-      const allErrors = [...interfaceResult.errors, ...prefixResult.errors, ...syntaxResult.errors, ...colorPaletteResult.errors];
-      log(`   ❌ ${theme}: ${allErrors.join('; ')}`, 'red');
+    for (const themePath of themePaths) {
+      // 1. Валидация соответствия интерфейсу
+      const interfaceResult = validateComponentThemeInterface(componentName, themePath, expectedVariables);
+      interfaceResults.push(interfaceResult);
+      
+      // 2. Валидация префиксов CSS переменных
+      const prefixResult = validateCSSVariablePrefixes(componentName, themePath);
+      prefixResults.push(prefixResult);
+      
+      // 3. Валидация отсутствия глобальных переменных
+      const forbiddenResult = validateForbiddenGlobalVariables(componentName, themePath);
+      forbiddenResults.push(forbiddenResult);
+      
+      // 6. Валидация отсутствия CSS классов в файлах тем
+      const cssClassesResult = validateNoCSSClassesInThemeFiles(componentName, themePath);
+      cssClassesResults.push(cssClassesResult);
+      
+      const themeName = path.basename(themePath, '.scss');
+      
+      if (interfaceResult.isValid && prefixResult.isValid && forbiddenResult.isValid && cssClassesResult.isValid) {
+        log(`   ✅ ${themeName}: интерфейс OK, префиксы OK, глобальные переменные OK, CSS классы OK`, 'green');
+      } else {
+        const allErrors = [...interfaceResult.errors, ...prefixResult.errors, ...forbiddenResult.errors, ...cssClassesResult.errors];
+        log(`   ❌ ${themeName}: ${allErrors.join('; ')}`, 'red');
+      }
     }
     
     log('');
   }
   
   // Выводим итоговую статистику
-  const allResults = [...interfaceResults, ...prefixResults, ...syntaxResults, ...colorPaletteResults];
+  const allResults = [...interfaceResults, ...prefixResults, ...forbiddenResults, ...themeUsageResults, ...dataThemeResults, ...cssClassesResults, ...themeImportsResults];
   const validResults = allResults.filter(r => r.isValid);
   const invalidResults = allResults.filter(r => !r.isValid);
   
   log('📊 Итоговая статистика:', 'cyan');
-  log(`   Всего проверено: ${themes.length} тем (4 проверки на тему)`, 'blue');
+  log(`   Всего проверено: ${interfaceResults.length} тем (7 проверок на тему)`, 'blue');
   log(`   ✅ Валидных проверок: ${validResults.length}`, 'green');
   log(`   ❌ Невалидных проверок: ${invalidResults.length}`, invalidResults.length > 0 ? 'red' : 'green');
   
@@ -510,7 +635,7 @@ async function validateAllThemes(): Promise<void> {
     log('', 'reset');
     log('❌ Детали ошибок:', 'red');
     for (const result of invalidResults) {
-      log(`   ${result.theme}:`, 'yellow');
+      log(`   ${result.component}/${result.theme}:`, 'yellow');
       for (const error of result.errors) {
         log(`     - ${error}`, 'red');
       }
@@ -528,4 +653,14 @@ validateAllThemes().catch(error => {
   process.exit(1);
 });
 
-export { validateAllThemes, extractCSSVariablesFromSCSS, validateCSSValue };
+export { 
+  validateAllThemes, 
+  extractCSSVariablesFromSCSS, 
+  validateComponentThemeInterface,
+  validateCSSVariablePrefixes,
+  validateForbiddenGlobalVariables,
+  validateThemeUsageInComponents,
+  validateNoDataThemeInStyleFiles,
+  validateNoCSSClassesInThemeFiles,
+  validateNoThemeImportsInStyleFiles
+};
