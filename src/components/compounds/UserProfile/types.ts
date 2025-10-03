@@ -43,6 +43,10 @@ export interface UserProfileThemeCSSVariables {
   '--chotto-userprofile-avatar-container-display': string;
   /** Отступы контейнера аватара */
   '--chotto-userprofile-avatar-container-margin': string;
+  /** Радиус границы контейнера аватара */
+  '--chotto-userprofile-avatar-container-border-radius': string;
+  /** Радиус границы изображения контейнера аватара */
+  '--chotto-userprofile-avatar-container-img-border-radius': string;
   /** Обрезка изображения контейнера аватара */
   '--chotto-userprofile-avatar-container-img-object-fit': string;
 
