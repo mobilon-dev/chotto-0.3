@@ -1,8 +1,8 @@
 [data-theme="mobilon1"] {
   // Tooltip text
-  --chotto-tooltip-text-color: var(--chotto-theme-text-color, var(--neutral-850));
-  --chotto-tooltip-bg-color: var(--chotto-theme-primary-color, var(--default-white));
-  --chotto-tooltip-border: 1px solid var(--chotto-theme-border-color, var(--neutral-550));
+  --chotto-tooltip-text-color: var(--chotto-theme-text-color, #1E1E1E);
+  --chotto-tooltip-bg-color: var(--chotto-theme-primary-color, #ffffff);
+  --chotto-tooltip-border: 1px solid var(--chotto-theme-border-color, #5F5F5F);
   --chotto-tooltip-border-radius: 5px;
   --chotto-tooltip-padding: 5px 9px 5px 12px;
   --chotto-tooltip-max-width: 372px;

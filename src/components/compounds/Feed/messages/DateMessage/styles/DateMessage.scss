@@ -13,8 +13,8 @@
 
   &__text {
     font-size: var(--chotto-datemessage-text-font-size, 14px);
-    color: var(--chotto-datemessage-text-color, var(--neutral-850));
-    background-color: var(--chotto-datemessage-text-background-color, var(--default-white));
+    color: var(--chotto-datemessage-text-color, #1E1E1E);
+    background-color: var(--chotto-datemessage-text-background-color, #ffffff);
     padding: var(--chotto-datemessage-text-padding, 4px 11px);
     border-radius: var(--chotto-datemessage-text-border-radius, 4px);
   }

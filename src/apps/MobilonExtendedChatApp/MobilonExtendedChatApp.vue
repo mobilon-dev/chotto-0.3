@@ -907,8 +907,8 @@ onMounted(() => {
   align-self: center;
 
   &:hover {
-    background-color: var(--neutral-125);
-    box-shadow: 0 0 0 6px var(--neutral-125);
+    background-color: #EAE8E7;
+    box-shadow: 0 0 0 6px #EAE8E7;
   }
 }
 </style>

@@ -33,7 +33,7 @@
   &__input {
     grid-row: var(--chotto-chatinput-input-grid-row, 3);
     grid-column: var(--chotto-chatinput-input-grid-column, 2);
-    border: var(--chotto-chatinput-input-border, 1px solid var(--neutral-250));
+    border: var(--chotto-chatinput-input-border, 1px solid #d0d0d0);
     background-color: var(--chotto-chatinput-input-background-color, transparent);
     padding: var(--chotto-chatinput-input-padding, 0.5rem 0.60rem);
     color: var(--chotto-theme-primary-text-color);

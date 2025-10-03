@@ -1,17 +1,17 @@
 .tooltip__text {
   max-width: var(--chotto-tooltip-max-width, 372px);
-  color: var(--chotto-tooltip-text-color, var(--neutral-850));
+  color: var(--chotto-tooltip-text-color, #1E1E1E);
   text-align: var(--chotto-tooltip-text-align, left);
   padding: var(--chotto-tooltip-padding, 5px 9px 5px 12px);
   border-radius: var(--chotto-tooltip-border-radius, 5px);
-  background: var(--chotto-tooltip-bg-color, var(--default-white));
+  background: var(--chotto-tooltip-bg-color, #ffffff);
   top: var(--chotto-tooltip-top, 0);
   left: var(--chotto-tooltip-left, 0);
   position: var(--chotto-tooltip-position, absolute);
   z-index: var(--chotto-tooltip-z-index, 99999);
   font-family: var(--chotto-tooltip-font-family, var(--chotto-theme-font-family));
   font-weight: var(--chotto-tooltip-font-weight, var(--chotto-theme-container-font-weight));
-  border: var(--chotto-tooltip-border, 1px solid var(--neutral-550));
+  border: var(--chotto-tooltip-border, 1px solid #5F5F5F);
   font-size: var(--chotto-tooltip-font-size, 14px);
   line-height: var(--chotto-tooltip-line-height, inherit);
   box-shadow: var(--chotto-tooltip-box-shadow, none);

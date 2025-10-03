@@ -62,7 +62,7 @@
     display: var(--chotto-feedfounditem-avatar-container-display, flex);
     justify-content: var(--chotto-feedfounditem-avatar-container-justify, center);
     align-items: var(--chotto-feedfounditem-avatar-container-align, center);
-    background-color: var(--chotto-feedfounditem-avatar-container-bg, var(--neutral-300));
+    background-color: var(--chotto-feedfounditem-avatar-container-bg, #d4d4d4);
     width: var(--chotto-feedfounditem-avatar-container-width, 50px);
     height: var(--chotto-feedfounditem-avatar-container-height, 50px);
     border-radius: var(--chotto-feedfounditem-avatar-container-border-radius, 50%);
@@ -70,7 +70,7 @@
     margin-right: var(--chotto-feedfounditem-avatar-margin-right, 10px);
     span {
       font-size: var(--chotto-feedfounditem-avatar-span-font-size, 21px);
-      color: var(--chotto-feedfounditem-avatar-span-color, var(--neutral-500));
+      color: var(--chotto-feedfounditem-avatar-span-color, #737373);
       line-height: var(--chotto-feedfounditem-avatar-icon-size, 24px);
       width: var(--chotto-feedfounditem-avatar-icon-size, 24px);
     }
