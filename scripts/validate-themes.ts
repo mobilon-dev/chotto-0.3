@@ -17,6 +17,7 @@ interface ThemeCSSVariables {
  */
 interface InterfaceValidationResult {
   component: string;
+  componentFolder: string;
   theme: string;
   isValid: boolean;
   errors: string[];
@@ -29,6 +30,7 @@ interface InterfaceValidationResult {
  */
 interface PrefixValidationResult {
   component: string;
+  componentFolder: string;
   theme: string;
   isValid: boolean;
   errors: string[];
@@ -40,6 +42,7 @@ interface PrefixValidationResult {
  */
 interface ForbiddenVariablesValidationResult {
   component: string;
+  componentFolder: string;
   theme: string;
   isValid: boolean;
   errors: string[];
@@ -51,6 +54,7 @@ interface ForbiddenVariablesValidationResult {
  */
 interface ThemeUsageValidationResult {
   component: string;
+  componentFolder: string;
   theme: string;
   isValid: boolean;
   errors: string[];
@@ -62,6 +66,7 @@ interface ThemeUsageValidationResult {
  */
 interface DataThemeValidationResult {
   component: string;
+  componentFolder: string;
   theme: string;
   isValid: boolean;
   errors: string[];
@@ -73,6 +78,7 @@ interface DataThemeValidationResult {
  */
 interface CSSClassesValidationResult {
   component: string;
+  componentFolder: string;
   theme: string;
   isValid: boolean;
   errors: string[];
@@ -84,6 +90,7 @@ interface CSSClassesValidationResult {
  */
 interface ThemeImportsValidationResult {
   component: string;
+  componentFolder: string;
   theme: string;
   isValid: boolean;
   errors: string[];
@@ -171,6 +178,7 @@ function getComponentInterface(componentPath: string): string[] {
  */
 function validateComponentThemeInterface(
   componentName: string,
+  componentFolder: string,
   themePath: string,
   expectedVariables: string[]
 ): InterfaceValidationResult {
@@ -199,6 +207,7 @@ function validateComponentThemeInterface(
   
   return {
     component: componentName,
+    componentFolder: componentFolder,
     theme: themeName,
     isValid,
     errors,
@@ -212,6 +221,7 @@ function validateComponentThemeInterface(
  */
 function validateCSSVariablePrefixes(
   componentName: string,
+  componentFolder: string,
   themePath: string
 ): PrefixValidationResult {
   const themeName = path.basename(themePath, '.scss');
@@ -241,6 +251,7 @@ function validateCSSVariablePrefixes(
   
   return {
     component: componentName,
+    componentFolder: componentFolder,
     theme: themeName,
     isValid,
     errors,
@@ -253,6 +264,7 @@ function validateCSSVariablePrefixes(
  */
 function validateForbiddenGlobalVariablesInStyleFiles(
   componentName: string,
+  componentFolder: string,
   stylePath: string
 ): ForbiddenVariablesValidationResult {
   const themeName = `${componentName}.scss`;
@@ -277,6 +289,7 @@ function validateForbiddenGlobalVariablesInStyleFiles(
   
   return {
     component: componentName,
+    componentFolder: componentFolder,
     theme: themeName,
     isValid,
     errors,
@@ -289,6 +302,7 @@ function validateForbiddenGlobalVariablesInStyleFiles(
  */
 function validateForbiddenGlobalVariablesInThemeFiles(
   componentName: string,
+  componentFolder: string,
   themePath: string
 ): ForbiddenVariablesValidationResult {
   const themeName = path.basename(themePath, '.scss');
@@ -297,6 +311,7 @@ function validateForbiddenGlobalVariablesInThemeFiles(
   // В файлах тем глобальные переменные разрешены, поэтому всегда возвращаем валидный результат
   return {
     component: componentName,
+    componentFolder: componentFolder,
     theme: themeName,
     isValid: true,
     errors: [],
@@ -309,6 +324,7 @@ function validateForbiddenGlobalVariablesInThemeFiles(
  */
 function validateThemeUsageInComponents(
   componentName: string,
+  componentFolder: string,
   stylePath: string
 ): ThemeUsageValidationResult {
   const content = fs.readFileSync(stylePath, 'utf-8');
@@ -408,6 +424,7 @@ function validateThemeUsageInComponents(
   
   return {
     component: componentName,
+    componentFolder: componentFolder,
     theme: 'style.scss',
     isValid,
     errors,
@@ -420,6 +437,7 @@ function validateThemeUsageInComponents(
  */
 function validateNoDataThemeInStyleFiles(
   componentName: string,
+  componentFolder: string,
   stylePath: string
 ): DataThemeValidationResult {
   const content = fs.readFileSync(stylePath, 'utf-8');
@@ -442,6 +460,7 @@ function validateNoDataThemeInStyleFiles(
   
   return {
     component: componentName,
+    componentFolder: componentFolder,
     theme: 'style.scss',
     isValid,
     errors,
@@ -454,6 +473,7 @@ function validateNoDataThemeInStyleFiles(
  */
 function validateNoCSSClassesInThemeFiles(
   componentName: string,
+  componentFolder: string,
   themePath: string
 ): CSSClassesValidationResult {
   const themeName = path.basename(themePath, '.scss');
@@ -490,6 +510,7 @@ function validateNoCSSClassesInThemeFiles(
   
   return {
     component: componentName,
+    componentFolder: componentFolder,
     theme: themeName,
     isValid,
     errors,
@@ -502,6 +523,7 @@ function validateNoCSSClassesInThemeFiles(
  */
 function validateNoThemeImportsInStyleFiles(
   componentName: string,
+  componentFolder: string,
   stylePath: string
 ): ThemeImportsValidationResult {
   const content = fs.readFileSync(stylePath, 'utf-8');
@@ -524,6 +546,7 @@ function validateNoThemeImportsInStyleFiles(
   
   return {
     component: componentName,
+    componentFolder: componentFolder,
     theme: 'style.scss',
     isValid,
     errors,
@@ -561,25 +584,26 @@ async function validateAllThemes(): Promise<void> {
   
   for (const componentPath of componentPaths) {
     const componentName = path.basename(componentPath);
+    const componentFolder = path.basename(path.dirname(componentPath));
     const typesPath = path.join(componentPath, 'styles', 'types.ts');
     
     // Проверяем основной файл стилей компонента (для всех компонентов)
     const stylePath = path.join(componentPath, 'styles', `${componentName}.scss`);
     if (fs.existsSync(stylePath)) {
       // 3. Валидация отсутствия глобальных переменных в файлах стилей
-      const forbiddenStyleResult = validateForbiddenGlobalVariablesInStyleFiles(componentName, stylePath);
+      const forbiddenStyleResult = validateForbiddenGlobalVariablesInStyleFiles(componentName, componentFolder, stylePath);
       forbiddenResults.push(forbiddenStyleResult);
       
       // 4. Валидация использования базовых настроек темы
-      const themeUsageResult = validateThemeUsageInComponents(componentName, stylePath);
+      const themeUsageResult = validateThemeUsageInComponents(componentName, componentFolder, stylePath);
       themeUsageResults.push(themeUsageResult);
       
       // 5. Валидация отсутствия data-theme в файлах стилей
-      const dataThemeResult = validateNoDataThemeInStyleFiles(componentName, stylePath);
+      const dataThemeResult = validateNoDataThemeInStyleFiles(componentName, componentFolder, stylePath);
       dataThemeResults.push(dataThemeResult);
       
       // 7. Валидация отсутствия импортов тем в файлах стилей
-      const themeImportsResult = validateNoThemeImportsInStyleFiles(componentName, stylePath);
+      const themeImportsResult = validateNoThemeImportsInStyleFiles(componentName, componentFolder, stylePath);
       themeImportsResults.push(themeImportsResult);
       
       if (!forbiddenStyleResult.isValid) {
@@ -621,19 +645,19 @@ async function validateAllThemes(): Promise<void> {
     
     for (const themePath of themePaths) {
       // 1. Валидация соответствия интерфейсу
-      const interfaceResult = validateComponentThemeInterface(componentName, themePath, expectedVariables);
+      const interfaceResult = validateComponentThemeInterface(componentName, componentFolder, themePath, expectedVariables);
       interfaceResults.push(interfaceResult);
       
       // 2. Валидация префиксов CSS переменных
-      const prefixResult = validateCSSVariablePrefixes(componentName, themePath);
+      const prefixResult = validateCSSVariablePrefixes(componentName, componentFolder, themePath);
       prefixResults.push(prefixResult);
       
       // 3. Валидация отсутствия глобальных переменных в файлах тем (разрешены)
-      const forbiddenResult = validateForbiddenGlobalVariablesInThemeFiles(componentName, themePath);
+      const forbiddenResult = validateForbiddenGlobalVariablesInThemeFiles(componentName, componentFolder, themePath);
       forbiddenResults.push(forbiddenResult);
       
       // 6. Валидация отсутствия CSS классов в файлах тем
-      const cssClassesResult = validateNoCSSClassesInThemeFiles(componentName, themePath);
+      const cssClassesResult = validateNoCSSClassesInThemeFiles(componentName, componentFolder, themePath);
       cssClassesResults.push(cssClassesResult);
       
       const themeName = path.basename(themePath, '.scss');
@@ -663,10 +687,10 @@ async function validateAllThemes(): Promise<void> {
     log('', 'reset');
     log('❌ Детали ошибок:', 'red');
     for (const result of invalidResults) {
-      // Для файлов стилей компонентов показываем только имя файла
-      const displayName = result.theme.endsWith('.scss') && result.component === result.theme.replace('.scss', '') 
-        ? result.theme 
-        : `${result.component}/${result.theme}`;
+      // Показываем папку компонента и имя файла
+      const displayName = result.theme === 'style.scss' 
+        ? `${result.componentFolder} / ${result.component}.scss` 
+        : `${result.componentFolder} / ${result.theme}`;
       log(`   ${displayName}:`, 'yellow');
       for (const error of result.errors) {
         log(`     - ${error}`, 'red');

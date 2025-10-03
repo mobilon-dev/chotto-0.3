@@ -111,4 +111,8 @@ export interface ThemeModeThemeCSSVariables {
   '--chotto-thememode-switch-moon-checked-opacity': string;
   /** Переход иконки луны в активном состоянии */
   '--chotto-thememode-switch-moon-checked-transition': string;
+
+  // Select
+  /** Ширина выбора */
+  '--chotto-thememode-select-width': string;
 }

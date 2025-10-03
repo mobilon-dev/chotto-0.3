@@ -14,10 +14,10 @@
   }
 
   .left {
-    background-color: var(--chotto-embedpreview-left-background-color, var(--chotto-theme-message-left-secondary-bg));
+    background-color: var(--chotto-embedpreview-left-background-color);
   }
 
   .right {
-    background-color: var(--chotto-embedpreview-right-background-color, var(--chotto-theme-message-right-secondary-bg));
+    background-color: var(--chotto-embedpreview-right-background-color);
   }
 }
