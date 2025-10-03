@@ -87,7 +87,7 @@
     }
 
     &:hover::before {
-      background-color: #EAE8E7;
+      background-color: var(--chotto-sidebar-item-before-background-color-hover, var(--chotto-theme-item-background-color-hover));
     }
 
     span {
@@ -158,7 +158,7 @@
     transition: var(--chotto-sidebar-settings-btn-transition, background-color 0.2s);
     
     &:hover {
-      background-color: #EAE8E7;
+      background-color: var(--chotto-sidebar-settings-btn-hover-background-color, var(--chotto-theme-item-background-color-hover, #EAE8E7));
     }
   }
 }

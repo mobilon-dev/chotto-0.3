@@ -129,6 +129,8 @@ export interface SideBarThemeCSSVariables {
   '--chotto-sidebar-item-before-transition': string;
   /** События указателя псевдоэлемента before элемента */
   '--chotto-sidebar-item-before-pointer-events': string;
+  /** Цвет фона hover псевдоэлемента before элемента */
+  '--chotto-sidebar-item-before-background-color-hover': string;
 
   // Item span
   /** Позиционирование span элемента */
@@ -217,6 +219,8 @@ export interface SideBarThemeCSSVariables {
   '--chotto-sidebar-settings-btn-border-radius': string;
   /** Переход кнопки настроек */
   '--chotto-sidebar-settings-btn-transition': string;
+  /** Цвет фона hover кнопки настроек */
+  '--chotto-sidebar-settings-btn-hover-background-color': string;
 
   // Selected bar
   /** Позиционирование выбранной полосы */

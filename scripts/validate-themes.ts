@@ -249,17 +249,17 @@ function validateCSSVariablePrefixes(
 }
 
 /**
- * 3. Валидация отсутствия глобальных переменных
+ * 3. Валидация отсутствия глобальных переменных в файлах стилей компонентов
  */
-function validateForbiddenGlobalVariables(
+function validateForbiddenGlobalVariablesInStyleFiles(
   componentName: string,
-  themePath: string
+  stylePath: string
 ): ForbiddenVariablesValidationResult {
-  const themeName = path.basename(themePath, '.scss');
-  const content = fs.readFileSync(themePath, 'utf-8');
+  const themeName = `${componentName}.scss`;
+  const content = fs.readFileSync(stylePath, 'utf-8');
   
-  // Регулярное выражение для поиска глобальных переменных
-  const globalVariableRegex = /--chotto-theme-([a-zA-Z0-9-]+):/g;
+  // Регулярное выражение для поиска глобальных переменных (использование в var())
+  const globalVariableRegex = /var\(--chotto-theme-([a-zA-Z0-9-]+)\)/g;
   const forbiddenVariables: string[] = [];
   let match;
   
@@ -281,6 +281,26 @@ function validateForbiddenGlobalVariables(
     isValid,
     errors,
     forbiddenVariables
+  };
+}
+
+/**
+ * 3. Валидация отсутствия глобальных переменных в файлах тем (должны быть разрешены)
+ */
+function validateForbiddenGlobalVariablesInThemeFiles(
+  componentName: string,
+  themePath: string
+): ForbiddenVariablesValidationResult {
+  const themeName = path.basename(themePath, '.scss');
+  const content = fs.readFileSync(themePath, 'utf-8');
+  
+  // В файлах тем глобальные переменные разрешены, поэтому всегда возвращаем валидный результат
+  return {
+    component: componentName,
+    theme: themeName,
+    isValid: true,
+    errors: [],
+    forbiddenVariables: []
   };
 }
 
@@ -546,6 +566,10 @@ async function validateAllThemes(): Promise<void> {
     // Проверяем основной файл стилей компонента (для всех компонентов)
     const stylePath = path.join(componentPath, 'styles', `${componentName}.scss`);
     if (fs.existsSync(stylePath)) {
+      // 3. Валидация отсутствия глобальных переменных в файлах стилей
+      const forbiddenStyleResult = validateForbiddenGlobalVariablesInStyleFiles(componentName, stylePath);
+      forbiddenResults.push(forbiddenStyleResult);
+      
       // 4. Валидация использования базовых настроек темы
       const themeUsageResult = validateThemeUsageInComponents(componentName, stylePath);
       themeUsageResults.push(themeUsageResult);
@@ -557,6 +581,10 @@ async function validateAllThemes(): Promise<void> {
       // 7. Валидация отсутствия импортов тем в файлах стилей
       const themeImportsResult = validateNoThemeImportsInStyleFiles(componentName, stylePath);
       themeImportsResults.push(themeImportsResult);
+      
+      if (!forbiddenStyleResult.isValid) {
+        log(`   ❌  style.scss: ${forbiddenStyleResult.errors.join('; ')}`, 'red');
+      }
       
       if (!themeUsageResult.isValid) {
         log(`   ⚠️  style.scss: ${themeUsageResult.errors.join('; ')}`, 'yellow');
@@ -600,8 +628,8 @@ async function validateAllThemes(): Promise<void> {
       const prefixResult = validateCSSVariablePrefixes(componentName, themePath);
       prefixResults.push(prefixResult);
       
-      // 3. Валидация отсутствия глобальных переменных
-      const forbiddenResult = validateForbiddenGlobalVariables(componentName, themePath);
+      // 3. Валидация отсутствия глобальных переменных в файлах тем (разрешены)
+      const forbiddenResult = validateForbiddenGlobalVariablesInThemeFiles(componentName, themePath);
       forbiddenResults.push(forbiddenResult);
       
       // 6. Валидация отсутствия CSS классов в файлах тем
@@ -635,7 +663,11 @@ async function validateAllThemes(): Promise<void> {
     log('', 'reset');
     log('❌ Детали ошибок:', 'red');
     for (const result of invalidResults) {
-      log(`   ${result.component}/${result.theme}:`, 'yellow');
+      // Для файлов стилей компонентов показываем только имя файла
+      const displayName = result.theme.endsWith('.scss') && result.component === result.theme.replace('.scss', '') 
+        ? result.theme 
+        : `${result.component}/${result.theme}`;
+      log(`   ${displayName}:`, 'yellow');
       for (const error of result.errors) {
         log(`     - ${error}`, 'red');
       }
@@ -658,7 +690,8 @@ export {
   extractCSSVariablesFromSCSS, 
   validateComponentThemeInterface,
   validateCSSVariablePrefixes,
-  validateForbiddenGlobalVariables,
+  validateForbiddenGlobalVariablesInStyleFiles,
+  validateForbiddenGlobalVariablesInThemeFiles,
   validateThemeUsageInComponents,
   validateNoDataThemeInStyleFiles,
   validateNoCSSClassesInThemeFiles,

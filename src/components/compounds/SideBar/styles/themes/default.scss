@@ -66,6 +66,7 @@
   --chotto-sidebar-item-before-z-index: 0;
   --chotto-sidebar-item-before-transition: background-color 0.2s ease;
   --chotto-sidebar-item-before-pointer-events: none;
+  --chotto-sidebar-item-before-background-color-hover: var(--chotto-theme-item-background-color-hover, #EAE8E7);
   
   // Item span
   --chotto-sidebar-item-span-position: absolute;
@@ -116,6 +117,7 @@
   --chotto-sidebar-settings-btn-justify-content: center;
   --chotto-sidebar-settings-btn-border-radius: 50%;
   --chotto-sidebar-settings-btn-transition: background-color 0.2s;
+  --chotto-sidebar-settings-btn-hover-background-color: var(--chotto-theme-item-background-color-hover, #EAE8E7);
   
   // Selected bar
   --chotto-sidebar-selected-bar-position: absolute;

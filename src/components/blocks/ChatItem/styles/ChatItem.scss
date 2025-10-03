@@ -15,11 +15,11 @@
       transform: translateX(var(--chotto-chatitem-divider-translate-x, 15%));
       width: var(--chotto-chatitem-divider-width, 416px);
       height: var(--chotto-chatitem-divider-height, 1px);
-      background-color: var(--chotto-chatitem-divider-color, #F3F3F3);
+      background-color: var(--chotto-chatitem-divider-color, var(--chotto-theme-item-border-color));
     }
 
     &:hover {
-      background-color: var(--chotto-theme-item-background-color-hover, #F6F6F6);
+      background-color: var(--chotto-theme-item-background-color-hover);
     }
   }
 
@@ -49,7 +49,7 @@
 
     span {
       font-size: var(--chotto-chatitem-avatar-text-font-size, 21px);
-      color: #737373;
+      color: var(--chotto-theme-status-color-received);
     }
 
     img {
