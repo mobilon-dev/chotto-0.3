@@ -561,17 +561,19 @@ async function validateAllThemes(): Promise<void> {
   log('🔍 Начинаю валидацию тем компонентов...', 'cyan');
   log('');
   
-  // Находим все компоненты (исключаем atoms, так как они не содержат тем)
-  const allPaths = await glob('src/components/*/*');
-  const componentPaths = allPaths.filter(path => {
-    const isDirectory = fs.statSync(path).isDirectory();
-    const pathParts = path.split('/');
-    const parentDir = pathParts[pathParts.length - 2]; // Получаем родительскую директорию
-    const isNotAtoms = parentDir !== 'atoms'; // Исключаем atoms
-    // Исключаем подпапки (styles, stories, themes)
-    const componentName = pathParts[pathParts.length - 1];
-    const isNotSubfolder = !['styles', 'stories', 'themes'].includes(componentName);
-    return isDirectory && isNotAtoms && isNotSubfolder;
+  // Находим компоненты рекурсивно: любая папка внутри src/components/**, в которой есть подпапка styles
+  // Исключаем только служебные подпапки (styles, stories, themes) как сами компоненты
+  const allPaths = await glob('src/components/**');
+  const componentPaths = allPaths.filter(p => {
+    const isDirectory = fs.existsSync(p) && fs.statSync(p).isDirectory();
+    if (!isDirectory) return false;
+    const pathParts = p.split('/');
+    const name = pathParts[pathParts.length - 1];
+    // Исключаем служебные папки сами по себе
+    if (['styles', 'stories', 'themes'].includes(name)) return false;
+    // Считаем компонентом только папку, в которой есть подпапка styles
+    const stylesDir = path.join(p, 'styles');
+    return fs.existsSync(stylesDir) && fs.statSync(stylesDir).isDirectory();
   });
   
   const interfaceResults: InterfaceValidationResult[] = [];
