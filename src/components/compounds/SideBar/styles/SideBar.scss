@@ -26,7 +26,7 @@
     position: var(--chotto-sidebar-list-fixed-position, sticky);
     top: var(--chotto-sidebar-list-fixed-top, 0);
     z-index: var(--chotto-sidebar-list-fixed-z-index, 3);
-    background-color: var(--chotto-theme-layout-extended-first-col-bg);
+    background-color: var(--chotto-sidebar-layout-extended-first-col-bg);
     padding: var(--chotto-sidebar-list-fixed-padding, 12px 10px 22px);
     margin-bottom: var(--chotto-sidebar-list-fixed-margin-bottom, 15px);
     border-top: var(--chotto-sidebar-list-fixed-border-top, none);
@@ -52,7 +52,7 @@
     flex-direction: var(--chotto-sidebar-list-flex-direction, column);
     row-gap: var(--chotto-sidebar-row-gap-list);
     padding: var(--chotto-sidebar-list-padding, 0);
-    background-color: var(--chotto-theme-layout-extended-first-col-bg);
+    background-color: var(--chotto-sidebar-layout-extended-first-col-bg);
     z-index: var(--chotto-sidebar-list-z-index, 2);
   }
 
@@ -87,7 +87,7 @@
     }
 
     &:hover::before {
-      background-color: var(--chotto-sidebar-item-before-background-color-hover, var(--chotto-theme-item-background-color-hover));
+      background-color: var(--chotto-sidebar-item-before-background-color-hover);
     }
 
     span {
@@ -103,18 +103,18 @@
       height: var(--chotto-sidebar-notification-count-height, 18px);
       border-radius: var(--chotto-sidebar-item-span-border-radius, 10px);
       line-height: var(--chotto-sidebar-item-span-line-height, 16px);
-      font-size: var(--chotto-theme-small-text-font-size);
-      font-weight: var(--chotto-theme-small-text-font-weight, 400);
-      color: var(--chotto-theme-unread-text-color);
-      background-color: var(--chotto-theme-unread-background-color);
+      font-size: var(--chotto-sidebar-small-text-font-size);
+      font-weight: var(--chotto-sidebar-small-text-font-weight, 400);
+      color: var(--chotto-sidebar-unread-text-color);
+      background-color: var(--chotto-sidebar-unread-background-color);
       z-index: var(--chotto-sidebar-item-span-z-index, 2);
     }
 
     p {
-      font-size: var(--chotto-theme-small-text-font-size);
+      font-size: var(--chotto-sidebar-small-text-font-size);
       text-align: var(--chotto-sidebar-item-p-text-align, center);
       line-height: var(--chotto-sidebar-item-p-line-height, 1);
-      color: var(--chotto-theme-header-font-color, #5F5F5F);
+      color: var(--chotto-sidebar-header-font-color, #5F5F5F);
     }
   }
 
@@ -134,7 +134,7 @@
   }
 
   &__settings-container {
-    background-color: var(--chotto-theme-layout-extended-first-col-bg);
+    background-color: var(--chotto-sidebar-layout-extended-first-col-bg);
     position: var(--chotto-sidebar-settings-container-position, absolute);
     bottom: var(--chotto-sidebar-settings-container-bottom, 7px);
     left: var(--chotto-sidebar-settings-container-left, 0);
@@ -158,7 +158,7 @@
     transition: var(--chotto-sidebar-settings-btn-transition, background-color 0.2s);
     
     &:hover {
-      background-color: var(--chotto-sidebar-settings-btn-hover-background-color, var(--chotto-theme-item-background-color-hover, #EAE8E7));
+      background-color: var(--chotto-sidebar-settings-btn-hover-background-color, #EAE8E7);
     }
   }
 }

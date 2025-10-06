@@ -1,9 +1,9 @@
 .base {
   &__container {
     transition: var(--chotto-basecontainer-base-container-transition, all 0.3s ease);
-    font-weight: var(--chotto-basecontainer-base-container-font-weight, var(--chotto-theme-container-font-weight));
-    color: var(--chotto-basecontainer-base-container-color, var(--chotto-theme-primary-text-color));
-    font-family: var(--chotto-basecontainer-base-container-font-family, var(--chotto-theme-font-family));
+    font-weight: var(--chotto-basecontainer-base-container-font-weight);
+    color: var(--chotto-basecontainer-base-container-color);
+    font-family: var(--chotto-basecontainer-base-container-font-family);
     container: var(--chotto-basecontainer-base-container-container, all / inline-size);
     min-width: var(--chotto-basecontainer-base-container-min-width, 480px);
   }
@@ -26,7 +26,7 @@
 
   input,
   button {
-    font-family: var(--chotto-basecontainer-global-input-button-font-family, var(--chotto-theme-font-family));
+    font-family: var(--chotto-basecontainer-global-input-button-font-family);
   }
 
   p,

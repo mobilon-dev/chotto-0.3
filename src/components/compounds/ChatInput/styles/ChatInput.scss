@@ -36,7 +36,7 @@
     border: var(--chotto-chatinput-input-border, 1px solid #d0d0d0);
     background-color: var(--chotto-chatinput-input-background-color, transparent);
     padding: var(--chotto-chatinput-input-padding, 0.5rem 0.60rem);
-    color: var(--chotto-theme-primary-text-color);
+    color: var(--chotto-chatinput-input-text-color);
     font-size: var(--chotto-chatinput-input-font-size, 16px);
     overflow-y: var(--chotto-chatinput-input-overflow-y, hidden);
     resize: var(--chotto-chatinput-input-resize, none);
@@ -45,24 +45,24 @@
     min-height: var(--chotto-chatinput-input-min-height, 40px);
     max-height: calc(1.5em * var(--chotto-chatinput-input-max-rows, 10));
     border-radius: var(--chotto-chatinput-input-border-radius, 2px);
-    font-family: var(--chotto-theme-font-family);
+    font-family: var(--chotto-chatinput-font-family);
 
     &:focus-visible {
       outline: var(--chotto-chatinput-input-focus-outline, none);
     }
 
     &::placeholder {
-      color: var(--chotto-theme-secondary-text-color);
+      color: var(--chotto-chatinput-secondary-text-color);
     }
 
     &::-webkit-scrollbar {
       width: var(--chotto-chatinput-scrollbar-width, 6px);
-      background-color: var(--chotto-theme-scrollbar-bg);
+      background-color: var(--chotto-chatinput-scrollbar-bg);
     }
 
     &::-webkit-scrollbar-thumb {
       border-radius: var(--chotto-chatinput-scrollbar-thumb-radius, 10px);
-      background-color: var(--chotto-theme-scrollbar-thumb-bg);
+      background-color: var(--chotto-chatinput-scrollbar-thumb-bg);
     }
 
     &::-webkit-scrollbar-track {
@@ -71,7 +71,7 @@
   }
 
   &__disabled-placeholder {
-    color: var(--chotto-theme-secondary-text-color);
+    color: var(--chotto-chatinput-disabled-placeholder-text-color);
     text-align: var(--chotto-chatinput-disabled-placeholder-text-align, center);
     user-select: var(--chotto-chatinput-disabled-placeholder-user-select, none);
   }
@@ -91,7 +91,7 @@
       display: var(--chotto-chatinput-button-span-display, block);
       cursor: var(--chotto-chatinput-button-span-cursor, pointer);
       padding: var(--chotto-chatinput-button-padding);
-      font-size: var(--chotto-theme-button-icon-size);
+      font-size: var(--chotto-chatinput-button-icon-size);
       color: var(--chotto-chatinput-icon-color);
       height: var(--chotto-chatinput-button-height, 30px);
       margin: var(--chotto-chatinput-button-margin, 0);

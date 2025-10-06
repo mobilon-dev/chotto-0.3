@@ -31,6 +31,8 @@
   --chotto-modalvideorecorder-button-border: 0px;
   --chotto-modalvideorecorder-button-span-cursor: pointer;
   --chotto-modalvideorecorder-button-span-display: block;
+  --chotto-modalvideorecorder-button-icon-size: var(--chotto-theme-button-icon-size);
+  --chotto-modalvideorecorder-button-color-active: var(--chotto-theme-button-color-active);
   
   --chotto-modalvideorecorder-header-text-align: right;
   --chotto-modalvideorecorder-header-width: 100%;
@@ -38,6 +40,7 @@
   --chotto-modalvideorecorder-button-close-span-padding-bottom: 5px;
   
   --chotto-modalvideorecorder-button-disabled-cursor: auto;
+  --chotto-modalvideorecorder-button-color-disabled: var(--chotto-theme-button-color-disabled);
   
   --chotto-modalvideorecorder-recording-button-cursor: auto;
   --chotto-modalvideorecorder-recording-button-span-cursor: auto;

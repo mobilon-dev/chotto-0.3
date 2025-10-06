@@ -67,6 +67,10 @@ export interface ModalVideoRecorderThemeCSSVariables {
   '--chotto-modalvideorecorder-button-span-cursor': string;
   /** Отображение span элемента кнопки */
   '--chotto-modalvideorecorder-button-span-display': string;
+  /** Размер иконки в кнопке */
+  '--chotto-modalvideorecorder-button-icon-size': string;
+  /** Активный цвет иконки/кнопки */
+  '--chotto-modalvideorecorder-button-color-active': string;
 
   // Header
   /** Выравнивание текста заголовка */
@@ -81,6 +85,8 @@ export interface ModalVideoRecorderThemeCSSVariables {
   // Button disabled
   /** Курсор отключенной кнопки */
   '--chotto-modalvideorecorder-button-disabled-cursor': string;
+  /** Цвет отключенной иконки/кнопки */
+  '--chotto-modalvideorecorder-button-color-disabled': string;
 
   // Recording button
   /** Курсор кнопки записи */

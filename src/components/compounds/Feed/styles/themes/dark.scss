@@ -58,8 +58,10 @@
   // Скроллбар
   --chotto-feed-scrollbar-width: 6px;
   --chotto-feed-scrollbar-background-color: var(--dark-surface-200);
+  --chotto-feed-scrollbar-bg: var(--chotto-theme-scrollbar-bg);
   --chotto-feed-scrollbar-thumb-border-radius: 10px;
   --chotto-feed-scrollbar-thumb-background-color: var(--dark-border-300);
+  --chotto-feed-scrollbar-thumb-bg: var(--chotto-theme-scrollbar-thumb-bg);
   --chotto-feed-scrollbar-track-border-radius: 10px;
 
   // Сфокусированное сообщение

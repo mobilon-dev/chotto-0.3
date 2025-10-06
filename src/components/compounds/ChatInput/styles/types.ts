@@ -83,6 +83,16 @@ export interface ChatInputThemeCSSVariables {
   '--chotto-chatinput-disabled-placeholder-text-align': string;
   /** Выбор пользователем отключенного плейсхолдера */
   '--chotto-chatinput-disabled-placeholder-user-select': string;
+  /** Цвет текста отключенного плейсхолдера */
+  '--chotto-chatinput-disabled-placeholder-text-color': string;
+
+  // Typography
+  /** Основной цвет текста */
+  '--chotto-chatinput-input-text-color': string;
+  /** Вторичный цвет текста */
+  '--chotto-chatinput-secondary-text-color': string;
+  /** Семейство шрифта */
+  '--chotto-chatinput-font-family': string;
 
   // Button
   /** Строка сетки кнопки */
@@ -115,6 +125,8 @@ export interface ChatInputThemeCSSVariables {
   '--chotto-chatinput-button-height': string;
   /** Курсор отключенной кнопки */
   '--chotto-chatinput-button-disabled-cursor': string;
+  /** Размер иконки кнопки */
+  '--chotto-chatinput-button-icon-size': string;
 
   // Inline buttons
   /** Отображение встроенных кнопок */
@@ -137,8 +149,12 @@ export interface ChatInputThemeCSSVariables {
   // Scrollbar
   /** Ширина полосы прокрутки */
   '--chotto-chatinput-scrollbar-width': string;
+  /** Цвет фона полосы прокрутки */
+  '--chotto-chatinput-scrollbar-bg': string;
   /** Радиус границы ползунка полосы прокрутки */
   '--chotto-chatinput-scrollbar-thumb-radius': string;
+  /** Цвет фона ползунка полосы прокрутки */
+  '--chotto-chatinput-scrollbar-thumb-bg': string;
   /** Радиус границы дорожки полосы прокрутки */
   '--chotto-chatinput-scrollbar-track-radius': string;
 

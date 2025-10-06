@@ -3,6 +3,10 @@
  */
 export interface TemplateSelectorThemeCSSVariables {
   // Main container
+  /** Базовый фон TemplateSelector */
+  '--chotto-templateselector-primary-color': string;
+  /** Цвет границ элементов TemplateSelector */
+  '--chotto-templateselector-item-border-color': string;
   /** Позиционирование селектора шаблонов */
   '--chotto-templateselector-position': string;
   /** Позиция селектора шаблонов снизу */
@@ -31,6 +35,8 @@ export interface TemplateSelectorThemeCSSVariables {
   '--chotto-templateselector-container-inline-min-width': string;
 
   // Container elevated
+  /** Цвет тени контейнера */
+  '--chotto-templateselector-shadow-color': string;
   /** Позиционирование приподнятого контейнера */
   '--chotto-templateselector-container-elevated-position': string;
   /** Максимальная высота приподнятого контейнера */
@@ -93,6 +99,10 @@ export interface TemplateSelectorThemeCSSVariables {
   '--chotto-templateselector-third-col-grid-template-rows': string;
 
   // Button close
+  /** Размер иконок кнопок */
+  '--chotto-templateselector-button-icon-size': string;
+  /** Активный цвет кнопок */
+  '--chotto-templateselector-button-color-active': string;
   /** Строка сетки кнопки закрытия */
   '--chotto-templateselector-button-close-grid-row': string;
   /** Выравнивание кнопки закрытия */
@@ -121,6 +131,10 @@ export interface TemplateSelectorThemeCSSVariables {
   '--chotto-templateselector-list-groups-padding': string;
   /** Отступы списка групп */
   '--chotto-templateselector-list-groups-margin': string;
+  /** Цвет фона скроллбара */
+  '--chotto-templateselector-scrollbar-bg': string;
+  /** Цвет ползунка скроллбара */
+  '--chotto-templateselector-scrollbar-thumb-bg': string;
   /** Ширина webkit скроллбара списка групп */
   '--chotto-templateselector-list-groups-webkit-scrollbar-width': string;
   /** Радиус границы ползунка webkit скроллбара списка групп */
@@ -153,6 +167,10 @@ export interface TemplateSelectorThemeCSSVariables {
   '--chotto-templateselector-item-transition': string;
   /** Граница снизу элемента */
   '--chotto-templateselector-item-border-bottom': string;
+  /** Цвет фона элемента при ховере */
+  '--chotto-templateselector-item-background-color-hover': string;
+  /** Цвет фона элемента в фокусе/selected */
+  '--chotto-templateselector-item-background-color-focus': string;
 
   // Item group
   /** Отображение элемента группы */
@@ -193,6 +211,10 @@ export interface TemplateSelectorThemeCSSVariables {
   // Item title
   /** Отступ снизу заголовка элемента */
   '--chotto-templateselector-item-title-margin-bottom': string;
+  /** Жирность заголовков */
+  '--chotto-templateselector-title-font-weight': string;
+  /** Размер шрифта заголовков */
+  '--chotto-templateselector-title-font-size': string;
 
   // Item text
   /** Переполнение текста элемента */
@@ -207,6 +229,8 @@ export interface TemplateSelectorThemeCSSVariables {
   '--chotto-templateselector-item-text-line-clamp': string;
   /** Ориентация webkit коробки текста элемента */
   '--chotto-templateselector-item-text-webkit-box-orient': string;
+  /** Размер основного текста */
+  '--chotto-templateselector-text-font-size': string;
 
   // Searching container
   /** Строка сетки контейнера поиска */
@@ -229,6 +253,10 @@ export interface TemplateSelectorThemeCSSVariables {
   '--chotto-templateselector-searching-input-box-sizing': string;
   /** Контур фокуса ввода поиска */
   '--chotto-templateselector-searching-input-focus-outline': string;
+  /** Основной цвет текста */
+  '--chotto-templateselector-primary-text-color': string;
+  /** Вторичный цвет текста */
+  '--chotto-templateselector-secondary-text-color': string;
 
   // Preview container
   /** Строка сетки контейнера предварительного просмотра */
@@ -245,6 +273,8 @@ export interface TemplateSelectorThemeCSSVariables {
   '--chotto-templateselector-preview-container-webkit-scrollbar-thumb-border-radius': string;
   /** Радиус границы дорожки webkit скроллбара контейнера предварительного просмотра */
   '--chotto-templateselector-preview-container-webkit-scrollbar-track-border-radius': string;
+  /** Вторичный фон */
+  '--chotto-templateselector-secondary-color': string;
 
   // Preview
   /** Высота предварительного просмотра */
@@ -263,6 +293,8 @@ export interface TemplateSelectorThemeCSSVariables {
   '--chotto-templateselector-preview-wrapper-max-width': string;
   /** Отступ снизу обертки предварительного просмотра */
   '--chotto-templateselector-preview-wrapper-margin-bottom': string;
+  /** Фон левого сообщения (для превью) */
+  '--chotto-templateselector-message-left-bg': string;
 
   // Plug
   /** Ширина заглушки */
@@ -293,6 +325,8 @@ export interface TemplateSelectorThemeCSSVariables {
   '--chotto-templateselector-preview-time-width': string;
   /** Отступ слева времени предварительного просмотра */
   '--chotto-templateselector-preview-time-margin-left': string;
+  /** Размер дополнительного текста (time и т.п.) */
+  '--chotto-templateselector-additional-text-font-size': string;
 
   // Button paste
   /** Строка сетки кнопки вставки */
@@ -313,6 +347,10 @@ export interface TemplateSelectorThemeCSSVariables {
   '--chotto-templateselector-button-paste-border-radius': string;
   /** Курсор кнопки вставки */
   '--chotto-templateselector-button-paste-cursor': string;
+  /** Активный цвет кнопки-вставки */
+  '--chotto-templateselector-action-button-color-active': string;
+  /** Ховер цвет кнопки-вставки */
+  '--chotto-templateselector-action-button-color-hover': string;
 
   // Responsive layout
   /** Шаблон колонок сетки адаптивного макета */

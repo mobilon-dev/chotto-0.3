@@ -49,7 +49,7 @@
 
     span {
       font-size: var(--chotto-chatitem-avatar-text-font-size, 21px);
-      color: #737373;
+      color: var(--chotto-chatitem-avatar-text-color, #737373);
     }
 
     img {

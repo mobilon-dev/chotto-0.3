@@ -6,6 +6,8 @@
   --chotto-templateselector-right: 0;
   --chotto-templateselector-z-index: 100;
   --chotto-templateselector-container: templates / inline-size;
+  --chotto-templateselector-primary-color: var(--chotto-theme-primary-color);
+  --chotto-templateselector-item-border-color: var(--chotto-theme-item-border-color);
 
   // Container inline
   --chotto-templateselector-container-inline-max-height: 500px;
@@ -24,6 +26,7 @@
   --chotto-templateselector-container-elevated-box-shadow: 5px 5px 29px -15px var(--chotto-theme-shadow-color);
   --chotto-templateselector-container-elevated-bottom: 20px;
   --chotto-templateselector-container-elevated-right: 20px;
+  --chotto-templateselector-shadow-color: var(--chotto-theme-shadow-color);
 
   // Layout
   --chotto-templateselector-layout-max-height: 400px;
@@ -60,6 +63,8 @@
   --chotto-templateselector-button-close-width: fit-content;
   --chotto-templateselector-button-close-cursor: pointer;
   --chotto-templateselector-button-close-margin: 0 16px 20px auto;
+  --chotto-templateselector-button-icon-size: var(--chotto-theme-button-icon-size);
+  --chotto-templateselector-button-color-active: var(--chotto-theme-button-color-active);
 
   // List groups
   --chotto-templateselector-list-groups-grid-row: 2;
@@ -70,6 +75,8 @@
   --chotto-templateselector-list-groups-webkit-scrollbar-width: 6px;
   --chotto-templateselector-list-groups-webkit-scrollbar-thumb-border-radius: 10px;
   --chotto-templateselector-list-groups-webkit-scrollbar-track-border-radius: 10px;
+  --chotto-templateselector-scrollbar-bg: var(--chotto-theme-scrollbar-bg);
+  --chotto-templateselector-scrollbar-thumb-bg: var(--chotto-theme-scrollbar-thumb-bg);
 
   // List templates
   --chotto-templateselector-list-templates-padding: 0;
@@ -86,6 +93,8 @@
   // Items
   --chotto-templateselector-item-transition: 0.2s;
   --chotto-templateselector-item-border-bottom: 1px solid var(--chotto-theme-item-border-color);
+  --chotto-templateselector-item-background-color-hover: var(--chotto-theme-item-background-color-hover);
+  --chotto-templateselector-item-background-color-focus: var(--chotto-theme-item-background-color-focus);
 
   // Item group
   --chotto-templateselector-item-group-display: flex;
@@ -110,6 +119,8 @@
 
   // Item title
   --chotto-templateselector-item-title-margin-bottom: 8px;
+  --chotto-templateselector-title-font-weight: var(--chotto-theme-title-font-weight);
+  --chotto-templateselector-title-font-size: var(--chotto-theme-title-font-size);
 
   // Item text
   --chotto-templateselector-item-text-overflow: hidden;
@@ -118,6 +129,7 @@
   --chotto-templateselector-item-text-webkit-line-clamp: 3;
   --chotto-templateselector-item-text-line-clamp: 3;
   --chotto-templateselector-item-text-webkit-box-orient: vertical;
+  --chotto-templateselector-text-font-size: var(--chotto-theme-text-font-size);
 
   // Searching container
   --chotto-templateselector-searching-container-grid-row: 2;
@@ -131,6 +143,8 @@
   --chotto-templateselector-searching-input-transition: border-color var(--chotto-input-transition-duration);
   --chotto-templateselector-searching-input-box-sizing: border-box;
   --chotto-templateselector-searching-input-focus-outline: none;
+  --chotto-templateselector-primary-text-color: var(--chotto-theme-primary-text-color);
+  --chotto-templateselector-secondary-text-color: var(--chotto-theme-secondary-text-color);
 
   // Preview container
   --chotto-templateselector-preview-container-grid-row: 2;
@@ -140,6 +154,7 @@
   --chotto-templateselector-preview-container-webkit-scrollbar-width: 6px;
   --chotto-templateselector-preview-container-webkit-scrollbar-thumb-border-radius: 10px;
   --chotto-templateselector-preview-container-webkit-scrollbar-track-border-radius: 10px;
+  --chotto-templateselector-secondary-color: var(--chotto-theme-secondary-color);
 
   // Preview
   --chotto-templateselector-preview-height: 100%;
@@ -151,6 +166,7 @@
   --chotto-templateselector-preview-wrapper-border-radius: 14px;
   --chotto-templateselector-preview-wrapper-max-width: 90%;
   --chotto-templateselector-preview-wrapper-margin-bottom: 15px;
+  --chotto-templateselector-message-left-bg: var(--chotto-theme-message-left-bg);
 
   // Plug
   --chotto-templateselector-plug-width: 100%;
@@ -169,6 +185,8 @@
   // Preview time
   --chotto-templateselector-preview-time-width: fit-content;
   --chotto-templateselector-preview-time-margin-left: auto;
+  --chotto-templateselector-additional-text-font-size: var(--chotto-theme-additional-text-font-size);
+  --chotto-templateselector-secondary-text-color: var(--chotto-theme-secondary-text-color);
 
   // Button paste
   --chotto-templateselector-button-paste-grid-row: 3;
@@ -180,6 +198,9 @@
   --chotto-templateselector-button-paste-padding: 8px 16px;
   --chotto-templateselector-button-paste-border-radius: 10px;
   --chotto-templateselector-button-paste-cursor: pointer;
+  --chotto-templateselector-title-font-size: var(--chotto-theme-title-font-size);
+  --chotto-templateselector-action-button-color-active: var(--chotto-theme-action-button-color-active);
+  --chotto-templateselector-action-button-color-hover: var(--chotto-theme-action-button-color-hover);
 
   // Responsive layout
   --chotto-templateselector-layout-responsive-grid-template-columns: 1fr;

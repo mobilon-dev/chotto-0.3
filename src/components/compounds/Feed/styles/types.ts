@@ -107,10 +107,14 @@ export interface FeedThemeCSSVariables {
   '--chotto-feed-scrollbar-width': string;
   /** Цвет фона скроллбара */
   '--chotto-feed-scrollbar-background-color': string;
+  /** Альтернативный ключ для цвета фона скроллбара (исп. в scss) */
+  '--chotto-feed-scrollbar-bg': string;
   /** Радиус границы ползунка скроллбара */
   '--chotto-feed-scrollbar-thumb-border-radius': string;
   /** Цвет фона ползунка скроллбара */
   '--chotto-feed-scrollbar-thumb-background-color': string;
+  /** Альтернативный ключ для цвета ползунка скроллбара (исп. в scss) */
+  '--chotto-feed-scrollbar-thumb-bg': string;
   /** Радиус границы дорожки скроллбара */
   '--chotto-feed-scrollbar-track-border-radius': string;
 

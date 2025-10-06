@@ -28,6 +28,7 @@
   --chotto-sidebar-list-fixed-position: sticky;
   --chotto-sidebar-list-fixed-top: 0;
   --chotto-sidebar-list-fixed-z-index: 3;
+  --chotto-sidebar-layout-extended-first-col-bg: var(--chotto-theme-layout-extended-first-col-bg);
   --chotto-sidebar-list-fixed-margin-bottom: 15px;
   --chotto-sidebar-list-fixed-display: flex;
   --chotto-sidebar-list-fixed-flex-direction: column;
@@ -70,6 +71,8 @@
   --chotto-sidebar-item-before-background-color-hover: var(--chotto-theme-item-background-color-hover);
   
   // Item span
+  --chotto-sidebar-unread-text-color: var(--chotto-theme-unread-text-color);
+  --chotto-sidebar-unread-background-color: var(--chotto-theme-unread-background-color);
   --chotto-sidebar-item-span-position: absolute;
   --chotto-sidebar-item-span-top: 2px;
   --chotto-sidebar-item-span-right: 0;
@@ -84,6 +87,9 @@
   --chotto-sidebar-item-span-z-index: 2;
   
   // Item paragraph
+  --chotto-sidebar-small-text-font-size: var(--chotto-theme-small-text-font-size);
+  --chotto-sidebar-small-text-font-weight: var(--chotto-theme-small-text-font-weight, 400);
+  --chotto-sidebar-header-font-color: var(--chotto-theme-header-font-color, #5F5F5F);
   --chotto-sidebar-item-p-text-align: center;
   --chotto-sidebar-item-p-line-height: 1;
   

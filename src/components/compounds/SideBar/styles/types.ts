@@ -53,6 +53,8 @@ export interface SideBarThemeCSSVariables {
   '--chotto-sidebar-list-fixed-top': string;
   /** Z-index фиксированного списка */
   '--chotto-sidebar-list-fixed-z-index': string;
+  /** Фон расширенной первой колонки лэйаута */
+  '--chotto-sidebar-layout-extended-first-col-bg': string;
   /** Отступы фиксированного списка */
   '--chotto-sidebar-list-fixed-padding': string;
   /** Отступ снизу фиксированного списка */
@@ -133,6 +135,10 @@ export interface SideBarThemeCSSVariables {
   '--chotto-sidebar-item-before-background-color-hover': string;
 
   // Item span
+  /** Цвет текста бейджа непрочитанных */
+  '--chotto-sidebar-unread-text-color': string;
+  /** Цвет фона бейджа непрочитанных */
+  '--chotto-sidebar-unread-background-color': string;
   /** Позиционирование span элемента */
   '--chotto-sidebar-item-span-position': string;
   /** Позиция span элемента сверху */
@@ -159,6 +165,12 @@ export interface SideBarThemeCSSVariables {
   '--chotto-sidebar-item-span-z-index': string;
 
   // Item paragraph
+  /** Размер шрифта маленького текста */
+  '--chotto-sidebar-small-text-font-size': string;
+  /** Начертание шрифта маленького текста */
+  '--chotto-sidebar-small-text-font-weight': string;
+  /** Цвет заголовка/подписи элемента */
+  '--chotto-sidebar-header-font-color': string;
   /** Выравнивание текста параграфа элемента */
   '--chotto-sidebar-item-p-text-align': string;
   /** Высота строки параграфа элемента */
