@@ -244,6 +244,86 @@ export interface CallMessageThemeCSSVariables {
   '--chotto-callmessage-modal-fade-opacity-from': string;
   /** Прозрачность модального окна в конце */
   '--chotto-callmessage-modal-fade-opacity-to': string;
+
+  // New component-scoped variables mapped from former theme tokens
+  /** Скругление контейнера контента */
+  '--chotto-callmessage-content-border-radius': string;
+  /** Размер шрифта заголовка */
+  '--chotto-callmessage-title-font-size': string;
+  /** Фон иконки типа сообщения */
+  '--chotto-callmessage-icon-background-color': string;
+  /** Цвет иконки типа сообщения */
+  '--chotto-callmessage-icon-color': string;
+  /** Размер иконки типа сообщения */
+  '--chotto-callmessage-icon-font-size': string;
+  /** Цвет текста длительности */
+  '--chotto-callmessage-duration-text-color': string;
+  /** Размер шрифта длительности */
+  '--chotto-callmessage-duration-font-size': string;
+  /** Цвет текста времени */
+  '--chotto-callmessage-time-text-color': string;
+  /** Размер шрифта времени */
+  '--chotto-callmessage-time-font-size': string;
+  /** Цвет иконки кнопки скачивания */
+  '--chotto-callmessage-download-button-icon-color': string;
+  /** Размер иконки кнопки скачивания */
+  '--chotto-callmessage-download-button-icon-size': string;
+  /** Цвет статуса доставлено */
+  '--chotto-callmessage-status-color-received': string;
+  /** Цвет статуса прочитано */
+  '--chotto-callmessage-status-color-read': string;
+  /** Малый размер иконки текста */
+  '--chotto-callmessage-small-text-icon-size': string;
+  /** Размер шрифта подзаголовка */
+  '--chotto-callmessage-subtext-font-size': string;
+  /** Цвет текста подзаголовка */
+  '--chotto-callmessage-subtext-text-color': string;
+  /** Цвет before-полоски в текстовом диалоге */
+  '--chotto-callmessage-text-dialog-before-background-color': string;
+  /** Размер шрифта заголовка в текстовом диалоге */
+  '--chotto-callmessage-text-dialog-title-font-size': string;
+  /** Цвет текста подписи в текстовом диалоге */
+  '--chotto-callmessage-text-dialog-subtext-text-color': string;
+  /** Размер шрифта подписи в текстовом диалоге */
+  '--chotto-callmessage-text-dialog-subtext-font-size': string;
+  /** Внешний отступ сообщения (контейнер left/right) */
+  '--chotto-callmessage-message-margin': string;
+  /** Цвет фона блока слева */
+  '--chotto-callmessage-left-background-color': string;
+  /** Цвет фона блока справа */
+  '--chotto-callmessage-right-background-color': string;
+  /** Семейство шрифта модального окна */
+  '--chotto-callmessage-modal-font-family': string;
+  /** Жирность шрифта модального окна */
+  '--chotto-callmessage-modal-font-weight': string;
+  /** Размер шрифта модального окна */
+  '--chotto-callmessage-modal-font-size': string;
+  /** Цвет текста модального окна */
+  '--chotto-callmessage-modal-text-color': string;
+  /** Фон модального окна */
+  '--chotto-callmessage-modal-background-color': string;
+  /** Радиус модального окна */
+  '--chotto-callmessage-modal-border-radius': string;
+  /** Отступы модального окна */
+  '--chotto-callmessage-modal-padding': string;
+  /** Тень модального окна */
+  '--chotto-callmessage-modal-overlay-shadow': string;
+  /** Цвет фона скроллбара модального окна */
+  '--chotto-callmessage-modal-scrollbar-bg': string;
+  /** Цвет ползунка скроллбара модального окна */
+  '--chotto-callmessage-modal-scrollbar-thumb-bg': string;
+  /** Цвет маски оверлея модального окна */
+  '--chotto-callmessage-modal-mask-background': string;
+  /** Цвет иконки кнопки закрытия модального окна */
+  '--chotto-callmessage-modal-close-button-icon-color': string;
+  /** Размер иконки кнопки закрытия модального окна */
+  '--chotto-callmessage-modal-close-button-icon-size': string;
+  /** Цвет иконки кнопки меню */
+  '--chotto-callmessage-menu-button-icon-color': string;
+  /** Размер иконки кнопки меню */
+  '--chotto-callmessage-menu-button-icon-size': string;
+  /** Цвет иконки кнопки меню при наведении */
+  '--chotto-callmessage-menu-button-icon-color-hover': string;
 }
 
 

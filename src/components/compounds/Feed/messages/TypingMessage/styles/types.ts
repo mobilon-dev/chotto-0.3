@@ -92,6 +92,8 @@ export interface TypingMessageThemeCSSVariables {
 
   /** Цвет точек индикатора набора */
   '--chotto-typingmessage-loader-color': string;
+  /** Цвет одной точки (используется в keyframes) */
+  '--chotto-typingmessage-loader-dot-color': string;
   /** Тень в начале анимации */
   '--chotto-typingmessage-keyframes-0-box-shadow': string;
   /** Тень в конце анимации */

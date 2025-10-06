@@ -388,6 +388,82 @@ export interface AudioMessageThemeCSSVariables {
   '--chotto-audiomessage-modal-fade-transition': string;
   /** Прозрачность модального окна */
   '--chotto-audiomessage-modal-fade-opacity': string;
+  /** Скругление контейнера контента */
+  '--chotto-audiomessage-content-border-radius': string;
+  /** Цвет фона левого пузыря */
+  '--chotto-audiomessage-left-background-color': string;
+  /** Цвет фона правого пузыря */
+  '--chotto-audiomessage-right-background-color': string;
+  /** Цвет фона иконки типа сообщения (play/pause) */
+  '--chotto-audiomessage-type-icon-background-color': string;
+  /** Размер иконки типа сообщения (play/pause) */
+  '--chotto-audiomessage-type-icon-font-size': string;
+  /** Цвет иконки типа сообщения (play/pause) */
+  '--chotto-audiomessage-type-icon-color': string;
+  /** Размер шрифта кнопки скорости */
+  '--chotto-audiomessage-speed-btn-font-size': string;
+  /** Размер шрифта оставшегося времени */
+  '--chotto-audiomessage-remaining-time-font-size': string;
+  /** Размер шрифта подписи */
+  '--chotto-audiomessage-subtext-font-size': string;
+  /** Цвет текста подписи */
+  '--chotto-audiomessage-subtext-text-color': string;
+  /** Цвет иконки кнопки скачивания */
+  '--chotto-audiomessage-download-button-icon-color': string;
+  /** Размер иконки кнопки скачивания */
+  '--chotto-audiomessage-download-button-icon-size': string;
+  /** Цвет статуса доставлено */
+  '--chotto-audiomessage-status-color-received': string;
+  /** Цвет статуса прочитано */
+  '--chotto-audiomessage-status-color-read': string;
+  /** Размер малого текста-иконки */
+  '--chotto-audiomessage-small-text-icon-size': string;
+  /** Цвет иконки/текста (span) просмотров */
+  '--chotto-audiomessage-views-icon-text-color': string;
+  /** Размер малого текста (p) просмотров */
+  '--chotto-audiomessage-small-text-font-size': string;
+  /** Цвет малого текста (p) просмотров */
+  '--chotto-audiomessage-views-text-color': string;
+  /** Размер шрифта времени */
+  '--chotto-audiomessage-time-font-size': string;
+  /** Цвет текста времени */
+  '--chotto-audiomessage-time-text-color': string;
+  /** Цвет иконки кнопки меню */
+  '--chotto-audiomessage-menu-button-icon-color': string;
+  /** Размер иконки кнопки меню */
+  '--chotto-audiomessage-menu-button-icon-size': string;
+  /** Цвет иконки кнопки меню при наведении */
+  '--chotto-audiomessage-menu-button-icon-color-hover': string;
+  /** Размер шрифта в текстовом контейнере */
+  '--chotto-audiomessage-text-font-size': string;
+  /** Цвет текста транскрипта */
+  '--chotto-audiomessage-transcript-text-color': string;
+  /** Внешний отступ общего контейнера */
+  '--chotto-audiomessage-message-margin': string;
+  /** Семейство шрифта модального окна */
+  '--chotto-audiomessage-modal-font-family': string;
+  /** Жирность шрифта модального окна */
+  '--chotto-audiomessage-modal-font-weight': string;
+  /** Размер шрифта модального окна */
+  '--chotto-audiomessage-modal-font-size': string;
+  /** Цвет текста модального окна */
+  '--chotto-audiomessage-modal-text-color': string;
+  /** Фон модального окна */
+  '--chotto-audiomessage-modal-background-color': string;
+  /** Радиус модального окна */
+  '--chotto-audiomessage-modal-border-radius': string;
+  /** Отступы модального окна */
+  '--chotto-audiomessage-modal-padding': string;
+  /** Тень модального окна */
+  '--chotto-audiomessage-modal-overlay-shadow': string;
+  /** Размер шрифта заголовка модала */
+  '--chotto-audiomessage-modal-title-font-size': string;
+  /** Цвет маски оверлея */
+  '--chotto-audiomessage-modal-mask-background': string;
+  /** Цвет иконки кнопки закрытия */
+  '--chotto-audiomessage-modal-close-button-icon-color': string;
+  /** Размер иконки кнопки закрытия */
+  '--chotto-audiomessage-modal-close-button-icon-size': string;
 }
 
 

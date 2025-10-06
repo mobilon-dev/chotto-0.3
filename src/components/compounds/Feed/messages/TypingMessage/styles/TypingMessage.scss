@@ -66,11 +66,11 @@
 
   @keyframes typing-message__loader {
     0% {
-      box-shadow: 0 15px 0 -15px var(--chotto-theme-secondary-text-color);
+      box-shadow: var(--chotto-typingmessage-keyframes-0-box-shadow);
     }
 
     100% {
-      box-shadow: 0 15px 0 var(--chotto-theme-secondary-text-color);
+      box-shadow: var(--chotto-typingmessage-keyframes-100-box-shadow);
     }
   }
 }
