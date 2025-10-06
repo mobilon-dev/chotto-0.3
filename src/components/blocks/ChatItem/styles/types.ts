@@ -37,6 +37,10 @@ export interface ChatItemThemeCSSVariables {
   // Selected state
   /** Курсор выбранного элемента */
   '--chotto-chatitem-selected-cursor': string;
+  /** Фон контейнера при наведении */
+  '--chotto-chatitem-container-hover-bg': string;
+  /** Фон выбранного элемента */
+  '--chotto-chatitem-selected-bg': string;
 
   // Avatar container
   /** Позиционирование контейнера аватара */
@@ -111,6 +115,10 @@ export interface ChatItemThemeCSSVariables {
   '--chotto-chatitem-name-line-clamp': string;
   /** Ориентация блока имени */
   '--chotto-chatitem-name-box-orient': string;
+  /** Размер шрифта имени */
+  '--chotto-chatitem-name-font-size': string;
+  /** Толщина шрифта имени */
+  '--chotto-chatitem-name-font-weight': string;
 
   // Last message
   /** Переполнение последнего сообщения */
@@ -123,6 +131,10 @@ export interface ChatItemThemeCSSVariables {
   '--chotto-chatitem-last-message-line-clamp': string;
   /** Ориентация блока последнего сообщения */
   '--chotto-chatitem-last-message-box-orient': string;
+  /** Размер шрифта последнего сообщения */
+  '--chotto-chatitem-last-message-font-size': string;
+  /** Цвет текста последнего сообщения */
+  '--chotto-chatitem-last-message-text-color': string;
 
   // Details container
   /** Позиционирование контейнера деталей */
@@ -135,12 +147,20 @@ export interface ChatItemThemeCSSVariables {
   '--chotto-chatitem-details-container-justify': string;
   /** Выравнивание по поперечной оси контейнера деталей */
   '--chotto-chatitem-details-container-align': string;
+  /** Активный цвет в контейнере деталей */
+  '--chotto-chatitem-button-color-active': string;
 
   // Actions trigger
   /** Отображение триггера действий */
   '--chotto-chatitem-actions-trigger-display': string;
   /** Курсор триггера действий */
   '--chotto-chatitem-actions-trigger-cursor': string;
+  /** Размер иконки триггера действий */
+  '--chotto-chatitem-actions-trigger-font-size': string;
+  /** Цвет иконки триггера действий */
+  '--chotto-chatitem-actions-trigger-color': string;
+  /** Цвет иконки при наведении */
+  '--chotto-chatitem-actions-trigger-color-hover': string;
 
   // Menu button
   /** Порядок кнопки меню */
@@ -167,6 +187,8 @@ export interface ChatItemThemeCSSVariables {
   '--chotto-chatitem-menu-button-span-width': string;
   /** Отступ слева span кнопки меню */
   '--chotto-chatitem-menu-button-span-margin-left': string;
+  /** Цвет иконки при наведении в кнопке меню */
+  '--chotto-chatitem-menu-button-hover-color': string;
 
   // Unread
   /** Порядок непрочитанных сообщений */
@@ -185,10 +207,20 @@ export interface ChatItemThemeCSSVariables {
   '--chotto-chatitem-unread-max-height': string;
   /** Отступы непрочитанных сообщений */
   '--chotto-chatitem-unread-padding': string;
+  /** Размер шрифта бейджа непрочитанного */
+  '--chotto-chatitem-unread-font-size': string;
+  /** Цвет текста бейджа непрочитанного */
+  '--chotto-chatitem-unread-text-color': string;
+  /** Цвет фона бейджа непрочитанного */
+  '--chotto-chatitem-unread-background-color': string;
 
   // Time
   /** Перенос строк времени */
   '--chotto-chatitem-time-white-space': string;
+  /** Размер шрифта времени */
+  '--chotto-chatitem-time-font-size': string;
+  /** Цвет текста времени */
+  '--chotto-chatitem-time-text-color': string;
 
   // Context menu
   /** Позиционирование контекстного меню */
@@ -211,6 +243,12 @@ export interface ChatItemThemeCSSVariables {
   // Status message
   /** Отображение статуса сообщения */
   '--chotto-chatitem-status-message-display': string;
+  /** Цвет статуса "доставлено" */
+  '--chotto-chatitem-status-color-received': string;
+  /** Цвет статуса "прочитано" */
+  '--chotto-chatitem-status-color-read': string;
+  /** Размер шрифта статуса */
+  '--chotto-chatitem-status-font-size': string;
 
   // Dialog buttons
   /** Отображение кнопок диалога */
@@ -245,6 +283,8 @@ export interface ChatItemThemeCSSVariables {
   // Dialog selected
   /** Курсор выбранного диалога */
   '--chotto-chatitem-dialog-selected-cursor': string;
+  /** Фон выбранного диалога */
+  '--chotto-chatitem-dialog-selected-bg': string;
 
   // Dialog text container
   /** Отображение контейнера текста диалога */
@@ -261,6 +301,10 @@ export interface ChatItemThemeCSSVariables {
   '--chotto-chatitem-dialog-text-container-margin': string;
   /** Отступы текстового контейнера */
   '--chotto-chatitem-text-container-padding': string;
+  /** Размер шрифта текста диалога */
+  '--chotto-chatitem-dialog-text-font-size': string;
+  /** Цвет текста диалога */
+  '--chotto-chatitem-dialog-text-color': string;
 
   // Dialog name
   /** Отображение имени диалога */
@@ -277,6 +321,10 @@ export interface ChatItemThemeCSSVariables {
   '--chotto-chatitem-dialog-time-line-clamp': string;
   /** Ориентация блока времени диалога */
   '--chotto-chatitem-dialog-time-box-orient': string;
+  /** Цвет времени диалога */
+  '--chotto-chatitem-dialog-time-text-color': string;
+  /** Размер шрифта времени диалога */
+  '--chotto-chatitem-dialog-time-font-size': string;
 
   // Status first icon
   /** Отступ справа от первой иконки статуса */

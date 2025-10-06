@@ -29,12 +29,16 @@ export interface FeedSearchThemeCSSVariables {
   // Input
   /** Ширина поля ввода */
   '--chotto-feedsearch-input-width': string;
+  /** Цвет текста поля ввода */
+  '--chotto-feedsearch-input-text-color': string;
   /** Переход поля ввода */
   '--chotto-feedsearch-input-transition': string;
   /** Отступ слева поля ввода */
   '--chotto-feedsearch-input-margin-left': string;
   /** Контур поля ввода при фокусе */
   '--chotto-feedsearch-input-focus-outline': string;
+  /** Цвет плейсхолдера поля ввода */
+  '--chotto-feedsearch-input-placeholder-text-color': string;
 
   // Animations
   /** Длительность входа */

@@ -12,11 +12,11 @@
   }
   
   &__container:hover{
-    background-color: var(--chotto-theme-item-background-color-hover);
+    background-color: var(--chotto-feedfounditem-container-hover-bg);
   }
 
   &__selected-container{
-    background-color: var(--chotto-theme-item-background-color-focus);
+    background-color: var(--chotto-feedfounditem-selected-container-bg);
   }
 
   &__info{
@@ -35,8 +35,8 @@
   }
 
   &__time{
-    color: var(--chotto-theme-secondary-text-color);
-    font-size: var(--chotto-theme-additional-text-font-size);
+    color: var(--chotto-feedfounditem-time-text-color);
+    font-size: var(--chotto-feedfounditem-time-font-size);
     margin: var(--chotto-feedfounditem-time-margin, 0);
     padding: var(--chotto-feedfounditem-time-padding, 0);
   }
@@ -47,8 +47,8 @@
     p {
       margin: var(--chotto-feedfounditem-second-line-p-margin, 0);
       padding: var(--chotto-feedfounditem-second-line-p-padding, 0);
-      font-size: var(--chotto-theme-text-font-size);
-      color: var(--chotto-theme-secondary-text-color);
+      font-size: var(--chotto-feedfounditem-second-line-p-font-size);
+      color: var(--chotto-feedfounditem-second-line-p-text-color);
       overflow: var(--chotto-feedfounditem-second-line-p-overflow, hidden);
       text-overflow: var(--chotto-feedfounditem-second-line-p-text-overflow, ellipsis);
       display: var(--chotto-feedfounditem-second-line-p-display, -webkit-box);

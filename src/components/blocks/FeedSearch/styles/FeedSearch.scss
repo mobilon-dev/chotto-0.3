@@ -22,7 +22,7 @@
   &__input {
     width: var(--chotto-feedsearch-input-width, 100%);
     background-color: var(--chotto-input-background);
-    color: var(--chotto-theme-primary-text-color);
+    color: var(--chotto-feedsearch-input-text-color);
     padding: var(--chotto-input-padding);
     border: var(--chotto-input-border);
     border-radius: var(--chotto-input-border-radius);
@@ -30,7 +30,7 @@
     transition: var(--chotto-feedsearch-input-transition, border-color var(--chotto-input-transition-duration));
     margin-left: var(--chotto-feedsearch-input-margin-left, 10px);
     &::placeholder {
-      color: var(--chotto-theme-secondary-text-color);
+      color: var(--chotto-feedsearch-input-placeholder-text-color);
     }
 
     &:hover {

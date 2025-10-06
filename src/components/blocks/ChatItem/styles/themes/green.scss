@@ -17,6 +17,8 @@
   
   // Selected state
   --chotto-chatitem-selected-cursor: pointer;
+  --chotto-chatitem-container-hover-bg: var(--chotto-theme-item-background-color-hover);
+  --chotto-chatitem-selected-bg: var(--chotto-theme-item-background-color-focus);
   
   // Avatar container
   --chotto-chatitem-avatar-container-position: relative;
@@ -59,6 +61,8 @@
   --chotto-chatitem-name-display: -webkit-box;
   --chotto-chatitem-name-line-clamp: 1;
   --chotto-chatitem-name-box-orient: vertical;
+  --chotto-chatitem-name-font-size: var(--chotto-theme-title-font-size);
+  --chotto-chatitem-name-font-weight: var(--chotto-theme-title-font-weight);
   
   // Last message
   --chotto-chatitem-last-message-overflow: hidden;
@@ -66,6 +70,8 @@
   --chotto-chatitem-last-message-display: -webkit-box;
   --chotto-chatitem-last-message-line-clamp: 1;
   --chotto-chatitem-last-message-box-orient: vertical;
+  --chotto-chatitem-last-message-font-size: var(--chotto-theme-text-font-size);
+  --chotto-chatitem-last-message-text-color: var(--chotto-theme-secondary-text-color);
   
   // Details container
   --chotto-chatitem-details-container-position: relative;
@@ -73,10 +79,14 @@
   --chotto-chatitem-details-container-flex-direction: column;
   --chotto-chatitem-details-container-justify: space-between;
   --chotto-chatitem-details-container-align: end;
+  --chotto-chatitem-button-color-active: var(--chotto-theme-button-color-active);
   
   // Actions trigger
   --chotto-chatitem-actions-trigger-display: block;
   --chotto-chatitem-actions-trigger-cursor: pointer;
+  --chotto-chatitem-actions-trigger-font-size: var(--chotto-theme-button-icon-size);
+  --chotto-chatitem-actions-trigger-color: var(--chotto-theme-button-color-active);
+  --chotto-chatitem-actions-trigger-color-hover: var(--chotto-theme-button-color-hover);
   
   // Menu button
   --chotto-chatitem-menu-button-order: 0;
@@ -91,6 +101,7 @@
   --chotto-chatitem-menu-button-span-display: block;
   --chotto-chatitem-menu-button-span-width: fit-content;
   --chotto-chatitem-menu-button-span-margin-left: auto;
+  --chotto-chatitem-menu-button-hover-color: var(--chotto-theme-button-color-hover);
   
   // Unread
   --chotto-chatitem-unread-order: 1;
@@ -101,9 +112,14 @@
   --chotto-chatitem-unread-margin-top: auto;
   --chotto-chatitem-unread-max-height: 20px;
   --chotto-chatitem-unread-padding: 0 6px;
+  --chotto-chatitem-unread-font-size: var(--chotto-theme-additional-text-font-size);
+  --chotto-chatitem-unread-text-color: var(--chotto-theme-unread-text-color);
+  --chotto-chatitem-unread-background-color: var(--chotto-theme-unread-background-color);
   
   // Time
   --chotto-chatitem-time-white-space: nowrap;
+  --chotto-chatitem-time-font-size: var(--chotto-theme-additional-text-font-size);
+  --chotto-chatitem-time-text-color: var(--chotto-theme-secondary-text-color);
   
   // Context menu
   --chotto-chatitem-context-menu-position: absolute;
@@ -118,6 +134,11 @@
   
   // Status message
   --chotto-chatitem-status-message-display: flex;
+  --chotto-chatitem-status-color-received: var(--chotto-theme-status-color-received);
+  --chotto-chatitem-status-color-read: var(--chotto-theme-status-color-read);
+  --chotto-chatitem-status-font-size: var(--chotto-theme-text-font-size);
+  --chotto-chatitem-status-color-received: var(--chotto-theme-status-color-received);
+  --chotto-chatitem-status-font-size: var(--chotto-theme-text-font-size);
   
   // Dialog buttons
   --chotto-chatitem-dialog-buttons-display: flex;
@@ -140,6 +161,7 @@
   
   // Dialog selected
   --chotto-chatitem-dialog-selected-cursor: pointer;
+  --chotto-chatitem-dialog-selected-bg: var(--chotto-theme-item-background-color-focus);
   
   // Dialog text container
   --chotto-chatitem-dialog-text-container-display: flex;
@@ -149,6 +171,8 @@
   --chotto-chatitem-dialog-text-container-width: 100%;
   --chotto-chatitem-dialog-text-container-margin: auto;
   --chotto-chatitem-text-container-padding: 0 5px;
+  --chotto-chatitem-dialog-text-font-size: var(--chotto-theme-text-font-size);
+  --chotto-chatitem-dialog-text-color: var(--chotto-theme-primary-text-color);
   
   // Dialog name
   --chotto-chatitem-dialog-name-display: -webkit-box;
@@ -159,6 +183,8 @@
   --chotto-chatitem-dialog-time-display: -webkit-box;
   --chotto-chatitem-dialog-time-line-clamp: 1;
   --chotto-chatitem-dialog-time-box-orient: vertical;
+  --chotto-chatitem-dialog-time-text-color: var(--chotto-theme-secondary-text-color);
+  --chotto-chatitem-dialog-time-font-size: var(--chotto-theme-additional-text-font-size);
   
   // Status first icon
   --chotto-chatitem-status-first-icon-margin-right: -8px;

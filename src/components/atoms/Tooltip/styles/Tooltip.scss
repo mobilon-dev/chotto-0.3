@@ -9,8 +9,8 @@
   left: var(--chotto-tooltip-left, 0);
   position: var(--chotto-tooltip-position, absolute);
   z-index: var(--chotto-tooltip-z-index, 99999);
-  font-family: var(--chotto-tooltip-font-family, var(--chotto-theme-font-family));
-  font-weight: var(--chotto-tooltip-font-weight, var(--chotto-theme-container-font-weight));
+  font-family: var(--chotto-tooltip-font-family);
+  font-weight: var(--chotto-tooltip-font-weight);
   border: var(--chotto-tooltip-border, 1px solid #5F5F5F);
   font-size: var(--chotto-tooltip-font-size, 14px);
   line-height: var(--chotto-tooltip-line-height, inherit);

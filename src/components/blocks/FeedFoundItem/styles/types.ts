@@ -15,6 +15,10 @@ export interface FeedFoundItemThemeCSSVariables {
   '--chotto-feedfounditem-container-word-wrap': string;
   /** Цвет фона контейнера найденного элемента */
   '--chotto-feedfounditem-container-bg': string;
+  /** Цвет фона контейнера при hover */
+  '--chotto-feedfounditem-container-hover-bg': string;
+  /** Цвет фона выбранного контейнера */
+  '--chotto-feedfounditem-selected-container-bg': string;
 
   // Info
   /** Ширина информации */
@@ -35,6 +39,10 @@ export interface FeedFoundItemThemeCSSVariables {
   '--chotto-feedfounditem-name-padding': string;
 
   // Time
+  /** Цвет текста времени */
+  '--chotto-feedfounditem-time-text-color': string;
+  /** Размер шрифта времени */
+  '--chotto-feedfounditem-time-font-size': string;
   /** Отступы времени */
   '--chotto-feedfounditem-time-margin': string;
   /** Внутренние отступы времени */
@@ -45,10 +53,14 @@ export interface FeedFoundItemThemeCSSVariables {
   '--chotto-feedfounditem-second-line-display': string;
   /** Перенос слов второй строки */
   '--chotto-feedfounditem-second-line-word-break': string;
+  /** Размер шрифта параграфа второй строки */
+  '--chotto-feedfounditem-second-line-p-font-size': string;
   /** Отступы параграфа второй строки */
   '--chotto-feedfounditem-second-line-p-margin': string;
   /** Внутренние отступы параграфа второй строки */
   '--chotto-feedfounditem-second-line-p-padding': string;
+  /** Цвет текста параграфа второй строки */
+  '--chotto-feedfounditem-second-line-p-text-color': string;
   /** Переполнение параграфа второй строки */
   '--chotto-feedfounditem-second-line-p-overflow': string;
   /** Обрезка текста параграфа второй строки */

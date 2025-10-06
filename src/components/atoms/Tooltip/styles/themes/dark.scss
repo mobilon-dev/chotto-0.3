@@ -8,8 +8,8 @@
   --chotto-tooltip-max-width: 320px;
   --chotto-tooltip-text-align: left;
   --chotto-tooltip-font-size: 13px;
-  --chotto-tooltip-font-family: inherit;
-  --chotto-tooltip-font-weight: 400;
+  --chotto-tooltip-font-family: var(--chotto-theme-font-family);
+  --chotto-tooltip-font-weight: var(--chotto-theme-container-font-weight);
   --chotto-tooltip-line-height: 1.4;
   --chotto-tooltip-box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   --chotto-tooltip-z-index: 99999;

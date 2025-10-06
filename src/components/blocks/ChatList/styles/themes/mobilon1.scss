@@ -20,7 +20,9 @@
   
   // Scrollbar
   --chotto-chatlist-scrollbar-width: 6px;
+  --chotto-chatlist-scrollbar-bg: var(--chotto-theme-scrollbar-bg);
   --chotto-chatlist-scrollbar-thumb-radius: 10px;
+  --chotto-chatlist-scrollbar-thumb-bg: var(--chotto-theme-scrollbar-thumb-bg);
   --chotto-chatlist-scrollbar-track-radius: 10px;
   
   // Fixed items
@@ -38,6 +40,12 @@
   --chotto-chatlist-title-container-align: center;
   --chotto-chatlist-title-column-gap: 50px;
   --chotto-chatlist-title-container-padding: 20px 0 20px 15px;
+  
+  // Title
+  --chotto-chatlist-title-font-family: var(--chotto-theme-header-font, var(--chotto-theme-font-family));
+  --chotto-chatlist-title-font-size: var(--chotto-theme-header-font-size);
+  --chotto-chatlist-title-font-weight: var(--chotto-theme-header-font-weight);
+  --chotto-chatlist-title-text-color: var(--chotto-theme-primary-text-color);
   
   // Context menu
   --chotto-chatlist-context-menu-position: absolute;
@@ -57,6 +65,9 @@
   --chotto-chatlist-button-justify: center;
   --chotto-chatlist-button-align: center;
   --chotto-chatlist-button-cursor: pointer;
+  --chotto-chatlist-button-background-color: var(--chotto-theme-button-color-disabled);
+  --chotto-chatlist-button-icon-size: var(--chotto-theme-button-icon-size);
+  --chotto-chatlist-button-color-active: var(--chotto-theme-button-color-active);
   
   // Menu animations
   --chotto-chatlist-menu-enter-duration: 0.1s;

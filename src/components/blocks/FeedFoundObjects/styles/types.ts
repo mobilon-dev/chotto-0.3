@@ -31,8 +31,12 @@ export interface FeedFoundObjectsThemeCSSVariables {
   // Scrollbar
   /** Ширина полосы прокрутки */
   '--chotto-feedfoundobjects-scrollbar-width': string;
+  /** Цвет фона полосы прокрутки */
+  '--chotto-feedfoundobjects-scrollbar-bg': string;
   /** Радиус границы ползунка полосы прокрутки */
   '--chotto-feedfoundobjects-scrollbar-thumb-radius': string;
+  /** Цвет фона ползунка полосы прокрутки */
+  '--chotto-feedfoundobjects-scrollbar-thumb-bg': string;
   /** Радиус границы дорожки полосы прокрутки */
   '--chotto-feedfoundobjects-scrollbar-track-radius': string;
 }

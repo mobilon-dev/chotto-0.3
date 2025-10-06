@@ -37,8 +37,12 @@ export interface ChatListThemeCSSVariables {
   // Scrollbar
   /** Ширина полосы прокрутки */
   '--chotto-chatlist-scrollbar-width': string;
+  /** Цвет фона полосы прокрутки */
+  '--chotto-chatlist-scrollbar-bg': string;
   /** Радиус границы ползунка полосы прокрутки */
   '--chotto-chatlist-scrollbar-thumb-radius': string;
+  /** Цвет фона ползунка полосы прокрутки */
+  '--chotto-chatlist-scrollbar-thumb-bg': string;
   /** Радиус границы дорожки полосы прокрутки */
   '--chotto-chatlist-scrollbar-track-radius': string;
 
@@ -69,6 +73,16 @@ export interface ChatListThemeCSSVariables {
   '--chotto-chatlist-title-column-gap': string;
   /** Отступы контейнера заголовка */
   '--chotto-chatlist-title-container-padding': string;
+
+  // Title
+  /** Семейство шрифта заголовка */
+  '--chotto-chatlist-title-font-family': string;
+  /** Размер шрифта заголовка */
+  '--chotto-chatlist-title-font-size': string;
+  /** Толщина шрифта заголовка */
+  '--chotto-chatlist-title-font-weight': string;
+  /** Цвет текста заголовка */
+  '--chotto-chatlist-title-text-color': string;
 
   // Context menu
   /** Позиционирование контекстного меню */
@@ -103,6 +117,12 @@ export interface ChatListThemeCSSVariables {
   '--chotto-chatlist-button-align': string;
   /** Курсор кнопки "вверх" */
   '--chotto-chatlist-button-cursor': string;
+  /** Цвет фона кнопки "вверх" */
+  '--chotto-chatlist-button-background-color': string;
+  /** Размер иконки кнопки */
+  '--chotto-chatlist-button-icon-size': string;
+  /** Цвет активного состояния иконки */
+  '--chotto-chatlist-button-color-active': string;
 
   // Menu animations
   /** Длительность входа меню */

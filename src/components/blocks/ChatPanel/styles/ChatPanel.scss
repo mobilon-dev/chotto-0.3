@@ -6,12 +6,12 @@
 
   &::-webkit-scrollbar {
     width: var(--chotto-chatpanel-scrollbar-width, 6px);
-    background-color: var(--chotto-theme-scrollbar-bg);
+    background-color: var(--chotto-chatpanel-scrollbar-bg);
   }
 
   &::-webkit-scrollbar-thumb {
     border-radius: var(--chotto-chatpanel-scrollbar-thumb-radius, 10px);
-    background-color: var(--chotto-theme-scrollbar-thumb-bg);
+    background-color: var(--chotto-chatpanel-scrollbar-thumb-bg);
   }
 
   &::-webkit-scrollbar-track {
@@ -30,10 +30,10 @@
   }
 
   &__title {
-    font-size: var(--chotto-theme-header-font-size);
-    font-weight: var(--chotto-theme-header-font-weight);
-    font-family: var(--chotto-theme-header-font);
-    color: var(--chotto-theme-secondary-text-color);
+    font-size: var(--chotto-chatpanel-title-font-size);
+    font-weight: var(--chotto-chatpanel-title-font-weight);
+    font-family: var(--chotto-chatpanel-title-font-family);
+    color: var(--chotto-chatpanel-title-text-color);
     letter-spacing: var(--chotto-chatpanel-title-letter-spacing, 0.5px);
   }
 
@@ -43,8 +43,8 @@
     cursor: var(--chotto-chatpanel-button-close-cursor, pointer);
 
     span {
-      font-size: var(--chotto-theme-button-icon-size);
-      color: var(--chotto-theme-button-color-active);
+      font-size: var(--chotto-chatpanel-button-icon-size);
+      color: var(--chotto-chatpanel-button-color-active);
     }
   }
 }

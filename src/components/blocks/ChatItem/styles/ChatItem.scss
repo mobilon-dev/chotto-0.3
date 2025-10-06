@@ -15,11 +15,11 @@
       transform: translateX(var(--chotto-chatitem-divider-translate-x, 15%));
       width: var(--chotto-chatitem-divider-width, 416px);
       height: var(--chotto-chatitem-divider-height, 1px);
-      background-color: var(--chotto-chatitem-divider-color, var(--chotto-theme-item-border-color));
+      background-color: var(--chotto-chatitem-divider-color);
     }
 
     &:hover {
-      background-color: var(--chotto-theme-item-background-color-hover);
+      background-color: var(--chotto-chatitem-container-hover-bg);
     }
   }
 
@@ -27,10 +27,10 @@
   &__selected {
     cursor: var(--chotto-chatitem-selected-cursor, pointer);
     border-radius: var(--chotto-chatitem-border-radius);
-    background: var(--chotto-theme-item-background-color-focus);
+    background: var(--chotto-chatitem-selected-bg);
 
     .chat-item__menu-button {
-      background: var(--chotto-theme-item-background-color-focus);
+      background: var(--chotto-chatitem-selected-bg);
     }
   }
 
@@ -85,8 +85,8 @@
   &__name {
     margin-top: var(--chotto-chatitem-name-margin-top, 0);
     margin-bottom: var(--chotto-chatitem-name-margin-bottom, 8px);
-    font-size: var(--chotto-theme-title-font-size);
-    font-weight: var(--chotto-theme-title-font-weight);
+    font-size: var(--chotto-chatitem-name-font-size);
+    font-weight: var(--chotto-chatitem-name-font-weight);
     overflow: var(--chotto-chatitem-name-overflow, hidden);
     text-overflow: var(--chotto-chatitem-name-text-overflow, ellipsis);
     display: var(--chotto-chatitem-name-display, -webkit-box);
@@ -96,8 +96,8 @@
   }
 
   &__last-message {
-    font-size: var(--chotto-theme-text-font-size);
-    color: var(--chotto-theme-secondary-text-color);
+    font-size: var(--chotto-chatitem-last-message-font-size);
+    color: var(--chotto-chatitem-last-message-text-color);
     overflow: var(--chotto-chatitem-last-message-overflow, hidden);
     text-overflow: var(--chotto-chatitem-last-message-text-overflow, ellipsis);
     display: var(--chotto-chatitem-last-message-display, -webkit-box);
@@ -115,19 +115,19 @@
     align-items: var(--chotto-chatitem-details-container-align, end);
     
     span {
-      color: var(--chotto-theme-button-color-active);
+      color: var(--chotto-chatitem-button-color-active);
     }
   }
 
   &__actions-trigger{
     display: var(--chotto-chatitem-actions-trigger-display, block);
     cursor: var(--chotto-chatitem-actions-trigger-cursor, pointer);
-    font-size: var(--chotto-theme-button-icon-size);
-    color: var(--chotto-theme-button-color-active);
+    font-size: var(--chotto-chatitem-actions-trigger-font-size);
+    color: var(--chotto-chatitem-actions-trigger-color);
   }
 
   &__actions-trigger:hover{
-    color: var(--chotto-theme-button-color-hover);
+    color: var(--chotto-chatitem-actions-trigger-color-hover);
   }
 
   &__menu-button {
@@ -147,7 +147,7 @@
     }
 
     &:hover span {
-      color: var(--chotto-theme-button-color-hover);
+      color: var(--chotto-chatitem-menu-button-hover-color);
       transition: var(--chotto-chatitem-menu-button-hover-transition, 0.2s);
     }
   }
@@ -163,16 +163,16 @@
     min-width: var(--chotto-unread-min-width, 25px);
     min-height: var(--chotto-unread-min-height, 25px);
     max-height: var(--chotto-chatitem-unread-max-height, 20px);
-    font-size: var(--chotto-theme-additional-text-font-size);
+    font-size: var(--chotto-chatitem-unread-font-size);
     font-weight: var(--chotto-unread-font-weight, 400);
-    color: var(--chotto-theme-unread-text-color);
-    background-color: var(--chotto-theme-unread-background-color);
+    color: var(--chotto-chatitem-unread-text-color);
+    background-color: var(--chotto-chatitem-unread-background-color);
     padding: var(--chotto-chatitem-unread-padding, 0 6px);
   }
 
   &__time {
-    font-size: var(--chotto-theme-additional-text-font-size);
-    color: var(--chotto-theme-secondary-text-color);
+    font-size: var(--chotto-chatitem-time-font-size);
+    color: var(--chotto-chatitem-time-text-color);
     white-space: var(--chotto-chatitem-time-white-space, nowrap);
   }
 
@@ -193,8 +193,8 @@
     display: var(--chotto-chatitem-status-message-display, flex);
 
     span {
-      color: var(--chotto-theme-status-color-received);
-      font-size: var(--chotto-theme-text-font-size);
+      color: var(--chotto-chatitem-status-color-received);
+      font-size: var(--chotto-chatitem-status-font-size);
     }
   }
 
@@ -226,14 +226,14 @@
   &__selected {
     cursor: var(--chotto-chatitem-dialog-selected-cursor, pointer);
     border-radius: var(--chotto-chatitem-border-radius);
-    background: var(--chotto-theme-item-background-color-focus);
+    background: var(--chotto-chatitem-dialog-selected-bg);
   }
 
   &__text-container {
     display: var(--chotto-chatitem-dialog-text-container-display, flex);
     justify-content: var(--chotto-chatitem-dialog-text-container-justify, space-between);
-    font-size: var(--chotto-theme-text-font-size);
-    color: var(--chotto-theme-primary-text-color);
+    font-size: var(--chotto-chatitem-dialog-text-font-size);
+    color: var(--chotto-chatitem-dialog-text-color);
     overflow: var(--chotto-chatitem-dialog-text-container-overflow, hidden);
     text-overflow: var(--chotto-chatitem-dialog-text-container-text-overflow, ellipsis);
     width: var(--chotto-chatitem-dialog-text-container-width, 100%);
@@ -253,17 +253,17 @@
     -webkit-line-clamp: var(--chotto-chatitem-dialog-time-line-clamp, 1);
     line-clamp: var(--chotto-chatitem-dialog-time-line-clamp, 1);
     -webkit-box-orient: var(--chotto-chatitem-dialog-time-box-orient, vertical);
-    color: var(--chotto-theme-secondary-text-color);
-    font-size: var(--chotto-theme-additional-text-font-size)
+    color: var(--chotto-chatitem-dialog-time-text-color);
+    font-size: var(--chotto-chatitem-dialog-time-font-size)
   }
 }
 
 .status--received span {
-  color: var(--chotto-theme-status-color-received);
+  color: var(--chotto-chatitem-status-color-received);
 }
 
 .status--read span {
-  color: var(--chotto-theme-status-color-read);
+  color: var(--chotto-chatitem-status-color-read);
 }
 
 .status--received span:first-child,

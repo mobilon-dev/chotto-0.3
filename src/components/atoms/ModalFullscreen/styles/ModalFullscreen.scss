@@ -7,7 +7,7 @@
     bottom: var(--chotto-modalfullscreen-container-bottom, auto);
     transform: var(--chotto-modalfullscreen-container-transform, translate(-50%, -50%));
     z-index: var(--chotto-modalfullscreen-container-z-index, 101);
-    color: var(--chotto-modalfullscreen-text-color, var(--chotto-theme-primary-text-color));
+    color: var(--chotto-modalfullscreen-text-color);
     background-color: var(--chotto-modalfullscreen-background, #ffffff);
     border: var(--chotto-modalfullscreen-border, none);
     border-radius: var(--chotto-modalfullscreen-border-radius, 8px);
@@ -75,8 +75,8 @@
     }
 
     span {
-      color: var(--chotto-modalfullscreen-close-button-text-color, var(--chotto-theme-secondary-text-color));
-      font-size: var(--chotto-modalfullscreen-close-button-font-size, var(--chotto-theme-button-icon-size));
+      color: var(--chotto-modalfullscreen-close-button-text-color);
+      font-size: var(--chotto-modalfullscreen-close-button-font-size);
       display: var(--chotto-modalfullscreen-close-button-span-display, block);
       text-align: var(--chotto-modalfullscreen-close-button-span-text-align, center);
       line-height: var(--chotto-modalfullscreen-close-button-span-line-height, 1);

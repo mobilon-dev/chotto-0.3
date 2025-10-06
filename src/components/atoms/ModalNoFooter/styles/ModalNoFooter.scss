@@ -16,8 +16,8 @@
 
 .modal {
     background: var(--chotto-modalnofooter-background, #ffffff);
-    color: var(--chotto-modalnofooter-text-color, var(--chotto-theme-primary-text-color));
-    font-family: var(--chotto-modalnofooter-font-family, var(--chotto-theme-font-family));
+    color: var(--chotto-modalnofooter-text-color);
+    font-family: var(--chotto-modalnofooter-font-family);
     font-size: var(--chotto-modalnofooter-font-size, inherit);
     font-weight: var(--chotto-modalnofooter-font-weight, inherit);
     line-height: var(--chotto-modalnofooter-line-height, inherit);

@@ -20,12 +20,12 @@
 
     &::-webkit-scrollbar {
       width: var(--chotto-chatlist-scrollbar-width, 6px);
-      background-color: var(--chotto-theme-scrollbar-bg);
+      background-color: var(--chotto-chatlist-scrollbar-bg);
     }
 
     &::-webkit-scrollbar-thumb {
       border-radius: var(--chotto-chatlist-scrollbar-thumb-radius, 10px);
-      background-color: var(--chotto-theme-scrollbar-thumb-bg);
+      background-color: var(--chotto-chatlist-scrollbar-thumb-bg);
     }
 
     &::-webkit-scrollbar-track {
@@ -51,10 +51,10 @@
   }
 
   &__title {
-    font-family: var(--chotto-theme-header-font, var(--chotto-theme-font-family));
-    font-size: var(--chotto-theme-header-font-size);
-    font-weight: var(--chotto-theme-header-font-weight);
-    color: var(--chotto-theme-header-font-color, var(--chotto-theme-primary-text-color));
+    font-family: var(--chotto-chatlist-title-font-family);
+    font-size: var(--chotto-chatlist-title-font-size);
+    font-weight: var(--chotto-chatlist-title-font-weight);
+    color: var(--chotto-chatlist-title-text-color);
   }
 
   &__title-container {
@@ -86,12 +86,12 @@
     justify-content: var(--chotto-chatlist-button-justify, center);
     align-items: var(--chotto-chatlist-button-align, center);
     cursor: var(--chotto-chatlist-button-cursor, pointer);
-    background-color: var(--chotto-theme-button-color-disabled);
+    background-color: var(--chotto-chatlist-button-background-color);
   }
 
   &__icon-up {
-    font-size: var(--chotto-theme-button-icon-size);
-    color: var(--chotto-theme-button-color-active);
+    font-size: var(--chotto-chatlist-button-icon-size);
+    color: var(--chotto-chatlist-button-color-active);
   }
 }
 
