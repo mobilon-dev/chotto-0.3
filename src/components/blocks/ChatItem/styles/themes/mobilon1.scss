@@ -33,7 +33,7 @@
   --chotto-chatitem-avatar-min-height: 50px;
   --chotto-chatitem-avatar-border-radius: 50%;
   --chotto-chatitem-avatar-text-font-size: 21px;
-  --chotto-chatitem-avatar-text-color: var(--chotto-theme-secondary-text-color);
+  
   --chotto-chatitem-avatar-img-border-radius: 50%;
   --chotto-chatitem-avatar-img-object-fit: cover;
   
@@ -184,7 +184,7 @@
   --chotto-chatitem-dialog-time-line-clamp: 1;
   --chotto-chatitem-dialog-time-box-orient: vertical;
   --chotto-chatitem-dialog-time-text-color: var(--chotto-theme-secondary-text-color);
-  --chotto-chatitem-dialog-time-font-size: var(--chotto-theme-additional-text-font_size);
+  --chotto-chatitem-dialog-time-font-size: var(--chotto-theme-additional-text-font-size);
   
   // Status first icon
   --chotto-chatitem-status-first-icon-margin-right: -8px;

@@ -33,7 +33,7 @@
   --chotto-chatitem-avatar-min-height: 50px;
   --chotto-chatitem-avatar-border-radius: 50%;
   --chotto-chatitem-avatar-text-font-size: 21px;
-  --chotto-chatitem-avatar-text-color: var(--chotto-theme-secondary-text-color);
+  
   --chotto-chatitem-avatar-img-border-radius: 50%;
   --chotto-chatitem-avatar-img-object-fit: cover;
   
@@ -171,8 +171,8 @@
   --chotto-chatitem-dialog-text-container-width: 100%;
   --chotto-chatitem-dialog-text-container-margin: auto;
   --chotto-chatitem-text-container-padding: 0 5px;
-  --chotto-chatitem-dialog-text-font_size: var(--chotto-theme-text-font-size);
-  --chotto-chatitem-dialog-text_color: var(--chotto-theme-primary-text-color);
+  --chotto-chatitem-dialog-text-font-size: var(--chotto-theme-text-font-size);
+  --chotto-chatitem-dialog-text-color: var(--chotto-theme-primary-text-color);
   
   // Dialog name
   --chotto-chatitem-dialog-name-display: -webkit-box;
