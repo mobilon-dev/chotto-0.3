@@ -61,18 +61,4 @@ export interface ChatPanelThemeCSSVariables {
   '--chotto-chatpanel-scrollbar-thumb-bg': string;
   /** Радиус границы дорожки полосы прокрутки */
   '--chotto-chatpanel-scrollbar-track-radius': string;
-
-  // Border radius
-  /** Радиус границы панели чата */
-  '--chotto-chatpanel-border-radius': string;
-
-  // Mobilon1 specific variables
-  /** Ширина панели чата */
-  '--chotto-chatpanel-width': string;
-  /** Позиция панели чата слева */
-  '--chotto-chatpanel-left': string;
-  /** Отступы панели чата */
-  '--chotto-chatpanel-padding': string;
-  /** Цвет границы элемента панели чата */
-  '--chotto-item-chatpanel-border-color': string;
 }
