@@ -572,7 +572,7 @@ async function validateAllThemes(): Promise<void> {
     // Исключаем служебные папки сами по себе
     if (['styles', 'stories', 'themes'].includes(name)) return false;
     // Считаем компонентом только папку, в которой есть подпапка styles
-    const stylesDir = path.join(p, 'styles');
+    const stylesDir = `${p}/styles`;
     return fs.existsSync(stylesDir) && fs.statSync(stylesDir).isDirectory();
   });
   
@@ -643,7 +643,9 @@ async function validateAllThemes(): Promise<void> {
     log(`   Ожидаемые переменные: ${expectedVariables.length}`, 'blue');
     
     // Находим все темы компонента
-    const themePaths = await glob(path.join(componentPath, 'styles/themes/*.scss'));
+    const normalizedPath = componentPath.replace(/\\/g, '/');
+    const themePaths = await glob(`${normalizedPath}/styles/themes/*.scss`);
+    
     
     for (const themePath of themePaths) {
       // 1. Валидация соответствия интерфейсу
@@ -689,10 +691,10 @@ async function validateAllThemes(): Promise<void> {
     log('', 'reset');
     log('❌ Детали ошибок:', 'red');
     for (const result of invalidResults) {
-      // Показываем папку компонента и имя файла
+      // Показываем папку компонента, название компонента и имя файла
       const displayName = result.theme === 'style.scss' 
-        ? `${result.componentFolder} / ${result.component}.scss` 
-        : `${result.componentFolder} / ${result.theme}`;
+        ? `${result.componentFolder} / ${result.component} / ${result.component}.scss` 
+        : `${result.componentFolder} / ${result.component} / ${result.theme}`;
       log(`   ${displayName}:`, 'yellow');
       for (const error of result.errors) {
         log(`     - ${error}`, 'red');
