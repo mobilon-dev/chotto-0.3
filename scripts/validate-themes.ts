@@ -227,14 +227,15 @@ function validateCSSVariablePrefixes(
   const themeName = path.basename(themePath, '.scss');
   const content = fs.readFileSync(themePath, 'utf-8');
   
-  // Регулярное выражение для поиска всех CSS переменных
-  const variableRegex = /--chotto-([a-zA-Z0-9-]+):/g;
-  const expectedPrefix = `--chotto-${componentName.toLowerCase()}`;
+  // Регулярное выражение для поиска всех CSS переменных (любой префикс)
+  const variableRegex = /--([a-zA-Z0-9-]+)\s*:/g;
+  // Требуем строгий префикс с завершающим дефисом
+  const expectedPrefix = `--chotto-${componentName.toLowerCase()}-`;
   const invalidPrefixes: string[] = [];
   let match;
   
   while ((match = variableRegex.exec(content)) !== null) {
-    const fullVariableName = `--chotto-${match[1]}`;
+    const fullVariableName = `--${match[1]}`;
     
     // Проверяем, что переменная начинается с правильного префикса
     if (!fullVariableName.startsWith(expectedPrefix)) {
