@@ -5,6 +5,7 @@ export interface ChottoThemeVariables {
   // Основные цвета
   '--chotto-theme-primary-color': string;
   '--chotto-theme-secondary-color': string;
+  '--chotto-theme-tertiary-color': string;
   '--chotto-theme-primary-text-color': string;
   '--chotto-theme-secondary-text-color': string;
 
@@ -70,17 +71,6 @@ export interface ChottoThemeVariables {
   '--chotto-theme-message-popup-info-bg-color': string;
   '--chotto-theme-message-popup-info-color': string;
   '--chotto-theme-message-border-radius': string;
-
-  // Аудио сообщения
-  '--chotto-theme-audio-message-transcript-delimiter-color': string;
-  '--chotto-theme-audio-message-pbc-background-color': string;
-  '--chotto-theme-audio-message-pb-background-color': string;
-
-  // Звонки
-  '--chotto-theme-call-message-phone-icon-missed-color': string;
-
-  // Системные сообщения
-  '--chotto-theme-system-message-bg-color': string;
 
   // Кнопки
   '--chotto-theme-button-color-active': string;
