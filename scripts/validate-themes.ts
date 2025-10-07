@@ -97,6 +97,18 @@ interface ThemeImportsValidationResult {
   themeImports: string[];
 }
 
+/**
+ * Интерфейс для результатов валидации глобальных тем (например, src/themes/<theme>/vars.scss)
+ */
+interface GlobalThemeValidationResult {
+  themeFolder: string; // имя папки темы (default, dark, green, ...)
+  themeFile: string;   // vars.scss
+  isValid: boolean;
+  errors: string[];
+  missingVariables: string[];
+  extraVariables: string[];
+}
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -139,6 +151,64 @@ function extractCSSVariablesFromSCSS(filePath: string): ThemeCSSVariables {
   }
   
   return variables;
+}
+
+/**
+ * Извлекает список переменных из глобального интерфейса тем src/themes/types.ts
+ */
+function getGlobalThemeInterfaceVariables(): string[] {
+  const typesPath = path.join(__dirname, '..', 'src', 'themes', 'types.ts');
+  if (!fs.existsSync(typesPath)) {
+    return [];
+  }
+  const content = fs.readFileSync(typesPath, 'utf-8');
+  // Ищем интерфейс ChottoThemeVariables c телом { ... }
+  const interfaceRegex = /export\s+interface\s+ChottoThemeVariables\s*{([\s\S]*?)}/;
+  const match = content.match(interfaceRegex);
+  if (!match) {
+    return [];
+  }
+  const body = match[1];
+  const variables: string[] = [];
+  // Ключи представлены как строковые литералы: '--chotto-theme-...': string | number;
+  const keyRegex = /'([^']+)'\s*:\s*[^;]+;/g;
+  let keyMatch;
+  while ((keyMatch = keyRegex.exec(body)) !== null) {
+    variables.push(keyMatch[1]);
+  }
+  return variables;
+}
+
+/**
+ * Валидация одной глобальной темы против интерфейса
+ */
+function validateSingleGlobalTheme(
+  themeVarsPath: string,
+  expectedVariables: string[]
+): GlobalThemeValidationResult {
+  const themeFolder = path.basename(path.dirname(themeVarsPath));
+  const actualVariables = Object.keys(extractCSSVariablesFromSCSS(themeVarsPath));
+
+  const missingVariables = expectedVariables.filter(v => !actualVariables.includes(v));
+  const extraVariables = actualVariables.filter(v => !expectedVariables.includes(v));
+
+  const isValid = missingVariables.length === 0 && extraVariables.length === 0;
+  const errors: string[] = [];
+  if (missingVariables.length > 0) {
+    errors.push(`Отсутствуют переменные (есть в src/themes/types.ts, нет в vars.scss): ${missingVariables.join(', ')}`);
+  }
+  if (extraVariables.length > 0) {
+    errors.push(`Лишние переменные (есть в vars.scss, нет в src/themes/types.ts): ${extraVariables.join(', ')}`);
+  }
+
+  return {
+    themeFolder,
+    themeFile: 'vars.scss',
+    isValid,
+    errors,
+    missingVariables,
+    extraVariables
+  };
 }
 
 /**
@@ -562,6 +632,28 @@ async function validateAllThemes(): Promise<void> {
   log('🔍 Начинаю валидацию тем компонентов...', 'cyan');
   log('');
   
+  // 0. Глобальные темы (src/themes/*/vars.scss) против интерфейса src/themes/types.ts
+  const globalInterfaceVars = getGlobalThemeInterfaceVariables();
+  const globalThemeResults: GlobalThemeValidationResult[] = [];
+  if (globalInterfaceVars.length === 0) {
+    log('⚠️  Глобальный интерфейс тем не найден или пуст (src/themes/types.ts)', 'yellow');
+  } else {
+    const globalVarsPaths = await glob('src/themes/*/vars.scss');
+    if (globalVarsPaths.length === 0) {
+      log('⚠️  Файлы глобальных тем не найдены (ожидались src/themes/*/vars.scss)', 'yellow');
+    }
+    for (const themeVarsPath of globalVarsPaths) {
+      const res = validateSingleGlobalTheme(themeVarsPath, globalInterfaceVars);
+      globalThemeResults.push(res);
+      if (res.isValid) {
+        log(`✅ Глобальная тема ${res.themeFolder}/vars.scss: интерфейс OK`, 'green');
+      } else {
+        log(`❌ Глобальная тема ${res.themeFolder}/vars.scss: ${res.errors.join('; ')}`, 'red');
+      }
+    }
+    log('');
+  }
+  
   // Находим компоненты рекурсивно: любая папка внутри src/components/**, в которой есть подпапка styles
   // Исключаем только служебные подпапки (styles, stories, themes) как сами компоненты
   const allPaths = await glob('src/components/**');
@@ -687,8 +779,17 @@ async function validateAllThemes(): Promise<void> {
   log(`   Всего проверено: ${interfaceResults.length} тем (7 проверок на тему)`, 'blue');
   log(`   ✅ Валидных проверок: ${validResults.length}`, 'green');
   log(`   ❌ Невалидных проверок: ${invalidResults.length}`, invalidResults.length > 0 ? 'red' : 'green');
+  // Глобальные темы — отдельная сводка
+  if (globalInterfaceVars.length > 0) {
+    const totalGlobal = globalThemeResults.length;
+    const validGlobal = globalThemeResults.filter(r => r.isValid).length;
+    const invalidGlobal = totalGlobal - validGlobal;
+    log(`   Глобальные темы (vars.scss): ${totalGlobal}`, 'blue');
+    log(`     ✅ Валидно: ${validGlobal}`, 'green');
+    log(`     ❌ Невалидно: ${invalidGlobal}`, invalidGlobal > 0 ? 'red' : 'green');
+  }
   
-  if (invalidResults.length > 0) {
+  if (invalidResults.length > 0 || (globalThemeResults.some(r => !r.isValid))) {
     log('', 'reset');
     log('❌ Детали ошибок:', 'red');
     for (const result of invalidResults) {
@@ -698,6 +799,13 @@ async function validateAllThemes(): Promise<void> {
         : `${result.componentFolder} / ${result.component} / ${result.theme}`;
       log(`   ${displayName}:`, 'yellow');
       for (const error of result.errors) {
+        log(`     - ${error}`, 'red');
+      }
+    }
+    // Детали по глобальным темам
+    for (const g of globalThemeResults.filter(r => !r.isValid)) {
+      log(`   themes / ${g.themeFolder} / ${g.themeFile}:`, 'yellow');
+      for (const error of g.errors) {
         log(`     - ${error}`, 'red');
       }
     }
