@@ -198,11 +198,11 @@ function validateComponentThemeInterface(
   const errors: string[] = [];
   
   if (missingVariables.length > 0) {
-    errors.push(`Отсутствуют переменные: ${missingVariables.join(', ')}`);
+    errors.push(`Отсутствуют переменные (есть в types.ts, нет в файле темы): ${missingVariables.join(', ')}`);
   }
   
   if (extraVariables.length > 0) {
-    errors.push(`Лишние переменные: ${extraVariables.join(', ')}`);
+    errors.push(`Лишние переменные (есть в файле темы, нет в types.ts): ${extraVariables.join(', ')}`);
   }
   
   return {
