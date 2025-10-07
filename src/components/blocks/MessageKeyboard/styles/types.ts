@@ -53,4 +53,8 @@ export interface MessageKeyboardThemeCSSVariables {
   '--chotto-messagekeyboard-key-p-margin': string;
   /** Курсор параграфа клавиши при наведении */
   '--chotto-messagekeyboard-key-p-hover-cursor': string;
+  /** Цвет фона клавиши */
+  '--chotto-messagekeyboard-key-background-color': string;
+  /** Размер шрифта клавиши */
+  '--chotto-messagekeyboard-key-font-size': string;
 }
