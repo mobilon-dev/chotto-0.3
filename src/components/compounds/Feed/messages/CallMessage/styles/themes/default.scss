@@ -158,10 +158,10 @@
   --chotto-callmessage-menu-button-icon-size: var(--chotto-theme-button-icon-size);
   --chotto-callmessage-menu-button-icon-color-hover: var(--chotto-theme-button-color-hover);
   --chotto-callmessage-modal-text-color: var(--chotto-theme-primary-text-color);
-  --chotto-callmessage-modal-background-color: var(--chotto-theme-modal-bg);
-  --chotto-callmessage-modal-border-radius: var(--chotto-theme-modal-border-radius);
-  --chotto-callmessage-modal-padding: var(--chotto-theme-modal-padding);
-  --chotto-callmessage-modal-overlay-shadow: var(--chotto-theme-modal-overlay-shadow);
+  --chotto-callmessage-modal-background-color: var(--chotto-theme-message-modal-bg);
+  --chotto-callmessage-modal-border-radius: var(--chotto-theme-message-modal-border-radius);
+  --chotto-callmessage-modal-padding: var(--chotto-theme-message-modal-padding);
+  --chotto-callmessage-modal-overlay-shadow: var(--chotto-theme-message-modal-overlay-shadow);
 
   // Modal scrollbar variables
   --chotto-callmessage-modal-scrollbar-width: 8px;
@@ -177,7 +177,7 @@
   --chotto-callmessage-modal-overlay-right: 0;
   --chotto-callmessage-modal-overlay-bottom: 0;
   --chotto-callmessage-modal-overlay-z-index: 1000;
-  --chotto-callmessage-modal-mask-background: var(--chotto-theme-modal-mask-background);
+  --chotto-callmessage-modal-mask-background: var(--chotto-theme-message-modal-mask-background);
 
   // Modal close button variables
   --chotto-callmessage-modal-close-button-display: block;

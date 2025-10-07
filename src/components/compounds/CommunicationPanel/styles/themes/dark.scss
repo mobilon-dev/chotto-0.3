@@ -28,7 +28,7 @@
   --chotto-communicationpanel-btn-active-background: transparent;
   --chotto-communicationpanel-btn-divider-content: '';
   --chotto-communicationpanel-btn-divider-position: absolute;
-  --chotto-communicationpanel-btn-divider-color: #a3a3a3;
+  --chotto-communicationpanel-btn-divider-color: var(--chotto-theme-tertiary-color);
   --chotto-communicationpanel-btn-width: 50px;
   --chotto-communicationpanel-btn-padding: 0;
   --chotto-communicationpanel-btn-border: none;
@@ -82,7 +82,7 @@
   // Attributes menu
   --chotto-communicationpanel-menu-position: absolute;
   --chotto-communicationpanel-menu-background: #525252;
-  --chotto-communicationpanel-menu-border: 1px solid #a3a3a3;
+  --chotto-communicationpanel-menu-border: 1px solid var(--chotto-theme-tertiary-color);
   --chotto-communicationpanel-menu-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.2);
   --chotto-communicationpanel-menu-top: 108%;
   --chotto-communicationpanel-menu-left: 0;
@@ -135,15 +135,15 @@
   --chotto-communicationpanel-menu-icon-font-size: inherit;
   --chotto-communicationpanel-menu-icon-width: auto;
   --chotto-communicationpanel-menu-icon-height: auto;
-  --chotto-communicationpanel-menu-icon-grey-color: #a3a3a3;
+  --chotto-communicationpanel-menu-icon-grey-color: var(--chotto-theme-tertiary-color);
   --chotto-communicationpanel-menu-icon-grey-font-size: inherit;
-  --chotto-communicationpanel-menu-arrow-border-top: 1px solid #a3a3a3;
-  --chotto-communicationpanel-menu-arrow-border-right: 1px solid #a3a3a3;
+  --chotto-communicationpanel-menu-arrow-border-top: 1px solid var(--chotto-theme-tertiary-color);
+  --chotto-communicationpanel-menu-arrow-border-right: 1px solid var(--chotto-theme-tertiary-color);
   --chotto-communicationpanel-menu-arrow-width: 9px;
   --chotto-communicationpanel-menu-arrow-height: 9px;
   --chotto-communicationpanel-menu-arrow-transform: rotate(45deg);
   --chotto-communicationpanel-menu-arrow-transition: all 0.2s ease;
-  --chotto-communicationpanel-menu-divider-background: #a3a3a3;
+  --chotto-communicationpanel-menu-divider-background: var(--chotto-theme-tertiary-color);
   --chotto-communicationpanel-menu-divider-height: 1px;
   --chotto-communicationpanel-menu-divider-margin: 4px 12px;
   --chotto-communicationpanel-menu-divider-border-radius: 0;
@@ -154,7 +154,7 @@
   --chotto-communicationpanel-submenu-display: flex;
   --chotto-communicationpanel-submenu-flex-direction: column;
   --chotto-communicationpanel-submenu-background: #525252;
-  --chotto-communicationpanel-submenu-border: 1px solid #a3a3a3;
+  --chotto-communicationpanel-submenu-border: 1px solid var(--chotto-theme-tertiary-color);
   --chotto-communicationpanel-submenu-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.2);
   --chotto-communicationpanel-submenu-header-color: #d4d4d4;
   --chotto-communicationpanel-submenu-item-display: flex;

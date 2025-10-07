@@ -247,10 +247,10 @@
   --chotto-audiomessage-modal-font-weight: var(--chotto-theme-container-font-weight);
   --chotto-audiomessage-modal-font-size: var(--chotto-theme-text-font-size);
   --chotto-audiomessage-modal-text-color: var(--chotto-theme-primary-text-color);
-  --chotto-audiomessage-modal-background-color: var(--chotto-theme-modal-bg);
-  --chotto-audiomessage-modal-border-radius: var(--chotto-theme-modal-border-radius);
-  --chotto-audiomessage-modal-padding: var(--chotto-theme-modal-padding);
-  --chotto-audiomessage-modal-overlay-shadow: var(--chotto-theme-modal-overlay-shadow);
+  --chotto-audiomessage-modal-background-color: var(--chotto-theme-message-modal-bg);
+  --chotto-audiomessage-modal-border-radius: var(--chotto-theme-message-modal-border-radius);
+  --chotto-audiomessage-modal-padding: var(--chotto-theme-message-modal-padding);
+  --chotto-audiomessage-modal-overlay-shadow: var(--chotto-theme-message-modal-overlay-shadow);
   --chotto-audiomessage-modal-title-font-size: var(--chotto-theme-title-font-size);
 
   // Modal overlay variables
@@ -260,7 +260,7 @@
   --chotto-audiomessage-modal-overlay-right: 0;
   --chotto-audiomessage-modal-overlay-bottom: 0;
   --chotto-audiomessage-modal-overlay-z-index: 1000;
-  --chotto-audiomessage-modal-mask-background: var(--chotto-theme-modal-mask-background);
+  --chotto-audiomessage-modal-mask-background: var(--chotto-theme-message-modal-mask-background);
 
   // Modal close button variables
   --chotto-audiomessage-modal-close-button-display: block;

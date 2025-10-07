@@ -135,10 +135,10 @@
   --chotto-communicationpanel-menu-icon-font-size: inherit;
   --chotto-communicationpanel-menu-icon-width: auto;
   --chotto-communicationpanel-menu-icon-height: auto;
-  --chotto-communicationpanel-menu-icon-grey-color: #a3a3a3;
+  --chotto-communicationpanel-menu-icon-grey-color: var(--chotto-theme-tertiary-color);
   --chotto-communicationpanel-menu-icon-grey-font-size: inherit;
-  --chotto-communicationpanel-menu-arrow-border-top: 1px solid #a3a3a3;
-  --chotto-communicationpanel-menu-arrow-border-right: 1px solid #a3a3a3;
+  --chotto-communicationpanel-menu-arrow-border-top: 1px solid var(--chotto-theme-tertiary-color);
+  --chotto-communicationpanel-menu-arrow-border-right: 1px solid var(--chotto-theme-tertiary-color);
   --chotto-communicationpanel-menu-arrow-width: 9px;
   --chotto-communicationpanel-menu-arrow-height: 9px;
   --chotto-communicationpanel-menu-arrow-transform: rotate(45deg);

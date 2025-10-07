@@ -37,16 +37,6 @@ export interface ChottoThemeVariables {
 
   // Контейнеры
   '--chotto-theme-container-borders': string;
-  '--chotto-theme-float-container-border-radius-header': string;
-  '--chotto-theme-float-container-box-shadow': string;
-  '--chotto-theme-float-container-bg-header': string;
-
-  // Модальные окна
-  '--chotto-theme-modal-padding': string;
-  '--chotto-theme-modal-border-radius': string;
-  '--chotto-theme-modal-mask-background': string;
-  '--chotto-theme-modal-overlay-shadow': string;
-  '--chotto-theme-modal-bg': string;
 
   // Макеты
   '--chotto-theme-layout-extended-third-col-bg': string;
@@ -68,9 +58,12 @@ export interface ChottoThemeVariables {
   '--chotto-theme-message-margin': string;
   '--chotto-theme-message-type-icon-bg-color': string;
   '--chotto-theme-message-type-icon-color': string;
-  '--chotto-theme-message-popup-info-bg-color': string;
-  '--chotto-theme-message-popup-info-color': string;
   '--chotto-theme-message-border-radius': string;
+  '--chotto-theme-message-modal-padding': string;
+  '--chotto-theme-message-modal-border-radius': string;
+  '--chotto-theme-message-modal-mask-background': string;
+  '--chotto-theme-message-modal-overlay-shadow': string;
+  '--chotto-theme-message-modal-bg': string;
 
   // Кнопки
   '--chotto-theme-button-color-active': string;
@@ -92,10 +85,5 @@ export interface ChottoThemeVariables {
   // Полосы прокрутки
   '--chotto-theme-scrollbar-bg': string;
   '--chotto-theme-scrollbar-thumb-bg': string;
-
-  // Дополнительные кнопки
-  '--chotto-theme-danger-button-color-active': string;
-  '--chotto-theme-danger-button-color-hover': string;
-  '--chotto-theme-danger-button-color-disabled': string;
 }
 

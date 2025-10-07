@@ -8,7 +8,7 @@
   --chotto-thememode-switch-box-sizing: border-box;
   --chotto-thememode-switch-width: 56px;
   --chotto-thememode-switch-height: 28px;
-  --chotto-thememode-switch-border: 1px solid #a3a3a3;
+  --chotto-thememode-switch-border: 1px solid var(--chotto-theme-tertiary-color);
   --chotto-thememode-switch-border-radius: 25%/50%;
   --chotto-thememode-switch-background: #fafafa;
   --chotto-thememode-switch-transition: .15s;
@@ -24,7 +24,7 @@
   --chotto-thememode-switch-span-align-items: center;
 
   // ThemeMode switch sun variables
-  --chotto-thememode-switch-sun-background-color: #a3a3a3;
+  --chotto-thememode-switch-sun-background-color: var(--chotto-theme-tertiary-color);
   --chotto-thememode-switch-sun-color: #404040;
   --chotto-thememode-switch-sun-left: 1px;
   --chotto-thememode-switch-sun-width: 24px;
@@ -34,7 +34,7 @@
 
   // ThemeMode switch moon variables
   --chotto-thememode-switch-moon-opacity: 0;
-  --chotto-thememode-switch-moon-background-color: #a3a3a3;
+  --chotto-thememode-switch-moon-background-color: var(--chotto-theme-tertiary-color);
   --chotto-thememode-switch-moon-color: #404040;
   --chotto-thememode-switch-moon-width: 24px;
   --chotto-thememode-switch-moon-height: 24px;
