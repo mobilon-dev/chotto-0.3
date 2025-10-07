@@ -77,11 +77,5 @@
   --chotto-chatlist-menu-leave-transition: all var(--chotto-chatlist-menu-leave-duration, 0.1s) cubic-bezier(1, 0.5, 0.8, 1);
   --chotto-chatlist-menu-transform: scale(var(--chotto-chatlist-menu-scale, 0.9));
   --chotto-chatlist-menu-opacity: 0;
-  
-  // Additional mobilon1 specific variables
-  --chotto-chatlist-container-border-bottom-color: #F3F3F3;
-  --chotto-chatlist-container-border-bottom-width: 416px;
-  --chotto-chatlist-container-border-bottom-height: 1px;
-  --chotto-userprofile-status-background-color: white;
 }
 

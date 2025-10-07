@@ -139,14 +139,4 @@ export interface ChatListThemeCSSVariables {
   '--chotto-chatlist-menu-transform': string;
   /** Прозрачность меню */
   '--chotto-chatlist-menu-opacity': string;
-
-  // Additional mobilon1 specific variables
-  /** Цвет границы снизу контейнера */
-  '--chotto-chatlist-container-border-bottom-color': string;
-  /** Ширина границы снизу контейнера */
-  '--chotto-chatlist-container-border-bottom-width': string;
-  /** Высота границы снизу контейнера */
-  '--chotto-chatlist-container-border-bottom-height': string;
-  /** Цвет фона статуса профиля пользователя */
-  '--chotto-userprofile-status-background-color': string;
 }
