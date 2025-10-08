@@ -56,8 +56,6 @@
   --chotto-typingmessage-loader-after-animation-delay: 0.4s;
 
   // TypingMessage keyframes variables
-  --chotto-typingmessage-loader-color: var(--chotto-theme-secondary-text-color);
-  --chotto-typingmessage-loader-dot-color: var(--chotto-typingmessage-loader-color);
   --chotto-typingmessage-keyframes-0-box-shadow: 0 15px 0 -15px var(--chotto-theme-secondary-text-color);
   --chotto-typingmessage-keyframes-100-box-shadow: 0 15px 0 var(--chotto-theme-secondary-text-color);
 }
