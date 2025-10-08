@@ -391,6 +391,48 @@ function validateForbiddenGlobalVariablesInThemeFiles(
 }
 
 /**
+ * 3.1. Валидация использования только разрешенных переменных в файлах тем
+ */
+function validateThemeVariablesInThemeFiles(
+  componentName: string,
+  componentFolder: string,
+  themePath: string
+): ForbiddenVariablesValidationResult {
+  const themeName = path.basename(themePath, '.scss');
+  const content = fs.readFileSync(themePath, 'utf-8');
+  const forbiddenVariables: string[] = [];
+  
+  // Регулярное выражение для поиска всех var() в файле
+  const varRegex = /var\(--([a-zA-Z0-9-]+)\)/g;
+  let match;
+  
+  while ((match = varRegex.exec(content)) !== null) {
+    const variableName = `--${match[1]}`;
+    
+    // Разрешаем только переменные с префиксом --chotto-theme-
+    if (!variableName.startsWith('--chotto-theme-')) {
+      forbiddenVariables.push(variableName);
+    }
+  }
+  
+  const isValid = forbiddenVariables.length === 0;
+  const errors: string[] = [];
+  
+  if (forbiddenVariables.length > 0) {
+    errors.push(`Запрещенные переменные (разрешены только --chotto-theme-*): ${forbiddenVariables.join(', ')}`);
+  }
+  
+  return {
+    component: componentName,
+    componentFolder: componentFolder,
+    theme: themeName,
+    isValid,
+    errors,
+    forbiddenVariables
+  };
+}
+
+/**
  * 4. Валидация использования базовых настроек темы
  */
 function validateThemeUsageInComponents(
@@ -753,16 +795,20 @@ async function validateAllThemes(): Promise<void> {
       const forbiddenResult = validateForbiddenGlobalVariablesInThemeFiles(componentName, componentFolder, themePath);
       forbiddenResults.push(forbiddenResult);
       
+      // 3.1. Валидация использования только разрешенных переменных в файлах тем
+      const themeVariablesResult = validateThemeVariablesInThemeFiles(componentName, componentFolder, themePath);
+      forbiddenResults.push(themeVariablesResult);
+      
       // 6. Валидация отсутствия CSS классов в файлах тем
       const cssClassesResult = validateNoCSSClassesInThemeFiles(componentName, componentFolder, themePath);
       cssClassesResults.push(cssClassesResult);
       
       const themeName = path.basename(themePath, '.scss');
       
-      if (interfaceResult.isValid && prefixResult.isValid && forbiddenResult.isValid && cssClassesResult.isValid) {
-        log(`   ✅ ${themeName}: интерфейс OK, префиксы OK, глобальные переменные OK, CSS классы OK`, 'green');
+      if (interfaceResult.isValid && prefixResult.isValid && forbiddenResult.isValid && themeVariablesResult.isValid && cssClassesResult.isValid) {
+        log(`   ✅ ${themeName}: интерфейс OK, префиксы OK, глобальные переменные OK, переменные тем OK, CSS классы OK`, 'green');
       } else {
-        const allErrors = [...interfaceResult.errors, ...prefixResult.errors, ...forbiddenResult.errors, ...cssClassesResult.errors];
+        const allErrors = [...interfaceResult.errors, ...prefixResult.errors, ...forbiddenResult.errors, ...themeVariablesResult.errors, ...cssClassesResult.errors];
         log(`   ❌ ${themeName}: ${allErrors.join('; ')}`, 'red');
       }
     }
@@ -829,6 +875,7 @@ export {
   validateCSSVariablePrefixes,
   validateForbiddenGlobalVariablesInStyleFiles,
   validateForbiddenGlobalVariablesInThemeFiles,
+  validateThemeVariablesInThemeFiles,
   validateThemeUsageInComponents,
   validateNoDataThemeInStyleFiles,
   validateNoCSSClassesInThemeFiles,
