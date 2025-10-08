@@ -3,7 +3,7 @@
     display: var(--chotto-sidebar-container-display, flex);
     flex-direction: var(--chotto-sidebar-container-flex-direction, column);
     height: var(--chotto-sidebar-container-height, 100%);
-    padding: var(--chotto-sidebar-padding-container);
+    padding: var(--chotto-sidebar-padding-container, 0 8px 7px 8px);
     background-color: var(--chotto-sidebar-container-background-color, transparent);
     position: var(--chotto-sidebar-container-position, relative);
     overflow: var(--chotto-sidebar-container-overflow, hidden);
@@ -26,13 +26,13 @@
     position: var(--chotto-sidebar-list-fixed-position, sticky);
     top: var(--chotto-sidebar-list-fixed-top, 0);
     z-index: var(--chotto-sidebar-list-fixed-z-index, 3);
-    background-color: var(--chotto-sidebar-layout-extended-first-col-bg);
+    background-color: var(--chotto-sidebar-layout-extended-first-col-bg, #FAF6F4);
     padding: var(--chotto-sidebar-list-fixed-padding, 12px 10px 22px);
     margin-bottom: var(--chotto-sidebar-list-fixed-margin-bottom, 15px);
     border-top: var(--chotto-sidebar-list-fixed-border-top, none);
     display: var(--chotto-sidebar-list-fixed-display, flex);
     flex-direction: var(--chotto-sidebar-list-fixed-flex-direction, column);
-    row-gap: var(--chotto-sidebar-row-gap-list);
+    row-gap: var(--chotto-sidebar-row-gap-list, 15px);
 
     &::after {
       content: var(--chotto-sidebar-list-fixed-after-content, '');
@@ -50,9 +50,9 @@
   &__list {
     display: var(--chotto-sidebar-list-display, flex);
     flex-direction: var(--chotto-sidebar-list-flex-direction, column);
-    row-gap: var(--chotto-sidebar-row-gap-list);
+    row-gap: var(--chotto-sidebar-row-gap-list, 15px);
     padding: var(--chotto-sidebar-list-padding, 0);
-    background-color: var(--chotto-sidebar-layout-extended-first-col-bg);
+    background-color: var(--chotto-sidebar-layout-extended-first-col-bg, #FAF6F4);
     z-index: var(--chotto-sidebar-list-z-index, 2);
   }
 
@@ -87,7 +87,7 @@
     }
 
     &:hover::before {
-      background-color: var(--chotto-sidebar-item-before-background-color-hover);
+      background-color: var(--chotto-sidebar-item-before-background-color-hover, #EAE8E7);
     }
 
     span {
@@ -103,15 +103,15 @@
       height: var(--chotto-sidebar-notification-count-height, 18px);
       border-radius: var(--chotto-sidebar-item-span-border-radius, 10px);
       line-height: var(--chotto-sidebar-item-span-line-height, 16px);
-      font-size: var(--chotto-sidebar-small-text-font-size);
+      font-size: var(--chotto-sidebar-small-text-font-size, 12px);
       font-weight: var(--chotto-sidebar-small-text-font-weight, 400);
-      color: var(--chotto-sidebar-unread-text-color);
-      background-color: var(--chotto-sidebar-unread-background-color);
+      color: var(--chotto-sidebar-unread-text-color, #fafafa);
+      background-color: var(--chotto-sidebar-unread-background-color, #ef4444);
       z-index: var(--chotto-sidebar-item-span-z-index, 2);
     }
 
     p {
-      font-size: var(--chotto-sidebar-small-text-font-size);
+      font-size: var(--chotto-sidebar-small-text-font-size, 12px);
       text-align: var(--chotto-sidebar-item-p-text-align, center);
       line-height: var(--chotto-sidebar-item-p-line-height, 1);
       color: var(--chotto-sidebar-header-font-color, #5F5F5F);
@@ -134,7 +134,7 @@
   }
 
   &__settings-container {
-    background-color: var(--chotto-sidebar-layout-extended-first-col-bg);
+    background-color: var(--chotto-sidebar-layout-extended-first-col-bg, #FAF6F4);
     position: var(--chotto-sidebar-settings-container-position, absolute);
     bottom: var(--chotto-sidebar-settings-container-bottom, 7px);
     left: var(--chotto-sidebar-settings-container-left, 0);
@@ -190,13 +190,13 @@
   }
 
   &__list {
-    gap: var(--chotto-sidebar-row-gap-list);
+    gap: var(--chotto-sidebar-row-gap-list, 15px);
   }
 
   &__list-fixed {
     position: var(--chotto-sidebar-horizontal-list-fixed-position, static);
     padding-left: var(--chotto-sidebar-horizontal-list-fixed-padding-left, 10px);
-    border-left: var(--chotto-sidebar-list-fixed-border-top);
+    border-left: var(--chotto-sidebar-list-fixed-border-top, 0);
     padding-top: var(--chotto-sidebar-horizontal-list-fixed-padding-top, 0);
     border-top: var(--chotto-sidebar-horizontal-list-fixed-border-top, 0);
     margin-right: var(--chotto-sidebar-horizontal-list-fixed-margin-right, 10px);

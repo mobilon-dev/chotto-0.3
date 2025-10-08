@@ -12,22 +12,22 @@
   display: var(--chotto-chattabs-item-display, flex);
   align-items: var(--chotto-chattabs-item-align-items, center);
   justify-content: var(--chotto-chattabs-item-justify-content, center);
-  font-size: var(--chotto-chattabs-item-font-size);
-  border: var(--chotto-chattabs-item-border);
+  font-size: var(--chotto-chattabs-item-font-size, 14px);
+  border: var(--chotto-chattabs-item-border, 1px solid #d0d0d0);
   border-radius: var(--chotto-chattabs-item-border-radius, 20px);
   height: var(--chotto-chattabs-item-height, 26px);
   min-width: var(--chotto-chattabs-item-min-width, 61px);
-  color: var(--chotto-chattabs-item-color);
+  color: var(--chotto-chattabs-item-color, #5F5F5F);
 
   &--active {
-    color: var(--chotto-chattabs-item-active-color);
+    color: var(--chotto-chattabs-item-active-color, #1E1E1E);
     font-weight: var(--chotto-chattabs-item-active-font-weight, 600);
-    background-color: var(--chotto-chattabs-item-active-background-color);
-    border: var(--chotto-chattabs-item-active-border);
+    background-color: var(--chotto-chattabs-item-active-background-color, #F3F3F3);
+    border: var(--chotto-chattabs-item-active-border, 1px solid #d0d0d0);
   }
 
   &:hover {
-    background-color: var(--chotto-chattabs-item-hover-background-color);
+    background-color: var(--chotto-chattabs-item-hover-background-color, #EAE8E7);
   }
 }
 

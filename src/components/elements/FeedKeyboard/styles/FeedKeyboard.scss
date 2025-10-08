@@ -27,7 +27,7 @@
   }
 
   &__button {
-    background: var(--chotto-feedkeyboard-button-background);
+    background: var(--chotto-feedkeyboard-button-background, #ffffff);
     word-wrap: var(--chotto-feedkeyboard-button-word-wrap, break-word);
     max-width: var(--chotto-feedkeyboard-button-max-width, 100%);
     cursor: var(--chotto-feedkeyboard-button-cursor, pointer);
@@ -36,9 +36,9 @@
     border-radius: var(--chotto-feedkeyboard-button-border-radius, 15px);
 
     p {
-      font-size: var(--chotto-feedkeyboard-button-text-font-size);
+      font-size: var(--chotto-feedkeyboard-button-text-font-size, 14px);
       margin: var(--chotto-feedkeyboard-button-text-margin, 0);
-      font-weight: var(--chotto-feedkeyboard-button-text-font-weight);
+      font-weight: var(--chotto-feedkeyboard-button-text-font-weight, 600);
     }
   }
 }

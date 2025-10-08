@@ -14,21 +14,21 @@
     span {
       display: var(--chotto-videorecorder-button-span-display, block);
       cursor: var(--chotto-videorecorder-button-span-cursor, pointer);
-      padding: var(--chotto-videorecorder-button-span-padding);
-      font-size: var(--chotto-videorecorder-button-span-font-size);
-      color: var(--chotto-videorecorder-button-span-color);
+      padding: var(--chotto-videorecorder-button-span-padding, 1px 0 0 3px);
+      font-size: var(--chotto-videorecorder-button-span-font-size, 23px);
+      color: var(--chotto-videorecorder-button-span-color, #525252);
     }
   }
 
   &__button:hover span{
-    color: var(--chotto-videorecorder-button-hover-span-color);
+    color: var(--chotto-videorecorder-button-hover-span-color, #404040);
   }
 
   &__button-disabled {
     pointer-events: var(--chotto-videorecorder-button-disabled-pointer-events, none);
     span {
       cursor: var(--chotto-videorecorder-button-disabled-span-cursor, auto);
-      color: var(--chotto-videorecorder-button-disabled-span-color);
+      color: var(--chotto-videorecorder-button-disabled-span-color, #e5e5e5);
     }
   }
 }

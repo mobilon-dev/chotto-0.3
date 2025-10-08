@@ -14,10 +14,10 @@
   }
 
   .left {
-    background-color: var(--chotto-embedpreview-left-background-color);
+    background-color: var(--chotto-embedpreview-left-background-color, #d4d4d4);
   }
 
   .right {
-    background-color: var(--chotto-embedpreview-right-background-color);
+    background-color: var(--chotto-embedpreview-right-background-color, #a7f3d0);
   }
 }

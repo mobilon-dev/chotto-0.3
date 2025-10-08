@@ -2,7 +2,7 @@
   &__container{
     position: var(--chotto-filepreview-container-position, relative);
     display: var(--chotto-filepreview-container-display, flex);
-    border: var(--chotto-filepreview-container-border);
+    border: var(--chotto-filepreview-container-border, 1px solid #d0d0d0);
   }
 
   &__image,
@@ -51,7 +51,7 @@
     width: var(--chotto-filepreview-audio-control-width, 38px);
     height: var(--chotto-filepreview-audio-control-height, 38px);
     border-radius: var(--chotto-filepreview-audio-control-border-radius, 50%);
-    background-color: var(--chotto-filepreview-audio-control-background-color);
+    background-color: var(--chotto-filepreview-audio-control-background-color, #a3a3a3);
 
     span {
       display: var(--chotto-filepreview-audio-control-span-display, flex);
@@ -59,16 +59,16 @@
       top: var(--chotto-filepreview-audio-control-span-top, 50%);
       left: var(--chotto-filepreview-audio-control-span-left, 50%);
       transform: var(--chotto-filepreview-audio-control-span-transform, translate(-50%, -50%));
-      font-size: var(--chotto-filepreview-audio-control-span-font-size);
-      color: var(--chotto-filepreview-audio-control-span-color);
+      font-size: var(--chotto-filepreview-audio-control-span-font-size, 23px);
+      color: var(--chotto-filepreview-audio-control-span-color, #f5f5f5);
     }
   }
 
   &__block {
-    max-width: var(--chotto-filepreview-block-max-width);
-    max-height: var(--chotto-filepreview-block-max-height);
-    min-width: var(--chotto-filepreview-block-min-width);
-    min-height: var(--chotto-filepreview-block-min-height);
+    max-width: var(--chotto-filepreview-block-max-width, 60px);
+    max-height: var(--chotto-filepreview-block-max-height, 60px);
+    min-width: var(--chotto-filepreview-block-min-width, 60px);
+    min-height: var(--chotto-filepreview-block-min-height, 60px);
     margin: var(--chotto-filepreview-block-margin, 5px);
     overflow: var(--chotto-filepreview-block-overflow, hidden);
     border-radius: var(--chotto-filepreview-block-border-radius, 5px);

@@ -6,7 +6,7 @@
   bottom: var(--chotto-wabaseparatedquickbuttons-bottom, 0);
   border-top-left-radius: var(--chotto-wabaseparatedquickbuttons-border-top-left-radius, 10px);
   border-top-right-radius: var(--chotto-wabaseparatedquickbuttons-border-top-right-radius, 10px);
-  background: var(--chotto-wabaseparatedquickbuttons-background);
+  background: var(--chotto-wabaseparatedquickbuttons-background, #ffffff);
   white-space: var(--chotto-wabaseparatedquickbuttons-white-space, pre-wrap);
 
   &__title{
@@ -16,7 +16,7 @@
     margin: var(--chotto-wabaseparatedquickbuttons-title-margin, 15px);
     
     p{
-      font-size: var(--chotto-wabaseparatedquickbuttons-title-p-font-size);
+      font-size: var(--chotto-wabaseparatedquickbuttons-title-p-font-size, 14px);
       margin-left: var(--chotto-wabaseparatedquickbuttons-title-p-margin-left, auto);
       margin-right: var(--chotto-wabaseparatedquickbuttons-title-p-margin-right, auto);
     }
@@ -27,7 +27,7 @@
   }
 
   &__actions{
-    border-top: var(--chotto-wabaseparatedquickbuttons-actions-border-top);
+    border-top: var(--chotto-wabaseparatedquickbuttons-actions-border-top, 1px solid #d0d0d0);
     max-height: var(--chotto-wabaseparatedquickbuttons-actions-max-height, 200px);
     overflow-y: var(--chotto-wabaseparatedquickbuttons-actions-overflow-y, auto);
   }
@@ -36,7 +36,7 @@
     position: var(--chotto-wabaseparatedquickbuttons-action-position, relative);
     z-index: var(--chotto-wabaseparatedquickbuttons-action-z-index, 0);
     width: var(--chotto-wabaseparatedquickbuttons-action-width, 90%);
-    font-size: var(--chotto-wabaseparatedquickbuttons-action-font-size);
+    font-size: var(--chotto-wabaseparatedquickbuttons-action-font-size, 14px);
     margin-right: var(--chotto-wabaseparatedquickbuttons-action-margin-right, auto);
     margin-left: var(--chotto-wabaseparatedquickbuttons-action-margin-left, 25px);
     display: var(--chotto-wabaseparatedquickbuttons-action-display, flex);

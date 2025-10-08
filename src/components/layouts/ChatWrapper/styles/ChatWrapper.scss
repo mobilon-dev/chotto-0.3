@@ -16,10 +16,10 @@
   }
 
   &__chat-panel {
-    background-color: var(--chotto-chatwrapper-chat-panel-background-color);
-    border-left: var(--chotto-chatwrapper-chat-panel-border-left);
-    border-right: var(--chotto-chatwrapper-chat-panel-border-right);
-    border-radius: var(--chotto-chatwrapper-chat-panel-border-radius);
+    background-color: var(--chotto-chatwrapper-chat-panel-background-color, #ffffff);
+    border-left: var(--chotto-chatwrapper-chat-panel-border-left, 1px solid #e5e5e5);
+    border-right: var(--chotto-chatwrapper-chat-panel-border-right, 1px solid #e5e5e5);
+    border-radius: var(--chotto-chatwrapper-chat-panel-border-radius, 0px);
     position: var(--chotto-chatwrapper-chat-panel-position, absolute);
     height: var(--chotto-chatwrapper-chat-panel-height, 100%);
     z-index: var(--chotto-chatwrapper-chat-panel-z-index, 100);

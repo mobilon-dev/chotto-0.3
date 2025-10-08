@@ -7,9 +7,9 @@
     box-sizing: var(--chotto-thememode-switch-box-sizing, border-box);
     width: var(--chotto-thememode-switch-width, 56px);
     height: var(--chotto-thememode-switch-height, 28px);
-    border: var(--chotto-thememode-switch-border);
+    border: var(--chotto-thememode-switch-border, 1px solid #a3a3a3);
     border-radius: var(--chotto-thememode-switch-border-radius, 25%/50%);
-    background: var(--chotto-thememode-switch-background);
+    background: var(--chotto-thememode-switch-background, #fafafa);
     transition: var(--chotto-thememode-switch-transition, .15s);
     cursor: var(--chotto-thememode-switch-cursor, pointer);
 
@@ -24,8 +24,8 @@
     }
 
     span.pi-sun {
-      background-color: var(--chotto-thememode-switch-sun-background-color);
-      color: var(--chotto-thememode-switch-sun-color);
+      background-color: var(--chotto-thememode-switch-sun-background-color, #a3a3a3);
+      color: var(--chotto-thememode-switch-sun-color, #404040);
       left: var(--chotto-thememode-switch-sun-left, 1px);
       width: var(--chotto-thememode-switch-sun-width, 24px);
       height: var(--chotto-thememode-switch-sun-height, 24px);
@@ -35,8 +35,8 @@
 
     span.pi-moon {
       opacity: var(--chotto-thememode-switch-moon-opacity, 0);
-      background-color: var(--chotto-thememode-switch-moon-background-color);
-      color: var(--chotto-thememode-switch-moon-color);
+      background-color: var(--chotto-thememode-switch-moon-background-color, #a3a3a3);
+      color: var(--chotto-thememode-switch-moon-color, #404040);
       width: var(--chotto-thememode-switch-moon-width, 24px);
       height: var(--chotto-thememode-switch-moon-height, 24px);
       border-radius: var(--chotto-thememode-switch-moon-border-radius, 50%);
@@ -55,7 +55,7 @@
 }
 
 .theme-button input[type=checkbox]:checked+.theme-button__switch {
-  background: var(--chotto-thememode-switch-checked-background);
+  background: var(--chotto-thememode-switch-checked-background, #404040);
   transition: var(--chotto-thememode-switch-checked-transition, .15s);
 }
 
@@ -75,5 +75,5 @@
 }
 
 select {
-  width: var(--chotto-thememode-select-width);
+  width: var(--chotto-thememode-select-width, 70px);
 }

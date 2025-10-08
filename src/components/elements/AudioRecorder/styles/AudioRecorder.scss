@@ -46,9 +46,9 @@
     span {
       display: var(--chotto-audiorecorder-button-span-display, block);
       cursor: var(--chotto-audiorecorder-button-span-cursor, pointer);
-      padding: var(--chotto-audiorecorder-button-span-padding);
-      font-size: var(--chotto-audiorecorder-button-span-font-size);
-      color: var(--chotto-audiorecorder-button-span-color);
+      padding: var(--chotto-audiorecorder-button-span-padding, 1px 0 0 3px);
+      font-size: var(--chotto-audiorecorder-button-span-font-size, 23px);
+      color: var(--chotto-audiorecorder-button-span-color, #525252);
     }
   }
 
@@ -57,24 +57,24 @@
       display: var(--chotto-audiorecorder-button-record-span-display, block);
       cursor: var(--chotto-audiorecorder-button-record-span-cursor, pointer);
       padding: var(--chotto-audiorecorder-button-record-span-padding, 0);
-      font-size: var(--chotto-audiorecorder-button-record-span-font-size);
-      color: var(--chotto-audiorecorder-button-record-span-color);
+      font-size: var(--chotto-audiorecorder-button-record-span-font-size, 23px);
+      color: var(--chotto-audiorecorder-button-record-span-color, #525252);
     }
   }
 
   &__button:hover span{
-    color: var(--chotto-audiorecorder-button-span-hover-color);
+    color: var(--chotto-audiorecorder-button-span-hover-color, #404040);
   }
 
   &__button-record:hover span{
-    color: var(--chotto-audiorecorder-button-record-span-hover-color);
+    color: var(--chotto-audiorecorder-button-record-span-hover-color, #404040);
   }
 
   &__button-disabled {
     pointer-events: var(--chotto-audiorecorder-button-disabled-pointer-events, none);
     span {
       cursor: var(--chotto-audiorecorder-button-disabled-span-cursor, auto);
-      color: var(--chotto-audiorecorder-button-disabled-span-color);
+      color: var(--chotto-audiorecorder-button-disabled-span-color, #e5e5e5);
     }
   }
 }
