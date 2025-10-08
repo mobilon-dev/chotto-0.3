@@ -16,7 +16,7 @@
     width: var(--chotto-filemessage-left-triangle-width, 0);
     height: var(--chotto-filemessage-left-triangle-height, 0);
     border: var(--chotto-filemessage-left-triangle-border, 20px solid transparent);
-    border-top: var(--chotto-filemessage-left-triangle-border-top, 15px solid var(--chotto-filemessage-left-bg));
+    border-top: var(--chotto-filemessage-left-triangle-border-top, 15px solid var(--chotto-filemessage-left-bg, #d4d4d4));
     z-index: var(--chotto-filemessage-left-triangle-z-index, 1);
   }
 
@@ -28,21 +28,21 @@
     width: var(--chotto-filemessage-right-triangle-width, 0);
     height: var(--chotto-filemessage-right-triangle-height, 0);
     border: var(--chotto-filemessage-right-triangle-border, 20px solid transparent);
-    border-top: var(--chotto-filemessage-right-triangle-border-top, 15px solid var(--chotto-filemessage-right-bg));
+    border-top: var(--chotto-filemessage-right-triangle-border-top, 15px solid var(--chotto-filemessage-right-bg, #a7f3d0));
     z-index: var(--chotto-filemessage-right-triangle-z-index, 1);
   }
 
   &__avatar {
     align-self: var(--chotto-filemessage-avatar-align-self, auto);
     object-fit: var(--chotto-filemessage-avatar-object-fit, cover);
-    min-width: var(--chotto-filemessage-avatar-min-width);
-    min-height: var(--chotto-filemessage-avatar-min-height);
-    border-radius: var(--chotto-filemessage-avatar-border-radius);
+    min-width: var(--chotto-filemessage-avatar-min-width, 40px);
+    min-height: var(--chotto-filemessage-avatar-min-height, 40px);
+    border-radius: var(--chotto-filemessage-avatar-border-radius, 50%);
   }
 
   &__subtext {
-    font-size: var(--chotto-filemessage-subtext-font-size);
-    color: var(--chotto-filemessage-subtext-color);
+    font-size: var(--chotto-filemessage-subtext-font-size, 14px);
+    color: var(--chotto-filemessage-subtext-color, #5F5F5F);
   }
 
   &__text-container {
@@ -51,7 +51,7 @@
 
     p {
       white-space: var(--chotto-filemessage-text-container-p-white-space, pre-wrap);
-      font-size: var(--chotto-filemessage-text-container-p-font-size);
+      font-size: var(--chotto-filemessage-text-container-p-font-size, 14px);
     }
   }
 
@@ -62,8 +62,8 @@
     column-gap: var(--chotto-filemessage-link-column-gap, 12px);
 
     span {
-      color: var(--chotto-filemessage-link-span-color);
-      font-size: var(--chotto-filemessage-link-span-font-size);
+      color: var(--chotto-filemessage-link-span-color, #5F5F5F);
+      font-size: var(--chotto-filemessage-link-span-font-size, 23px);
     }
   }
 
@@ -74,8 +74,8 @@
     line-clamp: var(--chotto-filemessage-filename-text-line-clamp, 1);
     -webkit-box-orient: var(--chotto-filemessage-filename-text-webkit-box-orient, vertical);
     margin-right: var(--chotto-filemessage-filename-text-margin-right, 40px);
-    font-size: var(--chotto-filemessage-filename-text-font-size);
-    color: var(--chotto-filemessage-filename-text-color);
+    font-size: var(--chotto-filemessage-filename-text-font-size, 14px);
+    color: var(--chotto-filemessage-filename-text-color, #1E1E1E);
   }
 
   &__info-container {
@@ -94,8 +94,8 @@
     cursor: var(--chotto-filemessage-download-button-cursor, pointer);
 
     span {
-      color: var(--chotto-filemessage-download-button-span-color);
-      font-size: var(--chotto-filemessage-download-button-span-font-size);
+      color: var(--chotto-filemessage-download-button-span-color, #5F5F5F);
+      font-size: var(--chotto-filemessage-download-button-span-font-size, 14px);
     }
   }
 
@@ -103,15 +103,15 @@
     display: var(--chotto-filemessage-status-display, flex);
 
     span {
-      color: var(--chotto-filemessage-status-span-color);
-      font-size: var(--chotto-filemessage-status-span-font-size);
+      color: var(--chotto-filemessage-status-span-color, #5F5F5F);
+      font-size: var(--chotto-filemessage-status-span-font-size, 12px);
       font-weight: var(--chotto-filemessage-status-span-font-weight, 400);
     }
   }
 
   .status--received {
     span {
-      color: var(--chotto-filemessage-status-received-color);
+      color: var(--chotto-filemessage-status-received-color, #5F5F5F);
 
       &:first-child {
         margin-right: var(--chotto-filemessage-status-received-first-child-margin-right, -8px);
@@ -121,7 +121,7 @@
 
   .status--read {
     span {
-      color: var(--chotto-filemessage-status-read-color);
+      color: var(--chotto-filemessage-status-read-color, #5F5F5F);
 
       &:first-child {
         margin-right: var(--chotto-filemessage-status-read-first-child-margin-right, -8px);
@@ -135,19 +135,19 @@
     column-gap: var(--chotto-filemessage-views-column-gap, 4px);
 
     span {
-      font-size: var(--chotto-filemessage-views-span-font-size);
-      color: var(--chotto-filemessage-views-span-color);
+      font-size: var(--chotto-filemessage-views-span-font-size, 12px);
+      color: var(--chotto-filemessage-views-span-color, #5F5F5F);
     }
 
     p {
-      font-size: var(--chotto-filemessage-views-p-font-size);
-      color: var(--chotto-filemessage-views-p-color);
+      font-size: var(--chotto-filemessage-views-p-font-size, 12px);
+      color: var(--chotto-filemessage-views-p-color, #5F5F5F);
     }
   }
 
   &__time {
-    font-size: var(--chotto-filemessage-time-font-size);
-    color: var(--chotto-filemessage-time-color);
+    font-size: var(--chotto-filemessage-time-font-size, 14px);
+    color: var(--chotto-filemessage-time-color, #5F5F5F);
   }
 
   &__menu-button {
@@ -159,12 +159,12 @@
     transition: var(--chotto-filemessage-menu-button-transition, 0.2s);
 
     span {
-      color: var(--chotto-filemessage-menu-button-span-color);
-      font-size: var(--chotto-filemessage-menu-button-span-font-size);
+      color: var(--chotto-filemessage-menu-button-span-color, #525252);
+      font-size: var(--chotto-filemessage-menu-button-span-font-size, 23px);
     }
 
     &:hover span {
-      color: var(--chotto-filemessage-menu-button-span-hover-color);
+      color: var(--chotto-filemessage-menu-button-span-hover-color, #404040);
       transition: var(--chotto-filemessage-menu-button-hover-transition, 0.2s);
     }
   }
@@ -176,7 +176,7 @@
   &__left,
   &__right {
     display: var(--chotto-filemessage-left-right-display, grid);
-    margin: var(--chotto-filemessage-left-right-margin);
+    margin: var(--chotto-filemessage-left-right-margin, 0 0 10px 0);
   }
 
   &__left {
@@ -195,11 +195,11 @@
 
     .file-message__content {
       grid-column: var(--chotto-filemessage-left-content-grid-column, 2);
-      background-color: var(--chotto-filemessage-left-bg);
+      background-color: var(--chotto-filemessage-left-bg, #d4d4d4);
     }
 
     .file-message__content.with-avatar-indent {
-      margin-left: var(--chotto-filemessage-left-content-with-avatar-indent-margin-left, calc(var(--chotto-filemessage-avatar-min-width) + 12px));
+      margin-left: var(--chotto-filemessage-left-content-with-avatar-indent-margin-left, calc(var(--chotto-filemessage-avatar-min-width, 40px) + 12px));
     }
 
     .file-message__menu-button {
@@ -232,11 +232,11 @@
     .file-message__content {
       grid-column: var(--chotto-filemessage-right-content-grid-column, 1);
       margin-left: var(--chotto-filemessage-right-content-margin-left, auto);
-      background-color: var(--chotto-filemessage-right-bg);
+      background-color: var(--chotto-filemessage-right-bg, #a7f3d0);
     }
 
     .file-message__content.with-avatar-indent {
-      margin-right: var(--chotto-filemessage-right-content-with-avatar-indent-margin-right, calc(var(--chotto-filemessage-avatar-min-width) + 12px));
+      margin-right: var(--chotto-filemessage-right-content-with-avatar-indent-margin-right, calc(var(--chotto-filemessage-avatar-min-width, 40px) + 12px));
     }
 
     .file-message__menu-button {

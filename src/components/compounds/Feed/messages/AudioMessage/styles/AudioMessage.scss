@@ -19,7 +19,7 @@
     width: var(--chotto-audiomessage-left-arrow-width, 0);
     height: var(--chotto-audiomessage-left-arrow-height, 0);
     border: var(--chotto-audiomessage-left-arrow-border, 20px solid transparent);
-    border-top: var(--chotto-audiomessage-left-arrow-border-top, 15px solid var(--chotto-audiomessage-left-background-color));
+    border-top: var(--chotto-audiomessage-left-arrow-border-top, 15px solid var(--chotto-audiomessage-left-background-color, #d4d4d4));
     z-index: var(--chotto-audiomessage-left-arrow-z-index, 1);
   }
 
@@ -31,7 +31,7 @@
     width: var(--chotto-audiomessage-right-arrow-width, 0);
     height: var(--chotto-audiomessage-right-arrow-height, 0);
     border: var(--chotto-audiomessage-right-arrow-border, 20px solid transparent);
-    border-top: var(--chotto-audiomessage-right-arrow-border-top, 15px solid var(--chotto-audiomessage-right-background-color));
+    border-top: var(--chotto-audiomessage-right-arrow-border-top, 15px solid var(--chotto-audiomessage-right-background-color, #a7f3d0));
     z-index: var(--chotto-audiomessage-right-arrow-z-index, 1);
   }
 
@@ -55,7 +55,7 @@
     width: var(--chotto-audiomessage-play-pause-width, 38px);
     height: var(--chotto-audiomessage-play-pause-height, 38px);
     border-radius: var(--chotto-audiomessage-play-pause-border-radius, 50%);
-    background-color: var(--chotto-audiomessage-type-icon-background-color);
+    background-color: var(--chotto-audiomessage-type-icon-background-color, #a3a3a3);
 
     span {
       display: var(--chotto-audiomessage-play-pause-span-display, flex);
@@ -63,15 +63,15 @@
       top: var(--chotto-audiomessage-play-pause-span-top, 50%);
       left: var(--chotto-audiomessage-play-pause-span-left, 50%);
       transform: var(--chotto-audiomessage-play-pause-span-transform, translate(-50%, -50%));
-      font-size: var(--chotto-audiomessage-type-icon-font-size);
-      color: var(--chotto-audiomessage-type-icon-color);
+      font-size: var(--chotto-audiomessage-type-icon-font-size, 23px);
+      color: var(--chotto-audiomessage-type-icon-color, #f5f5f5);
     }
   }
 
   &__progress-bar-container {
     -webkit-appearance: var(--chotto-audiomessage-progress-bar-webkit-appearance, none);
     appearance: var(--chotto-audiomessage-progress-bar-appearance, none);
-    background: var(--chotto-audiomessage-pbc-background-color);
+    background: var(--chotto-audiomessage-pbc-background-color, #e5e5e5);
     cursor: var(--chotto-audiomessage-progress-bar-cursor, pointer);
     height: var(--chotto-audiomessage-progress-bar-height, 10px);
     overflow: var(--chotto-audiomessage-progress-bar-overflow, hidden);
@@ -82,19 +82,19 @@
   &__progress-bar-container::-webkit-slider-thumb {
     width: var(--chotto-audiomessage-progress-bar-thumb-width, 10px);
     height: var(--chotto-audiomessage-progress-bar-thumb-height, 10px);
-    background-color: var(--chotto-audiomessage-pb-background-color);
+    background-color: var(--chotto-audiomessage-pb-background-color, #007CFF);
     appearance: var(--chotto-audiomessage-progress-bar-thumb-appearance, none);
-    box-shadow: var(--chotto-audiomessage-progress-bar-thumb-box-shadow, -10000px 0 0 10000px var(--chotto-audiomessage-pb-background-color));
+    box-shadow: var(--chotto-audiomessage-progress-bar-thumb-box-shadow, -10000px 0 0 10000px var(--chotto-audiomessage-pb-background-color, #007CFF));
   }
 
   &__progress-bar-container::-moz-range-thumb {
     width: var(--chotto-audiomessage-progress-bar-thumb-width, 10px);
     height: var(--chotto-audiomessage-progress-bar-thumb-height, 10px);
-    background-color: var(--chotto-audiomessage-pb-background-color);
+    background-color: var(--chotto-audiomessage-pb-background-color, #007CFF);
     appearance: var(--chotto-audiomessage-progress-bar-thumb-appearance, none);
     border: var(--chotto-audiomessage-progress-bar-thumb-border, 0);
     border-radius: var(--chotto-audiomessage-progress-bar-thumb-border-radius, 0);
-    box-shadow: var(--chotto-audiomessage-progress-bar-thumb-box-shadow, -10000px 0 0 10000px var(--chotto-audiomessage-pb-background-color));
+    box-shadow: var(--chotto-audiomessage-progress-bar-thumb-box-shadow, -10000px 0 0 10000px var(--chotto-audiomessage-pb-background-color, #007CFF));
   }
 
   &__player-controls{
@@ -112,7 +112,7 @@
     background-color: var(--chotto-audiomessage-speed-btn-background-color, transparent);
     border: var(--chotto-audiomessage-speed-btn-border, 0);
     width: var(--chotto-audiomessage-speed-btn-width, 25px);
-    font-size: var(--chotto-audiomessage-speed-btn-font-size);
+    font-size: var(--chotto-audiomessage-speed-btn-font-size, 14px);
     font-weight: var(--chotto-audiomessage-speed-btn-font-weight, 400);
   }
 
@@ -128,21 +128,21 @@
   &__remaining-time {
     grid-column: var(--chotto-audiomessage-remaining-time-grid-column, 2);
     margin-bottom: var(--chotto-audiomessage-remaining-time-margin-bottom, -10px);
-    font-size: var(--chotto-audiomessage-remaining-time-font-size);
+    font-size: var(--chotto-audiomessage-remaining-time-font-size, 12px);
     height: var(--chotto-audiomessage-remaining-time-height, fit-content);
   }
 
   &__avatar {
     align-self: var(--chotto-audiomessage-avatar-align-self, center);
     object-fit: var(--chotto-audiomessage-avatar-object-fit, cover);
-    min-width: var(--chotto-audiomessage-avatar-min-width);
-    min-height: var(--chotto-audiomessage-avatar-min-height);
-    border-radius: var(--chotto-audiomessage-avatar-border-radius);
+    min-width: var(--chotto-audiomessage-avatar-min-width, 40px);
+    min-height: var(--chotto-audiomessage-avatar-min-height, 40px);
+    border-radius: var(--chotto-audiomessage-avatar-border-radius, 50%);
   }
 
   &__subtext {
-    font-size: var(--chotto-audiomessage-subtext-font-size);
-    color: var(--chotto-audiomessage-subtext-text-color);
+    font-size: var(--chotto-audiomessage-subtext-font-size, 14px);
+    color: var(--chotto-audiomessage-subtext-text-color, #5F5F5F);
   }
 
   &__info-container {
@@ -167,8 +167,8 @@
     cursor: var(--chotto-audiomessage-download-button-cursor, pointer);
 
     span {
-      color: var(--chotto-audiomessage-download-button-icon-color);
-      font-size: var(--chotto-audiomessage-download-button-icon-size);
+      color: var(--chotto-audiomessage-download-button-icon-color, #5F5F5F);
+      font-size: var(--chotto-audiomessage-download-button-icon-size, 14px);
     }
   }
 
@@ -176,14 +176,14 @@
     display: var(--chotto-audiomessage-status-display, flex);
 
     span {
-      color: var(--chotto-audiomessage-status-color-received);
-      font-size: var(--chotto-audiomessage-small-text-icon-size);
+      color: var(--chotto-audiomessage-status-color-received, #5F5F5F);
+      font-size: var(--chotto-audiomessage-small-text-icon-size, 12px);
     }
   }
 
   .status--received {
     span {
-      color: var(--chotto-audiomessage-status-color-received);
+      color: var(--chotto-audiomessage-status-color-received, #5F5F5F);
 
       &:first-child {
         margin-right: -8px;
@@ -193,7 +193,7 @@
 
   .status--read {
     span {
-      color: var(--chotto-audiomessage-status-color-read);
+      color: var(--chotto-audiomessage-status-color-read, #5F5F5F);
 
       &:first-child {
         margin-right: -8px;
@@ -207,19 +207,19 @@
     column-gap: var(--chotto-audiomessage-views-column-gap, 4px);
 
     span {
-      font-size: var(--chotto-audiomessage-small-text-icon-size);
-      color: var(--chotto-audiomessage-views-icon-text-color);
+      font-size: var(--chotto-audiomessage-small-text-icon-size, 12px);
+      color: var(--chotto-audiomessage-views-icon-text-color, #5F5F5F);
     }
 
     p {
-      font-size: var(--chotto-audiomessage-small-text-font-size);
-      color: var(--chotto-audiomessage-views-text-color);
+      font-size: var(--chotto-audiomessage-small-text-font-size, 12px);
+      color: var(--chotto-audiomessage-views-text-color, #5F5F5F);
     }
   }
 
   &__time {
-    font-size: var(--chotto-audiomessage-time-font-size);
-    color: var(--chotto-audiomessage-time-text-color);
+    font-size: var(--chotto-audiomessage-time-font-size, 14px);
+    color: var(--chotto-audiomessage-time-text-color, #5F5F5F);
   }
 
   &__menu-button {
@@ -231,12 +231,12 @@
     transition: var(--chotto-audiomessage-menu-button-transition, 0.2s);
 
     span {
-      color: var(--chotto-audiomessage-menu-button-icon-color);
-      font-size: var(--chotto-audiomessage-menu-button-icon-size);
+      color: var(--chotto-audiomessage-menu-button-icon-color, #525252);
+      font-size: var(--chotto-audiomessage-menu-button-icon-size, 23px);
     }
 
     &:hover span {
-      color: var(--chotto-audiomessage-menu-button-icon-color-hover);
+      color: var(--chotto-audiomessage-menu-button-icon-color-hover, #404040);
       transition: 0.2s;
     }
   }
@@ -253,7 +253,7 @@
 
     p {
       white-space: pre-wrap;
-      font-size: var(--chotto-audiomessage-text-font-size);
+      font-size: var(--chotto-audiomessage-text-font-size, 14px);
     }
   }
 
@@ -269,7 +269,7 @@
     user-select: var(--chotto-audiomessage-transcript-container-user-select, none);
 
     p {
-      color: var(--chotto-audiomessage-transcript-text-color);
+      color: var(--chotto-audiomessage-transcript-text-color, #5F5F5F);
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
@@ -286,7 +286,7 @@
       transform: var(--chotto-audiomessage-transcript-delimiter-transform, translateY(-50%));
       width: var(--chotto-audiomessage-transcript-delimiter-width, 2px);
       height: var(--chotto-audiomessage-transcript-delimiter-height, 84%);
-      background-color: var(--chotto-audiomessage-transcript-delimiter-color);
+      background-color: var(--chotto-audiomessage-transcript-delimiter-color, #d4d4d4);
       border-radius: var(--chotto-audiomessage-transcript-delimiter-border-radius, 6px);
     }
   }
@@ -305,7 +305,7 @@
   &__left,
   &__right {
     display: var(--chotto-audiomessage-left-right-display, grid);
-    margin: var(--chotto-audiomessage-message-margin);
+    margin: var(--chotto-audiomessage-message-margin, 0 0 10px 0);
   }
 
   &__left {
@@ -325,11 +325,11 @@
 
     .audio-message__content {
       grid-column: var(--chotto-audiomessage-left-content-grid-column, 2);
-      background-color: var(--chotto-audiomessage-left-background-color);
+      background-color: var(--chotto-audiomessage-left-background-color, #d4d4d4);
     }
 
     .audio-message__content.with-avatar-indent {
-      margin-left: var(--chotto-audiomessage-left-content-avatar-indent-margin-left, calc(var(--chotto-audiomessage-avatar-min-width) + 12px));
+      margin-left: var(--chotto-audiomessage-left-content-avatar-indent-margin-left, calc(var(--chotto-audiomessage-avatar-min-width, 40px) + 12px));
     }
 
     .audio-message__menu-button {
@@ -362,11 +362,11 @@
     .audio-message__content {
       grid-column: var(--chotto-audiomessage-right-content-grid-column, 1);
       margin-left: var(--chotto-audiomessage-right-content-margin-left, auto);
-      background-color: var(--chotto-audiomessage-right-background-color);
+      background-color: var(--chotto-audiomessage-right-background-color, #a7f3d0);
     }
 
     .audio-message__content.with-avatar-indent {
-      margin-right: var(--chotto-audiomessage-right-content-avatar-indent-margin-right, calc(var(--chotto-audiomessage-avatar-min-width) + 12px));
+      margin-right: var(--chotto-audiomessage-right-content-avatar-indent-margin-right, calc(var(--chotto-audiomessage-avatar-min-width, 40px) + 12px));
     }
 
     .audio-message__menu-button {
@@ -382,24 +382,24 @@
   }
 
   &__modal {
-    font-family: var(--chotto-audiomessage-modal-font-family);
-    font-weight: var(--chotto-audiomessage-modal-font-weight);
-    font-size: var(--chotto-audiomessage-modal-font-size);
+    font-family: var(--chotto-audiomessage-modal-font-family, "Open Sans", sans-serif);
+    font-weight: var(--chotto-audiomessage-modal-font-weight, 400);
+    font-size: var(--chotto-audiomessage-modal-font-size, 14px);
     position: var(--chotto-audiomessage-modal-position, absolute);
     top: var(--chotto-audiomessage-modal-top, 50%);
     left: var(--chotto-audiomessage-modal-left, 50%);
     transform: var(--chotto-audiomessage-modal-transform, translate(-50%, -50%));
     z-index: var(--chotto-audiomessage-modal-z-index, 101);
-    color: var(--chotto-audiomessage-modal-text-color);
-    background-color: var(--chotto-audiomessage-modal-background-color);
-    border-radius: var(--chotto-audiomessage-modal-border-radius);
-    padding: var(--chotto-audiomessage-modal-padding);
+    color: var(--chotto-audiomessage-modal-text-color, #1E1E1E);
+    background-color: var(--chotto-audiomessage-modal-background-color, #ffffff);
+    border-radius: var(--chotto-audiomessage-modal-border-radius, 8px);
+    padding: var(--chotto-audiomessage-modal-padding, 16px);
     max-width: var(--chotto-audiomessage-modal-max-width, 30%);
-    box-shadow: var(--chotto-audiomessage-modal-overlay-shadow);
+    box-shadow: var(--chotto-audiomessage-modal-overlay-shadow, 0px 2px 10px 1px #d4d4d4);
 
     p {
       margin: 0;
-      font-size: var(--chotto-audiomessage-modal-title-font-size);
+      font-size: var(--chotto-audiomessage-modal-title-font-size, 16px);
     }
   }
 
@@ -409,7 +409,7 @@
     left: var(--chotto-audiomessage-modal-overlay-left, 0);
     right: var(--chotto-audiomessage-modal-overlay-right, 0);
     bottom: var(--chotto-audiomessage-modal-overlay-bottom, 0);
-    background-color: var(--chotto-audiomessage-modal-mask-background);
+    background-color: var(--chotto-audiomessage-modal-mask-background, rgba(0, 0, 0, 0.5));
     z-index: var(--chotto-audiomessage-modal-overlay-z-index, 1000);
   }
 
@@ -422,8 +422,8 @@
     cursor: var(--chotto-audiomessage-modal-close-button-cursor, pointer);
 
     span {
-      color: var(--chotto-audiomessage-modal-close-button-icon-color);
-      font-size: var(--chotto-audiomessage-modal-close-button-icon-size);
+      color: var(--chotto-audiomessage-modal-close-button-icon-color, #5F5F5F);
+      font-size: var(--chotto-audiomessage-modal-close-button-icon-size, 23px);
     }
   }
 }

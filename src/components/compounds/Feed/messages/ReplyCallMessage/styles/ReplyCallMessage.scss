@@ -10,9 +10,9 @@
     border-radius: var(--chotto-replycallmessage-icon-border-radius, 50%);
     height: var(--chotto-replycallmessage-icon-height, 38px);
     width: var(--chotto-replycallmessage-icon-width, 38px);
-    background-color: var(--chotto-replycallmessage-icon-background-color);
-    color: var(--chotto-replycallmessage-icon-color);
-    font-size: var(--chotto-replycallmessage-icon-font-size);
+    background-color: var(--chotto-replycallmessage-icon-background-color, #a3a3a3);
+    color: var(--chotto-replycallmessage-icon-color, #f5f5f5);
+    font-size: var(--chotto-replycallmessage-icon-font-size, 23px);
   }
 
   &__text-container {
@@ -20,8 +20,8 @@
     word-break: var(--chotto-replycallmessage-text-container-word-break, break-word);
     p {
       margin: var(--chotto-replycallmessage-text-container-p-margin, 0);
-      font-size: var(--chotto-replycallmessage-text-container-p-font-size);
-      color: var(--chotto-replycallmessage-text-container-p-color);
+      font-size: var(--chotto-replycallmessage-text-container-p-font-size, 14px);
+      color: var(--chotto-replycallmessage-text-container-p-color, #5F5F5F);
       overflow: var(--chotto-replycallmessage-text-container-p-overflow, hidden);
       text-overflow: var(--chotto-replycallmessage-text-container-p-text-overflow, ellipsis);
       display: var(--chotto-replycallmessage-text-container-p-display, -webkit-box);
@@ -38,7 +38,7 @@
     margin-bottom: var(--chotto-replycallmessage-reply-description-margin-bottom, 4px);
 
     span {
-      color: var(--chotto-replycallmessage-reply-description-span-color);
+      color: var(--chotto-replycallmessage-reply-description-span-color, #5F5F5F);
     }
   }
 }

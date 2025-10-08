@@ -5,14 +5,14 @@
 }
 
 .text{
-  font-size: var(--chotto-replytextmessage-text-font-size);
-  color: var(--chotto-replytextmessage-text-color);
+  font-size: var(--chotto-replytextmessage-text-font-size, 14px);
+  color: var(--chotto-replytextmessage-text-color, #1E1E1E);
 }
 
 p {
   margin: var(--chotto-replytextmessage-p-margin, 0);
-  font-size: var(--chotto-replytextmessage-p-font-size);
-  color: var(--chotto-replytextmessage-p-color);
+  font-size: var(--chotto-replytextmessage-p-font-size, 14px);
+  color: var(--chotto-replytextmessage-p-color, #5F5F5F);
   white-space: var(--chotto-replytextmessage-p-white-space, pre-wrap);
   overflow: var(--chotto-replytextmessage-p-overflow, hidden);
   text-overflow: var(--chotto-replytextmessage-p-text-overflow, ellipsis);

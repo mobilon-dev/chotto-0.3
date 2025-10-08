@@ -1,7 +1,7 @@
 p {
   margin: var(--chotto-replyaudiomessage-p-margin, 0);
-  font-size: var(--chotto-replyaudiomessage-p-font-size);
-  color: var(--chotto-replyaudiomessage-p-color);
+  font-size: var(--chotto-replyaudiomessage-p-font-size, 14px);
+  color: var(--chotto-replyaudiomessage-p-color, #5F5F5F);
   overflow: var(--chotto-replyaudiomessage-p-overflow, hidden);
   text-overflow: var(--chotto-replyaudiomessage-p-text-overflow, ellipsis);
   display: var(--chotto-replyaudiomessage-p-display, -webkit-box);
@@ -19,7 +19,7 @@ p {
     width: var(--chotto-replyaudiomessage-play-width, 38px);
     height: var(--chotto-replyaudiomessage-play-height, 38px);
     border-radius: var(--chotto-replyaudiomessage-play-border-radius, 50%);
-    background-color: var(--chotto-replyaudiomessage-play-background-color);
+    background-color: var(--chotto-replyaudiomessage-play-background-color, #a3a3a3);
 
     span {
       display: var(--chotto-replyaudiomessage-play-span-display, flex);
@@ -27,8 +27,8 @@ p {
       top: var(--chotto-replyaudiomessage-play-span-top, 50%);
       left: var(--chotto-replyaudiomessage-play-span-left, 50%);
       transform: var(--chotto-replyaudiomessage-play-span-transform, translate(-50%, -50%));
-      font-size: var(--chotto-replyaudiomessage-play-span-font-size);
-      color: var(--chotto-replyaudiomessage-play-span-color);
+      font-size: var(--chotto-replyaudiomessage-play-span-font-size, 23px);
+      color: var(--chotto-replyaudiomessage-play-span-color, #f5f5f5);
     }
   }
 
@@ -39,8 +39,8 @@ p {
 
   &__text{
     margin-top: var(--chotto-replyaudiomessage-text-margin-top, 8px);
-    font-size: var(--chotto-replyaudiomessage-text-font-size);
-    color: var(--chotto-replyaudiomessage-text-color);
+    font-size: var(--chotto-replyaudiomessage-text-font-size, 14px);
+    color: var(--chotto-replyaudiomessage-text-color, #1E1E1E);
   }
 
   &__reply-description {
@@ -50,7 +50,7 @@ p {
     margin-bottom: var(--chotto-replyaudiomessage-reply-description-margin-bottom, 4px);
 
     span {
-      color: var(--chotto-replyaudiomessage-reply-description-span-color);
+      color: var(--chotto-replyaudiomessage-reply-description-span-color, #5F5F5F);
     }
   }
 }

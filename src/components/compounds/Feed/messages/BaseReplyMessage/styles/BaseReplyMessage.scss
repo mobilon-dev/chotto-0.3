@@ -13,7 +13,7 @@
       left: var(--chotto-basereplymessage-container-before-left, 0);
       width: var(--chotto-basereplymessage-container-before-width, 4px);
       height: var(--chotto-basereplymessage-container-before-height, 100%);
-      background-color: var(--chotto-basereplymessage-accent-line-color);
+      background-color: var(--chotto-basereplymessage-accent-line-color, #34d399);
     }
   }
 
@@ -37,16 +37,16 @@
 }
 
 .left {
-  background-color: var(--chotto-basereplymessage-left-secondary-bg);
+  background-color: var(--chotto-basereplymessage-left-secondary-bg, #d4d4d4);
 }
 
 .right {
-  background-color: var(--chotto-basereplymessage-right-secondary-bg);
+  background-color: var(--chotto-basereplymessage-right-secondary-bg, #a7f3d0);
 }
 
 .chat-input-reply {
   padding-right: var(--chotto-basereplymessage-chat-input-reply-padding-right, 30px);
-  border: var(--chotto-basereplymessage-chat-input-reply-border, 1px solid var(--chotto-basereplymessage-item-border-color));
+  border: var(--chotto-basereplymessage-chat-input-reply-border, 1px solid var(--chotto-basereplymessage-item-border-color, #d0d0d0));
   border-radius: var(--chotto-basereplymessage-chat-input-reply-border-radius, 0);
   word-break: var(--chotto-basereplymessage-chat-input-reply-word-break, break-word);
   margin-bottom: var(--chotto-basereplymessage-chat-input-reply-margin-bottom, 0);

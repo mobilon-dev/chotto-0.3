@@ -1,7 +1,7 @@
 p {
   margin: var(--chotto-replyvideomessage-p-margin, 0);
-  font-size: var(--chotto-replyvideomessage-p-font-size);
-  color: var(--chotto-replyvideomessage-p-color);
+  font-size: var(--chotto-replyvideomessage-p-font-size, 14px);
+  color: var(--chotto-replyvideomessage-p-color, #5F5F5F);
   overflow: var(--chotto-replyvideomessage-p-overflow, hidden);
   text-overflow: var(--chotto-replyvideomessage-p-text-overflow, ellipsis);
   display: var(--chotto-replyvideomessage-p-display, -webkit-box);
@@ -35,8 +35,8 @@ p {
 
   &__text{
     margin-top: var(--chotto-replyvideomessage-text-margin-top, 8px);
-    font-size: var(--chotto-replyvideomessage-text-font-size);
-    color: var(--chotto-replyvideomessage-text-color);
+    font-size: var(--chotto-replyvideomessage-text-font-size, 14px);
+    color: var(--chotto-replyvideomessage-text-color, #1E1E1E);
   }
 
   &__reply-description {
@@ -46,7 +46,7 @@ p {
     margin-bottom: var(--chotto-replyvideomessage-reply-description-margin-bottom, 4px);
 
     span {
-      color: var(--chotto-replyvideomessage-reply-description-span-color);
+      color: var(--chotto-replyvideomessage-reply-description-span-color, #5F5F5F);
     }
   }
 

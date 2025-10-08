@@ -9,8 +9,8 @@
   left: var(--chotto-tooltip-left, 0);
   position: var(--chotto-tooltip-position, absolute);
   z-index: var(--chotto-tooltip-z-index, 99999);
-  font-family: var(--chotto-tooltip-font-family);
-  font-weight: var(--chotto-tooltip-font-weight);
+  font-family: var(--chotto-tooltip-font-family, "Open Sans", sans-serif);
+  font-weight: var(--chotto-tooltip-font-weight, 400);
   border: var(--chotto-tooltip-border, 1px solid #5F5F5F);
   font-size: var(--chotto-tooltip-font-size, 14px);
   line-height: var(--chotto-tooltip-line-height, inherit);
@@ -30,31 +30,31 @@
 //   position: absolute;
 //   border-width: 5px;
 //   border-style: solid;
-//   border-color: var(--chotto-tooltip-bg-color) transparent transparent transparent;
+//   border-color: var(--chotto-tooltip-bg-color, #ffffff) transparent transparent transparent;
 // }
 
 // .tooltip--left::after {
 //   inset-block-start: 50%;
 //   inset-inline-start: 100%;
-//   border-color: transparent transparent transparent var(--chotto-tooltip-bg-color);
+//   border-color: transparent transparent transparent var(--chotto-tooltip-bg-color, #ffffff);
 // }
 
 // .tooltip--right::after {
 //   inset-block-start: 50%;
 //   inset-inline-end: 100%;
-//   border-color: transparent var(--chotto-tooltip-bg-color) transparent transparent;
+//   border-color: transparent var(--chotto-tooltip-bg-color, #ffffff) transparent transparent;
 // }
 
 // .tooltip--top::after {
 //   inset-block-start: 100%;
 //   inset-inline-start: 50%;
-//   border-color: var(--chotto-tooltip-bg-color) transparent transparent  transparent;
+//   border-color: var(--chotto-tooltip-bg-color, #ffffff) transparent transparent  transparent;
 // }
 
 // .tooltip--bottom::after {
 //   inset-block-end: 100%;
 //   inset-inline-start: 50%;
-//   border-color: transparent transparent var(--chotto-tooltip-bg-color) transparent;
+//   border-color: transparent transparent var(--chotto-tooltip-bg-color, #ffffff) transparent;
 // }
 
 .v-enter-active,

@@ -1,22 +1,22 @@
 .feed-found-item{
 
   &__container{
-    padding: var(--chotto-chatitem-padding-container);
+    padding: var(--chotto-chatitem-padding-container, 10px 15px);
     display: var(--chotto-feedfounditem-container-display, flex);
     position: var(--chotto-feedfounditem-container-position, relative);
     cursor: var(--chotto-feedfounditem-container-cursor, pointer);
     width: var(--chotto-feedfounditem-container-width, 100%);
     word-wrap: var(--chotto-feedfounditem-container-word-wrap, anywhere);
     background-color: var(--chotto-feedfounditem-container-bg, transparent);
-    border-radius: var(--chotto-chatitem-border-radius);
+    border-radius: var(--chotto-chatitem-border-radius, 0);
   }
   
   &__container:hover{
-    background-color: var(--chotto-feedfounditem-container-hover-bg);
+    background-color: var(--chotto-feedfounditem-container-hover-bg, #EAE8E7);
   }
 
   &__selected-container{
-    background-color: var(--chotto-feedfounditem-selected-container-bg);
+    background-color: var(--chotto-feedfounditem-selected-container-bg, #F3F3F3);
   }
 
   &__info{
@@ -35,8 +35,8 @@
   }
 
   &__time{
-    color: var(--chotto-feedfounditem-time-text-color);
-    font-size: var(--chotto-feedfounditem-time-font-size);
+    color: var(--chotto-feedfounditem-time-text-color, #5F5F5F);
+    font-size: var(--chotto-feedfounditem-time-font-size, 14px);
     margin: var(--chotto-feedfounditem-time-margin, 0);
     padding: var(--chotto-feedfounditem-time-padding, 0);
   }
@@ -47,8 +47,8 @@
     p {
       margin: var(--chotto-feedfounditem-second-line-p-margin, 0);
       padding: var(--chotto-feedfounditem-second-line-p-padding, 0);
-      font-size: var(--chotto-feedfounditem-second-line-p-font-size);
-      color: var(--chotto-feedfounditem-second-line-p-text-color);
+      font-size: var(--chotto-feedfounditem-second-line-p-font-size, 14px);
+      color: var(--chotto-feedfounditem-second-line-p-text-color, #5F5F5F);
       overflow: var(--chotto-feedfounditem-second-line-p-overflow, hidden);
       text-overflow: var(--chotto-feedfounditem-second-line-p-text-overflow, ellipsis);
       display: var(--chotto-feedfounditem-second-line-p-display, -webkit-box);
@@ -76,7 +76,7 @@
     }
 
     img {
-      border-radius: var(--chotto-avatar-border-radius);
+      border-radius: var(--chotto-avatar-border-radius, 50%);
       object-fit: var(--chotto-feedfounditem-avatar-img-object-fit, cover);
     }
   }

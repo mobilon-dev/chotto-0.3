@@ -9,12 +9,12 @@
     height: var(--chotto-feedfoundobjects-items-height, 100%);
     &::-webkit-scrollbar {
       width: var(--chotto-feedfoundobjects-scrollbar-width, 6px);
-      background-color: var(--chotto-feedfoundobjects-scrollbar-bg);
+      background-color: var(--chotto-feedfoundobjects-scrollbar-bg, #fafafa);
     }
 
     &::-webkit-scrollbar-thumb {
       border-radius: var(--chotto-feedfoundobjects-scrollbar-thumb-radius, 10px);
-      background-color: var(--chotto-feedfoundobjects-scrollbar-thumb-bg);
+      background-color: var(--chotto-feedfoundobjects-scrollbar-thumb-bg, #d4d4d4);
     }
 
     &::-webkit-scrollbar-track {

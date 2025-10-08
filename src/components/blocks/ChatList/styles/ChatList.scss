@@ -7,7 +7,7 @@
   height: var(--chotto-chatlist-height, 70%);
 
   &__filter {
-    margin: var(--chotto-chatlist-filter-margin);
+    margin: var(--chotto-chatlist-filter-margin, 0 16px 10px 15px);
   }
 
   &__items {
@@ -16,16 +16,16 @@
     height: var(--chotto-chatlist-items-height, 100%);
     overflow-y: var(--chotto-chatlist-items-overflow-y, auto);
     overflow-x: var(--chotto-chatlist-items-overflow-x, hidden);
-    padding: var(--chotto-chatlist-items-padding);
+    padding: var(--chotto-chatlist-items-padding, 0);
 
     &::-webkit-scrollbar {
       width: var(--chotto-chatlist-scrollbar-width, 6px);
-      background-color: var(--chotto-chatlist-scrollbar-bg);
+      background-color: var(--chotto-chatlist-scrollbar-bg, #fafafa);
     }
 
     &::-webkit-scrollbar-thumb {
       border-radius: var(--chotto-chatlist-scrollbar-thumb-radius, 10px);
-      background-color: var(--chotto-chatlist-scrollbar-thumb-bg);
+      background-color: var(--chotto-chatlist-scrollbar-thumb-bg, #d4d4d4);
     }
 
     &::-webkit-scrollbar-track {
@@ -38,7 +38,7 @@
     z-index: var(--chotto-chatlist-fixed-z-index, 100);
     display: var(--chotto-chatlist-fixed-display, block);
     position: var(--chotto-chatlist-fixed-position, sticky);
-    background-color: var(--chotto-chatlist-fixed-background-color);
+    background-color: var(--chotto-chatlist-fixed-background-color, #ffffff);
   }
 
   &__fixed-items-top {
@@ -51,10 +51,10 @@
   }
 
   &__title {
-    font-family: var(--chotto-chatlist-title-font-family);
-    font-size: var(--chotto-chatlist-title-font-size);
-    font-weight: var(--chotto-chatlist-title-font-weight);
-    color: var(--chotto-chatlist-title-text-color);
+    font-family: var(--chotto-chatlist-title-font-family, "Open Sans", sans-serif);
+    font-size: var(--chotto-chatlist-title-font-size, 16px);
+    font-weight: var(--chotto-chatlist-title-font-weight, 400);
+    color: var(--chotto-chatlist-title-text-color, #1E1E1E);
   }
 
   &__title-container {
@@ -63,7 +63,7 @@
     justify-content: var(--chotto-chatlist-title-container-justify, space-between);
     align-items: var(--chotto-chatlist-title-container-align, center);
     column-gap: var(--chotto-chatlist-title-column-gap, 50px);
-    padding: var(--chotto-chatlist-title-container-padding);
+    padding: var(--chotto-chatlist-title-container-padding, 20px 0 20px 15px);
   }
 
   &__context-menu {
@@ -86,12 +86,12 @@
     justify-content: var(--chotto-chatlist-button-justify, center);
     align-items: var(--chotto-chatlist-button-align, center);
     cursor: var(--chotto-chatlist-button-cursor, pointer);
-    background-color: var(--chotto-chatlist-button-background-color);
+    background-color: var(--chotto-chatlist-button-background-color, #e5e5e5);
   }
 
   &__icon-up {
-    font-size: var(--chotto-chatlist-button-icon-size);
-    color: var(--chotto-chatlist-button-color-active);
+    font-size: var(--chotto-chatlist-button-icon-size, 23px);
+    color: var(--chotto-chatlist-button-color-active, #525252);
   }
 }
 

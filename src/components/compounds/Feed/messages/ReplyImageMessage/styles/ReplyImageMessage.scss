@@ -1,7 +1,7 @@
 p {
   margin: var(--chotto-replyimagemessage-p-margin, 0);
-  font-size: var(--chotto-replyimagemessage-p-font-size);
-  color: var(--chotto-replyimagemessage-p-color);
+  font-size: var(--chotto-replyimagemessage-p-font-size, 14px);
+  color: var(--chotto-replyimagemessage-p-color, #5F5F5F);
   overflow: var(--chotto-replyimagemessage-p-overflow, hidden);
   text-overflow: var(--chotto-replyimagemessage-p-text-overflow, ellipsis);
   display: var(--chotto-replyimagemessage-p-display, -webkit-box);
@@ -46,8 +46,8 @@ p {
 
   &__text{
     margin-top: var(--chotto-replyimagemessage-text-margin-top, 8px);
-    font-size: var(--chotto-replyimagemessage-text-font-size);
-    color: var(--chotto-replyimagemessage-text-color);
+    font-size: var(--chotto-replyimagemessage-text-font-size, 14px);
+    color: var(--chotto-replyimagemessage-text-color, #1E1E1E);
   }
 
   &__reply-description {
@@ -57,7 +57,7 @@ p {
     margin-bottom: var(--chotto-replyimagemessage-reply-description-margin-bottom, 4px);
     white-space: var(--chotto-replyimagemessage-reply-description-white-space, nowrap);
     span {
-      color: var(--chotto-replyimagemessage-reply-description-span-color);
+      color: var(--chotto-replyimagemessage-reply-description-span-color, #5F5F5F);
     }
   }
 }
