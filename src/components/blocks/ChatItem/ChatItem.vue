@@ -176,7 +176,7 @@ import { t } from '../../../locale/useLocale'
 import Tooltip from '../../atoms/Tooltip/Tooltip.vue';
 import ButtonContextMenu from '../../elements/ButtonContextMenu/ButtonContextMenu.vue';
 import AvatarIcon from '../../icons/AvatarIcon.vue';
-import { IAction, IChatItem, IChatDialog } from '@types';
+import { IAction, IChatItem, IChatDialog } from './types';
 
 const props = defineProps<{
   chat: IChatItem;

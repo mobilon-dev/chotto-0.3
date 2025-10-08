@@ -1,4 +1,5 @@
 import { IAudioMessage, ICallMessage, IDateMessage, IFileMessage, IImageMessage, IKeyBoard, ILinkPreview, ISystemMessage, ITextMessage, ITypingMessage, IVideoMessage, Reply } from "./messages"
+import { IAction } from "@/components/blocks/ChatItem/types"
 
 export interface IFeedObject {
   messageId: string
@@ -33,13 +34,6 @@ export type TFeedObject =
   ITypingMessage |
   IVideoMessage
 
-export interface IAction {
-  action: string
-  title: string
-  icon?: string
-  prime?: string
-}
-
 export interface IFeedTyping {
   title?: string
   avatar?: string
@@ -63,39 +57,4 @@ export interface IFilePreview {
   isAudio: boolean
   fileName?: string
   fileSize: string
-}
-
-export interface IChatDialog {
-  branchId: string;
-  dialogId: string;
-  attributeId: string;
-  channelId: string;
-  icon?: string;
-  name: string;
-  fullname: string;
-  countUnread: number;
-  'lastActivity.time': string;
-  'lastActivity.timestamp': number;
-  isSelected: boolean;
-  colorUnread?: string;
-}
-
-export interface IChatItem {
-  chatId: number;
-  name: string;
-  avatar?: string;
-  countUnread: number;
-  lastMessage: string;
-  'lastActivity.time': string;
-  'lastActivity.timestamp': string;
-  isFixedBottom: boolean;
-  isFixedTop?: boolean;
-  status: string;
-  'lastMessage.status': string;
-  actions?: IAction[];
-  typing: boolean;
-  metadata: string;
-  dialogsExpanded: boolean;
-  dialogs?: IChatDialog[];
-  isSelected: boolean;
 }
