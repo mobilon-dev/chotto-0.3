@@ -87,6 +87,12 @@ export interface CallMessageThemeCSSVariables {
   '--chotto-callmessage-avatar-align-self': string;
   /** Вписывание изображения аватара */
   '--chotto-callmessage-avatar-object-fit': string;
+  /** Минимальная ширина аватара */
+  '--chotto-callmessage-avatar-min-width': string;
+  /** Минимальная высота аватара */
+  '--chotto-callmessage-avatar-min-height': string;
+  /** Скругление аватара */
+  '--chotto-callmessage-avatar-border-radius': string;
 
   /** Позиционирование кнопки меню */
   '--chotto-callmessage-menu-button-position': string;

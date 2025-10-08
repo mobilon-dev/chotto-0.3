@@ -175,6 +175,12 @@ export interface AudioMessageThemeCSSVariables {
   '--chotto-audiomessage-avatar-align-self': string;
   /** Вписывание изображения аватара */
   '--chotto-audiomessage-avatar-object-fit': string;
+  /** Минимальная ширина аватара */
+  '--chotto-audiomessage-avatar-min-width': string;
+  /** Минимальная высота аватара */
+  '--chotto-audiomessage-avatar-min-height': string;
+  /** Скругление аватара */
+  '--chotto-audiomessage-avatar-border-radius': string;
 
   /** Колонка грида инфо-контейнера */
   '--chotto-audiomessage-info-container-grid-column': string;

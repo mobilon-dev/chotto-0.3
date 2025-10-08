@@ -74,6 +74,9 @@
   // Avatar variables
   --chotto-callmessage-avatar-align-self: center;
   --chotto-callmessage-avatar-object-fit: cover;
+  --chotto-callmessage-avatar-min-width: var(--chotto-theme-avatar-small-size);
+  --chotto-callmessage-avatar-min-height: var(--chotto-theme-avatar-small-size);
+  --chotto-callmessage-avatar-border-radius: 50%;
 
   // Menu button variables
   --chotto-callmessage-menu-button-position: absolute;

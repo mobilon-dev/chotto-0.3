@@ -14,7 +14,7 @@
   --chotto-filemessage-left-triangle-width: 0;
   --chotto-filemessage-left-triangle-height: 0;
   --chotto-filemessage-left-triangle-border: 20px solid transparent;
-  --chotto-filemessage-left-triangle-border-top: 15px solid var(--chotto-filemessage-left-bg);
+  --chotto-filemessage-left-triangle-border-top: 15px solid var(--chotto-theme-message-left-bg);  
   --chotto-filemessage-left-triangle-z-index: 1;
 
   --chotto-filemessage-right-triangle-content: '';
@@ -24,7 +24,7 @@
   --chotto-filemessage-right-triangle-width: 0;
   --chotto-filemessage-right-triangle-height: 0;
   --chotto-filemessage-right-triangle-border: 20px solid transparent;
-  --chotto-filemessage-right-triangle-border-top: 15px solid var(--chotto-filemessage-right-bg);
+  --chotto-filemessage-right-triangle-border-top: 15px solid var(--chotto-theme-message-right-bg);
   --chotto-filemessage-right-triangle-z-index: 1;
 
   // FileMessage background variables
@@ -32,8 +32,8 @@
   --chotto-filemessage-right-bg: var(--chotto-theme-message-right-bg);
 
   // FileMessage avatar variables
-  --chotto-filemessage-avatar-min-width: 40px;
-  --chotto-filemessage-avatar-min-height: 40px;
+  --chotto-filemessage-avatar-min-width: var(--chotto-theme-avatar-small-size);
+  --chotto-filemessage-avatar-min-height: var(--chotto-theme-avatar-small-size);
   --chotto-filemessage-avatar-border-radius: 50%;
 
   // FileMessage text container variables
@@ -150,7 +150,7 @@
   --chotto-filemessage-left-subtext-grid-row: 1;
   --chotto-filemessage-left-subtext-margin: 0 0 2px 10px;
   --chotto-filemessage-left-content-grid-column: 2;
-  --chotto-filemessage-left-content-with-avatar-indent-margin-left: calc(40px + 12px);
+  --chotto-filemessage-left-content-with-avatar-indent-margin-left: calc(var(--chotto-theme-avatar-small-size) + 12px);
   --chotto-filemessage-left-menu-button-top: 50%;
   --chotto-filemessage-left-menu-button-right: -40px;
   --chotto-filemessage-left-context-menu-top: 50%;
@@ -167,7 +167,7 @@
   --chotto-filemessage-right-subtext-margin: 0 10px 2px auto;
   --chotto-filemessage-right-content-grid-column: 1;
   --chotto-filemessage-right-content-margin-left: auto;
-  --chotto-filemessage-right-content-with-avatar-indent-margin-right: calc(40px + 12px);
+  --chotto-filemessage-right-content-with-avatar-indent-margin-right: calc(var(--chotto-theme-avatar-small-size) + 12px);
   --chotto-filemessage-right-menu-button-top: 50%;
   --chotto-filemessage-right-menu-button-left: -40px;
   --chotto-filemessage-right-context-menu-top: 50%;

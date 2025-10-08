@@ -23,7 +23,7 @@
   --chotto-audiomessage-left-arrow-height: 0;
   --chotto-audiomessage-left-arrow-border: 20px solid transparent;
   --chotto-audiomessage-left-background-color: var(--chotto-theme-message-left-bg);
-  --chotto-audiomessage-left-arrow-border-top: 15px solid var(--chotto-audiomessage-left-background-color);
+  --chotto-audiomessage-left-arrow-border-top: 15px solid var(--chotto-theme-message-left-bg);
   --chotto-audiomessage-left-arrow-z-index: 1;
 
   // Right arrow variables
@@ -35,7 +35,7 @@
   --chotto-audiomessage-right-arrow-height: 0;
   --chotto-audiomessage-right-arrow-border: 20px solid transparent;
   --chotto-audiomessage-right-background-color: var(--chotto-theme-message-right-bg);
-  --chotto-audiomessage-right-arrow-border-top: 15px solid var(--chotto-audiomessage-right-background-color);
+  --chotto-audiomessage-right-arrow-border-top: 15px solid var(--chotto-theme-message-right-bg);
   --chotto-audiomessage-right-arrow-z-index: 1;
 
   // Audio container variables
@@ -83,7 +83,7 @@
   --chotto-audiomessage-progress-bar-thumb-appearance: none;
   --chotto-audiomessage-progress-bar-thumb-border: 0;
   --chotto-audiomessage-progress-bar-thumb-border-radius: 0;
-  --chotto-audiomessage-progress-bar-thumb-box-shadow: -10000px 0 0 10000px var(--chotto-audiomessage-pb-background-color);
+  --chotto-audiomessage-progress-bar-thumb-box-shadow: -10000px 0 0 10000px #007CFF;
 
   // Player controls variables
   --chotto-audiomessage-player-controls-display: flex;
@@ -113,6 +113,9 @@
   // Avatar variables
   --chotto-audiomessage-avatar-align-self: center;
   --chotto-audiomessage-avatar-object-fit: cover;
+  --chotto-audiomessage-avatar-min-width: var(--chotto-theme-avatar-small-size);
+  --chotto-audiomessage-avatar-min-height: var(--chotto-theme-avatar-small-size);
+  --chotto-audiomessage-avatar-border-radius: 50%;
 
   // Info container variables
   --chotto-audiomessage-info-container-grid-column: 1 / 3;
