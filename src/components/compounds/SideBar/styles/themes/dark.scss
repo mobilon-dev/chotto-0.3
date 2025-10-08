@@ -40,7 +40,6 @@
   --chotto-sidebar-list-fixed-border-bottom-width: 1px;
   --chotto-sidebar-list-fixed-border-bottom-color: #666;
   --chotto-sidebar-list-fixed-border-bottom-display: block;
-  --chotto-sidebar-item-before-background-color-hover: var(--chotto-theme-item-background-color-hover, #2a2a2a);
   
   // List
   --chotto-sidebar-list-display: flex;
@@ -69,7 +68,7 @@
   --chotto-sidebar-item-before-z-index: 0;
   --chotto-sidebar-item-before-transition: background-color 0.2s ease;
   --chotto-sidebar-item-before-pointer-events: none;
-  --chotto-sidebar-item-before-background-color-hover: var(--chotto-sidebar-item-before-background-color-hover);
+  --chotto-sidebar-item-before-background-color-hover: var(--chotto-theme-item-background-color-hover);
   
   // Item span
   --chotto-sidebar-unread-text-color: var(--chotto-theme-unread-text-color);
@@ -162,5 +161,3 @@
   --chotto-sidebar-horizontal-image-width: calc(var(--chotto-theme-avatar-small-size) * 1.2);
   --chotto-sidebar-horizontal-image-height: calc(var(--chotto-theme-avatar-small-size) * 1.2);
 }
-
-
