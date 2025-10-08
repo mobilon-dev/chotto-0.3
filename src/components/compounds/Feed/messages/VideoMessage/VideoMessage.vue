@@ -23,7 +23,10 @@
       {{ message.subText }}
     </p>
 
-    <div class="video-message__content" :class="{ 'is-first': isFirstInSeries, 'with-avatar-indent': !isFirstInSeries && message.avatar  }">
+    <div
+      class="video-message__content"
+      :class="{ 'is-first': isFirstInSeries, 'with-avatar-indent': !isFirstInSeries && message.avatar }"
+    >
       <BaseReplyMessage
         v-if="message.reply"
         style="margin: 10px 10px 4px 16px;"

@@ -84,7 +84,7 @@
                   <template #actions>
                     <div style="display: flex;">
                       <CommunicationPanel
-                        :contactAttributes="selectedChat?.contact?.attributes"
+                        :contact-attributes="selectedChat?.contact?.attributes"
                         :channels="toRaw(channels)"
                         :recent-attribute-channels="recentAttributeChannels"
                         :selected-dialog="selectedDialog"
