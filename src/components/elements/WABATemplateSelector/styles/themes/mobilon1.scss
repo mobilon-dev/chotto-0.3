@@ -142,16 +142,16 @@
   // WABATemplateSelector searching input variables
   --chotto-wabatemplateselector-searching-input-background-color: transparent;
   --chotto-wabatemplateselector-searching-input-width: 100%;
-  --chotto-wabatemplateselector-searching-input-padding: var(--chotto-input-padding);
-  --chotto-wabatemplateselector-searching-input-border-radius: var(--chotto-input-border-radius);
-  --chotto-wabatemplateselector-searching-input-font-size: var(--chotto-input-font-size);
+  --chotto-wabatemplateselector-searching-input-padding: 0.5rem 0.75rem;
+  --chotto-wabatemplateselector-searching-input-border-radius: 5px;
+  --chotto-wabatemplateselector-searching-input-font-size: var(--chotto-theme-text-font-size);
   --chotto-wabatemplateselector-searching-input-color: var(--chotto-theme-primary-text-color);
-  --chotto-wabatemplateselector-searching-input-border: var(--chotto-input-border);
-  --chotto-wabatemplateselector-searching-input-transition: border-color var(--chotto-input-transition-duration);
+  --chotto-wabatemplateselector-searching-input-border: 1px solid #d0d0d0;
+  --chotto-wabatemplateselector-searching-input-transition: border-color 0.2s;
   --chotto-wabatemplateselector-searching-input-box-sizing: border-box;
   --chotto-wabatemplateselector-searching-input-placeholder-color: var(--chotto-theme-secondary-text-color);
-  --chotto-wabatemplateselector-searching-input-hover-border-color: var(--chotto-input-hover-border-color);
-  --chotto-wabatemplateselector-searching-input-focus-border-color: var(--chotto-input-focus-border-color);
+  --chotto-wabatemplateselector-searching-input-hover-border-color: var(--chotto-theme-quaternary-color);
+  --chotto-wabatemplateselector-searching-input-focus-border-color: var(--chotto-theme-quinary-color);
   --chotto-wabatemplateselector-searching-input-focus-outline: none;
 
   // WABATemplateSelector preview container variables

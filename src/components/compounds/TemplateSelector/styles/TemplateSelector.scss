@@ -208,13 +208,13 @@
   &__searching-input {
     background-color: var(--chotto-templateselector-searching-input-background-color, transparent);
     width: var(--chotto-templateselector-searching-input-width, 100%);
-    padding: var(--chotto-input-padding);
+    padding: 0.5rem 0.75rem;
     background-color: var(--chotto-input-background);
-    border-radius: var(--chotto-input-border-radius);
-    font-size: var(--chotto-input-font-size);
+    border-radius: 5px;
+    font-size: var(--chotto-theme-text-font-size);
     color: var(--chotto-templateselector-primary-text-color);
-    border: var(--chotto-input-border);
-    transition: var(--chotto-templateselector-searching-input-transition, border-color var(--chotto-input-transition-duration));
+    border: 1px solid #d0d0d0;
+    transition: var(--chotto-templateselector-searching-input-transition, border-color 0.2s);
     box-sizing: var(--chotto-templateselector-searching-input-box-sizing, border-box);
 
     &::placeholder {
@@ -222,11 +222,11 @@
     }
 
     &:hover {
-      border-color: var(--chotto-input-hover-border-color);
+      border-color: var(--chotto-theme-quaternary-color);
     }
 
     &:focus-visible {
-      border-color: var(--chotto-input-focus-border-color);
+      border-color: var(--chotto-theme-quinary-color);
       outline: var(--chotto-templateselector-searching-input-focus-outline, none);
     }
   }

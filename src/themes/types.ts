@@ -6,6 +6,8 @@ export interface ChottoThemeVariables {
   '--chotto-theme-primary-color': string;
   '--chotto-theme-secondary-color': string;
   '--chotto-theme-tertiary-color': string;
+  '--chotto-theme-quaternary-color': string;
+  '--chotto-theme-quinary-color': string;
   '--chotto-theme-primary-text-color': string;
   '--chotto-theme-secondary-text-color': string;
 

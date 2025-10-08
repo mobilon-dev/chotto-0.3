@@ -23,22 +23,22 @@
     width: var(--chotto-feedsearch-input-width, 100%);
     background-color: var(--chotto-input-background);
     color: var(--chotto-feedsearch-input-text-color);
-    padding: var(--chotto-input-padding);
-    border: var(--chotto-input-border);
-    border-radius: var(--chotto-input-border-radius);
-    font-size: var(--chotto-input-font-size);
-    transition: var(--chotto-feedsearch-input-transition, border-color var(--chotto-input-transition-duration));
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #d0d0d0;
+    border-radius: 5px;
+    font-size: var(--chotto-theme-text-font-size);
+    transition: var(--chotto-feedsearch-input-transition, border-color 0.2s);
     margin-left: var(--chotto-feedsearch-input-margin-left, 10px);
     &::placeholder {
       color: var(--chotto-feedsearch-input-placeholder-text-color);
     }
 
     &:hover {
-      border-color: var(--chotto-input-hover-border-color);
+      border-color: var(--chotto-theme-quaternary-color);
     }
 
     &:focus-visible {
-      border-color: var(--chotto-input-focus-border-color);
+      border-color: var(--chotto-theme-quinary-color);
       outline: var(--chotto-feedsearch-input-focus-outline, none);
     }
   }
