@@ -98,6 +98,18 @@ interface ThemeImportsValidationResult {
 }
 
 /**
+ * Интерфейс для результатов валидации использования фоллбеков в SCSS файлах компонентов
+ */
+interface FallbackValidationResult {
+  component: string;
+  componentFolder: string;
+  theme: string;
+  isValid: boolean;
+  errors: string[];
+  missingFallbacks: string[];
+}
+
+/**
  * Интерфейс для результатов валидации глобальных тем (например, src/themes/<theme>/vars.scss)
  */
 interface GlobalThemeValidationResult {
@@ -668,6 +680,44 @@ function validateNoThemeImportsInStyleFiles(
 }
 
 /**
+ * 8. Валидация использования фоллбеков в SCSS файлах компонентов
+ */
+function validateFallbacksInStyleFiles(
+  componentName: string,
+  componentFolder: string,
+  stylePath: string
+): FallbackValidationResult {
+  const content = fs.readFileSync(stylePath, 'utf-8');
+  const missingFallbacks: string[] = [];
+  
+  // Регулярное выражение для поиска CSS переменных без фолбеков
+  // Ищем var(--chotto-*) без запятой и значения после неё
+  const varWithoutFallbackRegex = /var\(--chotto-[^,)]+\)(?!\s*,)/g;
+  let match;
+  
+  while ((match = varWithoutFallbackRegex.exec(content)) !== null) {
+    const variableName = match[0];
+    missingFallbacks.push(variableName);
+  }
+  
+  const isValid = missingFallbacks.length === 0;
+  const errors: string[] = [];
+  
+  if (missingFallbacks.length > 0) {
+    errors.push(`CSS переменные без фолбеков: ${missingFallbacks.join(', ')}`);
+  }
+  
+  return {
+    component: componentName,
+    componentFolder: componentFolder,
+    theme: 'style.scss',
+    isValid,
+    errors,
+    missingFallbacks
+  };
+}
+
+/**
  * Основная функция валидации
  */
 async function validateAllThemes(): Promise<void> {
@@ -718,6 +768,7 @@ async function validateAllThemes(): Promise<void> {
   const dataThemeResults: DataThemeValidationResult[] = [];
   const cssClassesResults: CSSClassesValidationResult[] = [];
   const themeImportsResults: ThemeImportsValidationResult[] = [];
+  const fallbackResults: FallbackValidationResult[] = [];
   
   for (const componentPath of componentPaths) {
     const componentName = path.basename(componentPath);
@@ -743,6 +794,10 @@ async function validateAllThemes(): Promise<void> {
       const themeImportsResult = validateNoThemeImportsInStyleFiles(componentName, componentFolder, stylePath);
       themeImportsResults.push(themeImportsResult);
       
+      // 8. Валидация использования фоллбеков в SCSS файлах компонентов
+      const fallbackResult = validateFallbacksInStyleFiles(componentName, componentFolder, stylePath);
+      fallbackResults.push(fallbackResult);
+      
       if (!forbiddenStyleResult.isValid) {
         log(`   ❌  style.scss: ${forbiddenStyleResult.errors.join('; ')}`, 'red');
       }
@@ -757,6 +812,10 @@ async function validateAllThemes(): Promise<void> {
       
       if (!themeImportsResult.isValid) {
         log(`   ❌  style.scss: ${themeImportsResult.errors.join('; ')}`, 'red');
+      }
+      
+      if (!fallbackResult.isValid) {
+        log(`   ❌  style.scss: ${fallbackResult.errors.join('; ')}`, 'red');
       }
     }
     
@@ -817,12 +876,12 @@ async function validateAllThemes(): Promise<void> {
   }
   
   // Выводим итоговую статистику
-  const allResults = [...interfaceResults, ...prefixResults, ...forbiddenResults, ...themeUsageResults, ...dataThemeResults, ...cssClassesResults, ...themeImportsResults];
+  const allResults = [...interfaceResults, ...prefixResults, ...forbiddenResults, ...themeUsageResults, ...dataThemeResults, ...cssClassesResults, ...themeImportsResults, ...fallbackResults];
   const validResults = allResults.filter(r => r.isValid);
   const invalidResults = allResults.filter(r => !r.isValid);
   
   log('📊 Итоговая статистика:', 'cyan');
-  log(`   Всего проверено: ${interfaceResults.length} тем (7 проверок на тему)`, 'blue');
+  log(`   Всего проверено: ${interfaceResults.length} тем (10 проверок на тему)`, 'blue');
   log(`   ✅ Валидных проверок: ${validResults.length}`, 'green');
   log(`   ❌ Невалидных проверок: ${invalidResults.length}`, invalidResults.length > 0 ? 'red' : 'green');
   // Глобальные темы — отдельная сводка
@@ -879,5 +938,6 @@ export {
   validateThemeUsageInComponents,
   validateNoDataThemeInStyleFiles,
   validateNoCSSClassesInThemeFiles,
-  validateNoThemeImportsInStyleFiles
+  validateNoThemeImportsInStyleFiles,
+  validateFallbacksInStyleFiles
 };
