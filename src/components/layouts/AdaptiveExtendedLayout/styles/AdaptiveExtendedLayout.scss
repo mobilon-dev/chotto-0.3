@@ -1,13 +1,5 @@
 .extend-layout {
   &__container {
-    --chotto-adaptive-extended-layout-second-col-display: flex;
-    --chotto-adaptive-extended-layout-second-col-width: 100%;
-
-    --chotto-adaptive-extended-layout-third-col-display: none;
-    --chotto-adaptive-extended-layout-third-col-width: 0%;
-
-    --chotto-adaptive-extended-layout-first-col-width: 0px;
-    
     height: var(--chotto-adaptiveextendedlayout-container-height, inherit);
     display: var(--chotto-adaptiveextendedlayout-container-display, grid);
     transition: var(--chotto-adaptiveextendedlayout-container-transition, all 0.3s ease);
