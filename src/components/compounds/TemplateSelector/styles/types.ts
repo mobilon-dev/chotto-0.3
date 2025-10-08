@@ -352,6 +352,20 @@ export interface TemplateSelectorThemeCSSVariables {
   /** Ховер цвет кнопки-вставки */
   '--chotto-templateselector-action-button-color-hover': string;
 
+  // Input styling
+  /** Размер шрифта поля ввода */
+  '--chotto-templateselector-input-font-size': string;
+  /** Цвет границы поля ввода при ховере */
+  '--chotto-templateselector-input-border-color-hover': string;
+  /** Цвет границы поля ввода при фокусе */
+  '--chotto-templateselector-input-border-color-focus': string;
+  /** Отступы поля ввода */
+  '--chotto-templateselector-input-padding': string;
+  /** Радиус границы поля ввода */
+  '--chotto-templateselector-input-border-radius': string;
+  /** Цвет границы поля ввода */
+  '--chotto-templateselector-input-border-color': string;
+
   // Responsive layout
   /** Шаблон колонок сетки адаптивного макета */
   '--chotto-templateselector-layout-responsive-grid-template-columns': string;

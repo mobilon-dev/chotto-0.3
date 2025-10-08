@@ -202,6 +202,14 @@
   --chotto-templateselector-action-button-color-active: var(--chotto-theme-action-button-color-active);
   --chotto-templateselector-action-button-color-hover: var(--chotto-theme-action-button-color-hover);
 
+  // Input styling
+  --chotto-templateselector-input-font-size: var(--chotto-theme-text-font-size);
+  --chotto-templateselector-input-border-color-hover: var(--chotto-theme-quaternary-color);
+  --chotto-templateselector-input-border-color-focus: var(--chotto-theme-quinary-color);
+  --chotto-templateselector-input-padding: 0.5rem 0.75rem;
+  --chotto-templateselector-input-border-radius: 5px;
+  --chotto-templateselector-input-border-color: #d0d0d0;
+
   // Responsive layout
   --chotto-templateselector-layout-responsive-grid-template-columns: 1fr;
   --chotto-templateselector-first-col-responsive-grid-column: 1;

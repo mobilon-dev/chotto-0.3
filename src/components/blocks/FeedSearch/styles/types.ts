@@ -55,4 +55,18 @@ export interface FeedSearchThemeCSSVariables {
   '--chotto-feedsearch-transform': string;
   /** Прозрачность анимации */
   '--chotto-feedsearch-opacity': string;
+
+  // Input styling
+  /** Размер шрифта поля ввода */
+  '--chotto-feedsearch-input-font-size': string;
+  /** Цвет границы поля ввода при ховере */
+  '--chotto-feedsearch-input-border-color-hover': string;
+  /** Цвет границы поля ввода при фокусе */
+  '--chotto-feedsearch-input-border-color-focus': string;
+  /** Отступы поля ввода */
+  '--chotto-feedsearch-input-padding': string;
+  /** Радиус границы поля ввода */
+  '--chotto-feedsearch-input-border-radius': string;
+  /** Цвет границы поля ввода */
+  '--chotto-feedsearch-input-border-color': string;
 }
