@@ -27,7 +27,7 @@
   --chotto-feed-button-down-justify-content: center;
   --chotto-feed-button-down-align-items: center;
   --chotto-feed-button-down-cursor: pointer;
-  --chotto-feed-button-down-background-color: var(--dark-surface-200);
+  --chotto-feed-button-down-background-color: #525252;
 
   // Клавиатура
   --chotto-feed-keyboard-position: sticky;
@@ -37,7 +37,7 @@
 
   // Иконка прокрутки
   --chotto-feed-icon-down-font-size: var(--chotto-theme-button-icon-size);
-  --chotto-feed-icon-down-color: var(--dark-primary-500);
+  --chotto-feed-icon-down-color: #d4d4d4;
 
   // Счетчик непрочитанных
   --chotto-feed-unread-amount-position: absolute;
@@ -51,22 +51,22 @@
   --chotto-feed-unread-amount-font-size: var(--chotto-theme-additional-text-font-size);
   --chotto-feed-unread-amount-width: 22px;
   --chotto-feed-unread-amount-height: 22px;
-  --chotto-feed-unread-amount-color: var(--dark-text-100);
-  --chotto-feed-unread-amount-background-color: var(--dark-primary-500);
+  --chotto-feed-unread-amount-color: var(--chotto-theme-unread-text-color);
+  --chotto-feed-unread-amount-background-color: var(--chotto-theme-unread-background-color);
   --chotto-feed-unread-amount-border-radius: 50%;
 
   // Скроллбар
   --chotto-feed-scrollbar-width: 6px;
-  --chotto-feed-scrollbar-background-color: var(--dark-surface-200);
+  --chotto-feed-scrollbar-background-color: var(--chotto-theme-scrollbar-bg);
   --chotto-feed-scrollbar-bg: var(--chotto-theme-scrollbar-bg);
   --chotto-feed-scrollbar-thumb-border-radius: 10px;
-  --chotto-feed-scrollbar-thumb-background-color: var(--dark-border-300);
+  --chotto-feed-scrollbar-thumb-background-color: var(--chotto-theme-scrollbar-thumb-bg);
   --chotto-feed-scrollbar-thumb-bg: var(--chotto-theme-scrollbar-thumb-bg);
   --chotto-feed-scrollbar-track-border-radius: 10px;
 
   // Сфокусированное сообщение
-  --chotto-feed-focused-message-background-color: color-mix(in srgb, var(--dark-primary-500) 30%, transparent);
-  --chotto-feed-focused-message-box-shadow: 0px 0px 12px 2px color-mix(in srgb, var(--dark-primary-500) 30%, transparent);
+  --chotto-feed-focused-message-background-color: color-mix(in srgb, var(--chotto-theme-message-focused-color) 30%, transparent);
+  --chotto-feed-focused-message-box-shadow: 0px 0px 12px 2px color-mix(in srgb, var(--chotto-theme-message-focused-color) 30%, transparent);
 
   // Анимации
   --chotto-feed-enter-active-transition: all 0.1s ease-out;
