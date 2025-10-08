@@ -13,8 +13,8 @@
   --chotto-videomessage-info-container-column-gap: 4px;
   --chotto-videomessage-info-container-border-radius: 12px;
   --chotto-videomessage-info-container-padding: 6px 10px;
-  --chotto-videomessage-info-container-background-color: var(--dark-surface-400);
-  --chotto-videomessage-info-container-color: var(--dark-text-100);
+  --chotto-videomessage-info-container-background-color: rgb(0 0 0 / 39%);
+  --chotto-videomessage-info-container-color: var(--chotto-theme-secondary-text-color);
 
   // VideoMessage download-button variables
   --chotto-videomessage-download-button-position: absolute;
@@ -26,9 +26,9 @@
   --chotto-videomessage-download-button-border: none;
   --chotto-videomessage-download-button-border-radius: 12px;
   --chotto-videomessage-download-button-padding: 6px 6px;
-  --chotto-videomessage-download-button-background-color: var(--dark-surface-400);
+  --chotto-videomessage-download-button-background-color: rgb(0 0 0 / 39%);
   --chotto-videomessage-download-button-cursor: pointer;
-  --chotto-videomessage-download-button-span-color: var(--dark-text-100);
+  --chotto-videomessage-download-button-span-color: var(--chotto-theme-secondary-text-color);
   --chotto-videomessage-download-button-span-font-size: var(--chotto-theme-small-text-icon-size);
 
   // VideoMessage views variables
@@ -53,8 +53,8 @@
   --chotto-videomessage-avatar-align-self: end;
   --chotto-videomessage-avatar-margin-bottom: 6px;
   --chotto-videomessage-avatar-object-fit: cover;
-  --chotto-videomessage-avatar-min-width: 40px;
-  --chotto-videomessage-avatar-min-height: 40px;
+  --chotto-videomessage-avatar-min-width: var(--chotto-theme-avatar-small-size);
+  --chotto-videomessage-avatar-min-height: var(--chotto-theme-avatar-small-size);
   --chotto-videomessage-avatar-border-radius: 50%;
 
   // VideoMessage video variables
@@ -112,7 +112,7 @@
   --chotto-videomessage-left-subtext-margin: 0 0 2px 10px;
   --chotto-videomessage-left-content-grid-column: 2;
   --chotto-videomessage-left-bg: var(--chotto-theme-message-left-bg);
-  --chotto-videomessage-left-content-with-avatar-indent-margin-left: calc(var(--chotto-videomessage-avatar-min-width) + 12px);
+  --chotto-videomessage-left-content-with-avatar-indent-margin-left: calc(var(--chotto-theme-avatar-small-size) + 12px);
   --chotto-videomessage-left-text-container-grid-column: 2;
   --chotto-videomessage-left-menu-button-top: 50%;
   --chotto-videomessage-left-menu-button-right: -40px;
@@ -130,7 +130,7 @@
   --chotto-videomessage-right-content-grid-column: 1;
   --chotto-videomessage-right-content-margin-left: auto;
   --chotto-videomessage-right-bg: var(--chotto-theme-message-right-bg);
-  --chotto-videomessage-right-content-with-avatar-indent-margin-left: calc(var(--chotto-videomessage-avatar-min-width) + 12px);
+  --chotto-videomessage-right-content-with-avatar-indent-margin-left: calc(var(--chotto-theme-avatar-small-size) + 12px);
   --chotto-videomessage-right-text-container-grid-column: 1;
   --chotto-videomessage-right-text-container-margin-left: auto;
   --chotto-videomessage-right-menu-button-top: 50%;
