@@ -111,8 +111,8 @@
   &__avatar {
     align-self: var(--chotto-callmessage-avatar-align-self, center);
     object-fit: var(--chotto-callmessage-avatar-object-fit, cover);
-    min-width: var(--chotto-avatar-small);
-    min-height: var(--chotto-avatar-small);
+    min-width: var(--chotto-theme-avatar-small-size);
+    min-height: var(--chotto-theme-avatar-small-size);
     border-radius: var(--chotto-avatar-border-radius);
   }
 

@@ -36,6 +36,8 @@ export interface ChottoThemeVariables {
   '--chotto-theme-button-icon-size': string;
   '--chotto-theme-text-icon-size': string;
   '--chotto-theme-small-text-icon-size': string;
+  '--chotto-theme-avatar-small-size': string;
+  '--chotto-theme-avatar-medium-size': string;
 
   // Контейнеры
   '--chotto-theme-container-borders': string;
