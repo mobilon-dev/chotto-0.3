@@ -55,7 +55,7 @@
 // Elements
 @use '../../components/2_elements/AudioRecorder/styles/themes/default.scss' as audiorecorder-default;
 @use '../../components/2_elements/ButtonCommandsSelector/styles/themes/default.scss' as buttoncommandssel-default;
-@use '../../components/2_elements/ButtonContextMenu/styles/themes/default.scss' as buttoncontextmenu-default;
+@use '../../components/1_atoms/ButtonContextMenu/styles/themes/default.scss' as buttoncontextmenu-default;
 @use '../../components/2_elements/ButtonEmojiPicker/styles/themes/default.scss' as buttonemojipicker-default;
 @use '../../components/2_elements/ButtonTemplateSelector/styles/themes/default.scss' as buttontemplatesel-default;
 @use '../../components/2_elements/ButtonWabaTemplateSelector/styles/themes/default.scss' as buttonwabatemplatesel-default;
@@ -64,7 +64,7 @@
 @use '../../components/2_elements/ChatInfo/styles/themes/default.scss' as chatinfo-default;
 @use '../../components/2_elements/ChatTabs/styles/themes/default.scss' as chattabs-default;
 @use '../../components/2_elements/ContactInfo/styles/themes/default.scss' as contactinfo-default;
-@use '../../components/2_elements/ContextMenu/styles/themes/default.scss' as contextmenu-default;
+@use '../../components/1_atoms/ContextMenu/styles/themes/default.scss' as contextmenu-default;
 @use '../../components/2_elements/FeedKeyboard/styles/themes/default.scss' as feedkeyboard-default;
 @use '../../components/2_elements/FilePreview/styles/themes/default.scss' as filepreview-default;
 @use '../../components/2_elements/FileUploader/styles/themes/default.scss' as fileuploader-default;

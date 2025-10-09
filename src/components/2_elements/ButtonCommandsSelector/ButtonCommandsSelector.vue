@@ -23,7 +23,7 @@
 import { useTemplateRef, inject, watch } from 'vue'
 import { useMessage } from '../../../hooks/useMessage';
 import { IInputMessage } from '@types';
-import ButtonContextMenu from '../ButtonContextMenu/ButtonContextMenu.vue';
+import ButtonContextMenu from '../../1_atoms/ButtonContextMenu/ButtonContextMenu.vue';
 
 const props = defineProps({
   commands: {

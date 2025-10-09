@@ -202,7 +202,7 @@
 import { ref, onMounted, computed, watch, inject } from 'vue'
 import linkifyStr from "linkify-string";
 
-import ContextMenu from '../../2_elements/ContextMenu/ContextMenu.vue'
+import ContextMenu from '../../1_atoms/ContextMenu/ContextMenu.vue'
 import { getStatus, statuses } from '../../../hooks';
 import { IAudioMessage } from '../../../types';
 import BaseReplyMessage from '../BaseReplyMessage/BaseReplyMessage.vue';

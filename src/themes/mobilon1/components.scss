@@ -55,7 +55,7 @@
 // Elements
 @use '../../components/2_elements/AudioRecorder/styles/themes/mobilon1.scss' as audiorecorder-mobilon1;
 @use '../../components/2_elements/ButtonCommandsSelector/styles/themes/mobilon1.scss' as buttoncommandssel-mobilon1;
-@use '../../components/2_elements/ButtonContextMenu/styles/themes/mobilon1.scss' as buttoncontextmenu-mobilon1;
+@use '../../components/1_atoms/ButtonContextMenu/styles/themes/mobilon1.scss' as buttoncontextmenu-mobilon1;
 @use '../../components/2_elements/ButtonEmojiPicker/styles/themes/mobilon1.scss' as buttonemojipicker-mobilon1;
 @use '../../components/2_elements/ButtonTemplateSelector/styles/themes/mobilon1.scss' as buttontemplatesel-mobilon1;
 @use '../../components/2_elements/ButtonWabaTemplateSelector/styles/themes/mobilon1.scss' as buttonwabatemplatesel-mobilon1;
@@ -64,7 +64,7 @@
 @use '../../components/2_elements/ChatInfo/styles/themes/mobilon1.scss' as chatinfo-mobilon1;
 @use '../../components/2_elements/ChatTabs/styles/themes/mobilon1.scss' as chattabs-mobilon1;
 @use '../../components/2_elements/ContactInfo/styles/themes/mobilon1.scss' as contactinfo-mobilon1;
-@use '../../components/2_elements/ContextMenu/styles/themes/mobilon1.scss' as contextmenu-mobilon1;
+@use '../../components/1_atoms/ContextMenu/styles/themes/mobilon1.scss' as contextmenu-mobilon1;
 @use '../../components/2_elements/FeedKeyboard/styles/themes/mobilon1.scss' as feedkeyboard-mobilon1;
 @use '../../components/2_elements/FilePreview/styles/themes/mobilon1.scss' as filepreview-mobilon1;
 @use '../../components/2_elements/FileUploader/styles/themes/mobilon1.scss' as fileuploader-mobilon1;

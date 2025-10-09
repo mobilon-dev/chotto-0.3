@@ -38,7 +38,7 @@
 
 <script setup>
 import { ref, inject } from 'vue'
-import ButtonContextMenu from '../ButtonContextMenu/ButtonContextMenu.vue';
+import ButtonContextMenu from '../../1_atoms/ButtonContextMenu/ButtonContextMenu.vue';
 import { t } from '../../../locale/useLocale';
 import { useMessage } from '../../../hooks/useMessage';
 

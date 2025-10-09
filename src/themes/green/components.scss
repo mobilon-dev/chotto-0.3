@@ -55,7 +55,7 @@
 // Elements
 @use '../../components/2_elements/AudioRecorder/styles/themes/green.scss' as audiorecorder-green;
 @use '../../components/2_elements/ButtonCommandsSelector/styles/themes/green.scss' as buttoncommandssel-green;
-@use '../../components/2_elements/ButtonContextMenu/styles/themes/green.scss' as buttoncontextmenu-green;
+@use '../../components/1_atoms/ButtonContextMenu/styles/themes/green.scss' as buttoncontextmenu-green;
 @use '../../components/2_elements/ButtonEmojiPicker/styles/themes/green.scss' as buttonemojipicker-green;
 @use '../../components/2_elements/ButtonTemplateSelector/styles/themes/green.scss' as buttontemplatesel-green;
 @use '../../components/2_elements/ButtonWabaTemplateSelector/styles/themes/green.scss' as buttonwabatemplatesel-green;
@@ -64,7 +64,7 @@
 @use '../../components/2_elements/ChatInfo/styles/themes/green.scss' as chatinfo-green;
 @use '../../components/2_elements/ChatTabs/styles/themes/green.scss' as chattabs-green;
 @use '../../components/2_elements/ContactInfo/styles/themes/green.scss' as contactinfo-green;
-@use '../../components/2_elements/ContextMenu/styles/themes/green.scss' as contextmenu-green;
+@use '../../components/1_atoms/ContextMenu/styles/themes/green.scss' as contextmenu-green;
 @use '../../components/2_elements/FeedKeyboard/styles/themes/green.scss' as feedkeyboard-green;
 @use '../../components/2_elements/FilePreview/styles/themes/green.scss' as filepreview-green;
 @use '../../components/2_elements/FileUploader/styles/themes/green.scss' as fileuploader-green;

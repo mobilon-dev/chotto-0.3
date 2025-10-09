@@ -125,7 +125,7 @@ import { computed, ref, watch } from 'vue'
 import linkifyStr from "linkify-string";
 
 
-import ContextMenu from "../../2_elements/ContextMenu/ContextMenu.vue"
+import ContextMenu from "../../1_atoms/ContextMenu/ContextMenu.vue"
 
 import { getStatus, statuses } from "../../../hooks";
 

@@ -55,7 +55,7 @@
 // Elements
 @use '../../components/2_elements/AudioRecorder/styles/themes/dark.scss' as audiorecorder-dark;
 @use '../../components/2_elements/ButtonCommandsSelector/styles/themes/dark.scss' as buttoncommandssel-dark;
-@use '../../components/2_elements/ButtonContextMenu/styles/themes/dark.scss' as buttoncontextmenu-dark;
+@use '../../components/1_atoms/ButtonContextMenu/styles/themes/dark.scss' as buttoncontextmenu-dark;
 @use '../../components/2_elements/ButtonEmojiPicker/styles/themes/dark.scss' as buttonemojipicker-dark;
 @use '../../components/2_elements/ButtonTemplateSelector/styles/themes/dark.scss' as buttontemplatesel-dark;
 @use '../../components/2_elements/ButtonWabaTemplateSelector/styles/themes/dark.scss' as buttonwabatemplatesel-dark;
@@ -64,7 +64,7 @@
 @use '../../components/2_elements/ChatInfo/styles/themes/dark.scss' as chatinfo-dark;
 @use '../../components/2_elements/ChatTabs/styles/themes/dark.scss' as chattabs-dark;
 @use '../../components/2_elements/ContactInfo/styles/themes/dark.scss' as contactinfo-dark;
-@use '../../components/2_elements/ContextMenu/styles/themes/dark.scss' as contextmenu-dark;
+@use '../../components/1_atoms/ContextMenu/styles/themes/dark.scss' as contextmenu-dark;
 @use '../../components/2_elements/FeedKeyboard/styles/themes/dark.scss' as feedkeyboard-dark;
 @use '../../components/2_elements/FilePreview/styles/themes/dark.scss' as filepreview-dark;
 @use '../../components/2_elements/FileUploader/styles/themes/dark.scss' as fileuploader-dark;

@@ -1,7 +1,6 @@
 // Components
 export { default as AudioRecorder } from './AudioRecorder/AudioRecorder.vue';
 export { default as ButtonCommandsSelector } from './ButtonCommandsSelector/ButtonCommandsSelector.vue';
-export { default as ButtonContextMenu } from './ButtonContextMenu/ButtonContextMenu.vue';
 export { default as ButtonEmojiPicker } from './ButtonEmojiPicker/ButtonEmojiPicker.vue';
 export { default as ButtonTemplateSelector } from './ButtonTemplateSelector/ButtonTemplateSelector.vue';
 export { default as ButtonWabaTemplateSelector } from './ButtonWabaTemplateSelector/ButtonWabaTemplateSelector.vue';
@@ -10,7 +9,6 @@ export { default as ChatFilter } from './ChatFilter/ChatFilter.vue';
 export { default as ChatInfo } from './ChatInfo/ChatInfo.vue';
 export { default as ChatTabs } from './ChatTabs/ChatTabs.vue';
 export { default as ContactInfo } from './ContactInfo/ContactInfo.vue';
-export { default as ContextMenu } from './ContextMenu/ContextMenu.vue';
 export { default as FeedKeyboard } from './FeedKeyboard/FeedKeyboard.vue';
 export { default as FilePreview } from './FilePreview/FilePreview.vue';
 export { default as FileUploader } from './FileUploader/FileUploader.vue';
