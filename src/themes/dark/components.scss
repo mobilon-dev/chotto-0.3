@@ -8,7 +8,7 @@
 
 // Blocks
 @use '../../components/2_blocks/ChatItem/styles/themes/dark.scss' as chatitem-dark;
-@use '../../components/2_blocks/ChatList/styles/themes/dark.scss' as chatlist-dark;
+@use '../../components/3_compounds/ChatList/styles/themes/dark.scss' as chatlist-dark;
 @use '../../components/2_blocks/ChatPanel/styles/themes/dark.scss' as chatpanel-dark;
 @use '../../components/2_blocks/FeedFoundItem/styles/themes/dark.scss' as feedfounditem-dark;
 @use '../../components/2_blocks/FeedFoundObjects/styles/themes/dark.scss' as feedfoundobjects-dark;

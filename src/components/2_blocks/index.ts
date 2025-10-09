@@ -1,6 +1,5 @@
 // Components
 export { default as ChatItem } from './ChatItem/ChatItem.vue';
-export { default as ChatList } from './ChatList/ChatList.vue';
 export { default as ChatPanel } from './ChatPanel/ChatPanel.vue';
 export { default as FeedFoundItem } from './FeedFoundItem/FeedFoundItem.vue';
 export { default as FeedFoundObjects } from './FeedFoundObjects/FeedFoundObjects.vue';
