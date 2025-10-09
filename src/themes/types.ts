@@ -43,11 +43,6 @@ export interface ChottoThemeVariables {
   '--chotto-theme-container-borders': string;
 
   // Макеты
-  '--chotto-theme-layout-extended-third-col-bg': string;
-  '--chotto-theme-layout-extended-second-col-bg': string;
-  '--chotto-theme-layout-extended-first-col-bg': string;
-  '--chotto-theme-layout-extended-first-col-width': string;
-  '--chotto-theme-layout-extended-second-col-width': string;
   '--chotto-theme-layout-base-second-col-bg': string;
   '--chotto-theme-layout-base-first-col-bg': string;
   '--chotto-theme-layout-feed-bg': string;

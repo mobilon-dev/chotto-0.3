@@ -5,8 +5,8 @@
     grid-template-columns: var(--chotto-extendedlayout-container-grid-template-columns, min-content 1fr 3fr min-content);
     transition: var(--chotto-extendedlayout-container-transition, all 0.3s ease);
     position: var(--chotto-extendedlayout-container-position, relative);
-    border-top: var(--chotto-extendedlayout-container-border-top, var(--chotto-theme-container-borders, none));
-    border-left: var(--chotto-extendedlayout-container-border-left, var(--chotto-theme-container-borders, none));
+    border-top: var(--chotto-extendedlayout-container-border-top, none);
+    border-left: var(--chotto-extendedlayout-container-border-left, none);
   }
 
   &__first-col {
@@ -15,10 +15,10 @@
     display: var(--chotto-extendedlayout-first-col-display, flex);
     flex-direction: var(--chotto-extendedlayout-first-col-flex-direction, column);
     height: var(--chotto-extendedlayout-first-col-height, inherit);
-    width: var(--chotto-extendedlayout-first-col-width, var(--chotto-theme-layout-extended-first-col-width, 100%));
-    border-right: var(--chotto-extendedlayout-first-col-border-right, var(--chotto-theme-container-borders, none));
-    border-bottom: var(--chotto-extendedlayout-first-col-border-bottom, var(--chotto-theme-container-borders, none));
-    background-color: var(--chotto-extendedlayout-first-col-background-color, var(--chotto-theme-layout-extended-first-col-bg, transparent));
+    width: var(--chotto-extendedlayout-first-col-width, 70px);
+    border-right: var(--chotto-extendedlayout-first-col-border-right, none);
+    border-bottom: var(--chotto-extendedlayout-first-col-border-bottom, none);
+    background-color: var(--chotto-extendedlayout-first-col-background-color, #FAF6F4);
   }
 
   &__second-col {
@@ -27,11 +27,11 @@
     display: var(--chotto-extendedlayout-second-col-display, flex);
     flex-direction: var(--chotto-extendedlayout-second-col-flex-direction, column);
     height: var(--chotto-extendedlayout-second-col-height, inherit);
-    width: var(--chotto-extendedlayout-second-col-width, var(--chotto-theme-layout-extended-second-col-width, 100%));
+    width: var(--chotto-extendedlayout-second-col-width, 508px);
     overflow: var(--chotto-extendedlayout-second-col-overflow, hidden);
-    border-right: var(--chotto-extendedlayout-second-col-border-right, var(--chotto-theme-container-borders, none));
-    border-bottom: var(--chotto-extendedlayout-second-col-border-bottom, var(--chotto-theme-container-borders, none));
-    background-color: var(--chotto-extendedlayout-second-col-background-color, var(--chotto-theme-layout-extended-second-col-bg, transparent));
+    border-right: var(--chotto-extendedlayout-second-col-border-right, none);
+    border-bottom: var(--chotto-extendedlayout-second-col-border-bottom, none);
+    background-color: var(--chotto-extendedlayout-second-col-background-color, #ffffff);
   }
 
   &__third-col {
@@ -40,9 +40,9 @@
     flex-direction: var(--chotto-extendedlayout-third-col-flex-direction, column);
     grid-column: var(--chotto-extendedlayout-third-col-grid-column, 3);
     height: var(--chotto-extendedlayout-third-col-height, inherit);
-    border-right: var(--chotto-extendedlayout-third-col-border-right, var(--chotto-theme-container-borders, none));
-    border-bottom: var(--chotto-extendedlayout-third-col-border-bottom, var(--chotto-theme-container-borders, none));
-    background-color: var(--chotto-extendedlayout-third-col-background-color, var(--chotto-theme-layout-extended-third-col-bg, transparent));
+    border-right: var(--chotto-extendedlayout-third-col-border-right, none);
+    border-bottom: var(--chotto-extendedlayout-third-col-border-bottom, none);
+    background-color: var(--chotto-extendedlayout-third-col-background-color, #FAF6F4);
   }
 }
 
