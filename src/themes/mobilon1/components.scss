@@ -23,23 +23,23 @@
   @use '../../components/3_compounds/Feed/styles/themes/mobilon1.scss' as feed-mobilon1;
 
     // Feed Messages
-    @use '../../components/3_compounds/Feed/messages/AudioMessage/styles/themes/mobilon1.scss' as audiomessage-mobilon1;
-    @use '../../components/3_compounds/Feed/messages/BaseReplyMessage/styles/themes/mobilon1.scss' as basereplymessage-mobilon1;
-    @use '../../components/3_compounds/Feed/messages/CallMessage/styles/themes/mobilon1.scss' as callmessage-mobilon1;
-    @use '../../components/3_compounds/Feed/messages/DateMessage/styles/themes/mobilon1.scss' as datemessage-mobilon1;
-    @use '../../components/3_compounds/Feed/messages/DateMessageSticky/styles/themes/mobilon1.scss' as datemessagesticky-mobilon1;
-    @use '../../components/3_compounds/Feed/messages/FileMessage/styles/themes/mobilon1.scss' as filemessage-mobilon1;
-    @use '../../components/3_compounds/Feed/messages/ImageMessage/styles/themes/mobilon1.scss' as imagemessage-mobilon1;
-    @use '../../components/3_compounds/Feed/messages/ReplyAudioMessage/styles/themes/mobilon1.scss' as replyaudiomessage-mobilon1;
-    @use '../../components/3_compounds/Feed/messages/ReplyCallMessage/styles/themes/mobilon1.scss' as replycallmessage-mobilon1;
-    @use '../../components/3_compounds/Feed/messages/ReplyFileMessage/styles/themes/mobilon1.scss' as replyfilemessage-mobilon1;
-    @use '../../components/3_compounds/Feed/messages/ReplyImageMessage/styles/themes/mobilon1.scss' as replyimagemessage-mobilon1;
-    @use '../../components/3_compounds/Feed/messages/ReplyTextMessage/styles/themes/mobilon1.scss' as replytextmessage-mobilon1;
-    @use '../../components/3_compounds/Feed/messages/ReplyVideoMessage/styles/themes/mobilon1.scss' as replyvideomessage-mobilon1;
-    @use '../../components/3_compounds/Feed/messages/SystemMessage/styles/themes/mobilon1.scss' as systemmessage-mobilon1;
-    @use '../../components/3_compounds/Feed/messages/TextMessage/styles/themes/mobilon1.scss' as textmessage-mobilon1;
-    @use '../../components/3_compounds/Feed/messages/TypingMessage/styles/themes/mobilon1.scss' as typingmessage-mobilon1;
-    @use '../../components/3_compounds/Feed/messages/VideoMessage/styles/themes/mobilon1.scss' as videomessage-mobilon1;
+    @use '../../components/2_feed_elements/AudioMessage/styles/themes/mobilon1.scss' as audiomessage-mobilon1;
+    @use '../../components/2_feed_elements/BaseReplyMessage/styles/themes/mobilon1.scss' as basereplymessage-mobilon1;
+    @use '../../components/2_feed_elements/CallMessage/styles/themes/mobilon1.scss' as callmessage-mobilon1;
+    @use '../../components/2_feed_elements/DateMessage/styles/themes/mobilon1.scss' as datemessage-mobilon1;
+    @use '../../components/2_feed_elements/DateMessageSticky/styles/themes/mobilon1.scss' as datemessagesticky-mobilon1;
+    @use '../../components/2_feed_elements/FileMessage/styles/themes/mobilon1.scss' as filemessage-mobilon1;
+    @use '../../components/2_feed_elements/ImageMessage/styles/themes/mobilon1.scss' as imagemessage-mobilon1;
+    @use '../../components/2_feed_elements/ReplyAudioMessage/styles/themes/mobilon1.scss' as replyaudiomessage-mobilon1;
+    @use '../../components/2_feed_elements/ReplyCallMessage/styles/themes/mobilon1.scss' as replycallmessage-mobilon1;
+    @use '../../components/2_feed_elements/ReplyFileMessage/styles/themes/mobilon1.scss' as replyfilemessage-mobilon1;
+    @use '../../components/2_feed_elements/ReplyImageMessage/styles/themes/mobilon1.scss' as replyimagemessage-mobilon1;
+    @use '../../components/2_feed_elements/ReplyTextMessage/styles/themes/mobilon1.scss' as replytextmessage-mobilon1;
+    @use '../../components/2_feed_elements/ReplyVideoMessage/styles/themes/mobilon1.scss' as replyvideomessage-mobilon1;
+    @use '../../components/2_feed_elements/SystemMessage/styles/themes/mobilon1.scss' as systemmessage-mobilon1;
+    @use '../../components/2_feed_elements/TextMessage/styles/themes/mobilon1.scss' as textmessage-mobilon1;
+    @use '../../components/2_feed_elements/TypingMessage/styles/themes/mobilon1.scss' as typingmessage-mobilon1;
+    @use '../../components/2_feed_elements/VideoMessage/styles/themes/mobilon1.scss' as videomessage-mobilon1;
 
 @use '../../components/3_compounds/ModalVideoRecorder/styles/themes/mobilon1.scss' as modalvideorecorder-mobilon1;
 @use '../../components/3_compounds/SideBar/styles/themes/mobilon1.scss' as sidebar-mobilon1;

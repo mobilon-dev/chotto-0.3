@@ -100,12 +100,12 @@
   lang="ts"
 >
 import { ref, unref, watch, nextTick, inject, computed } from 'vue';
-import { AudioMessage, CallMessage, FileMessage, ImageMessage, TextMessage, VideoMessage } from './messages';
-import DateMessage from "./messages/DateMessage/DateMessage.vue";
-import DateMessageSticky from "./messages/DateMessageSticky/DateMessageSticky.vue";
-import SystemMessage from "./messages/SystemMessage/SystemMessage.vue";
-import TypingMessage from "./messages/TypingMessage/TypingMessage.vue";
-import BaseReplyMessage from "./messages/BaseReplyMessage/BaseReplyMessage.vue";
+import { AudioMessage, CallMessage, FileMessage, ImageMessage, TextMessage, VideoMessage } from '../../2_feed_elements';
+import DateMessage from "../../2_feed_elements/DateMessage/DateMessage.vue";
+import DateMessageSticky from "../../2_feed_elements/DateMessageSticky/DateMessageSticky.vue";
+import SystemMessage from "../../2_feed_elements/SystemMessage/SystemMessage.vue";
+import TypingMessage from "../../2_feed_elements/TypingMessage/TypingMessage.vue";
+import BaseReplyMessage from "../../2_feed_elements/BaseReplyMessage/BaseReplyMessage.vue";
 
 import { IFeedObject, IFeedTyping, IFeedUnreadButton } from '../../../types';
 import { throttle } from '../../../hooks/throttle';

@@ -23,23 +23,23 @@
   @use '../../components/3_compounds/Feed/styles/themes/green.scss' as feed-green;
 
     // Feed Messages
-    @use '../../components/3_compounds/Feed/messages/AudioMessage/styles/themes/green.scss' as audiomessage-green;
-    @use '../../components/3_compounds/Feed/messages/BaseReplyMessage/styles/themes/green.scss' as basereplymessage-green;
-    @use '../../components/3_compounds/Feed/messages/CallMessage/styles/themes/green.scss' as callmessage-green;
-    @use '../../components/3_compounds/Feed/messages/DateMessage/styles/themes/green.scss' as datemessage-green;
-    @use '../../components/3_compounds/Feed/messages/DateMessageSticky/styles/themes/green.scss' as datemessagesticky-green;
-    @use '../../components/3_compounds/Feed/messages/FileMessage/styles/themes/green.scss' as filemessage-green;
-    @use '../../components/3_compounds/Feed/messages/ImageMessage/styles/themes/green.scss' as imagemessage-green;
-    @use '../../components/3_compounds/Feed/messages/ReplyAudioMessage/styles/themes/green.scss' as replyaudiomessage-green;
-    @use '../../components/3_compounds/Feed/messages/ReplyCallMessage/styles/themes/green.scss' as replycallmessage-green;
-    @use '../../components/3_compounds/Feed/messages/ReplyFileMessage/styles/themes/green.scss' as replyfilemessage-green;
-    @use '../../components/3_compounds/Feed/messages/ReplyImageMessage/styles/themes/green.scss' as replyimagemessage-green;
-    @use '../../components/3_compounds/Feed/messages/ReplyTextMessage/styles/themes/green.scss' as replytextmessage-green;
-    @use '../../components/3_compounds/Feed/messages/ReplyVideoMessage/styles/themes/green.scss' as replyvideomessage-green;
-    @use '../../components/3_compounds/Feed/messages/SystemMessage/styles/themes/green.scss' as systemmessage-green;
-    @use '../../components/3_compounds/Feed/messages/TextMessage/styles/themes/green.scss' as textmessage-green;
-    @use '../../components/3_compounds/Feed/messages/TypingMessage/styles/themes/green.scss' as typingmessage-green;
-    @use '../../components/3_compounds/Feed/messages/VideoMessage/styles/themes/green.scss' as videomessage-green;
+    @use '../../components/2_feed_elements/AudioMessage/styles/themes/green.scss' as audiomessage-green;
+    @use '../../components/2_feed_elements/BaseReplyMessage/styles/themes/green.scss' as basereplymessage-green;
+    @use '../../components/2_feed_elements/CallMessage/styles/themes/green.scss' as callmessage-green;
+    @use '../../components/2_feed_elements/DateMessage/styles/themes/green.scss' as datemessage-green;
+    @use '../../components/2_feed_elements/DateMessageSticky/styles/themes/green.scss' as datemessagesticky-green;
+    @use '../../components/2_feed_elements/FileMessage/styles/themes/green.scss' as filemessage-green;
+    @use '../../components/2_feed_elements/ImageMessage/styles/themes/green.scss' as imagemessage-green;
+    @use '../../components/2_feed_elements/ReplyAudioMessage/styles/themes/green.scss' as replyaudiomessage-green;
+    @use '../../components/2_feed_elements/ReplyCallMessage/styles/themes/green.scss' as replycallmessage-green;
+    @use '../../components/2_feed_elements/ReplyFileMessage/styles/themes/green.scss' as replyfilemessage-green;
+    @use '../../components/2_feed_elements/ReplyImageMessage/styles/themes/green.scss' as replyimagemessage-green;
+    @use '../../components/2_feed_elements/ReplyTextMessage/styles/themes/green.scss' as replytextmessage-green;
+    @use '../../components/2_feed_elements/ReplyVideoMessage/styles/themes/green.scss' as replyvideomessage-green;
+    @use '../../components/2_feed_elements/SystemMessage/styles/themes/green.scss' as systemmessage-green;
+    @use '../../components/2_feed_elements/TextMessage/styles/themes/green.scss' as textmessage-green;
+    @use '../../components/2_feed_elements/TypingMessage/styles/themes/green.scss' as typingmessage-green;
+    @use '../../components/2_feed_elements/VideoMessage/styles/themes/green.scss' as videomessage-green;
 
 @use '../../components/3_compounds/ModalVideoRecorder/styles/themes/green.scss' as modalvideorecorder-green;
 @use '../../components/3_compounds/SideBar/styles/themes/green.scss' as sidebar-green;

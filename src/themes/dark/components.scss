@@ -23,23 +23,23 @@
   @use '../../components/3_compounds/Feed/styles/themes/dark.scss' as feed-dark;
 
     // Feed Messages
-    @use '../../components/3_compounds/Feed/messages/AudioMessage/styles/themes/dark.scss' as audiomessage-dark;
-    @use '../../components/3_compounds/Feed/messages/BaseReplyMessage/styles/themes/dark.scss' as basereplymessage-dark;
-    @use '../../components/3_compounds/Feed/messages/CallMessage/styles/themes/dark.scss' as callmessage-dark;
-    @use '../../components/3_compounds/Feed/messages/DateMessage/styles/themes/dark.scss' as datemessage-dark;
-    @use '../../components/3_compounds/Feed/messages/DateMessageSticky/styles/themes/dark.scss' as datemessagesticky-dark;
-    @use '../../components/3_compounds/Feed/messages/FileMessage/styles/themes/dark.scss' as filemessage-dark;
-    @use '../../components/3_compounds/Feed/messages/ImageMessage/styles/themes/dark.scss' as imagemessage-dark;
-    @use '../../components/3_compounds/Feed/messages/ReplyAudioMessage/styles/themes/dark.scss' as replyaudiomessage-dark;
-    @use '../../components/3_compounds/Feed/messages/ReplyCallMessage/styles/themes/dark.scss' as replycallmessage-dark;
-    @use '../../components/3_compounds/Feed/messages/ReplyFileMessage/styles/themes/dark.scss' as replyfilemessage-dark;
-    @use '../../components/3_compounds/Feed/messages/ReplyImageMessage/styles/themes/dark.scss' as replyimagemessage-dark;
-    @use '../../components/3_compounds/Feed/messages/ReplyTextMessage/styles/themes/dark.scss' as replytextmessage-dark;
-    @use '../../components/3_compounds/Feed/messages/ReplyVideoMessage/styles/themes/dark.scss' as replyvideomessage-dark;
-    @use '../../components/3_compounds/Feed/messages/SystemMessage/styles/themes/dark.scss' as systemmessage-dark;
-    @use '../../components/3_compounds/Feed/messages/TextMessage/styles/themes/dark.scss' as textmessage-dark;
-    @use '../../components/3_compounds/Feed/messages/TypingMessage/styles/themes/dark.scss' as typingmessage-dark;
-    @use '../../components/3_compounds/Feed/messages/VideoMessage/styles/themes/dark.scss' as videomessage-dark;
+    @use '../../components/2_feed_elements/AudioMessage/styles/themes/dark.scss' as audiomessage-dark;
+    @use '../../components/2_feed_elements/BaseReplyMessage/styles/themes/dark.scss' as basereplymessage-dark;
+    @use '../../components/2_feed_elements/CallMessage/styles/themes/dark.scss' as callmessage-dark;
+    @use '../../components/2_feed_elements/DateMessage/styles/themes/dark.scss' as datemessage-dark;
+    @use '../../components/2_feed_elements/DateMessageSticky/styles/themes/dark.scss' as datemessagesticky-dark;
+    @use '../../components/2_feed_elements/FileMessage/styles/themes/dark.scss' as filemessage-dark;
+    @use '../../components/2_feed_elements/ImageMessage/styles/themes/dark.scss' as imagemessage-dark;
+    @use '../../components/2_feed_elements/ReplyAudioMessage/styles/themes/dark.scss' as replyaudiomessage-dark;
+    @use '../../components/2_feed_elements/ReplyCallMessage/styles/themes/dark.scss' as replycallmessage-dark;
+    @use '../../components/2_feed_elements/ReplyFileMessage/styles/themes/dark.scss' as replyfilemessage-dark;
+    @use '../../components/2_feed_elements/ReplyImageMessage/styles/themes/dark.scss' as replyimagemessage-dark;
+    @use '../../components/2_feed_elements/ReplyTextMessage/styles/themes/dark.scss' as replytextmessage-dark;
+    @use '../../components/2_feed_elements/ReplyVideoMessage/styles/themes/dark.scss' as replyvideomessage-dark;
+    @use '../../components/2_feed_elements/SystemMessage/styles/themes/dark.scss' as systemmessage-dark;
+    @use '../../components/2_feed_elements/TextMessage/styles/themes/dark.scss' as textmessage-dark;
+    @use '../../components/2_feed_elements/TypingMessage/styles/themes/dark.scss' as typingmessage-dark;
+    @use '../../components/2_feed_elements/VideoMessage/styles/themes/dark.scss' as videomessage-dark;
 
 @use '../../components/3_compounds/ModalVideoRecorder/styles/themes/dark.scss' as modalvideorecorder-dark;
 @use '../../components/3_compounds/SideBar/styles/themes/dark.scss' as sidebar-dark;

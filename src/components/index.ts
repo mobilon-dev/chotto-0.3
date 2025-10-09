@@ -4,6 +4,9 @@ export * from './1_atoms';
 // 2_blocks
 export * from './2_blocks';
 
+// 2_feed_elements
+export * from './2_feed_elements';
+
 // 3_compounds
 export * from './3_compounds';
 
