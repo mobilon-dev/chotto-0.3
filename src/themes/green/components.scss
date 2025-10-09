@@ -83,8 +83,8 @@
 @use '../../components/4_layouts/FeedLayout/styles/themes/green.scss' as feedlayout-green;
 
 // Molecules
-@use '../../components/molecules/CreateDialog/styles/themes/green.scss' as createdialog-green;
-@use '../../components/molecules/EmbedPreview/styles/themes/green.scss' as embedpreview-green;
-@use '../../components/molecules/LinkPreview/styles/themes/green.scss' as linkpreview-green;
-@use '../../components/molecules/SelectUser/styles/themes/green.scss' as selectuser-green;
-@use '../../components/molecules/SelectUser2/styles/themes/green.scss' as selectuser2-green;
+@use '../../components/2_blocks/CreateDialog/styles/themes/green.scss' as createdialog-green;
+@use '../../components/1_atoms/EmbedPreview/styles/themes/green.scss' as embedpreview-green;
+@use '../../components/1_atoms/LinkPreview/styles/themes/green.scss' as linkpreview-green;
+@use '../../components/2_blocks/SelectUser/styles/themes/green.scss' as selectuser-green;
+@use '../../components/2_blocks/SelectUser2/styles/themes/green.scss' as selectuser2-green;

@@ -13,9 +13,6 @@ export * from './2_elements';
 // 2_modals
 export * from './2_modals';
 
-// Molecules
-export * from './molecules';
-
 // 5_containers
 export * from './5_containers';
 

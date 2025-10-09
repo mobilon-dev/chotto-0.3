@@ -131,8 +131,8 @@ import { getStatus, statuses } from "../../../../../hooks";
 
 import { IFileMessage } from '../../../../../types'
 import BaseReplyMessage from '../BaseReplyMessage/BaseReplyMessage.vue';
-import LinkPreview from '../../../../../components/molecules/LinkPreview/LinkPreview.vue';
-import EmbedPreview from '../../../../../components/molecules/EmbedPreview/EmbedPreview.vue';
+import LinkPreview from '../../../../../components/1_atoms/LinkPreview/LinkPreview.vue';
+import EmbedPreview from '../../../../../components/1_atoms/EmbedPreview/EmbedPreview.vue';
 
 // Define props
 const props = defineProps({

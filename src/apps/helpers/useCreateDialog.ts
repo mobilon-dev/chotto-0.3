@@ -11,7 +11,7 @@ export const useModalCreateDialog = async (
 ) => {
   const data = await useModal({
     //в component должен быть встроен emit change(key: value)
-    component: import('../../components/molecules/CreateDialog/CreateDialog.vue'),
+    component: import('../../components/2_blocks/CreateDialog/CreateDialog.vue'),
     attrs: {
       title, 
       name,

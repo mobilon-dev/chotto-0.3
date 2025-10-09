@@ -83,8 +83,8 @@
 @use '../../components/4_layouts/FeedLayout/styles/themes/default.scss' as feedlayout-default;
 
 // Molecules
-@use '../../components/molecules/CreateDialog/styles/themes/default.scss' as createdialog-default;
-@use '../../components/molecules/EmbedPreview/styles/themes/default.scss' as embedpreview-default;
-@use '../../components/molecules/LinkPreview/styles/themes/default.scss' as linkpreview-default;
-@use '../../components/molecules/SelectUser/styles/themes/default.scss' as selectuser-default;
-@use '../../components/molecules/SelectUser2/styles/themes/default.scss' as selectuser2-default;
+@use '../../components/2_blocks/CreateDialog/styles/themes/default.scss' as createdialog-default;
+@use '../../components/1_atoms/EmbedPreview/styles/themes/default.scss' as embedpreview-default;
+@use '../../components/1_atoms/LinkPreview/styles/themes/default.scss' as linkpreview-default;
+@use '../../components/2_blocks/SelectUser/styles/themes/default.scss' as selectuser-default;
+@use '../../components/2_blocks/SelectUser2/styles/themes/default.scss' as selectuser2-default;

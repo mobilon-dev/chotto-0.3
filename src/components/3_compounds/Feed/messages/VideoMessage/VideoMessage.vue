@@ -170,8 +170,8 @@ import ContextMenu from "../../../../../components/2_elements/ContextMenu/Contex
 import { getStatus, statuses } from "../../../../../hooks";
 import { IVideoMessage } from '@types';
 import BaseReplyMessage from "../BaseReplyMessage/BaseReplyMessage.vue";
-import LinkPreview from "../../../../../components/molecules/LinkPreview/LinkPreview.vue";
-import EmbedPreview from "../../../../../components/molecules/EmbedPreview/EmbedPreview.vue";
+import LinkPreview from "../../../../../components/1_atoms/LinkPreview/LinkPreview.vue";
+import EmbedPreview from "../../../../../components/1_atoms/EmbedPreview/EmbedPreview.vue";
 import ModalFullscreen from "../../../../../components/2_modals/ModalFullscreen/ModalFullscreen.vue";
 import { useTheme } from "../../../../../hooks/useTheme";
 
