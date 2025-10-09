@@ -16,35 +16,35 @@
 @use '../../components/blocks/MessageKeyboard/styles/themes/dark.scss' as messagekeyboard-dark;
 
 // Compounds
-@use '../../components/compounds/ChatInput/styles/themes/dark.scss' as chatinput-dark;
-@use '../../components/compounds/CommunicationPanel/styles/themes/dark.scss' as communicationpanel-dark;
+@use '../../components/3_compounds/ChatInput/styles/themes/dark.scss' as chatinput-dark;
+@use '../../components/3_compounds/CommunicationPanel/styles/themes/dark.scss' as communicationpanel-dark;
 
   // Feed
-  @use '../../components/compounds/Feed/styles/themes/dark.scss' as feed-dark;
+  @use '../../components/3_compounds/Feed/styles/themes/dark.scss' as feed-dark;
 
     // Feed Messages
-    @use '../../components/compounds/Feed/messages/AudioMessage/styles/themes/dark.scss' as audiomessage-dark;
-    @use '../../components/compounds/Feed/messages/BaseReplyMessage/styles/themes/dark.scss' as basereplymessage-dark;
-    @use '../../components/compounds/Feed/messages/CallMessage/styles/themes/dark.scss' as callmessage-dark;
-    @use '../../components/compounds/Feed/messages/DateMessage/styles/themes/dark.scss' as datemessage-dark;
-    @use '../../components/compounds/Feed/messages/DateMessageSticky/styles/themes/dark.scss' as datemessagesticky-dark;
-    @use '../../components/compounds/Feed/messages/FileMessage/styles/themes/dark.scss' as filemessage-dark;
-    @use '../../components/compounds/Feed/messages/ImageMessage/styles/themes/dark.scss' as imagemessage-dark;
-    @use '../../components/compounds/Feed/messages/ReplyAudioMessage/styles/themes/dark.scss' as replyaudiomessage-dark;
-    @use '../../components/compounds/Feed/messages/ReplyCallMessage/styles/themes/dark.scss' as replycallmessage-dark;
-    @use '../../components/compounds/Feed/messages/ReplyFileMessage/styles/themes/dark.scss' as replyfilemessage-dark;
-    @use '../../components/compounds/Feed/messages/ReplyImageMessage/styles/themes/dark.scss' as replyimagemessage-dark;
-    @use '../../components/compounds/Feed/messages/ReplyTextMessage/styles/themes/dark.scss' as replytextmessage-dark;
-    @use '../../components/compounds/Feed/messages/ReplyVideoMessage/styles/themes/dark.scss' as replyvideomessage-dark;
-    @use '../../components/compounds/Feed/messages/SystemMessage/styles/themes/dark.scss' as systemmessage-dark;
-    @use '../../components/compounds/Feed/messages/TextMessage/styles/themes/dark.scss' as textmessage-dark;
-    @use '../../components/compounds/Feed/messages/TypingMessage/styles/themes/dark.scss' as typingmessage-dark;
-    @use '../../components/compounds/Feed/messages/VideoMessage/styles/themes/dark.scss' as videomessage-dark;
+    @use '../../components/3_compounds/Feed/messages/AudioMessage/styles/themes/dark.scss' as audiomessage-dark;
+    @use '../../components/3_compounds/Feed/messages/BaseReplyMessage/styles/themes/dark.scss' as basereplymessage-dark;
+    @use '../../components/3_compounds/Feed/messages/CallMessage/styles/themes/dark.scss' as callmessage-dark;
+    @use '../../components/3_compounds/Feed/messages/DateMessage/styles/themes/dark.scss' as datemessage-dark;
+    @use '../../components/3_compounds/Feed/messages/DateMessageSticky/styles/themes/dark.scss' as datemessagesticky-dark;
+    @use '../../components/3_compounds/Feed/messages/FileMessage/styles/themes/dark.scss' as filemessage-dark;
+    @use '../../components/3_compounds/Feed/messages/ImageMessage/styles/themes/dark.scss' as imagemessage-dark;
+    @use '../../components/3_compounds/Feed/messages/ReplyAudioMessage/styles/themes/dark.scss' as replyaudiomessage-dark;
+    @use '../../components/3_compounds/Feed/messages/ReplyCallMessage/styles/themes/dark.scss' as replycallmessage-dark;
+    @use '../../components/3_compounds/Feed/messages/ReplyFileMessage/styles/themes/dark.scss' as replyfilemessage-dark;
+    @use '../../components/3_compounds/Feed/messages/ReplyImageMessage/styles/themes/dark.scss' as replyimagemessage-dark;
+    @use '../../components/3_compounds/Feed/messages/ReplyTextMessage/styles/themes/dark.scss' as replytextmessage-dark;
+    @use '../../components/3_compounds/Feed/messages/ReplyVideoMessage/styles/themes/dark.scss' as replyvideomessage-dark;
+    @use '../../components/3_compounds/Feed/messages/SystemMessage/styles/themes/dark.scss' as systemmessage-dark;
+    @use '../../components/3_compounds/Feed/messages/TextMessage/styles/themes/dark.scss' as textmessage-dark;
+    @use '../../components/3_compounds/Feed/messages/TypingMessage/styles/themes/dark.scss' as typingmessage-dark;
+    @use '../../components/3_compounds/Feed/messages/VideoMessage/styles/themes/dark.scss' as videomessage-dark;
 
-@use '../../components/compounds/ModalVideoRecorder/styles/themes/dark.scss' as modalvideorecorder-dark;
-@use '../../components/compounds/SideBar/styles/themes/dark.scss' as sidebar-dark;
-@use '../../components/compounds/TemplateSelector/styles/themes/dark.scss' as templateselector-dark;
-@use '../../components/compounds/UserProfile/styles/themes/dark.scss' as userprofile-dark;
+@use '../../components/3_compounds/ModalVideoRecorder/styles/themes/dark.scss' as modalvideorecorder-dark;
+@use '../../components/3_compounds/SideBar/styles/themes/dark.scss' as sidebar-dark;
+@use '../../components/3_compounds/TemplateSelector/styles/themes/dark.scss' as templateselector-dark;
+@use '../../components/3_compounds/UserProfile/styles/themes/dark.scss' as userprofile-dark;
 
 // Containers
 @use '../../components/5_containers/BaseContainer/styles/themes/dark.scss' as basecontainer-dark;

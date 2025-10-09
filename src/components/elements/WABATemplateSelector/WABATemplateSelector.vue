@@ -212,7 +212,7 @@ const props = defineProps({
   },
   chatBackground: {
     type: String,
-    default: () => new URL('../../compounds/Feed/assets/chat-background.svg', import.meta.url).href
+    default: () => new URL('../../3_compounds/Feed/assets/chat-background.svg', import.meta.url).href
   }
 })
 

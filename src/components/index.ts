@@ -4,8 +4,8 @@ export * from './atoms';
 // Blocks
 export * from './blocks';
 
-// Compounds
-export * from './compounds';
+// 3_compounds
+export * from './3_compounds';
 
 // Elements
 export * from './elements';
