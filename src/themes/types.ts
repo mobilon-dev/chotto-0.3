@@ -42,9 +42,6 @@ export interface ChottoThemeVariables {
   // Контейнеры
   '--chotto-theme-container-borders': string;
 
-  // Макеты
-  '--chotto-theme-layout-feed-bg': string;
-
   // Сообщения
   '--chotto-theme-message-right-bg': string;
   '--chotto-theme-message-right-secondary-bg': string;
