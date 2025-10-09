@@ -76,11 +76,11 @@
 @use '../../components/elements/WABATemplateSelector/styles/themes/mobilon1.scss' as wabatemplatesel-mobilon1;
 
 // Layouts
-@use '../../components/layouts/AdaptiveExtendedLayout/styles/themes/mobilon1.scss' as adaptiveextendedlayout-mobilon1;
-@use '../../components/layouts/BaseLayout/styles/themes/mobilon1.scss' as baselayout-mobilon1;
-@use '../../components/layouts/ChatWrapper/styles/themes/mobilon1.scss' as chatwrapper-mobilon1;
-@use '../../components/layouts/ExtendedLayout/styles/themes/mobilon1.scss' as extendedlayout-mobilon1;
-@use '../../components/layouts/FeedLayout/styles/themes/mobilon1.scss' as feedlayout-mobilon1;
+@use '../../components/4_layouts/AdaptiveExtendedLayout/styles/themes/mobilon1.scss' as adaptiveextendedlayout-mobilon1;
+@use '../../components/4_layouts/BaseLayout/styles/themes/mobilon1.scss' as baselayout-mobilon1;
+@use '../../components/4_layouts/ChatWrapper/styles/themes/mobilon1.scss' as chatwrapper-mobilon1;
+@use '../../components/4_layouts/ExtendedLayout/styles/themes/mobilon1.scss' as extendedlayout-mobilon1;
+@use '../../components/4_layouts/FeedLayout/styles/themes/mobilon1.scss' as feedlayout-mobilon1;
 
 // Molecules
 @use '../../components/molecules/CreateDialog/styles/themes/mobilon1.scss' as createdialog-mobilon1;

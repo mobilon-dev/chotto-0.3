@@ -76,11 +76,11 @@
 @use '../../components/elements/WABATemplateSelector/styles/themes/dark.scss' as wabatemplatesel-dark;
 
 // Layouts
-@use '../../components/layouts/AdaptiveExtendedLayout/styles/themes/dark.scss' as adaptiveextendedlayout-dark;
-@use '../../components/layouts/BaseLayout/styles/themes/dark.scss' as baselayout-dark;
-@use '../../components/layouts/ChatWrapper/styles/themes/dark.scss' as chatwrapper-dark;
-@use '../../components/layouts/ExtendedLayout/styles/themes/dark.scss' as extendedlayout-dark;
-@use '../../components/layouts/FeedLayout/styles/themes/dark.scss' as feedlayout-dark;
+@use '../../components/4_layouts/AdaptiveExtendedLayout/styles/themes/dark.scss' as adaptiveextendedlayout-dark;
+@use '../../components/4_layouts/BaseLayout/styles/themes/dark.scss' as baselayout-dark;
+@use '../../components/4_layouts/ChatWrapper/styles/themes/dark.scss' as chatwrapper-dark;
+@use '../../components/4_layouts/ExtendedLayout/styles/themes/dark.scss' as extendedlayout-dark;
+@use '../../components/4_layouts/FeedLayout/styles/themes/dark.scss' as feedlayout-dark;
 
 // Molecules
 @use '../../components/molecules/CreateDialog/styles/themes/dark.scss' as createdialog-dark;

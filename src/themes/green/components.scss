@@ -76,11 +76,11 @@
 @use '../../components/elements/WABATemplateSelector/styles/themes/green.scss' as wabatemplatesel-green;
 
 // Layouts
-@use '../../components/layouts/AdaptiveExtendedLayout/styles/themes/green.scss' as adaptiveextendedlayout-green;
-@use '../../components/layouts/BaseLayout/styles/themes/green.scss' as baselayout-green;
-@use '../../components/layouts/ChatWrapper/styles/themes/green.scss' as chatwrapper-green;
-@use '../../components/layouts/ExtendedLayout/styles/themes/green.scss' as extendedlayout-green;
-@use '../../components/layouts/FeedLayout/styles/themes/green.scss' as feedlayout-green;
+@use '../../components/4_layouts/AdaptiveExtendedLayout/styles/themes/green.scss' as adaptiveextendedlayout-green;
+@use '../../components/4_layouts/BaseLayout/styles/themes/green.scss' as baselayout-green;
+@use '../../components/4_layouts/ChatWrapper/styles/themes/green.scss' as chatwrapper-green;
+@use '../../components/4_layouts/ExtendedLayout/styles/themes/green.scss' as extendedlayout-green;
+@use '../../components/4_layouts/FeedLayout/styles/themes/green.scss' as feedlayout-green;
 
 // Molecules
 @use '../../components/molecules/CreateDialog/styles/themes/green.scss' as createdialog-green;

@@ -76,11 +76,11 @@
 @use '../../components/elements/WABATemplateSelector/styles/themes/default.scss' as wabatemplatesel-default;
 
 // Layouts
-@use '../../components/layouts/AdaptiveExtendedLayout/styles/themes/default.scss' as adaptiveextendedlayout-default;
-@use '../../components/layouts/BaseLayout/styles/themes/default.scss' as baselayout-default;
-@use '../../components/layouts/ChatWrapper/styles/themes/default.scss' as chatwrapper-default;
-@use '../../components/layouts/ExtendedLayout/styles/themes/default.scss' as extendedlayout-default;
-@use '../../components/layouts/FeedLayout/styles/themes/default.scss' as feedlayout-default;
+@use '../../components/4_layouts/AdaptiveExtendedLayout/styles/themes/default.scss' as adaptiveextendedlayout-default;
+@use '../../components/4_layouts/BaseLayout/styles/themes/default.scss' as baselayout-default;
+@use '../../components/4_layouts/ChatWrapper/styles/themes/default.scss' as chatwrapper-default;
+@use '../../components/4_layouts/ExtendedLayout/styles/themes/default.scss' as extendedlayout-default;
+@use '../../components/4_layouts/FeedLayout/styles/themes/default.scss' as feedlayout-default;
 
 // Molecules
 @use '../../components/molecules/CreateDialog/styles/themes/default.scss' as createdialog-default;

@@ -16,6 +16,6 @@ export * from './molecules';
 // 5_containers
 export * from './5_containers';
 
-// Layouts
-export * from './layouts';
+// 4_layouts
+export * from './4_layouts';
 
