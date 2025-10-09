@@ -1,8 +1,8 @@
 // Atoms
 export * from './atoms';
 
-// Blocks
-export * from './blocks';
+// 2_blocks
+export * from './2_blocks';
 
 // 3_compounds
 export * from './3_compounds';

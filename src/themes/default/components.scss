@@ -7,13 +7,13 @@
 @use '../../components/atoms/Tooltip/styles/themes/default.scss' as tooltip-default;
 
 // Blocks
-@use '../../components/blocks/ChatItem/styles/themes/default.scss' as chatitem-default;
-@use '../../components/blocks/ChatList/styles/themes/default.scss' as chatlist-default;
-@use '../../components/blocks/ChatPanel/styles/themes/default.scss' as chatpanel-default;
-@use '../../components/blocks/FeedFoundItem/styles/themes/default.scss' as feedfounditem-default;
-@use '../../components/blocks/FeedFoundObjects/styles/themes/default.scss' as feedfoundobjects-default;
-@use '../../components/blocks/FeedSearch/styles/themes/default.scss' as feedsearch-default;
-@use '../../components/blocks/MessageKeyboard/styles/themes/default.scss' as messagekeyboard-default;
+@use '../../components/2_blocks/ChatItem/styles/themes/default.scss' as chatitem-default;
+@use '../../components/2_blocks/ChatList/styles/themes/default.scss' as chatlist-default;
+@use '../../components/2_blocks/ChatPanel/styles/themes/default.scss' as chatpanel-default;
+@use '../../components/2_blocks/FeedFoundItem/styles/themes/default.scss' as feedfounditem-default;
+@use '../../components/2_blocks/FeedFoundObjects/styles/themes/default.scss' as feedfoundobjects-default;
+@use '../../components/2_blocks/FeedSearch/styles/themes/default.scss' as feedsearch-default;
+@use '../../components/2_blocks/MessageKeyboard/styles/themes/default.scss' as messagekeyboard-default;
 
 // Compounds
 @use '../../components/3_compounds/ChatInput/styles/themes/default.scss' as chatinput-default;

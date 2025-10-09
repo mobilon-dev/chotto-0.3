@@ -1,5 +1,5 @@
 import { IAudioMessage, ICallMessage, IDateMessage, IFileMessage, IImageMessage, IKeyBoard, ILinkPreview, ISystemMessage, ITextMessage, ITypingMessage, IVideoMessage, Reply } from "./messages"
-import { IAction } from "@/components/blocks/ChatItem/types"
+import { IAction } from "@/components/2_blocks/ChatItem/types"
 
 export interface IFeedObject {
   messageId: string

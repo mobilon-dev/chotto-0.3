@@ -7,13 +7,13 @@
 @use '../../components/atoms/Tooltip/styles/themes/mobilon1.scss' as tooltip-mobilon1;
 
 // Blocks
-@use '../../components/blocks/ChatItem/styles/themes/mobilon1.scss' as chatitem-mobilon1;
-@use '../../components/blocks/ChatList/styles/themes/mobilon1.scss' as chatlist-mobilon1;
-@use '../../components/blocks/ChatPanel/styles/themes/mobilon1.scss' as chatpanel-mobilon1;
-@use '../../components/blocks/FeedFoundItem/styles/themes/mobilon1.scss' as feedfounditem-mobilon1;
-@use '../../components/blocks/FeedFoundObjects/styles/themes/mobilon1.scss' as feedfoundobjects-mobilon1;
-@use '../../components/blocks/FeedSearch/styles/themes/mobilon1.scss' as feedsearch-mobilon1;
-@use '../../components/blocks/MessageKeyboard/styles/themes/mobilon1.scss' as messagekeyboard-mobilon1;
+@use '../../components/2_blocks/ChatItem/styles/themes/mobilon1.scss' as chatitem-mobilon1;
+@use '../../components/2_blocks/ChatList/styles/themes/mobilon1.scss' as chatlist-mobilon1;
+@use '../../components/2_blocks/ChatPanel/styles/themes/mobilon1.scss' as chatpanel-mobilon1;
+@use '../../components/2_blocks/FeedFoundItem/styles/themes/mobilon1.scss' as feedfounditem-mobilon1;
+@use '../../components/2_blocks/FeedFoundObjects/styles/themes/mobilon1.scss' as feedfoundobjects-mobilon1;
+@use '../../components/2_blocks/FeedSearch/styles/themes/mobilon1.scss' as feedsearch-mobilon1;
+@use '../../components/2_blocks/MessageKeyboard/styles/themes/mobilon1.scss' as messagekeyboard-mobilon1;
 
 // Compounds
 @use '../../components/3_compounds/ChatInput/styles/themes/mobilon1.scss' as chatinput-mobilon1;

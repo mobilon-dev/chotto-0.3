@@ -7,13 +7,13 @@
 @use '../../components/atoms/Tooltip/styles/themes/green.scss' as tooltip-green;
 
 // Blocks
-@use '../../components/blocks/ChatItem/styles/themes/green.scss' as chatitem-green;
-@use '../../components/blocks/ChatList/styles/themes/green.scss' as chatlist-green;
-@use '../../components/blocks/ChatPanel/styles/themes/green.scss' as chatpanel-green;
-@use '../../components/blocks/FeedFoundItem/styles/themes/green.scss' as feedfounditem-green;
-@use '../../components/blocks/FeedFoundObjects/styles/themes/green.scss' as feedfoundobjects-green;
-@use '../../components/blocks/FeedSearch/styles/themes/green.scss' as feedsearch-green;
-@use '../../components/blocks/MessageKeyboard/styles/themes/green.scss' as messagekeyboard-green;
+@use '../../components/2_blocks/ChatItem/styles/themes/green.scss' as chatitem-green;
+@use '../../components/2_blocks/ChatList/styles/themes/green.scss' as chatlist-green;
+@use '../../components/2_blocks/ChatPanel/styles/themes/green.scss' as chatpanel-green;
+@use '../../components/2_blocks/FeedFoundItem/styles/themes/green.scss' as feedfounditem-green;
+@use '../../components/2_blocks/FeedFoundObjects/styles/themes/green.scss' as feedfoundobjects-green;
+@use '../../components/2_blocks/FeedSearch/styles/themes/green.scss' as feedsearch-green;
+@use '../../components/2_blocks/MessageKeyboard/styles/themes/green.scss' as messagekeyboard-green;
 
 // Compounds
 @use '../../components/3_compounds/ChatInput/styles/themes/green.scss' as chatinput-green;

@@ -1,4 +1,4 @@
-import { IAction } from '@/components/blocks/ChatItem/types'
+import { IAction } from '@/components/2_blocks/ChatItem/types'
 import { IDialog } from './components'
 
 export interface Reply {
