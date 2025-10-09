@@ -109,7 +109,7 @@
 <script setup>
 import { toRef, computed, ref, onMounted, onUnmounted, nextTick, watch } from 'vue';
 import ButtonContextMenu from '../../2_elements/ButtonContextMenu/ButtonContextMenu.vue';
-import SettingsIcon from '../../icons/SettingsIcon.vue';
+import SettingsIcon from '../../1_icons/SettingsIcon.vue';
 import Tooltip from '../../1_atoms/Tooltip/Tooltip.vue';
 
 const props = defineProps({

@@ -58,7 +58,7 @@
 
 <script setup>
 import { inject, computed } from 'vue';
-import AvatarIcon from '../../icons/AvatarIcon.vue';
+import AvatarIcon from '../../1_icons/AvatarIcon.vue';
 // Define props
 const props = defineProps({
   chat: {

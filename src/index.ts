@@ -3,6 +3,6 @@ import './themes/index.scss'
 
 export * from './components';
 export * from './components/4_layouts';
-export * from './components/icons';
+export * from './components/1_icons';
 
 export * from './hooks';
