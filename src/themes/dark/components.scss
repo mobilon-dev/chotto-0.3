@@ -7,7 +7,7 @@
 @use '../../components/1_atoms/Tooltip/styles/themes/dark.scss' as tooltip-dark;
 
 // Blocks
-@use '../../components/2_blocks/ChatItem/styles/themes/dark.scss' as chatitem-dark;
+@use '../../components/2_chatlist_elements/ChatItem/styles/themes/dark.scss' as chatitem-dark;
 @use '../../components/3_compounds/ChatList/styles/themes/dark.scss' as chatlist-dark;
 @use '../../components/2_blocks/ChatPanel/styles/themes/dark.scss' as chatpanel-dark;
 @use '../../components/2_blocks/FeedFoundItem/styles/themes/dark.scss' as feedfounditem-dark;
@@ -60,9 +60,9 @@
 @use '../../components/2_elements/ButtonTemplateSelector/styles/themes/dark.scss' as buttontemplatesel-dark;
 @use '../../components/2_elements/ButtonWabaTemplateSelector/styles/themes/dark.scss' as buttonwabatemplatesel-dark;
 @use '../../components/2_elements/ChannelSelector/styles/themes/dark.scss' as channelselector-dark;
-@use '../../components/2_elements/ChatFilter/styles/themes/dark.scss' as chatfilter-dark;
+@use '../../components/2_chatlist_elements/ChatFilter/styles/themes/dark.scss' as chatfilter-dark;
 @use '../../components/2_elements/ChatInfo/styles/themes/dark.scss' as chatinfo-dark;
-@use '../../components/2_elements/ChatTabs/styles/themes/dark.scss' as chattabs-dark;
+@use '../../components/2_chatlist_elements/ChatTabs/styles/themes/dark.scss' as chattabs-dark;
 @use '../../components/2_elements/ContactInfo/styles/themes/dark.scss' as contactinfo-dark;
 @use '../../components/1_atoms/ContextMenu/styles/themes/dark.scss' as contextmenu-dark;
 @use '../../components/2_feed_elements/FeedKeyboard/styles/themes/dark.scss' as feedkeyboard-dark;
