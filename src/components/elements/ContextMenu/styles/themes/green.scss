@@ -1,7 +1,7 @@
 [data-theme="green"] {
   // ContextMenu container variables
   --chotto-contextmenu-container-display: none;
-  --chotto-contextmenu-container-font-weight: var(--chotto-theme-container-font-weight);
+  --chotto-contextmenu-container-font-weight: var(--chotto-theme-default-font-weight);
   --chotto-contextmenu-container-color: var(--chotto-theme-primary-text-color);
   --chotto-contextmenu-container-font-family: var(--chotto-theme-font-family);
   --chotto-contextmenu-container-z-index: 1000;

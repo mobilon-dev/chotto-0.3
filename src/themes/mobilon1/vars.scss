@@ -4,11 +4,6 @@
      CHOTTO THEME VARIABLES
      =========================================== */
 
-  /* Container */
-  --chotto-theme-font-family: "Open Sans", sans-serif;
-  --chotto-theme-container-font-weight: 400;
-  --chotto-theme-container-borders: 1px solid #e5e5e5;
-
   /* Messages */
   --chotto-theme-message-right-bg: #d1fae5;
   --chotto-theme-message-right-secondary-bg: #a7f3d0;
@@ -47,6 +42,7 @@
   --chotto-theme-header-font-size: 20px;
   --chotto-theme-header-font-color: #5F5F5F;
   --chotto-theme-title-font-size: 16px;
+  --chotto-theme-font-family: "Open Sans", sans-serif;
   --chotto-theme-text-font-size: 14px;
   --chotto-theme-additional-text-font-size: 14px;
   --chotto-theme-small-text-font-size: 12px;
@@ -56,6 +52,8 @@
   /* Font weights */
   --chotto-theme-header-font-weight: 700;
   --chotto-theme-title-font-weight: 400;
+  --chotto-theme-small-text-font-weight: 400;
+  --chotto-theme-default-font-weight: 400;
 
   /* Icon sizes */
   --chotto-theme-button-icon-size: 23px;
@@ -68,6 +66,9 @@
   --chotto-theme-button-color-active: #525252;
   --chotto-theme-button-color-hover: #404040;
   --chotto-theme-button-color-disabled: #e5e5e5;
+
+  /* Borders */
+  --chotto-theme-border: 1px solid #e5e5e5;
 
   /* Action button colors */
   --chotto-theme-action-button-color-active: #00cbfa;

@@ -6,8 +6,8 @@
   --chotto-baselayout-container-grid-template-columns: 1.8fr 3fr;
   --chotto-baselayout-container-transition: all 0.3s ease;
   --chotto-baselayout-container-position: relative;
-  --chotto-baselayout-container-border-top: var(--chotto-theme-container-borders, none);
-  --chotto-baselayout-container-border-left: var(--chotto-theme-container-borders, none);
+  --chotto-baselayout-container-border-top: var(--chotto-theme-border, none);
+  --chotto-baselayout-container-border-left: var(--chotto-theme-border, none);
 
   // BaseLayout first-col variables
   --chotto-baselayout-first-col-position: relative;
@@ -16,8 +16,8 @@
   --chotto-baselayout-first-col-flex-direction: column;
   --chotto-baselayout-first-col-height: inherit;
   --chotto-baselayout-first-col-background-color: #ffffff;
-  --chotto-baselayout-first-col-border-right: var(--chotto-theme-container-borders, none);
-  --chotto-baselayout-first-col-border-bottom: var(--chotto-theme-container-borders, none);
+  --chotto-baselayout-first-col-border-right: var(--chotto-theme-border, none);
+  --chotto-baselayout-first-col-border-bottom: var(--chotto-theme-border, none);
   --chotto-baselayout-first-col-width: 100%;
 
   // BaseLayout second-col variables
@@ -28,8 +28,8 @@
   --chotto-baselayout-second-col-height: inherit;
   --chotto-baselayout-second-col-width: 100%;
   --chotto-baselayout-second-col-background-color: #fcfafa;
-  --chotto-baselayout-second-col-border-right: var(--chotto-theme-container-borders, none);
-  --chotto-baselayout-second-col-border-bottom: var(--chotto-theme-container-borders, none);
+  --chotto-baselayout-second-col-border-right: var(--chotto-theme-border, none);
+  --chotto-baselayout-second-col-border-bottom: var(--chotto-theme-border, none);
 
   // BaseLayout transition variables
   --chotto-baselayout-transition-enter-active-transition: opacity 0.5s ease;

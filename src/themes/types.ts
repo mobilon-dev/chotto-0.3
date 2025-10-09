@@ -30,7 +30,7 @@ export interface ChottoThemeVariables {
   '--chotto-theme-context-menu-font-size': string;
   '--chotto-theme-header-font-weight': string | number;
   '--chotto-theme-title-font-weight': string | number;
-  '--chotto-theme-container-font-weight': string | number;
+  '--chotto-theme-default-font-weight': string | number;
 
   // Размеры иконок
   '--chotto-theme-button-icon-size': string;
@@ -39,8 +39,8 @@ export interface ChottoThemeVariables {
   '--chotto-theme-avatar-small-size': string;
   '--chotto-theme-avatar-medium-size': string;
 
-  // Контейнеры
-  '--chotto-theme-container-borders': string;
+  // Границы
+  '--chotto-theme-border': string;
 
   // Сообщения
   '--chotto-theme-message-right-bg': string;
