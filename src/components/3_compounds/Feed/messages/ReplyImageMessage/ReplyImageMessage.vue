@@ -50,7 +50,7 @@
 import { ref, watch, inject } from 'vue';
 import linkifyStr from "linkify-string";
 import { IImageMessage } from '../../../../../types';
-import ModalFullscreen from "../../../../atoms/ModalFullscreen/ModalFullscreen.vue";
+import ModalFullscreen from "../../../../1_atoms/ModalFullscreen/ModalFullscreen.vue";
 import { useTheme } from "../../../../../hooks/useTheme";
 
 const chatAppId = inject('chatAppId')

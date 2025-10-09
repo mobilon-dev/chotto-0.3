@@ -1,10 +1,10 @@
 // Импорты компонентов для темы green
 
 // Atoms
-@use '../../components/atoms/Modal/styles/themes/green.scss' as modal-green;
-@use '../../components/atoms/ModalFullscreen/styles/themes/green.scss' as modalfullscreen-green;
-@use '../../components/atoms/ModalNoFooter/styles/themes/green.scss' as modalnofooter-green;
-@use '../../components/atoms/Tooltip/styles/themes/green.scss' as tooltip-green;
+@use '../../components/1_atoms/Modal/styles/themes/green.scss' as modal-green;
+@use '../../components/1_atoms/ModalFullscreen/styles/themes/green.scss' as modalfullscreen-green;
+@use '../../components/1_atoms/ModalNoFooter/styles/themes/green.scss' as modalnofooter-green;
+@use '../../components/1_atoms/Tooltip/styles/themes/green.scss' as tooltip-green;
 
 // Blocks
 @use '../../components/2_blocks/ChatItem/styles/themes/green.scss' as chatitem-green;

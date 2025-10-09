@@ -1,10 +1,10 @@
 // Импорты компонентов для темы default
 
 // Atoms
-@use '../../components/atoms/Modal/styles/themes/default.scss' as modal-default;
-@use '../../components/atoms/ModalFullscreen/styles/themes/default.scss' as modalfullscreen-default;
-@use '../../components/atoms/ModalNoFooter/styles/themes/default.scss' as modalnofooter-default;
-@use '../../components/atoms/Tooltip/styles/themes/default.scss' as tooltip-default;
+@use '../../components/1_atoms/Modal/styles/themes/default.scss' as modal-default;
+@use '../../components/1_atoms/ModalFullscreen/styles/themes/default.scss' as modalfullscreen-default;
+@use '../../components/1_atoms/ModalNoFooter/styles/themes/default.scss' as modalnofooter-default;
+@use '../../components/1_atoms/Tooltip/styles/themes/default.scss' as tooltip-default;
 
 // Blocks
 @use '../../components/2_blocks/ChatItem/styles/themes/default.scss' as chatitem-default;

@@ -1,5 +1,5 @@
 import { useModal } from './useModal';
-import Modal from '../components/atoms/ModalNoFooter/ModalNoFooter.vue';
+import Modal from '../components/1_atoms/ModalNoFooter/ModalNoFooter.vue';
 
 export const useModalVideoRecorder = async (theme?: string) => {
   const data = await useModal({

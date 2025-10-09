@@ -168,7 +168,7 @@ import { IImageMessage } from '../../../../../types';
 import BaseReplyMessage from "../BaseReplyMessage/BaseReplyMessage.vue";
 import LinkPreview from "../../../../../components/molecules/LinkPreview/LinkPreview.vue";
 import EmbedPreview from "../../../../../components/molecules/EmbedPreview/EmbedPreview.vue";
-import ModalFullscreen from "../../../../../components/atoms/ModalFullscreen/ModalFullscreen.vue";
+import ModalFullscreen from "../../../../../components/1_atoms/ModalFullscreen/ModalFullscreen.vue";
 import { useTheme } from "../../../../../hooks/useTheme";
 
 const chatAppId = inject('chatAppId')

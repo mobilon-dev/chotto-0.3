@@ -1,10 +1,10 @@
 // Импорты компонентов для темы dark
 
 // Atoms
-@use '../../components/atoms/Modal/styles/themes/dark.scss' as modal-dark;
-@use '../../components/atoms/ModalFullscreen/styles/themes/dark.scss' as modalfullscreen-dark;
-@use '../../components/atoms/ModalNoFooter/styles/themes/dark.scss' as modalnofooter-dark;
-@use '../../components/atoms/Tooltip/styles/themes/dark.scss' as tooltip-dark;
+@use '../../components/1_atoms/Modal/styles/themes/dark.scss' as modal-dark;
+@use '../../components/1_atoms/ModalFullscreen/styles/themes/dark.scss' as modalfullscreen-dark;
+@use '../../components/1_atoms/ModalNoFooter/styles/themes/dark.scss' as modalnofooter-dark;
+@use '../../components/1_atoms/Tooltip/styles/themes/dark.scss' as tooltip-dark;
 
 // Blocks
 @use '../../components/2_blocks/ChatItem/styles/themes/dark.scss' as chatitem-dark;

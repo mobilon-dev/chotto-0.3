@@ -1,5 +1,5 @@
 import { useModal } from '../../hooks/useModal';
-import Modal from '../../components/atoms/Modal/Modal.vue';
+import Modal from '../../components/1_atoms/Modal/Modal.vue';
 
 export const useModalCreateChat2 = async (title: string, theme: string) => {
   const data = await useModal({

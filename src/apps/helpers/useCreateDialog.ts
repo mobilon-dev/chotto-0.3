@@ -1,5 +1,5 @@
 import { useModal } from '../../hooks/useModal';
-import Modal from '../../components/atoms/ModalNoFooter/ModalNoFooter.vue';
+import Modal from '../../components/1_atoms/ModalNoFooter/ModalNoFooter.vue';
 
 export const useModalCreateDialog = async (
   title: string, 

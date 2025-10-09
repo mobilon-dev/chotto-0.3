@@ -1,5 +1,5 @@
-// Atoms
-export * from './atoms';
+// 1_atoms
+export * from './1_atoms';
 
 // 2_blocks
 export * from './2_blocks';
