@@ -13,7 +13,7 @@
 @use '../../components/2_blocks/FeedFoundItem/styles/themes/dark.scss' as feedfounditem-dark;
 @use '../../components/2_blocks/FeedFoundObjects/styles/themes/dark.scss' as feedfoundobjects-dark;
 @use '../../components/2_blocks/FeedSearch/styles/themes/dark.scss' as feedsearch-dark;
-@use '../../components/2_blocks/MessageKeyboard/styles/themes/dark.scss' as messagekeyboard-dark;
+@use '../../components/2_feed_elements/MessageKeyboard/styles/themes/dark.scss' as messagekeyboard-dark;
 
 // Compounds
 @use '../../components/3_compounds/ChatInput/styles/themes/dark.scss' as chatinput-dark;
@@ -65,7 +65,7 @@
 @use '../../components/2_elements/ChatTabs/styles/themes/dark.scss' as chattabs-dark;
 @use '../../components/2_elements/ContactInfo/styles/themes/dark.scss' as contactinfo-dark;
 @use '../../components/1_atoms/ContextMenu/styles/themes/dark.scss' as contextmenu-dark;
-@use '../../components/2_elements/FeedKeyboard/styles/themes/dark.scss' as feedkeyboard-dark;
+@use '../../components/2_feed_elements/FeedKeyboard/styles/themes/dark.scss' as feedkeyboard-dark;
 @use '../../components/2_elements/FilePreview/styles/themes/dark.scss' as filepreview-dark;
 @use '../../components/2_elements/FileUploader/styles/themes/dark.scss' as fileuploader-dark;
 @use '../../components/2_elements/ThemeMode/styles/themes/dark.scss' as thememode-dark;

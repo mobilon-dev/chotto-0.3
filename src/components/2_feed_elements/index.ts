@@ -4,8 +4,10 @@ export { default as BaseReplyMessage } from './BaseReplyMessage/BaseReplyMessage
 export { default as CallMessage } from './CallMessage/CallMessage.vue';
 export { default as DateMessage } from './DateMessage/DateMessage.vue';
 export { default as DateMessageSticky } from './DateMessageSticky/DateMessageSticky.vue';
+export { default as FeedKeyboard } from './FeedKeyboard/FeedKeyboard.vue';
 export { default as FileMessage } from './FileMessage/FileMessage.vue';
 export { default as ImageMessage } from './ImageMessage/ImageMessage.vue';
+export { default as MessageKeyboard } from './MessageKeyboard/MessageKeyboard.vue';
 export { default as ReplyAudioMessage } from './ReplyAudioMessage/ReplyAudioMessage.vue';
 export { default as ReplyCallMessage } from './ReplyCallMessage/ReplyCallMessage.vue';
 export { default as ReplyFileMessage } from './ReplyFileMessage/ReplyFileMessage.vue';

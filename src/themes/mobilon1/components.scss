@@ -13,7 +13,7 @@
 @use '../../components/2_blocks/FeedFoundItem/styles/themes/mobilon1.scss' as feedfounditem-mobilon1;
 @use '../../components/2_blocks/FeedFoundObjects/styles/themes/mobilon1.scss' as feedfoundobjects-mobilon1;
 @use '../../components/2_blocks/FeedSearch/styles/themes/mobilon1.scss' as feedsearch-mobilon1;
-@use '../../components/2_blocks/MessageKeyboard/styles/themes/mobilon1.scss' as messagekeyboard-mobilon1;
+@use '../../components/2_feed_elements/MessageKeyboard/styles/themes/mobilon1.scss' as messagekeyboard-mobilon1;
 
 // Compounds
 @use '../../components/3_compounds/ChatInput/styles/themes/mobilon1.scss' as chatinput-mobilon1;
@@ -65,7 +65,7 @@
 @use '../../components/2_elements/ChatTabs/styles/themes/mobilon1.scss' as chattabs-mobilon1;
 @use '../../components/2_elements/ContactInfo/styles/themes/mobilon1.scss' as contactinfo-mobilon1;
 @use '../../components/1_atoms/ContextMenu/styles/themes/mobilon1.scss' as contextmenu-mobilon1;
-@use '../../components/2_elements/FeedKeyboard/styles/themes/mobilon1.scss' as feedkeyboard-mobilon1;
+@use '../../components/2_feed_elements/FeedKeyboard/styles/themes/mobilon1.scss' as feedkeyboard-mobilon1;
 @use '../../components/2_elements/FilePreview/styles/themes/mobilon1.scss' as filepreview-mobilon1;
 @use '../../components/2_elements/FileUploader/styles/themes/mobilon1.scss' as fileuploader-mobilon1;
 @use '../../components/2_elements/ThemeMode/styles/themes/mobilon1.scss' as thememode-mobilon1;

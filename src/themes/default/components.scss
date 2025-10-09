@@ -13,7 +13,7 @@
 @use '../../components/2_blocks/FeedFoundItem/styles/themes/default.scss' as feedfounditem-default;
 @use '../../components/2_blocks/FeedFoundObjects/styles/themes/default.scss' as feedfoundobjects-default;
 @use '../../components/2_blocks/FeedSearch/styles/themes/default.scss' as feedsearch-default;
-@use '../../components/2_blocks/MessageKeyboard/styles/themes/default.scss' as messagekeyboard-default;
+@use '../../components/2_feed_elements/MessageKeyboard/styles/themes/default.scss' as messagekeyboard-default;
 
 // Compounds
 @use '../../components/3_compounds/ChatInput/styles/themes/default.scss' as chatinput-default;
@@ -65,7 +65,7 @@
 @use '../../components/2_elements/ChatTabs/styles/themes/default.scss' as chattabs-default;
 @use '../../components/2_elements/ContactInfo/styles/themes/default.scss' as contactinfo-default;
 @use '../../components/1_atoms/ContextMenu/styles/themes/default.scss' as contextmenu-default;
-@use '../../components/2_elements/FeedKeyboard/styles/themes/default.scss' as feedkeyboard-default;
+@use '../../components/2_feed_elements/FeedKeyboard/styles/themes/default.scss' as feedkeyboard-default;
 @use '../../components/2_elements/FilePreview/styles/themes/default.scss' as filepreview-default;
 @use '../../components/2_elements/FileUploader/styles/themes/default.scss' as fileuploader-default;
 @use '../../components/2_elements/ThemeMode/styles/themes/default.scss' as thememode-default;

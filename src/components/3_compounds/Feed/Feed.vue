@@ -110,9 +110,9 @@ import BaseReplyMessage from "../../2_feed_elements/BaseReplyMessage/BaseReplyMe
 import { IFeedObject, IFeedTyping, IFeedUnreadButton } from '../../../types';
 import { throttle } from '../../../hooks/throttle';
 import { useMessage } from '../../../hooks/useMessage';
-import MessageKeyboard from '../../2_blocks/MessageKeyboard/MessageKeyboard.vue';
+import MessageKeyboard from '../../2_feed_elements/MessageKeyboard/MessageKeyboard.vue';
 import type { IFeedKeyboard } from '../../../types/IFeedKeyboard';
-import FeedKeyboard from '../../2_elements/FeedKeyboard/FeedKeyboard.vue';
+import FeedKeyboard from '../../2_feed_elements/FeedKeyboard/FeedKeyboard.vue';
 
 const props = defineProps({
   objects: {

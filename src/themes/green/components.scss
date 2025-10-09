@@ -13,7 +13,7 @@
 @use '../../components/2_blocks/FeedFoundItem/styles/themes/green.scss' as feedfounditem-green;
 @use '../../components/2_blocks/FeedFoundObjects/styles/themes/green.scss' as feedfoundobjects-green;
 @use '../../components/2_blocks/FeedSearch/styles/themes/green.scss' as feedsearch-green;
-@use '../../components/2_blocks/MessageKeyboard/styles/themes/green.scss' as messagekeyboard-green;
+@use '../../components/2_feed_elements/MessageKeyboard/styles/themes/green.scss' as messagekeyboard-green;
 
 // Compounds
 @use '../../components/3_compounds/ChatInput/styles/themes/green.scss' as chatinput-green;
@@ -65,7 +65,7 @@
 @use '../../components/2_elements/ChatTabs/styles/themes/green.scss' as chattabs-green;
 @use '../../components/2_elements/ContactInfo/styles/themes/green.scss' as contactinfo-green;
 @use '../../components/1_atoms/ContextMenu/styles/themes/green.scss' as contextmenu-green;
-@use '../../components/2_elements/FeedKeyboard/styles/themes/green.scss' as feedkeyboard-green;
+@use '../../components/2_feed_elements/FeedKeyboard/styles/themes/green.scss' as feedkeyboard-green;
 @use '../../components/2_elements/FilePreview/styles/themes/green.scss' as filepreview-green;
 @use '../../components/2_elements/FileUploader/styles/themes/green.scss' as fileuploader-green;
 @use '../../components/2_elements/ThemeMode/styles/themes/green.scss' as thememode-green;

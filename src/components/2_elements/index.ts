@@ -9,7 +9,6 @@ export { default as ChatFilter } from './ChatFilter/ChatFilter.vue';
 export { default as ChatInfo } from './ChatInfo/ChatInfo.vue';
 export { default as ChatTabs } from './ChatTabs/ChatTabs.vue';
 export { default as ContactInfo } from './ContactInfo/ContactInfo.vue';
-export { default as FeedKeyboard } from './FeedKeyboard/FeedKeyboard.vue';
 export { default as FilePreview } from './FilePreview/FilePreview.vue';
 export { default as FileUploader } from './FileUploader/FileUploader.vue';
 export { default as ThemeMode } from './ThemeMode/ThemeMode.vue';
