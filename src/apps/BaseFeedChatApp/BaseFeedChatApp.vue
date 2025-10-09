@@ -33,9 +33,9 @@ import {
   // ThemeMode,
   // SideBar,
   // ChatPanel,
-  BaseContainer,
   FeedLayout,
 } from "../..";
+import { BaseContainer } from "../../components/5_containers";
 
 import {
   // formatTimestamp,

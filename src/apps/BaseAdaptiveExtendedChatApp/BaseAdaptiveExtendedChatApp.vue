@@ -200,7 +200,6 @@ import {
   ThemeMode,
   SideBar,
   ChatPanel,
-  BaseContainer,
   AdaptiveExtendedLayout,
   ChatWrapper,
   // useModalCreateChat,
@@ -215,6 +214,7 @@ import {
   FeedFoundObjects,
   AudioRecorder,
 } from "../..";
+import { BaseContainer } from "../../components/5_containers";
 import { useModalCreateDialog, useModalSelectUser2 } from "../helpers";
 
 import {

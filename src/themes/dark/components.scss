@@ -47,10 +47,10 @@
 @use '../../components/compounds/UserProfile/styles/themes/dark.scss' as userprofile-dark;
 
 // Containers
-@use '../../components/containers/BaseContainer/styles/themes/dark.scss' as basecontainer-dark;
-@use '../../components/containers/FloatContainer/styles/themes/dark.scss' as floatcontainer-dark;
-@use '../../components/containers/PlaceholderComponent/styles/themes/dark.scss' as placeholdercomponent-dark;
-@use '../../components/containers/SplashScreen/styles/themes/dark.scss' as splashscreen-dark;
+@use '../../components/5_containers/BaseContainer/styles/themes/dark.scss' as basecontainer-dark;
+@use '../../components/5_containers/FloatContainer/styles/themes/dark.scss' as floatcontainer-dark;
+@use '../../components/5_containers/PlaceholderComponent/styles/themes/dark.scss' as placeholdercomponent-dark;
+@use '../../components/5_containers/SplashScreen/styles/themes/dark.scss' as splashscreen-dark;
 
 // Elements
 @use '../../components/elements/AudioRecorder/styles/themes/dark.scss' as audiorecorder-dark;

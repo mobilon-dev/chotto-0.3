@@ -100,13 +100,13 @@ import {
   ThemeMode,
   // SideBar,
   // ChatPanel,
-  BaseContainer,
   BaseLayout,
   ChatWrapper,
   ButtonEmojiPicker,
   ButtonTemplateSelector,
   ChannelSelector
 } from "../..";
+import { BaseContainer } from "../../components/5_containers";
 
 import {
   // formatTimestamp,

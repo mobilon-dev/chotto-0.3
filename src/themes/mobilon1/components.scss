@@ -47,10 +47,10 @@
 @use '../../components/compounds/UserProfile/styles/themes/mobilon1.scss' as userprofile-mobilon1;
 
 // Containers
-@use '../../components/containers/BaseContainer/styles/themes/mobilon1.scss' as basecontainer-mobilon1;
-@use '../../components/containers/FloatContainer/styles/themes/mobilon1.scss' as floatcontainer-mobilon1;
-@use '../../components/containers/PlaceholderComponent/styles/themes/mobilon1.scss' as placeholdercomponent-mobilon1;
-@use '../../components/containers/SplashScreen/styles/themes/mobilon1.scss' as splashscreen-mobilon1;
+@use '../../components/5_containers/BaseContainer/styles/themes/mobilon1.scss' as basecontainer-mobilon1;
+@use '../../components/5_containers/FloatContainer/styles/themes/mobilon1.scss' as floatcontainer-mobilon1;
+@use '../../components/5_containers/PlaceholderComponent/styles/themes/mobilon1.scss' as placeholdercomponent-mobilon1;
+@use '../../components/5_containers/SplashScreen/styles/themes/mobilon1.scss' as splashscreen-mobilon1;
 
 // Elements
 @use '../../components/elements/AudioRecorder/styles/themes/mobilon1.scss' as audiorecorder-mobilon1;

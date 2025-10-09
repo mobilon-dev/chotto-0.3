@@ -160,7 +160,6 @@ import {
   ThemeMode,
   SideBar,
   ChatPanel,
-  BaseContainer,
   ExtendedLayout,
   ChatWrapper,
   // useModalCreateChat,
@@ -174,6 +173,7 @@ import {
   ChannelSelector,
   FeedFoundObjects,
 } from "../..";
+import { BaseContainer } from "../../components/5_containers";
 import { useModalSelectUser2 } from "../helpers";
 
 import {

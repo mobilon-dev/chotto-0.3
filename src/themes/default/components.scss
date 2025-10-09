@@ -47,10 +47,10 @@
 @use '../../components/compounds/UserProfile/styles/themes/default.scss' as userprofile-default;
 
 // Containers
-@use '../../components/containers/BaseContainer/styles/themes/default.scss' as basecontainer-default;
-@use '../../components/containers/FloatContainer/styles/themes/default.scss' as floatcontainer-default;
-@use '../../components/containers/PlaceholderComponent/styles/themes/default.scss' as placeholdercomponent-default;
-@use '../../components/containers/SplashScreen/styles/themes/default.scss' as splashscreen-default;
+@use '../../components/5_containers/BaseContainer/styles/themes/default.scss' as basecontainer-default;
+@use '../../components/5_containers/FloatContainer/styles/themes/default.scss' as floatcontainer-default;
+@use '../../components/5_containers/PlaceholderComponent/styles/themes/default.scss' as placeholdercomponent-default;
+@use '../../components/5_containers/SplashScreen/styles/themes/default.scss' as splashscreen-default;
 
 // Elements
 @use '../../components/elements/AudioRecorder/styles/themes/default.scss' as audiorecorder-default;

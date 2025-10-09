@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
  
-import BaseContainer from '../../../containers/BaseContainer.vue';
+import BaseContainer from '../../../5_containers/BaseContainer/BaseContainer.vue';
 import ButtonCommandsSelector from '../ButtonCommandsSelector.vue';
   
 const meta: Meta<typeof ButtonCommandsSelector> = {

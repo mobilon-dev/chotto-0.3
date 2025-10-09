@@ -273,7 +273,6 @@ import {
   ThemeMode,
   SideBar,
   ChatPanel,
-  BaseContainer,
   ExtendedLayout,
   ChatWrapper,
   // useModalCreateChat,
@@ -301,7 +300,8 @@ import { useChatsStore } from "../stores/useChatStore";
 import { transformToFeed } from "../transform/transformToFeed";
 // import { useLocale } from "../locale/useLocale";
 // import { VideoRecorder } from "../library";
-import { ButtonCommandsSelector, SplashScreen, ContactInfo } from "../..";
+import { ContactInfo } from "../..";
+import { BaseContainer, SplashScreen } from "../../components/5_containers";
 import { useModalCreateDialog, useModalSelectUser2 } from "../helpers";
 
 // const { locale: currentLocale, locales } = useLocale()

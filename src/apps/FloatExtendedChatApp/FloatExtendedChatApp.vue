@@ -110,13 +110,13 @@ import {
   ThemeMode,
   SideBar,
   ChatPanel,
-  FloatContainer,
   ExtendedLayout,
   ChatWrapper,
   ButtonContextMenu,
   FeedFoundObjects,
   FeedSearch,
 } from "../..";
+import { FloatContainer } from "../../components/5_containers";
 
 import {
   // formatTimestamp,
