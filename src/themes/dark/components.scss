@@ -41,7 +41,7 @@
     @use '../../components/2_feed_elements/TypingMessage/styles/themes/dark.scss' as typingmessage-dark;
     @use '../../components/2_feed_elements/VideoMessage/styles/themes/dark.scss' as videomessage-dark;
 
-@use '../../components/3_compounds/ModalVideoRecorder/styles/themes/dark.scss' as modalvideorecorder-dark;
+@use '../../components/2_modals/ModalVideoRecorder/styles/themes/dark.scss' as modalvideorecorder-dark;
 @use '../../components/3_compounds/SideBar/styles/themes/dark.scss' as sidebar-dark;
 @use '../../components/3_compounds/TemplateSelector/styles/themes/dark.scss' as templateselector-dark;
 @use '../../components/3_compounds/UserProfile/styles/themes/dark.scss' as userprofile-dark;

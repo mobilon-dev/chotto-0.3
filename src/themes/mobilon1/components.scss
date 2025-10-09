@@ -41,7 +41,7 @@
     @use '../../components/2_feed_elements/TypingMessage/styles/themes/mobilon1.scss' as typingmessage-mobilon1;
     @use '../../components/2_feed_elements/VideoMessage/styles/themes/mobilon1.scss' as videomessage-mobilon1;
 
-@use '../../components/3_compounds/ModalVideoRecorder/styles/themes/mobilon1.scss' as modalvideorecorder-mobilon1;
+@use '../../components/2_modals/ModalVideoRecorder/styles/themes/mobilon1.scss' as modalvideorecorder-mobilon1;
 @use '../../components/3_compounds/SideBar/styles/themes/mobilon1.scss' as sidebar-mobilon1;
 @use '../../components/3_compounds/TemplateSelector/styles/themes/mobilon1.scss' as templateselector-mobilon1;
 @use '../../components/3_compounds/UserProfile/styles/themes/mobilon1.scss' as userprofile-mobilon1;

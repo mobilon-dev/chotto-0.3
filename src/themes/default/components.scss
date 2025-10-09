@@ -41,7 +41,7 @@
     @use '../../components/2_feed_elements/TypingMessage/styles/themes/default.scss' as typingmessage-default;
     @use '../../components/2_feed_elements/VideoMessage/styles/themes/default.scss' as videomessage-default;
 
-@use '../../components/3_compounds/ModalVideoRecorder/styles/themes/default.scss' as modalvideorecorder-default;
+@use '../../components/2_modals/ModalVideoRecorder/styles/themes/default.scss' as modalvideorecorder-default;
 @use '../../components/3_compounds/SideBar/styles/themes/default.scss' as sidebar-default;
 @use '../../components/3_compounds/TemplateSelector/styles/themes/default.scss' as templateselector-default;
 @use '../../components/3_compounds/UserProfile/styles/themes/default.scss' as userprofile-default;
