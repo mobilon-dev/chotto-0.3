@@ -112,7 +112,7 @@ import { throttle } from '../../../hooks/throttle';
 import { useMessage } from '../../../hooks/useMessage';
 import MessageKeyboard from '../../blocks/MessageKeyboard/MessageKeyboard.vue';
 import type { IFeedKeyboard } from '../../../types/IFeedKeyboard';
-import FeedKeyboard from '../../elements/FeedKeyboard/FeedKeyboard.vue';
+import FeedKeyboard from '../../2_elements/FeedKeyboard/FeedKeyboard.vue';
 
 const props = defineProps({
   objects: {

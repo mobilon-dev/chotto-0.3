@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 // import Channels from '../Channels/Channels.vue';
 import Channels from '../ChannelSelector/ChannelSelector.vue';
 import BaseContainer from '../../../5_containers/BaseContainer/BaseContainer.vue';
-import ThemeMode from '../../../2_elements/ThemeMode/ThemeMode.vue';
+import ThemeMode from '../../elements/ThemeMode/ThemeMode.vue';
 const meta: Meta<typeof Channels> = {
   component: Channels,
   render: (args) => ({

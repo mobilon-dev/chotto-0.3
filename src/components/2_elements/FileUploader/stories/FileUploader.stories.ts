@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
  
 import FileUploader from '../FileUploader.vue';
 import BaseContainer from '../../../5_containers/BaseContainer/BaseContainer.vue';
-import ThemeMode from '../../../2_elements/ThemeMode/ThemeMode.vue';
+import ThemeMode from '../../elements/ThemeMode/ThemeMode.vue';
 
 const meta: Meta<typeof FileUploader> = {
   component: FileUploader,
@@ -30,6 +30,7 @@ const theme = [{
 
 export const Standard: Story = {
   args: {
+    //@ts-expect-error - theme prop type mismatch in storybook
     theme
   },
 };
@@ -37,6 +38,7 @@ export const Standard: Story = {
 export const InactiveButton: Story = {
   args: {
     state: 'disabled',
+    //@ts-expect-error - theme prop type mismatch in storybook
     theme
   },
 };

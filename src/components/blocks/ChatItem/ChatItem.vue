@@ -174,7 +174,7 @@ import { ref, computed, watch} from 'vue'
 import { getStatus, statuses } from '../../../hooks';
 import { t } from '../../../locale/useLocale'
 import Tooltip from '../../atoms/Tooltip/Tooltip.vue';
-import ButtonContextMenu from '../../elements/ButtonContextMenu/ButtonContextMenu.vue';
+import ButtonContextMenu from '../../2_elements/ButtonContextMenu/ButtonContextMenu.vue';
 import AvatarIcon from '../../icons/AvatarIcon.vue';
 import { IAction, IChatItem, IChatDialog } from './types';
 

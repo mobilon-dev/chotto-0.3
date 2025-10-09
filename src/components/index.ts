@@ -7,8 +7,8 @@ export * from './blocks';
 // 3_compounds
 export * from './3_compounds';
 
-// Elements
-export * from './elements';
+// 2_elements
+export * from './2_elements';
 
 // Molecules
 export * from './molecules';
