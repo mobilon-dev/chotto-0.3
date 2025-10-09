@@ -43,7 +43,7 @@
 
 @use '../../components/2_modals/ModalVideoRecorder/styles/themes/default.scss' as modalvideorecorder-default;
 @use '../../components/3_compounds/SideBar/styles/themes/default.scss' as sidebar-default;
-@use '../../components/3_compounds/TemplateSelector/styles/themes/default.scss' as templateselector-default;
+@use '../../components/2_chatinput_elements/TemplateSelector/styles/themes/default.scss' as templateselector-default;
 @use '../../components/3_compounds/UserProfile/styles/themes/default.scss' as userprofile-default;
 
 // Containers
@@ -54,11 +54,11 @@
 
 // Elements
 @use '../../components/2_elements/AudioRecorder/styles/themes/default.scss' as audiorecorder-default;
-@use '../../components/2_elements/ButtonCommandsSelector/styles/themes/default.scss' as buttoncommandssel-default;
+@use '../../components/2_chatinput_elements/ButtonCommandsSelector/styles/themes/default.scss' as buttoncommandssel-default;
 @use '../../components/1_atoms/ButtonContextMenu/styles/themes/default.scss' as buttoncontextmenu-default;
-@use '../../components/2_elements/ButtonEmojiPicker/styles/themes/default.scss' as buttonemojipicker-default;
-@use '../../components/2_elements/ButtonTemplateSelector/styles/themes/default.scss' as buttontemplatesel-default;
-@use '../../components/2_elements/ButtonWabaTemplateSelector/styles/themes/default.scss' as buttonwabatemplatesel-default;
+@use '../../components/2_chatinput_elements/ButtonEmojiPicker/styles/themes/default.scss' as buttonemojipicker-default;
+@use '../../components/2_chatinput_elements/ButtonTemplateSelector/styles/themes/default.scss' as buttontemplatesel-default;
+@use '../../components/2_chatinput_elements/ButtonWabaTemplateSelector/styles/themes/default.scss' as buttonwabatemplatesel-default;
 @use '../../components/2_elements/ChannelSelector/styles/themes/default.scss' as channelselector-default;
 @use '../../components/2_chatlist_elements/ChatFilter/styles/themes/default.scss' as chatfilter-default;
 @use '../../components/2_elements/ChatInfo/styles/themes/default.scss' as chatinfo-default;
@@ -66,14 +66,14 @@
 @use '../../components/2_elements/ContactInfo/styles/themes/default.scss' as contactinfo-default;
 @use '../../components/1_atoms/ContextMenu/styles/themes/default.scss' as contextmenu-default;
 @use '../../components/2_feed_elements/FeedKeyboard/styles/themes/default.scss' as feedkeyboard-default;
-@use '../../components/2_elements/FilePreview/styles/themes/default.scss' as filepreview-default;
-@use '../../components/2_elements/FileUploader/styles/themes/default.scss' as fileuploader-default;
+@use '../../components/2_chatinput_elements/FilePreview/styles/themes/default.scss' as filepreview-default;
+@use '../../components/2_chatinput_elements/FileUploader/styles/themes/default.scss' as fileuploader-default;
 @use '../../components/2_elements/ThemeMode/styles/themes/default.scss' as thememode-default;
 @use '../../components/2_elements/VideoRecorder/styles/themes/default.scss' as videorecorder-default;
-@use '../../components/2_elements/WABAAttachmentSection/styles/themes/default.scss' as wabaattachment-default;
-@use '../../components/2_elements/WABAQuickReplyButtons/styles/themes/default.scss' as wabaquickreply-default;
-@use '../../components/2_elements/WABASeparatedQuickButtons/styles/themes/default.scss' as wabaseparatedquick-default;
-@use '../../components/2_elements/WABATemplateSelector/styles/themes/default.scss' as wabatemplatesel-default;
+@use '../../components/2_chatinput_elements/WABAAttachmentSection/styles/themes/default.scss' as wabaattachment-default;
+@use '../../components/2_chatinput_elements/WABAQuickReplyButtons/styles/themes/default.scss' as wabaquickreply-default;
+@use '../../components/2_chatinput_elements/WABASeparatedQuickButtons/styles/themes/default.scss' as wabaseparatedquick-default;
+@use '../../components/2_chatinput_elements/WABATemplateSelector/styles/themes/default.scss' as wabatemplatesel-default;
 
 // Layouts
 @use '../../components/4_layouts/AdaptiveExtendedLayout/styles/themes/default.scss' as adaptiveextendedlayout-default;

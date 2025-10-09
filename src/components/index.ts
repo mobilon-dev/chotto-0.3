@@ -4,6 +4,9 @@ export * from './1_atoms';
 // 2_blocks
 export * from './2_blocks';
 
+// 2_chatinput_elements
+export * from './2_chatinput_elements';
+
 // 2_chatlist_elements
 export * from './2_chatlist_elements';
 

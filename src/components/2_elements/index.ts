@@ -1,17 +1,7 @@
 // Components
 export { default as AudioRecorder } from './AudioRecorder/AudioRecorder.vue';
-export { default as ButtonCommandsSelector } from './ButtonCommandsSelector/ButtonCommandsSelector.vue';
-export { default as ButtonEmojiPicker } from './ButtonEmojiPicker/ButtonEmojiPicker.vue';
-export { default as ButtonTemplateSelector } from './ButtonTemplateSelector/ButtonTemplateSelector.vue';
-export { default as ButtonWabaTemplateSelector } from './ButtonWabaTemplateSelector/ButtonWabaTemplateSelector.vue';
 export { default as ChannelSelector } from './ChannelSelector/ChannelSelector.vue';
 export { default as ChatInfo } from './ChatInfo/ChatInfo.vue';
 export { default as ContactInfo } from './ContactInfo/ContactInfo.vue';
-export { default as FilePreview } from './FilePreview/FilePreview.vue';
-export { default as FileUploader } from './FileUploader/FileUploader.vue';
 export { default as ThemeMode } from './ThemeMode/ThemeMode.vue';
 export { default as VideoRecorder } from './VideoRecorder/VideoRecorder.vue';
-export { default as WABAAttachmentSection } from './WABAAttachmentSection/WABAAttachmentSection.vue';
-export { default as WABAQuickReplyButtons } from './WABAQuickReplyButtons/WABAQuickReplyButtons.vue';
-export { default as WABASeparatedQuickButtons } from './WABASeparatedQuickButtons/WABASeparatedQuickButtons.vue';
-export { default as WABATemplateSelector } from './WABATemplateSelector/WABATemplateSelector.vue';

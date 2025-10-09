@@ -43,7 +43,7 @@
 
 @use '../../components/2_modals/ModalVideoRecorder/styles/themes/mobilon1.scss' as modalvideorecorder-mobilon1;
 @use '../../components/3_compounds/SideBar/styles/themes/mobilon1.scss' as sidebar-mobilon1;
-@use '../../components/3_compounds/TemplateSelector/styles/themes/mobilon1.scss' as templateselector-mobilon1;
+@use '../../components/2_chatinput_elements/TemplateSelector/styles/themes/mobilon1.scss' as templateselector-mobilon1;
 @use '../../components/3_compounds/UserProfile/styles/themes/mobilon1.scss' as userprofile-mobilon1;
 
 // Containers
@@ -54,11 +54,11 @@
 
 // Elements
 @use '../../components/2_elements/AudioRecorder/styles/themes/mobilon1.scss' as audiorecorder-mobilon1;
-@use '../../components/2_elements/ButtonCommandsSelector/styles/themes/mobilon1.scss' as buttoncommandssel-mobilon1;
+@use '../../components/2_chatinput_elements/ButtonCommandsSelector/styles/themes/mobilon1.scss' as buttoncommandssel-mobilon1;
 @use '../../components/1_atoms/ButtonContextMenu/styles/themes/mobilon1.scss' as buttoncontextmenu-mobilon1;
-@use '../../components/2_elements/ButtonEmojiPicker/styles/themes/mobilon1.scss' as buttonemojipicker-mobilon1;
-@use '../../components/2_elements/ButtonTemplateSelector/styles/themes/mobilon1.scss' as buttontemplatesel-mobilon1;
-@use '../../components/2_elements/ButtonWabaTemplateSelector/styles/themes/mobilon1.scss' as buttonwabatemplatesel-mobilon1;
+@use '../../components/2_chatinput_elements/ButtonEmojiPicker/styles/themes/mobilon1.scss' as buttonemojipicker-mobilon1;
+@use '../../components/2_chatinput_elements/ButtonTemplateSelector/styles/themes/mobilon1.scss' as buttontemplatesel-mobilon1;
+@use '../../components/2_chatinput_elements/ButtonWabaTemplateSelector/styles/themes/mobilon1.scss' as buttonwabatemplatesel-mobilon1;
 @use '../../components/2_elements/ChannelSelector/styles/themes/mobilon1.scss' as channelselector-mobilon1;
 @use '../../components/2_chatlist_elements/ChatFilter/styles/themes/mobilon1.scss' as chatfilter-mobilon1;
 @use '../../components/2_elements/ChatInfo/styles/themes/mobilon1.scss' as chatinfo-mobilon1;
@@ -66,14 +66,14 @@
 @use '../../components/2_elements/ContactInfo/styles/themes/mobilon1.scss' as contactinfo-mobilon1;
 @use '../../components/1_atoms/ContextMenu/styles/themes/mobilon1.scss' as contextmenu-mobilon1;
 @use '../../components/2_feed_elements/FeedKeyboard/styles/themes/mobilon1.scss' as feedkeyboard-mobilon1;
-@use '../../components/2_elements/FilePreview/styles/themes/mobilon1.scss' as filepreview-mobilon1;
-@use '../../components/2_elements/FileUploader/styles/themes/mobilon1.scss' as fileuploader-mobilon1;
+@use '../../components/2_chatinput_elements/FilePreview/styles/themes/mobilon1.scss' as filepreview-mobilon1;
+@use '../../components/2_chatinput_elements/FileUploader/styles/themes/mobilon1.scss' as fileuploader-mobilon1;
 @use '../../components/2_elements/ThemeMode/styles/themes/mobilon1.scss' as thememode-mobilon1;
 @use '../../components/2_elements/VideoRecorder/styles/themes/mobilon1.scss' as videorecorder-mobilon1;
-@use '../../components/2_elements/WABAAttachmentSection/styles/themes/mobilon1.scss' as wabaattachment-mobilon1;
-@use '../../components/2_elements/WABAQuickReplyButtons/styles/themes/mobilon1.scss' as wabaquickreply-mobilon1;
-@use '../../components/2_elements/WABASeparatedQuickButtons/styles/themes/mobilon1.scss' as wabaseparatedquick-mobilon1;
-@use '../../components/2_elements/WABATemplateSelector/styles/themes/mobilon1.scss' as wabatemplatesel-mobilon1;
+@use '../../components/2_chatinput_elements/WABAAttachmentSection/styles/themes/mobilon1.scss' as wabaattachment-mobilon1;
+@use '../../components/2_chatinput_elements/WABAQuickReplyButtons/styles/themes/mobilon1.scss' as wabaquickreply-mobilon1;
+@use '../../components/2_chatinput_elements/WABASeparatedQuickButtons/styles/themes/mobilon1.scss' as wabaseparatedquick-mobilon1;
+@use '../../components/2_chatinput_elements/WABATemplateSelector/styles/themes/mobilon1.scss' as wabatemplatesel-mobilon1;
 
 // Layouts
 @use '../../components/4_layouts/AdaptiveExtendedLayout/styles/themes/mobilon1.scss' as adaptiveextendedlayout-mobilon1;

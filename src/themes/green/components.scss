@@ -43,7 +43,7 @@
 
 @use '../../components/2_modals/ModalVideoRecorder/styles/themes/green.scss' as modalvideorecorder-green;
 @use '../../components/3_compounds/SideBar/styles/themes/green.scss' as sidebar-green;
-@use '../../components/3_compounds/TemplateSelector/styles/themes/green.scss' as templateselector-green;
+@use '../../components/2_chatinput_elements/TemplateSelector/styles/themes/green.scss' as templateselector-green;
 @use '../../components/3_compounds/UserProfile/styles/themes/green.scss' as userprofile-green;
 
 // Containers
@@ -54,11 +54,11 @@
 
 // Elements
 @use '../../components/2_elements/AudioRecorder/styles/themes/green.scss' as audiorecorder-green;
-@use '../../components/2_elements/ButtonCommandsSelector/styles/themes/green.scss' as buttoncommandssel-green;
+@use '../../components/2_chatinput_elements/ButtonCommandsSelector/styles/themes/green.scss' as buttoncommandssel-green;
 @use '../../components/1_atoms/ButtonContextMenu/styles/themes/green.scss' as buttoncontextmenu-green;
-@use '../../components/2_elements/ButtonEmojiPicker/styles/themes/green.scss' as buttonemojipicker-green;
-@use '../../components/2_elements/ButtonTemplateSelector/styles/themes/green.scss' as buttontemplatesel-green;
-@use '../../components/2_elements/ButtonWabaTemplateSelector/styles/themes/green.scss' as buttonwabatemplatesel-green;
+@use '../../components/2_chatinput_elements/ButtonEmojiPicker/styles/themes/green.scss' as buttonemojipicker-green;
+@use '../../components/2_chatinput_elements/ButtonTemplateSelector/styles/themes/green.scss' as buttontemplatesel-green;
+@use '../../components/2_chatinput_elements/ButtonWabaTemplateSelector/styles/themes/green.scss' as buttonwabatemplatesel-green;
 @use '../../components/2_elements/ChannelSelector/styles/themes/green.scss' as channelselector-green;
 @use '../../components/2_chatlist_elements/ChatFilter/styles/themes/green.scss' as chatfilter-green;
 @use '../../components/2_elements/ChatInfo/styles/themes/green.scss' as chatinfo-green;
@@ -66,14 +66,14 @@
 @use '../../components/2_elements/ContactInfo/styles/themes/green.scss' as contactinfo-green;
 @use '../../components/1_atoms/ContextMenu/styles/themes/green.scss' as contextmenu-green;
 @use '../../components/2_feed_elements/FeedKeyboard/styles/themes/green.scss' as feedkeyboard-green;
-@use '../../components/2_elements/FilePreview/styles/themes/green.scss' as filepreview-green;
-@use '../../components/2_elements/FileUploader/styles/themes/green.scss' as fileuploader-green;
+@use '../../components/2_chatinput_elements/FilePreview/styles/themes/green.scss' as filepreview-green;
+@use '../../components/2_chatinput_elements/FileUploader/styles/themes/green.scss' as fileuploader-green;
 @use '../../components/2_elements/ThemeMode/styles/themes/green.scss' as thememode-green;
 @use '../../components/2_elements/VideoRecorder/styles/themes/green.scss' as videorecorder-green;
-@use '../../components/2_elements/WABAAttachmentSection/styles/themes/green.scss' as wabaattachment-green;
-@use '../../components/2_elements/WABAQuickReplyButtons/styles/themes/green.scss' as wabaquickreply-green;
-@use '../../components/2_elements/WABASeparatedQuickButtons/styles/themes/green.scss' as wabaseparatedquick-green;
-@use '../../components/2_elements/WABATemplateSelector/styles/themes/green.scss' as wabatemplatesel-green;
+@use '../../components/2_chatinput_elements/WABAAttachmentSection/styles/themes/green.scss' as wabaattachment-green;
+@use '../../components/2_chatinput_elements/WABAQuickReplyButtons/styles/themes/green.scss' as wabaquickreply-green;
+@use '../../components/2_chatinput_elements/WABASeparatedQuickButtons/styles/themes/green.scss' as wabaseparatedquick-green;
+@use '../../components/2_chatinput_elements/WABATemplateSelector/styles/themes/green.scss' as wabatemplatesel-green;
 
 // Layouts
 @use '../../components/4_layouts/AdaptiveExtendedLayout/styles/themes/green.scss' as adaptiveextendedlayout-green;
