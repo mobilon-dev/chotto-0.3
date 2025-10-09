@@ -43,8 +43,6 @@ export interface ChottoThemeVariables {
   '--chotto-theme-container-borders': string;
 
   // Макеты
-  '--chotto-theme-layout-base-second-col-bg': string;
-  '--chotto-theme-layout-base-first-col-bg': string;
   '--chotto-theme-layout-feed-bg': string;
 
   // Сообщения

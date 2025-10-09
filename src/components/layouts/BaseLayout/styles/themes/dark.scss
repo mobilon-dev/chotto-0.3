@@ -15,7 +15,7 @@
   --chotto-baselayout-first-col-display: flex;
   --chotto-baselayout-first-col-flex-direction: column;
   --chotto-baselayout-first-col-height: inherit;
-  --chotto-baselayout-first-col-background-color: var(--chotto-theme-layout-base-first-col-bg, transparent);
+  --chotto-baselayout-first-col-background-color: #171717;
   --chotto-baselayout-first-col-border-right: var(--chotto-theme-container-borders, none);
   --chotto-baselayout-first-col-border-bottom: var(--chotto-theme-container-borders, none);
   --chotto-baselayout-first-col-width: 100%;
@@ -27,7 +27,7 @@
   --chotto-baselayout-second-col-grid-column: 2;
   --chotto-baselayout-second-col-height: inherit;
   --chotto-baselayout-second-col-width: 100%;
-  --chotto-baselayout-second-col-background-color: var(--chotto-theme-layout-base-second-col-bg, transparent);
+  --chotto-baselayout-second-col-background-color: #262626;
   --chotto-baselayout-second-col-border-right: var(--chotto-theme-container-borders, none);
   --chotto-baselayout-second-col-border-bottom: var(--chotto-theme-container-borders, none);
 
