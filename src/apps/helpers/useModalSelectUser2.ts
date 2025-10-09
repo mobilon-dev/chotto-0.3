@@ -1,5 +1,5 @@
 import { useModal } from '../../hooks/useModal';
-import Modal from '../../components/1_atoms/Modal/Modal.vue';
+import Modal from '../../components/2_modals/Modal/Modal.vue';
 
 export const useModalSelectUser2 = async (title: string, users: unknown[], theme: string) => {
   const data = await useModal({

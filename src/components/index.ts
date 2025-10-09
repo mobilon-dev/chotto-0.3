@@ -10,6 +10,9 @@ export * from './3_compounds';
 // 2_elements
 export * from './2_elements';
 
+// 2_modals
+export * from './2_modals';
+
 // Molecules
 export * from './molecules';
 

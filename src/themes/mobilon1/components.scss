@@ -1,9 +1,9 @@
 // Импорты компонентов для темы mobilon1
 
 // Atoms
-@use '../../components/1_atoms/Modal/styles/themes/mobilon1.scss' as modal-mobilon1;
-@use '../../components/1_atoms/ModalFullscreen/styles/themes/mobilon1.scss' as modalfullscreen-mobilon1;
-@use '../../components/1_atoms/ModalNoFooter/styles/themes/mobilon1.scss' as modalnofooter-mobilon1;
+@use '../../components/2_modals/Modal/styles/themes/mobilon1.scss' as modal-mobilon1;
+@use '../../components/2_modals/ModalFullscreen/styles/themes/mobilon1.scss' as modalfullscreen-mobilon1;
+@use '../../components/2_modals/ModalNoFooter/styles/themes/mobilon1.scss' as modalnofooter-mobilon1;
 @use '../../components/1_atoms/Tooltip/styles/themes/mobilon1.scss' as tooltip-mobilon1;
 
 // Blocks
