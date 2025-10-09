@@ -83,7 +83,7 @@
 @use '../../components/4_layouts/FeedLayout/styles/themes/dark.scss' as feedlayout-dark;
 
 // Molecules
-@use '../../components/2_blocks/CreateDialog/styles/themes/dark.scss' as createdialog-dark;
+@use '../../components/2_modals/CreateDialog/styles/themes/dark.scss' as createdialog-dark;
 @use '../../components/1_atoms/EmbedPreview/styles/themes/dark.scss' as embedpreview-dark;
 @use '../../components/1_atoms/LinkPreview/styles/themes/dark.scss' as linkpreview-dark;
 @use '../../components/2_blocks/SelectUser/styles/themes/dark.scss' as selectuser-dark;

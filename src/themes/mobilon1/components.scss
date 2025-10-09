@@ -83,7 +83,7 @@
 @use '../../components/4_layouts/FeedLayout/styles/themes/mobilon1.scss' as feedlayout-mobilon1;
 
 // Molecules
-@use '../../components/2_blocks/CreateDialog/styles/themes/mobilon1.scss' as createdialog-mobilon1;
+@use '../../components/2_modals/CreateDialog/styles/themes/mobilon1.scss' as createdialog-mobilon1;
 @use '../../components/1_atoms/EmbedPreview/styles/themes/mobilon1.scss' as embedpreview-mobilon1;
 @use '../../components/1_atoms/LinkPreview/styles/themes/mobilon1.scss' as linkpreview-mobilon1;
 @use '../../components/2_blocks/SelectUser/styles/themes/mobilon1.scss' as selectuser-mobilon1;

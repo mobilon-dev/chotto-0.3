@@ -4,7 +4,7 @@ import Modal from '../../components/2_modals/Modal/Modal.vue';
 export const useModalCreateChat = async (title: string, theme: string) => {
   const data = await useModal({
     //в component должен быть встроен emit change(key: value)
-    component: import('../../components/2_blocks/CreateChat/CreateChat.vue'),
+    component: import('../../components/2_modals/CreateChat/CreateChat.vue'),
     attrs: {
       title, 
     },
