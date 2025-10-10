@@ -9,7 +9,11 @@
       "import": "./dist/vuessages.es.js",
       "require": "./dist/vuessages.umd.js"
     },
-    "./style.css": "./dist/vuessages.css"
+    "./style.css": "./dist/chotto.css",
+    "./themes/default.css": "./dist/themes/default.css",
+    "./themes/dark.css": "./dist/themes/dark.css",
+    "./themes/green.css": "./dist/themes/green.css",
+    "./themes/mobilon1.css": "./dist/themes/mobilon1.css"
   },
   "files": [
     "dist"
@@ -17,8 +21,9 @@
   "types": "./dist/types/index.d.ts",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && vue-tsc --emitDeclarationOnly",
+    "build": "vite build && vite build --config vite.themes.config.ts && vue-tsc --emitDeclarationOnly",
     "build:lib": "vite build && vue-tsc --emitDeclarationOnly",
+    "build:themes": "vite build --config vite.themes.config.ts",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build -o docs",
