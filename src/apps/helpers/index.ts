@@ -1,4 +1,3 @@
-export * from './formatTimestamp';
 export * from './playNotificationAudio';
 export * from './prepareTimeline';
 export * from './sortByTimestamp';

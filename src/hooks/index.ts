@@ -1,3 +1,4 @@
+export * from './formatTimestamp';
 export * from './generatePreview';
 export * from './getStatusMessage';
 export * from './getTypeFileByMime';

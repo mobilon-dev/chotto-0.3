@@ -6,4 +6,3 @@ export * from './components/4_layouts';
 export * from './components/1_icons';
 
 export * from './hooks';
-export * from './apps/helpers';

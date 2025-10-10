@@ -1,4 +1,5 @@
-import {sortByTimestamp, formatTimestamp, insertDaySeparators} from '../helpers';
+import {sortByTimestamp, insertDaySeparators} from '../helpers';
+import {formatTimestamp} from '../../hooks';
 
 export const transformToFeed = (objects: Array<{direction: string; timestamp?: number}>, outPreviousDay: number | null = null) => {
   // а. сортировка по timestamp
