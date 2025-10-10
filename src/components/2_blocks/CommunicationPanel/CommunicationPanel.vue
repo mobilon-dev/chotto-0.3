@@ -172,7 +172,7 @@
 
 <script setup>
 import { ref, watch, onMounted, onUnmounted, computed } from 'vue';
-import Tooltip from '../../1_atoms/Tooltip/Tooltip.vue';
+import { Tooltip } from '@/components';
 
 import { 
   CommunicationPanelPhoneIcon,

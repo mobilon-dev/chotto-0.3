@@ -9,7 +9,7 @@
 // Blocks
 @use '../../components/2_chatlist_elements/ChatItem/styles/themes/default.scss' as chatitem-default;
 @use '../../components/3_compounds/ChatList/styles/themes/default.scss' as chatlist-default;
-@use '../../components/2_blocks/ChatPanel/styles/themes/default.scss' as chatpanel-default;
+@use '../../components/2_elements/ChatPanel/styles/themes/default.scss' as chatpanel-default;
 @use '../../components/2_blocks/FeedFoundItem/styles/themes/default.scss' as feedfounditem-default;
 @use '../../components/2_blocks/FeedFoundObjects/styles/themes/default.scss' as feedfoundobjects-default;
 @use '../../components/2_blocks/FeedSearch/styles/themes/default.scss' as feedsearch-default;
@@ -17,7 +17,7 @@
 
 // Compounds
 @use '../../components/3_compounds/ChatInput/styles/themes/default.scss' as chatinput-default;
-@use '../../components/3_compounds/CommunicationPanel/styles/themes/default.scss' as communicationpanel-default;
+@use '../../components/2_blocks/CommunicationPanel/styles/themes/default.scss' as communicationpanel-default;
 
   // Feed
   @use '../../components/3_compounds/Feed/styles/themes/default.scss' as feed-default;
@@ -44,7 +44,7 @@
 @use '../../components/2_modals/ModalVideoRecorder/styles/themes/default.scss' as modalvideorecorder-default;
 @use '../../components/3_compounds/SideBar/styles/themes/default.scss' as sidebar-default;
 @use '../../components/2_chatinput_elements/TemplateSelector/styles/themes/default.scss' as templateselector-default;
-@use '../../components/3_compounds/UserProfile/styles/themes/default.scss' as userprofile-default;
+@use '../../components/2_elements/UserProfile/styles/themes/default.scss' as userprofile-default;
 
 // Containers
 @use '../../components/5_containers/BaseContainer/styles/themes/default.scss' as basecontainer-default;

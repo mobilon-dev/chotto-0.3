@@ -9,7 +9,7 @@
 // Blocks
 @use '../../components/2_chatlist_elements/ChatItem/styles/themes/dark.scss' as chatitem-dark;
 @use '../../components/3_compounds/ChatList/styles/themes/dark.scss' as chatlist-dark;
-@use '../../components/2_blocks/ChatPanel/styles/themes/dark.scss' as chatpanel-dark;
+@use '../../components/2_elements/ChatPanel/styles/themes/dark.scss' as chatpanel-dark;
 @use '../../components/2_blocks/FeedFoundItem/styles/themes/dark.scss' as feedfounditem-dark;
 @use '../../components/2_blocks/FeedFoundObjects/styles/themes/dark.scss' as feedfoundobjects-dark;
 @use '../../components/2_blocks/FeedSearch/styles/themes/dark.scss' as feedsearch-dark;
@@ -17,7 +17,7 @@
 
 // Compounds
 @use '../../components/3_compounds/ChatInput/styles/themes/dark.scss' as chatinput-dark;
-@use '../../components/3_compounds/CommunicationPanel/styles/themes/dark.scss' as communicationpanel-dark;
+@use '../../components/2_blocks/CommunicationPanel/styles/themes/dark.scss' as communicationpanel-dark;
 
   // Feed
   @use '../../components/3_compounds/Feed/styles/themes/dark.scss' as feed-dark;
@@ -44,7 +44,7 @@
 @use '../../components/2_modals/ModalVideoRecorder/styles/themes/dark.scss' as modalvideorecorder-dark;
 @use '../../components/3_compounds/SideBar/styles/themes/dark.scss' as sidebar-dark;
 @use '../../components/2_chatinput_elements/TemplateSelector/styles/themes/dark.scss' as templateselector-dark;
-@use '../../components/3_compounds/UserProfile/styles/themes/dark.scss' as userprofile-dark;
+@use '../../components/2_elements/UserProfile/styles/themes/dark.scss' as userprofile-dark;
 
 // Containers
 @use '../../components/5_containers/BaseContainer/styles/themes/dark.scss' as basecontainer-dark;
