@@ -25,4 +25,5 @@
 .emoji {
   position: var(--chotto-buttonemojipicker-emoji-position, absolute);
   bottom: var(--chotto-buttonemojipicker-emoji-bottom, 50px);
+  z-index: var(--chotto-buttonemojipicker-emoji-z-index, 2);
 }
