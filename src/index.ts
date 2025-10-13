@@ -1,5 +1,5 @@
 import 'primeicons/primeicons.css'
-import './themes/index.scss'
+import './themes/global.scss'
 
 export * from './components';
 export * from './components/4_layouts';
