@@ -37,6 +37,6 @@ provide('extChatAppId', props.extChatAppId ? props.extChatAppId : '')
 
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 @use './styles/BaseContainer.scss';
 </style>

@@ -81,22 +81,4 @@ export interface FloatContainerThemeCSSVariables {
   '--chotto-floatcontainer-close-button-margin-left': string;
   /** Курсор кнопки закрытия */
   '--chotto-floatcontainer-close-button-cursor': string;
-
-  // Global styles
-  /** Размер коробки глобальных стилей */
-  '--chotto-floatcontainer-global-box-sizing': string;
-  /** Отступы body глобальных стилей */
-  '--chotto-floatcontainer-global-body-margin': string;
-  /** Отступы ul глобальных стилей */
-  '--chotto-floatcontainer-global-ul-margin': string;
-  /** Отступы ul глобальных стилей */
-  '--chotto-floatcontainer-global-ul-padding': string;
-  /** Тип маркера списка ul глобальных стилей */
-  '--chotto-floatcontainer-global-ul-list-style-type': string;
-  /** Семейство шрифтов input и button глобальных стилей */
-  '--chotto-floatcontainer-global-input-button-font-family': string;
-  /** Отступы p, h1, h2 глобальных стилей */
-  '--chotto-floatcontainer-global-p-h1-h2-margin': string;
-  /** Декорация текста ссылок глобальных стилей */
-  '--chotto-floatcontainer-global-a-text-decoration': string;
 }

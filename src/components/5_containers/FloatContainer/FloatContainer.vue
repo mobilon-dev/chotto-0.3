@@ -152,6 +152,6 @@ onMounted(() => {
 });
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 @use './styles/FloatContainer.scss';
 </style>
