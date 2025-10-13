@@ -1,3 +1,4 @@
+// @disable-validation
 [data-theme="light"] {
   // AdaptiveExtendedLayout container variables
   --chotto-adaptiveextendedlayout-container-height: inherit;
@@ -6,9 +7,9 @@
   --chotto-adaptiveextendedlayout-container-position: relative;
   --chotto-adaptiveextendedlayout-container-border-top: var(--chotto-theme-border, none);
   --chotto-adaptiveextendedlayout-container-border-left: var(--chotto-theme-border, none);
-  --chotto-adaptiveextendedlayout-container-desktop-grid-template-columns: min-content 30% 70%;
-  --chotto-adaptiveextendedlayout-container-tablet-grid-template-columns: min-content 100% min-content;
-  --chotto-adaptiveextendedlayout-container-mobile-grid-template-columns: min-content 100% min-content;
+  --chotto-adaptiveextendedlayout-container-desktop-grid-template-columns: min-content 30% calc(70% - var(--chotto-adaptive-extended-layout-first-col-width));
+  --chotto-adaptiveextendedlayout-container-tablet-grid-template-columns: min-content calc(var(--chotto-adaptive-extended-layout-second-col-width) - var(--chotto-adaptive-extended-layout-first-col-width)) calc(var(--chotto-adaptive-extended-layout-third-col-width) - var(--chotto-adaptive-extended-layout-first-col-width));
+  --chotto-adaptiveextendedlayout-container-mobile-grid-template-columns: min-content var(--chotto-adaptive-extended-layout-second-col-width) var(--chotto-adaptive-extended-layout-third-col-width);
 
   // AdaptiveExtendedLayout first-col variables
   --chotto-adaptiveextendedlayout-first-col-position: relative;

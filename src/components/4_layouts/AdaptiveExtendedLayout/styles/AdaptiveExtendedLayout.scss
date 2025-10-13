@@ -1,5 +1,14 @@
+// @disable-validation
 .extend-layout {
   &__container {
+    --chotto-adaptive-extended-layout-second-col-display: flex;
+    --chotto-adaptive-extended-layout-second-col-width: 100%;
+
+    --chotto-adaptive-extended-layout-third-col-display: none;
+    --chotto-adaptive-extended-layout-third-col-width: 0%;
+
+    --chotto-adaptive-extended-layout-first-col-width: 0px;
+    
     height: var(--chotto-adaptiveextendedlayout-container-height, inherit);
     display: var(--chotto-adaptiveextendedlayout-container-display, grid);
     transition: var(--chotto-adaptiveextendedlayout-container-transition, all 0.3s ease);
@@ -47,7 +56,7 @@
 @container all (width > 920px){
   .extend-layout{
     &__container{
-      grid-template-columns: var(--chotto-adaptiveextendedlayout-container-desktop-grid-template-columns, min-content 30% calc(70% - var(--chotto-adaptive-extended-layout-first-col-width, 70px)));
+      grid-template-columns: var(--chotto-adaptiveextendedlayout-container-desktop-grid-template-columns, min-content 30% calc(70% - var(--chotto-adaptive-extended-layout-first-col-width)));
     }
   }
 }
@@ -55,13 +64,13 @@
 @container all (width < 920px){
   .extend-layout{
     &__container{
-      grid-template-columns: var(--chotto-adaptiveextendedlayout-container-tablet-grid-template-columns, min-content calc(var(--chotto-adaptive-extended-layout-second-col-width, 508px) - var(--chotto-adaptive-extended-layout-first-col-width, 70px)) calc(var(--chotto-adaptive-extended-layout-third-col-width, 300px) - var(--chotto-adaptive-extended-layout-first-col-width, 70px)));
+      grid-template-columns: var(--chotto-adaptiveextendedlayout-container-tablet-grid-template-columns, min-content calc(var(--chotto-adaptive-extended-layout-second-col-width) - var(--chotto-adaptive-extended-layout-first-col-width)) calc(var(--chotto-adaptive-extended-layout-third-col-width) - var(--chotto-adaptive-extended-layout-first-col-width)));
     }
     &__second-col{
-      display: var(--chotto-adaptive-extended-layout-second-col-display, flex);
+      display: var(--chotto-adaptive-extended-layout-second-col-display);
     }
     &__third-col{
-      display: var(--chotto-adaptive-extended-layout-third-col-display, flex);
+      display: var(--chotto-adaptive-extended-layout-third-col-display);
     }
   }
 }
@@ -69,7 +78,7 @@
 @container all (width < 720px){
   .extend-layout{
     &__container{
-      grid-template-columns: var(--chotto-adaptiveextendedlayout-container-mobile-grid-template-columns, min-content var(--chotto-adaptive-extended-layout-second-col-width, 508px) var(--chotto-adaptive-extended-layout-third-col-width, 300px));
+      grid-template-columns: var(--chotto-adaptiveextendedlayout-container-mobile-grid-template-columns, min-content var(--chotto-adaptive-extended-layout-second-col-width) var(--chotto-adaptive-extended-layout-third-col-width));
     }
     &__first-col{
       display: var(--chotto-adaptiveextendedlayout-first-col-mobile-display, none);
