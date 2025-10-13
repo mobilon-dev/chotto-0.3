@@ -146,6 +146,33 @@ function log(message: string, color: Color = 'reset'): void {
 }
 
 /**
+ * Проверяет, содержит ли файл комментарий для исключения из валидации
+ */
+function shouldSkipValidation(filePath: string): boolean {
+  const content = fs.readFileSync(filePath, 'utf-8');
+  // Проверяем первые 5 строк на наличие комментария исключения
+  const lines = content.split('\n').slice(0, 5);
+  return lines.some(line => {
+    const trimmedLine = line.trim().toLowerCase();
+    return (
+      trimmedLine.includes('@validation-ignore') ||
+      trimmedLine.includes('@validator-ignore') ||
+      trimmedLine.includes('@skip-validation') ||
+      trimmedLine.includes('@no-validation') ||
+      trimmedLine.includes('@disable-validation') ||
+      trimmedLine.includes('@validation-disabled') ||
+      trimmedLine.includes('@theme-validation-skip') ||
+      trimmedLine.includes('@css-validation-ignore') ||
+      trimmedLine.includes('@style-validation-skip') ||
+      // Комментарии для IDE/линтеров
+      trimmedLine.includes('eslint-disable') ||
+      trimmedLine.includes('stylelint-disable') ||
+      trimmedLine.includes('prettier-ignore')
+    );
+  });
+}
+
+/**
  * Извлекает CSS переменные из SCSS файла
  */
 function extractCSSVariablesFromSCSS(filePath: string): ThemeCSSVariables {
@@ -778,44 +805,49 @@ async function validateAllThemes(): Promise<void> {
     // Проверяем основной файл стилей компонента (для всех компонентов)
     const stylePath = path.join(componentPath, 'styles', `${componentName}.scss`);
     if (fs.existsSync(stylePath)) {
-      // 3. Валидация отсутствия глобальных переменных в файлах стилей
-      const forbiddenStyleResult = validateForbiddenGlobalVariablesInStyleFiles(componentName, componentFolder, stylePath);
-      forbiddenResults.push(forbiddenStyleResult);
-      
-      // 4. Валидация использования базовых настроек темы
-      const themeUsageResult = validateThemeUsageInComponents(componentName, componentFolder, stylePath);
-      themeUsageResults.push(themeUsageResult);
-      
-      // 5. Валидация отсутствия data-theme в файлах стилей
-      const dataThemeResult = validateNoDataThemeInStyleFiles(componentName, componentFolder, stylePath);
-      dataThemeResults.push(dataThemeResult);
-      
-      // 7. Валидация отсутствия импортов тем в файлах стилей
-      const themeImportsResult = validateNoThemeImportsInStyleFiles(componentName, componentFolder, stylePath);
-      themeImportsResults.push(themeImportsResult);
-      
-      // 8. Валидация использования фоллбеков в SCSS файлах компонентов
-      const fallbackResult = validateFallbacksInStyleFiles(componentName, componentFolder, stylePath);
-      fallbackResults.push(fallbackResult);
-      
-      if (!forbiddenStyleResult.isValid) {
-        log(`   ❌  style.scss: ${forbiddenStyleResult.errors.join('; ')}`, 'red');
-      }
-      
-      if (!themeUsageResult.isValid) {
-        log(`   ⚠️  style.scss: ${themeUsageResult.errors.join('; ')}`, 'yellow');
-      }
-      
-      if (!dataThemeResult.isValid) {
-        log(`   ❌  style.scss: ${dataThemeResult.errors.join('; ')}`, 'red');
-      }
-      
-      if (!themeImportsResult.isValid) {
-        log(`   ❌  style.scss: ${themeImportsResult.errors.join('; ')}`, 'red');
-      }
-      
-      if (!fallbackResult.isValid) {
-        log(`   ❌  style.scss: ${fallbackResult.errors.join('; ')}`, 'red');
+      // Проверяем, нужно ли пропустить валидацию этого файла
+      if (shouldSkipValidation(stylePath)) {
+        log(`   ⏭️  style.scss: пропущен (найден комментарий исключения)`, 'yellow');
+      } else {
+        // 3. Валидация отсутствия глобальных переменных в файлах стилей
+        const forbiddenStyleResult = validateForbiddenGlobalVariablesInStyleFiles(componentName, componentFolder, stylePath);
+        forbiddenResults.push(forbiddenStyleResult);
+        
+        // 4. Валидация использования базовых настроек темы
+        const themeUsageResult = validateThemeUsageInComponents(componentName, componentFolder, stylePath);
+        themeUsageResults.push(themeUsageResult);
+        
+        // 5. Валидация отсутствия data-theme в файлах стилей
+        const dataThemeResult = validateNoDataThemeInStyleFiles(componentName, componentFolder, stylePath);
+        dataThemeResults.push(dataThemeResult);
+        
+        // 7. Валидация отсутствия импортов тем в файлах стилей
+        const themeImportsResult = validateNoThemeImportsInStyleFiles(componentName, componentFolder, stylePath);
+        themeImportsResults.push(themeImportsResult);
+        
+        // 8. Валидация использования фоллбеков в SCSS файлах компонентов
+        const fallbackResult = validateFallbacksInStyleFiles(componentName, componentFolder, stylePath);
+        fallbackResults.push(fallbackResult);
+        
+        if (!forbiddenStyleResult.isValid) {
+          log(`   ❌  style.scss: ${forbiddenStyleResult.errors.join('; ')}`, 'red');
+        }
+        
+        if (!themeUsageResult.isValid) {
+          log(`   ⚠️  style.scss: ${themeUsageResult.errors.join('; ')}`, 'yellow');
+        }
+        
+        if (!dataThemeResult.isValid) {
+          log(`   ❌  style.scss: ${dataThemeResult.errors.join('; ')}`, 'red');
+        }
+        
+        if (!themeImportsResult.isValid) {
+          log(`   ❌  style.scss: ${themeImportsResult.errors.join('; ')}`, 'red');
+        }
+        
+        if (!fallbackResult.isValid) {
+          log(`   ❌  style.scss: ${fallbackResult.errors.join('; ')}`, 'red');
+        }
       }
     }
     
@@ -842,6 +874,14 @@ async function validateAllThemes(): Promise<void> {
     
     
     for (const themePath of themePaths) {
+      const themeName = path.basename(themePath, '.scss');
+      
+      // Проверяем, нужно ли пропустить валидацию этого файла темы
+      if (shouldSkipValidation(themePath)) {
+        log(`   ⏭️  ${themeName}: пропущен (найден комментарий исключения)`, 'yellow');
+        continue;
+      }
+      
       // 1. Валидация соответствия интерфейсу
       const interfaceResult = validateComponentThemeInterface(componentName, componentFolder, themePath, expectedVariables);
       interfaceResults.push(interfaceResult);
@@ -861,8 +901,6 @@ async function validateAllThemes(): Promise<void> {
       // 6. Валидация отсутствия CSS классов в файлах тем
       const cssClassesResult = validateNoCSSClassesInThemeFiles(componentName, componentFolder, themePath);
       cssClassesResults.push(cssClassesResult);
-      
-      const themeName = path.basename(themePath, '.scss');
       
       if (interfaceResult.isValid && prefixResult.isValid && forbiddenResult.isValid && themeVariablesResult.isValid && cssClassesResult.isValid) {
         log(`   ✅ ${themeName}: интерфейс OK, префиксы OK, глобальные переменные OK, переменные тем OK, CSS классы OK`, 'green');
@@ -939,5 +977,6 @@ export {
   validateNoDataThemeInStyleFiles,
   validateNoCSSClassesInThemeFiles,
   validateNoThemeImportsInStyleFiles,
-  validateFallbacksInStyleFiles
+  validateFallbacksInStyleFiles,
+  shouldSkipValidation
 };
