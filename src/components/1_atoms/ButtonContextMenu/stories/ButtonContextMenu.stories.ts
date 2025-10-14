@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
  
 import ButtonContextMenu from '../ButtonContextMenu.vue';
 import BaseContainer from '../../../5_containers/BaseContainer/BaseContainer.vue';
-import ThemeMode from '../../elements/ThemeMode/ThemeMode.vue';
+import ThemeMode from '../../../2_elements/ThemeMode/ThemeMode.vue';
 const meta: Meta<typeof ButtonContextMenu> = {
   component: ButtonContextMenu,
   render: (args) => ({

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
  
-import ThemeMode from '../../elements/ThemeMode/ThemeMode.vue';
+import ThemeMode from '../ThemeMode.vue';
 
 const meta: Meta<typeof ThemeMode> = {
   component: ThemeMode,
