@@ -261,7 +261,7 @@
 <script setup>
 import { onMounted, ref, computed, unref, toRaw } from "vue";
 // import { nextTick } from "vue";
-import moment from 'moment';
+// import moment from 'moment';
 import MenuIcon from "../../components/1_icons/MenuIcon.vue"
 
 import {
@@ -429,7 +429,7 @@ const theme = ref('')
 const description = ref()
 
 // Моковая строка тултипа для блока "Недавний" панели CommunicationPanel
-const recentTooltipText = ref('01.09.25 10:05:10 через +7 (391) 247-50-00 Успешный 02:05')
+// const recentTooltipText = ref('01.09.25 10:05:10 через +7 (391) 247-50-00 Успешный 02:05')
 
 // Тексты тултипов для кнопок панели CommunicationPanel
 const channelTooltips = ref({
@@ -476,10 +476,10 @@ const recentAttributeChannels = computed(() => {
   return recentAttributeChannels; 
 });
 
-const commands = computed(() => {
-  if (selectedChat.value && selectedChat.value.commands) return selectedChat.value.commands
-  else return null
-})
+// const commands = computed(() => {
+//   if (selectedChat.value && selectedChat.value.commands) return selectedChat.value.commands
+//   else return null
+// })
 
 const setMessageClass = (message) => {
   if (message){
@@ -659,28 +659,28 @@ const getFeedObjects = () => {
 //   console.log('selected channel', channel);
 // }
 
-const addMessage = (message) => {
-  console.log(message);
-  // Добавление сообщения в хранилище
-  if (message.type != 'message.command'){
-    props.dataProvider.addMessage({
-      text: message.text,
-      type: message.type,
-      chatId: selectedChat.value.chatId,
-      url: message.url || null,
-      filename: message.filename || null,
-      status: 'sent',
-      direction: "outgoing",
-      timestamp: moment().unix(),
-      reply: message.reply || null,
-    });
-    messages.value = getFeedObjects(); // Обновление сообщений
-  }
-  else {
-    //обработка команды 
-  }
-  
-};
+// const addMessage = (message) => {
+//   console.log(message);
+//   // Добавление сообщения в хранилище
+//   if (message.type != 'message.command'){
+//     props.dataProvider.addMessage({
+//       text: message.text,
+//       type: message.type,
+//       chatId: selectedChat.value.chatId,
+//       url: message.url || null,
+//       filename: message.filename || null,
+//       status: 'sent',
+//       direction: "outgoing",
+//       timestamp: moment().unix(),
+//       reply: message.reply || null,
+//     });
+//     messages.value = getFeedObjects(); // Обновление сообщений
+//   }
+//   else {
+//     //обработка команды 
+//   }
+//   
+// };
 
 // const sendWabaValues = (obj) => {
 //   console.log('send waba values', obj);
