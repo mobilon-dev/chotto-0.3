@@ -11,7 +11,7 @@ const meta: Meta<typeof Channels> = {
     components: {BaseContainer, Channels, ThemeMode},
     setup() {return {args}},
     template: `
-      <BaseContainer :extChatAppId=args.extChatAppId>
+      <BaseContainer>
         <ThemeMode :themes="args.theme" />
         <Channels v-bind=args />
       </BaseContainer>
@@ -22,11 +22,11 @@ const meta: Meta<typeof Channels> = {
 export default meta;
 type Story = StoryObj<typeof Channels>;
 
-const theme = [{
-  code: "light",
-  name: "Light",
-  default: true,
-}]
+// const theme = [{
+//   code: "light",
+//   name: "Light",
+//   default: true,
+// }]
 
 const testChannelsList = [
   {
@@ -73,8 +73,6 @@ const template = '<div data-theme="light" style="min-height: 100px; min-width: 6
 export const HaveSelectedChannel: Story = {
   args: {
     channels: testChannelsList,
-    extChatAppId: '1',
-    theme,
   },
   decorators: [() => ({ template })]
 };
@@ -82,8 +80,6 @@ export const HaveSelectedChannel: Story = {
 export const HaveNotSelectedChannel: Story = {
   args: {
     channels: testChannelsList2,
-    extChatAppId: '2',
-    theme,
   },
   decorators: [() => ({ template })]
 };
@@ -91,8 +87,6 @@ export const HaveNotSelectedChannel: Story = {
 export const ChannelsEmptyArray: Story = {
   args: {
     channels: [],
-    extChatAppId: '3',
-    theme,
   },
   decorators: [() => ({ template })]
 };
@@ -101,8 +95,6 @@ export const InactiveChannels: Story = {
   args: {
     channels: [],
     state: 'disabled',
-    extChatAppId: '4',
-    theme,
   },
   decorators: [() => ({ template })]
 };
