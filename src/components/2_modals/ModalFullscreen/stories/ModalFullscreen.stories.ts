@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import ModalFullscreen from '../ModalFullscreen.vue';
 
 const meta = {
-  title: 'Atoms/ModalFullscreen',
+  title: 'Modals/ModalFullscreen',
   component: ModalFullscreen,
   args: {},
 } satisfies Meta<typeof ModalFullscreen>;

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import WABASeparatedQuickButtons from '../WABASeparatedQuickButtons.vue';
 
 const meta: Meta<typeof WABASeparatedQuickButtons> = {
-  title: 'Elements/WABASeparatedQuickButtons',
+  title: 'Chat Input Elements/WABASeparatedQuickButtons',
   component: WABASeparatedQuickButtons,
   args: {},
 };

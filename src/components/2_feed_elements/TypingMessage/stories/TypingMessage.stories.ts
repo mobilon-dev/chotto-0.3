@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import TypingMessage from '../TypingMessage.vue';
  
 const meta: Meta<typeof TypingMessage> = {
+  title: 'Feed Elements/TypingMessage',
   component: TypingMessage,
   decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
 

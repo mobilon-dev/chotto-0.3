@@ -5,6 +5,7 @@ import {templates, groupTemplates} from '../../../../apps/data';
  
   
 const meta: Meta<typeof ButtonTemplateSelector> = {
+  title: 'Chat Input Elements/ButtonTemplateSelector',
   component: ButtonTemplateSelector,
   parameters: {
     layout: 'centered',

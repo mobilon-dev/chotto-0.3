@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import ContextMenu from '../ContextMenu.vue';
 
 const meta: Meta<typeof ContextMenu> = {
+  title: 'Atoms/ContextMenu',
   component: ContextMenu,
   decorators: [() => ({ template: '<div style="min-height: 100px;" data-theme="light"><story/></div>' })]
 };

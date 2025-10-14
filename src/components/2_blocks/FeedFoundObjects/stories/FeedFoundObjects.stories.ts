@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import FeedFoundObjects from '../FeedFoundObjects.vue';
 
 const meta: Meta<typeof FeedFoundObjects> = {
+  title: 'Blocks/FeedFoundObjects',
   component: FeedFoundObjects,
   decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
 

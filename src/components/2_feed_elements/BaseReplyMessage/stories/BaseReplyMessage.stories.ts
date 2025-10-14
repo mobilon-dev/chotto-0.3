@@ -4,6 +4,7 @@ import BaseReplyMessage from '../BaseReplyMessage.vue';
 import { Reply } from '../../../../types';
 
 const meta: Meta<typeof BaseReplyMessage> = {
+  title: 'Feed Elements/BaseReplyMessage',
   component: BaseReplyMessage,
   decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
 

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import ReplyCallMessage from '../ReplyCallMessage.vue';
 
 const meta = {
-  title: 'Molecules/ReplyCallMessage',
+  title: 'Feed Elements/ReplyCallMessage',
   component: ReplyCallMessage,
   args: {},
 } satisfies Meta<typeof ReplyCallMessage>;

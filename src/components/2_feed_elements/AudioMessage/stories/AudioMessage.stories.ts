@@ -4,6 +4,7 @@ import AudioMessage from '../AudioMessage.vue';
 import { IAudioMessage } from '@types';
 
 const meta: Meta<typeof AudioMessage> = {
+  title: 'Feed Elements/AudioMessage',
   component: AudioMessage,
   decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
 

@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 
 import Tooltip from '../Tooltip.vue';
 const meta: Meta<typeof Tooltip> = {
+  title: 'Atoms/Tooltip',
   component: Tooltip,
   parameters: {
     layout: 'centered',

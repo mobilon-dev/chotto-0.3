@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import VideoMessage from '../VideoMessage.vue';
 
 const meta: Meta<typeof VideoMessage> = {
+  title: 'Feed Elements/VideoMessage',
   component: VideoMessage,
   decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
 

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import WABAQuickReplyButtons from '../WABAQuickReplyButtons.vue';
 
 const meta: Meta<typeof WABAQuickReplyButtons> = {
-  title: 'Elements/WABAQuickReplyButtons',
+  title: 'Chat Input Elements/WABAQuickReplyButtons',
   component: WABAQuickReplyButtons,
   args: {},
 };

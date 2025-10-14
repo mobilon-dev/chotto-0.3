@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import SideBar from '../SideBar.vue';
 
 const meta: Meta<typeof SideBar> = {
+  title: 'Compounds/SideBar',
   component: SideBar,
   decorators: [() => ({template: '<div data-theme="light" style="max-width: 100px"><story /></div>'})]
 

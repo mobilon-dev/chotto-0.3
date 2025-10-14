@@ -4,6 +4,7 @@ import ImageMessage from '../ImageMessage.vue';
 import { IImageMessage } from '../../../../types/'
 
 const meta: Meta<typeof ImageMessage> = {
+  title: 'Feed Elements/ImageMessage',
   component: ImageMessage,
   decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
 

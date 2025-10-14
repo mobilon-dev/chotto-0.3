@@ -4,6 +4,7 @@ import FileMessage from '../FileMessage.vue';
 import { IFileMessage } from '../../../../types'
 
 const meta: Meta<typeof FileMessage> = {
+  title: 'Feed Elements/FileMessage',
   component: FileMessage,
   decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
 

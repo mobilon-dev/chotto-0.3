@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import EmbedPreview from '../EmbedPreview.vue';
 
 const meta = {
-  title: 'Molecules/EmbedPreview',
+  title: 'Atoms/EmbedPreview',
   component: EmbedPreview,
   args: {},
 } satisfies Meta<typeof EmbedPreview>;

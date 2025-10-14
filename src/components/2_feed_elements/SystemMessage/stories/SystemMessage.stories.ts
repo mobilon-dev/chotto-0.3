@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import SystemMessage from '../SystemMessage.vue';
  
 const meta: Meta<typeof SystemMessage> = {
+  title: 'Feed Elements/SystemMessage',
   component: SystemMessage,
   decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
 

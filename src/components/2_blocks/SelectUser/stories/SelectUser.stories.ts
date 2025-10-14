@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import SelectUser from '../SelectUser.vue';
 
 const meta = {
-  title: 'Molecules/SelectUser',
+  title: 'Blocks/SelectUser',
   component: SelectUser,
   args: {},
 } satisfies Meta<typeof SelectUser>;

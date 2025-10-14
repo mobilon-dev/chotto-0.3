@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import FeedSearch from '../FeedSearch.vue';
 
 const meta: Meta<typeof FeedSearch> = {
+  title: 'Blocks/FeedSearch',
   component: FeedSearch,
   decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
 };

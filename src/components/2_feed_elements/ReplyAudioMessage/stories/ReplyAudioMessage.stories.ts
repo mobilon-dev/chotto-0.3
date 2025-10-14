@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import ReplyAudioMessage from '../ReplyAudioMessage.vue';
 
 const meta = {
-  title: 'Molecules/ReplyAudioMessage',
+  title: 'Feed Elements/ReplyAudioMessage',
   component: ReplyAudioMessage,
   args: {},
 } satisfies Meta<typeof ReplyAudioMessage>;

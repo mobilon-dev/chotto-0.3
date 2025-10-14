@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import ModalVideoRecorder from '../ModalVideoRecorder.vue';
 
 const meta = {
-  title: 'Organisms/ModalVideoRecorder',
+  title: 'Modals/ModalVideoRecorder',
   component: ModalVideoRecorder,
   args: {},
 } satisfies Meta<typeof ModalVideoRecorder>;

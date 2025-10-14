@@ -4,6 +4,7 @@ import TextMessage from '../TextMessage.vue';
 import { ITextMessage } from '../../../../types'
 
 const meta: Meta<typeof TextMessage> = {
+  title: 'Feed Elements/TextMessage',
   component: TextMessage,
   decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
 

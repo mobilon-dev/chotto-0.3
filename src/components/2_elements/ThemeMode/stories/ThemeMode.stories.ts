@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import ThemeMode from '../ThemeMode.vue';
 
 const meta: Meta<typeof ThemeMode> = {
+  title: 'Elements/ThemeMode',
   component: ThemeMode,
 };
  

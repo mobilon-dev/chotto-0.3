@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import ChatList from '../ChatList.vue';
  
 const meta: Meta<typeof ChatList> = {
+  title: 'Compounds/ChatList',
   component: ChatList,
 };
  

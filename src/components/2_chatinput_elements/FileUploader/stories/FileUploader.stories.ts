@@ -5,6 +5,7 @@ import BaseContainer from '../../../5_containers/BaseContainer/BaseContainer.vue
 import ThemeMode from '../../2_elements/ThemeMode/ThemeMode.vue';
 
 const meta: Meta<typeof FileUploader> = {
+  title: 'Chat Input Elements/FileUploader',
   component: FileUploader,
   render: (args) => ({
     components: {BaseContainer, FileUploader, ThemeMode},

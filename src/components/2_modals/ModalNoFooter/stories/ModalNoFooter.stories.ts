@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import ModalNoFooter from '../ModalNoFooter.vue';
 
 const meta = {
-  title: 'Atoms/ModalNoFooter',
+  title: 'Modals/ModalNoFooter',
   component: ModalNoFooter,
   args: {},
 } satisfies Meta<typeof ModalNoFooter>;

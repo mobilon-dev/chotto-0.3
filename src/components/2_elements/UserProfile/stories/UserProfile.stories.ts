@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import UserProfile from '../UserProfile.vue';
 
 const meta: Meta<typeof UserProfile> = {
+  title: 'Elements/UserProfile',
   component: UserProfile,
   decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
 

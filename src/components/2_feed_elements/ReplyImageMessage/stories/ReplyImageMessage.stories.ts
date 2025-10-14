@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import ReplyImageMessage from '../ReplyImageMessage.vue';
 
 const meta = {
-  title: 'Molecules/ReplyImageMessage',
+  title: 'Feed Elements/ReplyImageMessage',
   component: ReplyImageMessage,
   args: {},
 } satisfies Meta<typeof ReplyImageMessage>;

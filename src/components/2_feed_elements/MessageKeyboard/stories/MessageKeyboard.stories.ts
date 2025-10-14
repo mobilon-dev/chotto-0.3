@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import MessageKeyboard from '../MessageKeyboard.vue';
 
 const meta: Meta<typeof MessageKeyboard> = {
+  title: 'Feed Elements/MessageKeyboard',
   component: MessageKeyboard,
   parameters: {
     layout: 'centered',

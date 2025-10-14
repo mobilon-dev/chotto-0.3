@@ -4,6 +4,7 @@ import BaseContainer from '../../../5_containers/BaseContainer/BaseContainer.vue
 import ButtonCommandsSelector from '../ButtonCommandsSelector.vue';
   
 const meta: Meta<typeof ButtonCommandsSelector> = {
+  title: 'Chat Input Elements/ButtonCommandsSelector',
   component: ButtonCommandsSelector,
   parameters: {
     layout: 'centered',

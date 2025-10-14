@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import ChatItem from '../ChatItem.vue';
 
 const meta: Meta<typeof ChatItem> = {
+  title: 'Chat List Elements/ChatItem',
   component: ChatItem,
   decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
 

@@ -5,6 +5,7 @@ import {wabaTemplates, groupTemplates} from '../../../../apps/data';
  
   
 const meta: Meta<typeof ButtonWabaTemplateSelector> = {
+  title: 'Chat Input Elements/ButtonWabaTemplateSelector',
   component: ButtonWabaTemplateSelector,
   parameters: {
     layout: 'centered',

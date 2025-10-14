@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import ChatInput from '../ChatInput.vue';
 
 const meta: Meta<typeof ChatInput> = {
+  title: 'Compounds/ChatInput',
   component: ChatInput,
   decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
 };

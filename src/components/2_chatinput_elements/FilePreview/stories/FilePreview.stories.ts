@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import FilePreview from '../FilePreview.vue';
 
 const meta: Meta<typeof FilePreview> = {
+  title: 'Chat Input Elements/FilePreview',
   component: FilePreview,
   decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
 

@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import Feed from '../Feed.vue';
 
 const meta: Meta<typeof Feed> = {
+  title: 'Compounds/Feed',
   component: Feed,
   decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
 };

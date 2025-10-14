@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import ChatTabs from '../ChatTabs.vue';
 
 const meta = {
-  title: 'Elements/ChatTabs',
+  title: 'Chat List Elements/ChatTabs',
   component: ChatTabs,
   args: {},
 } satisfies Meta<typeof ChatTabs>;

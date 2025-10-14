@@ -4,6 +4,7 @@ import TemplateSelector from '../TemplateSelector.vue';
 import {templates, groupTemplates} from '../../../../apps/data';
 
 const meta: Meta<typeof TemplateSelector> = {
+  title: 'Chat Input Elements/TemplateSelector',
   component: TemplateSelector,
   parameters: {
     layout: 'centered',

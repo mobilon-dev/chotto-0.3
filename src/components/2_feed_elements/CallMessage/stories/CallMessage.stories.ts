@@ -4,6 +4,7 @@ import CallMessage from '../CallMessage.vue';
 import { ICallMessage } from '../../../../types'; 
 
 const meta: Meta<typeof CallMessage> = {
+  title: 'Feed Elements/CallMessage',
   component: CallMessage,
   decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
 

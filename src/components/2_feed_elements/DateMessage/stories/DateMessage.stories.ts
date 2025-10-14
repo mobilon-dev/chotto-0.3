@@ -4,6 +4,7 @@ import DateMessage from '../DateMessage.vue';
 import {IDateMessage} from '../../../../types';
 
 const meta: Meta<typeof DateMessage> = {
+  title: 'Feed Elements/DateMessage',
   component: DateMessage,
   decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
 

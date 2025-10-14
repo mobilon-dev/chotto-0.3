@@ -4,6 +4,7 @@ import ButtonContextMenu from '../ButtonContextMenu.vue';
 import BaseContainer from '../../../5_containers/BaseContainer/BaseContainer.vue';
 import ThemeMode from '../../../2_elements/ThemeMode/ThemeMode.vue';
 const meta: Meta<typeof ButtonContextMenu> = {
+  title: 'Atoms/ButtonContextMenu',
   component: ButtonContextMenu,
   render: (args) => ({
    components: {BaseContainer, ButtonContextMenu, ThemeMode},

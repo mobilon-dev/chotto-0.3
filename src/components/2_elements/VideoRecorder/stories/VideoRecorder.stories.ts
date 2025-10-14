@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import VideoRecorder from '../VideoRecorder.vue';
   
 const meta: Meta<typeof VideoRecorder> = {
+  title: 'Elements/VideoRecorder',
   component: VideoRecorder,
   parameters: {
     layout: 'centered',

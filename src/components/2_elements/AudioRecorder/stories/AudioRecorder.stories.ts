@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import AudioRecorder from '../AudioRecorder.vue';
   
 const meta: Meta<typeof AudioRecorder> = {
+  title: 'Elements/AudioRecorder',
   component: AudioRecorder,
   parameters: {
     layout: 'centered',
