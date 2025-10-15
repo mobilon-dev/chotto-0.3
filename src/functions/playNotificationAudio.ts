@@ -1,3 +1,8 @@
+/**
+ * Воспроизводит звук уведомления с проверкой разрешений на аудио
+ * 
+ * @returns Promise, который разрешается после попытки воспроизведения звука
+ */
 export const playNotificationAudio = async () => {
   try {
     // @todo: переделать проверку permissions для autoplay audio

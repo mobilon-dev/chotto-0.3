@@ -260,11 +260,9 @@
 
 <script setup>
 import { onMounted, ref, computed, unref, toRaw } from "vue";
-// import { nextTick } from "vue";
-// import moment from 'moment';
-import {MenuIcon} from "../../components/"
 
 import {
+  MenuIcon,
   ChatInfo,
   ChatInput,
   ChatList,
@@ -290,7 +288,7 @@ import {
   ContactInfo, 
   BaseContainer, 
   SplashScreen,
-} from "../..";
+} from "@";
 
 import { playNotificationAudio } from "@/functions";
 
