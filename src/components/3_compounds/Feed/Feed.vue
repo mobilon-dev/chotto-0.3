@@ -117,7 +117,8 @@ import {
 } from '../..';
 
 import { IFeedObject, IFeedTyping, IFeedUnreadButton, IFeedKeyboard } from '@/types';
-import { throttle, useMessage } from '@/hooks';
+import { useMessage } from '@/hooks';
+import { throttle } from './functions/throttle';
 
 const props = defineProps({
   objects: {

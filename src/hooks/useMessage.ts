@@ -1,5 +1,5 @@
 import { ref } from 'vue';
-import { Reply } from '../types';
+import { Reply } from '@/types';
 
 interface Message {
     id: string

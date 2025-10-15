@@ -171,7 +171,7 @@
 <script setup lang="ts">
 import { ref, computed, watch} from 'vue'
 
-import { getStatus, statuses } from '@/hooks';
+import { getStatus, statuses } from '@/functions';
 import { t } from '../../../locale/useLocale'
 import { Tooltip, ButtonContextMenu, AvatarIcon } from '@/components';
 import { IAction, IChatItem, IChatDialog } from './types';

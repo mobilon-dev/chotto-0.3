@@ -203,7 +203,8 @@ import { ref, onMounted, computed, watch, inject } from 'vue'
 import linkifyStr from "linkify-string";
 
 import { ContextMenu, LinkPreview, EmbedPreview, BaseReplyMessage } from '@/components';
-import { getStatus, statuses, useTheme } from '@/hooks';
+import { getStatus, statuses } from '@/functions';
+import { useTheme } from '@/hooks';
 import { IAudioMessage } from '@/types';
 
 const chatAppId = inject('chatAppId')

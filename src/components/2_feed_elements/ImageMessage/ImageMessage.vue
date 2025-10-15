@@ -163,7 +163,8 @@ import { ref, computed, watch, inject } from 'vue';
 import linkifyStr from "linkify-string";
 
 import { ContextMenu, LinkPreview, EmbedPreview, BaseReplyMessage, ModalFullscreen } from '@/components';
-import { getStatus, statuses, useTheme } from "@/hooks";
+import { getStatus, statuses } from "@/functions";
+import { useTheme } from "@/hooks";
 import { IImageMessage } from '@/types';
 
 const chatAppId = inject('chatAppId')

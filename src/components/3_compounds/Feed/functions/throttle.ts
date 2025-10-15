@@ -12,3 +12,4 @@ export function throttle(callee: (...args: unknown[]) => void, timeout: number) 
     }, timeout)
   }
 }
+

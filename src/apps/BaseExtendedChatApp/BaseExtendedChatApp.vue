@@ -176,7 +176,7 @@ import {
 import { BaseContainer } from "../../components/5_containers";
 import { useModalSelectUser2 } from "../helpers";
 
-import { playNotificationAudio } from "@/hooks";
+import { playNotificationAudio } from "@/functions";
 
 import { useChatsStore } from "../stores/useChatStore";
 import { transformToFeed } from "../transform/transformToFeed";

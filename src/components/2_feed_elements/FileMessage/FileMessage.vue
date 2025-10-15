@@ -126,7 +126,7 @@ import linkifyStr from "linkify-string";
 
 
 import { ContextMenu, LinkPreview, EmbedPreview, BaseReplyMessage } from '@/components';
-import { getStatus, statuses } from "@/hooks";
+import { getStatus, statuses } from "@/functions";
 import { IFileMessage } from '@/types';
 
 // Define props

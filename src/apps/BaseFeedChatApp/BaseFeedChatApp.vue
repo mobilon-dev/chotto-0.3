@@ -37,7 +37,7 @@ import {
 } from "../..";
 import { BaseContainer } from "../../components/5_containers";
 
-import { playNotificationAudio } from "@/hooks";
+import { playNotificationAudio } from "@/functions";
 
 import { useChatsStore } from "../stores/useChatStore";
 import { transformToFeed } from "../transform/transformToFeed";

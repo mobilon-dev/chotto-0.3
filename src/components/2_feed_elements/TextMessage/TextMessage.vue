@@ -107,7 +107,7 @@ import { computed, ref, watch } from 'vue'
 import linkifyStr from "linkify-string";
 
 import { ContextMenu, LinkPreview, EmbedPreview, BaseReplyMessage } from '@/components';
-import { getStatus, statuses } from "@/hooks";
+import { getStatus, statuses } from "@/functions";
 import { ITextMessage } from '@/types';
 
 // Define props
