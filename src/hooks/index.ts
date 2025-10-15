@@ -11,3 +11,5 @@ export * from './useModal';
 export * from './useSearchModel';
 export * from './useTheme';
 export * from './useVideoRecorder';
+export * from './insertDaySeparators';
+export * from './playNotificationAudio';

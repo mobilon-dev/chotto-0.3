@@ -262,7 +262,7 @@
 import { onMounted, ref, computed, unref, toRaw } from "vue";
 // import { nextTick } from "vue";
 // import moment from 'moment';
-import MenuIcon from "../../components/1_icons/MenuIcon.vue"
+import {MenuIcon} from "../../components/"
 
 import {
   ChatInfo,
@@ -292,12 +292,7 @@ import {
   SplashScreen,
 } from "../..";
 
-import {
-  // formatTimestamp,
-  // insertDaySeparators,
-  playNotificationAudio,
-  // sortByTimestamp,
-} from "../helpers";
+import { playNotificationAudio } from "@/hooks";
 
 import { useChatsStore } from "../stores/useChatStore";
 import { transformToFeed } from "../transform/transformToFeed";

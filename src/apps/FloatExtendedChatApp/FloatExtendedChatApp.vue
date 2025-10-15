@@ -118,12 +118,7 @@ import {
   FloatContainer,
 } from "../..";
 
-import {
-  // formatTimestamp,
-  // insertDaySeparators,
-  playNotificationAudio,
-  // sortByTimestamp,
-} from "../helpers";
+import { playNotificationAudio } from "@/hooks";
 
 import { useChatsStore } from "../stores/useChatStore";
 import { transformToFeed } from "../transform/transformToFeed";
