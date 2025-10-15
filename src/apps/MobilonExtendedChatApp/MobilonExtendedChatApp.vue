@@ -93,6 +93,14 @@
                         @phone-call="handlePhoneCall"
                       />
                       <button
+                        class="chat-info__button-panel chat-info__button-validation"
+                        :class="{ 'validation-error': !isValid }"
+                        :title="isValid ? 'Данные валидны ✓' : `Найдено ошибок: ${errorCount}`"
+                        @click="showReport"
+                      >
+                        <span class="validation-icon">{{ isValid ? '✓' : '!' }}</span>
+                      </button>
+                      <button
                         class="chat-info__button-panel"
                         @click="isOpenChatPanel = !isOpenChatPanel"
                       >
@@ -299,6 +307,7 @@ import { transformToFeed } from "../transform/transformToFeed";
 
 import { useModalCreateDialog, useModalSelectUser2 } from "../helpers";
 import { themes as themesData } from '../data';
+import { useChatValidator } from "../validators";
 
 // const { locale: currentLocale, locales } = useLocale()
 
@@ -355,6 +364,13 @@ const menuActions = [
 ];
 
 const chatsStore = useChatsStore();
+
+// Реактивная валидация чатов
+const chatsData = computed(() => chatsStore.chats);
+const { isValid, errorCount, showReport } = useChatValidator(chatsData, {
+  autoValidate: true,
+  debounce: 300
+});
 
 const selectedChat = ref(null);
 const selectedDialog = ref(null)
@@ -885,10 +901,66 @@ onMounted(() => {
   height: 35px;
   display: flex;
   align-self: center;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     background-color: #EAE8E7;
     box-shadow: 0 0 0 6px #EAE8E7;
+  }
+}
+
+.chat-info__button-validation {
+  position: relative;
+
+  .validation-icon {
+    font-size: 18px;
+    font-weight: bold;
+    color: #4CAF50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+  }
+
+  &:hover {
+    background-color: #E8F5E9;
+    box-shadow: 0 0 0 6px #E8F5E9;
+    
+    .validation-icon {
+      color: #2E7D32;
+    }
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  // Состояние с ошибками
+  &.validation-error {
+    .validation-icon {
+      color: #f44336;
+      animation: pulse-error 2s ease-in-out infinite;
+    }
+
+    &:hover {
+      background-color: #FFEBEE;
+      box-shadow: 0 0 0 6px #FFEBEE;
+      
+      .validation-icon {
+        color: #c62828;
+        animation: none;
+      }
+    }
+  }
+}
+
+@keyframes pulse-error {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
   }
 }
 </style>
