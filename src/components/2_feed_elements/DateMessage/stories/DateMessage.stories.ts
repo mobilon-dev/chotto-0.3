@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
  
 import DateMessage from '../DateMessage.vue';
-import {IDateMessage} from '../../../../types';
+import { IDateMessage } from '@/types';
 
 const meta: Meta<typeof DateMessage> = {
   title: 'Feed Elements/DateMessage',

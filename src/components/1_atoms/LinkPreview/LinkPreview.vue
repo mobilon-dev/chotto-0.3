@@ -22,7 +22,7 @@
   setup
   lang="ts"
 >
-import { ILinkPreview } from '@types';
+import { ILinkPreview } from '@/types';
 
 defineProps({
   linkPreview: {

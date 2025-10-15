@@ -20,4 +20,5 @@ function useDelayDebouncedRef(value: unknown, delay = 500) {
   })
 }
 
+export { useDelayDebouncedRef }
 export default useDelayDebouncedRef

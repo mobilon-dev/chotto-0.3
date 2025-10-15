@@ -202,13 +202,9 @@
 import { ref, onMounted, computed, watch, inject } from 'vue'
 import linkifyStr from "linkify-string";
 
-import ContextMenu from '../../1_atoms/ContextMenu/ContextMenu.vue'
-import { getStatus, statuses } from '../../../hooks';
-import { IAudioMessage } from '../../../types';
-import BaseReplyMessage from '../BaseReplyMessage/BaseReplyMessage.vue';
-import LinkPreview from '../../1_atoms/LinkPreview/LinkPreview.vue';
-import EmbedPreview from '../../1_atoms/EmbedPreview/EmbedPreview.vue';
-import { useTheme } from '../../../hooks/useTheme';
+import { ContextMenu, LinkPreview, EmbedPreview, BaseReplyMessage } from '@/components';
+import { getStatus, statuses, useTheme } from '@/hooks';
+import { IAudioMessage } from '@/types';
 
 const chatAppId = inject('chatAppId')
 const { getTheme } = useTheme(chatAppId as string)

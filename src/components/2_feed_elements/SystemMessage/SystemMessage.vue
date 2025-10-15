@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 
-import { ISystemMessage } from '../../../types';
+import { ISystemMessage } from '@/types';
 
 defineProps({
   message: {

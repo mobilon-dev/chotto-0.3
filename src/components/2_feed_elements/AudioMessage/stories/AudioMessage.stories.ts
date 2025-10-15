@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
 
 import AudioMessage from '../AudioMessage.vue';
-import { IAudioMessage } from '@types';
+import { IAudioMessage } from '@/types';
 
 const meta: Meta<typeof AudioMessage> = {
   title: 'Feed Elements/AudioMessage',

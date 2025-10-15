@@ -28,7 +28,7 @@
 >
 import { ref, watch } from 'vue'
 import linkifyStr from "linkify-string";
-import { IAudioMessage } from '../../../types';
+import { IAudioMessage } from '@/types';
 
 
 // Define props

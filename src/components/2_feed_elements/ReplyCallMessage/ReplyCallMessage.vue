@@ -37,7 +37,7 @@
   lang="ts"
 >
 
-import { ICallMessage } from '../../../types';
+import { ICallMessage } from '@/types';
 
 // Define props
 const props = defineProps({

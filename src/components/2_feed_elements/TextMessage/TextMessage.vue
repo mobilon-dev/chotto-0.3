@@ -106,12 +106,9 @@
 import { computed, ref, watch } from 'vue'
 import linkifyStr from "linkify-string";
 
-import ContextMenu from "../../1_atoms/ContextMenu/ContextMenu.vue";
-import { getStatus, statuses } from "../../../hooks";
-import { ITextMessage } from '../../../types';
-import BaseReplyMessage from "../BaseReplyMessage/BaseReplyMessage.vue";
-import LinkPreview from "../../1_atoms/LinkPreview/LinkPreview.vue";
-import EmbedPreview from "../../1_atoms/EmbedPreview/EmbedPreview.vue";
+import { ContextMenu, LinkPreview, EmbedPreview, BaseReplyMessage } from '@/components';
+import { getStatus, statuses } from "@/hooks";
+import { ITextMessage } from '@/types';
 
 // Define props
 const props = defineProps({

@@ -118,9 +118,9 @@
 
 <script setup lang="ts">
 import { onMounted, ref, computed, inject } from 'vue';
-import { IFilePreview } from '../../../types'
-import ModalFullscreen from '../../2_modals/ModalFullscreen/ModalFullscreen.vue';
-import { useTheme } from '../../../hooks/useTheme';
+import { IFilePreview } from '@/types'
+import { ModalFullscreen } from '@/components';
+import { useTheme } from '@/hooks';
 
 const chatAppId = inject('chatAppId')
 

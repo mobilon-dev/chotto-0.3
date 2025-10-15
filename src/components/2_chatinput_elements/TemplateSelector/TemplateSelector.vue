@@ -162,7 +162,7 @@
 <script setup>
 
 import { computed, ref, onMounted, inject, unref } from 'vue'
-import { useMessage } from '../../../hooks/useMessage';
+import { useMessage } from '@/hooks';
 
 const props = defineProps({
   templates: {

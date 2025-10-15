@@ -171,7 +171,7 @@
 <script setup lang="ts">
 import { ref, computed, watch} from 'vue'
 
-import { getStatus, statuses } from '../../../hooks';
+import { getStatus, statuses } from '@/hooks';
 import { t } from '../../../locale/useLocale'
 import Tooltip from '../../1_atoms/Tooltip/Tooltip.vue';
 import ButtonContextMenu from '../../1_atoms/ButtonContextMenu/ButtonContextMenu.vue';

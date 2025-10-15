@@ -40,9 +40,9 @@
 
 <script setup lang="ts">
 import { unref, ref, watch, inject } from "vue";
-import FilePreview from "../FilePreview/FilePreview.vue";
-import { uploadFile } from '../../../hooks/uploadFile';
-import { IFilePreview } from "../../../types";
+import { FilePreview } from '@/components';
+import { uploadFile } from '@/hooks';
+import { IFilePreview } from "@/types";
 const props = defineProps({
   type: {
     type: String,

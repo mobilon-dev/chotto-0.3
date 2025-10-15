@@ -27,8 +27,7 @@
 <script setup lang="ts">
 import { ref, unref, onMounted, watch, computed, inject } from 'vue';
 import { t } from '../../../locale/useLocale';
-import { useSearchModel } from '../../../hooks/useSearchModel';
-import useDelayDebouncedRef from '../../../hooks/useDelayDebouncedRef';
+import { useSearchModel, useDelayDebouncedRef } from '@/hooks';
 
 const chatAppId = inject('chatAppId')
 const { getModel } = useSearchModel(chatAppId as string)

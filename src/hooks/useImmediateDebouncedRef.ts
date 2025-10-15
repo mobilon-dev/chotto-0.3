@@ -21,4 +21,5 @@ function useImmediateDebouncedRef(value: unknown, delay = 500) {
   })
 }
 
+export { useImmediateDebouncedRef }
 export default useImmediateDebouncedRef

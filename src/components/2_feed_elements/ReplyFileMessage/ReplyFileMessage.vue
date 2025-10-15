@@ -39,7 +39,7 @@
 import { ref, watch } from 'vue'
 import linkifyStr from "linkify-string";
 
-import { IFileMessage } from '../../../types'
+import { IFileMessage } from '@/types'
 
 // Define props
 const props = defineProps({

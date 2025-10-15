@@ -18,8 +18,8 @@
 
 <script setup lang="ts">
 import { inject, useTemplateRef } from "vue";
-import { useMessage } from '../../../hooks/useMessage';
-import { IKeyBoard } from "@types";
+import { useMessage } from '@/hooks';
+import { IKeyBoard } from "@/types";
 
 defineProps({
   keyboard: {

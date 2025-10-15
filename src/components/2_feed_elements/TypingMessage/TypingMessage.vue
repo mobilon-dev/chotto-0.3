@@ -23,7 +23,7 @@
 
 <script setup lang="ts">
 
-import { ITypingMessage } from '../../../types';
+import { ITypingMessage } from '@/types';
 
 defineProps({
   message: {

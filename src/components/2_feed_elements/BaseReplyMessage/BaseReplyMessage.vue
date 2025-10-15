@@ -21,16 +21,15 @@
   setup
   lang="ts"
 >
-import ReplyTextMessage from "../ReplyTextMessage/ReplyTextMessage.vue";
-import ReplyImageMessage from "../ReplyImageMessage/ReplyImageMessage.vue";
-import ReplyAudioMessage from "../ReplyAudioMessage/ReplyAudioMessage.vue";
-import ReplyVideoMessage from "../ReplyVideoMessage/ReplyVideoMessage.vue";
-import ReplyFileMessage from "../ReplyFileMessage/ReplyFileMessage.vue";
-
-import {
-  IFeedObject
-} from '../../../types';
-import ReplyCallMessage from "../ReplyCallMessage/ReplyCallMessage.vue";
+import { 
+  ReplyTextMessage, 
+  ReplyImageMessage, 
+  ReplyAudioMessage, 
+  ReplyVideoMessage, 
+  ReplyFileMessage,
+  ReplyCallMessage 
+} from '@/components';
+import { IFeedObject } from '@/types';
 
 const emit = defineEmits(['action', 'reply', 'reset']);
 

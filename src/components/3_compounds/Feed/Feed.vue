@@ -116,10 +116,8 @@ import {
   FeedKeyboard
 } from '../..';
 
-import { IFeedObject, IFeedTyping, IFeedUnreadButton } from '../../../types';
-import { throttle } from '../../../hooks/throttle';
-import { useMessage } from '../../../hooks/useMessage';
-import type { IFeedKeyboard } from '../../../types';
+import { IFeedObject, IFeedTyping, IFeedUnreadButton, IFeedKeyboard } from '@/types';
+import { throttle, useMessage } from '@/hooks';
 
 const props = defineProps({
   objects: {

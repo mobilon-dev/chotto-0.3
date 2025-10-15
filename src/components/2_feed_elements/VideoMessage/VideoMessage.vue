@@ -166,14 +166,9 @@
 import { ref, computed, watch, inject } from 'vue'
 import linkifyStr from "linkify-string";
 
-import ContextMenu from "../../1_atoms/ContextMenu/ContextMenu.vue";
-import { getStatus, statuses } from "../../../hooks";
-import { IVideoMessage } from '@types';
-import BaseReplyMessage from "../BaseReplyMessage/BaseReplyMessage.vue";
-import LinkPreview from "../../1_atoms/LinkPreview/LinkPreview.vue";
-import EmbedPreview from "../../1_atoms/EmbedPreview/EmbedPreview.vue";
-import ModalFullscreen from "../../2_modals/ModalFullscreen/ModalFullscreen.vue";
-import { useTheme } from "../../../hooks/useTheme";
+import { ContextMenu, LinkPreview, EmbedPreview, BaseReplyMessage, ModalFullscreen } from '@/components';
+import { getStatus, statuses, useTheme } from "@/hooks";
+import { IVideoMessage } from '@/types';
 
 const chatAppId = inject('chatAppId')
 

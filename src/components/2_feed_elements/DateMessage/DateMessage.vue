@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 
-import { IDateMessage } from '../../../types';
+import { IDateMessage } from '@/types';
 
 defineProps({
   message: {

@@ -44,10 +44,9 @@
 <script setup lang="ts">
 import { ref, computed, inject, onMounted } from "vue";
 // import ButtonContextMenu from "./ButtonContextMenu.vue";
-import FilePreview from "../FilePreview/FilePreview.vue";
-import { useMessage } from '../../../hooks/useMessage';
-import { uploadFile } from '../../../hooks/uploadFile';
-import { IFilePreview } from "../../../types";
+import { FilePreview } from '@/components';
+import { useMessage, uploadFile } from '@/hooks';
+import { IFilePreview } from "@/types";
 import { FileUploaderIcon } from "./icons";
 
 const props = defineProps({

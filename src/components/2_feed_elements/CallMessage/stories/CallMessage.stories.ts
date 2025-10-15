@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
  
 import CallMessage from '../CallMessage.vue';
-import { ICallMessage } from '../../../../types'; 
+import { ICallMessage } from '@/types'; 
 
 const meta: Meta<typeof CallMessage> = {
   title: 'Feed Elements/CallMessage',
