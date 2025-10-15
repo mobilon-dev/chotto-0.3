@@ -100,19 +100,26 @@
   lang="ts"
 >
 import { ref, unref, watch, nextTick, inject, computed } from 'vue';
-import { AudioMessage, CallMessage, FileMessage, ImageMessage, TextMessage, VideoMessage } from '../../2_feed_elements';
-import DateMessage from "../../2_feed_elements/DateMessage/DateMessage.vue";
-import DateMessageSticky from "../../2_feed_elements/DateMessageSticky/DateMessageSticky.vue";
-import SystemMessage from "../../2_feed_elements/SystemMessage/SystemMessage.vue";
-import TypingMessage from "../../2_feed_elements/TypingMessage/TypingMessage.vue";
-import BaseReplyMessage from "../../2_feed_elements/BaseReplyMessage/BaseReplyMessage.vue";
+import { 
+  AudioMessage, 
+  CallMessage, 
+  FileMessage, 
+  ImageMessage, 
+  TextMessage, 
+  VideoMessage,
+  DateMessage,
+  DateMessageSticky,
+  SystemMessage,
+  TypingMessage,
+  BaseReplyMessage,
+  MessageKeyboard,
+  FeedKeyboard
+} from '../..';
 
 import { IFeedObject, IFeedTyping, IFeedUnreadButton } from '../../../types';
 import { throttle } from '../../../hooks/throttle';
 import { useMessage } from '../../../hooks/useMessage';
-import MessageKeyboard from '../../2_feed_elements/MessageKeyboard/MessageKeyboard.vue';
-import type { IFeedKeyboard } from '../../../types/IFeedKeyboard';
-import FeedKeyboard from '../../2_feed_elements/FeedKeyboard/FeedKeyboard.vue';
+import type { IFeedKeyboard } from '../../2_feed_elements/FeedKeyboard/types/IFeedKeyboard';
 
 const props = defineProps({
   objects: {

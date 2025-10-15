@@ -50,7 +50,8 @@
 import { unref, ref, watch, nextTick, inject, computed } from 'vue';
 import { useMessage } from '../../../hooks/useMessage';
 import { t } from '../../../locale/useLocale';
-import { IFilePreview, IInputMessage } from '../../../types';
+import { IFilePreview } from '../../../types';
+import { IInputMessage } from './types/IInputMessage';
 import useImmediateDebouncedRef from '../../../hooks/useImmediateDebouncedRef';
 import { WhatsAppSendIcon } from './icons';
 

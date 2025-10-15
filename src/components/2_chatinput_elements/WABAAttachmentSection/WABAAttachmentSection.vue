@@ -42,7 +42,7 @@
 import { unref, ref, watch, inject } from "vue";
 import FilePreview from "../FilePreview/FilePreview.vue";
 import { uploadFile } from '../../../hooks/uploadFile';
-import { IFilePreview } from "../../../types/components";
+import { IFilePreview } from "../../2_feed_elements/types/components";
 const props = defineProps({
   type: {
     type: String,

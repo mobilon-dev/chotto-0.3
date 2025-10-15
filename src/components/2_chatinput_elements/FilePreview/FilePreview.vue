@@ -118,7 +118,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref, computed, inject } from 'vue';
-import { IFilePreview } from '../../../types/components'
+import { IFilePreview } from '../../2_feed_elements/types/components'
 import ModalFullscreen from '../../2_modals/ModalFullscreen/ModalFullscreen.vue';
 import { useTheme } from '../../../hooks/useTheme';
 

@@ -36,7 +36,7 @@ import { useMessage } from '../../../hooks/useMessage';
 import { uploadFile } from '../../../hooks/uploadFile';
 import { useModalVideoRecorder } from '../../../hooks';
 import { FilePreview } from '@/components';
-import { IFilePreview } from '../../../types/components';
+import { IFilePreview } from '../../2_feed_elements/types/components';
 import { useTheme } from '../../../hooks/useTheme';
 
 const chatAppId = inject('chatAppId')

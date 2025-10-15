@@ -51,7 +51,7 @@
 <script setup lang="ts">
 import { watch, ref, inject, computed } from 'vue';
 import { useMessage } from '../../../hooks/useMessage';
-import { IFilePreview } from '../../../types/components';
+import { IFilePreview } from '../../2_feed_elements/types/components';
 import { uploadFile } from '../../../hooks/uploadFile';
 import FilePreview from '@/components/2_chatinput_elements/FilePreview/FilePreview.vue';
 // const emit = defineEmits(['send', 'typing']);

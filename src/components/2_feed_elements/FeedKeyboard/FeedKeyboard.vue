@@ -24,7 +24,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import type { IFeedKeyboard } from '../../../types/IFeedKeyboard';
+import type { IFeedKeyboard } from './types/IFeedKeyboard';
 
 const props = defineProps({
   buttons: {

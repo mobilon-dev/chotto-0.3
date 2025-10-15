@@ -1,4 +1,4 @@
-import { Reply } from "./messages";
+import { Reply } from "../../../2_feed_elements/types/messages";
 
 export interface IInputMessage {
   type: string
