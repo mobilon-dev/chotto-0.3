@@ -298,6 +298,7 @@ import { transformToFeed } from "../transform/transformToFeed";
 // import { VideoRecorder } from "../library";
 
 import { useModalCreateDialog, useModalSelectUser2 } from "../helpers";
+import { themes as themesData } from '../data';
 
 // const { locale: currentLocale, locales } = useLocale()
 
@@ -330,25 +331,9 @@ const buttonParams = {
   unreadAmount: 12
 }
 
-const themes = [
-  {
-    code: "light",
-    name: "Light",
-  },
-  {
-    code: "mobilon1",
-    name: "mobilon1",
-    default: true,
-  },
-  {
-    code: "dark",
-    name: "Dark",
-  },
-  {
-    code: "green",
-    name: 'Green'
-  }
-]
+const themes = themesData.map(theme => 
+  theme.code === 'mobilon1' ? { ...theme, default: true } : theme
+);
 
 const menuActions = [
   {

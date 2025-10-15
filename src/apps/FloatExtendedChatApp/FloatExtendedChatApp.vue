@@ -122,6 +122,7 @@ import { playNotificationAudio } from "@/functions";
 
 import { useChatsStore } from "../stores/useChatStore";
 import { transformToFeed } from "../transform/transformToFeed";
+import { themes } from '../data';
 
 
 // Define props
@@ -139,25 +140,6 @@ const props = defineProps({
     required: true,
   },
 });
-
-const themes = [
-  {
-    code: "light",
-    name: "Light",
-  },
-  {
-    code: "dark",
-    name: "Dark",
-  },
-  {
-    code: "green",
-    name: "Green",
-  },
-  {
-    code: "diamond",
-    name: "Diamond",
-  },
-];
 
 const chatsStore = useChatsStore();
 

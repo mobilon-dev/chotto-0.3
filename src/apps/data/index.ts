@@ -7,3 +7,4 @@ export * from './users';
 export * from './templates';
 export * from './groupTemplates';
 export * from './wabaTemplates';
+export * from './themes';

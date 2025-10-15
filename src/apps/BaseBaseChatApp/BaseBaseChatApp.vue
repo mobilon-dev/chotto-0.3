@@ -113,6 +113,7 @@ import { playNotificationAudio } from "@/functions";
 import { useChatsStore } from "../stores/useChatStore";
 import { transformToFeed } from "../transform/transformToFeed";
 import { useLocale } from "../../locale/useLocale";
+import { themes } from '../data';
 
 const {locale: currentLocale, locales} = useLocale()
 // const {t} = useLocale()
@@ -140,26 +141,6 @@ const props = defineProps({
 
 // Use the locale from props or fallback to currentLocale
 const locale = props.locale || currentLocale;
-
-const themes = [
-  {
-    code: "light",
-    name: "Light",
-  },
-  {
-    code: "dark",
-    name: "Dark",
-    
-  },
-  {
-    code: "green",
-    name: "Green",
-  },
-  {
-    code: "diamond",
-    name: "Diamond",
-  },
-];
 
 const chatsStore = useChatsStore();
 

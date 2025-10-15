@@ -223,6 +223,7 @@ import { useChatsStore } from "../stores/useChatStore";
 import { transformToFeed } from "../transform/transformToFeed";
 import { useLocale } from "../../locale/useLocale";
 import { VideoRecorder } from "../..";
+import { themes as themesData } from '../data';
 
 const { locale: currentLocale, locales } = useLocale()
 
@@ -255,25 +256,9 @@ const buttonParams = {
   unreadAmount: 12
 }
 
-const themes = [
-  {
-    code: "light",
-    name: "Light",
-  },
-  {
-    code: "dark",
-    name: "Dark",
-  },
-  {
-    code: "green",
-    name: "Green",
-    default: true,
-  },
-  {
-    code: "diamond",
-    name: "Diamond",
-  },
-];
+const themes = themesData.map(theme => 
+  theme.code === 'green' ? { ...theme, default: true } : theme
+);
 
 const chatsStore = useChatsStore();
 
