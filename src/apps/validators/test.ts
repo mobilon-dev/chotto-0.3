@@ -11,7 +11,7 @@
  */
 
 import { chats } from '../data/chats';
-import { validateChats, getValidationReport } from './chatValidator';
+import { validateChats, getValidationReport } from './chats/chatValidator';
 
 /**
  * Запустить валидацию текущих данных чатов и вывести результат в консоль

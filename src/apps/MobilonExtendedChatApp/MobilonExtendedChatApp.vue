@@ -94,11 +94,19 @@
                       />
                       <button
                         class="chat-info__button-panel chat-info__button-validation"
-                        :class="{ 'validation-error': !isValid }"
-                        :title="isValid ? 'Данные валидны ✓' : `Найдено ошибок: ${errorCount}`"
-                        @click="showReport"
+                        :class="{ 'validation-error': !isChatsValid }"
+                        :title="isChatsValid ? 'Чаты валидны ✓' : `Ошибок в чатах: ${chatErrorCount}`"
+                        @click="showChatsReport"
                       >
-                        <span class="validation-icon">{{ isValid ? '✓' : '!' }}</span>
+                        <span class="validation-icon validation-icon--chats">{{ isChatsValid ? '✓' : '!' }}</span>
+                      </button>
+                      <button
+                        class="chat-info__button-panel chat-info__button-validation chat-info__button-validation--messages"
+                        :class="{ 'validation-error': !isMessagesValid }"
+                        :title="isMessagesValid ? 'Сообщения валидны ✓' : `Ошибок в сообщениях: ${messageErrorCount}`"
+                        @click="showMessagesReport"
+                      >
+                        <span class="validation-icon validation-icon--messages">{{ isMessagesValid ? '✉' : '!' }}</span>
                       </button>
                       <button
                         class="chat-info__button-panel"
@@ -307,7 +315,8 @@ import { transformToFeed } from "../transform/transformToFeed";
 
 import { useModalCreateDialog, useModalSelectUser2 } from "../helpers";
 import { themes as themesData } from '../data';
-import { useChatValidator } from "../validators";
+import { useChatValidator } from "../validators/chats";
+import { useMessageValidator } from "../validators/messages";
 
 // const { locale: currentLocale, locales } = useLocale()
 
@@ -367,7 +376,11 @@ const chatsStore = useChatsStore();
 
 // Реактивная валидация чатов
 const chatsData = computed(() => chatsStore.chats);
-const { isValid, errorCount, showReport } = useChatValidator(chatsData, {
+const { 
+  isValid: isChatsValid, 
+  errorCount: chatErrorCount, 
+  showReport: showChatsReport 
+} = useChatValidator(chatsData, {
   autoValidate: true,
   debounce: 300
 });
@@ -376,6 +389,16 @@ const selectedChat = ref(null);
 const selectedDialog = ref(null)
 
 const messages = ref([]);
+
+// Реактивная валидация сообщений
+const { 
+  isValid: isMessagesValid, 
+  errorCount: messageErrorCount, 
+  showReport: showMessagesReport 
+} = useMessageValidator(messages, {
+  autoValidate: true,
+  debounce: 300
+});
 const userProfile = ref({});
 const channels = ref([]);
 const templates = ref([]);
@@ -921,14 +944,35 @@ onMounted(() => {
     align-items: center;
     justify-content: center;
     transition: color 0.3s ease;
+    
+    // Специфичные стили для кнопки чатов
+    &--chats {
+      color: #4CAF50;
+    }
+    
+    // Специфичные стили для кнопки сообщений
+    &--messages {
+      color: #2196F3;
+      font-size: 16px;
+    }
   }
 
   &:hover {
     background-color: #E8F5E9;
     box-shadow: 0 0 0 6px #E8F5E9;
     
-    .validation-icon {
+    .validation-icon--chats {
       color: #2E7D32;
+    }
+  }
+  
+  // Специфичные стили при hover для кнопки сообщений
+  &--messages:hover {
+    background-color: #E3F2FD;
+    box-shadow: 0 0 0 6px #E3F2FD;
+    
+    .validation-icon--messages {
+      color: #1565C0;
     }
   }
 

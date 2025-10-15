@@ -4,8 +4,8 @@
 
 import { ref } from 'vue';
 import { chats } from '../data/chats';
-import { useChatValidator } from './useChatValidator';
-import { validateChats, getValidationReport } from './chatValidator';
+import { useChatValidator } from './chats/useChatValidator';
+import { validateChats, getValidationReport } from './chats/chatValidator';
 
 // ============================================
 // Пример 1: Простая валидация (без реактивности)
