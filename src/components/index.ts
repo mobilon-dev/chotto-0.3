@@ -6,7 +6,15 @@ export { default as LinkPreview } from './1_atoms/LinkPreview/LinkPreview.vue';
 export { default as Tooltip } from './1_atoms/Tooltip/Tooltip.vue';
 
 // 1_icons
+export { default as AvatarIcon } from './1_icons/AvatarIcon.vue';
+export { default as CheckIcon } from './1_icons/CheckIcon.vue';
+export { default as CloseButtonIcon } from './1_icons/CloseButtonIcon.vue';
+export { default as ContactCRMIcon } from './1_icons/ContactCRMIcon.vue';
 export { default as MenuIcon } from './1_icons/MenuIcon.vue';
+export { default as SearchIcon } from './1_icons/SearchIcon.vue';
+export { default as SettingsIcon } from './1_icons/SettingsIcon.vue';
+export { default as TelegramIcon } from './1_icons/TelegramIcon.vue';
+export { default as WhatsAppIcon } from './1_icons/WhatsAppIcon.vue';
 
 // 2_blocks
 export { default as CommunicationPanel } from './2_blocks/CommunicationPanel/CommunicationPanel.vue';
@@ -23,6 +31,7 @@ export { default as ButtonTemplateSelector } from './2_chatinput_elements/Button
 export { default as ButtonWabaTemplateSelector } from './2_chatinput_elements/ButtonWabaTemplateSelector/ButtonWabaTemplateSelector.vue';
 export { default as FilePreview } from './2_chatinput_elements/FilePreview/FilePreview.vue';
 export { default as FileUploader } from './2_chatinput_elements/FileUploader/FileUploader.vue';
+export { default as PlaceholderComponent } from './2_chatinput_elements/PlaceholderComponent/PlaceholderComponent.vue';
 export { default as TemplateSelector } from './2_chatinput_elements/TemplateSelector/TemplateSelector.vue';
 export { default as WABAAttachmentSection } from './2_chatinput_elements/WABAAttachmentSection/WABAAttachmentSection.vue';
 export { default as WABAQuickReplyButtons } from './2_chatinput_elements/WABAQuickReplyButtons/WABAQuickReplyButtons.vue';

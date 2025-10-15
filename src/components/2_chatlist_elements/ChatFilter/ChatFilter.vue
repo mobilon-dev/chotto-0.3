@@ -16,7 +16,7 @@
 <script setup>
 import { ref, unref } from 'vue';
 import { t } from '../../../locale/useLocale';
-import SearchIcon from '../../1_icons/SearchIcon.vue';
+import { SearchIcon } from '@/components';
 const refInput = ref('');
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

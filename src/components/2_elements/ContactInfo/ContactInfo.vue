@@ -109,10 +109,7 @@
 
 <script setup>
 import { ref, watch, computed } from 'vue';
-import ContactCRMIcon from '../../1_icons/ContactCRMIcon.vue';
-import CheckIcon from '../../1_icons/CheckIcon.vue';
-import WhatsAppIcon from '../../1_icons/WhatsAppIcon.vue';
-import TelegramIcon from '../../1_icons/TelegramIcon.vue';
+import { ContactCRMIcon, CheckIcon, WhatsAppIcon, TelegramIcon } from '@/components';
 
 const props = defineProps({
   contact: {

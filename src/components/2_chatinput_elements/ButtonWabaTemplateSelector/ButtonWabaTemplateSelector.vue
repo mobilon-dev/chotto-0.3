@@ -28,7 +28,7 @@
 
 <script setup>
 import { ref, onMounted, provide, inject } from 'vue';
-import WABATemplateSelector from '../WABATemplateSelector/WABATemplateSelector.vue';
+import { WABATemplateSelector } from '@/components';
 import { useMessage } from '@/hooks';
 
 const props = defineProps({

@@ -190,10 +190,12 @@
 import { computed, ref, reactive, onMounted, inject, unref } from 'vue'
 // import { watch, nextTick } from 'vue'
 
-import PlaceholderComponent from '../PlaceholderComponent/PlaceholderComponent.vue'
-import WABAAttachmentSection from '../WABAAttachmentSection/WABAAttachmentSection.vue';
-import WABAQuickReplyButtons from '../WABAQuickReplyButtons/WABAQuickReplyButtons.vue';
-import WABASeparatedQuickButtons from '../WABASeparatedQuickButtons/WABASeparatedQuickButtons.vue';
+import { 
+  PlaceholderComponent,
+  WABAAttachmentSection, 
+  WABAQuickReplyButtons, 
+  WABASeparatedQuickButtons 
+} from '@/components';
 const props = defineProps({
   wabaTemplates: {
     type: Array,

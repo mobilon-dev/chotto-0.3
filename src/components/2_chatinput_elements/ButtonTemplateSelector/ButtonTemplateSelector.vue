@@ -36,10 +36,9 @@
 
 <script setup>
 import { ref, onMounted, inject } from 'vue';
-import TemplateSelector from '../TemplateSelector/TemplateSelector.vue';
+import { TemplateSelector, Tooltip } from '@/components';
 import { useMessage } from '@/hooks';
 import { ChatTemplatesIcon } from './icons';
-import Tooltip from '../../1_atoms/Tooltip/Tooltip.vue';
 
 const props = defineProps({
   templates: {

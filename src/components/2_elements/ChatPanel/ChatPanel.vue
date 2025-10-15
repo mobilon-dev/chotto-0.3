@@ -30,7 +30,7 @@
 </template>
 
 <script setup>
-import CloseButtonIcon from '../../1_icons/CloseButtonIcon.vue'
+import { CloseButtonIcon } from '@/components'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps({
   title: {
