@@ -1,5 +1,4 @@
-import { IAction } from '@/components/2_chatlist_elements/ChatItem/types'
-import { IDialog } from './components'
+import { IAction, IDialog } from '@types'
 
 export interface Reply {
   messageId: string

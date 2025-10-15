@@ -20,10 +20,10 @@
 </template>
 
 <script setup lang="ts">
-import { useTemplateRef, inject, watch } from 'vue'
+import { useTemplateRef, inject, watch } from 'vue';
 import { useMessage } from '../../../hooks/useMessage';
-import { IInputMessage } from '../../3_compounds/ChatInput/types/IInputMessage';
-import ButtonContextMenu from '../../1_atoms/ButtonContextMenu/ButtonContextMenu.vue';
+import { IInputMessage } from '@/types';
+import {ButtonContextMenu} from '@/components';
 
 const props = defineProps({
   commands: {

@@ -47,7 +47,7 @@ import { ref, computed, inject, onMounted } from "vue";
 import FilePreview from "../FilePreview/FilePreview.vue";
 import { useMessage } from '../../../hooks/useMessage';
 import { uploadFile } from '../../../hooks/uploadFile';
-import { IFilePreview } from "../../2_feed_elements/types/components";
+import { IFilePreview } from "../../../types";
 import { FileUploaderIcon } from "./icons";
 
 const props = defineProps({
