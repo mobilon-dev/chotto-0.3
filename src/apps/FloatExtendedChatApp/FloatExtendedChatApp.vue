@@ -115,8 +115,8 @@ import {
   ButtonContextMenu,
   FeedFoundObjects,
   FeedSearch,
+  FloatContainer,
 } from "../..";
-import { FloatContainer } from "../../components/5_containers";
 
 import {
   // formatTimestamp,

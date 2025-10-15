@@ -287,6 +287,9 @@ import {
   FeedFoundObjects,
   // AudioRecorder,
   CommunicationPanel,
+  ContactInfo, 
+  BaseContainer, 
+  SplashScreen,
 } from "../..";
 
 import {
@@ -300,9 +303,7 @@ import { useChatsStore } from "../stores/useChatStore";
 import { transformToFeed } from "../transform/transformToFeed";
 // import { useLocale } from "../locale/useLocale";
 // import { VideoRecorder } from "../library";
-import { ContactInfo } from "../..";
-import { BaseContainer } from "../../components/5_containers";
-import SplashScreen from "../../components/2_feed_elements/SplashScreen/SplashScreen.vue";
+
 import { useModalCreateDialog, useModalSelectUser2 } from "../helpers";
 
 // const { locale: currentLocale, locales } = useLocale()
