@@ -13,6 +13,8 @@
       <slot name="actions" />
     </div>
 
+
+    <!--  ???? не понятно зачем этот слот  -->
     <slot name="sidebar" />
 
     <ChatFilter
