@@ -12,8 +12,8 @@
 @use '../../components/2_blocks/FeedFoundItem/styles/themes/dark.scss' as feedfounditem-dark;
 @use '../../components/2_blocks/FeedFoundObjects/styles/themes/dark.scss' as feedfoundobjects-dark;
 @use '../../components/2_blocks/FeedSearch/styles/themes/dark.scss' as feedsearch-dark;
-@use '../../components/2_blocks/SelectUser/styles/themes/dark.scss' as selectuser-dark;
-@use '../../components/2_blocks/SelectUser2/styles/themes/dark.scss' as selectuser2-dark;
+@use '../../components/2_modals/SelectUser/styles/themes/dark.scss' as selectuser-dark;
+@use '../../components/2_modals/SelectUser2/styles/themes/dark.scss' as selectuser2-dark;
 
 // 2_chatinput_elements
 @use '../../components/2_chatinput_elements/ButtonCommandsSelector/styles/themes/dark.scss' as buttoncommandssel-dark;

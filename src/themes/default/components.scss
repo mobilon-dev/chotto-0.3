@@ -12,8 +12,8 @@
 @use '../../components/2_blocks/FeedFoundItem/styles/themes/default.scss' as feedfounditem-default;
 @use '../../components/2_blocks/FeedFoundObjects/styles/themes/default.scss' as feedfoundobjects-default;
 @use '../../components/2_blocks/FeedSearch/styles/themes/default.scss' as feedsearch-default;
-@use '../../components/2_blocks/SelectUser/styles/themes/default.scss' as selectuser-default;
-@use '../../components/2_blocks/SelectUser2/styles/themes/default.scss' as selectuser2-default;
+@use '../../components/2_modals/SelectUser/styles/themes/default.scss' as selectuser-default;
+@use '../../components/2_modals/SelectUser2/styles/themes/default.scss' as selectuser2-default;
 
 // 2_chatinput_elements
 @use '../../components/2_chatinput_elements/ButtonCommandsSelector/styles/themes/default.scss' as buttoncommandssel-default;

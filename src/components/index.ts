@@ -21,8 +21,6 @@ export { default as CommunicationPanel } from './2_blocks/CommunicationPanel/Com
 export { default as FeedFoundItem } from './2_blocks/FeedFoundItem/FeedFoundItem.vue';
 export { default as FeedFoundObjects } from './2_blocks/FeedFoundObjects/FeedFoundObjects.vue';
 export { default as FeedSearch } from './2_blocks/FeedSearch/FeedSearch.vue';
-export { default as SelectUser } from './2_blocks/SelectUser/SelectUser.vue';
-export { default as SelectUser2 } from './2_blocks/SelectUser2/SelectUser2.vue';
 
 // 2_chatinput_elements
 export { default as ButtonCommandsSelector } from './2_chatinput_elements/ButtonCommandsSelector/ButtonCommandsSelector.vue';
@@ -83,6 +81,8 @@ export { default as Modal } from './2_modals/Modal/Modal.vue';
 export { default as ModalFullscreen } from './2_modals/ModalFullscreen/ModalFullscreen.vue';
 export { default as ModalNoFooter } from './2_modals/ModalNoFooter/ModalNoFooter.vue';
 export { default as ModalVideoRecorder } from './2_modals/ModalVideoRecorder/ModalVideoRecorder.vue';
+export { default as SelectUser } from './2_modals/SelectUser/SelectUser.vue';
+export { default as SelectUser2 } from './2_modals/SelectUser2/SelectUser2.vue';
 
 // 3_compounds
 export { default as ChatInput } from './3_compounds/ChatInput/ChatInput.vue';
