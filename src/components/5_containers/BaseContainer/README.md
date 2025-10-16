@@ -14,7 +14,6 @@
 
 - `height` (String, optional) - высота контейнера (по умолчанию '100%')
 - `width` (String, optional) - ширина контейнера (по умолчанию '100%')
-- `extChatAppId` (String, optional) - внешний ID приложения чата
 
 ## Слоты
 

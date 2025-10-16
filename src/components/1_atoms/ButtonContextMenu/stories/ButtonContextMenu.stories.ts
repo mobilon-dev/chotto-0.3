@@ -10,7 +10,7 @@ const meta: Meta<typeof ButtonContextMenu> = {
    components: {BaseContainer, ButtonContextMenu, ThemeMode},
    setup() {return {args}},
    template: `
-    <BaseContainer :extChatAppId="args.extChatAppId">
+    <BaseContainer>
       <div style="margin: 100px;">
         <ThemeMode :themes="args.theme"
         />
@@ -68,8 +68,7 @@ export const StandardRight: Story = {
     menuSide: 'right',
     default: '<span class="pi pi-list"></span>',
     //@ts-expect-error - theme prop type mismatch in storybook
-    theme,
-    extChatAppId: '1'
+    theme
   },
 };
 
@@ -79,8 +78,7 @@ export const WithIcons: Story = {
     menuSide: 'left',
     default: '<span class="pi pi-list"></span>',
     //@ts-expect-error - theme prop type mismatch in storybook
-    theme: theme,
-    extChatAppId: '2'
+    theme: theme
   },
 };
 
@@ -90,8 +88,7 @@ export const FileDropDownMenu: Story = {
     menuSide: 'right',
     default: '<span class="pi pi-list"></span>',
     //@ts-expect-error - theme prop type mismatch in storybook
-    theme: theme,
-    extChatAppId: '3'
+    theme: theme
   },
 };
 
@@ -102,8 +99,7 @@ export const WithoutIcon: Story = {
     default: '<span>Нажми сюда</span>',
     mode: 'click',
     //@ts-expect-error - theme prop type mismatch in storybook
-    theme: theme,
-    extChatAppId: '4'
+    theme: theme
   },
 };
 
@@ -113,8 +109,7 @@ export const StandardTop: Story = {
     menuSide: 'top',
     default: '<span class="pi pi-list"></span>',
     //@ts-expect-error - theme prop type mismatch in storybook
-    theme: theme,
-    extChatAppId: '5'
+    theme: theme
   },
 };
 
@@ -124,8 +119,7 @@ export const StandardLeft: Story = {
     menuSide: 'left',
     default: '<span class="pi pi-list"></span>',
     //@ts-expect-error - theme prop type mismatch in storybook
-    theme: theme,
-    extChatAppId: '6'
+    theme: theme
   },
 };
 
@@ -135,8 +129,7 @@ export const StandardBottom: Story = {
     menuSide: 'bottom',
     default: '<span class="pi pi-list"></span>',
     //@ts-expect-error - theme prop type mismatch in storybook
-    theme: theme,
-    extChatAppId: '7'
+    theme: theme
   },
 };
 
@@ -146,7 +139,6 @@ export const LongActions: Story = {
     menuSide: 'right',
     default: '<span class="pi pi-list"></span>',
     //@ts-expect-error - theme prop type mismatch in storybook
-    theme: theme,
-    extChatAppId: '8'
+    theme: theme
   },
 };

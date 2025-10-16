@@ -1,6 +1,6 @@
 <template>
   <button
-    :id="'container-' + buttonContextMenuId + extChatAppId"
+    :id="'container-' + buttonContextMenuId + chatAppId"
     ref="actionScope"
     style="
       position: relative;
@@ -17,7 +17,7 @@
     </div>
     <Teleport to="body">
       <ContextMenu
-        :id="'context-menu-' + buttonContextMenuId + extChatAppId"
+        :id="'context-menu-' + buttonContextMenuId + chatAppId"
         :actions="actions"
         :data-theme="getTheme().theme ? getTheme().theme : 'light'"
         @mouseenter="hoverCM"
@@ -34,7 +34,6 @@ import { ContextMenu } from '@/components';
 import { useTheme } from '@/hooks';
 
 const chatAppId = inject('chatAppId')
-const extChatAppId = inject('extChatAppId')
 
 const { getTheme } = useTheme(chatAppId as string)
 
@@ -165,7 +164,7 @@ const handleClickOutside = (event: Event) => {
 
 onMounted(() => {
   nextTick(() => {
-    contextMenu.value = document.getElementById('context-menu-' + buttonContextMenuId + extChatAppId)
+    contextMenu.value = document.getElementById('context-menu-' + buttonContextMenuId + chatAppId)
     if (contextMenu.value) {
       hideMenu()
       document.addEventListener("click", handleClickOutside)

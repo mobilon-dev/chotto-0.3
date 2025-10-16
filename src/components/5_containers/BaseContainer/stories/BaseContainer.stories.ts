@@ -11,9 +11,7 @@ export default meta;
 type Story = StoryObj<typeof BaseContainer>;
 
 export const Default: Story = {
-  args: {
-    extChatAppId: 'test-container-1'
-  },
+  args: {},
   render: (args) => ({
     components: { BaseContainer },
     setup() { return { args }; },
@@ -22,7 +20,6 @@ export const Default: Story = {
         <div style="padding: 20px; background: #f0f0f0; border-radius: 8px;">
           <h3>BaseContainer Content</h3>
           <p>This is the default content inside the BaseContainer.</p>
-          <p>Container ID: {{ args.extChatAppId }}</p>
         </div>
       </BaseContainer>
     `
@@ -31,7 +28,6 @@ export const Default: Story = {
 
 export const CustomSize: Story = {
   args: {
-    extChatAppId: 'test-container-2',
     height: '300px',
     width: '500px'
   },
@@ -54,7 +50,6 @@ export const CustomSize: Story = {
 
 export const WithSlot: Story = {
   args: {
-    extChatAppId: 'test-container-3',
     height: '250px',
     width: '400px'
   },

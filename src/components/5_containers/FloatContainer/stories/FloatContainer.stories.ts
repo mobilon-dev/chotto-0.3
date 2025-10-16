@@ -14,7 +14,6 @@ export const Default: Story = {
   args: {
     title: 'Floating Window',
     avatar: 'https://via.placeholder.com/40x40/4285f4/ffffff?text=FW',
-    extChatAppId: 'test-float-1',
     height: '300px',
     width: '400px'
   },
@@ -41,7 +40,6 @@ export const WithAvatar: Story = {
   args: {
     title: 'Chat Window',
     avatar: 'https://via.placeholder.com/40x40/34a853/ffffff?text=CH',
-    extChatAppId: 'test-float-2',
     height: '350px',
     width: '450px'
   },
@@ -78,7 +76,6 @@ export const SmallSize: Story = {
   args: {
     title: 'Notification',
     avatar: 'https://via.placeholder.com/40x40/ea4335/ffffff?text=!',
-    extChatAppId: 'test-float-3',
     height: '150px',
     width: '300px'
   },
@@ -105,7 +102,6 @@ export const LargeSize: Story = {
   args: {
     title: 'Dashboard',
     avatar: 'https://via.placeholder.com/40x40/9c27b0/ffffff?text=DB',
-    extChatAppId: 'test-float-4',
     height: '500px',
     width: '600px'
   },

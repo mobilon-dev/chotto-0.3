@@ -68,11 +68,7 @@ const props = defineProps({
   width: {
     type: String,
     default: '100%'
-  },
-  extChatAppId: {
-    type: String,
-    default: ''
-  },
+  }
 });
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const emit = defineEmits(["close-window", "get-size"]);
@@ -87,7 +83,6 @@ const contentHeight = ref(0);
 
 const chatAppId = useId()
 provide('chatAppId', chatAppId)
-provide('extChatAppId', props.extChatAppId ? props.extChatAppId : '')
 
 // const centerWindow = () => {
 //   if (element.value) {

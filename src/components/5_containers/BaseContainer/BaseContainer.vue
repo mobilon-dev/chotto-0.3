@@ -24,16 +24,11 @@ const props = defineProps({
   width: {
     type: String,
     default: '100%'
-  },
-  extChatAppId: {
-    type: String,
-    default: ''
   }
 })
 
 const chatAppId = useId()
 provide('chatAppId', chatAppId)
-provide('extChatAppId', props.extChatAppId ? props.extChatAppId : '')
 
 </script>
 
