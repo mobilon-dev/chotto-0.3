@@ -22,7 +22,7 @@ export { default as FeedFoundItem } from './2_blocks/FeedFoundItem/FeedFoundItem
 export { default as FeedFoundObjects } from './2_blocks/FeedFoundObjects/FeedFoundObjects.vue';
 export { default as FeedSearch } from './2_blocks/FeedSearch/FeedSearch.vue';
 export { default as SelectUser } from './2_blocks/SelectUser/SelectUser.vue';
-export { default as SelectUser2 } from './2_blocks/SelectUser2/SelectUser2.vue';
+// SelectUser2 is dynamically imported via useModalSelectUser2 helper
 
 // 2_chatinput_elements
 export { default as ButtonCommandsSelector } from './2_chatinput_elements/ButtonCommandsSelector/ButtonCommandsSelector.vue';
@@ -76,9 +76,9 @@ export { default as TypingMessage } from './2_feed_elements/TypingMessage/Typing
 export { default as VideoMessage } from './2_feed_elements/VideoMessage/VideoMessage.vue';
 
 // 2_modals
-export { default as CreateChat } from './2_modals/CreateChat/CreateChat.vue';
-export { default as CreateChat2 } from './2_modals/CreateChat2/CreateChat2.vue';
-export { default as CreateDialog } from './2_modals/CreateDialog/CreateDialog.vue';
+// CreateChat is dynamically imported via useModalCreateChat helper
+// CreateChat2 is dynamically imported via useModalCreateChat2 helper
+// CreateDialog is dynamically imported via useModalCreateDialog helper
 export { default as Modal } from './2_modals/Modal/Modal.vue';
 export { default as ModalFullscreen } from './2_modals/ModalFullscreen/ModalFullscreen.vue';
 export { default as ModalNoFooter } from './2_modals/ModalNoFooter/ModalNoFooter.vue';

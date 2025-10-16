@@ -312,7 +312,7 @@ import {
   ContactInfo, 
   BaseContainer, 
   SplashScreen,
-} from "@";
+} from "@/components";
 
 import { playNotificationAudio } from "@/functions";
 
@@ -321,8 +321,9 @@ import { transformToFeed } from "../transform/transformToFeed";
 // import { useLocale } from "../locale/useLocale";
 // import { VideoRecorder } from "../library";
 
-import { useModalCreateDialog, useModalSelectUser2 } from "../helpers";
+import { useModalCreateDialog, useModalSelectUser2 } from "@/hooks";
 import { themes as themesData } from '../data';
+
 import { useChatValidator } from "../validators/chats";
 import { useMessageValidator } from "../validators/messages";
 import { useSidebarValidator } from "../validators/sidebar";

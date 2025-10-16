@@ -215,7 +215,7 @@ import {
   AudioRecorder,
 } from "../..";
 import { BaseContainer } from "../../components/5_containers";
-import { useModalCreateDialog, useModalSelectUser2 } from "../helpers";
+import { useModalCreateDialog, useModalSelectUser2 } from "../../hooks/modals";
 
 import { playNotificationAudio } from "@/functions";
 

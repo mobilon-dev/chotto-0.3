@@ -174,7 +174,7 @@ import {
   FeedFoundObjects,
 } from "../..";
 import { BaseContainer } from "../../components/5_containers";
-import { useModalSelectUser2 } from "../helpers";
+import { useModalSelectUser2 } from "../../hooks/modals";
 
 import { playNotificationAudio } from "@/functions";
 
