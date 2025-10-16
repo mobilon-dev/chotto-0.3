@@ -109,6 +109,14 @@
                         <span class="validation-icon validation-icon--messages">{{ isMessagesValid ? '✉' : '!' }}</span>
                       </button>
                       <button
+                        class="chat-info__button-panel chat-info__button-validation chat-info__button-validation--sidebar"
+                        :class="{ 'validation-error': !isSidebarValid }"
+                        :title="isSidebarValid ? 'Sidebar валиден ✓' : `Ошибок в sidebar: ${sidebarErrorCount}`"
+                        @click="showSidebarReport"
+                      >
+                        <span class="validation-icon validation-icon--sidebar">{{ isSidebarValid ? '☰' : '!' }}</span>
+                      </button>
+                      <button
                         class="chat-info__button-panel"
                         @click="isOpenChatPanel = !isOpenChatPanel"
                       >
@@ -317,6 +325,7 @@ import { useModalCreateDialog, useModalSelectUser2 } from "../helpers";
 import { themes as themesData } from '../data';
 import { useChatValidator } from "../validators/chats";
 import { useMessageValidator } from "../validators/messages";
+import { useSidebarValidator } from "../validators/sidebar";
 
 // const { locale: currentLocale, locales } = useLocale()
 
@@ -399,12 +408,23 @@ const {
   autoValidate: true,
   debounce: 300
 });
+
 const userProfile = ref({});
 const channels = ref([]);
 const templates = ref([]);
 const wabaTemplates = ref([])
 const groupTemplates = ref([])
 const sidebarItems = ref([]);
+
+// Реактивная валидация sidebar items
+const { 
+  isValid: isSidebarValid, 
+  errorCount: sidebarErrorCount, 
+  showReport: showSidebarReport 
+} = useSidebarValidator(sidebarItems, {
+  autoValidate: true,
+  debounce: 300
+});
 const isOpenChatPanel = ref(false);
 const isOpenSearchPanel = ref(false)
 const notFoundMessage = ref(false)
@@ -973,6 +993,21 @@ onMounted(() => {
     
     .validation-icon--messages {
       color: #1565C0;
+    }
+  }
+  
+  // Специфичные стили для кнопки sidebar
+  .validation-icon--sidebar {
+    color: #FF9800;
+    font-size: 17px;
+  }
+  
+  &--sidebar:hover {
+    background-color: #FFF3E0;
+    box-shadow: 0 0 0 6px #FFF3E0;
+    
+    .validation-icon--sidebar {
+      color: #E65100;
     }
   }
 

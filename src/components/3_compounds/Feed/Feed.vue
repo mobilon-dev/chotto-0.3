@@ -114,7 +114,7 @@ import {
   BaseReplyMessage,
   MessageKeyboard,
   FeedKeyboard
-} from '../..';
+} from '@/components';
 
 import { IFeedObject, IFeedTyping, IFeedUnreadButton, IFeedKeyboard } from '@/types';
 import { useMessage } from '@/hooks';

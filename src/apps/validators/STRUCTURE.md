@@ -37,6 +37,9 @@ import { useChatValidator, validateChats } from '@/apps/validators/chats';
 
 // Валидатор сообщений
 import { useMessageValidator, validateMessages } from '@/apps/validators/messages';
+
+// Валидатор sidebar
+import { useSidebarValidator, validateSidebarItems } from '@/apps/validators/sidebar';
 ```
 
 **Преимущества:**
@@ -51,8 +54,10 @@ import { useMessageValidator, validateMessages } from '@/apps/validators/message
 import { 
   useChatValidator, 
   useMessageValidator,
+  useSidebarValidator,
   validateChats,
-  validateMessages 
+  validateMessages,
+  validateSidebarItems
 } from '@/apps/validators';
 ```
 
