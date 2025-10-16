@@ -6,3 +6,4 @@ export * from './useSearchModel';
 export * from './useTheme';
 
 export * from './modals';
+export * from './validators';

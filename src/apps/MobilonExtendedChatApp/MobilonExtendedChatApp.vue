@@ -319,15 +319,13 @@ import { playNotificationAudio } from "@/functions";
 import { useChatsStore } from "../stores/useChatStore";
 import { transformToFeed } from "../transform/transformToFeed";
 // import { useLocale } from "../locale/useLocale";
-// import { VideoRecorder } from "../library";
 
 import { useModalCreateDialog, useModalSelectUser2 } from "@/hooks";
 import { themes as themesData } from '../data';
 
-import { useChatValidator } from "../validators/chats";
-import { useMessageValidator } from "../validators/messages";
-import { useSidebarValidator } from "../validators/sidebar";
-
+import { useChatValidator, 
+  useMessageValidator, useSidebarValidator,
+} from "@/hooks/validators";
 // const { locale: currentLocale, locales } = useLocale()
 
 

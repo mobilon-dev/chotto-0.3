@@ -67,5 +67,5 @@ export interface Chat {
   commands?: Command[];
 }
 
-export type ChatList = Chat[];
+export type ChatsArray = Chat[];
 
