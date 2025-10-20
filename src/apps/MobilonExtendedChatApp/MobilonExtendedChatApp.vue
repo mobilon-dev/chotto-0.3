@@ -35,6 +35,14 @@
           >
             <template #actions>
               <!-- <h2>Чаты</h2> -->
+              <div class="actions">
+                <button
+                  title="Добавить чат с контактом"
+                  @click="createChat"
+                >
+                  <i class="pi pi-plus" />
+                </button>
+              </div>
             </template>
           </ChatList>
           <FeedSearch 
@@ -320,7 +328,7 @@ import { useChatsStore } from "../stores/useChatStore";
 import { transformToFeed } from "../transform/transformToFeed";
 // import { useLocale } from "../locale/useLocale";
 
-import { useModalCreateDialog, useModalSelectUser2 } from "@/hooks";
+import { useModalCreateDialog, useModalSelectUser2, useModalCreateChat2 } from "@/hooks";
 import { themes as themesData } from '../data';
 
 import { useChatValidator, 
@@ -843,6 +851,44 @@ const handleAttributeChannelSelect = (data) => {
       d.channelId === data.channelId
     );
     if (targetDialog) selectChat({chat: selectedChat.value, dialog: targetDialog});
+  }
+};
+
+// Демонстрационная функция создания чата
+const createChat = async () => {
+  try {
+    // Получаем текущую тему из DOM
+    const selectedTheme = Array.from(document.querySelectorAll('div[data-theme]'))[0]?.getAttribute('data-theme') || 'mobilon1';
+    
+    // Открываем модальное окно CreateChat2
+    const result = await useModalCreateChat2('Создание чата с контактом', selectedTheme);
+    
+    console.log('Демо: Данные из модального окна:', result);
+    console.log('Демо: Имя контакта:', result.contact.name);
+    console.log('Демо: Телефон контакта:', result.contact.phone);
+    
+    // Демонстрационная логика: создаем моковый чат и добавляем его в список
+    if (result.contact.name && result.contact.phone) {
+      const newChat = {
+        chatId: Date.now(), // Используем timestamp как ID
+        name: result.contact.name,
+        title: result.contact.name,
+        unreadCount: 0,
+        lastMessage: 'Новый чат создан',
+        contact: {
+          name: result.contact.name,
+          phone: result.contact.phone,
+          attributes: []
+        },
+      };
+      
+      // Добавляем новый чат в начало списка
+      chatsStore.chats.unshift(newChat);
+      console.log('Демо: Новый чат добавлен в список:', newChat);
+    }
+    
+  } catch (error) {
+    console.log('Демо: Модальное окно было закрыто или произошла ошибка:', error);
   }
 };
 

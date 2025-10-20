@@ -65,6 +65,7 @@
 @use '../../components/2_feed_elements/VideoMessage/styles/themes/default.scss' as videomessage-default;
 
 // 2_modals
+@use '../../components/2_modals/CreateChat2/styles/themes/default.scss' as createchat2-default;
 @use '../../components/2_modals/CreateDialog/styles/themes/default.scss' as createdialog-default;
 @use '../../components/2_modals/Modal/styles/themes/default.scss' as modal-default;
 @use '../../components/2_modals/ModalFullscreen/styles/themes/default.scss' as modalfullscreen-default;

@@ -33,7 +33,7 @@
 
   // Modal body
   --chotto-modal-body-position: relative;
-  --chotto-modal-body-padding: 20px 10px;
+  --chotto-modal-body-padding: 30px;
   --chotto-modal-body-margin: 0;
   --chotto-modal-body-flex-grow: 1;
   --chotto-modal-body-overflow: visible;
@@ -44,11 +44,11 @@
   --chotto-modal-text-align: left;
 
   // Modal buttons container
-  --chotto-modal-buttons-display: block;
-  --chotto-modal-buttons-margin: 10px 10px 10px 10px;
+  --chotto-modal-buttons-display: flex;
+  --chotto-modal-buttons-margin: 10px 20px 25px 20px;
   --chotto-modal-buttons-padding: 0;
-  --chotto-modal-buttons-gap: 10px;
-  --chotto-modal-buttons-justify: flex-end;
+  --chotto-modal-buttons-gap: 8px;
+  --chotto-modal-buttons-justify: center;
   --chotto-modal-buttons-align: center;
   --chotto-modal-buttons-wrap: wrap;
 
@@ -56,21 +56,24 @@
   --chotto-modal-button-bg: var(--chotto-theme-accent-color, #4CAF50);
   --chotto-modal-button-text-color: #ffffff;
   --chotto-modal-button-border: none;
-  --chotto-modal-button-border-radius: 4px;
-  --chotto-modal-button-padding: 8px 16px;
-  --chotto-modal-button-margin: 0 5px;
-  --chotto-modal-button-font-size: 14px;
-  --chotto-modal-button-font-family: inherit;
+  --chotto-modal-button-border-radius: 5px;
+  --chotto-modal-button-padding: 9px 18px;
+  --chotto-modal-button-margin: 0 4px;
+  --chotto-modal-button-font-size: 13px;
+  --chotto-modal-button-font-family: var(--chotto-theme-font-family);
   --chotto-modal-button-font-weight: 500;
   --chotto-modal-button-cursor: pointer;
-  --chotto-modal-button-transition: all 0.2s ease;
-  --chotto-modal-button-min-width: 80px;
-  --chotto-modal-button-min-height: 36px;
+  --chotto-modal-button-transition: all 0.25s ease;
+  --chotto-modal-button-min-width: 133px;
+  --chotto-modal-button-min-height: 34px;
   --chotto-modal-button-display: inline-block;
   --chotto-modal-button-text-align: center;
   --chotto-modal-button-text-decoration: none;
   --chotto-modal-button-outline: none;
-  --chotto-modal-button-box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  --chotto-modal-button-box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+
+  --chotto-modal-cancel-button-bg: var(--chotto-theme-quaternary-color, #a3a3a3);
+  --chotto-modal-cancel-button-border: none;
 
   // Button states
   --chotto-modal-button-hover-bg: #45a049;

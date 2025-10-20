@@ -36,26 +36,29 @@ export function useModal({component, attrs, Modal, modalAttrs}: {
             })
         }
 
+        // Создаём стабильную ссылку на асинхронный компонент один раз,
+        // чтобы он не пересоздавался при каждом рендере
+        const AsyncInnerComponent = defineAsyncComponent(() => component)
+
         const ModalWrapper = defineComponent({
             render() {
                 return h(
                     Modal,
                     {
                         ...modalAttrs,
+                        // Блокируем OK, пока форма невалидна (или валидность ещё не известна)
+                        okDisabled: !(Data.value && (Data.value as Record<string, unknown>).isValid === true) ,
                         onClose: closeHandler,
                         onSubmit: submitHandler,
                     },
                     {
                         default: () =>
-                            h(
-                                defineAsyncComponent(() => component),
-                                {
-                                    ...attrs,
-                                    onChange: changeDataHandler,
-                                    onSubmit: submitHandler,
-                                    onClose: closeHandler,
-                                }
-                            ),
+                            h(AsyncInnerComponent, {
+                                ...attrs,
+                                onChange: changeDataHandler,
+                                onSubmit: submitHandler,
+                                onClose: closeHandler,
+                            }),
                     }
                 )
             },

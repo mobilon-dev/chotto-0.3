@@ -15,7 +15,7 @@
   // Modal container
   --chotto-modal-background: var(--chotto-theme-primary-color, #f8fff8);
   --chotto-modal-box-shadow: 0 4px 20px var(--chotto-theme-shadow-color, rgba(76, 175, 80, 0.3));
-  --chotto-modal-border: 2px solid var(--chotto-theme-accent-color, #4CAF50);
+  --chotto-modal-border: none;
   --chotto-modal-border-radius: 16px;
   --chotto-modal-position: relative;
   --chotto-modal-display: flex;
@@ -33,7 +33,7 @@
 
   // Modal body
   --chotto-modal-body-position: relative;
-  --chotto-modal-body-padding: 24px 20px;
+  --chotto-modal-body-padding: 30px;
   --chotto-modal-body-margin: 0;
   --chotto-modal-body-flex-grow: 1;
   --chotto-modal-body-overflow: visible;
@@ -44,10 +44,10 @@
   --chotto-modal-text-align: left;
 
   // Modal buttons container
-  --chotto-modal-buttons-display: block;
-  --chotto-modal-buttons-margin: 20px 20px 20px 20px;
+  --chotto-modal-buttons-display: flex;
+  --chotto-modal-buttons-margin: 10px 20px 25px 20px;
   --chotto-modal-buttons-padding: 0;
-  --chotto-modal-buttons-gap: 15px;
+  --chotto-modal-buttons-gap: 8px;
   --chotto-modal-buttons-justify: center;
   --chotto-modal-buttons-align: center;
   --chotto-modal-buttons-wrap: wrap;
@@ -55,22 +55,25 @@
   // Modal buttons
   --chotto-modal-button-bg: var(--chotto-theme-accent-color, #4CAF50);
   --chotto-modal-button-text-color: #ffffff;
-  --chotto-modal-button-border: 2px solid var(--chotto-theme-accent-color, #4CAF50);
-  --chotto-modal-button-border-radius: 8px;
-  --chotto-modal-button-padding: 12px 24px;
-  --chotto-modal-button-margin: 0 8px;
+  --chotto-modal-button-border: none;
+  --chotto-modal-button-border-radius: 5px;
+  --chotto-modal-button-padding: 9px 18px;
+  --chotto-modal-button-margin: 0 4px;
   --chotto-modal-button-font-size: 15px;
-  --chotto-modal-button-font-family: inherit;
+  --chotto-modal-button-font-family: var(--chotto-theme-font-family);
   --chotto-modal-button-font-weight: 600;
   --chotto-modal-button-cursor: pointer;
   --chotto-modal-button-transition: all 0.3s ease;
-  --chotto-modal-button-min-width: 100px;
-  --chotto-modal-button-min-height: 44px;
+  --chotto-modal-button-min-width: 138px;
+  --chotto-modal-button-min-height: 34px;
   --chotto-modal-button-display: inline-block;
   --chotto-modal-button-text-align: center;
   --chotto-modal-button-text-decoration: none;
   --chotto-modal-button-outline: none;
   --chotto-modal-button-box-shadow: 0 3px 6px rgba(76, 175, 80, 0.3);
+
+  --chotto-modal-cancel-button-bg: var(--chotto-theme-quaternary-color, #a3a3a3);
+  --chotto-modal-cancel-button-border: none;
 
   // Button states
   --chotto-modal-button-hover-bg: #45a049;

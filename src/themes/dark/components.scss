@@ -65,6 +65,7 @@
 @use '../../components/2_feed_elements/VideoMessage/styles/themes/dark.scss' as videomessage-dark;
 
 // 2_modals
+@use '../../components/2_modals/CreateChat2/styles/themes/dark.scss' as createchat2-dark;
 @use '../../components/2_modals/CreateDialog/styles/themes/dark.scss' as createdialog-dark;
 @use '../../components/2_modals/Modal/styles/themes/dark.scss' as modal-dark;
 @use '../../components/2_modals/ModalFullscreen/styles/themes/dark.scss' as modalfullscreen-dark;

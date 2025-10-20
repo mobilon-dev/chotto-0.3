@@ -173,4 +173,10 @@ export interface ModalThemeCSSVariables {
   '--chotto-modal-enter-to-opacity': string;
   /** Трансформация при завершении входа модального окна */
   '--chotto-modal-enter-to-transform': string;
+
+  // Modal cancel button
+  /** Фон кнопки отмены модального окна */
+  '--chotto-modal-cancel-button-bg': string;
+  /** Граница кнопки отмены модального окна */
+  '--chotto-modal-cancel-button-border': string;
 }

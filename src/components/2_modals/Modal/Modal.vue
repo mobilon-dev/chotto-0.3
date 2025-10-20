@@ -2,12 +2,16 @@
 
 const emit = defineEmits(['close', 'submit'])
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps({
   theme: {
     type: String,
     required: false,
     default: 'light'
+  },
+  okDisabled: {
+    type: Boolean,
+    required: false,
+    default: false
   }
 })
 
@@ -44,13 +48,15 @@ const closeModalOutside = (evt) => {
             type="button"
             class="btn-green"
             aria-label="Close modal"
+            :aria-disabled="props.okDisabled ? 'true' : 'false'"
+            :disabled="props.okDisabled"
             @click="emit('submit')"
           >
             OK
           </button>
           <button
             type="button"
-            class="btn-green"
+            class="btn-green btn-gray"
             aria-label="Close modal"
             @click="emit('close')"
           >
