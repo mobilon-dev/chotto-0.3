@@ -87,6 +87,8 @@
     align-items: var(--chotto-chatlist-button-align, center);
     cursor: var(--chotto-chatlist-button-cursor, pointer);
     background-color: var(--chotto-chatlist-button-background-color, #e5e5e5);
+    color: var(--chotto-chatlist-button-color-active, #525252);
+    font-size: var(--chotto-chatlist-button-icon-size, 23px);
   }
 
   &__icon-up {
