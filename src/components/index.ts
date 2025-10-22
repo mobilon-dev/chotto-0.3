@@ -74,15 +74,12 @@ export { default as TypingMessage } from './2_feed_elements/TypingMessage/Typing
 export { default as VideoMessage } from './2_feed_elements/VideoMessage/VideoMessage.vue';
 
 // 2_modals
-export { default as CreateChat } from './2_modals/CreateChat/CreateChat.vue';
-export { default as CreateChat2 } from './2_modals/CreateChat2/CreateChat2.vue';
-export { default as CreateDialog } from './2_modals/CreateDialog/CreateDialog.vue';
+// Note: CreateChat, CreateChat2, CreateDialog, ModalVideoRecorder, SelectUser2
+// are dynamically imported in hooks and excluded here for code-splitting optimization
 export { default as Modal } from './2_modals/Modal/Modal.vue';
 export { default as ModalFullscreen } from './2_modals/ModalFullscreen/ModalFullscreen.vue';
 export { default as ModalNoFooter } from './2_modals/ModalNoFooter/ModalNoFooter.vue';
-export { default as ModalVideoRecorder } from './2_modals/ModalVideoRecorder/ModalVideoRecorder.vue';
 export { default as SelectUser } from './2_modals/SelectUser/SelectUser.vue';
-export { default as SelectUser2 } from './2_modals/SelectUser2/SelectUser2.vue';
 
 // 3_compounds
 export { default as ChatInput } from './3_compounds/ChatInput/ChatInput.vue';
