@@ -27,6 +27,7 @@
             filter-enabled
             :title-enabled="true"
             :dialog-tabs="dialogTabs"
+            :active-tab-id="activeTabId"
             @select="selectChat"
             @expand="expandChat"
             @action="chatAction"
@@ -444,10 +445,12 @@ const foundMessages = ref([])
 
 // const dialogTabs = ref([]);
 const dialogTabs = ref([
-  { id: 'all', label: 'Все', count: 2, active: true },
-  { id: 'deal', label: 'По сделке', count: 3, active: false },
-  { id: 'rejected', label: 'Непринятые', count: 1, active: false },
+  { id: 'all', label: 'Все', active: true },
+  { id: 'countUnread', label: 'Непрочитанные', active: false },
+  { id: 'tag_amq9w5j', label: 'tag: Партнёры', active: false },
 ]);
+
+const activeTabId = ref('all');
 
 
 const feedKeyboards = ref([
@@ -553,6 +556,7 @@ const handleTabClick = (tabId) => {
   dialogTabs.value.forEach(tab => {
     tab.active = tab.id === tabId;
   });
+  activeTabId.value = tabId;
   console.log('Active tab:', tabId);
 };
 

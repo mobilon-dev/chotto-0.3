@@ -111,6 +111,10 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
+  activeTabId: {
+    type: String,
+    default: 'all',
+  },
 });
 
 // Define emits
@@ -233,6 +237,20 @@ const getSortedAndFilteredChats = () => {
       if (a.countUnread == b.countUnread) return 0;
     })
     .filter(c => {
+      // Универсальная фильтрация по табам
+      if (props.activeTabId === 'all') {
+        // Показываем все чаты
+      } else if (props.activeTabId === 'countUnread') {
+        // Показываем только чаты с непрочитанными сообщениями
+        if (c.countUnread <= 0) return false;
+      } else if (props.activeTabId.startsWith('tag_')) {
+        // Показываем чаты с определенным тегом
+        if (!c.contact?.tags || !c.contact.tags.some(tag => tag.tagId === props.activeTabId)) {
+          return false;
+        }
+      }
+      
+      // Фильтрация по тексту
       if (!props.filterQuery)
         return c.name.includes(filter.value) ||
           c.metadata.includes(filter.value);

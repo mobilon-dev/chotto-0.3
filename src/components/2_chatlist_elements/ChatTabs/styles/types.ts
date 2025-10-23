@@ -5,6 +5,8 @@ export interface ChatTabsThemeCSSVariables {
   // List
   /** Отображение списка вкладок */
   '--chotto-chattabs-list-display': string;
+  /** Перенос элементов списка вкладок на новую строку */
+  '--chotto-chattabs-list-flex-wrap': string;
   /** Стиль списка вкладок */
   '--chotto-chattabs-list-list-style': string;
   /** Отступы списка вкладок */

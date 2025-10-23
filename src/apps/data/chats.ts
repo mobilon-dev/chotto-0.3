@@ -131,6 +131,26 @@ export const chats = [
           value: '@antirek',
         },
       ],
+      "tags": [
+        {
+            "_id": "68c7ae619e1379f11fb3ca8d",
+            "branchId": "bch_dq5clne",
+            "tagId": "tag_amq9w5j",
+            "data": "Партнеры"
+        },
+        {
+            "_id": "68c7b0b09e1379f11fb52e50",
+            "branchId": "bch_dq5clne",
+            "tagId": "tag_a8egnkm",
+            "data": "База партнеров"
+        },
+        {
+            "_id": "68cb964fc01695a4f5ebe040",
+            "branchId": "bch_dq5clne",
+            "tagId": "tag_hmfwm82",
+            "data": "Партнеры Марина 18.09 - 1"
+        }
+      ]
     },
   },
   /*{
@@ -259,9 +279,55 @@ export const chats = [
       { action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' },
     ],
     metadata: '',
+    contact: {
+      attributes: [
+        {
+          id: 'atr_1',
+          type: 'phone',
+          data: '79000000000',
+          value: 'whatsapp 79000000000',
+        },
+        {
+          id: 'atr_2',
+          type: 'phone',
+          data: '7913529XXXX',
+          value: 'whatsapp 7900000XXXX',
+        },
+        {
+          id: 'atr_3',
+          type: 'telegram',
+          data: {
+            id: '182940012993',
+            nickname: 'test_nick',
+            phone: '79139310012'
+          },
+          value: '@antirek',
+        },
+      ],
+      "tags": [
+        {
+            "_id": "68c7ae619e1379f11fb3ca8d",
+            "branchId": "bch_dq5clne",
+            "tagId": "tag_amq9w5j",
+            "data": "Партнеры"
+        },
+        {
+            "_id": "68c7b0b09e1379f11fb52e50",
+            "branchId": "bch_dq5clne",
+            "tagId": "tag_a8egnkm",
+            "data": "База партнеров"
+        },
+        {
+            "_id": "68cb964fc01695a4f5ebe040",
+            "branchId": "bch_dq5clne",
+            "tagId": "tag_hmfwm82",
+            "data": "Партнеры Марина 18.09 - 1"
+        }
+      ]
+    },
   },
   {
-    chatId: 7, name: "Василий 2",
+    chatId: 7, name: "Пётр",
     countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад',
     'lastActivity.timestamp': '1727021159',
     'lastMessage.status': 'received',
@@ -270,6 +336,40 @@ export const chats = [
     ],
     typing: true,
     metadata: '',
+    contact: {
+      attributes: [
+        {
+          id: 'atr_1',
+          type: 'phone',
+          data: '79000000000',
+          value: 'whatsapp 79000000000',
+        },
+        {
+          id: 'atr_2',
+          type: 'phone',
+          data: '7913529XXXX',
+          value: 'whatsapp 7900000XXXX',
+        },
+        {
+          id: 'atr_3',
+          type: 'telegram',
+          data: {
+            id: '182940012993',
+            nickname: 'test_nick',
+            phone: '79139310012'
+          },
+          value: '@antirek',
+        },
+      ],
+      "tags": [
+        {
+            "_id": "68cb964fc01695a4f5ebe040",
+            "branchId": "bch_dq5clne",
+            "tagId": "tag_hmfwm82",
+            "data": "Партнеры Марина 18.09 - 1"
+        }
+      ]
+    },
   },
   {
     chatId: 8, name: "Василий",
