@@ -95,6 +95,62 @@
     font-size: var(--chotto-chatlist-button-icon-size, 23px);
     color: var(--chotto-chatlist-button-color-active, #525252);
   }
+
+  &__search-indicator {
+    margin: var(--chotto-chatlist-search-indicator-margin, 0 16px 10px 15px);
+    padding: var(--chotto-chatlist-search-indicator-padding, 8px 12px);
+    background-color: var(--chotto-chatlist-search-indicator-bg, #f0f0f0);
+    border-radius: var(--chotto-chatlist-search-indicator-radius, 6px);
+    border: var(--chotto-chatlist-search-indicator-border, 1px solid #e0e0e0);
+  }
+
+  &__search-content {
+    display: var(--chotto-chatlist-search-content-display, flex);
+    align-items: var(--chotto-chatlist-search-content-align-items, center);
+    gap: var(--chotto-chatlist-search-content-gap, 8px);
+  }
+
+  &__search-icon {
+    color: var(--chotto-chatlist-search-icon-color, #666);
+    font-size: var(--chotto-chatlist-search-icon-font-size, 14px);
+  }
+
+  &__search-text {
+    flex: 1;
+    font-size: var(--chotto-chatlist-search-text-font-size, 14px);
+    color: var(--chotto-chatlist-search-text-color, #333);
+  }
+
+  &__search-progress {
+    color: var(--chotto-chatlist-search-progress-color, #007bff);
+    font-style: italic;
+  }
+
+  &__search-query {
+    font-weight: var(--chotto-chatlist-search-query-font-weight, 500);
+  }
+
+  &__search-stats {
+    color: var(--chotto-chatlist-search-stats-color, #666);
+    font-size: var(--chotto-chatlist-search-stats-font-size, 12px);
+    font-weight: var(--chotto-chatlist-search-stats-font-weight, normal);
+  }
+
+  &__search-clear {
+    background: none;
+    border: none;
+    color: var(--chotto-chatlist-search-clear-color, #999);
+    cursor: pointer;
+    padding: var(--chotto-chatlist-search-clear-padding, 4px);
+    border-radius: var(--chotto-chatlist-search-clear-border-radius, 4px);
+    font-size: var(--chotto-chatlist-search-clear-font-size, 12px);
+    transition: var(--chotto-chatlist-search-clear-transition, color 0.2s ease);
+
+    &:hover {
+      color: var(--chotto-chatlist-search-clear-hover-color, #666);
+      background-color: var(--chotto-chatlist-search-clear-hover-bg, #f5f5f5);
+    }
+  }
 }
 
 .menu-enter-active {

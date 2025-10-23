@@ -29,6 +29,43 @@
       @tab-click="handleTabClick"
     />
 
+    <!-- Индикатор поиска -->
+    <div 
+      v-if="isSearching || searchQuery"
+      class="chat-list__search-indicator"
+    >
+      <div class="chat-list__search-content">
+        <div class="chat-list__search-text">
+          <span
+            v-if="isSearching"
+            class="chat-list__search-progress"
+          >
+            {{ searchProgress || 'Поиск...' }}
+          </span>
+          <span
+            v-else
+            class="chat-list__search-query"
+          >
+            Поиск "{{ searchQuery }}" завершён
+            <span
+              v-if="searchStats.loaded > 0"
+              class="chat-list__search-stats"
+            >
+              ({{ searchStats.loaded }} {{ searchStats.total !== '?' ? `из ${searchStats.total}` : '' }})
+            </span>
+          </span>
+        </div>
+        <button 
+          v-if="searchQuery"
+          class="chat-list__search-clear"
+          title="Очистить поиск"
+          @click="emit('clear-search')"
+        >
+          <i class="pi pi-times" />
+        </button>
+      </div>
+    </div>
+
     <div 
       ref="refChatList"
       class="chat-list__items"
@@ -115,10 +152,27 @@ const props = defineProps({
     type: String,
     default: 'all',
   },
+  // Props для поиска
+  searchQuery: {
+    type: String,
+    default: '',
+  },
+  isSearching: {
+    type: Boolean,
+    default: false,
+  },
+  searchProgress: {
+    type: String,
+    default: '',
+  },
+  searchStats: {
+    type: Object,
+    default: () => ({ loaded: 0, total: '?' }),
+  },
 });
 
 // Define emits
-const emit = defineEmits(['select', 'action', 'loadMoreChats', 'expand', 'tab-click']);
+const emit = defineEmits(['select', 'action', 'loadMoreChats', 'expand', 'tab-click', 'search', 'clear-search']);
 
 const filter = ref('');
 const refChatList = ref()
@@ -225,7 +279,21 @@ const selectDialog = (dialog) => {
 }
 
 const getSortedAndFilteredChats = () => {
-  return props.chats
+  console.log('🔍 ChatList filtering:', {
+    totalChats: props.chats.length,
+    searchQuery: props.searchQuery,
+    activeTabId: props.activeTabId,
+    filterValue: filter.value,
+    chatsStoreLength: props.chats?.length || 0
+  });
+  
+  // Проверяем, есть ли чаты в props
+  if (!props.chats || props.chats.length === 0) {
+    console.log('⚠️ ChatList: No chats in props!');
+    return [];
+  }
+  
+  const result = props.chats
     .toSorted((a, b) => {
       if (Number(a['lastActivity.timestamp']) > Number(b['lastActivity.timestamp'])) return -1;
       if (Number(a['lastActivity.timestamp']) < Number(b['lastActivity.timestamp'])) return 1;
@@ -250,18 +318,38 @@ const getSortedAndFilteredChats = () => {
         }
       }
       
-      // Фильтрация по тексту
-      if (!props.filterQuery)
-        return c.name.includes(filter.value) ||
-          c.metadata.includes(filter.value);
-      else 
-        return c.name.includes(props.filterQuery) ||
-          c.metadata.includes(props.filterQuery);
+      // Фильтрация по тексту (только если не в режиме поиска)
+      if (props.searchQuery && props.searchQuery.trim() !== '') {
+        // В режиме поиска показываем все чаты из store (они уже отфильтрованы API)
+        return true;
+      } else {
+        // Обычная локальная фильтрация
+        if (!props.filterQuery)
+          return c.name.includes(filter.value) ||
+            c.metadata.includes(filter.value);
+        else 
+          return c.name.includes(props.filterQuery) ||
+            c.metadata.includes(props.filterQuery);
+      }
     });
+  
+  console.log('📊 ChatList filtering result:', {
+    filteredChats: result.length,
+    firstFewChats: result.slice(0, 3).map(c => ({ id: c.chatId, name: c.name }))
+  });
+  
+  return result;
 }
 
 const getFilter = (value) => {
   filter.value = value;
+  // Если есть поисковый запрос, эмитим событие поиска
+  if (value.trim() !== '') {
+    emit('search', value);
+  } else {
+    // Если поле поиска очищено, эмитим событие очистки поиска
+    emit('clear-search');
+  }
 }
 
 const action = (data) => emit('action', data);
@@ -270,6 +358,22 @@ const action = (data) => emit('action', data);
 const handleTabClick = (tabId) => {
   emit('tab-click', tabId);
 };
+
+// Добавляем watcher для отслеживания изменений в props (после всех объявлений)
+watch(() => props.chats, (newChats, oldChats) => {
+  console.log('🔄 ChatList props.chats changed:', {
+    oldLength: oldChats?.length || 0,
+    newLength: newChats?.length || 0,
+    searchQuery: props.searchQuery
+  });
+}, { deep: true });
+
+watch(() => props.searchQuery, (newQuery, oldQuery) => {
+  console.log('🔄 ChatList props.searchQuery changed:', {
+    oldQuery,
+    newQuery
+  });
+});
 </script>
 
 <style scoped lang="scss">

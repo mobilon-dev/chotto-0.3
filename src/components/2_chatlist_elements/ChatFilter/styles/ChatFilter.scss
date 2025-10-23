@@ -10,6 +10,24 @@
     color: var(--chotto-chatfilter-icon-color, #5F5F5F);
   }
 
+  &__clear{
+    position: var(--chotto-chatfilter-clear-position, absolute);
+    right: var(--chotto-chatfilter-clear-right, 14px);
+    top: var(--chotto-chatfilter-clear-top, 25%);
+    color: var(--chotto-chatfilter-clear-color, #5F5F5F);
+    cursor: var(--chotto-chatfilter-clear-cursor, pointer);
+    transition: var(--chotto-chatfilter-clear-transition, color 0.2s);
+    display: var(--chotto-chatfilter-clear-display, flex);
+    align-items: var(--chotto-chatfilter-clear-align-items, center);
+    justify-content: var(--chotto-chatfilter-clear-justify-content, center);
+    width: var(--chotto-chatfilter-clear-width, 18px);
+    height: var(--chotto-chatfilter-clear-height, 18px);
+
+    &:hover {
+      color: var(--chotto-chatfilter-clear-hover-color, #404040);
+    }
+  }
+
   &__input {
     width: var(--chotto-chatfilter-input-width, 100%);
     background-color: var(--chotto-chatfilter-input-background-color, transparent);

@@ -139,4 +139,54 @@ export interface ChatListThemeCSSVariables {
   '--chotto-chatlist-menu-transform': string;
   /** Прозрачность меню */
   '--chotto-chatlist-menu-opacity': string;
+
+  // Search indicator
+  /** Отступы индикатора поиска */
+  '--chotto-chatlist-search-indicator-margin': string;
+  /** Отступы индикатора поиска */
+  '--chotto-chatlist-search-indicator-padding': string;
+  /** Цвет фона индикатора поиска */
+  '--chotto-chatlist-search-indicator-bg': string;
+  /** Радиус границы индикатора поиска */
+  '--chotto-chatlist-search-indicator-radius': string;
+  /** Граница индикатора поиска */
+  '--chotto-chatlist-search-indicator-border': string;
+  /** Отображение контента поиска */
+  '--chotto-chatlist-search-content-display': string;
+  /** Выравнивание элементов контента поиска */
+  '--chotto-chatlist-search-content-align-items': string;
+  /** Промежуток между элементами контента поиска */
+  '--chotto-chatlist-search-content-gap': string;
+  /** Цвет иконки поиска */
+  '--chotto-chatlist-search-icon-color': string;
+  /** Размер иконки поиска */
+  '--chotto-chatlist-search-icon-font-size': string;
+  /** Цвет текста поиска */
+  '--chotto-chatlist-search-text-color': string;
+  /** Размер текста поиска */
+  '--chotto-chatlist-search-text-font-size': string;
+  /** Цвет прогресса поиска */
+  '--chotto-chatlist-search-progress-color': string;
+  /** Толщина шрифта запроса поиска */
+  '--chotto-chatlist-search-query-font-weight': string;
+  /** Цвет статистики поиска */
+  '--chotto-chatlist-search-stats-color': string;
+  /** Размер текста статистики поиска */
+  '--chotto-chatlist-search-stats-font-size': string;
+  /** Толщина шрифта статистики поиска */
+  '--chotto-chatlist-search-stats-font-weight': string;
+  /** Цвет кнопки очистки поиска */
+  '--chotto-chatlist-search-clear-color': string;
+  /** Размер текста кнопки очистки поиска */
+  '--chotto-chatlist-search-clear-font-size': string;
+  /** Отступы кнопки очистки поиска */
+  '--chotto-chatlist-search-clear-padding': string;
+  /** Радиус границы кнопки очистки поиска */
+  '--chotto-chatlist-search-clear-border-radius': string;
+  /** Переход кнопки очистки поиска */
+  '--chotto-chatlist-search-clear-transition': string;
+  /** Цвет кнопки очистки поиска при наведении */
+  '--chotto-chatlist-search-clear-hover-color': string;
+  /** Цвет фона кнопки очистки поиска при наведении */
+  '--chotto-chatlist-search-clear-hover-bg': string;
 }
