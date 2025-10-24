@@ -91,24 +91,31 @@ function validateMessage(message: any, index: number): MessageValidationError[] 
   }
 
   // Обязательные поля
-  if (message.chatId === undefined || typeof message.chatId !== 'number') {
-    errors.push({ path: `${path}.chatId`, message: 'Поле chatId обязательно и должно быть числом', value: message.chatId });
+  // chatId необязательное для всех типов сообщений, но если есть, то должно быть строкой
+  if (message.chatId !== undefined && typeof message.chatId !== 'string') {
+    errors.push({ path: `${path}.chatId`, message: 'Поле chatId должно быть строкой', value: message.chatId });
   }
 
-  if (message.messageId === undefined) {
-    errors.push({ path: `${path}.messageId`, message: 'Поле messageId обязательно', value: message.messageId });
-  } else if (typeof message.messageId !== 'string' && typeof message.messageId !== 'number') {
-    errors.push({ path: `${path}.messageId`, message: 'Поле messageId должно быть строкой или числом', value: message.messageId });
+  // Исключение для системных сообщений типа "system.date"
+  if (message.type !== 'system.date') {
+    if (message.messageId === undefined) {
+      errors.push({ path: `${path}.messageId`, message: 'Поле messageId обязательно', value: message.messageId });
+    } else if (typeof message.messageId !== 'string' && typeof message.messageId !== 'number') {
+      errors.push({ path: `${path}.messageId`, message: 'Поле messageId должно быть строкой или числом', value: message.messageId });
+    }
   }
 
   if (!message.type || typeof message.type !== 'string') {
     errors.push({ path: `${path}.type`, message: 'Поле type обязательно и должно быть строкой', value: message.type });
   }
 
-  if (message.timestamp === undefined) {
-    errors.push({ path: `${path}.timestamp`, message: 'Поле timestamp обязательно', value: message.timestamp });
-  } else if (typeof message.timestamp !== 'string' && typeof message.timestamp !== 'number') {
-    errors.push({ path: `${path}.timestamp`, message: 'Поле timestamp должно быть строкой или числом', value: message.timestamp });
+  // Исключение для системных сообщений типа "system.date"
+  if (message.type !== 'system.date') {
+    if (message.timestamp === undefined) {
+      errors.push({ path: `${path}.timestamp`, message: 'Поле timestamp обязательно', value: message.timestamp });
+    } else if (typeof message.timestamp !== 'string' && typeof message.timestamp !== 'number') {
+      errors.push({ path: `${path}.timestamp`, message: 'Поле timestamp должно быть строкой или числом', value: message.timestamp });
+    }
   }
 
   // Опциональные поля

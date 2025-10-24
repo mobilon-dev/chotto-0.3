@@ -96,14 +96,16 @@ function validateContact(contact: any, chatIndex: number): ValidationError[] {
     return errors;
   }
 
-  if (!Array.isArray(contact.attributes)) {
+  if (contact.attributes !== undefined && !Array.isArray(contact.attributes)) {
     errors.push({ path: `${path}.attributes`, message: 'Поле attributes должно быть массивом', value: contact.attributes });
     return errors;
   }
 
-  contact.attributes.forEach((attr: any, index: number) => {
-    errors.push(...validateContactAttribute(attr, chatIndex, index));
-  });
+  if (contact.attributes) {
+    contact.attributes.forEach((attr: any, index: number) => {
+      errors.push(...validateContactAttribute(attr, chatIndex, index));
+    });
+  }
 
   return errors;
 }
@@ -184,8 +186,8 @@ function validateChat(chat: any, index: number): ValidationError[] {
   }
 
   // Обязательные поля
-  if (chat.chatId === undefined || typeof chat.chatId !== 'number') {
-    errors.push({ path: `${path}.chatId`, message: 'Поле chatId обязательно и должно быть числом', value: chat.chatId });
+  if (chat.chatId === undefined || typeof chat.chatId !== 'string') {
+    errors.push({ path: `${path}.chatId`, message: 'Поле chatId обязательно и должно быть строкой', value: chat.chatId });
   }
 
   if (!chat.name || typeof chat.name !== 'string') {
@@ -202,8 +204,8 @@ function validateChat(chat: any, index: number): ValidationError[] {
     errors.push({ path: `${path}.lastMessage`, message: 'Поле lastMessage обязательно и должно быть строкой', value: chat.lastMessage });
   }
 
-  if (!chat['lastActivity.timestamp'] || typeof chat['lastActivity.timestamp'] !== 'string') {
-    errors.push({ path: `${path}['lastActivity.timestamp']`, message: 'Поле lastActivity.timestamp обязательно и должно быть строкой', value: chat['lastActivity.timestamp'] });
+  if (!chat['lastActivity.timestamp'] || typeof chat['lastActivity.timestamp'] !== 'number') {
+    errors.push({ path: `${path}['lastActivity.timestamp']`, message: 'Поле lastActivity.timestamp обязательно и должно быть числом', value: chat['lastActivity.timestamp'] });
   }
 
   // Опциональные поля
