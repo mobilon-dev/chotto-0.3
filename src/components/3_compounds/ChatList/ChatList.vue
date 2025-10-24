@@ -279,17 +279,8 @@ const selectDialog = (dialog) => {
 }
 
 const getSortedAndFilteredChats = () => {
-  console.log('🔍 ChatList filtering:', {
-    totalChats: props.chats.length,
-    searchQuery: props.searchQuery,
-    activeTabId: props.activeTabId,
-    filterValue: filter.value,
-    chatsStoreLength: props.chats?.length || 0
-  });
-  
   // Проверяем, есть ли чаты в props
   if (!props.chats || props.chats.length === 0) {
-    console.log('⚠️ ChatList: No chats in props!');
     return [];
   }
   
@@ -333,11 +324,6 @@ const getSortedAndFilteredChats = () => {
       }
     });
   
-  console.log('📊 ChatList filtering result:', {
-    filteredChats: result.length,
-    firstFewChats: result.slice(0, 3).map(c => ({ id: c.chatId, name: c.name }))
-  });
-  
   return result;
 }
 
@@ -358,22 +344,6 @@ const action = (data) => emit('action', data);
 const handleTabClick = (tabId) => {
   emit('tab-click', tabId);
 };
-
-// Добавляем watcher для отслеживания изменений в props (после всех объявлений)
-watch(() => props.chats, (newChats, oldChats) => {
-  console.log('🔄 ChatList props.chats changed:', {
-    oldLength: oldChats?.length || 0,
-    newLength: newChats?.length || 0,
-    searchQuery: props.searchQuery
-  });
-}, { deep: true });
-
-watch(() => props.searchQuery, (newQuery, oldQuery) => {
-  console.log('🔄 ChatList props.searchQuery changed:', {
-    oldQuery,
-    newQuery
-  });
-});
 </script>
 
 <style scoped lang="scss">
