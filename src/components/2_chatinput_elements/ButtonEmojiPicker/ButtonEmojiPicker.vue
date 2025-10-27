@@ -3,18 +3,23 @@
     v-if="!getMessage().isRecording"
     ref="emojiButton"
     class="button"
-    :class="{'button-disabled' : state == 'disabled'}"
-    @click="toggleEmojiPicker"
+    :class="{ 'button-disabled': state === 'disabled' }"
+    @click="handleClick"
+    @mouseenter="handleMouseEnter"
+    @mouseleave="handleMouseLeave"
   >
-    <span class="">
+    <span>
       <SmilesIcon />
     </span>
   </button>
+
   <Transition>
-    <div 
+    <div
       v-show="isEmojiPickerVisible"
-      ref="emoji" 
+      ref="emoji"
       class="emoji"
+      @mouseenter="handlePickerMouseEnter"
+      @mouseleave="handlePickerMouseLeave"
     >
       <EmojiPicker
         :native="true"
@@ -27,14 +32,11 @@
 </template>
 
 <script setup>
-// import picker compopnent
 import EmojiPicker from 'vue3-emoji-picker';
 import 'vue3-emoji-picker/css';
-import {onMounted, onUnmounted, ref, inject} from 'vue'
-// import {computed} from 'vue'
+import { onMounted, onUnmounted, ref, inject } from 'vue';
 import { useMessage } from '@/hooks';
 import { SmilesIcon } from './icons';
-
 
 const props = defineProps({
   state: {
@@ -43,64 +45,115 @@ const props = defineProps({
   },
   mode: {
     type: String,
-    default: 'click',
-  }
-})
+    default: 'click', // или 'hover'
+    validator: (value) => ['click', 'hover'].includes(value),
+  },
+});
 
-const emoji = ref(null)
-const emojiTheme = ref('light')
-const emojiButton = ref(null)
-const isEmojiPickerVisible = ref(false)
-const chatAppId = inject('chatAppId')
-const { setMessageText, getMessage } = useMessage(chatAppId)
+const emoji = ref(null);
+const emojiButton = ref(null);
+const isEmojiPickerVisible = ref(false);
+const emojiTheme = ref('light');
+const chatAppId = inject('chatAppId');
+const { setMessageText, getMessage } = useMessage(chatAppId);
+
+// Вспомогательные флаги для hover-режима
+let isMouseOverButton = false;
+let isMouseOverPicker = false;
 
 const changeThemeDialogEmoji = () => {
-  if (document.getElementById(chatAppId).attributes['data-theme'].nodeValue.indexOf('dark') != -1) {
-    return 'dark'
+  const el = document.getElementById(chatAppId);
+  return el?.getAttribute('data-theme')?.includes('dark') ? 'dark' : 'light';
+};
+
+const onSelectEmoji = (emojiObj) => {
+  setMessageText(getMessage().text + emojiObj.i);
+  if (props.mode === 'click') {
+    isEmojiPickerVisible.value = false;
   }
-  return 'light'
-}
+};
 
-const onSelectEmoji = (emoji) => {
-  setMessageText(getMessage().text + emoji.i);
-  // console.log('emoji', emoji)
-}
-
-const toggleEmojiPicker = () => {
+// Общая функция открытия
+const openPicker = () => {
   if (props.state !== 'active') return;
-  
-  isEmojiPickerVisible.value = !isEmojiPickerVisible.value;
-  if (isEmojiPickerVisible.value) {
-    emojiTheme.value = changeThemeDialogEmoji();
-  }
-}
+  emojiTheme.value = changeThemeDialogEmoji();
+  isEmojiPickerVisible.value = true;
+};
 
-const closeEmojiPicker = () => {
+// Общая функция закрытия
+const closePicker = () => {
   isEmojiPickerVisible.value = false;
-}
+};
 
-const handleClickOutside = (event) => {
-  if (isEmojiPickerVisible.value && 
-      !emojiButton.value.contains(event.target) && 
-      !emoji.value.contains(event.target)) {
-    closeEmojiPicker();
+// Обработчики событий
+const handleClick = () => {
+  if (props.mode === 'click') {
+    isEmojiPickerVisible.value = !isEmojiPickerVisible.value;
+    if (isEmojiPickerVisible.value) {
+      openPicker();
+    }
   }
-}
+};
+
+const handleMouseEnter = () => {
+  if (props.mode === 'hover') {
+    isMouseOverButton = true;
+    openPicker();
+  }
+};
+
+const handleMouseLeave = () => {
+  if (props.mode === 'hover') {
+    isMouseOverButton = false;
+    // Закрываем с задержкой, чтобы дать время перейти на пикер
+    setTimeout(() => {
+      if (!isMouseOverPicker && !isMouseOverButton) {
+        closePicker();
+      }
+    }, 150);
+  }
+};
+
+const handlePickerMouseEnter = () => {
+  if (props.mode === 'hover') {
+    isMouseOverPicker = true;
+  }
+};
+
+const handlePickerMouseLeave = () => {
+  if (props.mode === 'hover') {
+    isMouseOverPicker = false;
+    setTimeout(() => {
+      if (!isMouseOverButton && !isMouseOverPicker) {
+        closePicker();
+      }
+    }, 150);
+  }
+};
+
+// Закрытие по клику вне (только для click-режима)
+const handleClickOutside = (event) => {
+  if (
+    props.mode === 'click' &&
+    isEmojiPickerVisible.value &&
+    emojiButton.value &&
+    emoji.value &&
+    !emojiButton.value.contains(event.target) &&
+    !emoji.value.contains(event.target)
+  ) {
+    closePicker();
+  }
+};
 
 onMounted(() => {
-  emoji.value.style.display = 'none'
-  document.addEventListener("click", handleClickOutside)
-})
+  document.addEventListener('click', handleClickOutside);
+});
 
 onUnmounted(() => {
-  document.removeEventListener("click", handleClickOutside)
-})
-
+  document.removeEventListener('click', handleClickOutside);
+});
 </script>
 
-<style
-  scoped
-  lang="scss"
->
+<style scoped lang="scss">
 @use './styles/ButtonEmojiPicker.scss';
 </style>
