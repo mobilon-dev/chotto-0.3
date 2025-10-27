@@ -28,6 +28,7 @@
         :templates="templates"
         :group-templates="groupTemplates"
         :elevated-window="elevatedWindow"
+        :chat-background="chatBackground"
         @close-template-window="close"
       />
     </div>
@@ -63,6 +64,10 @@ const props = defineProps({
   elevatedWindow: {
     type: Boolean,
     required: false,
+  },
+  chatBackground: {
+    type: String,
+    default: undefined
   }
 })
 

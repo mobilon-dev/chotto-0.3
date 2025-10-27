@@ -20,6 +20,7 @@
       :waba-templates="wabaTemplates"
       :group-templates="groupTemplates"
       :elevated-window="elevatedWindow"
+      :chat-background="chatBackground"
       @close-template-window="close"
       @send-waba-values="sendWabaValues"
     />
@@ -58,6 +59,10 @@ const props = defineProps({
   elevatedWindow: {
     type: Boolean,
     required: false,
+  },
+  chatBackground: {
+    type: String,
+    default: undefined
   }
 })
 

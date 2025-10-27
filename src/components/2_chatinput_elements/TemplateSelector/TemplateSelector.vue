@@ -123,7 +123,7 @@
         >
           <div
             class="template-selector__preview-container"
-            :style="{ backgroundImage: `url(${props.chatBackground})` }"
+            :style="{ backgroundImage: `url(${defaultBackground})` }"
           >
             <div
               v-if="selectedTemplate"
@@ -164,6 +164,8 @@
 import { computed, ref, onMounted, inject, unref } from 'vue'
 import { useMessage } from '@/hooks';
 
+import chatBackgroundRaw from '../../3_compounds/Feed/assets/chat-background.svg?raw';
+
 const props = defineProps({
   templates: {
     type: Array,
@@ -182,7 +184,7 @@ const props = defineProps({
   },
   chatBackground: {
     type: String,
-    default: () => new URL('../../3_compounds/Feed/assets/chat-background.svg', import.meta.url).href
+    default: undefined
   }
 })
 
@@ -206,6 +208,10 @@ const showSecondCol = ref('')
 const showThirdCol = ref('')
 
 const isOneCol = ref(false)
+
+const defaultBackground = computed(() => {
+  return props.chatBackground ?? `data:image/svg+xml;charset=utf-8,${encodeURIComponent(chatBackgroundRaw)}`;
+});
 
 const allowTurnLeft = computed(() => {
   if (isOneCol.value){

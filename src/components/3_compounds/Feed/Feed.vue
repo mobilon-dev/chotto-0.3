@@ -4,7 +4,7 @@
     :id="'feed-container-' + chatAppId"
     ref="refFeed"
     class="message-feed"
-    :style="{ backgroundImage: `url(${props.chatBackground})` }"
+    :style="{ backgroundImage: `url(${defaultBackground})` }"
     @scroll="throttledScrollTopCheck()"
     @mousedown="startScrollWatch"
     @mouseup="stopScrollWatch"
@@ -120,6 +120,8 @@ import { IFeedObject, IFeedTyping, IFeedUnreadButton, IFeedKeyboard } from '@/ty
 import { useMessage } from '@/hooks';
 import { throttle } from './functions/throttle';
 
+import chatBackgroundRaw from './assets/chat-background.svg?raw';
+
 const props = defineProps({
   objects: {
     type: Array <IFeedObject>,
@@ -168,7 +170,7 @@ const props = defineProps({
   },
   chatBackground: {
     type: String,
-    default: () => new URL('./assets/chat-background.svg', import.meta.url).href
+    default: undefined
   },
   isLoadingMore: {
     type: Boolean,
@@ -209,6 +211,10 @@ const emit = defineEmits([
   'keyboardAction',
   'feedAction'
 ]);
+
+const defaultBackground = computed(() => {
+  return props.chatBackground ?? `data:image/svg+xml;charset=utf-8,${encodeURIComponent(chatBackgroundRaw)}`;
+});
 
 const showKeyboard = computed(() => {
   if (isKeyboardPlace.value && props.objects.length > 0 && props.objects[props.objects.length - 1].keyboard)

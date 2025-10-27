@@ -113,7 +113,7 @@
           <div
             ref="previewContainer"
             class="template-selector__preview-container"
-            :style="{ backgroundImage: `url(${props.chatBackground})` }"
+            :style="{ backgroundImage: `url(${defaultBackground})` }"
           >
             <div
               v-if="templateParts.length > 0"
@@ -189,6 +189,7 @@
 <script setup>
 import { computed, ref, reactive, onMounted, inject, unref } from 'vue'
 // import { watch, nextTick } from 'vue'
+import chatBackgroundRaw from '../../3_compounds/Feed/assets/chat-background.svg?raw';
 
 import { 
   PlaceholderComponent,
@@ -214,7 +215,7 @@ const props = defineProps({
   },
   chatBackground: {
     type: String,
-    default: () => new URL('../../3_compounds/Feed/assets/chat-background.svg', import.meta.url).href
+    default: undefined
   }
 })
 
@@ -293,6 +294,10 @@ const clearSelectedTemplate = () => {
   setSecondColVisible()
   props.wabaTemplates.forEach(template => template.isSelected = false);
 };
+
+const defaultBackground = computed(() => {
+  return props.chatBackground ?? `data:image/svg+xml;charset=utf-8,${encodeURIComponent(chatBackgroundRaw)}`;
+});
 
 const filteredTemplates = computed(() => {
   if (!selectedGroup.value) {
