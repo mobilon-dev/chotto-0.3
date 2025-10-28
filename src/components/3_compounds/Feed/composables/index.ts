@@ -3,6 +3,7 @@ export * from './useFeedComponents';
 export * from './useFeedGrouping';
 export * from './useFeedLoadMore';
 export * from './useFeedMessageVisibility';
+export * from './useFeedReply';
 export * from './useFeedScroll';
 export * from './useStickyDate';
 

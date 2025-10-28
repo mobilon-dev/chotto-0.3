@@ -109,8 +109,7 @@ import {
 } from '@/components';
 
 import { IFeedObject, IFeedTyping, IFeedUnreadButton, IFeedKeyboard } from '@/types';
-import { useMessage } from '@/hooks';
-import { useStickyDate, useFeedScroll, useFeedButton, useFeedGrouping, useFeedLoadMore, useFeedMessageVisibility, useFeedComponents } from './composables';
+import { useStickyDate, useFeedScroll, useFeedButton, useFeedGrouping, useFeedLoadMore, useFeedMessageVisibility, useFeedComponents, useFeedReply } from './composables';
 import { throttle } from './functions/throttle';
 
 import chatBackgroundRaw from './assets/chat-background.svg?raw';
@@ -205,7 +204,29 @@ const {
 })
 
 const chatAppId = inject('chatAppId')
-const { setReply, getMessage, resetReply } = useMessage(chatAppId as string)
+
+const emit = defineEmits([
+  'messageAction',
+  'loadMore', 
+  'loadMoreDown',
+  'messageVisible', 
+  'clickRepliedMessage',
+  'forceScrollToBottom',
+  'keyboardAction',
+  'feedAction'
+]);
+
+// Инициализация логики ответов
+const {
+  getMessage,
+  messageAction,
+  handleClickReplied,
+  feedObjectDoubleClick,
+  handleResetReply
+} = useFeedReply({
+  enableDoubleClickReply: props.enableDoubleClickReply,
+  emit
+})
 
 // Инициализация логики sticky date
 const {
@@ -229,17 +250,6 @@ const {
   objectsRef: computed(() => props.objects),
   scrollToBottomRef: computed(() => props.scrollToBottom),
 })
-
-const emit = defineEmits([
-  'messageAction',
-  'loadMore', 
-  'loadMoreDown',
-  'messageVisible', 
-  'clickRepliedMessage',
-  'forceScrollToBottom',
-  'keyboardAction',
-  'feedAction'
-]);
 
 const defaultBackground = computed(() => {
   return props.chatBackground ?? `data:image/svg+xml;charset=utf-8,${encodeURIComponent(chatBackgroundRaw)}`;
@@ -297,43 +307,7 @@ function scrollToBottomForce() {
 }
 
 // наблюдение за props.scrollToBottom перенесено в useFeedScroll
-
-const messageAction = (message: IFeedObject) => {
-  emit('messageAction', message);
-}
-
-const handleClickReplied = (messageId: string) => {
-  emit('clickRepliedMessage', messageId)
-}
-
-const feedObjectDoubleClick = (event: MouseEvent,object : IFeedObject) => {
-  if (props.enableDoubleClickReply){
-    event?.preventDefault()
-    if (object.type.indexOf('system') == -1 && object.type.indexOf('typing') == -1){
-      const previewContainer = document.getElementById('chat-input-reply-line-'+chatAppId)
-      if (previewContainer){
-        previewContainer.style.display = 'inherit'
-      }
-      setReply({
-        messageId: object.messageId,
-        type: object.type,
-        text: object.text,
-        filename: object.filename,
-        url: object.url,
-        header: object.header,
-        callDuration: object.callDuration,
-      })
-    }
-  }
-}
-
-const handleResetReply = () => {
-  resetReply()
-  const previewContainer = document.getElementById('chat-input-reply-line-'+chatAppId)
-  if (previewContainer){
-    previewContainer.style.display = 'none'
-  }
-}
+// Логика ответов перенесена в useFeedReply
 
 const { observeMessages } = useFeedMessageVisibility<IFeedObject>({
   feedRef: refFeed,
