@@ -101,24 +101,16 @@
 >
 import { ref, watch, nextTick, inject, computed, onMounted } from 'vue';
 import { 
-  AudioMessage, 
-  CallMessage, 
-  FileMessage, 
-  ImageMessage, 
-  TextMessage, 
-  VideoMessage,
-  DateMessage,
   DateMessageSticky,
-  SystemMessage,
-  TypingMessage,
   BaseReplyMessage,
   MessageKeyboard,
-  FeedKeyboard
+  FeedKeyboard,
+  TypingMessage
 } from '@/components';
 
 import { IFeedObject, IFeedTyping, IFeedUnreadButton, IFeedKeyboard } from '@/types';
 import { useMessage } from '@/hooks';
-import { useStickyDate, useFeedScroll, useFeedButton, useFeedGrouping, useFeedLoadMore, useFeedMessageVisibility } from './composables';
+import { useStickyDate, useFeedScroll, useFeedButton, useFeedGrouping, useFeedLoadMore, useFeedMessageVisibility, useFeedComponents } from './composables';
 import { throttle } from './functions/throttle';
 
 import chatBackgroundRaw from './assets/chat-background.svg?raw';
@@ -191,6 +183,9 @@ const {
   feedRef: refFeed,
   keyboardRef,
 })
+
+// Инициализация маппинга компонентов
+const { componentsMap } = useFeedComponents()
 
 // Инициализация логики группировки
 const { groupedObjects } = useFeedGrouping({
@@ -294,23 +289,6 @@ watch(
 // обработчики перенесены в useFeedLoadMore
 
 const throttledScrollTopCheck = throttle(() => scrollTopCheck(), 250)
-
-// Register components
-const componentsMap = (type: string) => {
-
-  const r: Record<string, unknown> = {
-    'message.text': TextMessage,
-    'message.image': ImageMessage,
-    'message.file': FileMessage,
-    'message.audio': AudioMessage,
-    'message.video': VideoMessage,
-    'message.call': CallMessage,
-    'message.system': SystemMessage,
-    'system.date': DateMessage,
-    'message.typing': TypingMessage
-  };
-  return r[type];
-}
 
 function scrollToBottomForce() {
   emit('forceScrollToBottom')
