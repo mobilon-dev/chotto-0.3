@@ -118,7 +118,7 @@ import {
 
 import { IFeedObject, IFeedTyping, IFeedUnreadButton, IFeedKeyboard } from '@/types';
 import { useMessage } from '@/hooks';
-import { useStickyDate, useFeedScroll, useFeedButton, useFeedGrouping, useFeedLoadMore } from './composables';
+import { useStickyDate, useFeedScroll, useFeedButton, useFeedGrouping, useFeedLoadMore, useFeedMessageVisibility } from './composables';
 import { throttle } from './functions/throttle';
 
 import chatBackgroundRaw from './assets/chat-background.svg?raw';
@@ -357,21 +357,12 @@ const handleResetReply = () => {
   }
 }
 
-const callback = (entries: Array<IntersectionObserverEntry>) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      emit('messageVisible', JSON.parse(entry.target.id))
-    }
-  })
-}
-
-const options = {
-  root: document.getElementById('feed-container-' + chatAppId),
-  rootMargin: '5px',
-  threshold: 0,
-}
-
-const observer = new IntersectionObserver(callback, options)
+const { observeMessages } = useFeedMessageVisibility<IFeedObject>({
+  feedRef: refFeed,
+  trackingObjects,
+  chatAppId: chatAppId as string,
+  onMessageVisible: (message) => emit('messageVisible', message)
+})
 
 watch(
   () => props.objects,
@@ -389,7 +380,7 @@ watch(
       scrollTopCheck(false)
 
       trackingObjects.value = document.querySelectorAll('.tracking-message')
-      trackingObjects.value.forEach((obj: Element) => observer.observe(obj))
+      observeMessages()
       
     })
   },
