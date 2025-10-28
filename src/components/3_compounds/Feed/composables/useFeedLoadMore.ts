@@ -1,13 +1,15 @@
-import { Ref, ref, nextTick, unref } from 'vue';
+import { Ref, ref, nextTick, unref, watch } from 'vue';
 
 interface UseFeedLoadMoreOptions {
   feedRef: Ref<HTMLElement | null>;
+  emit?: (event: 'loadMore' | 'loadMoreDown', ...args: unknown[]) => void;
+  isLoadingMoreRef?: Ref<boolean>;
 }
 
 /**
  * Композабл для управления подгрузкой сообщений сверху/снизу и восстановлением позиции скролла
  */
-export function useFeedLoadMore({ feedRef }: UseFeedLoadMoreOptions) {
+export function useFeedLoadMore({ feedRef, emit, isLoadingMoreRef }: UseFeedLoadMoreOptions) {
   const allowLoadMoreTop = ref(false);
   const allowLoadMoreBottom = ref(false);
   const movingDown = ref(false);
@@ -81,6 +83,29 @@ export function useFeedLoadMore({ feedRef }: UseFeedLoadMoreOptions) {
       }, delay);
     });
   };
+
+  // Авто-эмит событий загрузки при достижении краёв
+  if (emit) {
+    watch(
+      () => [allowLoadMoreBottom.value, allowLoadMoreTop.value],
+      () => {
+        if (!allowLoadMoreBottom.value) emit('loadMoreDown');
+        if (!allowLoadMoreTop.value) emit('loadMore');
+      }
+    );
+  }
+
+  // Восстановление позиции после завершения подгрузки сверху
+  if (isLoadingMoreRef) {
+    watch(
+      () => isLoadingMoreRef.value,
+      (newValue, oldValue) => {
+        if (oldValue === true && newValue === false) {
+          restoreScrollPosition(0);
+        }
+      }
+    );
+  }
 
   /**
    * Обработчик начала скролла мышью

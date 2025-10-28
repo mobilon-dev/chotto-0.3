@@ -191,18 +191,6 @@ const { groupedObjects } = useFeedGrouping({
   objects: computed(() => props.objects),
 })
 
-// Инициализация логики подгрузки сообщений
-const {
-  allowLoadMoreTop,
-  allowLoadMoreBottom,
-  checkScrollPosition,
-  restoreScrollPosition,
-  startScrollWatch,
-  stopScrollWatch,
-} = useFeedLoadMore({
-  feedRef: refFeed,
-})
-
 const chatAppId = inject('chatAppId')
 
 const emit = defineEmits([
@@ -215,6 +203,19 @@ const emit = defineEmits([
   'keyboardAction',
   'feedAction'
 ]);
+
+// Инициализация логики подгрузки сообщений
+const {
+  allowLoadMoreTop,
+  allowLoadMoreBottom,
+  checkScrollPosition,
+  startScrollWatch,
+  stopScrollWatch,
+} = useFeedLoadMore({
+  feedRef: refFeed,
+  emit,
+  isLoadingMoreRef: computed(() => props.isLoadingMore),
+})
 
 // Инициализация логики ответов
 const {
@@ -275,23 +276,8 @@ function scrollTopCheck (allowLoadMore: boolean = true) {
   showStickyDateComponent();
 };
 
-watch(
-  () => [allowLoadMoreBottom.value, allowLoadMoreTop.value],
-  () => {
-    if (!allowLoadMoreBottom.value) emit('loadMoreDown')
-    if (!allowLoadMoreTop.value) emit('loadMore')
-  }
-)
-
-watch(
-  () => props.isLoadingMore,
-  (newValue, oldValue) => {
-    if (oldValue === true && newValue === false) {
-      // Восстановление позиции скролла делегировано в композабл
-      restoreScrollPosition(0)
-    }
-  }
-)
+// вотчеры для loadMore/loadMoreDown и restoreScrollPosition
+// перенесены внутрь useFeedLoadMore
 
 // обработчики перенесены в useFeedLoadMore
 
