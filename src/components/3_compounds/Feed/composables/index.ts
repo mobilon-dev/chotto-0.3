@@ -1,4 +1,4 @@
-// export * from './useFeedButton';
+export * from './useFeedButton';
 // export * from './useFeedComponents';
 // export * from './useFeedGrouping';
 // export * from './useFeedLoadMore';

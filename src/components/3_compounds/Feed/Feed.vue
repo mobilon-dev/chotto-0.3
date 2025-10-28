@@ -118,7 +118,7 @@ import {
 
 import { IFeedObject, IFeedTyping, IFeedUnreadButton, IFeedKeyboard } from '@/types';
 import { useMessage } from '@/hooks';
-import { useStickyDate, useFeedScroll } from './composables';
+import { useStickyDate, useFeedScroll, useFeedButton } from './composables';
 import { throttle } from './functions/throttle';
 
 import chatBackgroundRaw from './assets/chat-background.svg?raw';
@@ -182,8 +182,16 @@ const props = defineProps({
 const trackingObjects = ref();
 const refFeed = ref();
 const keyboardRef = ref();
-const isShowButton = ref(false)
-const isKeyboardPlace = ref(false)
+
+const {
+  isShowButton,
+  isKeyboardPlace,
+  checkButtonVisibility,
+} = useFeedButton({
+  feedRef: refFeed,
+  keyboardRef,
+})
+
 const allowLoadMoreTop = ref(false)
 const allowLoadMoreBottom = ref(false)
 const movingDown = ref(false)
@@ -253,20 +261,9 @@ const feedKeyboardAction = (action: string | (() => void)) => {
 
 function scrollTopCheck (allowLoadMore: boolean = true) {
   const element = unref(refFeed);
-  let keyboardHeight = 0
-  if (keyboardRef.value){
-    keyboardHeight = keyboardRef.value.refKeyboard.clientHeight
-  }
-  const limit = 100;
   const scrollBottom = element.scrollHeight - element.scrollTop - element.clientHeight;
-
-  if (scrollBottom < limit + keyboardHeight) {
-    isShowButton.value = false;
-    isKeyboardPlace.value = true
-  } else {
-    isShowButton.value = true;
-    isKeyboardPlace.value = false
-  }
+  // обновляем видимость кнопки и положение клавиатуры через композабл
+  checkButtonVisibility();
 
   if (isScrollByMouseButton.value){
     if (element.scrollTop < 300){      
