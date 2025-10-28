@@ -118,7 +118,7 @@ import {
 
 import { IFeedObject, IFeedTyping, IFeedUnreadButton, IFeedKeyboard } from '@/types';
 import { useMessage } from '@/hooks';
-import { useStickyDate, useFeedScroll, useFeedButton } from './composables';
+import { useStickyDate, useFeedScroll, useFeedButton, useFeedGrouping } from './composables';
 import { throttle } from './functions/throttle';
 
 import chatBackgroundRaw from './assets/chat-background.svg?raw';
@@ -190,6 +190,19 @@ const {
 } = useFeedButton({
   feedRef: refFeed,
   keyboardRef,
+})
+
+// Функция для определения новых сообщений
+const isNewMessage = (index: number) => {
+  return props.isLoadingMore && 
+    newMessagesCount.value > 0 && 
+    index < newMessagesCount.value
+}
+
+// Инициализация логики группировки
+const { groupedObjects } = useFeedGrouping({
+  objects: computed(() => props.objects),
+  isNewMessage,
 })
 
 const allowLoadMoreTop = ref(false)
@@ -571,32 +584,6 @@ watch(
   }
 )
 
-const groupedObjects = computed(() => {
-  if (!props.objects || props.objects.length === 0) return []
-
-  return props.objects.map((message, index, arr) => {
-    const isSameSenderAsPrevious =
-      index > 0 &&
-      arr[index - 1].position === message.position &&
-      arr[index - 1].header === message.header
-
-    const prevIsGroupable =
-      index > 0 &&
-      !['message.system', 'message.typing'].includes(arr[index - 1].type)
-
-    const isFirstInSeries = !isSameSenderAsPrevious || !prevIsGroupable
-
-    const isNewMessage = props.isLoadingMore && 
-      newMessagesCount.value > 0 && 
-      index < newMessagesCount.value
-
-    return {
-      ...message,
-      isFirstInSeries,
-      isNewMessage,
-    }
-  })
-})
 
 // watcher для инициализации при монтировании
 onMounted(() => {
