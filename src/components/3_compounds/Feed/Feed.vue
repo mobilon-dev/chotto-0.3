@@ -109,7 +109,7 @@ import {
 } from '@/components';
 
 import { IFeedObject, IFeedTyping, IFeedUnreadButton, IFeedKeyboard } from '@/types';
-import { useStickyDate, useFeedScroll, useFeedButton, useFeedGrouping, useFeedLoadMore, useFeedMessageVisibility, useFeedComponents, useFeedReply } from './composables';
+import { useStickyDate, useFeedScroll, useFeedButton, useFeedGrouping, useFeedLoadMore, useFeedMessageVisibility, useFeedComponents, useFeedReply, useFeedKeyboard } from './composables';
 import { throttle } from './functions/throttle';
 
 import chatBackgroundRaw from './assets/chat-background.svg?raw';
@@ -228,6 +228,17 @@ const {
   emit
 })
 
+// Инициализация логики клавиатур
+const {
+  showKeyboard,
+  keyboardAction,
+  feedKeyboardAction
+} = useFeedKeyboard({
+  isKeyboardPlace,
+  objects: computed(() => props.objects),
+  emit
+})
+
 // Инициализация логики sticky date
 const {
   showStickyDate,
@@ -254,20 +265,6 @@ const {
 const defaultBackground = computed(() => {
   return props.chatBackground ?? `data:image/svg+xml;charset=utf-8,${encodeURIComponent(chatBackgroundRaw)}`;
 });
-
-const showKeyboard = computed(() => {
-  if (isKeyboardPlace.value && props.objects.length > 0 && props.objects[props.objects.length - 1].keyboard)
-    return true
-  else return false
-})
-
-const keyboardAction = (action: string | (() => void)) => {
-  emit('keyboardAction', action)
-}
-
-const feedKeyboardAction = (action: string | (() => void)) => {
-  emit('feedAction', action);
-}
 
 function scrollTopCheck (allowLoadMore: boolean = true) {
   // обновляем видимость кнопки и положение клавиатуры через композабл
