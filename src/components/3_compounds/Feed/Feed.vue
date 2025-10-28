@@ -99,7 +99,7 @@
   setup
   lang="ts"
 >
-import { ref, unref, watch, nextTick, inject, computed, onMounted } from 'vue';
+import { ref, watch, nextTick, inject, computed, onMounted } from 'vue';
 import { 
   AudioMessage, 
   CallMessage, 
@@ -118,7 +118,7 @@ import {
 
 import { IFeedObject, IFeedTyping, IFeedUnreadButton, IFeedKeyboard } from '@/types';
 import { useMessage } from '@/hooks';
-import { useStickyDate, useFeedScroll, useFeedButton, useFeedGrouping } from './composables';
+import { useStickyDate, useFeedScroll, useFeedButton, useFeedGrouping, useFeedLoadMore } from './composables';
 import { throttle } from './functions/throttle';
 
 import chatBackgroundRaw from './assets/chat-background.svg?raw';
@@ -205,15 +205,19 @@ const { groupedObjects } = useFeedGrouping({
   isNewMessage,
 })
 
-const allowLoadMoreTop = ref(false)
-const allowLoadMoreBottom = ref(false)
-const movingDown = ref(false)
-const isScrollByMouseButton = ref(false)
-// Preserve scroll position on top-prepend via scrollHeight delta
-const prevScrollHeight = ref(0)
-const prevScrollTop = ref(0)
-const pendingTopRestore = ref(false)
-const topLoadJustHappened = ref(false)
+// Инициализация логики подгрузки сообщений
+const {
+  allowLoadMoreTop,
+  allowLoadMoreBottom,
+  topLoadJustHappened,
+  checkScrollPosition,
+  restoreScrollPosition,
+  startScrollWatch,
+  stopScrollWatch,
+} = useFeedLoadMore({
+  feedRef: refFeed,
+})
+
 const newMessagesCount = ref(0)
 const previousObjectsLength = ref(0)
 
@@ -273,34 +277,10 @@ const feedKeyboardAction = (action: string | (() => void)) => {
 }
 
 function scrollTopCheck (allowLoadMore: boolean = true) {
-  const element = unref(refFeed);
-  const scrollBottom = element.scrollHeight - element.scrollTop - element.clientHeight;
   // обновляем видимость кнопки и положение клавиатуры через композабл
   checkButtonVisibility();
-
-  if (isScrollByMouseButton.value){
-    if (element.scrollTop < 300){      
-      movingDown.value = false
-      allowLoadMoreTop.value = false
-    }
-    if (scrollBottom < 300){
-      allowLoadMoreBottom.value = false
-      movingDown.value = true
-    }
-  }
-  else if (allowLoadMore){
-    if (element.scrollTop < 300) {
-      // remember current scroll metrics before top-prepend
-      prevScrollHeight.value = element.scrollHeight
-      prevScrollTop.value = element.scrollTop
-      pendingTopRestore.value = true
-      allowLoadMoreTop.value = false
-    }
-    if (scrollBottom < 300){
-      allowLoadMoreBottom.value = false
-    }
-  }
-
+  // делегируем вычисления подгрузки в композабл
+  checkScrollPosition(allowLoadMore);
   // Показываем sticky date
   showStickyDateComponent();
 };
@@ -323,27 +303,8 @@ watch(
     }
     
     if (oldValue === true && newValue === false) {
-      // Restore scroll position after top-prepend based on content height delta
-      nextTick(() => {
-        // defer to ensure DOM measured after v-for renders
-        setTimeout(() => {
-          try {
-            const feedEl = unref(refFeed) as HTMLElement
-            if (pendingTopRestore.value && feedEl) {
-              const prevBehavior = (feedEl.style as HTMLElement['style']).scrollBehavior
-              feedEl.style.scrollBehavior = 'auto'
-              const delta = feedEl.scrollHeight - prevScrollHeight.value
-              // keep exact position without drift
-              feedEl.scrollTop = prevScrollTop.value + delta
-              setTimeout(() => { feedEl.style.scrollBehavior = prevBehavior || 'auto' }, 50)
-            }
-          } finally {
-            pendingTopRestore.value = false
-            topLoadJustHappened.value = true
-            setTimeout(() => { topLoadJustHappened.value = false }, 500)
-          }
-        }, 0)
-      })
+      // Восстановление позиции скролла делегировано в композабл
+      restoreScrollPosition(0)
 
       nextTick(() => {
 
@@ -421,17 +382,7 @@ watch(
   }
 )
 
-const startScrollWatch = (event: MouseEvent) => {
-  const element = unref(refFeed);
-  const isScrollbar = event.offsetX > element.clientWidth || event.offsetY > element.clientHeight;
-  if (isScrollbar) {
-    isScrollByMouseButton.value = true
-  }
-}
-
-const stopScrollWatch = () => {
-  isScrollByMouseButton.value = false
-}
+// обработчики перенесены в useFeedLoadMore
 
 const throttledScrollTopCheck = throttle(() => scrollTopCheck(), 250)
 
