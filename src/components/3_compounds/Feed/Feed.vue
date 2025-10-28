@@ -109,7 +109,7 @@ import {
 } from '@/components';
 
 import { IFeedObject, IFeedTyping, IFeedUnreadButton, IFeedKeyboard } from '@/types';
-import { useStickyDate, useFeedScroll, useFeedButton, useFeedGrouping, useFeedLoadMore, useFeedMessageVisibility, useFeedComponents, useFeedReply, useFeedKeyboard } from './composables';
+import { useStickyDate, useFeedScroll, useFeedButton, useFeedGrouping, useFeedLoadMore, useFeedMessageVisibility, useFeedComponents, useFeedReply, useFeedKeyboard, useFeedScrollTo } from './composables';
 import { throttle } from './functions/throttle';
 
 import chatBackgroundRaw from './assets/chat-background.svg?raw';
@@ -313,26 +313,14 @@ watch(
       restartObserving()
     })
   },
-  { immediate: true })
-
-watch(
-  () => props.scrollTo,
-  () => {
-    if (props.scrollTo){
-      const elem = props.scrollTo
-      let target = document.getElementById(elem)
-      let list = document.getElementById('feed-container-' + chatAppId)
-      if (target instanceof HTMLElement && list instanceof HTMLElement)
-        list.scrollTop = target.offsetTop + target.clientHeight / 2 - list.clientHeight / 2
-      document.getElementById(elem)?.children[0].classList.add('focused-message')
-      setTimeout(() => {
-        document.getElementById(elem)?.children[0].classList.remove('focused-message')
-      }, 2000)
-      
-    }
-  }
+  { immediate: true }
 )
 
+// Логика прокрутки к заданному сообщению
+useFeedScrollTo({
+  targetIdRef: computed(() => props.scrollTo),
+  feedContainerId: `feed-container-${chatAppId}`,
+})
 
 // watcher для инициализации при монтировании
 onMounted(() => {
