@@ -206,11 +206,10 @@ const emit = defineEmits([
 
 // Инициализация логики подгрузки сообщений
 const {
-  allowLoadMoreTop,
-  allowLoadMoreBottom,
   checkScrollPosition,
   startScrollWatch,
   stopScrollWatch,
+  resetAllowFlags,
 } = useFeedLoadMore({
   feedRef: refFeed,
   emit,
@@ -292,31 +291,26 @@ function scrollToBottomForce() {
 // наблюдение за props.scrollToBottom перенесено в useFeedScroll
 // Логика ответов перенесена в useFeedReply
 
-const { observeMessages } = useFeedMessageVisibility<IFeedObject>({
+const { restartObserving } = useFeedMessageVisibility<IFeedObject>({
   feedRef: refFeed,
   trackingObjects,
   chatAppId: chatAppId as string,
   onMessageVisible: (message) => emit('messageVisible', message)
 })
 
+// Логика инициализации скролла при появлении объектов перенесена в useFeedScroll
+
 watch(
   () => props.objects,
-  (newObjects) => {
+  () => {
     nextTick(() => {
-      // Инициализируем скролл при первой загрузке объектов
-      if (!isInitialized.value && newObjects.length > 0) {
-        initializeScroll();
-      }
-
-      
-      allowLoadMoreTop.value = true
-      allowLoadMoreBottom.value = true
+      // Сбрасываем флаги подгрузки
+      resetAllowFlags()
       // Проверяем позицию без авто-триггера подгрузки, чтобы избежать цепной загрузки
       scrollTopCheck(false)
-
+      // Обновляем наблюдаемые элементы и перезапускаем наблюдение
       trackingObjects.value = document.querySelectorAll('.tracking-message')
-      observeMessages()
-      
+      restartObserving()
     })
   },
   { immediate: true })

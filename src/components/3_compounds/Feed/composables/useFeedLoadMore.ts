@@ -127,6 +127,14 @@ export function useFeedLoadMore({ feedRef, emit, isLoadingMoreRef }: UseFeedLoad
     isScrollByMouseButton.value = false;
   };
 
+  /**
+   * Сбрасывает флаги подгрузки (например, при изменении списка объектов)
+   */
+  const resetAllowFlags = () => {
+    allowLoadMoreTop.value = true;
+    allowLoadMoreBottom.value = true;
+  };
+
   return {
     allowLoadMoreTop,
     allowLoadMoreBottom,
@@ -138,6 +146,7 @@ export function useFeedLoadMore({ feedRef, emit, isLoadingMoreRef }: UseFeedLoad
     restoreScrollPosition,
     startScrollWatch,
     stopScrollWatch,
+    resetAllowFlags,
   };
 }
 

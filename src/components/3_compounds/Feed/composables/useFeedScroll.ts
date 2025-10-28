@@ -10,7 +10,7 @@ import { Ref, ref, nextTick, watch } from 'vue';
 /**
  * Параметры и зависимости композабла.
  */
-interface UseFeedScrollOptions<T = any> {
+interface UseFeedScrollOptions<T = unknown> {
   /** Ссылка на DOM-элемент контейнера ленты */
   feedRef: Ref<HTMLElement | null>;
   /** Реактивный список объектов ленты (для определения, когда есть контент) */
@@ -19,7 +19,7 @@ interface UseFeedScrollOptions<T = any> {
   scrollToBottomRef: Ref<boolean>;
 }
 
-export function useFeedScroll<T = any>({ feedRef, objectsRef, scrollToBottomRef }: UseFeedScrollOptions<T>) {
+export function useFeedScroll<T = unknown>({ feedRef, objectsRef, scrollToBottomRef }: UseFeedScrollOptions<T>) {
   /**
    * Признак, что первичная инициализация скролла уже выполнена,
    * чтобы не повторять её при каждом изменении данных.
@@ -122,6 +122,17 @@ export function useFeedScroll<T = any>({ feedRef, objectsRef, scrollToBottomRef 
         setTimeout(() => {
           ensureScrollToBottom();
         }, 1200);
+      }
+    },
+    { immediate: true }
+  );
+
+  // Автоинициализация скролла при появлении объектов
+  watch(
+    () => objectsRef.value.length,
+    () => {
+      if (!isInitialized.value && objectsRef.value.length > 0) {
+        initializeScroll();
       }
     },
     { immediate: true }

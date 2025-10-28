@@ -45,9 +45,17 @@ export function useFeedMessageVisibility<T = unknown>({
     }
   };
 
+  /**
+   * Обновляет список наблюдаемых элементов и перезапускает наблюдение
+   */
+  const restartObserving = () => {
+    observeMessages();
+  };
+
   return {
     observer,
     observeMessages,
+    restartObserving,
   };
 }
 
