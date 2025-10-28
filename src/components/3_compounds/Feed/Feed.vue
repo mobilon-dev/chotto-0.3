@@ -117,7 +117,7 @@ import {
 } from '@/components';
 
 import { IFeedObject, IFeedTyping, IFeedUnreadButton, IFeedKeyboard } from '@/types';
-import { useMessage } from '@/hooks';
+import { useMessage, useStickyDate } from '@/hooks';
 import { throttle } from './functions/throttle';
 
 import chatBackgroundRaw from './assets/chat-background.svg?raw';
@@ -187,9 +187,6 @@ const allowLoadMoreTop = ref(false)
 const allowLoadMoreBottom = ref(false)
 const movingDown = ref(false)
 const isScrollByMouseButton = ref(false)
-const showStickyDate = ref(false)
-const stickyDateText = ref('')
-let stickyHideTimer = null as unknown as number | null
 const isInitialized = ref(false)
 // Preserve scroll position on top-prepend via scrollHeight delta
 const prevScrollHeight = ref(0)
@@ -201,6 +198,17 @@ const previousObjectsLength = ref(0)
 
 const chatAppId = inject('chatAppId')
 const { setReply, getMessage, resetReply } = useMessage(chatAppId as string)
+
+// Инициализация логики sticky date
+const {
+  showStickyDate,
+  stickyDateText,
+  show: showStickyDateComponent
+} = useStickyDate({
+  feedRef: refFeed,
+  trackingObjects
+})
+
 const emit = defineEmits([
   'messageAction',
   'loadMore', 
@@ -270,12 +278,8 @@ function scrollTopCheck (allowLoadMore: boolean = true) {
     }
   }
 
-  updateStickyDate();
-  showStickyDate.value = true;
-  if (stickyHideTimer) window.clearTimeout(stickyHideTimer as unknown as number)
-  stickyHideTimer = window.setTimeout(() => {
-    showStickyDate.value = false;
-  }, 500);
+  // Показываем sticky date
+  showStickyDateComponent();
 };
 
 watch(
@@ -668,37 +672,6 @@ const groupedObjects = computed(() => {
     }
   })
 })
-
-function updateStickyDate() {
-  const feedEl = unref(refFeed) as HTMLElement
-  if (!feedEl || !trackingObjects.value) return
-  const feedTop = feedEl.getBoundingClientRect().top
-  let topMost: HTMLElement | null = null
-
-  for (const el of trackingObjects.value) {
-    const rect = el.getBoundingClientRect()
-    if (rect.top <= feedTop + 1 && rect.bottom > feedTop) { 
-      topMost = el
-      break
-    }
-  }
-
-  if (!topMost) {
-    for (const el of trackingObjects.value) {
-      const rect = el.getBoundingClientRect()
-      if (rect.top >= feedTop) { topMost = el; break }
-    }
-  }
-  if (!topMost) return
-  try {
-    const obj = JSON.parse(topMost.id)
-    if (!obj || !obj.timestamp) return
-    const d = new Date(Number(obj.timestamp) * 1000)
-    stickyDateText.value = d.toLocaleDateString()
-  } catch {
-    // ignore
-  }
-}
 
 // watcher для инициализации при монтировании
 onMounted(() => {
