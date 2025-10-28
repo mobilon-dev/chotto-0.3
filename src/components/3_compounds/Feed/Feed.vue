@@ -20,7 +20,7 @@
       v-for="(object, index) in groupedObjects"
       :id="JSON.stringify(object)"
       :key="`${object.messageId ?? 'mid'}-${index}`"
-      :class="['tracking-message', { 'new-message': object.isNewMessage }]"
+      class="tracking-message"
       @dblclick="feedObjectDoubleClick($event,object)"
     >
       <component
@@ -192,24 +192,15 @@ const {
   keyboardRef,
 })
 
-// Функция для определения новых сообщений
-const isNewMessage = (index: number) => {
-  return props.isLoadingMore && 
-    newMessagesCount.value > 0 && 
-    index < newMessagesCount.value
-}
-
 // Инициализация логики группировки
 const { groupedObjects } = useFeedGrouping({
   objects: computed(() => props.objects),
-  isNewMessage,
 })
 
 // Инициализация логики подгрузки сообщений
 const {
   allowLoadMoreTop,
   allowLoadMoreBottom,
-  topLoadJustHappened,
   checkScrollPosition,
   restoreScrollPosition,
   startScrollWatch,
@@ -217,9 +208,6 @@ const {
 } = useFeedLoadMore({
   feedRef: refFeed,
 })
-
-const newMessagesCount = ref(0)
-const previousObjectsLength = ref(0)
 
 const chatAppId = inject('chatAppId')
 const { setReply, getMessage, resetReply } = useMessage(chatAppId as string)
@@ -296,88 +284,9 @@ watch(
 watch(
   () => props.isLoadingMore,
   (newValue, oldValue) => {
-
-    if (oldValue === false && newValue === true) {
-      previousObjectsLength.value = props.objects.length;
-      newMessagesCount.value = 0;
-    }
-    
     if (oldValue === true && newValue === false) {
       // Восстановление позиции скролла делегировано в композабл
       restoreScrollPosition(0)
-
-      nextTick(() => {
-
-        const currentObjects = props.objects;
-        if (currentObjects && currentObjects.length > previousObjectsLength.value) {
-          const addedCount = currentObjects.length - previousObjectsLength.value;
-          
-          newMessagesCount.value = addedCount;
-          
-          nextTick(() => {
-            const allMessages = document.querySelectorAll('.tracking-message');
-            const firstMessages = Array.from(allMessages).slice(0, addedCount);
-            firstMessages.forEach((msg) => {
-              msg.classList.add('new-message');
-            });
-          });
-          
-
-          setTimeout(() => {
-            let newMessages = document.querySelectorAll('.tracking-message.new-message');
-            
-            if (newMessages.length === 0) {
-              const allMessages = document.querySelectorAll('.tracking-message');
-              const firstMessages = Array.from(allMessages).slice(0, addedCount);
-              
-              if (firstMessages.length > 0) {
-                firstMessages.forEach((msg) => {
-                  msg.classList.add('new-message');
-                });
-                
-                if (topLoadJustHappened.value) {
-                  return;
-                }
-                firstMessages.forEach((msg, index) => {
-                  setTimeout(() => {
-                    msg.classList.add('animate');
-                  }, index * 150);
-                });
-                
-                setTimeout(() => {
-                  firstMessages.forEach((msg) => {
-                    msg.classList.remove('new-message', 'animate');
-                  });
-                  newMessagesCount.value = 0;
-                }, addedCount * 150 + 1500);
-                
-                return; 
-              }
-            }
-            
-            
-            if (newMessages.length > 0) {
-              if (topLoadJustHappened.value) {
-                return;
-              }
-              newMessages.forEach((msg, index) => {
-                setTimeout(() => {
-                  msg.classList.add('animate');
-                }, index * 150);
-              });
-              
-              setTimeout(() => {
-                newMessages.forEach((msg) => {
-                  msg.classList.remove('new-message', 'animate');
-                });
-                newMessagesCount.value = 0;
-              }, addedCount * 150 + 1500);
-            } else {
-              newMessagesCount.value = 0;
-            }
-          }, 50);
-        }
-      });
     }
   }
 )
@@ -466,44 +375,13 @@ const observer = new IntersectionObserver(callback, options)
 
 watch(
   () => props.objects,
-  (newObjects, oldObjects) => {
+  (newObjects) => {
     nextTick(() => {
       // Инициализируем скролл при первой загрузке объектов
       if (!isInitialized.value && newObjects.length > 0) {
         initializeScroll();
       }
 
-      if (oldObjects && newObjects.length > oldObjects.length) {
-        const addedCount = newObjects.length - oldObjects.length;
-        
-        setTimeout(() => {
-
-          if (props.isLoadingMore) {
-            newMessagesCount.value = addedCount;
-            previousObjectsLength.value = oldObjects.length;
-            
-            setTimeout(() => {
-              const newMessages = document.querySelectorAll('.tracking-message.new-message');
-              console.log('📱 Найдено новых сообщений для анимации:', newMessages.length);
-              
-              newMessages.forEach((msg, index) => {
-                setTimeout(() => {
-                  msg.classList.add('animate');
-                  console.log(`✨ Анимация запущена для сообщения ${index + 1}`);
-                }, index * 150);
-              });
-              
-              setTimeout(() => {
-                newMessages.forEach((msg) => {
-                  msg.classList.remove('new-message', 'animate');
-                });
-                newMessagesCount.value = 0;
-                
-              }, addedCount * 150 + 1500);
-            }, 50); 
-          }
-        }, 10); 
-      }
       
       allowLoadMoreTop.value = true
       allowLoadMoreBottom.value = true

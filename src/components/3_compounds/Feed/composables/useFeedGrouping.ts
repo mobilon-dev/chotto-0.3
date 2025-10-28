@@ -3,15 +3,14 @@ import { IFeedObject } from '@/types';
 
 interface UseFeedGroupingOptions {
   objects: ComputedRef<IFeedObject[]>;
-  isNewMessage: (index: number) => boolean;
 }
 
 /**
  * Композабл для группировки сообщений в серии (по отправителю)
  */
-export function useFeedGrouping({ objects, isNewMessage }: UseFeedGroupingOptions) {
+export function useFeedGrouping({ objects }: UseFeedGroupingOptions) {
   /**
-   * Группирует сообщения, определяя начало серии и новые сообщения
+   * Группирует сообщения, определяя начало серии
    */
   const groupedObjects = computed(() => {
     if (!objects.value || objects.value.length === 0) return [];
@@ -34,7 +33,6 @@ export function useFeedGrouping({ objects, isNewMessage }: UseFeedGroupingOption
       return {
         ...message,
         isFirstInSeries,
-        isNewMessage: isNewMessage(index),
       };
     });
   });
