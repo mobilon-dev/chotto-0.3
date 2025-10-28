@@ -117,7 +117,8 @@ import {
 } from '@/components';
 
 import { IFeedObject, IFeedTyping, IFeedUnreadButton, IFeedKeyboard } from '@/types';
-import { useMessage, useStickyDate, useFeedScroll } from '@/hooks';
+import { useMessage } from '@/hooks';
+import { useStickyDate, useFeedScroll } from './composables';
 import { throttle } from './functions/throttle';
 
 import chatBackgroundRaw from './assets/chat-background.svg?raw';
