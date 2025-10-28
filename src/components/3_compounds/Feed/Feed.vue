@@ -117,7 +117,7 @@ import {
 } from '@/components';
 
 import { IFeedObject, IFeedTyping, IFeedUnreadButton, IFeedKeyboard } from '@/types';
-import { useMessage, useStickyDate } from '@/hooks';
+import { useMessage, useStickyDate, useFeedScroll } from '@/hooks';
 import { throttle } from './functions/throttle';
 
 import chatBackgroundRaw from './assets/chat-background.svg?raw';
@@ -187,7 +187,6 @@ const allowLoadMoreTop = ref(false)
 const allowLoadMoreBottom = ref(false)
 const movingDown = ref(false)
 const isScrollByMouseButton = ref(false)
-const isInitialized = ref(false)
 // Preserve scroll position on top-prepend via scrollHeight delta
 const prevScrollHeight = ref(0)
 const prevScrollTop = ref(0)
@@ -207,6 +206,19 @@ const {
 } = useStickyDate({
   feedRef: refFeed,
   trackingObjects
+})
+
+// Инициализация логики скролла
+const {
+  isInitialized,
+  performScrollToBottom,
+  ensureScrollToBottom,
+  initializeScroll,
+  smoothScrollToBottom,
+} = useFeedScroll({
+  feedRef: refFeed,
+  objectsRef: computed(() => props.objects),
+  scrollToBottomRef: computed(() => props.scrollToBottom),
 })
 
 const emit = defineEmits([
@@ -429,98 +441,13 @@ const componentsMap = (type: string) => {
   return r[type];
 }
 
-function performScrollToBottom() {
-  nextTick(function () {
-    const element = unref(refFeed);
-    if (!element) return;
-    
-    // Устанавливаем мгновенный скролл
-    element.style.scrollBehavior = 'auto';
-    
-    // Принудительно устанавливаем скролл до самого низа
-    element.scrollTop = element.scrollHeight;
-    
-    // Дополнительная проверка через микротаск
-    nextTick(() => {
-      if (element.scrollHeight - element.scrollTop - element.clientHeight > 10) {
-        element.scrollTop = element.scrollHeight;
-      }
-    });
-    
-    // Возвращаем плавный скролл
-    setTimeout(() => {
-      element.style.scrollBehavior = 'smooth';
-    }, 1000);
-  })
-}
-
-// Гарантированный скролл до низа
-const ensureScrollToBottom = () => {
-  const element = unref(refFeed);
-  if (!element) return;
-  
-  const scrollToBottom = () => {
-    const isAtBottom = element.scrollHeight - element.scrollTop - element.clientHeight < 5;
-    if (!isAtBottom) {
-      element.scrollTop = element.scrollHeight;
-      // Повторная проверка через небольшой интервал
-      setTimeout(() => {
-        const stillNotAtBottom = element.scrollHeight - element.scrollTop - element.clientHeight > 5;
-        if (stillNotAtBottom) {
-          element.scrollTop = element.scrollHeight;
-        }
-      }, 200);
-    }
-  };
-  
-  scrollToBottom();
-  setTimeout(scrollToBottom, 300);
-};
-
-// Первоначальная инициализация скролла
-function initializeScroll() {
-  if (!isInitialized.value && props.objects.length > 0) {
-    performScrollToBottom();
-    // Дополнительная проверка для больших окон
-    setTimeout(() => {
-      ensureScrollToBottom();
-    }, 300);
-    // Еще одна проверка для медленно загружающихся чатов
-    setTimeout(() => {
-      ensureScrollToBottom();
-    }, 800);
-    isInitialized.value = true;
-  }
-}
-
 function scrollToBottomForce() {
   emit('forceScrollToBottom')
   // Для кнопки "вниз" используем плавный скролл
-  nextTick(function () {
-    const element = unref(refFeed);
-    element.style.scrollBehavior = 'smooth';
-    element.scrollTop = element.scrollHeight;
-  })
+  smoothScrollToBottom()
 }
 
-watch(
-  ()=> props.scrollToBottom,
-  () => {
-    console.log('force scroll to bottom')
-    if (props.scrollToBottom) {
-      performScrollToBottom();
-      // Дублирующая проверка
-      setTimeout(() => {
-        ensureScrollToBottom();
-      }, 500);
-      // Дополнительная проверка для медленных чатов
-      setTimeout(() => {
-        ensureScrollToBottom();
-      }, 1200);
-    }
-  },
-  {immediate: true}
-)
+// наблюдение за props.scrollToBottom перенесено в useFeedScroll
 
 const messageAction = (message: IFeedObject) => {
   emit('messageAction', message);
