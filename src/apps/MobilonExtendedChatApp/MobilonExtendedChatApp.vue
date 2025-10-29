@@ -26,6 +26,7 @@
             :chats="chatsStore.chats"
             filter-enabled
             :title-enabled="true"
+            :title="'Mobilon One'"
             :dialog-tabs="dialogTabs"
             :active-tab-id="activeTabId"
             @select="selectChat"
