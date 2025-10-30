@@ -167,7 +167,7 @@ import { ref, computed, watch, inject } from 'vue'
 
 import { ContextMenu, LinkPreview, EmbedPreview, BaseReplyMessage, ModalFullscreen } from '@/components';
 import { useMessageActions, useMessageLinks } from '@/hooks';
-import { getStatus, statuses } from "@/functions";
+import { getStatus, statuses, getMessageClass } from "@/functions";
 import { useTheme } from "@/hooks";
 import { IVideoMessage } from '@/types';
 
@@ -197,7 +197,7 @@ const props = defineProps({
 const emit = defineEmits(['action','reply']);
 
 function getClass(message: IVideoMessage) {
-  return message.position === 'left' ? 'video-message__left' : 'video-message__right';
+  return getMessageClass(message.position, 'video-message')
 }
 
 const player = ref<HTMLVideoElement | null>();

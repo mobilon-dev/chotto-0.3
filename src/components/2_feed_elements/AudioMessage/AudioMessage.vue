@@ -204,7 +204,7 @@ import { ref, onMounted, computed, watch, inject } from 'vue'
 import { ContextMenu, LinkPreview, EmbedPreview, BaseReplyMessage } from '@/components';
 import { useMessageActions } from '@/hooks';
 import { useMessageLinks } from '@/hooks';
-import { getStatus, statuses } from '@/functions';
+import { getStatus, statuses, getMessageClass } from '@/functions';
 import { useTheme } from '@/hooks';
 import { IAudioMessage } from '@/types';
 
@@ -335,7 +335,7 @@ const formatDuration = computed(() => {
 });
 
 function getClass(message: IAudioMessage) {
-  return message.position === 'left' ? 'audio-message__left' : 'audio-message__right';
+  return getMessageClass(message.position, 'audio-message')
 }
 
 onMounted(() => {

@@ -126,7 +126,7 @@ import { computed } from 'vue'
 
 import { ContextMenu, LinkPreview, EmbedPreview, BaseReplyMessage } from '@/components';
 import { useMessageActions, useMessageLinks } from '@/hooks';
-import { getStatus, statuses } from "@/functions";
+import { getStatus, statuses, getMessageClass } from "@/functions";
 import { IFileMessage } from '@/types';
 
 // Define props
@@ -163,7 +163,7 @@ const {
 const status = computed(() => getStatus(props.message.status))
 
 function getClass(message: { position: string }) {
-  return message.position === 'left' ? 'file-message__left' : 'file-message__right';
+  return getMessageClass(message.position, 'file-message')
 }
 
 </script>

@@ -163,7 +163,7 @@ import { ref, computed, inject } from 'vue';
 
 import { ContextMenu, LinkPreview, EmbedPreview, BaseReplyMessage, ModalFullscreen } from '@/components';
 import { useMessageActions, useMessageLinks } from '@/hooks';
-import { getStatus, statuses } from "@/functions";
+import { getStatus, statuses, getMessageClass } from "@/functions";
 import { useTheme } from "@/hooks";
 import { IImageMessage } from '@/types';
 
@@ -219,7 +219,7 @@ const imageBorderRadius = computed(() => {
 const status = computed(() => getStatus(props.message.status))
 
 function getClass(message: IImageMessage) {
-  return message.position === 'left' ? 'image-message__left' : 'image-message__right';
+  return getMessageClass(message.position, 'image-message')
 }
 
 const closeModal = () => isOpenModal.value = false
