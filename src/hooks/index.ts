@@ -5,6 +5,7 @@ export * from './useMessage';
 export * from './useSearchModel';
 export * from './useTheme';
 export * from './useMessageActions';
+export * from './useMessageLinks';
 
 export * from './modals';
 export * from './validators';

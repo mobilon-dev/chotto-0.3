@@ -121,7 +121,7 @@
       >
         <p
           @click="inNewWindow"
-          v-html="linkedText"
+          v-html="linkedHtml"
         />
       </div>
 
@@ -164,10 +164,9 @@
   lang="ts"
 >
 import { ref, computed, watch, inject } from 'vue'
-import linkifyStr from "linkify-string";
 
 import { ContextMenu, LinkPreview, EmbedPreview, BaseReplyMessage, ModalFullscreen } from '@/components';
-import { useMessageActions } from '@/hooks';
+import { useMessageActions, useMessageLinks } from '@/hooks';
 import { getStatus, statuses } from "@/functions";
 import { useTheme } from "@/hooks";
 import { IVideoMessage } from '@/types';
@@ -209,7 +208,7 @@ const previewPlayer = ref<HTMLVideoElement | null>();
 
 const isOpenModal = ref(false);
 const buttonDownloadVisible = ref(false)
-const linkedText = ref('')
+const { linkedHtml, inNewWindow } = useMessageLinks(() => props.message.text)
 
 const {
   isOpenMenu,
@@ -221,21 +220,9 @@ const {
   handleClickReplied
 } = useMessageActions(props.message, emit)
 
-watch(
-  () => props.message.text,
-  () => {
-    if (props.message.text) {
-      linkedText.value = linkifyStr(props.message.text)
-    }
-  },
-  { immediate: true }
-)
+// linkified текст формируется в useMessageLinks
 
-function inNewWindow(event: Event) {
-  event.preventDefault()
-  if ((event.target as HTMLAnchorElement).href)
-    window.open((event.target as HTMLAnchorElement).href, '_blank');
-}
+// обработчик открытия ссылок предоставлен useMessageLinks
 
 // расширяем showMenu чтобы дополнительно показывать кнопку скачивания
 const showMenu = () => {

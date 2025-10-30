@@ -118,7 +118,7 @@
       >
         <p
           @click="inNewWindow"
-          v-html="linkedText"
+          v-html="linkedHtml"
         />
       </div>
 
@@ -159,11 +159,10 @@
   setup
   lang="ts"
 >
-import { ref, computed, watch, inject } from 'vue';
-import linkifyStr from "linkify-string";
+import { ref, computed, inject } from 'vue';
 
 import { ContextMenu, LinkPreview, EmbedPreview, BaseReplyMessage, ModalFullscreen } from '@/components';
-import { useMessageActions } from '@/hooks';
+import { useMessageActions, useMessageLinks } from '@/hooks';
 import { getStatus, statuses } from "@/functions";
 import { useTheme } from "@/hooks";
 import { IImageMessage } from '@/types';
@@ -201,23 +200,9 @@ const {
   handleClickReplied
 } = useMessageActions(props.message, emit)
 const buttonDownloadVisible = ref(false)
-const linkedText = ref('')
+const { linkedHtml, inNewWindow } = useMessageLinks(() => props.message.text)
 
-watch(
-  () => props.message.text,
-  () => {
-    if (props.message.text) {
-      linkedText.value = linkifyStr(props.message.text)
-    }
-  },
-  { immediate: true }
-)
-
-function inNewWindow(event: Event) {
-  event.preventDefault()
-  if ((event.target as HTMLAnchorElement).href)
-    window.open((event.target as HTMLAnchorElement).href, '_blank');
-}
+// обработчик открытия ссылок предоставлен useMessageLinks
 
 const showMenu = () => {
   baseShowMenu()

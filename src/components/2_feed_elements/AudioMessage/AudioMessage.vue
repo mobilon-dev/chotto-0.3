@@ -106,7 +106,7 @@
       >
         <p
           @click="inNewWindow"
-          v-html="linkedText"
+          v-html="linkedHtml"
         />
       </div>
 
@@ -200,10 +200,10 @@
   lang="ts"
 >
 import { ref, onMounted, computed, watch, inject } from 'vue'
-import linkifyStr from "linkify-string";
 
 import { ContextMenu, LinkPreview, EmbedPreview, BaseReplyMessage } from '@/components';
 import { useMessageActions } from '@/hooks';
+import { useMessageLinks } from '@/hooks';
 import { getStatus, statuses } from '@/functions';
 import { useTheme } from '@/hooks';
 import { IAudioMessage } from '@/types';
@@ -278,18 +278,11 @@ const {
 
 const isFullTranscript = ref(false)
 
-const linkedText = computed(() => {
-  if (props.message.text) return linkifyStr(props.message.text)
-  return ''
-})
+const { linkedHtml, inNewWindow } = useMessageLinks(() => props.message.text)
 
 // reply handled by composable
 
-function inNewWindow(event: MouseEvent) {
-  event.preventDefault()
-  if (event.target && 'href' in event.target)
-    window.open((event.target as HTMLAnchorElement).href, '_blank');
-}
+// обработчик открытия ссылок предоставлен useMessageLinks
 
 // menu handled by composable
 

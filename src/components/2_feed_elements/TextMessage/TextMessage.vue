@@ -38,7 +38,7 @@
       <p
         class="text-message__text"
         @click="inNewWindow"
-        v-html="linkedText"
+        v-html="linkedHtml"
       />
 
       <LinkPreview
@@ -103,11 +103,10 @@
   setup
   lang="ts"
 >
-import { computed, ref, watch } from 'vue'
-import linkifyStr from "linkify-string";
+import { computed } from 'vue'
 
 import { ContextMenu, LinkPreview, EmbedPreview, BaseReplyMessage } from '@/components';
-import { useMessageActions } from '@/hooks';
+import { useMessageActions, useMessageLinks } from '@/hooks';
 import { getStatus, statuses } from "@/functions";
 import { ITextMessage } from '@/types';
 
@@ -128,15 +127,7 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['action','reply']);
-const linkedText = ref('')
-
-watch(
-  () => props.message.text,
-  () => {
-    linkedText.value = linkifyStr(props.message.text)
-  },
-  { immediate: true }
-)
+const { linkedHtml, inNewWindow } = useMessageLinks(() => props.message.text)
 
 const { 
   isOpenMenu,
@@ -148,11 +139,7 @@ const {
   handleClickReplied
 } = useMessageActions(props.message, emit)
 
-function inNewWindow(event: Event) {
-  event.preventDefault()
-  if ((event.target as HTMLAnchorElement).href)
-    window.open((event.target as HTMLAnchorElement).href, '_blank');
-}
+// обработчик открытия ссылок предоставлен useMessageLinks
 
 const status = computed(() => getStatus(props.message.status))
 
