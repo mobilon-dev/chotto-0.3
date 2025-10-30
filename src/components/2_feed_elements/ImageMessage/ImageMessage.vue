@@ -163,6 +163,7 @@ import { ref, computed, watch, inject } from 'vue';
 import linkifyStr from "linkify-string";
 
 import { ContextMenu, LinkPreview, EmbedPreview, BaseReplyMessage, ModalFullscreen } from '@/components';
+import { useMessageActions } from '@/hooks';
 import { getStatus, statuses } from "@/functions";
 import { useTheme } from "@/hooks";
 import { IImageMessage } from '@/types';
@@ -190,8 +191,15 @@ const emit = defineEmits(['action', 'reply']);
 
 const isOpenModal = ref(false);
 
-const isOpenMenu = ref(false)
-const buttonMenuVisible = ref(false);
+const {
+  isOpenMenu,
+  buttonMenuVisible,
+  showMenu: baseShowMenu,
+  hideMenu,
+  clickAction,
+  viewsAction,
+  handleClickReplied
+} = useMessageActions(props.message, emit)
 const buttonDownloadVisible = ref(false)
 const linkedText = ref('')
 
@@ -205,31 +213,16 @@ watch(
   { immediate: true }
 )
 
-const handleClickReplied = (messageId: string) => {
-  emit('reply', messageId)
-}
-
 function inNewWindow(event: Event) {
   event.preventDefault()
   if ((event.target as HTMLAnchorElement).href)
     window.open((event.target as HTMLAnchorElement).href, '_blank');
 }
 
-const viewsAction = () => {
-  emit('action', { messageId: props.message.messageId, type: 'views' });
-}
-
-const clickAction = () => { }
-
 const showMenu = () => {
-  buttonMenuVisible.value = true;
+  baseShowMenu()
   buttonDownloadVisible.value = true
-};
-
-const hideMenu = () => {
-  buttonMenuVisible.value = false;
-  isOpenMenu.value = false
-};
+}
 
 const imageBorderRadius = computed(() => {
   if (props.message.reply && props.message.text) return '0'

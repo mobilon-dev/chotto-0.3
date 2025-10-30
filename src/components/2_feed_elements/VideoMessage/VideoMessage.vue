@@ -167,6 +167,7 @@ import { ref, computed, watch, inject } from 'vue'
 import linkifyStr from "linkify-string";
 
 import { ContextMenu, LinkPreview, EmbedPreview, BaseReplyMessage, ModalFullscreen } from '@/components';
+import { useMessageActions } from '@/hooks';
 import { getStatus, statuses } from "@/functions";
 import { useTheme } from "@/hooks";
 import { IVideoMessage } from '@/types';
@@ -196,10 +197,6 @@ const props = defineProps({
 
 const emit = defineEmits(['action','reply']);
 
-const handleClickReplied = (messageId: string) => {
-  emit('reply', messageId)
-}
-
 function getClass(message: IVideoMessage) {
   return message.position === 'left' ? 'video-message__left' : 'video-message__right';
 }
@@ -211,10 +208,18 @@ const previewPlayer = ref<HTMLVideoElement | null>();
 // const currentTime = ref(0)
 
 const isOpenModal = ref(false);
-const isOpenMenu = ref(false)
-const buttonMenuVisible = ref(false);
 const buttonDownloadVisible = ref(false)
 const linkedText = ref('')
+
+const {
+  isOpenMenu,
+  buttonMenuVisible,
+  showMenu: baseShowMenu,
+  hideMenu,
+  clickAction,
+  viewsAction,
+  handleClickReplied
+} = useMessageActions(props.message, emit)
 
 watch(
   () => props.message.text,
@@ -232,21 +237,11 @@ function inNewWindow(event: Event) {
     window.open((event.target as HTMLAnchorElement).href, '_blank');
 }
 
-const viewsAction = () => {
-  emit('action', { messageId: props.message.messageId, type: 'views' });
-}
-
-const clickAction = () => { }
-
+// расширяем showMenu чтобы дополнительно показывать кнопку скачивания
 const showMenu = () => {
-  buttonMenuVisible.value = true;
+  baseShowMenu()
   buttonDownloadVisible.value = true
-};
-
-const hideMenu = () => {
-  buttonMenuVisible.value = false;
-  isOpenMenu.value = false
-};
+}
 
 const status = computed(() => getStatus(props.message.status))
 

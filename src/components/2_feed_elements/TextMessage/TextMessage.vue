@@ -107,6 +107,7 @@ import { computed, ref, watch } from 'vue'
 import linkifyStr from "linkify-string";
 
 import { ContextMenu, LinkPreview, EmbedPreview, BaseReplyMessage } from '@/components';
+import { useMessageActions } from '@/hooks';
 import { getStatus, statuses } from "@/functions";
 import { ITextMessage } from '@/types';
 
@@ -127,9 +128,6 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['action','reply']);
-
-const isOpenMenu = ref(false)
-const buttonMenuVisible = ref(false);
 const linkedText = ref('')
 
 watch(
@@ -140,9 +138,15 @@ watch(
   { immediate: true }
 )
 
-const handleClickReplied = (messageId: string) => {
-  emit('reply', messageId)
-}
+const { 
+  isOpenMenu,
+  buttonMenuVisible,
+  showMenu,
+  hideMenu,
+  clickAction,
+  viewsAction,
+  handleClickReplied
+} = useMessageActions(props.message, emit)
 
 function inNewWindow(event: Event) {
   event.preventDefault()
@@ -150,26 +154,7 @@ function inNewWindow(event: Event) {
     window.open((event.target as HTMLAnchorElement).href, '_blank');
 }
 
-const showMenu = () => {
-  buttonMenuVisible.value = true;
-};
-
-const hideMenu = () => {
-  buttonMenuVisible.value = false;
-  isOpenMenu.value = false
-};
-
 const status = computed(() => getStatus(props.message.status))
-
-const clickAction = (action: Record<string, unknown>) => {
-  hideMenu();
-  emit('action', { messageId: props.message.messageId, type: 'menu', ...action });
-}
-
-const viewsAction = () => {
-  hideMenu();
-  emit('action', { messageId: props.message.messageId, type: 'views' });
-}
 
 function getClass(message: ITextMessage) {
   return message.position === 'left' ? 'text-message__left' : 'text-message__right';

@@ -126,6 +126,7 @@ import linkifyStr from "linkify-string";
 
 
 import { ContextMenu, LinkPreview, EmbedPreview, BaseReplyMessage } from '@/components';
+import { useMessageActions } from '@/hooks';
 import { getStatus, statuses } from "@/functions";
 import { IFileMessage } from '@/types';
 
@@ -146,9 +147,6 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['action','reply']);
-
-const isOpenMenu = ref(false)
-const buttonMenuVisible = ref(false);
 const linkedText = ref('')
 
 watch(
@@ -161,30 +159,21 @@ watch(
   { immediate: true }
 )
 
-const handleClickReplied = (messageId: string) => {
-  emit('reply', messageId)
-}
+const {
+  isOpenMenu,
+  buttonMenuVisible,
+  showMenu,
+  hideMenu,
+  clickAction,
+  viewsAction,
+  handleClickReplied
+} = useMessageActions(props.message, emit)
 
 function inNewWindow(event: Event) {
   event.preventDefault()
   if ((event.target as HTMLAnchorElement).href)
     window.open((event.target as HTMLAnchorElement).href, '_blank');
 }
-
-const viewsAction = () => {
-  emit('action', { messageId: props.message.messageId, type: 'views' });
-}
-
-const clickAction = () => { }
-
-const showMenu = () => {
-  buttonMenuVisible.value = true;
-};
-
-const hideMenu = () => {
-  buttonMenuVisible.value = false;
-  isOpenMenu.value = false
-};
 
 const status = computed(() => getStatus(props.message.status))
 

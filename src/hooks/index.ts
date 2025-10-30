@@ -4,6 +4,7 @@ export * from './useImmediateDebouncedRef';
 export * from './useMessage';
 export * from './useSearchModel';
 export * from './useTheme';
+export * from './useMessageActions';
 
 export * from './modals';
 export * from './validators';

@@ -203,6 +203,7 @@ import { ref, onMounted, computed, watch, inject } from 'vue'
 import linkifyStr from "linkify-string";
 
 import { ContextMenu, LinkPreview, EmbedPreview, BaseReplyMessage } from '@/components';
+import { useMessageActions } from '@/hooks';
 import { getStatus, statuses } from '@/functions';
 import { useTheme } from '@/hooks';
 import { IAudioMessage } from '@/types';
@@ -265,8 +266,15 @@ const isPlaying = ref(false);
 const audioDuration = ref(0);
 const currentTime = ref(0)
 
-const isOpenMenu = ref(false)
-const buttonMenuVisible = ref(false);
+const {
+  isOpenMenu,
+  buttonMenuVisible,
+  showMenu,
+  hideMenu,
+  clickAction,
+  viewsAction,
+  handleClickReplied
+} = useMessageActions(props.message, emit)
 
 const isFullTranscript = ref(false)
 
@@ -275,9 +283,7 @@ const linkedText = computed(() => {
   return ''
 })
 
-const handleClickReplied = (messageId: string) => {
-  emit('reply', messageId)
-}
+// reply handled by composable
 
 function inNewWindow(event: MouseEvent) {
   event.preventDefault()
@@ -285,20 +291,9 @@ function inNewWindow(event: MouseEvent) {
     window.open((event.target as HTMLAnchorElement).href, '_blank');
 }
 
-const showMenu = () => {
-  buttonMenuVisible.value = true;
-};
+// menu handled by composable
 
-const hideMenu = () => {
-  buttonMenuVisible.value = false;
-  isOpenMenu.value = false
-};
-
-const viewsAction = () => {
-  emit('action', { messageId: props.message.messageId, type: 'views' });
-}
-
-const clickAction = () => { }
+// actions handled by composable
 
 const status = computed(() => getStatus(props.message.status))
 
