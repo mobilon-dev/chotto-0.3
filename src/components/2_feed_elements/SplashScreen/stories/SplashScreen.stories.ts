@@ -62,10 +62,10 @@ export default meta;
 type Story = StoryObj<typeof SplashScreen>;
 
 export const Default: Story = {
-  render: (args: { theme?: unknown }) => ({
+  render: (args) => ({
     components: { BaseContainer, ThemeMode, SplashScreen },
     setup() {
-      const themesList = args && (args as any).theme ? (args as any).theme : themes;
+      const themesList = (args as { theme?: typeof themes }).theme || themes;
       return { themesList };
     },
     template: `
@@ -96,10 +96,10 @@ export const Default: Story = {
 };
 
 export const EmptyChat: Story = {
-  render: (args: { theme?: unknown }) => ({
+  render: (args) => ({
     components: { BaseContainer, ThemeMode, SplashScreen },
     setup() {
-      const themesList = args && (args as any).theme ? (args as any).theme : themes;
+      const themesList = (args as { theme?: typeof themes }).theme || themes;
       return { themesList };
     },
     template: `
@@ -130,10 +130,10 @@ export const EmptyChat: Story = {
 };
 
 export const NoConnection: Story = {
-  render: (args: { theme?: unknown }) => ({
+  render: (args) => ({
     components: { BaseContainer, ThemeMode, SplashScreen },
     setup() {
-      const themesList = args && (args as any).theme ? (args as any).theme : themes;
+      const themesList = (args as { theme?: typeof themes }).theme || themes;
       return { themesList };
     },
     template: `
