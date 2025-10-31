@@ -222,6 +222,26 @@ export const RightMessageStatusRead: Story = {
   },
 };
 
+export const RightMessageStatusPending: Story = {
+  args: {
+    message: {
+      ...message,
+      position: 'right',
+      status: 'pending',
+    },
+  },
+};
+
+export const RightMessageStatusError: Story = {
+  args: {
+    message: {
+      ...message,
+      position: 'right',
+      status: 'error',
+    },
+  },
+};
+
 export const RightMessageWithActions: Story = {
   args: {
     message: {
