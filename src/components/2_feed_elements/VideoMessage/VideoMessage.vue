@@ -166,7 +166,7 @@
 import { ref, computed, watch, inject } from 'vue'
 
 import { ContextMenu, LinkPreview, EmbedPreview, BaseReplyMessage, ModalFullscreen } from '@/components';
-import { useMessageActions, useMessageLinks } from '@/hooks';
+import { useMessageLinks, useMessageActions } from '@/hooks/messages';
 import { getStatus, statuses, getMessageClass } from "@/functions";
 import { useTheme } from "@/hooks";
 import { IVideoMessage } from '@/types';

@@ -125,7 +125,7 @@ import { computed } from 'vue'
 
 
 import { ContextMenu, LinkPreview, EmbedPreview, BaseReplyMessage } from '@/components';
-import { useMessageActions, useMessageLinks } from '@/hooks';
+import { useMessageLinks, useMessageActions } from '@/hooks/messages';
 import { getStatus, statuses, getMessageClass } from "@/functions";
 import { IFileMessage } from '@/types';
 

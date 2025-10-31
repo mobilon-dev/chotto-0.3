@@ -7,7 +7,7 @@
  * Использование: импортируйте в компонент сообщения и передайте текущий объект сообщения и `emit` компонента.
  * 
  * @example
- * import { useMessageActions } from '@/hooks'
+ * import { useMessageActions } from '@/hooks/messages'
  * 
  * const emit = defineEmits(['action','reply'])
  * const { isOpenMenu, buttonMenuVisible, showMenu, hideMenu, clickAction, viewsAction, handleClickReplied } = useMessageActions(props.message, emit)

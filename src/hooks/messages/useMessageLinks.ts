@@ -6,7 +6,7 @@
  * Использует linkify-string для преобразования текста в HTML.
  * 
  * @example
- * import { useMessageLinks } from '@/hooks'
+ * import { useMessageLinks } from '@/hooks/messages'
  * const { linkedHtml, inNewWindow } = useMessageLinks(() => props.message.text)
  * // <p @click="inNewWindow" v-html="linkedHtml" />
  */

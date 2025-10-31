@@ -202,8 +202,7 @@
 import { ref, onMounted, computed, watch, inject } from 'vue'
 
 import { ContextMenu, LinkPreview, EmbedPreview, BaseReplyMessage } from '@/components';
-import { useMessageActions } from '@/hooks';
-import { useMessageLinks } from '@/hooks';
+import { useMessageActions, useMessageLinks } from '@/hooks/messages';
 import { getStatus, statuses, getMessageClass } from '@/functions';
 import { useTheme } from '@/hooks';
 import { IAudioMessage } from '@/types';
