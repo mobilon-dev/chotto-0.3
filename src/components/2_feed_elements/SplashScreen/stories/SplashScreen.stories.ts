@@ -1,196 +1,302 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import SplashScreen from '../SplashScreen.vue';
+import BaseContainer from '../../../5_containers/BaseContainer/BaseContainer.vue';
+import ThemeMode from '../../../2_elements/ThemeMode/ThemeMode.vue';
+
+const themes = [
+  { code: 'light', name: 'Light', default: true },
+  { code: 'dark', name: 'Dark' },
+  { code: 'green', name: 'Green' },
+  { code: 'mobilon1', name: 'Mobilon1' },
+];
 
 const meta: Meta<typeof SplashScreen> = {
   title: 'Feed Elements/SplashScreen',
   component: SplashScreen,
-  decorators: [() => ({ template: '<div data-theme="light" style="height: 400px; width: 600px; display: flex; align-items: center; justify-content: center; background: #f5f5f5;"><story/></div>' })]
-};
-
-export default meta;
-type Story = StoryObj<typeof SplashScreen>;
-
-export const Default: Story = {
-  render: () => ({
-    components: { SplashScreen },
+  parameters: {
+    layout: 'centered',
+  },
+  tags: ['autodocs'],
+  render: (args) => ({
+    components: { BaseContainer, ThemeMode, SplashScreen },
+    setup() {
+      // theme в args используется только сторибуком, не является пропом компонента
+      // @ts-expect-error theme контролируется Storybook и пробрасывается через args
+      const themesList = args.theme || themes;
+      return { args, themesList };
+    },
     template: `
-      <SplashScreen @action="handleAction">
-        <template #title>
-          <h3>Добро пожаловать!</h3>
-        </template>
-        <template #text>
-          <p>Выберите чат из списка слева, чтобы начать общение</p>
-        </template>
-        <template #picture>
-          <img 
-            src="https://via.placeholder.com/200x200/4285f4/ffffff?text=Chat"
-            alt="Chat Icon"
-            width="200"
-            height="200"
-          >
-        </template>
-      </SplashScreen>
+      <BaseContainer style="padding: 24px; min-height: 80vh; background: var(--chotto-theme-primary-color, #ffffff);">
+        <div style="margin-bottom: 20px; padding: 10px; background: var(--chotto-theme-secondary-color, #f5f5f5); border-radius: 4px;">
+          <ThemeMode :themes="themesList" :show="true" />
+        </div>
+        <div style="min-height: 400px; display: flex; align-items: center; justify-content: center; background: var(--chotto-theme-secondary-color, #f5f5f5); border-radius: 8px;">
+          <SplashScreen @action="handleAction">
+            <template #title>
+              <h3>{{ args.title }}</h3>
+            </template>
+            <template #text>
+              <p>{{ args.text }}</p>
+            </template>
+            <template #picture>
+              <img 
+                :src="args.pictureUrl"
+                :alt="args.pictureAlt"
+                width="200"
+                height="200"
+              >
+            </template>
+          </SplashScreen>
+        </div>
+      </BaseContainer>
     `,
     methods: {
       handleAction() {
         console.log('SplashScreen action triggered');
       }
     }
-  })
+  }),
+};
+
+export default meta;
+type Story = StoryObj<typeof SplashScreen>;
+
+export const Default: Story = {
+  render: (args: { theme?: unknown }) => ({
+    components: { BaseContainer, ThemeMode, SplashScreen },
+    setup() {
+      const themesList = args && (args as any).theme ? (args as any).theme : themes;
+      return { themesList };
+    },
+    template: `
+      <BaseContainer style="padding: 10px; min-height: 80vh; background: var(--chotto-theme-primary-color, #ffffff);">
+        <div style="margin-bottom: 20px; padding: 10px; background: var(--chotto-theme-secondary-color, #f5f5f5); border-radius: 4px;">
+          <ThemeMode :themes="themesList" :show="true" />
+        </div>
+        <div style="min-height: 400px;  display: flex; align-items: center; justify-content: center; background: var(--chotto-theme-secondary-color, #f5f5f5); border-radius: 8px;">
+          <SplashScreen>
+            <template #title>
+              <h3>Привет!</h3>
+            </template>
+            <template #text>
+              <span>Выберите чат и диалог из списка слева</span>
+            </template>
+            <template #picture>
+              <img 
+                src="https://filebump2.services.mobilon.ru/file/kUvCq3FDfVXR5UsJ1rB9Z7eFk23Xy3bqyQEZ"
+                width="196"
+                height="196"
+              >
+            </template>
+          </SplashScreen>
+        </div>
+      </BaseContainer>
+    `,
+  }),
 };
 
 export const EmptyChat: Story = {
-  render: () => ({
-    components: { SplashScreen },
+  render: (args: { theme?: unknown }) => ({
+    components: { BaseContainer, ThemeMode, SplashScreen },
+    setup() {
+      const themesList = args && (args as any).theme ? (args as any).theme : themes;
+      return { themesList };
+    },
     template: `
-      <SplashScreen @action="handleAction">
-        <template #title>
-          <h3>Нет сообщений</h3>
-        </template>
-        <template #text>
-          <p>В этом чате пока нет сообщений. Начните разговор!</p>
-        </template>
-        <template #picture>
-          <img 
-            src="https://via.placeholder.com/200x200/34a853/ffffff?text=Message"
-            alt="Message Icon"
-            width="200"
-            height="200"
-          >
-        </template>
-      </SplashScreen>
+      <BaseContainer style="padding: 24px; min-height: 80vh; background: var(--chotto-theme-primary-color, #ffffff);">
+        <div style="margin-bottom: 20px; padding: 10px; background: var(--chotto-theme-secondary-color, #f5f5f5); border-radius: 4px;">
+          <ThemeMode :themes="themesList" :show="true" />
+        </div>
+        <div style="min-height: 400px; display: flex; align-items: center; justify-content: center; background: var(--chotto-theme-secondary-color, #f5f5f5); border-radius: 8px;">
+          <SplashScreen>
+            <template #title>
+              <h3>Нет сообщений</h3>
+            </template>
+            <template #text>
+              <span style="max-width: 300px; display: block;">Вы можете отправить новое сообщение или воспользоваться шаблоном</span>
+            </template>
+            <template #picture>
+              <img 
+                src="https://filebump2.services.mobilon.ru/file/J2PDOO0mtcsK2v7J3z6tGJ2ttG1IwtlYnHLU/"
+                width="196"
+                height="196"
+              >
+            </template>
+          </SplashScreen>
+        </div>
+      </BaseContainer>
     `,
-    methods: {
-      handleAction() {
-        console.log('Empty chat action triggered');
-      }
-    }
-  })
+  }),
 };
 
 export const NoConnection: Story = {
-  render: () => ({
-    components: { SplashScreen },
+  render: (args: { theme?: unknown }) => ({
+    components: { BaseContainer, ThemeMode, SplashScreen },
+    setup() {
+      const themesList = args && (args as any).theme ? (args as any).theme : themes;
+      return { themesList };
+    },
     template: `
-      <SplashScreen @action="handleAction">
-        <template #title>
-          <h3>Нет соединения</h3>
-        </template>
-        <template #text>
-          <p>Проверьте подключение к интернету и попробуйте снова</p>
-        </template>
-        <template #picture>
-          <img 
-            src="https://via.placeholder.com/200x200/ea4335/ffffff?text=WiFi"
-            alt="WiFi Icon"
-            width="200"
-            height="200"
-          >
-        </template>
-      </SplashScreen>
+      <BaseContainer style="padding: 24px; min-height: 80vh; background: var(--chotto-theme-primary-color, #ffffff);">
+        <div style="margin-bottom: 20px; padding: 10px; background: var(--chotto-theme-secondary-color, #f5f5f5); border-radius: 4px;">
+          <ThemeMode :themes="themesList" :show="true" />
+        </div>
+        <div style="min-height: 400px; display: flex; align-items: center; justify-content: center; background: var(--chotto-theme-secondary-color, #f5f5f5); border-radius: 8px;">
+          <SplashScreen>
+            <template #title>
+              <h3>Нет соединения</h3>
+            </template>
+            <template #text>
+              <p>Проверьте подключение к интернету и попробуйте снова</p>
+            </template>
+            <template #picture>
+              <div style="width: 200px; height: 200px; border-radius: 20px; background: #fdecea; position: relative; color: #ea4335; margin: 30px auto;">
+                <span class="pi pi-times-circle" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 64px;" />
+              </div>
+            </template>
+          </SplashScreen>
+        </div>
+      </BaseContainer>
     `,
-    methods: {
-      handleAction() {
-        console.log('No connection action triggered');
-      }
-    }
-  })
+  }),
 };
 
 export const Loading: Story = {
-  render: () => ({
-    components: { SplashScreen },
+  render: (args) => ({
+    components: { BaseContainer, ThemeMode, SplashScreen },
+    setup() {
+      //@ts-expect-error theme используется только для ThemeMode в доках
+      const themesList = args.theme || themes;
+      return { args, themesList };
+    },
     template: `
-      <SplashScreen @action="handleAction">
-        <template #title>
-          <h3>Загрузка...</h3>
-        </template>
-        <template #text>
-          <p>Пожалуйста, подождите, данные загружаются</p>
-        </template>
-        <template #picture>
-          <div style="width: 200px; height: 200px; background: #f0f0f0; border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: spin 2s linear infinite;">
-            <div style="width: 40px; height: 40px; border: 4px solid #4285f4; border-top: 4px solid transparent; border-radius: 50%; animation: spin 1s linear infinite;"></div>
-          </div>
-        </template>
-      </SplashScreen>
+      <BaseContainer style="padding: 24px; min-height: 80vh; background: var(--chotto-theme-primary-color, #ffffff);">
+        <div style="margin-bottom: 20px; padding: 10px; background: var(--chotto-theme-secondary-color, #f5f5f5); border-radius: 4px;">
+          <ThemeMode :themes="themesList" :show="true" />
+        </div>
+        <div style="min-height: 400px; display: flex; align-items: center; justify-content: center; background: var(--chotto-theme-secondary-color, #f5f5f5); border-radius: 8px;">
+          <SplashScreen @action="handleAction">
+            <template #title>
+              <h3>{{ args.title }}</h3>
+            </template>
+            <template #text>
+              <p>{{ args.text }}</p>
+            </template>
+            <template #picture>
+              <div style="width: 200px; height: 200px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--chotto-theme-secondary-color, #f5f5f5); margin: 20px auto;">
+                <span class="pi pi-spinner pi-spin" style="font-size: 48px; color: #4285f4; line-height: 1; display: inline-block;" />
+              </div>
+            </template>
+          </SplashScreen>
+        </div>
+      </BaseContainer>
     `,
     methods: {
       handleAction() {
         console.log('Loading action triggered');
       }
     },
-    mounted() {
-      // Добавляем CSS анимацию
-      const style = document.createElement('style');
-      style.textContent = `
-        @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-      `;
-      document.head.appendChild(style);
-    }
-  })
+    mounted() {}
+  }),
+  args: {
+    //@ts-expect-error theme используется только для ThemeMode в доках
+    theme: themes,
+    title: 'Загрузка...',
+    text: 'Пожалуйста, подождите, данные загружаются',
+    pictureUrl: '',
+    pictureAlt: '',
+  },
 };
 
 export const CustomContent: Story = {
-  render: () => ({
-    components: { SplashScreen },
+  render: (args) => ({
+    components: { BaseContainer, ThemeMode, SplashScreen },
+    setup() {
+      //@ts-expect-error theme используется только для ThemeMode в доках
+      const themesList = args.theme || themes;
+      return { args, themesList };
+    },
     template: `
-      <SplashScreen @action="handleAction">
-        <template #title>
-          <h2 style="color: #9c27b0; margin-bottom: 20px;">Специальное предложение</h2>
-        </template>
-        <template #text>
-          <div style="text-align: center; max-width: 300px;">
-            <p style="margin-bottom: 15px;">Получите скидку 50% на премиум функции!</p>
-            <button style="background: #9c27b0; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
-              Узнать больше
-            </button>
-          </div>
-        </template>
-        <template #picture>
-          <img 
-            src="https://via.placeholder.com/200x200/9c27b0/ffffff?text=Offer"
-            alt="Special Offer"
-            width="200"
-            height="200"
-            style="border-radius: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"
-          >
-        </template>
-      </SplashScreen>
+      <BaseContainer style="padding: 24px; min-height: 80vh; background: var(--chotto-theme-primary-color, #ffffff);">
+        <div style="margin-bottom: 20px; padding: 10px; background: var(--chotto-theme-secondary-color, #f5f5f5); border-radius: 4px;">
+          <ThemeMode :themes="themesList" :show="true" />
+        </div>
+        <div style="min-height: 400px; display: flex; align-items: center; justify-content: center; background: var(--chotto-theme-secondary-color, #f5f5f5); border-radius: 8px;">
+          <SplashScreen @action="handleAction">
+            <template #title>
+              <h2 style="color: #9c27b0; margin-bottom: 20px;">{{ args.title }}</h2>
+            </template>
+            <template #text>
+              <div style="text-align: center; max-width: 300px; margin: 0 auto;">
+                <p style="margin-bottom: 15px;">{{ args.text }}</p>
+                <button style="background: #9c27b0; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+                  Узнать больше
+                </button>
+              </div>
+            </template>
+            <template #picture>
+              <div style="width: 200px; height: 200px; border-radius: 20px; background: var(--chotto-theme-secondary-color, #f5f5f5); position: relative; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 20px auto;">
+                <span class="pi pi-gift" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 56px; color: #9c27b0;" />
+              </div>
+            </template>
+          </SplashScreen>
+        </div>
+      </BaseContainer>
     `,
     methods: {
       handleAction() {
         console.log('Custom content action triggered');
       }
     }
-  })
+  }),
+  args: {
+    //@ts-expect-error theme используется только для ThemeMode в доках
+    theme: themes,
+    title: 'Специальное предложение',
+    text: 'Получите скидку 50% на премиум функции!',
+    pictureUrl: 'https://via.placeholder.com/200x200/9c27b0/ffffff?text=Offer',
+    pictureAlt: 'Special Offer',
+  },
 };
 
 export const Minimal: Story = {
-  render: () => ({
-    components: { SplashScreen },
+  render: (args) => ({
+    components: { BaseContainer, ThemeMode, SplashScreen },
+    setup() {
+      //@ts-expect-error theme используется только для ThemeMode в доках
+      const themesList = args.theme || themes;
+      return { args, themesList };
+    },
     template: `
-      <SplashScreen @action="handleAction">
-        <template #title>
-          <h4>Минималистичный дизайн</h4>
-        </template>
-        <template #text>
-          <p>Простой и чистый интерфейс</p>
-        </template>
-        <template #picture>
-          <div style="width: 100px; height: 100px; background: #666; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px;">
-            M
-          </div>
-        </template>
-      </SplashScreen>
+      <BaseContainer style="padding: 24px; min-height: 80vh; background: var(--chotto-theme-primary-color, #ffffff);">
+        <div style="margin-bottom: 20px; padding: 10px; background: var(--chotto-theme-secondary-color, #f5f5f5); border-radius: 4px;">
+          <ThemeMode :themes="themesList" :show="true" />
+        </div>
+        <div style="min-height: 400px; display: flex; align-items: center; justify-content: center; background: var(--chotto-theme-secondary-color, #f5f5f5); border-radius: 8px;">
+          <SplashScreen @action="handleAction">
+            <template #title>
+              <h4>{{ args.title }}</h4>
+            </template>
+            <template #text>
+              <p>{{ args.text }}</p>
+            </template>
+
+          </SplashScreen>
+        </div>
+      </BaseContainer>
     `,
     methods: {
       handleAction() {
         console.log('Minimal action triggered');
       }
     }
-  })
+  }),
+  args: {
+    //@ts-expect-error theme используется только для ThemeMode в доках
+    theme: themes,
+    title: 'Минималистичный дизайн',
+    text: 'Простой и чистый интерфейс',
+    pictureUrl: '',
+    pictureAlt: '',
+  },
 };
