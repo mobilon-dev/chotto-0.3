@@ -50,13 +50,13 @@
 
 <script setup lang="ts">
 import { watch, ref, inject, computed } from 'vue';
-import { useMessage, uploadFile } from '@/hooks';
+import { useMessageDraft, uploadFile } from '@/hooks';
 import { IFilePreview } from '@/types';
 import {FilePreview} from '@/components';
 // const emit = defineEmits(['send', 'typing']);
 
 const chatAppId = inject('chatAppId')
-const { getMessage, setMessageFile, resetMessageFile, setRecordingMessage } = useMessage(chatAppId as string)
+const { getMessage, setMessageFile, resetMessageFile, setRecordingMessage } = useMessageDraft(chatAppId as string)
 
 const timer = ref()
 const ms = ref(0)

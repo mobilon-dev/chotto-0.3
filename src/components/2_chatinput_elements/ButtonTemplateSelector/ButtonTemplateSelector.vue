@@ -38,7 +38,7 @@
 <script setup>
 import { ref, onMounted, inject } from 'vue';
 import { TemplateSelector, Tooltip } from '@/components';
-import { useMessage } from '@/hooks';
+import { useMessageDraft } from '@/hooks';
 import { ChatTemplatesIcon } from './icons';
 
 const props = defineProps({
@@ -72,7 +72,7 @@ const props = defineProps({
 })
 
 const chatAppId = inject('chatAppId')
-const { getMessage } = useMessage(chatAppId)
+const { getMessage } = useMessageDraft(chatAppId)
 
 const templateButton = ref(null)
 const template = ref(null)

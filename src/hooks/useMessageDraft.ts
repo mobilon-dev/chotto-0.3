@@ -65,10 +65,10 @@ const messages = ref<Message[]>([])
  * 
  * @example
  * // Базовое использование в компоненте
- * import { useMessage } from '@/hooks';
+ * import { useMessageDraft } from '@/hooks';
  * 
  * const chatAppId = 'chat-123';
- * const { getMessage, setMessageText, setMessageFile, resetMessage } = useMessage(chatAppId);
+ * const { getMessage, setMessageText, setMessageFile, resetMessage } = useMessageDraft(chatAppId);
  * 
  * // Установить текст
  * setMessageText('Привет!');
@@ -90,7 +90,7 @@ const messages = ref<Message[]>([])
  * 
  * @example
  * // Работа с ответами
- * const { setReply, resetReply } = useMessage(chatAppId);
+ * const { setReply, resetReply } = useMessageDraft(chatAppId);
  * 
  * setReply({
  *   id: 'msg-456',
@@ -101,7 +101,7 @@ const messages = ref<Message[]>([])
  * // Удалить ответ
  * resetReply();
  */
-export const useMessage = (outId : string) => {
+export const useMessageDraft = (outId : string) => {
 
     const index = ref<number>(0)
 
@@ -271,3 +271,5 @@ export const useMessage = (outId : string) => {
         setRecordingMessage,
     }
 }
+
+

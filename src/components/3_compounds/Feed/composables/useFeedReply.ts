@@ -1,5 +1,5 @@
 import { inject } from 'vue';
-import { useMessage } from '@/hooks';
+import { useMessageDraft } from '@/hooks';
 import { IFeedObject } from '@/types';
 
 interface UseFeedReplyOptions {
@@ -12,7 +12,7 @@ interface UseFeedReplyOptions {
  */
 export function useFeedReply({ enableDoubleClickReply, emit }: UseFeedReplyOptions) {
   const chatAppId = inject('chatAppId');
-  const { setReply, getMessage, resetReply } = useMessage(chatAppId as string);
+  const { setReply, getMessage, resetReply } = useMessageDraft(chatAppId as string);
 
   /**
    * Обработчик действия с сообщением

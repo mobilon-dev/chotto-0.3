@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { inject, useTemplateRef } from "vue";
-import { useMessage } from '@/hooks';
+import { useMessageDraft } from '@/hooks';
 import { IKeyBoard } from "@/types";
 
 defineProps({
@@ -38,7 +38,7 @@ const refKeyboard = useTemplateRef('keyboard')
 const emit = defineEmits(['action'])
 
 const chatAppId = inject('chatAppId')
-const { setMessageText, setForceSendMessage } = useMessage(chatAppId as string)
+const { setMessageText, setForceSendMessage } = useMessageDraft(chatAppId as string)
 
 const handleClickKey = (key : IKeyBoard) => {
   if (key.action && typeof key.action === 'function') {

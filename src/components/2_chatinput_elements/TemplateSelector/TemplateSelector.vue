@@ -162,7 +162,7 @@
 <script setup>
 
 import { computed, ref, onMounted, inject, unref } from 'vue'
-import { useMessage } from '@/hooks';
+import { useMessageDraft } from '@/hooks';
 
 import chatBackgroundRaw from '../../3_compounds/Feed/assets/chat-background.svg?raw';
 
@@ -189,7 +189,7 @@ const props = defineProps({
 })
 
 const chatAppId = inject('chatAppId')
-const { setMessageText } = useMessage(chatAppId)
+const { setMessageText } = useMessageDraft(chatAppId)
 
 const handlePutMessage = () => {
   emit('closeTemplateWindow')

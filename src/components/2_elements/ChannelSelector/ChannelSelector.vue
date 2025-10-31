@@ -40,7 +40,7 @@
 import { ref, inject } from 'vue'
 import { ButtonContextMenu } from '@/components';
 import { t } from '../../../locale/useLocale';
-import { useMessage } from '@/hooks';
+import { useMessageDraft } from '@/hooks';
 
 const props = defineProps({
   channels: {
@@ -60,7 +60,7 @@ const props = defineProps({
 })
 
 const chatAppId = inject('chatAppId')
-const { getMessage } = useMessage(chatAppId)
+const { getMessage } = useMessageDraft(chatAppId)
 
 const emit = defineEmits(['selectChannel']);
 

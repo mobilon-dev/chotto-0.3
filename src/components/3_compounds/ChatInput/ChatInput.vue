@@ -48,7 +48,7 @@
 
 <script setup lang="ts">
 import { unref, ref, watch, nextTick, inject, computed } from 'vue';
-import { useMessage, useImmediateDebouncedRef } from '@/hooks';
+import { useMessageDraft, useImmediateDebouncedRef } from '@/hooks';
 import { t } from '../../../locale/useLocale';
 import { IFilePreview, IInputMessage } from '@/types';
 import { WhatsAppSendIcon } from './icons';
@@ -56,7 +56,7 @@ import { WhatsAppSendIcon } from './icons';
 const emit = defineEmits(['send','typing']);
 
 const chatAppId = inject('chatAppId')
-const { resetMessage, getMessage, setMessageText, setForceSendMessage } = useMessage(chatAppId as string)
+const { resetMessage, getMessage, setMessageText, setForceSendMessage } = useMessageDraft(chatAppId as string)
 
 const refInput = ref<HTMLTextAreaElement>();
 const typing = useImmediateDebouncedRef('', 2000)

@@ -45,7 +45,7 @@
 import { ref, computed, inject, onMounted } from "vue";
 // import ButtonContextMenu from "./ButtonContextMenu.vue";
 import { FilePreview } from '@/components';
-import { useMessage, uploadFile } from '@/hooks';
+import { useMessageDraft, uploadFile } from '@/hooks';
 import { IFilePreview } from "@/types";
 import { FileUploaderIcon } from "./icons";
 
@@ -66,7 +66,7 @@ const fileInput = ref<HTMLInputElement>();
 const fileInfo = ref<IFilePreview>()
 
 const chatAppId = inject('chatAppId')
-const { setMessageFile, resetMessageFile, getMessage, setRecordingMessage } = useMessage(chatAppId as string)
+const { setMessageFile, resetMessageFile, getMessage, setRecordingMessage } = useMessageDraft(chatAppId as string)
 
 // const actions = [
 //   {

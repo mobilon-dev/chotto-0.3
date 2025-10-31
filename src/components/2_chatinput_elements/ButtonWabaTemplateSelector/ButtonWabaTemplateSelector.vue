@@ -30,7 +30,7 @@
 <script setup>
 import { ref, onMounted, provide, inject } from 'vue';
 import { WABATemplateSelector } from '@/components';
-import { useMessage } from '@/hooks';
+import { useMessageDraft } from '@/hooks';
 
 const props = defineProps({
   wabaTemplates: {
@@ -69,7 +69,7 @@ const props = defineProps({
 provide('filebumpUrl', props.filebumpUrl)
 
 const chatAppId = inject('chatAppId')
-const { getMessage } = useMessage(chatAppId)
+const { getMessage } = useMessageDraft(chatAppId)
 
 const templateButton = ref(null)
 const template = ref(null)

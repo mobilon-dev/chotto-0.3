@@ -35,7 +35,7 @@
 import EmojiPicker from 'vue3-emoji-picker';
 import 'vue3-emoji-picker/css';
 import { onMounted, onUnmounted, ref, inject } from 'vue';
-import { useMessage } from '@/hooks';
+import { useMessageDraft } from '@/hooks';
 import { SmilesIcon } from './icons';
 
 const props = defineProps({
@@ -55,7 +55,7 @@ const emojiButton = ref(null);
 const isEmojiPickerVisible = ref(false);
 const emojiTheme = ref('light');
 const chatAppId = inject('chatAppId');
-const { setMessageText, getMessage } = useMessage(chatAppId);
+const { setMessageText, getMessage } = useMessageDraft(chatAppId);
 
 // Вспомогательные флаги для hover-режима
 let isMouseOverButton = false;
