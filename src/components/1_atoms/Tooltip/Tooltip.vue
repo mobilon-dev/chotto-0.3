@@ -67,6 +67,7 @@ const updatePosition = () => {
         'right' : {top: bounds.top - ((tBounds.height - bounds.height) / 2) - correctTop, left: bounds?.left + bounds.width - correctLeft + props.offset},
         'bottom': {top: bounds?.bottom - correctTop + props.offset, left: bounds?.left - correctLeft},
         'top'   : {top: bounds.top - tBounds.height - props.offset - correctTop, left: bounds?.left - correctLeft},
+        'bottom-left': {top: bounds?.bottom - correctTop + props.offset, left: bounds?.left + bounds.width - tBounds.width - correctLeft},
       }
       t.style.top = r[props.position].top + 'px'
       t.style.left = r[props.position].left + 'px'

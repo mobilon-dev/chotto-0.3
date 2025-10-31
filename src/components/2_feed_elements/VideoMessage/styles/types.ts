@@ -81,6 +81,10 @@ export interface VideoMessageThemeCSSVariables {
   '--chotto-videomessage-status-read-color': string;
   /** Отрицательный отступ для иконки "прочитано" */
   '--chotto-videomessage-status-read-first-child-margin-right': string;
+  /** Цвет иконок статуса "в ожидании" */
+  '--chotto-videomessage-status-pending-color': string;
+  /** Цвет иконок статуса "ошибка" */
+  '--chotto-videomessage-status-error-color': string;
 
   /** Ряд грида для аватара */
   '--chotto-videomessage-avatar-grid-row': string;

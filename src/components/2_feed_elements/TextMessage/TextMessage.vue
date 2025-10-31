@@ -66,17 +66,30 @@
           v-if="message.time"
           class="text-message__time"
         >{{ message.time }}</span>
-        <div
+        <Tooltip
           v-if="getClass(message) === 'text-message__right' && statuses.includes(message.status)"
-          class="text-message__status"
-          :class="status"
+          :text="statusTitle"
+          position="bottom-left"
         >
-          <span
-            v-if="message.status !== 'sent'"
-            class="pi pi-check"
-          />
-          <span class="pi pi-check" />
-        </div>
+          <div
+            class="text-message__status"
+            :class="status"
+          >
+            <template v-if="message.status === 'pending'">
+              <span class="pi pi-clock" />
+            </template>
+            <template v-else-if="message.status === 'error'">
+              <span class="pi pi-times-circle" />
+            </template>
+            <template v-else>
+              <span
+                v-if="message.status !== 'sent'"
+                class="pi pi-check"
+              />
+              <span class="pi pi-check" />
+            </template>
+          </div>
+        </Tooltip>
       </div>
 
       <button
@@ -105,9 +118,9 @@
 >
 import { computed } from 'vue'
 
-import { ContextMenu, LinkPreview, EmbedPreview, BaseReplyMessage } from '@/components';
+import { ContextMenu, LinkPreview, EmbedPreview, BaseReplyMessage, Tooltip } from '@/components';
 import { useMessageLinks, useMessageActions } from '@/hooks/messages';
-import { getStatus, statuses, getMessageClass } from "@/functions";
+import { getStatus, statuses, getMessageClass, getStatusTitle } from "@/functions";
 import { ITextMessage } from '@/types';
 
 // Define props
@@ -142,6 +155,7 @@ const {
 // обработчик открытия ссылок предоставлен useMessageLinks
 
 const status = computed(() => getStatus(props.message.status))
+const statusTitle = computed(() => getStatusTitle(props.message.status, props.message.statusMsg))
 
 function getClass(message: ITextMessage) {
   return getMessageClass(message.position, 'text-message')

@@ -422,6 +422,10 @@ export interface AudioMessageThemeCSSVariables {
   '--chotto-audiomessage-status-color-received': string;
   /** Цвет статуса прочитано */
   '--chotto-audiomessage-status-color-read': string;
+  /** Цвет статуса в ожидании */
+  '--chotto-audiomessage-status-color-pending': string;
+  /** Цвет статуса ошибка */
+  '--chotto-audiomessage-status-color-error': string;
   /** Размер малого текста-иконки */
   '--chotto-audiomessage-small-text-icon-size': string;
   /** Цвет иконки/текста (span) просмотров */

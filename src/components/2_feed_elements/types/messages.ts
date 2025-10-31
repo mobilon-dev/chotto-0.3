@@ -32,6 +32,7 @@ export interface IAudioMessage {
   time: string
   url: string
   status: string
+  statusMsg?: string
   avatar?: string
   header?: string
   subText?: string
@@ -77,6 +78,7 @@ export interface IFileMessage {
   time: string
   url: string
   status: string
+  statusMsg?: string
   avatar?: string
   header?: string
   subText?: string
@@ -96,6 +98,7 @@ export interface IImageMessage {
   url: string
   alt?: string
   status: string
+  statusMsg?: string
   avatar?: string
   header?: string
   subText?: string
@@ -118,6 +121,7 @@ export interface ITextMessage {
   text: string
   position: string
   status: string
+  statusMsg?: string
   time: string
   avatar?: string
   header?: string
@@ -139,6 +143,7 @@ export interface IVideoMessage {
   messageId: string
   position: string
   status: string
+  statusMsg?: string
   time: string
   url: string
   alt?: string

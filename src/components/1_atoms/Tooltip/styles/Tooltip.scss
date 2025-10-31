@@ -23,6 +23,7 @@
 .tooltip-wrapper {
   position: var(--chotto-tooltip-wrapper-position, relative);
   width: var(--chotto-tooltip-wrapper-width, fit-content);
+  cursor: var(--chotto-tooltip-wrapper-cursor, pointer);
 }
 
 // .tooltip__text::after {

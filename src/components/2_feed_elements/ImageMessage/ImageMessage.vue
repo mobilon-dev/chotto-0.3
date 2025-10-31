@@ -64,17 +64,30 @@
 
             <span class="image-message__time">{{ message.time }}</span>
 
-            <div
+            <Tooltip
               v-if="getClass(message) === 'image-message__right' && statuses.includes(message.status)"
-              class="image-message__status"
-              :class="status"
+              :text="statusTitle"
+              position="bottom-left"
             >
-              <span
-                v-if="message.status !== 'sent'"
-                class="pi pi-check"
-              />
-              <span class="pi pi-check" />
-            </div>
+              <div
+                class="image-message__status"
+                :class="status"
+              >
+                <template v-if="message.status === 'pending'">
+                  <span class="pi pi-clock" />
+                </template>
+                <template v-else-if="message.status === 'error'">
+                  <span class="pi pi-times-circle" />
+                </template>
+                <template v-else>
+                  <span
+                    v-if="message.status !== 'sent'"
+                    class="pi pi-check"
+                  />
+                  <span class="pi pi-check" />
+                </template>
+              </div>
+            </Tooltip>
           </div>
         </transition>
 
@@ -161,9 +174,9 @@
 >
 import { ref, computed, inject } from 'vue';
 
-import { ContextMenu, LinkPreview, EmbedPreview, BaseReplyMessage, ModalFullscreen } from '@/components';
+import { ContextMenu, LinkPreview, EmbedPreview, BaseReplyMessage, ModalFullscreen, Tooltip } from '@/components';
 import { useMessageLinks, useMessageActions } from '@/hooks/messages';
-import { getStatus, statuses, getMessageClass } from "@/functions";
+import { getStatus, statuses, getMessageClass, getStatusTitle } from "@/functions";
 import { useTheme } from "@/hooks";
 import { IImageMessage } from '@/types';
 
@@ -217,6 +230,7 @@ const imageBorderRadius = computed(() => {
 })
 
 const status = computed(() => getStatus(props.message.status))
+const statusTitle = computed(() => getStatusTitle(props.message.status, props.message.statusMsg))
 
 function getClass(message: IImageMessage) {
   return getMessageClass(message.position, 'image-message')

@@ -153,6 +153,10 @@ export interface FileMessageThemeCSSVariables {
   '--chotto-filemessage-status-received-color': string;
   /** Цвет статуса "прочитано" */
   '--chotto-filemessage-status-read-color': string;
+  /** Цвет статуса "в ожидании" */
+  '--chotto-filemessage-status-pending-color': string;
+  /** Цвет статуса "ошибка" */
+  '--chotto-filemessage-status-error-color': string;
 
   /** Отображение блока просмотров */
   '--chotto-filemessage-views-display': string;

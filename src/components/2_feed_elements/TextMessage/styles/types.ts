@@ -96,6 +96,10 @@ export interface TextMessageThemeCSSVariables {
   '--chotto-textmessage-status-read-color': string;
   /** Отрицательный отступ первой иконки статуса "прочитано" */
   '--chotto-textmessage-status-read-first-child-margin-right': string;
+  /** Цвет статуса "в ожидании" */
+  '--chotto-textmessage-status-pending-color': string;
+  /** Цвет статуса "ошибка" */
+  '--chotto-textmessage-status-error-color': string;
 
   /** Размер шрифта текста сообщения */
   '--chotto-textmessage-text-font-size': string;

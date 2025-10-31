@@ -90,6 +90,18 @@
     }
   }
 
+  .status--pending {
+    span {
+      color: var(--chotto-textmessage-status-pending-color, #9ca3af);
+    }
+  }
+
+  .status--error {
+    span {
+      color: var(--chotto-textmessage-status-error-color, #ef4444);
+    }
+  }
+
   &__text {
     font-size: var(--chotto-textmessage-text-font-size, 14px);
     white-space: var(--chotto-textmessage-text-white-space, pre-wrap);

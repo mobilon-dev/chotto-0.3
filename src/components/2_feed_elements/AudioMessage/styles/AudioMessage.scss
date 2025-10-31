@@ -201,6 +201,18 @@
     }
   }
 
+  .status--pending {
+    span {
+      color: var(--chotto-audiomessage-status-color-pending, #9ca3af);
+    }
+  }
+
+  .status--error {
+    span {
+      color: var(--chotto-audiomessage-status-color-error, #ef4444);
+    }
+  }
+
   &__views {
     display: var(--chotto-audiomessage-views-display, flex);
     align-items: var(--chotto-audiomessage-views-align-items, center);

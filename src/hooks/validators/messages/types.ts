@@ -52,7 +52,8 @@ export interface Message {
   type: string;
   timestamp: string | number;
   direction?: 'incoming' | 'outgoing';
-  status?: 'read' | 'sent' | 'received';
+  status?: 'read' | 'sent' | 'received' | 'pending' | 'error';
+  statusMsg?: string;
   text?: string;
   header?: string;
   subText?: string;

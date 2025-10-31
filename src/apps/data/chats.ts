@@ -274,7 +274,8 @@ export const chats = [
   {
     chatId: 6, name: "Виктор",
     countUnread: 0, lastMessage: 'test', 'lastActivity.time': 'час назад',
-    'lastActivity.timestamp': '1727023159',
+    'lastActivity.timestamp': '1761901469',
+    avatar: 'https://placehold.jp/30/f1048e/ffffff/64x64.png?text=ВФ',
     actions: [
       { action: 'edit', title: 'изменить' }, { action: 'delete', title: 'удалить' },
     ],
