@@ -8,6 +8,7 @@ import {
   DateMessage,
   SystemMessage,
   TypingMessage,
+  StickerMessage,
 } from '@/components';
 
 /**
@@ -22,6 +23,7 @@ export function useFeedComponents() {
       'message.audio': AudioMessage,
       'message.video': VideoMessage,
       'message.call': CallMessage,
+      'message.sticker': StickerMessage,
       'message.system': SystemMessage,
       'system.date': DateMessage,
       'message.typing': TypingMessage,

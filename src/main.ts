@@ -1,3 +1,5 @@
+import './utils/suppress-lit-warning';
+
 import { createApp } from 'vue';
 import { createPinia } from 'pinia'
 import 'primeicons/primeicons.css'

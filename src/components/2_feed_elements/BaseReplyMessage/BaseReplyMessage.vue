@@ -24,6 +24,7 @@
 import { 
   ReplyTextMessage, 
   ReplyImageMessage, 
+  ReplyStickerMessage,
   ReplyAudioMessage, 
   ReplyVideoMessage, 
   ReplyFileMessage,
@@ -51,6 +52,7 @@ const componentsMap = (type: string) => {
   const r: Record<string, unknown> = {
     'message.text': ReplyTextMessage,
     'message.image': ReplyImageMessage,
+    'message.sticker': ReplyStickerMessage,
     'message.file': ReplyFileMessage,
     'message.audio': ReplyAudioMessage,
     'message.video': ReplyVideoMessage,
@@ -63,6 +65,7 @@ const componentsClassMap = (type: string) => {
   const r: Record<string, string> = {
     'message.text': '',
     'message.image': 'grid',
+    'message.sticker': 'grid',
     'message.file': 'grid',
     'message.audio': 'grid',
     'message.video': 'grid',

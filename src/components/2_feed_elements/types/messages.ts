@@ -158,3 +158,24 @@ export interface IVideoMessage {
   embed?: object
   keyboard?: IKeyBoard[]
 }
+
+export interface IStickerMessage {
+  messageId: string
+  position: string
+  time: string
+  url: string
+  alt?: string
+  isAnimated?: boolean
+  status: string
+  statusMsg?: string
+  avatar?: string
+  header?: string
+  subText?: string
+  actions?: IAction[]
+  views?: number
+  text?: string
+  reply?: Reply,
+  linkPreview?: ILinkPreview
+  embed?: object
+  keyboard?: IKeyBoard[]
+}
