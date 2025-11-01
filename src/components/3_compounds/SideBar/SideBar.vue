@@ -90,7 +90,10 @@
       </ul>
     </div>
 
-    <div class="sidebar__settings-container">
+    <div
+      v-if="showSettings"
+      class="sidebar__settings-container"
+    >
       <ButtonContextMenu
         :actions="menuActions"
         mode="click"
@@ -125,6 +128,11 @@ const props = defineProps({
     type: Array,
     required: false,
     default: () => []
+  },
+  showSettings: {
+    type: Boolean,
+    required: false,
+    default: true,
   }
 });
 

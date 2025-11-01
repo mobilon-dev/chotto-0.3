@@ -8,6 +8,7 @@
       <ExtendedLayout>
         <template #first-col>
           <SideBar
+            :show-settings="true"
             :sidebar-items="sidebarItems"
             :menu-actions="menuActions"
             @select-item="selectItem"
