@@ -1,7 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
+import { onMounted, onUnmounted } from 'vue';
 
 import TextMessage from '../TextMessage.vue';
-import { ITextMessage } from '@/types'
+import { ITextMessage } from '@/types';
+import BaseContainer from '../../../5_containers/BaseContainer/BaseContainer.vue';
+import ThemeMode from '../../../2_elements/ThemeMode/ThemeMode.vue';
+import chatBackgroundRaw from '../../../3_compounds/Feed/assets/chat-background.svg?raw';
+
+const themes = [
+  { code: 'light', name: 'Light', default: true },
+  { code: 'dark', name: 'Dark' },
+  { code: 'green', name: 'Green' },
+  { code: 'mobilon1', name: 'Mobilon1' },
+];
 
 const meta: Meta<typeof TextMessage> = {
   title: 'Feed Elements/TextMessage',
@@ -65,6 +76,120 @@ const messageLongText = {
   status: 'read',
 };
 
+const defaultBackground = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(chatBackgroundRaw)}`;
+
+// Общий декоратор для всех stories кроме Default (добавляет паддинги, фоновый контейнер и убирает горизонтальный скролл)
+const commonDecorator = [() => ({
+  template: `<div style="padding: 24px; overflow-x: hidden; background: var(--chotto-theme-primary-color, #ffffff);"><div style="padding: 40px 20px; background-color: var(--chotto-theme-secondary-color, #f5f5f5); background-image: url(${defaultBackground}); border-radius: 8px;"><story/></div></div>`
+})];
+
+export const Default: Story = {
+  render: () => ({
+    components: { BaseContainer, ThemeMode, TextMessage },
+    setup() {
+      const themesList = themes;
+
+      const syncTheme = (event: CustomEvent) => {
+        const themeCode = event.detail;
+        const containers = document.querySelectorAll('[id^="vue-id"]');
+        containers.forEach((container) => {
+          (container as HTMLElement).dataset.theme = themeCode;
+        });
+      };
+
+      onMounted(() => {
+        window.addEventListener('storybook-theme-change', syncTheme as EventListener);
+      });
+
+      onUnmounted(() => {
+        window.removeEventListener('storybook-theme-change', syncTheme as EventListener);
+      });
+
+      const handleThemeChange = (themeCode: string) => {
+        window.dispatchEvent(new CustomEvent('storybook-theme-change', { detail: themeCode }));
+      };
+
+      // Примеры сообщений: левое и правое с разными статусами
+      const leftMessage: ITextMessage = {
+        text: 'Привет!',
+        position: 'left',
+        messageId: 'left1',
+        time: '12:00',
+        status: 'read',
+      };
+
+      const rightMessagePending: ITextMessage = {
+        text: 'Отправляется...',
+        position: 'right',
+        messageId: 'right1',
+        time: '12:05',
+        status: 'pending',
+      };
+
+      const rightMessageSent: ITextMessage = {
+        text: 'Отправлено',
+        position: 'right',
+        messageId: 'right2',
+        time: '12:06',
+        status: 'sent',
+      };
+
+      const rightMessageReceived: ITextMessage = {
+        text: 'Доставлено',
+        position: 'right',
+        messageId: 'right3',
+        time: '12:07',
+        status: 'received',
+      };
+
+      const rightMessageRead: ITextMessage = {
+        text: 'Прочитано',
+        position: 'right',
+        messageId: 'right4',
+        time: '12:08',
+        status: 'read',
+      };
+
+      const rightMessageError: ITextMessage = {
+        text: 'Ошибка отправки',
+        position: 'right',
+        messageId: 'right5',
+        time: '12:09',
+        status: 'error',
+        statusMsg: 'Не удалось отправить сообщение',
+      };
+
+      const defaultBackgroundValue = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(chatBackgroundRaw)}`;
+
+      const containerStyle = {
+        minWidth: '360px',
+        padding: '40px 20px',
+        backgroundColor: 'var(--chotto-theme-secondary-color, #f5f5f5)',
+        backgroundImage: `url(${defaultBackgroundValue})`,
+        borderRadius: '8px'
+      };
+
+      return { themesList, handleThemeChange, leftMessage, rightMessagePending, rightMessageSent, rightMessageReceived, rightMessageRead, rightMessageError, containerStyle };
+    },
+    template: `
+      <BaseContainer style="padding: 24px; background: var(--chotto-theme-primary-color, #ffffff);">
+        <div style="margin-bottom: 20px; padding: 10px; background: var(--chotto-theme-secondary-color, #f5f5f5); border-radius: 4px;">
+          <ThemeMode :themes="themesList" :show="true" @selected-theme="handleThemeChange" />
+        </div>
+        <div :style="containerStyle">
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <TextMessage :message="leftMessage" />
+            <TextMessage :message="rightMessagePending" />
+            <TextMessage :message="rightMessageSent" />
+            <TextMessage :message="rightMessageReceived" />
+            <TextMessage :message="rightMessageRead" />
+            <TextMessage :message="rightMessageError" />
+          </div>
+        </div>
+      </BaseContainer>
+    `,
+  }),
+};
 
 export const LeftMessage: Story = {
   args: {
@@ -73,6 +198,7 @@ export const LeftMessage: Story = {
       position: 'left',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithViews: Story = {
@@ -83,6 +209,7 @@ export const LeftMessageWithViews: Story = {
       views: 18495,
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageLongText: Story = {
@@ -92,6 +219,7 @@ export const LeftMessageLongText: Story = {
       position: 'left',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithSubtext: Story = {
@@ -102,6 +230,7 @@ export const LeftMessageWithSubtext: Story = {
       subText: '+79135292926',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithoutTime: Story = {
@@ -112,6 +241,7 @@ export const LeftMessageWithoutTime: Story = {
       time: '',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithActions: Story = {
@@ -122,6 +252,7 @@ export const LeftMessageWithActions: Story = {
       actions,
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithAvatar: Story = {
@@ -132,6 +263,7 @@ export const LeftMessageWithAvatar: Story = {
       avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithLongTime: Story = {
@@ -142,6 +274,7 @@ export const LeftMessageWithLongTime: Story = {
       time: 'двенадцать дней назад',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessage: Story = {
@@ -151,6 +284,7 @@ export const RightMessage: Story = {
       position: 'right',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithViews: Story = {
@@ -161,6 +295,7 @@ export const RightMessageWithViews: Story = {
       views: 18495,
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageLongText: Story = {
@@ -170,6 +305,7 @@ export const RightMessageLongText: Story = {
       position: 'right',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithSubtext: Story = {
@@ -180,6 +316,7 @@ export const RightMessageWithSubtext: Story = {
       subText: 'Это Коля',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithoutTime: Story = {
@@ -190,6 +327,7 @@ export const RightMessageWithoutTime: Story = {
       time: '',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageStatusSent: Story = {
@@ -200,6 +338,7 @@ export const RightMessageStatusSent: Story = {
       status: 'sent',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageStatusReceived: Story = {
@@ -210,6 +349,7 @@ export const RightMessageStatusReceived: Story = {
       status: 'received',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageStatusRead: Story = {
@@ -220,6 +360,7 @@ export const RightMessageStatusRead: Story = {
       status: 'read',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageStatusPending: Story = {
@@ -230,6 +371,7 @@ export const RightMessageStatusPending: Story = {
       status: 'pending',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageStatusError: Story = {
@@ -238,8 +380,10 @@ export const RightMessageStatusError: Story = {
       ...message,
       position: 'right',
       status: 'error',
+      statusMsg: 'Не удалось отправить сообщение',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithActions: Story = {
@@ -250,6 +394,7 @@ export const RightMessageWithActions: Story = {
       actions,
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithAvatar: Story = {
@@ -260,6 +405,7 @@ export const RightMessageWithAvatar: Story = {
       avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithLongTime: Story = {
@@ -270,6 +416,7 @@ export const RightMessageWithLongTime: Story = {
       time: 'двенадцать дней назад',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageMax: Story = {
@@ -283,6 +430,7 @@ export const LeftMessageMax: Story = {
       time: 'два дня назад',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageMax: Story = {
@@ -296,6 +444,7 @@ export const RightMessageMax: Story = {
       time: 'два дня назад',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithLink: Story = {
@@ -305,6 +454,7 @@ export const LeftMessageWithLink: Story = {
       position: 'left',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithLink: Story = {
@@ -314,6 +464,7 @@ export const RightMessageWithLink: Story = {
       position: 'right',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithReplyText: Story = {
@@ -329,6 +480,7 @@ export const LeftMessageWithReplyText: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithReplyText: Story = {
@@ -344,6 +496,7 @@ export const RightMessageWithReplyText: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithReplyImage: Story = {
@@ -360,6 +513,7 @@ export const LeftMessageWithReplyImage: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithReplyImage: Story = {
@@ -376,6 +530,7 @@ export const RightMessageWithReplyImage: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithReplyVideo: Story = {
@@ -392,6 +547,7 @@ export const LeftMessageWithReplyVideo: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithReplyVideo: Story = {
@@ -408,6 +564,7 @@ export const RightMessageWithReplyVideo: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 
@@ -426,6 +583,7 @@ export const LeftMessageWithReplyFile: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithReplyFile: Story = {
@@ -443,6 +601,7 @@ export const RightMessageWithReplyFile: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithReplyAudio: Story = {
@@ -460,6 +619,7 @@ export const LeftMessageWithReplyAudio: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithReplyAudio: Story = {
@@ -476,6 +636,7 @@ export const RightMessageWithReplyAudio: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithReplyCall: Story = {
@@ -492,6 +653,7 @@ export const LeftMessageWithReplyCall: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithReplyCall: Story = {
@@ -508,6 +670,7 @@ export const RightMessageWithReplyCall: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithPreviewLink: Story = {
@@ -523,6 +686,7 @@ export const LeftMessageWithPreviewLink: Story = {
       }
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithPreviewLink: Story = {
@@ -538,6 +702,7 @@ export const RightMessageWithPreviewLink: Story = {
       }
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithEmbed: Story = {
@@ -548,6 +713,7 @@ export const LeftMessageWithEmbed: Story = {
       embed
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithEmbed: Story = {
@@ -558,4 +724,5 @@ export const RightMessageWithEmbed: Story = {
       embed
     },
   },
+  decorators: commonDecorator,
 };

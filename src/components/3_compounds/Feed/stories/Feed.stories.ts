@@ -1,6 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
+import { onMounted, onUnmounted } from 'vue';
  
 import Feed from '../Feed.vue';
+import BaseContainer from '../../../5_containers/BaseContainer/BaseContainer.vue';
+import ThemeMode from '../../../2_elements/ThemeMode/ThemeMode.vue';
+
+const themes = [
+  { code: 'light', name: 'Light', default: true },
+  { code: 'dark', name: 'Dark' },
+  { code: 'green', name: 'Green' },
+  { code: 'mobilon1', name: 'Mobilon1' },
+];
 
 const meta: Meta<typeof Feed> = {
   title: 'Compounds/Feed',
@@ -11,16 +21,32 @@ const meta: Meta<typeof Feed> = {
 export default meta;
 type Story = StoryObj<typeof Feed>;
 
+// Генерируем timestamp'ы для разных временных точек
+const now = Math.floor(Date.now() / 1000); // Текущее время в секундах
+const twoHoursAgo = now - (2 * 60 * 60);
+const oneHourAgo = now - (1 * 60 * 60);
+const thirtyMinutesAgo = now - (30 * 60);
+const fifteenMinutesAgo = now - (15 * 60);
+const tenMinutesAgo = now - (10 * 60);
+const fiveMinutesAgo = now - (5 * 60);
+const threeMinutesAgo = now - (3 * 60);
+const twoMinutesAgo = now - (2 * 60);
+const oneMinuteAgo = now - 60;
+
 const objects = [
-  { type: "system.date",   messageId: '1', text: 'text', },
-  { type: "message.text",  messageId: '2', text: "Привет!", position: 'left', status: 'read', time: '12:30'},
-  { type: "message.text",  messageId: '3', text: "Привет!", position: 'right',  status: 'read', time: '13 часов назад'},
-  { type: "message.image", messageId: '4', url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg",
-    time: '15 часов назад', alt: "Example Image", position: 'left', status: 'read'},
-  { type: "message.file",  messageId: '5', url: "https://example.com/file.pdf",
-    time: '15 часов назад', position: 'right', status: 'read', filename: "Документ.pdf"},
-  { type: "message.text",  messageId: '6', text: "Привет!",position: 'right', time: '16:30'},
-  { type: "message.image", messageId: '7', url: "https://example.com/image.jpg",position: 'left', time: '17:00', alt: "Example Image"},
+  { type: "system.date",   messageId: '1', text: 'Сегодня' },
+  { type: "message.text",  messageId: '2', text: "Привет!", position: 'left', status: 'read', time: '12:30', timestamp: twoHoursAgo},
+  { type: "message.text",  messageId: '3', text: "Привет!", position: 'right',  status: 'read', time: '13 часов назад', timestamp: oneHourAgo},
+  { type: "message.text",  messageId: '4', text: "Отправляется...", position: 'right', status: 'pending', time: '12:35', timestamp: fiveMinutesAgo},
+  { type: "message.text",  messageId: '5', text: "Отправлено", position: 'right', status: 'sent', time: '12:36', timestamp: threeMinutesAgo},
+  { type: "message.text",  messageId: '6', text: "Доставлено", position: 'right', status: 'received', time: '12:37', timestamp: twoMinutesAgo},
+  { type: "message.text",  messageId: '7', text: "Ошибка отправки", position: 'right', status: 'error', time: '12:38', statusMsg: 'Не удалось отправить сообщение', timestamp: oneMinuteAgo},
+  { type: "message.image", messageId: '8', url: "https://sun9-59.userapi.com/s/v1/if2/halgZJOi4Om6wnFsofNfRxloQs-WAqQVNlV3Z7kfQm2KWKjp0dsXQnk6ZjpkmQ_lqKJZonw5u7pHi6uhK0xbTvuX.jpg?quality=95&as=32x16,48x24,72x36,108x54,160x80,240x120,360x180,480x240,540x270,640x320,720x360,1080x540,1280x640,1440x720,1500x750&from=bu&cs=640x0",
+    time: '15 часов назад', alt: "Example Image", position: 'left', status: 'read', timestamp: thirtyMinutesAgo},
+  { type: "message.file",  messageId: '9', url: "https://example.com/file.pdf",
+    time: '15 часов назад', position: 'right', status: 'read', filename: "Документ.pdf", timestamp: fifteenMinutesAgo},
+  { type: "message.text",  messageId: '10', text: "Привет!",position: 'right', time: '16:30', timestamp: tenMinutesAgo},
+  { type: "message.image", messageId: '11', url: "https://sun9-51.userapi.com/s/v1/if1/QzSMgis9Z4h7XVu0R8oNhcWIlPf_6-5h0CwKnXSRMUziaTwixP57Zhvlamh1vutNWFnNZ5lg.jpg?quality=96&as=32x19,48x29,72x43,108x65,160x96,240x144,360x216,480x288,540x324,640x384,720x432,1080x648,1280x768,1440x864,2560x1536&from=bu&cs=640x0",position: 'right', time: '17:00', alt: "Example Image", timestamp: now, status: 'read'},
 ];
 
 
@@ -82,7 +108,47 @@ export const Primary: Story = {
   args: {
     objects,
     typing: false,
+    //@ts-expect-error theme используется только для ThemeMode в доках
+    theme: themes,
   },
+  render: (args) => ({
+    components: { BaseContainer, ThemeMode, Feed },
+    setup() {
+      const themesList = themes;
+      
+      const syncTheme = (event: CustomEvent) => {
+        const themeCode = event.detail;
+        const containers = document.querySelectorAll('[id^="vue-id"]');
+        containers.forEach((container) => {
+          (container as HTMLElement).dataset.theme = themeCode;
+        });
+      };
+      
+      onMounted(() => {
+        window.addEventListener('storybook-theme-change', syncTheme as EventListener);
+      });
+      
+      onUnmounted(() => {
+        window.removeEventListener('storybook-theme-change', syncTheme as EventListener);
+      });
+      
+      const handleThemeChange = (themeCode: string) => {
+        window.dispatchEvent(new CustomEvent('storybook-theme-change', { detail: themeCode }));
+      };
+      
+      return { args, themesList, handleThemeChange };
+    },
+    template: `
+      <BaseContainer style="padding: 24px; min-height: 60vh; background: var(--chotto-theme-primary-color, #ffffff);">
+        <div style="margin-bottom: 20px; padding: 10px; background: var(--chotto-theme-secondary-color, #f5f5f5); border-radius: 4px;">
+          <ThemeMode :themes="themesList" :show="true" @selected-theme="handleThemeChange" />
+        </div>
+        <div style="height: 500px; overflow-y: auto; overflow-x: hidden; border: 1px solid var(--chotto-theme-border, #e5e5e5); border-radius: 8px; background: var(--chotto-theme-primary-color, #ffffff);">
+          <Feed :objects="args.objects" :typing="args.typing" />
+        </div>
+      </BaseContainer>
+    `,
+  }),
 };
 
 export const WithDates: Story = {

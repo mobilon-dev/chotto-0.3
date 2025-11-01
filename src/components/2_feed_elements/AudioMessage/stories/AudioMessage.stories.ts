@@ -1,13 +1,22 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
+import { onMounted, onUnmounted } from 'vue';
 
 import AudioMessage from '../AudioMessage.vue';
 import { IAudioMessage } from '@/types';
+import BaseContainer from '../../../5_containers/BaseContainer/BaseContainer.vue';
+import ThemeMode from '../../../2_elements/ThemeMode/ThemeMode.vue';
+
+const themes = [
+  { code: 'light', name: 'Light', default: true },
+  { code: 'dark', name: 'Dark' },
+  { code: 'green', name: 'Green' },
+  { code: 'mobilon1', name: 'Mobilon1' },
+];
 
 const meta: Meta<typeof AudioMessage> = {
   title: 'Feed Elements/AudioMessage',
   component: AudioMessage,
   decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
-
 };
 
 export default meta;
@@ -33,6 +42,105 @@ const actions = [
   { action: 'delete', title: 'удалить', },
 ];
 
+// Общий декоратор для всех stories кроме Default (добавляет паддинги и убирает горизонтальный скролл)
+const commonDecorator = [() => ({ 
+  template: '<div style="padding: 24px; overflow-x: hidden;"><story/></div>' 
+})];
+
+export const Default: Story = {
+  render: () => ({
+    components: { BaseContainer, ThemeMode, AudioMessage },
+    setup() {
+      const themesList = themes;
+      
+      const syncTheme = (event: CustomEvent) => {
+        const themeCode = event.detail;
+        const containers = document.querySelectorAll('[id^="vue-id"]');
+        containers.forEach((container) => {
+          (container as HTMLElement).dataset.theme = themeCode;
+        });
+      };
+      
+      onMounted(() => {
+        window.addEventListener('storybook-theme-change', syncTheme as EventListener);
+      });
+      
+      onUnmounted(() => {
+        window.removeEventListener('storybook-theme-change', syncTheme as EventListener);
+      });
+      
+      const handleThemeChange = (themeCode: string) => {
+        window.dispatchEvent(new CustomEvent('storybook-theme-change', { detail: themeCode }));
+      };
+
+      // Примеры сообщений с разными статусами
+      const leftMessage: IAudioMessage = {
+        url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
+        position: 'left',
+        messageId: 'left1',
+        time: '12:00',
+        status: 'read',
+      };
+
+      const rightMessagePending: IAudioMessage = {
+        url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
+        position: 'right',
+        messageId: 'right1',
+        time: '12:05',
+        status: 'pending',
+      };
+
+      const rightMessageSent: IAudioMessage = {
+        url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
+        position: 'right',
+        messageId: 'right2',
+        time: '12:06',
+        status: 'sent',
+      };
+
+      const rightMessageReceived: IAudioMessage = {
+        url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
+        position: 'right',
+        messageId: 'right3',
+        time: '12:07',
+        status: 'received',
+      };
+
+      const rightMessageRead: IAudioMessage = {
+        url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
+        position: 'right',
+        messageId: 'right4',
+        time: '12:08',
+        status: 'read',
+      };
+
+      const rightMessageError: IAudioMessage = {
+        url: 'https://file-examples.com/storage/fe40e015d566f1504935cfd/2017/11/file_example_MP3_700KB.mp3',
+        position: 'right',
+        messageId: 'right5',
+        time: '12:09',
+        status: 'error',
+        statusMsg: 'Не удалось отправить сообщение',
+      };
+
+      return { themesList, handleThemeChange, leftMessage, rightMessagePending, rightMessageSent, rightMessageReceived, rightMessageRead, rightMessageError };
+    },
+    template: `
+      <BaseContainer style="padding: 24px; background: var(--chotto-theme-primary-color, #ffffff);">
+        <div style="margin-bottom: 20px; padding: 10px; background: var(--chotto-theme-secondary-color, #f5f5f5); border-radius: 4px;">
+          <ThemeMode :themes="themesList" :show="true" @selected-theme="handleThemeChange" />
+        </div>
+        <div style="min-width: 360px; padding: 40px 20px; background-color: var(--chotto-theme-secondary-color, #f5f5f5); border-radius: 8px;">
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <AudioMessage :message="leftMessage" />
+            <AudioMessage :message="rightMessagePending" />
+          </div>
+        </div>
+      </BaseContainer>
+    `,
+  }),
+};
+
 export const LeftMessage: Story = {
   args: {
     message: {
@@ -40,6 +148,7 @@ export const LeftMessage: Story = {
       position: 'left',
     } as IAudioMessage,
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithActions: Story = {
@@ -50,6 +159,7 @@ export const LeftMessageWithActions: Story = {
       actions,
     } as IAudioMessage,
   },
+  decorators: commonDecorator,
 };
 
 
@@ -60,6 +170,7 @@ export const RightMessage: Story = {
       position: 'right'
     } as IAudioMessage,
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithAvatar: Story = {
@@ -70,6 +181,7 @@ export const LeftMessageWithAvatar: Story = {
       avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithAvatar: Story = {
@@ -80,6 +192,7 @@ export const RightMessageWithAvatar: Story = {
       avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithAvatarAndSubtext: Story = {
@@ -91,6 +204,7 @@ export const LeftMessageWithAvatarAndSubtext: Story = {
       avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithAvatarAndSubtext: Story = {
@@ -102,6 +216,7 @@ export const RightMessageWithAvatarAndSubtext: Story = {
       avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageSent: Story = {
@@ -112,6 +227,7 @@ export const RightMessageSent: Story = {
       status: 'sent',
     } as IAudioMessage,
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageReceived: Story = {
@@ -122,6 +238,7 @@ export const RightMessageReceived: Story = {
       status: 'received',
     } as IAudioMessage,
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageRead: Story = {
@@ -132,6 +249,41 @@ export const RightMessageRead: Story = {
       status: 'read',
     },
   },
+  decorators: commonDecorator,
+};
+
+export const RightMessagePending: Story = {
+  args: {
+    message: {
+      ...message,
+      position: 'right',
+      status: 'pending',
+    } as IAudioMessage,
+  },
+  decorators: commonDecorator,
+};
+
+export const RightMessageError: Story = {
+  args: {
+    message: {
+      ...message,
+      position: 'right',
+      status: 'error',
+    } as IAudioMessage,
+  },
+  decorators: commonDecorator,
+};
+
+export const RightMessageErrorWithStatusMsg: Story = {
+  args: {
+    message: {
+      ...message,
+      position: 'right',
+      status: 'error',
+      statusMsg: 'Не удалось отправить сообщение',
+    } as IAudioMessage,
+  },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithActions: Story = {
@@ -142,6 +294,7 @@ export const RightMessageWithActions: Story = {
       actions,
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithActionsAndText: Story = {
@@ -155,6 +308,7 @@ export const RightMessageWithActionsAndText: Story = {
         'quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithActionsAndText: Story = {
@@ -168,6 +322,7 @@ export const LeftMessageWithActionsAndText: Story = {
         'quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithActionsAndTextWithLink: Story = {
@@ -181,6 +336,7 @@ export const RightMessageWithActionsAndTextWithLink: Story = {
         'quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. yandex.ru'
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithActionsAndTextWithLink: Story = {
@@ -194,6 +350,7 @@ export const LeftMessageWithActionsAndTextWithLink: Story = {
         'quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. yandex.ru'
     },
   },
+  decorators: commonDecorator,
 };
 
 
@@ -210,6 +367,7 @@ export const RightMessageWithTranscript: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithTranscript: Story = {
@@ -225,6 +383,7 @@ export const LeftMessageWithTranscript: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 export const LeftMessageWithReplyText: Story = {
   args: {
@@ -239,6 +398,7 @@ export const LeftMessageWithReplyText: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithReplyText: Story = {
@@ -254,6 +414,7 @@ export const RightMessageWithReplyText: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithReplyImage: Story = {
@@ -270,6 +431,7 @@ export const LeftMessageWithReplyImage: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithReplyImage: Story = {
@@ -286,6 +448,7 @@ export const RightMessageWithReplyImage: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithReplyVideo: Story = {
@@ -302,6 +465,7 @@ export const LeftMessageWithReplyVideo: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithReplyVideo: Story = {
@@ -318,6 +482,7 @@ export const RightMessageWithReplyVideo: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 
@@ -336,6 +501,7 @@ export const LeftMessageWithReplyFile: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithReplyFile: Story = {
@@ -353,6 +519,7 @@ export const RightMessageWithReplyFile: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithReplyAudio: Story = {
@@ -370,6 +537,7 @@ export const LeftMessageWithReplyAudio: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithReplyAudio: Story = {
@@ -386,6 +554,7 @@ export const RightMessageWithReplyAudio: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithReplyCall: Story = {
@@ -402,6 +571,7 @@ export const LeftMessageWithReplyCall: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithReplyCall: Story = {
@@ -418,6 +588,7 @@ export const RightMessageWithReplyCall: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithPreviewLink: Story = {
@@ -434,6 +605,7 @@ export const LeftMessageWithPreviewLink: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithPreviewLink: Story = {
@@ -450,4 +622,5 @@ export const RightMessageWithPreviewLink: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };

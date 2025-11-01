@@ -1,13 +1,23 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
+import { onMounted, onUnmounted } from 'vue';
 
 import FileMessage from '../FileMessage.vue';
-import { IFileMessage } from '@/types'
+import { IFileMessage } from '@/types';
+import BaseContainer from '../../../5_containers/BaseContainer/BaseContainer.vue';
+import ThemeMode from '../../../2_elements/ThemeMode/ThemeMode.vue';
+import chatBackgroundRaw from '../../../3_compounds/Feed/assets/chat-background.svg?raw';
+
+const themes = [
+  { code: 'light', name: 'Light', default: true },
+  { code: 'dark', name: 'Dark' },
+  { code: 'green', name: 'Green' },
+  { code: 'mobilon1', name: 'Mobilon1' },
+];
 
 const meta: Meta<typeof FileMessage> = {
   title: 'Feed Elements/FileMessage',
   component: FileMessage,
   decorators: [() => ({template: '<div data-theme="light"><story /></div>'})]
-
 };
 
 export default meta;
@@ -34,6 +44,126 @@ const actions = [
   { action: 'delete', title: 'удалить', },
 ];
 
+const defaultBackground = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(chatBackgroundRaw)}`;
+
+// Общий декоратор для всех stories кроме Default (добавляет паддинги, фоновый контейнер и убирает горизонтальный скролл)
+const commonDecorator = [() => ({ 
+  template: `<div style="padding: 24px; overflow-x: hidden; background: var(--chotto-theme-primary-color, #ffffff);"><div style="padding: 40px 20px; background-color: var(--chotto-theme-secondary-color, #f5f5f5); background-image: url(${defaultBackground}); border-radius: 8px;"><story/></div></div>` 
+})];
+
+export const Default: Story = {
+  render: () => ({
+    components: { BaseContainer, ThemeMode, FileMessage },
+    setup() {
+      const themesList = themes;
+
+      const syncTheme = (event: CustomEvent) => {
+        const themeCode = event.detail;
+        const containers = document.querySelectorAll('[id^="vue-id"]');
+        containers.forEach((container) => {
+          (container as HTMLElement).dataset.theme = themeCode;
+        });
+      };
+
+      onMounted(() => {
+        window.addEventListener('storybook-theme-change', syncTheme as EventListener);
+      });
+
+      onUnmounted(() => {
+        window.removeEventListener('storybook-theme-change', syncTheme as EventListener);
+      });
+
+      const handleThemeChange = (themeCode: string) => {
+        window.dispatchEvent(new CustomEvent('storybook-theme-change', { detail: themeCode }));
+      };
+
+      // Примеры сообщений: левое и правое с разными статусами
+      const leftMessage: IFileMessage = {
+        filename: "document.pdf",
+        url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg",
+        time: '12:00',
+        status: 'read',
+        position: 'left',
+        messageId: 'left1',
+      };
+
+      const rightMessagePending: IFileMessage = {
+        filename: "document.pdf",
+        url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg",
+        time: '12:05',
+        status: 'pending',
+        position: 'right',
+        messageId: 'right1',
+      };
+
+      const rightMessageSent: IFileMessage = {
+        filename: "document.pdf",
+        url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg",
+        time: '12:06',
+        status: 'sent',
+        position: 'right',
+        messageId: 'right2',
+      };
+
+      const rightMessageReceived: IFileMessage = {
+        filename: "document.pdf",
+        url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg",
+        time: '12:07',
+        status: 'received',
+        position: 'right',
+        messageId: 'right3',
+      };
+
+      const rightMessageRead: IFileMessage = {
+        filename: "document.pdf",
+        url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg",
+        time: '12:08',
+        status: 'read',
+        position: 'right',
+        messageId: 'right4',
+      };
+
+      const rightMessageError: IFileMessage = {
+        filename: "document.pdf",
+        url: "https://nationaltoday.com/wp-content/uploads/2022/05/Sun-Day--1200x834.jpg",
+        time: '12:09',
+        status: 'error',
+        statusMsg: 'Не удалось отправить сообщение',
+        position: 'right',
+        messageId: 'right5',
+      };
+
+      const defaultBackgroundValue = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(chatBackgroundRaw)}`;
+
+      const containerStyle = {
+        minWidth: '360px',
+        padding: '40px 20px',
+        backgroundColor: 'var(--chotto-theme-secondary-color, #f5f5f5)',
+        backgroundImage: `url(${defaultBackgroundValue})`,
+        borderRadius: '8px'
+      };
+
+      return { themesList, handleThemeChange, leftMessage, rightMessagePending, rightMessageSent, rightMessageReceived, rightMessageRead, rightMessageError, containerStyle };
+    },
+    template: `
+      <BaseContainer style="padding: 24px; background: var(--chotto-theme-primary-color, #ffffff);">
+        <div style="margin-bottom: 20px; padding: 10px; background: var(--chotto-theme-secondary-color, #f5f5f5); border-radius: 4px;">
+          <ThemeMode :themes="themesList" :show="true" @selected-theme="handleThemeChange" />
+        </div>
+        <div :style="containerStyle">
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <FileMessage :message="leftMessage" />
+            <FileMessage :message="rightMessagePending" />
+            <FileMessage :message="rightMessageSent" />
+            <FileMessage :message="rightMessageReceived" />
+            <FileMessage :message="rightMessageRead" />
+            <FileMessage :message="rightMessageError" />
+          </div>
+        </div>
+      </BaseContainer>
+    `,
+  }),
+};
 
 export const LeftFileMessage: Story = {
   args: {
@@ -42,6 +172,7 @@ export const LeftFileMessage: Story = {
       position: 'left',
     } as IFileMessage,
   },
+  decorators: commonDecorator,
 };
 
 export const LeftFileMessageWithSubtext: Story = {
@@ -52,6 +183,7 @@ export const LeftFileMessageWithSubtext: Story = {
       subText: 'sub text sub text'
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftFileMessageWithActions: Story = {
@@ -62,6 +194,7 @@ export const LeftFileMessageWithActions: Story = {
       actions,
     }
   },
+  decorators: commonDecorator,
 };
 
 export const LeftFileMessageWithAvatar: Story = {
@@ -72,6 +205,7 @@ export const LeftFileMessageWithAvatar: Story = {
       avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightFileMessageWithAvatar: Story = {
@@ -82,6 +216,7 @@ export const RightFileMessageWithAvatar: Story = {
       avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftFileMessageWithAvatarAndSubtext: Story = {
@@ -93,6 +228,7 @@ export const LeftFileMessageWithAvatarAndSubtext: Story = {
       avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightFileMessageWithAvatarAndSubtext: Story = {
@@ -104,6 +240,7 @@ export const RightFileMessageWithAvatarAndSubtext: Story = {
       avatar: 'https://placehold.jp/30/336633/ffffff/64x64.png?text=PN',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightFileMessage: Story = {
@@ -113,6 +250,7 @@ export const RightFileMessage: Story = {
       position: 'right',
     }
   },
+  decorators: commonDecorator,
 };
 
 export const RightFileMessageStatusSent: Story = {
@@ -123,6 +261,7 @@ export const RightFileMessageStatusSent: Story = {
       status: 'sent',
     }
   },
+  decorators: commonDecorator,
 };
 
 export const RightFileMessageStatusReceived: Story = {
@@ -133,6 +272,7 @@ export const RightFileMessageStatusReceived: Story = {
       status: 'received',
     }
   },
+  decorators: commonDecorator,
 };
 
 export const RightFileMessageStatusRead: Story = {
@@ -143,6 +283,30 @@ export const RightFileMessageStatusRead: Story = {
       status: 'read',
     }
   },
+  decorators: commonDecorator,
+};
+
+export const RightFileMessageStatusPending: Story = {
+  args: {
+    message: {
+      ...fileMessage,
+      position: 'right',
+      status: 'pending',
+    } as IFileMessage,
+  },
+  decorators: commonDecorator,
+};
+
+export const RightFileMessageStatusError: Story = {
+  args: {
+    message: {
+      ...fileMessage,
+      position: 'right',
+      status: 'error',
+      statusMsg: 'Не удалось отправить сообщение',
+    } as IFileMessage,
+  },
+  decorators: commonDecorator,
 };
 
 export const RightFileMessageWithSubtext: Story = {
@@ -153,6 +317,7 @@ export const RightFileMessageWithSubtext: Story = {
       subText: 'sub text sub text'
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightFileMessageWithActions: Story = {
@@ -163,6 +328,7 @@ export const RightFileMessageWithActions: Story = {
       actions,
     }
   },
+  decorators: commonDecorator,
 };
 
 export const RightFileMessageWithActionsAndText: Story = {
@@ -176,6 +342,7 @@ export const RightFileMessageWithActionsAndText: Story = {
         'quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftFileMessageWithActionsAndText: Story = {
@@ -189,6 +356,7 @@ export const LeftFileMessageWithActionsAndText: Story = {
         'quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     }
   },
+  decorators: commonDecorator,
 };
 
 export const RightFileMessageWithActionsAndTextWithLink: Story = {
@@ -202,6 +370,7 @@ export const RightFileMessageWithActionsAndTextWithLink: Story = {
         'quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. vk.com',
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftFileMessageWithActionsAndTextWithLink: Story = {
@@ -215,6 +384,7 @@ export const LeftFileMessageWithActionsAndTextWithLink: Story = {
         'quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. vk.com',
     }
   },
+  decorators: commonDecorator,
 };
 export const LeftMessageWithReplyText: Story = {
   args: {
@@ -229,6 +399,7 @@ export const LeftMessageWithReplyText: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithReplyText: Story = {
@@ -244,6 +415,7 @@ export const RightMessageWithReplyText: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithReplyImage: Story = {
@@ -260,6 +432,7 @@ export const LeftMessageWithReplyImage: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithReplyImage: Story = {
@@ -276,6 +449,7 @@ export const RightMessageWithReplyImage: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithReplyVideo: Story = {
@@ -292,6 +466,7 @@ export const LeftMessageWithReplyVideo: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithReplyVideo: Story = {
@@ -308,6 +483,7 @@ export const RightMessageWithReplyVideo: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 
@@ -326,6 +502,7 @@ export const LeftMessageWithReplyFile: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithReplyFile: Story = {
@@ -343,6 +520,7 @@ export const RightMessageWithReplyFile: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithReplyAudio: Story = {
@@ -360,6 +538,7 @@ export const LeftMessageWithReplyAudio: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithReplyAudio: Story = {
@@ -376,6 +555,7 @@ export const RightMessageWithReplyAudio: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithReplyCall: Story = {
@@ -392,6 +572,7 @@ export const LeftMessageWithReplyCall: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithReplyCall: Story = {
@@ -408,6 +589,7 @@ export const RightMessageWithReplyCall: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const LeftMessageWithPreviewLink: Story = {
@@ -424,6 +606,7 @@ export const LeftMessageWithPreviewLink: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
 
 export const RightMessageWithPreviewLink: Story = {
@@ -440,4 +623,5 @@ export const RightMessageWithPreviewLink: Story = {
       },
     },
   },
+  decorators: commonDecorator,
 };
